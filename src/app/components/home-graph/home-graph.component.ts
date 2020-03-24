@@ -27,7 +27,7 @@ export class HomeGraphComponent implements OnInit {
         const italy = this.graph_data['Italy'];
         const korea = this.graph_data['South Korea'];
         const singapore = this.graph_data['Singapore'];
-
+        console.log(this.graph_data)
         this.graph = null;
 
         this.graph = {
@@ -37,7 +37,7 @@ export class HomeGraphComponent implements OnInit {
                 { x: Object.keys(korea), y: Object.values(korea), type: 'scatter', mode: 'lines+points', marker: {color: '#C0C0C0'},name:'South Korea' },
                 { x: Object.keys(singapore), y: Object.values(singapore), type: 'scatter', mode: 'lines+points', marker: {color: '#C0C0C0'},name:'Singapore' },
             ],
-            layout: {yaxis: {range: [0, 500]}, shapes: [
+            layout: {yaxis: {title: 'ICU Beds', range: [0, 500]}, shapes: [
               {
             type: 'rect',
             // x-reference is assigned to the x-values
@@ -87,7 +87,9 @@ export class HomeGraphComponent implements OnInit {
         text: 'ICU 25% Capacity',
         showarrow: false,
       }
-      ]}
+    ], xaxis: {
+    title: 'Days after 100 cases'}
+  },
         };
     }
 
