@@ -6,9 +6,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApiService {
 
-  readonly api_endpoint : string = 'https://ihs-api.herokuapp.com/covid/allc'
+  readonly api_endpoint : string = 'https://flatteningthecurve.herokuapp.com/covid/results'
 
-  constructor(private http_client : HttpClient) { 
+  constructor(private http_client : HttpClient) {
 
   }
 
