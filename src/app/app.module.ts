@@ -14,6 +14,12 @@ import { StoryComponent } from './pages/story/story.component';
 import { ResourcesComponent } from './pages/resources/resources.component';
 import { ConnectComponent } from './pages/connect/connect.component';
 import { HomeGraphComponent } from './components/home-graph/home-graph.component';
+import { PlotlyViaCDNModule } from 'angular-plotly.js';
+
+
+PlotlyViaCDNModule.plotlyVersion = '1.49.4'; // can be `latest` or any version number (i.e.: '1.40.0')
+PlotlyViaCDNModule.plotlyBundle = 'basic'; // optional: can be null (for full) or 'basic', 'cartesian', 'geo', 'gl3d', 'gl2d', 'mapbox' or 'finance'
+
 
 @NgModule({
   declarations: [
@@ -27,6 +33,7 @@ import { HomeGraphComponent } from './components/home-graph/home-graph.component
   ],
   imports: [
     BrowserModule,
+    PlotlyViaCDNModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
