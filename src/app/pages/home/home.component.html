@@ -1,5 +1,5 @@
 <div class='content' style='background-color: white;'>
-    <div>
+    <div id='container'>
         <div id='header-container'>
             <div id='title-div'>
                 <div >
@@ -25,6 +25,9 @@
                 <p>
                     The time to #FlattenTheCurve is now.
                 </p>
+                <div id='read-more-container'>
+                    <button mat-raised-button (click)='on_read_more_pressed();' id='read-more-btn'>Read More</button>
+                </div>
             </div>
             <div style='width: 20px'></div>
             <div id='which-curve-graph'>

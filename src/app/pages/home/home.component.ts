@@ -21,4 +21,8 @@ export class HomeComponent implements OnInit {
       console.error(error);
     })
   }
+
+  on_read_more_pressed() {
+    window.location.href = 'https://medium.com/@obenfine/howsmyflattening-choosing-ontarios-covid-19-curve-5c173d4f32d';
+  }
 }

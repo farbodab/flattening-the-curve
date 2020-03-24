@@ -1,3 +1,7 @@
+#container {
+    color: #2B2B2B;
+}
+
 #header-container {
     height:300px;
     width:100%;
@@ -38,11 +42,12 @@
 #who-what-content {
     text-align: center;
     margin:20px 20px 0px 20px;
+    padding: 30px 10px 30px 10px;
     font-size:20px;
 
     @media screen and (min-width: 1024px) {
         padding: 50px 100px 50px 100px;
-        font-size: 30px;
+        font-size: 25px;
     }
 }
 
@@ -86,4 +91,20 @@
     @media screen and (min-width: 1024px) {
         height:4px;
     }
+}
+
+#read-more-container {
+    text-align: left;
+    padding-top:20px;
+
+    @media screen and (min-width: 1024px) {
+        text-align: center;
+    }
+}
+
+#read-more-btn {
+    color: white;
+    background-color: #205D86;
+    width:150px;
+    text-align: center;
 }
