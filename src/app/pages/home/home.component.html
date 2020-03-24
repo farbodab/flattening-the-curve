@@ -1,0 +1,50 @@
+<div class='content' style='background-color: white;'>
+    <div>
+        <div id='header-container'>
+            <div id='title-div'>
+                <div >
+                    <p class='mat-display-1' id='title-text'>#HowsMyFlattening</p>
+                    <p class='mat-headline' id='subtitle-text'>A centralized data analytics and visualization hub monitoring Ontario's response to COVID-19</p>
+                </div>
+            </div>
+        </div>
+        <div id='divider'></div>
+        <div id='which-curve'>
+            <div id='which-curve-text'>
+                <p class='mat-headline'>
+                    Which Curve Will Ontario Follow?
+                </p>
+                <p>
+                    Once critical care (ICU) beds run out, mortality jumps from 1 to 5%
+                </p>
+                <p>
+                    This graph tracks estimated ICU bed needs (5% of positive tests, 8d length of stay) in Ontario relative to different levels of ICU surge capacity across the province.
+                </p>
+                <p>
+                    The red flashing dot is where we stand today. We can either follow Italy's or South Korea's course (link to story page). Decisions today will have a 1-2 week lag.
+                </p>
+                <p>
+                    The time to #FlattenTheCurve is now.
+                </p>
+            </div>
+            <div style='width: 20px'></div>
+            <div id='which-curve-graph'>
+                <app-home-graph *ngIf='graph_data != null' [graph_data]='graph_data'></app-home-graph>
+                <!--<img style='width:100%' src='https://flatteningthecurve.herokuapp.com/static/fig1.png'>-->
+            </div>
+        </div>
+        <p id='who-what-content' class='mat-headline'>
+            We are physicians, medical students, computational health researchers, designers and epidemiologists rapidly filtering and presenting emergent COVID-19 data to help Ontario #FlattenTheCurve.
+        </p>
+        <p id='who-what-content' class='mat-headline'>
+            We connect experts and present data in an easy to digest, actionable way to help Ontario's public leaders and individuals act decisively as evidence grows and time ticks by.
+        </p>
+        <!--
+        <div id='who-what-content'>
+            <button id='resources-button' mat-raised-button>Explore Ontario-specific analytics resources</button>
+        </div>
+        -->
+        <div id='divider'></div>
+        <div id='footer'></div>
+    </div>
+</div>
