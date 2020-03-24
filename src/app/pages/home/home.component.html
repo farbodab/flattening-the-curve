@@ -8,11 +8,10 @@
                 </div>
             </div>
         </div>
-        <div id='divider'></div>
         <div id='which-curve'>
             <div id='which-curve-text'>
                 <p class='mat-headline'>
-                    Which Curve Will Ontario Follow?
+                    <b>Which Curve Will <span style='color:#E25F79'>Ontario</span> Follow?</b>
                 </p>
                 <p>
                     Once critical care (ICU) beds run out, mortality jumps from 1 to 5%
@@ -29,22 +28,23 @@
             </div>
             <div style='width: 20px'></div>
             <div id='which-curve-graph'>
-                <app-home-graph *ngIf='graph_data != null' [graph_data]='graph_data'></app-home-graph>
-                <!--<img style='width:100%' src='https://flatteningthecurve.herokuapp.com/static/fig1.png'>-->
+                <!--<app-home-graph *ngIf='graph_data != null' [graph_data]='graph_data'></app-home-graph>-->
+                <img style='width:100%' src='https://flatteningthecurve.herokuapp.com/static/fig1.png'>
             </div>
         </div>
-        <p id='who-what-content' class='mat-headline'>
-            We are physicians, medical students, computational health researchers, designers and epidemiologists rapidly filtering and presenting emergent COVID-19 data to help Ontario #FlattenTheCurve.
-        </p>
-        <p id='who-what-content' class='mat-headline'>
-            We connect experts and present data in an easy to digest, actionable way to help Ontario's public leaders and individuals act decisively as evidence grows and time ticks by.
-        </p>
+        <div style='background-color: #DADFE1;'>
+            <p id='who-what-content' class='mat-headline'>
+                We are physicians, medical students, computational health researchers, designers and epidemiologists rapidly filtering and presenting emergent COVID-19 data to help Ontario #FlattenTheCurve.
+                <br><br>
+                We connect experts and present data in an easy to digest, actionable way to help Ontario's public leaders and individuals act decisively as evidence grows and time ticks by. 
+            </p>
+        </div>
+        
         <!--
         <div id='who-what-content'>
             <button id='resources-button' mat-raised-button>Explore Ontario-specific analytics resources</button>
         </div>
         -->
-        <div id='divider'></div>
         <div id='footer'></div>
     </div>
 </div>
