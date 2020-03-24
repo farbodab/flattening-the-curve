@@ -6,7 +6,14 @@ import * as d3 from 'd3';
     templateUrl: './home-graph.component.html',
     styleUrls: ['./home-graph.component.scss']
 })
-export class HomeGraphComponent {
+export class HomeGraphComponent implements OnInit {
+
+    @Input() graph_data : any;
+
+    ngOnInit() {
+        console.log(this.graph_data);
+    }
+
     public graph = {
         data: [
             { x: [1, 2, 3], y: [2, 6, 3], type: 'scatter', mode: 'lines+points', marker: {color: 'red'} },
