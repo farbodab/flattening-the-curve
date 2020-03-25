@@ -10,7 +10,7 @@ export class DataComponent implements OnInit {
 
   phu_data : any;
   test_result_data : any;
-  showVar: boolean = true;
+  showVar: boolean = false;
 
   constructor(private api_service : ApiService) {
 

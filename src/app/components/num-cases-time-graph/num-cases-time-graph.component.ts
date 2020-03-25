@@ -21,6 +21,7 @@ export class NumCasesTimeGraphComponent implements OnInit {
 
   ngOnInit() {
     this.redraw();
+    console.log(this.graph_data)
   }
 
   ngOnChanges(){
@@ -53,6 +54,7 @@ export class NumCasesTimeGraphComponent implements OnInit {
     const wellington = this.graph_data['Wellington Dufferin Guelph'];
     const windsor = this.graph_data['Windsor-Essex'];
     const york = this.graph_data['York'];
+    const ontario = this.graph_data['Ontario'];
 
     this.graph = null;
     this.type = this.log_scale?"log":""
@@ -71,7 +73,7 @@ export class NumCasesTimeGraphComponent implements OnInit {
         { x: Object.keys(kingston), y: Object.values(kingston), type: 'scatter', mode: 'lines+markers', name: 'kingston' },
         { x: Object.keys(middlesex), y: Object.values(middlesex), type: 'scatter', mode: 'lines+markers', name: 'middlesex' },
         { x: Object.keys(northwestern), y: Object.values(northwestern), type: 'scatter', mode: 'lines+markers', name: 'northwestern' },
-        { x: Object.keys(nr), y: Object.values(nr), type: 'scatter', mode: 'lines+markers', name: 'nr' },
+        { x: Object.keys(nr), y: Object.values(nr), type: 'scatter', mode: 'lines+markers', name: 'not reported' },
         { x: Object.keys(ottawa), y: Object.values(ottawa), type: 'scatter', mode: 'lines+markers', name: 'ottawa' },
         { x: Object.keys(peel), y: Object.values(peel), type: 'scatter', mode: 'lines+markers', name: 'peel' },
         { x: Object.keys(peterborough), y: Object.values(peterborough), type: 'scatter', mode: 'lines+markers', name: 'peterborough' },
@@ -84,6 +86,7 @@ export class NumCasesTimeGraphComponent implements OnInit {
         { x: Object.keys(wellington), y: Object.values(wellington), type: 'scatter', mode: 'lines+markers', name: 'wellington' },
         { x: Object.keys(windsor), y: Object.values(windsor), type: 'scatter', mode: 'lines+markers', name: 'windsor' },
         { x: Object.keys(york), y: Object.values(york), type: 'scatter', mode: 'lines+markers', name: 'york' },
+        { x: Object.keys(ontario), y: Object.values(ontario), type: 'scatter', mode: 'lines+markers', name: 'ontario' },
       ],
       layout: {yaxis:
         {
