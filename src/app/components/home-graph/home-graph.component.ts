@@ -8,7 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 
 export class HomeGraphComponent implements OnInit {
 
-  @Input() graph_data: any;
+  @Input()
+  graph_data: any;
 
   graph = null;
 
