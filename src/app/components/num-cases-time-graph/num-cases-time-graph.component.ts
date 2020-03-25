@@ -12,12 +12,18 @@ export class NumCasesTimeGraphComponent implements OnInit {
 
   @Input()
   log_scale: boolean;
-  
+
   graph = null;
+
+  type = null;
 
   constructor() { }
 
   ngOnInit() {
+    this.redraw();
+  }
+
+  ngOnChanges(){
     this.redraw();
   }
 
@@ -49,7 +55,7 @@ export class NumCasesTimeGraphComponent implements OnInit {
     const york = this.graph_data['York'];
 
     this.graph = null;
-
+    this.type = this.log_scale?"log":""
     this.graph = {
       data: [
         { x: Object.keys(algoma), y: Object.values(algoma), type: 'scatter', mode: 'lines+markers', name: 'algoma' },
@@ -82,7 +88,7 @@ export class NumCasesTimeGraphComponent implements OnInit {
       layout: {yaxis:
         {
           title: 'Number of Cases',
-          type: 'log',
+          type: this.type,
 
         },
         grid: {rows:1, columns: 1, pattern: 'independent'}

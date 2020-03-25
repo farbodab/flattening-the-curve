@@ -7,7 +7,7 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./data.component.scss']
 })
 export class DataComponent implements OnInit {
-  
+
   phu_data : any;
   test_result_data : any;
   showVar: boolean = true;
