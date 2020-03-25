@@ -9,13 +9,12 @@ export class NumCasesTimeGraphComponent implements OnInit {
 
   @Input()
   graph_data : any;
-
+  log_scale: boolean;
   graph = null;
 
   constructor() { }
 
   ngOnInit() {
-    console.log(this.graph_data)
     this.redraw();
   }
 
@@ -80,6 +79,8 @@ export class NumCasesTimeGraphComponent implements OnInit {
       layout: {yaxis:
         {
           title: 'Number of Cases',
+          type: 'log',
+
         },
         grid: {rows:1, columns: 1, pattern: 'independent'}
       }

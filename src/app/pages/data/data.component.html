@@ -4,6 +4,7 @@
         <h2>Testing Data</h2>
         <app-num-cases-total-graph *ngIf='test_result_data != null' [graph_data]='test_result_data'></app-num-cases-total-graph>
         <h2>COVID Cases Over Time</h2>
-        <app-num-cases-time-graph *ngIf='phu_data != null' [graph_data]='phu_data'></app-num-cases-time-graph>
+        <app-num-cases-time-graph *ngIf='phu_data != null' [graph_data]='phu_data' [log_scale]='showVar'></app-num-cases-time-graph>
+        <button label="Click" (click)="toggleChild()">Log Scale</button>
     </div>
 </div>
