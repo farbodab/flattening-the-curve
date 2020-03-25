@@ -9,7 +9,10 @@ export class NumCasesTimeGraphComponent implements OnInit {
 
   @Input()
   graph_data : any;
+
+  @Input()
   log_scale: boolean;
+  
   graph = null;
 
   constructor() { }
