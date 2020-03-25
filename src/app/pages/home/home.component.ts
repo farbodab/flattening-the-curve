@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.api_service.get_graph_data( data => {
+    this.api_service.get_results_data( data => {
       this.graph_data = data;
     }, error => {
       console.error(error);

@@ -1,8 +1,17 @@
 mat-toolbar {
-    background-color: lightgrey;
+    background-color: #DADFE1;
+}
+
+#main-nav-button {
+    font-size: 18px;
+}
+
+#mobile-nav-button {
+    text-align: center;
 }
 
 #primary-nav {
     width:100%;
     text-align: right;
 }
+

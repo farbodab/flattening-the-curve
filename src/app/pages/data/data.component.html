@@ -1,0 +1,7 @@
+<div class='content' style='background-color: white;'>
+    <app-navbar [shows_title]='true'></app-navbar>
+    <div>
+        <app-num-cases-total-graph *ngIf='test_result_data != null' [graph_data]='test_result_data'></app-num-cases-total-graph>
+        <app-num-cases-time-graph *ngIf='phu_data != null' [graph_data]='phu_data'></app-num-cases-time-graph>
+    </div>
+</div>

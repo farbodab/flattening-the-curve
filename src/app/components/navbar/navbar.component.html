@@ -3,11 +3,18 @@
         <div id='title' *ngIf='shows_title'>
             #HowsMyFlattening
         </div>
-        <div id='primary-nav'>
-            <button mat-button routerLink='/'>Home</button>
-            <button mat-button routerLink='/story'>Story</button>
-            <button mat-button routerLink='/resources'>Resources</button>
-            <button mat-button routerLink='/connect'>Connect</button>
+        <div id='primary-nav' *ngIf='is_full'>
+            <button id='main-nav-button' mat-button routerLink='/'>Home</button>
+            <button id='main-nav-button' mat-button routerLink='/data'>Data</button>
+        </div>
+        <div id='primary-nav' *ngIf='!is_full'>
+            <button mat-button [matMenuTriggerFor]="menu">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button id='mobile-nav-button' mat-menu-item routerLink='/'>Home</button>
+                <button id='mobile-nav-button' mat-menu-item routerLink='/data'>Data</button>
+            </mat-menu>
         </div>
     </mat-toolbar-row>
 </mat-toolbar>
