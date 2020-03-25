@@ -11,6 +11,9 @@ export class NumCasesTimeGraphComponent implements OnInit {
   graph_data : any;
 
   @Input()
+  graph_new_data: any;
+
+  @Input()
   log_scale: boolean;
 
   graph = null;
@@ -21,7 +24,6 @@ export class NumCasesTimeGraphComponent implements OnInit {
 
   ngOnInit() {
     this.redraw();
-    console.log(this.graph_data)
   }
 
   ngOnChanges(){
@@ -54,7 +56,9 @@ export class NumCasesTimeGraphComponent implements OnInit {
     const wellington = this.graph_data['Wellington Dufferin Guelph'];
     const windsor = this.graph_data['Windsor-Essex'];
     const york = this.graph_data['York'];
+
     const ontario = this.graph_data['Ontario'];
+    const ontario_n = this.graph_new_data['Ontario'];
 
     this.graph = null;
     this.type = this.log_scale?"log":""
@@ -86,15 +90,20 @@ export class NumCasesTimeGraphComponent implements OnInit {
         { x: Object.keys(wellington), y: Object.values(wellington), type: 'scatter', mode: 'lines+markers', name: 'wellington' },
         { x: Object.keys(windsor), y: Object.values(windsor), type: 'scatter', mode: 'lines+markers', name: 'windsor' },
         { x: Object.keys(york), y: Object.values(york), type: 'scatter', mode: 'lines+markers', name: 'york' },
-        { x: Object.keys(ontario), y: Object.values(ontario), type: 'scatter', mode: 'lines+markers', name: 'ontario' },
+        { x: Object.keys(ontario), y: Object.values(ontario), type: 'scatter', name: 'Total Cases Ontario', mode: 'lines+markers', yaxis: 'y2', xaxis: 'x2', marker: { color: 'red' }},
+        { x: Object.keys(ontario_n), y: Object.values(ontario_n), type: 'scatter', name: 'New Cases Ontario', mode: 'lines+markers', yaxis: 'y2', xaxis: 'x2', marker: { color: 'green' }},
       ],
       layout: {yaxis:
         {
           title: 'Number of Cases',
           type: this.type,
-
         },
-        grid: {rows:1, columns: 1, pattern: 'independent'}
+        yaxis2:
+          {
+            title: 'Number of Cases',
+            type: this.type,
+          },
+        grid: {rows:2, columns: 1, pattern: 'independent'}
       }
     };
 

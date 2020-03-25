@@ -9,6 +9,7 @@ import { ApiService } from 'src/app/services/api.service';
 export class DataComponent implements OnInit {
 
   phu_data : any;
+  phu_new_data : any;
   test_result_data : any;
   showVar: boolean = false;
 
@@ -20,6 +21,12 @@ export class DataComponent implements OnInit {
 
     this.api_service.get_phu_data(data => {
       this.phu_data = data;
+    }, error => {
+      console.error(error);
+    })
+
+    this.api_service.get_phunew_data(data => {
+      this.phu_new_data = data;
     }, error => {
       console.error(error);
     })

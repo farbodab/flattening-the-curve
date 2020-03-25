@@ -8,6 +8,7 @@ export class ApiService {
 
   readonly results_endpoint : string = 'https://flatteningthecurve.herokuapp.com/covid/results'
   readonly phu_endpoint : string = 'https://flatteningthecurve.herokuapp.com/covid/phu';
+  readonly phunew_endpoint : string = 'https://flatteningthecurve.herokuapp.com/covid/phunew';
   readonly test_results_endpoint : string = 'https://flatteningthecurve.herokuapp.com/covid/testresults';
 
   constructor(private http_client : HttpClient) {
@@ -20,6 +21,10 @@ export class ApiService {
 
   get_phu_data(on_success, on_error) {
     this.request_data(this.phu_endpoint, on_success, on_error);
+  }
+
+  get_phunew_data(on_success, on_error) {
+    this.request_data(this.phunew_endpoint, on_success, on_error);
   }
 
   get_test_results_data(on_success, on_error) {
