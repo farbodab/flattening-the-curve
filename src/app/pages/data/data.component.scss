@@ -9,11 +9,17 @@
 
 #column-detail {
     padding:20px;
+    font-weight: bold;
     background-color: #DADFE1;
     @media screen and (min-width: 1024px) {
         flex-shrink: 0;
-        width: 200px !important;
+        width: 250px !important;
     }
+}
+
+.column-title{
+  color: #205d86;
+  font-size: 25px;
 }
 
 #column-main {
@@ -27,4 +33,12 @@
 #capacity-graph {
     width:50%;
     height:50%;
+}
+
+#footer {
+    height:40px;
+
+    @media screen and (min-width: 1024px) {
+        height:80px;
+    }
 }

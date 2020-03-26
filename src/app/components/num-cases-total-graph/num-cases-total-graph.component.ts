@@ -48,7 +48,8 @@ export class NumCasesTotalGraphComponent implements OnInit {
           {
             title: 'Proportion of Tests',
           },
-        grid: {rows:2, columns: 1, pattern: 'independent'}
+        grid: {rows:2, columns: 1, pattern: 'independent'},
+        margin: {t: 10, b:30, r:0, l:50},
       }
     };
   }

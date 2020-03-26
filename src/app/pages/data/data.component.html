@@ -1,57 +1,93 @@
 <div class='content' style='background-color: white;'>
     <app-navbar [shows_title]='true'></app-navbar>
     <div id='container'>
-        <div class='mat-display-1'>Ontario-specific COVID-19 data</div>
+        <div class='mat-display-1' style='font-weight:bold;'>Ontario-specific COVID-19 data</div>
         <div>
-            [PAGE DESCRIPTION]
+            [PAGE DESCRIPTION]<br><br><br>
         </div>
         <div>
-            [ON THIS PAGE]
+            <p style='font-weight:bold;'>On this page:</p>
+            <p><a href="#">Capacity Analysis</a>- [Blurb]</p>
+            <p><a href="#">Testing Analysis</a>- [Blurb]</p>
+            <p><a href="#">Regional Analysis</a>- [Blurb]</p>
         </div>
         <!-- CAPACITY ANALYSIS -->
-        <div id='column-layout' style='height: 300px;'>
+        <div id='column-layout'>
             <div id='column-detail'>
-                Capacity Analysis: Ontario
+                <h3 class="column-title">Capacity Analysis: Ontario</h3>
+                [Description]
             </div>
             <div id='column-main'>
                 <div id='capacity-graph-row'>
                     <div id='capacity-graph'>
-                        <app-data-capacity-conservative-res-avail></app-data-capacity-conservative-res-avail>
+                        <img style="width:100%;"src='assets/img/Figure1_Conservative_Resources.jpg'>
                     </div>
                     <div id='capacity-graph'>
-                        <app-data-capacity-conservative-waiting-res></app-data-capacity-conservative-waiting-res>
+                        <img style="width:100%;"src='assets/img/Figure2_Conservative_Waiting.jpg'>
                     </div>
                 </div>
                 <div id='capacity-graph-row'>
                     <div id='capacity-graph'>
-                        <app-data-capacity-italy-res-avail></app-data-capacity-italy-res-avail>
+                        <img style="width:100%;"src='assets/img/Figure3_Italy_Resources.jpg'>
                     </div>
                     <div id='capacity-graph'>
-                        <app-data-capacity-italy-waiting-res></app-data-capacity-italy-waiting-res>
+                        <img style="width:100%;"src='assets/img/Figure4_Italy_Waiting.jpg'>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div style="margin-top:50px;margin-bottom:50px">
+          <h3 class="column-title">External Ontario-specific capacity analyses</h3>
+          [Link wih tile and author?]<br>
+          [Link wih tile and author?]<br>
+          [Link wih tile and author?]<br>
+          <br>
+          More resources [link to Resources page]
+        </div>
         <!-- TESTING ANALYSIS -->
-        <div id='column-layout' style='height: 300px;'>
+        <div id='column-layout' style='height: 400px;'>
             <div id='column-detail'>
-                Testing Analysis: Ontario
-                <app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='test_result_data'></app-data-testing-over-time>
+                <h3 class="column-title">Testing Analysis: Ontario</h3>
+                [Description]
             </div>
             <div id='column-main'>
-                
-                <app-data-test-proportion-by-result *ngIf='test_result_data != null' [graph_data]='test_result_data'></app-data-test-proportion-by-result>
+
+                <app-num-cases-total-graph *ngIf='test_result_data != null' [graph_data]='test_result_data'></app-num-cases-total-graph>
                 <!--<app-num-cases-total-graph *ngIf='test_result_data != null' [graph_data]='test_result_data'></app-num-cases-total-graph>-->
             </div>
         </div>
-        <!--
-        <div>
-            <h2>Testing Data</h2>
-            <app-num-cases-total-graph *ngIf='test_result_data != null' [graph_data]='test_result_data'></app-num-cases-total-graph>
-            <h2>COVID Cases Over Time</h2>
-            <app-num-cases-time-graph *ngIf='phu_data != null' [graph_data]='phu_data' [log_scale]='showVar' [graph_new_data]='phu_new_data'></app-num-cases-time-graph>
-            <button label="Click" (click)="toggleChild()">Log Scale</button>
+
+        <div style="margin-top:50px;margin-bottom:50px">
+          <h3 class="column-title">External Ontario-specific capacity analyses</h3>
+          [Link wih tile and author?]<br>
+          [Link wih tile and author?]<br>
+          [Link wih tile and author?]<br>
+          <br>
+          More resources [link to Resources page]
         </div>
-        -->
+
+
+        <div id='column-layout' style='height: 400px;'>
+            <div id='column-detail'>
+                <h3 class="column-title">Regional Analysis: Ontario</h3>
+                [Description]
+            </div>
+            <div id='column-main'>
+
+                <app-num-cases-time-graph *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data'></app-num-cases-time-graph>
+                <!--<app-num-cases-total-graph *ngIf='test_result_data != null' [graph_data]='test_result_data'></app-num-cases-total-graph>-->
+            </div>
+        </div>
+
+        <div style="margin-top:50px;margin-bottom:50px">
+          <h3 class="column-title">External Ontario-specific capacity analyses</h3>
+          [Link wih tile and author?]<br>
+          [Link wih tile and author?]<br>
+          [Link wih tile and author?]<br>
+          <br>
+          More resources [link to Resources page]
+        </div>
     </div>
+    <div id='footer' style='background-color: #DADFE1;'></div>
 </div>
