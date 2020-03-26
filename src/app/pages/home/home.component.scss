@@ -108,3 +108,30 @@
     width:150px;
     text-align: center;
 }
+
+#explore-data {
+    margin:20px 0px 20px 0px;
+    width:100%;
+    display: flex;
+}
+
+#explore-data-cell {
+    width:33%;
+    text-align: center;
+}
+
+#explore-data-cell-text {
+    font-size: 24px;
+    padding: 10px 40px 10px 40px;
+}
+
+#explore-data-img {
+    width:50%;
+}
+
+#explore-data-btn {
+    color: white;
+    background-color: #205D86;
+    width:150px;
+    text-align: center;
+}
