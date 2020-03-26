@@ -18,6 +18,13 @@ import { PlotlyViaCDNModule } from 'angular-plotly.js';
 import { DataComponent } from './pages/data/data.component';
 import { NumCasesTotalGraphComponent } from './components/num-cases-total-graph/num-cases-total-graph.component';
 import { NumCasesTimeGraphComponent } from './components/num-cases-time-graph/num-cases-time-graph.component';
+import { DataCapacityConservativeResAvailComponent } from './components/data-capacity-conservative-res-avail/data-capacity-conservative-res-avail.component';
+import { DataCapacityItalyResAvailComponent } from './components/data-capacity-italy-res-avail/data-capacity-italy-res-avail.component';
+import { DataCapacityConservativeWaitingResComponent } from './components/data-capacity-conservative-waiting-res/data-capacity-conservative-waiting-res.component';
+import { DataCapacityItalyWaitingResComponent } from './components/data-capacity-italy-waiting-res/data-capacity-italy-waiting-res.component';
+import { DataTestingOverTimeComponent } from './components/data-testing-over-time/data-testing-over-time.component';
+import { DataTestProportionByResultComponent } from './components/data-test-proportion-by-result/data-test-proportion-by-result.component';
+import { DataRegionalMapComponent } from './components/data-regional-map/data-regional-map.component';
 
 
 PlotlyViaCDNModule.plotlyVersion = '1.49.4'; // can be `latest` or any version number (i.e.: '1.40.0')
@@ -35,7 +42,14 @@ PlotlyViaCDNModule.plotlyBundle = 'basic'; // optional: can be null (for full) o
     HomeGraphComponent,
     DataComponent,
     NumCasesTotalGraphComponent,
-    NumCasesTimeGraphComponent
+    NumCasesTimeGraphComponent,
+    DataCapacityConservativeResAvailComponent,
+    DataCapacityItalyResAvailComponent,
+    DataCapacityConservativeWaitingResComponent,
+    DataCapacityItalyWaitingResComponent,
+    DataTestingOverTimeComponent,
+    DataTestProportionByResultComponent,
+    DataRegionalMapComponent
   ],
   imports: [
     BrowserModule,

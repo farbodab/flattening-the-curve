@@ -1,0 +1,30 @@
+#container {
+    color: #2B2B2B;
+    padding:20px;
+}
+
+#column-layout {
+    display:flex;
+}
+
+#column-detail {
+    padding:20px;
+    background-color: #DADFE1;
+    @media screen and (min-width: 1024px) {
+        flex-shrink: 0;
+        width: 200px !important;
+    }
+}
+
+#column-main {
+    flex-grow: 1;
+}
+
+#capacity-graph-row {
+    display:flex;
+}
+
+#capacity-graph {
+    width:50%;
+    height:50%;
+}
