@@ -29,14 +29,23 @@ export class HomeGraphComponent implements OnInit {
     this.graph = {
       data: [
         { x: Object.keys(ontario), y: Object.values(ontario), type: 'scatter', mode: 'lines+markers', marker: { color: 'red' }, name: 'Ontario' },
-        { x: Object.keys(italy), y: Object.values(italy), type: 'scatter', mode: 'lines+points', marker: { color: '#C0C0C0' }, name: 'Italy' },
-        { x: Object.keys(korea), y: Object.values(korea), type: 'scatter', mode: 'lines+points', marker: { color: '#C0C0C0' }, name: 'South Korea' },
-        { x: Object.keys(singapore), y: Object.values(singapore), type: 'scatter', mode: 'lines+points', marker: { color: '#C0C0C0' }, name: 'Singapore' },
+        { x: Object.keys(italy), y: Object.values(italy), type: 'scatter', mode: 'lines+points', marker: { color: '#C0C0C0' }, name: 'Italy', yaxis: 'y', xaxis: 'x2',},
+        { x: Object.keys(korea), y: Object.values(korea), type: 'scatter', mode: 'lines+points', marker: { color: '#C0C0C0' }, name: 'South Korea', yaxis: 'y', xaxis: 'x3', },
       ],
       layout: {
+        showlegend: false,
+        grid: {rows:1, columns: 3, subplots:[['xy','x2y','x3y']]},
         yaxis:
         {
           title: 'ICU Beds',
+          range: [0, 500]
+        },
+        yaxis2:
+        {
+          range: [0, 500]
+        },
+        yaxis3:
+        {
           range: [0, 500]
         },
         shapes: [
