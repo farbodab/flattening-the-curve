@@ -11,6 +11,7 @@
         </div>
         <div id='which-curve'>
             <div id='which-curve-text'>
+                <div>
                 <p class='mat-headline'>
                     <b>Which Curve Will <span style='color:#E25F79'>Ontario</span> Follow?</b>
                 </p>
@@ -29,10 +30,23 @@
                 <div id='read-more-container'>
                     <button mat-raised-button (click)='on_read_more_pressed();' id='read-more-btn'>Read More</button>
                 </div>
+                </div>
             </div>
             <div style='width: 20px'></div>
             <div id='which-curve-graph'>
+                <div style="display: flex;justify-content: space-between;border-bottom: 1px solid grey;">
+                  <p class="text" style="align-self: flex-end;font-size: 20px;font-weight: bold;">ICU Beds Used By COVID19 Patients</p>
+                  <p class="text" align="right"><span style='font-size: 30px;font-weight: bold;'>35</span><br>days till max ICU capacity</p>
+                </div>
+                <div style='display: flex;justify-content: space-around;'>
+                  <p><span style='color:#E25F79;font-size: 20px;font-weight: bold;'>Ontario</span></p>
+                  <p style='font-size: 20px;font-weight: bold;'>Italy</p>
+                  <p style='font-size: 20px;font-weight: bold;'>South Korea</p>
+                </div>
                 <app-home-graph *ngIf='this.graph_data != null' [graph_data]='graph_data'></app-home-graph>
+                <div style='display: flex;justify-content: space-around;'>
+                  <div>Days After 100 Cases</div>
+                </div>
             </div>
         </div>
         <div style='background-color: #DADFE1; padding-top:30px;padding-bottom:30px;'>

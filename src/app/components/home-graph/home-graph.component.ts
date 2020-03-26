@@ -26,6 +26,10 @@ export class HomeGraphComponent implements OnInit {
 
     this.graph = null;
 
+    const last = Object.keys(ontario).length.toString()
+    const last_middle = (Object.keys(ontario).length + 8).toString()
+    const last_end = (Object.keys(ontario).length + 14).toString()
+
     this.graph = {
       data: [
         { x: Object.keys(ontario), y: Object.values(ontario), type: 'scatter', mode: 'lines+markers', marker: { color: 'red' }, name: 'Ontario' },
@@ -33,11 +37,11 @@ export class HomeGraphComponent implements OnInit {
         { x: Object.keys(korea), y: Object.values(korea), type: 'scatter', mode: 'lines+points', marker: { color: '#C0C0C0' }, name: 'South Korea', yaxis: 'y', xaxis: 'x3', },
       ],
       layout: {
+        margin: {t: 10, b:50, r:0, l:30},
         showlegend: false,
         grid: {rows:1, columns: 3, subplots:[['xy','x2y','x3y']]},
         yaxis:
         {
-          title: 'ICU Beds',
           range: [0, 500]
         },
         yaxis2:
@@ -79,12 +83,26 @@ export class HomeGraphComponent implements OnInit {
             opacity: 0.2,
             line: {
               width: 0
-            }
+            },
           },
+          {
+            type: 'rect',
+            xref: 'x',
+            yref: 'paper',
+            x0: last,
+            y0: 0,
+            x1: last_end,
+            y1: 1,
+            fillcolor: '#205d86',
+            opacity: 0.2,
+            line: {
+                width: 0
+            },},
+
         ],
         annotations: [
           {
-            x: 5,
+            x: 15,
             y: 160,
             xref: 'x',
             yref: 'y',
@@ -92,18 +110,30 @@ export class HomeGraphComponent implements OnInit {
             showarrow: false,
           },
           {
-            x: 5,
+            x: 15,
             y: 435,
             xref: 'x',
             yref: 'y',
             text: 'ICU 25% Capacity',
             showarrow: false,
+          },
+          {
+            x: last_middle,
+            y: 10,
+            xref: 'x',
+            yref: 'y',
+            text: '1-2 week lag',
+            showarrow: false,
+          },
+          {
+            x: last_middle,
+            y: 30,
+            xref: 'x',
+            yref: 'y',
+            text: 'Actions have',
+            showarrow: false,
           }
         ],
-        xaxis:
-        {
-          title: 'Days after 100 cases'
-        }
       },
     };
   }
