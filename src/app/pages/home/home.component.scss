@@ -73,14 +73,14 @@
     color: #205D86;
     margin-bottom: 30px;
     @media screen and (min-width: 1024px) {
-        font-size: 40px;
+        font-size: 60px;
     }
 }
 
 #subtitle-text {
     font-size: 20px;
     @media screen and (min-width: 1024px) {
-        font-size: 30px;
+        font-size: 25px;
     }
 }
 
@@ -118,15 +118,17 @@
 #explore-data-cell {
     width:33%;
     text-align: center;
+    margin: 10px;
 }
 
 #explore-data-cell-text {
     font-size: 24px;
+    font-weight: bold;
     padding: 10px 40px 10px 40px;
 }
 
 #explore-data-img {
-    width:50%;
+    width:33%;
 }
 
 #explore-data-btn {
