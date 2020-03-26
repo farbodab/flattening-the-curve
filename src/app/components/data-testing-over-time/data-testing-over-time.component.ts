@@ -34,7 +34,7 @@ export class DataTestingOverTimeComponent implements OnInit {
   }
 
   private redraw() {
-    
+
     this.graph = null;
     this.graph = {
       data: [
@@ -49,14 +49,6 @@ export class DataTestingOverTimeComponent implements OnInit {
         },
       }
     };
-
-
-
-
-
-
-
-
 
   }
 

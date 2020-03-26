@@ -10,6 +10,24 @@ export class DataRegionalMapComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.redraw();
+  }
+
+  ngOnChanges(){
+    this.redraw();
+  }
+
+  private redraw() {
+
+    this.graph = null;
+    this.graph = {
+      data: [
+        {
+          x: [1,2,3],
+          y: [1,2,3]
+        }
+      ],
+    }
   }
 
 }
