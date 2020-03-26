@@ -1,1 +1,1 @@
-<p>data-testing-over-time works!</p>
+<plotly-plot #chart *ngIf='graph != null' [data]="graph.data" [layout]="graph.layout" [useResizeHandler]="true" [style]="{width: '500px', height: '100px'}"></plotly-plot>
