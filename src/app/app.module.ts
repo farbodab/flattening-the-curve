@@ -14,6 +14,7 @@ import { StoryComponent } from './pages/story/story.component';
 import { ResourcesComponent } from './pages/resources/resources.component';
 import { ConnectComponent } from './pages/connect/connect.component';
 import { HomeGraphComponent } from './components/home-graph/home-graph.component';
+import { HomeGraphOntComponent } from './components/home-graph-ont/home-graph-ont.component';
 import { PlotlyViaCDNModule } from 'angular-plotly.js';
 import { DataComponent } from './pages/data/data.component';
 import { NumCasesTotalGraphComponent } from './components/num-cases-total-graph/num-cases-total-graph.component';
@@ -40,6 +41,7 @@ PlotlyViaCDNModule.plotlyBundle = 'basic'; // optional: can be null (for full) o
     ResourcesComponent,
     ConnectComponent,
     HomeGraphComponent,
+    HomeGraphOntComponent,
     DataComponent,
     NumCasesTotalGraphComponent,
     NumCasesTimeGraphComponent,

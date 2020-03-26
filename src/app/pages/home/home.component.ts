@@ -9,9 +9,12 @@ import { ApiService } from 'src/app/services/api.service';
 export class HomeComponent implements OnInit {
 
   graph_data = null;
+  ontario: any = "Ontario";
+  italy: any = "Italy";
+  southkorea: any = "South Korea";
 
-  constructor(private api_service : ApiService) { 
-    
+  constructor(private api_service : ApiService) {
+
   }
 
   ngOnInit() {

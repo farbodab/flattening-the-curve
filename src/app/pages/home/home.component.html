@@ -36,14 +36,20 @@
             <div id='which-curve-graph'>
                 <div style="display: flex;justify-content: space-between;border-bottom: 1px solid grey;">
                   <p class="text" style="align-self: flex-end;font-size: 20px;font-weight: bold;">ICU Beds Used By COVID19 Patients</p>
-                  <p class="text" align="right"><span style='font-size: 30px;font-weight: bold;'>35</span><br>days till max ICU capacity</p>
+                  <p class="text" align="right"><span style='font-size: 30px;font-weight: bold;'>10-35</span><br>days till max ICU capacity</p>
                 </div>
                 <div style='display: flex;justify-content: space-around;'>
-                  <p><span style='color:#E25F79;font-size: 20px;font-weight: bold;'>Ontario</span></p>
-                  <p style='font-size: 20px;font-weight: bold;'>Italy</p>
-                  <p style='font-size: 20px;font-weight: bold;'>South Korea</p>
                 </div>
-                <app-home-graph *ngIf='this.graph_data != null' [graph_data]='graph_data'></app-home-graph>
+                <div style="display:flex;max-width=100%">
+                  <div>
+                    <p><span style='color:#E25F79;font-size: 20px;font-weight: bold;'>Ontario</span></p>
+                    <app-home-graph-ont *ngIf='this.graph_data != null' [graph_data]='graph_data' [name]='ontario'></app-home-graph-ont>
+                  </div>
+                  <div>
+                    <div><p style='font-size: 15px;font-weight: bold;'>Will we be like South Korea?</p><app-home-graph *ngIf='this.graph_data != null' [graph_data]='graph_data' [name]='southkorea'></app-home-graph></div>
+                    <div><p style='font-size: 15px;font-weight: bold;'>...or Italy?</p><app-home-graph *ngIf='this.graph_data != null' [graph_data]='graph_data' [name]='italy'></app-home-graph></div>
+                  </div>
+                </div>
                 <div style='display: flex;justify-content: space-around;'>
                   <div>Days After 100 Cases</div>
                 </div>
