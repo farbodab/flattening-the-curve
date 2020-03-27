@@ -12,4 +12,8 @@ export class ConnectComponent implements OnInit {
   ngOnInit() {
   }
 
+  on_sign_up_pressed() {
+    window.location.href = 'https://www.surveymonkey.com/r/Y7X86JL';
+  }
+
 }
