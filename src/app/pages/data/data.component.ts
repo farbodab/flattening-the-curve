@@ -66,12 +66,13 @@ export class DataComponent implements OnInit {
       console.error(error);
     })
 
+   
     var placeholderDiv = document.getElementById('vizContainer');
     var url = "https://public.tableau.com/views/HowsMyFlattening-Testing/Testing?:display_count=y&publish=yes&:origin=viz_share_link"
 
     var options = {
         hideTabs: true,
-        width: "1050px",
+        width: "100%",
         height: "650px",
         onFirstInteractive: function() {
               // The viz is now ready and can be safely used.
@@ -85,7 +86,7 @@ export class DataComponent implements OnInit {
 
     var options = {
         hideTabs: true,
-        width: "1050px",
+        width: "100%",
         height: "1450px",
         onFirstInteractive: function() {
               // The viz is now ready and can be safely used.
