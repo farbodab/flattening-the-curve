@@ -4,7 +4,9 @@
 }
 
 #column-layout {
-    display:flex;
+    @media screen and (min-width: 1024px) {
+        display:flex;
+    }
 }
 
 #column-detail {
@@ -27,12 +29,18 @@
 }
 
 #capacity-graph-row {
-    display:flex;
+    @media screen and (min-width: 1024px) {
+        display:flex;
+    }
 }
 
 #capacity-graph {
-    width:50%;
-    height:50%;
+    width:100%;
+    @media screen and (min-width: 1024px) {
+        width:50%;
+        height:50%;
+    }
+    
 }
 
 #footer {

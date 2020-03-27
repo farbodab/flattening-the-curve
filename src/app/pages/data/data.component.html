@@ -3,21 +3,19 @@
     <div id='container'>
         <div class='mat-display-1' style='font-weight:bold;'>Ontario-specific COVID-19 data</div>
         <div>
-            This page highlights analyses that provide further Ontario-specific insights as we monitor performance to flatten the curve.
-<br><br><br>
+            This page highlights analyses that provide further Ontario-specific insights as we monitor performance to flatten the curve.<br><br><br>
         </div>
-        <div>
+        <!-- <div>
             <p style='font-weight:bold;'>On this page:</p>
             <p><a href="#">Capacity Analysis</a>- [Blurb]</p>
             <p><a href="#">Testing Analysis</a>- [Blurb]</p>
             <p><a href="#">Regional Analysis</a>- [Blurb]</p>
-        </div>
+        </div> -->
         <!-- CAPACITY ANALYSIS -->
         <div id='column-layout'>
             <div id='column-detail'>
                 <h3 class="column-title">Capacity Analysis: Ontario</h3>
-                Researchers from the COVID-MC collaborative (link) have developed a compartment model (link) to predict the time Ontario ICU resources will be depleted under undesirable (Italy) and better case (South Korea) scenarios. They explore scenarios varying the rate of growth of patients in the community/emergency department and ICU surge capacity. The effects of social distancing are modeled by decreasing the growth rate after 14 days.
-
+                <p>Researchers from the COVID-MC collaborative (link) have developed a compartment model (link) to predict the time Ontario ICU resources will be depleted under undesirable (Italy) and better case (South Korea) scenarios. They explore scenarios varying the rate of growth of patients in the community/emergency department and ICU surge capacity. The effects of social distancing are modeled by decreasing the growth rate after 14 days.</p>
             </div>
             <div id='column-main'>
                 <div id='capacity-graph-row'>
@@ -40,80 +38,51 @@
         </div>
 
         <div style="margin-top:50px;margin-bottom:50px">
-          <h3 class="column-title">External Ontario-specific capacity analyses</h3>
-          [Link wih tile and author?]<br>
-          [Link wih tile and author?]<br>
-          [Link wih tile and author?]<br>
-          <br>
-          More resources [link to Resources page]
+            <h3 class="column-title">External Ontario-specific capacity analyses</h3>
+            [Link wih tile and author?]<br>
+            [Link wih tile and author?]<br>
+            [Link wih tile and author?]<br>
+            <br>
+            More resources [link to Resources page]
         </div>
-        <!-- TESTING ANALYSIS -->
-        <div id='column-layout' style='height: 400px;'>
+        <div id='column-layout'>
             <div id='column-detail'>
                 <h3 class="column-title">Testing Analysis: Ontario</h3>
-                [Description]
+                <p>A casual glance at positive tests in Ontario, suggests the curve is relatively flat. Doubling time (not shown) has been decreasing. But a deeper analysis shows that delays in test results are piling up producing an artificial decrease in # of confirmed cases. Approximately 25% of cases are unreported; in other words, assuming a similar positive test rate (which is a conservative estimate given tightening testing criteria).<br><br>We also know that Ontario is not testing all patients with flu like symptoms (criteria link...Ontario.ca). Even with rigorous testing, we know there are approximately 10 symptomatic cases for each (Wuhan) positive test. Ontario’s ratio is likely even higher.</p>
             </div>
             <div id='column-main'>
-
-                <app-num-cases-total-graph *ngIf='test_result_data != null' [graph_data]='test_result_data'></app-num-cases-total-graph>
-                <!--<app-num-cases-total-graph *ngIf='test_result_data != null' [graph_data]='test_result_data'></app-num-cases-total-graph>-->
+              <div id="vizContainer"></div>
             </div>
         </div>
 
         <div style="margin-top:50px;margin-bottom:50px">
-          <h3 class="column-title">External Ontario-specific capacity analyses</h3>
-          [Link wih tile and author?]<br>
-          [Link wih tile and author?]<br>
-          [Link wih tile and author?]<br>
-          <br>
-          More resources [link to Resources page]
-        </div>
+            <h3 class="column-title">External Ontario-specific capacity analyses</h3>
+            [Link wih tile and author?]<br>
+            [Link wih tile and author?]<br>
+            [Link wih tile and author?]<br>
+            <br>
+            More resources [link to Resources page]
+          </div>
 
-
-        <div id='column-layout' style='height: 400px;'>
+        <div id='column-layout'>
             <div id='column-detail'>
                 <h3 class="column-title">Regional Analysis: Ontario</h3>
-                [Description]
+                <p>Early pandemic disease transmission is a local phenomenon. This figure provides a visual analysis of cases across Ontario regions.</p>
             </div>
-            <div id='column-main' style="overflow: scroll; grid-template-columns: 1fr 3fr; display:grid;">
-                <div style="font-weight:bold; height:100px;">Region</div><div></div>
-                <div>Ontario</div><app-num-cases-time-graph *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data'></app-num-cases-time-graph>
-                <div>Not Reported</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='nr '></app-data-testing-over-time>
-                <div>Toronto</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='toronto'></app-data-testing-over-time>
-                <div>Algoma</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='algoma'></app-data-testing-over-time>
-                <div>Brant</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='brant  '></app-data-testing-over-time>
-                <div>Chatham-Kent</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='chatham '></app-data-testing-over-time>
-                <div>Durham</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='durham '></app-data-testing-over-time>
-                <div>Eastern</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='eastern '></app-data-testing-over-time>
-                <div>Grey Bruce</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='grey '></app-data-testing-over-time>
-                <div>Haliburton Kawartha Pineridge</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='haliburton '></app-data-testing-over-time>
-                <div>Hamilton</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='hamilton '></app-data-testing-over-time>
-                <div>Hastings Prince Edward</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='hastings '></app-data-testing-over-time>
-                <div>Huron Perth</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='huron '></app-data-testing-over-time>
-                <div>Kingston Frontenac Lennox & Addington</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='kingston '></app-data-testing-over-time>
-                <div>Middlesex-London</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='middlesex '></app-data-testing-over-time>
-                <div>Northwestern</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='northwestern '></app-data-testing-over-time>
-                <div>Ottawa</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='ottawa '></app-data-testing-over-time>
-                <div>Peel</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='peel  '></app-data-testing-over-time>
-                <div>Peterborough</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='peterborough  '></app-data-testing-over-time>
-                <div>Porcupine</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='porcupine  '></app-data-testing-over-time>
-                <div>Simcoe Muskoka</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='simcoe  '></app-data-testing-over-time>
-                <div>Sudbury</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='sudbury  '></app-data-testing-over-time>
-                <div>Waterloo</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='waterloo  '></app-data-testing-over-time>
-                <div>Wellington Dufferin Guelph</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='wellington  '></app-data-testing-over-time>
-                <div>Windsor-Essex</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='windsor  '></app-data-testing-over-time>
-                <div>York</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='york  '></app-data-testing-over-time>
+            <div id='column-main'>
+              <div id="vizContainertwo"></div>
             </div>
         </div>
 
         <div style="margin-top:50px;margin-bottom:50px">
-          <h3 class="column-title">External Ontario-specific capacity analyses</h3>
-          [Link wih tile and author?]<br>
-          [Link wih tile and author?]<br>
-          [Link wih tile and author?]<br>
-          <br>
-          More resources [link to Resources page]
-        </div>
+            <h3 class="column-title">External Ontario-specific capacity analyses</h3>
+            [Link wih tile and author?]<br>
+            [Link wih tile and author?]<br>
+            [Link wih tile and author?]<br>
+            <br>
+            More resources [link to Resources page]
+          </div>
+
     </div>
     <div id='footer' style='background-color: #DADFE1;'></div>
 </div>
