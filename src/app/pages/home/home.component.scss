@@ -114,11 +114,11 @@
 #explore-data {
     margin:20px 0px 20px 0px;
     width:100%;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr) );
 }
 
 #explore-data-cell {
-    width:33%;
     text-align: center;
     margin: 10px;
 }
