@@ -12,7 +12,7 @@
             <p><a href="#">Regional Analysis</a>- [Blurb]</p>
         </div> -->
         <!-- CAPACITY ANALYSIS -->
-
+        
 
         <div id='column-layout'>
             <div id='column-detail'>
@@ -58,9 +58,11 @@
             <div id='column-detail'>
 
                 <h3 class="column-title">Capacity Analysis: Ontario</h3>
-
-                 <div id = 'key-takeaway'><p>Researchers from the <a href = 'https://www.covid-19-mc.ca'>COVID-19 ModCollab</a> have developed a compartment model to predict the time Ontario ICU resources will be depleted under undesirable (Italy) and better case (South Korea) scenarios. They explore scenarios varying the rate of growth of patients in the community/emergency department and ICU surge capacity. The effects of social distancing are modeled by decreasing the growth rate after 14 days.</p></div>
-
+<<<<<<< HEAD
+                 <div id = 'key-takeaway'><p>Researchers from the <a href = 'https://www.covid-19-mc.ca'>COVID-MC collaborative</a> have developed a compartment model to predict the time Ontario ICU resources will be depleted under undesirable (Italy) and better case (South Korea) scenarios. They explore scenarios varying the rate of growth of patients in the community/emergency department and ICU surge capacity. The effects of social distancing are modeled by decreasing the growth rate after 14 days.</p></div>
+=======
+                <p>Researchers from the <a href = 'https://www.covid-19-mc.ca'>COVID-19 ModCollab</a> have developed a compartment model to predict the time Ontario ICU resources will be depleted under undesirable (Italy) and better case (South Korea) scenarios. They explore scenarios varying the rate of growth of patients in the community/emergency department and ICU surge capacity. The effects of social distancing are modeled by decreasing the growth rate after 14 days.</p>
+>>>>>>> 9523398dbb97e12bb07c2620f8b3e0d0bca2e936
             </div>
             <div id='column-main'>
               <img style="width:100%;"src='assets/img/Figure1_Conservative_Resources.jpg'>
