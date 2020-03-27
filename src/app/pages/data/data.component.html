@@ -46,16 +46,8 @@
           More resources [link to Resources page]
         </div>
         <!-- TESTING ANALYSIS -->
-        <div id='column-layout' style='height: 400px;'>
-            <div id='column-detail'>
-                <h3 class="column-title">Testing Analysis: Ontario</h3>
-                [Description]
-            </div>
-            <div id='column-main'>
-
-                <app-num-cases-total-graph *ngIf='test_result_data != null' [graph_data]='test_result_data'></app-num-cases-total-graph>
-                <!--<app-num-cases-total-graph *ngIf='test_result_data != null' [graph_data]='test_result_data'></app-num-cases-total-graph>-->
-            </div>
+        <div id='column-layout'>
+          <div id="vizContainer" style="display: flex; justify-content: center"></div>
         </div>
 
         <div style="margin-top:50px;margin-bottom:50px">
