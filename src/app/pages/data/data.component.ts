@@ -38,7 +38,9 @@ export class DataComponent implements OnInit {
   wellington : any = "Wellington Dufferin Guelph";
   windsor : any = "Windsor-Essex";
   york : any = "York";
-  
+  viz: any;
+
+
   constructor(private api_service : ApiService) {
 
   }
@@ -62,6 +64,7 @@ export class DataComponent implements OnInit {
     }, error => {
       console.error(error);
     })
+
 
   }
 
