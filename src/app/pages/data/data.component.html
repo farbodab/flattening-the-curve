@@ -12,7 +12,7 @@
             <p><a href="#">Regional Analysis</a>- [Blurb]</p>
         </div>
         <!-- CAPACITY ANALYSIS -->
-        <div id='column-layout'>
+        <div id='column-layout' style="height:600px">
             <div id='column-detail'>
                 <h3 class="column-title">Capacity Analysis: Ontario</h3>
                 [Description]
@@ -60,40 +60,8 @@
         </div>
 
 
-        <div id='column-layout' style='height: 400px;'>
-            <div id='column-detail'>
-                <h3 class="column-title">Regional Analysis: Ontario</h3>
-                [Description]
-            </div>
-            <div id='column-main' style="overflow: scroll; grid-template-columns: 1fr 3fr; display:grid;">
-                <div style="font-weight:bold; height:100px;">Region</div><div></div>
-                <div>Ontario</div><app-num-cases-time-graph *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data'></app-num-cases-time-graph>
-                <div>Not Reported</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='nr '></app-data-testing-over-time>
-                <div>Toronto</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='toronto'></app-data-testing-over-time>
-                <div>Algoma</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='algoma'></app-data-testing-over-time>
-                <div>Brant</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='brant  '></app-data-testing-over-time>
-                <div>Chatham-Kent</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='chatham '></app-data-testing-over-time>
-                <div>Durham</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='durham '></app-data-testing-over-time>
-                <div>Eastern</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='eastern '></app-data-testing-over-time>
-                <div>Grey Bruce</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='grey '></app-data-testing-over-time>
-                <div>Haliburton Kawartha Pineridge</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='haliburton '></app-data-testing-over-time>
-                <div>Hamilton</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='hamilton '></app-data-testing-over-time>
-                <div>Hastings Prince Edward</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='hastings '></app-data-testing-over-time>
-                <div>Huron Perth</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='huron '></app-data-testing-over-time>
-                <div>Kingston Frontenac Lennox & Addington</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='kingston '></app-data-testing-over-time>
-                <div>Middlesex-London</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='middlesex '></app-data-testing-over-time>
-                <div>Northwestern</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='northwestern '></app-data-testing-over-time>
-                <div>Ottawa</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='ottawa '></app-data-testing-over-time>
-                <div>Peel</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='peel  '></app-data-testing-over-time>
-                <div>Peterborough</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='peterborough  '></app-data-testing-over-time>
-                <div>Porcupine</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='porcupine  '></app-data-testing-over-time>
-                <div>Simcoe Muskoka</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='simcoe  '></app-data-testing-over-time>
-                <div>Sudbury</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='sudbury  '></app-data-testing-over-time>
-                <div>Waterloo</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='waterloo  '></app-data-testing-over-time>
-                <div>Wellington Dufferin Guelph</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='wellington  '></app-data-testing-over-time>
-                <div>Windsor-Essex</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='windsor  '></app-data-testing-over-time>
-                <div>York</div><app-data-testing-over-time *ngIf='test_result_data != null' [graph_data]='phu_data' [graph_new_data]='phu_new_data' [name]='york  '></app-data-testing-over-time>
-            </div>
+        <div id='column-layout'>
+              <div id="vizContainertwo" style="display: flex; justify-content: center"></div>
         </div>
 
         <div style="margin-top:50px;margin-bottom:50px">

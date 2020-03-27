@@ -80,6 +80,20 @@ export class DataComponent implements OnInit {
 
     this.viz = new tableau.Viz(placeholderDiv, url, options);
 
+    var placeholderDiv = document.getElementById('vizContainertwo');
+    var url = "https://public.tableau.com/views/HowsMyFlattening-RegionalAnalysis/Dashboard1?:display_count=y&:origin=viz_share_link"
+
+    var options = {
+        hideTabs: true,
+        width: "1050px",
+        height: "1450px",
+        onFirstInteractive: function() {
+              // The viz is now ready and can be safely used.
+              console.log("Run this code when the viz has finished loading.");
+    }}
+
+    this.viz = new tableau.Viz(placeholderDiv, url, options);
+
   }
 
   toggleChild(){
