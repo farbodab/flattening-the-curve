@@ -27,12 +27,12 @@ export class HomeComponent implements OnInit {
       console.error(error);
     })
     var placeholderDiv = document.getElementById('vizContainer');
-    var url = "https://public.tableau.com/views/HowsMyFlattening-OntarioICUCapacity/ICUbedcapacity?:embed=y&display_count=y&publish=yes&:origin=viz_share_link"
+    var url = "https://public.tableau.com/views/HowsMyFlattening-OntarioICUCapacity/ICUbedcapacity?:display_count=y&publish=yes&:origin=viz_share_link"
 
     var options = {
         hideTabs: true,
         width: "650px",
-        height: "700px",
+        height: "550px",
         onFirstInteractive: function() {
               // The viz is now ready and can be safely used.
               console.log("Run this code when the viz has finished loading.");
