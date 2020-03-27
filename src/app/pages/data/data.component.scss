@@ -12,7 +12,7 @@
 #column-detail {
     padding:20px;
     font-weight: bold;
-    background-color: #DADFE1;
+    background-color: #FFFFFF;
     @media screen and (min-width: 1024px) {
         flex-shrink: 0;
         width: 250px !important;
@@ -41,6 +41,11 @@
         height:50%;
     }
     
+}
+
+#key-takeaway{
+    font-family: 'Lato', sans-serif;
+    color: #434343;
 }
 
 #footer {
