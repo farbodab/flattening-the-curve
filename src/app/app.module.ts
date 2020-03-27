@@ -27,6 +27,9 @@ import { DataTestingOverTimeComponent } from './components/data-testing-over-tim
 import { DataTestProportionByResultComponent } from './components/data-test-proportion-by-result/data-test-proportion-by-result.component';
 import { DataRegionalMapComponent } from './components/data-regional-map/data-regional-map.component';
 
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAnalyticsModule, ScreenTrackingService } from '@angular/fire/analytics';
 
 PlotlyViaCDNModule.plotlyVersion = '1.49.4'; // can be `latest` or any version number (i.e.: '1.40.0')
 PlotlyViaCDNModule.plotlyBundle = 'basic'; // optional: can be null (for full) or 'basic', 'cartesian', 'geo', 'gl3d', 'gl2d', 'mapbox' or 'finance'
@@ -54,6 +57,8 @@ PlotlyViaCDNModule.plotlyBundle = 'basic'; // optional: can be null (for full) o
     DataRegionalMapComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAnalyticsModule,
     BrowserModule,
     PlotlyViaCDNModule,
     AppRoutingModule,
@@ -61,7 +66,10 @@ PlotlyViaCDNModule.plotlyBundle = 'basic'; // optional: can be null (for full) o
     HttpClientModule,
     MaterialModule
   ],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
+    ScreenTrackingService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
