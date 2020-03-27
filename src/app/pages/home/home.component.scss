@@ -114,15 +114,22 @@
 }
 
 #explore-data {
-    margin:20px 0px 20px 0px;
     width:100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr) );
+    margin:20px 0px 20px 0px;
+
+    @media screen and (min-width: 1024px) {
+        display: flex;
+        
+    }
 }
 
 #explore-data-cell {
     text-align: center;
-    margin: 10px;
+    margin: 50px 0px 50px 0px;
+
+    @media screen and (min-width: 1024px) {
+        margin: 10px;
+    }
 }
 
 #explore-data-cell-text {
