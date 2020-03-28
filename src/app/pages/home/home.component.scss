@@ -109,6 +109,12 @@
     }
 }
 
+#vizContainer{
+  @media screen and (min-width: 1024px) {
+      height: 550px;
+  }
+}
+
 #read-more-btn {
     color: white;
     background-color: #205D86;
