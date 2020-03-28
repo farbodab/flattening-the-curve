@@ -21,11 +21,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.api_service.get_results_data( data => {
-      this.graph_data = data;
-    }, error => {
-      console.error(error);
-    })
+
     var placeholderDiv = document.getElementById('vizContainer');
     var url = "https://public.tableau.com/views/HowsMyFlattening-OntarioICUCapacity/ICUbedcapacity?:display_count=y&publish=yes&:origin=viz_share_link"
 

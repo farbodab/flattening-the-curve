@@ -48,25 +48,6 @@ export class DataComponent implements OnInit {
 
   ngOnInit() {
 
-    this.api_service.get_phu_data(data => {
-      this.phu_data = data;
-    }, error => {
-      console.error(error);
-    })
-
-    this.api_service.get_phunew_data(data => {
-      this.phu_new_data = data;
-    }, error => {
-      console.error(error);
-    })
-
-    this.api_service.get_test_results_data(data => {
-      this.test_result_data = data;
-    }, error => {
-      console.error(error);
-    })
-
-   
     var placeholderDiv = document.getElementById('vizContainer');
     var url = "https://public.tableau.com/views/HowsMyFlattening-Testing/Testing?:display_count=y&publish=yes&:origin=viz_share_link"
 
