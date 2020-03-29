@@ -46,7 +46,7 @@ hr {
         width:50%;
         height:50%;
     }
-    
+
 }
 
 #key-takeaway{
@@ -60,4 +60,10 @@ hr {
     @media screen and (min-width: 1024px) {
         height:80px;
     }
+}
+
+#vizContainer{
+  @media screen and (min-width: 1024px) {
+      height: 650px;
+  }
 }

@@ -54,7 +54,7 @@ export class DataComponent implements OnInit {
     var options = {
         hideTabs: true,
         width: "100%",
-        height: "650px",
+        height: "900px",
         onFirstInteractive: function() {
               // The viz is now ready and can be safely used.
               console.log("Run this code when the viz has finished loading.");
