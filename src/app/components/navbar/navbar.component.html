@@ -5,8 +5,10 @@
         </div>
         <div id='primary-nav' *ngIf='is_full'>
             <button id='main-nav-button' mat-button routerLink='/'>Home</button>
-            <button id='main-nav-button' mat-button routerLink='/data'>Analysis</button>
+            <button id='main-nav-button' mat-button routerLink='/analysis'>Analysis</button>
+            <button id='main-nav-button' mat-button routerLink='/data'>Data</button>
             <button id='main-nav-button' mat-button routerLink='/resources'>Resources</button>
+            <button id='main-nav-button' mat-button routerLink='/team'>Our Team</button>
             <button id='main-nav-button' mat-button routerLink='/connect'>Join Us</button>
         </div>
         <div id='primary-nav' *ngIf='!is_full'>
@@ -15,8 +17,10 @@
             </button>
             <mat-menu #menu="matMenu">
                 <button id='mobile-nav-button' mat-menu-item routerLink='/'>Home</button>
-                <button id='mobile-nav-button' mat-menu-item routerLink='/data'>Analysis</button>
+                <button id='mobile-nav-button' mat-menu-item routerLink='/analysis'>Analysis</button>
+                <button id='mobile-nav-button' mat-menu-item routerLink='/data'>Data</button>
                 <button id='mobile-nav-button' mat-menu-item routerLink='/resources'>Resources</button>
+                <button id='mobile-nav-button' mat-menu-item routerLink='/team'>Our Team</button>
                 <button id='mobile-nav-button' mat-menu-item routerLink='/connect'>Join Us</button>
             </mat-menu>
         </div>

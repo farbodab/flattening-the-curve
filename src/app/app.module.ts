@@ -16,6 +16,7 @@ import { ConnectComponent } from './pages/connect/connect.component';
 import { HomeGraphComponent } from './components/home-graph/home-graph.component';
 import { HomeGraphOntComponent } from './components/home-graph-ont/home-graph-ont.component';
 import { PlotlyViaCDNModule } from 'angular-plotly.js';
+import { AnalysisComponent } from './pages/analysis/analysis.component';
 import { DataComponent } from './pages/data/data.component';
 import { NumCasesTotalGraphComponent } from './components/num-cases-total-graph/num-cases-total-graph.component';
 import { NumCasesTimeGraphComponent } from './components/num-cases-time-graph/num-cases-time-graph.component';
@@ -45,16 +46,8 @@ PlotlyViaCDNModule.plotlyBundle = 'basic'; // optional: can be null (for full) o
     ConnectComponent,
     HomeGraphComponent,
     HomeGraphOntComponent,
+    AnalysisComponent,
     DataComponent,
-    NumCasesTotalGraphComponent,
-    NumCasesTimeGraphComponent,
-    DataCapacityConservativeResAvailComponent,
-    DataCapacityItalyResAvailComponent,
-    DataCapacityConservativeWaitingResComponent,
-    DataCapacityItalyWaitingResComponent,
-    DataTestingOverTimeComponent,
-    DataTestProportionByResultComponent,
-    DataRegionalMapComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

@@ -1,94 +1,66 @@
 <div class='content' style='background-color: white;'>
     <app-navbar [shows_title]='true'></app-navbar>
-    <div id='container'>
-        <div class='mat-display-1' style='font-weight:bold;'>Ontario-specific COVID-19 data</div>
-        <div>
-            This page highlights analyses that provide further Ontario-specific insights as we monitor performance to flatten the curve.<br><br><br>
+    <div id='container' style="margin-top:15px;margin-left:16px;height:400px;">
+        <div class='mat-headline' style='margin-top:30px;'>Datasets</div>
+        <div id = 'body-text'>
+        <p>COVID-19 is changing the world rapidly. We need to move faster.<br><br>We present our growing data sources relevant to Ontario and comparisons in a single up to date Dataset.</p>
         </div>
-        <!-- <div>
-            <p style='font-weight:bold;'>On this page:</p>
-            <p><a href="#">Capacity Analysis</a>- [Blurb]</p>
-            <p><a href="#">Testing Analysis</a>- [Blurb]</p>
-            <p><a href="#">Regional Analysis</a>- [Blurb]</p>
-        </div> -->
-        <!-- CAPACITY ANALYSIS -->
-
-
-        <div id='column-layout'>
-            <div id='column-detail'>
-                <h3 class="column-title">Regional Analysis: Ontario</h3>
-                <div id = 'key-takeaway'><p>Early pandemic disease transmission is a local phenomenon. Our interactive map provides an analysis of cases across regions in Ontario. Our heat map provides a bird's eye view of cases over time in each region. Hover over a section for more detailed information. </p>
-
-                <p>Thanks to the researchers at <a href = 'https://github.com/ishaberry/Covid19Canada'>COVID-19 Canada Open Data Working Group</a> for compiling the data.</p></div>
-            </div>
-            <div id='column-main'>
-              <div id="vizContainertwo"></div>
-            </div>
-        </div>
-
-        <hr>
-
-
-        <div style="margin-top:50px;margin-bottom:50px">
-            <!-- <h3 class="column-title">External Ontario-specific capacity analyses</h3>
-            [Link wih tile and author?]<br>
-            [Link wih tile and author?]<br>
-            [Link wih tile and author?]<br>
-            <br>
-            More resources [link to Resources page] -->
-          </div>
-
-          <div id='column-layout'>
-            <div id='column-detail'>
-                <h3 class="column-title">Testing Analysis: Ontario</h3>
-                 <div id = 'key-takeaway'><p>A casual glance at positive tests in Ontario suggests the curve is relatively flat. Doubling time (not shown) has been decreasing. But a deeper analysis shows that delays in test results are piling up, producing an artificial decrease in the number of confirmed cases. Approximately 25% of cases are unreported.<br><br> Additionally, <a href = 'https://www.ontario.ca/page/2019-novel-coronavirus#section-8'> Ontario is not testing all patients with flu like symptoms </a>. Even with rigorous testing, we know from Wuhan that there are approximately 10 symptomatic cases for each positive test. Ontario’s ratio is likely even higher.</p>
-
-                <p>Our visualization shows the status of testing in Ontario. Hover for more details.</p>
-                 </div>
-            </div>
-            <div id='column-main'>
-              <div id="vizContainer"></div>
-            </div>
-        </div>
-
-        <hr>
-
-
-        <div style="margin-top:50px;margin-bottom:50px">
-            <!-- <h3 class="column-title">External Ontario-specific capacity analyses</h3>
-            [Link wih tile and author?]<br>
-            [Link wih tile and author?]<br>
-            [Link wih tile and author?]<br>
-            <br>
-            More resources [link to Resources page] -->
-        </div>
-
-        <div id='column-layout'>
-            <div id='column-detail'>
-
-                <h3 class="column-title">Capacity Analysis: Ontario</h3>
-
-                 <div id = 'key-takeaway'><p>Researchers from the <a href = 'https://www.covid-19-mc.ca'>COVID-19 ModCollab</a> have developed a compartment model to predict the time Ontario ICU resources will be depleted under undesirable (Italy) and better case (South Korea) scenarios. They explore scenarios varying the rate of growth of patients in the community/emergency department and ICU surge capacity. The effects of social distancing are modeled by decreasing the growth rate after 14 days.</p></div>
-
-            </div>
-            <div id='column-main'>
-              <img style="width:100%;"src='assets/img/Figure1_Conservative_Resources.jpg'>
-              <!-- <img style="width:100%;"src='assets/img/Figure2_Conservative_Waiting.jpg'> -->
-              <img style="width:100%;"src='assets/img/Figure3_Italy_Resources.jpg'>
-              <!-- <img style="width:100%;"src='assets/img/Figure4_Italy_Waiting.jpg'> -->
-            </div>
-        </div>
-
-
-        <div style="margin-top:50px;margin-bottom:50px">
-            <!-- <h3 class="column-title">External Ontario-specific capacity analyses</h3>
-            [Link wih tile and author?]<br>
-            [Link wih tile and author?]<br>
-            [Link wih tile and author?]<br>
-            <br>
-            More resources [link to Resources page] -->
-          </div>
-
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Source</th>
+            <th>Description</th>
+            <th>Data feed type</th>
+            <th>Link of source</th>
+            <th>Refresh Rate</th>
+            <th>Contributor</th>
+            <th>Contributor Contact</th>
+            <th>Download Link</th>
+          </tr>
+          <tr>
+            <td>test_data_on</td>
+            <td>Government of Ontario</td>
+            <td>Time series testing data for the province of ontario which reports postives, negatives, under investigation, resolved, deaths and total tested</td>
+            <td>Automatic</td>
+            <td><a href="https://www.ontario.ca/page/2019-novel-coronavirus">Here</a></td>
+            <td>190 Minute Interval</td>
+            <td>David Madras</td>
+            <td>NA</td>
+            <td><a href="https://flatteningthecurve.herokuapp.com/data/covidtests">Download</a></td>
+          </tr>
+          <tr>
+            <td>test_data_canada</td>
+            <td>Government of Canada and News Media</td>
+            <td>Patient level data of covid cases in canada. Compiled from publicly available information on confirmed and presumptive postive cases during the ongoing COVID-19 outbreak in Canada. Data are entered with each line representing a unique case, including age, sex, health region location, and history of travel where available</td>
+            <td>Manual</td>
+            <td><a href="https://github.com/ishaberry/Covid19Canada">Here</a></td>
+            <td>Once a day</td>
+            <td>COVID-19 Canada Open Data Working Group</td>
+            <td>NA</td>
+            <td><a href="https://flatteningthecurve.herokuapp.com/data/covid">Download</a></td>
+          </tr>
+          <tr>
+            <td>icu_capacity_on</td>
+            <td>CIHI</td>
+            <td>ICU Bed and Acute Bed Capacity in Ontario, Sorted by of Public Health Units of The Province of Ontario</td>
+            <td>Manual</td>
+            <td>NA</td>
+            <td>Static</td>
+            <td>Petr Smirnov</td>
+            <td>NA</td>
+            <td><a href="https://flatteningthecurve.herokuapp.com/data/phucapacity">Download</a></td>
+          </tr>
+          <tr>
+            <td>test_data_intl</td>
+            <td>Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE)</td>
+            <td>Time series data on covid cases in select international jurisdictions</td>
+            <td>Automatic</td>
+            <td><a href="https://github.com/CSSEGISandData/COVID-19">Here</a></td>
+            <td>190 Minute Interval</td>
+            <td>NA</td>
+            <td>NA</td>
+            <td><a href="https://flatteningthecurve.herokuapp.com/data/internationaldata">Download</a></td>
+          </tr>
+        </table>
     </div>
-    <div id='footer' style='background-color: #DADFE1;'></div>
 </div>

@@ -1,0 +1,69 @@
+hr {
+  height: 10px;
+  border: 0;
+  box-shadow: 0 5px 5px -5px #8c8c8c inset;
+}
+
+#container {
+    color: #2B2B2B;
+    padding:20px;
+}
+
+#column-layout {
+    @media screen and (min-width: 1024px) {
+        display:flex;
+    }
+}
+
+#column-detail {
+    padding:20px;
+    background-color: #FFFFFF;
+    @media screen and (min-width: 1024px) {
+        flex-shrink: 0;
+        width: 250px !important;
+    }
+}
+
+.column-title{
+  font-weight: bold;
+  color: #205d86;
+  font-size: 25px;
+}
+
+#column-main {
+    flex-grow: 1;
+}
+
+#capacity-graph-row {
+    @media screen and (min-width: 1024px) {
+        display:flex;
+    }
+}
+
+#capacity-graph {
+    width:100%;
+    @media screen and (min-width: 1024px) {
+        width:50%;
+        height:50%;
+    }
+
+}
+
+#key-takeaway{
+    font-family: 'Lato', sans-serif;
+    color: #434343;
+}
+
+#footer {
+    height:40px;
+
+    @media screen and (min-width: 1024px) {
+        height:80px;
+    }
+}
+
+#vizContainer{
+  @media screen and (min-width: 1024px) {
+      height: 650px;
+  }
+}
