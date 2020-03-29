@@ -85,6 +85,7 @@
 }
 
 #subtitle-text {
+    font-family: 'Baloo2', sans-serif;
     font-size: 20px;
     @media screen and (min-width: 1024px) {
         font-size: 25px;
@@ -148,13 +149,16 @@
 }
 
 #explore-data-img {
-    width:33%;
+    height: 125px;
+    width: 125px;
+
 }
 
 #explore-data-btn {
     color: white;
     background-color: #205D86;
-    width:150px;
+    width:175px;
+    font-size: 20px;
     text-align: center;
 }
 
