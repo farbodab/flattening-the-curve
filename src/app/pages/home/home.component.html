@@ -29,7 +29,7 @@
                     The time to #FlattenTheCurve is now.
                 </p>
                 <div id='read-more-container'>
-                    <button mat-raised-button (click)='on_read_more_pressed();' id='read-more-btn'>Read More</button>
+                    <button mat-raised-button (click)='on_read_more_pressed();' id='read-more-btn'>Read Full Article</button>
                 </div>
                 </div>
             </div>
@@ -59,7 +59,7 @@
                 
             </div>
             <div style='text-align: center;'>
-                <button mat-raised-button routerLink='/data' id='explore-data-btn'>Explore Data</button>
+                <button mat-raised-button routerLink='/data' id='explore-data-btn'>Explore Analysis</button>
             </div>
         </div>
         <div>
@@ -68,13 +68,26 @@
                 <br><br>
                 We connect experts and present data in an easy to digest, actionable way to help Ontario's public leaders and individuals act decisively as evidence grows and time ticks by.
             </p>
+    
         </div>
 
-        <!--
-        <div id='who-what-content'>
-            <button id='resources-button' mat-raised-button>Explore Ontario-specific analytics resources</button>
+        <div style='background-color: #DADFE1; padding-top:30px;padding-bottom:30px;'>
+
+         <div class='mat-headline' style='margin-top:30px; text-align: center;'>Sign up below for updates on new visualizations we release!</div>
+
+         <br><br>
+        
+        <div style='text-align: center;'>
+                <button mat-raised-button (click)='on_sign_up_pressed();' id='explore-data-btn'>Join Mailing List</button>
+            </div>
+
         </div>
-        -->
-        <div id='footer' style='background-color: #DADFE1;'></div>
+
+       
+
+        <div id='footer' style='background-color: #DADFE1;'>
+        </div>
+
+
     </div>
 </div>

@@ -40,4 +40,8 @@ export class HomeComponent implements OnInit {
   on_read_more_pressed() {
     window.location.href = 'https://medium.com/@obenfine/howsmyflattening-choosing-ontarios-covid-19-curve-5c173d4f32d';
   }
+
+  on_sign_up_pressed() {
+    window.location.href = 'https://www.surveymonkey.com/r/Y7X86JL';
+  }
 }
