@@ -5,62 +5,182 @@
         <div id = 'body-text'>
         <p>COVID-19 is changing the world rapidly. We need to move faster.<br><br>We present our growing data sources relevant to Ontario and comparisons in a single up to date Dataset.</p>
         </div>
-        <table>
-          <tr>
-            <th>Name</th>
-            <th>Source</th>
-            <th>Description</th>
-            <th>Data feed type</th>
-            <th>Link of source</th>
-            <th>Refresh Rate</th>
-            <th>Contributor</th>
-            <th>Contributor Contact</th>
-            <th>Download Link</th>
-          </tr>
-          <tr>
-            <td>test_data_on</td>
-            <td>Government of Ontario</td>
-            <td>Time series testing data for the province of ontario which reports postives, negatives, under investigation, resolved, deaths and total tested</td>
-            <td>Automatic</td>
-            <td><a href="https://www.ontario.ca/page/2019-novel-coronavirus">Here</a></td>
-            <td>190 Minute Interval</td>
-            <td>David Madras</td>
-            <td>NA</td>
-            <td><a href="https://flatteningthecurve.herokuapp.com/data/covidtests">Download</a></td>
-          </tr>
-          <tr>
-            <td>test_data_canada</td>
-            <td>Government of Canada and News Media</td>
-            <td>Patient level data of covid cases in canada. Compiled from publicly available information on confirmed and presumptive postive cases during the ongoing COVID-19 outbreak in Canada. Data are entered with each line representing a unique case, including age, sex, health region location, and history of travel where available</td>
-            <td>Manual</td>
-            <td><a href="https://github.com/ishaberry/Covid19Canada">Here</a></td>
-            <td>Once a day</td>
-            <td>COVID-19 Canada Open Data Working Group</td>
-            <td>NA</td>
-            <td><a href="https://flatteningthecurve.herokuapp.com/data/covid">Download</a></td>
-          </tr>
-          <tr>
-            <td>icu_capacity_on</td>
-            <td>CIHI</td>
-            <td>ICU Bed and Acute Bed Capacity in Ontario, Sorted by of Public Health Units of The Province of Ontario</td>
-            <td>Manual</td>
-            <td>NA</td>
-            <td>Static</td>
-            <td>Petr Smirnov</td>
-            <td>NA</td>
-            <td><a href="https://flatteningthecurve.herokuapp.com/data/phucapacity">Download</a></td>
-          </tr>
-          <tr>
-            <td>test_data_intl</td>
-            <td>Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE)</td>
-            <td>Time series data on covid cases in select international jurisdictions</td>
-            <td>Automatic</td>
-            <td><a href="https://github.com/CSSEGISandData/COVID-19">Here</a></td>
-            <td>190 Minute Interval</td>
-            <td>NA</td>
-            <td>NA</td>
-            <td><a href="https://flatteningthecurve.herokuapp.com/data/internationaldata">Download</a></td>
-          </tr>
-        </table>
+
+
+
+<!-- template for data entry 
+<div id='data-container'>
+        <div id ='left-column'>
+            <div id ="dataset-name">Dataset: test_data_on</div>
+            <div id = 'source'><p>Source: Government of Ontario</p></div>
+            <div id = 'description'><p>Time series testing data for the province of ontario which reports postives, negatives, under investigation, resolved, deaths and total tested.</p></div>
+            
+           
+
+            <div id='read-more-container'>
+               <a mat-raised-button href="https://www.ontario.ca/page/2019-novel-coronavirus" id='read-more-btn'>Download Data</a>
+            </div>
+            
+        </div>
+
+        <div id ='right-column'>
+               
+            <br><br>
+            <div id = "details"> Details: </div>
+
+            <div id = "details-body">
+            <p class = 'details'>Data feedtype: Automatic</p>
+            <p class = 'details'>Refresh rate: 190 minute interval</p>
+            <p class = 'details'><a href = "https://www.ontario.ca/page/2019-novel-coronavirus">Source link</a></p>
+            
+            <br>
+            <p class = 'details'>Contributor: David Madras</p>
+            <p class = 'details'>Contact: N/A</p>
+            </div>
+        </div>
+
     </div>
+
+    <hr> -->
+
+
+
+    <div id='data-container'>
+        <div id ='left-column'>
+            <div id ="dataset-name">test_data_on</div>
+            <div id = 'source'><p>Source: Government of Ontario</p></div>
+            <div id = 'description'><p>Time series testing data for the province of ontario which reports postives, negatives, under investigation, resolved, deaths and total tested.</p></div>
+            
+           
+
+            <div id='read-more-container'>
+               <a mat-raised-button href="https://www.ontario.ca/page/2019-novel-coronavirus" id='read-more-btn'>Download Data</a>
+            </div>
+            
+        </div>
+
+        <div id ='right-column'>
+               
+            <br><br>
+            <div id = "details"> Details: </div>
+
+            <div id = "details-body">
+            <p class = 'details'>Data feedtype: Automatic</p>
+            <p class = 'details'>Refresh rate: 190 minute interval</p>
+            <p class = 'details'><a href = "https://www.ontario.ca/page/2019-novel-coronavirus">Source link</a></p>
+            
+            <br>
+            <p class = 'details'>Contributor: David Madras</p>
+            <p class = 'details'>Contact: N/A</p>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+<div id='data-container'>
+        <div id ='left-column'>
+            <div id ="dataset-name">test_data_canada</div>
+            <div id = 'source'><p>Source: Government of Canada and News Media</p></div>
+            <div id = 'description'><p>Patient level data of covid cases in canada. Compiled from publicly available information on confirmed and presumptive postive cases during the ongoing COVID-19 outbreak in Canada. Data are entered with each line representing a unique case, including age, sex, health region location, and history of travel where available.</p></div>
+            
+           
+
+            <div id='read-more-container'>
+               <a mat-raised-button href="https://flatteningthecurve.herokuapp.com/data/covid" id='read-more-btn'>Download Data</a>
+            </div>
+            
+        </div>
+
+        <div id ='right-column'>
+               
+            <br><br>
+            <div id = "details"> Details: </div>
+
+            <div id = "details-body">
+            <p class = 'details'>Data feedtype: Manual</p>
+            <p class = 'details'>Refresh rate: Once a day</p>
+            <p class = 'details'><a href = "https://github.com/ishaberry/Covid19Canada">Source link</a></p>
+            
+            <br>
+            <p class = 'details'>Contributor: COVID-19 Canada Open Data Working Group</p>
+            <p class = 'details'>Contact: N/A</p>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <div id='data-container'>
+        <div id ='left-column'>
+            <div id ="dataset-name">icu_capacity_on</div>
+            <div id = 'source'><p>Source: CIHI</p></div>
+            <div id = 'description'><p>ICU Bed and Acute Bed Capacity in Ontario, Sorted by of Public Health Units of The Province of Ontario.</p></div>
+            
+           
+
+            <div id='read-more-container'>
+               <a mat-raised-button href="https://flatteningthecurve.herokuapp.com/data/phucapacity" id='read-more-btn'>Download Data</a>
+            </div>
+            
+        </div>
+
+        <div id ='right-column'>
+               
+            <br><br>
+            <div id = "details"> Details: </div>
+
+            <div id = "details-body">
+            <p class = 'details'>Data feedtype: Manual</p>
+            <p class = 'details'>Refresh rate: Static</p>
+            <p class = 'details'>Source link: N/A</p>
+            
+            <br>
+            <p class = 'details'>Contributor: Petr Smirnov</p>
+            <p class = 'details'>Contact: N/A</p>
+            </div>
+        </div>
+
+    </div>
+
+   
+
+
+ <div id='data-container'>
+        <div id ='left-column'>
+            <div id ="dataset-name">test_data_intl</div>
+            <div id = 'source'><p>Source: Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE)</p></div>
+            <div id = 'description'><p>Time series data on covid cases in select international jurisdictions.</p></div>
+            
+           
+
+            <div id='read-more-container'>
+               <a mat-raised-button href="https://flatteningthecurve.herokuapp.com/data/internationaldata" id='read-more-btn'>Download Data</a>
+            </div>
+            
+        </div>
+
+        <div id ='right-column'>
+               
+            <br><br>
+            <div id = "details"> Details: </div>
+
+            <div id = "details-body">
+            <p class = 'details'>Data feedtype: Automatic</p>
+            <p class = 'details'>Refresh rate: 190 minute interval</p>
+            <p class = 'details'><a href = "https://github.com/CSSEGISandData/COVID-19">Source link</a></p>
+            
+            <br>
+            <p class = 'details'>Contributor: N/A</p>
+            <p class = 'details'>Contact: N/A</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div id='footer' style='background-color: #DADFE1;'></div>
 </div>

@@ -1,7 +1,79 @@
-#body-text {
+#data-container {
+  width: 100%;
+  margin: auto;
+  padding: 0px;
+}
+
+#left-column {
+  width: 65%;
+  height: 275px;
+  float: left;
+  padding-right: 5%;
+}
+
+#right-column {
+  height: 275px;
+  padding-left: 20%;
+}
+
+#dataset-name{
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+  color: #434343;
+  font-size: 24px;
+}
+
+#source {
     font-family: 'Lato', sans-serif;
+    font-weight: bold;
     color: #434343;
 }
+
+
+#decription {
+    font-family: 'Lato', sans-serif;
+    color: #434343;
+    height: 75%
+}
+
+#read-more-container {
+    text-align: left;
+    padding-top:20px;
+
+    @media screen and (min-width: 1024px) {
+        text-align: left;
+    }
+}
+
+#read-more-btn {
+    color: white;
+    background-color: #205D86;
+    width:150px;
+    text-align: center;
+}
+
+#details {
+    font-family: 'baloo2', sans-serif;
+    color: #434343;
+}
+
+#details-body {
+    font-family: 'Lato', sans-serif;
+    color: #434343;
+    margin: 0;
+    padding: 1em;
+}
+
+hr {
+  height: 10px;
+  border: 0;
+  box-shadow: 0 5px 5px -5px #8c8c8c inset;
+}
+
+p.details {
+  margin: 0;
+  padding: 2px;
+  }
 
 
 #container {
@@ -99,21 +171,6 @@
     }
 }
 
-#read-more-container {
-    text-align: left;
-    padding-top:20px;
-
-    @media screen and (min-width: 1024px) {
-        text-align: center;
-    }
-}
-
-#read-more-btn {
-    color: white;
-    background-color: #205D86;
-    width:150px;
-    text-align: center;
-}
 
 #explore-data {
     margin:20px 0px 20px 0px;
