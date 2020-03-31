@@ -24,6 +24,10 @@
     width: 100%;
     display: block;
   }
+  #resource-box {
+    width: 100%;
+    display: block;
+  }
 }
 
 /* Add some shadows to create a card effect */
@@ -42,7 +46,7 @@
 .container-core {
   padding: 0 16px;
   padding-top: 5px;
-  min-height: 175px;
+  min-height: 200px;
 }
 
 /* Clear floats */
@@ -70,6 +74,10 @@
   color: #2b2b2b;
   font-size: 40px;
   text-align: center;
+
+  @media screen and (min-width: 1024px) {
+        font-size: 18px;
+    }
 }
 
 #heading-text {
@@ -113,12 +121,12 @@
 
 #resource-box {
     border: 1px;  
-    width:225px;
+    width:200px;
 }
 
 #resource_thumbnail {
-    height: 225px; 
-    width: 225px;
+    height: 200px; 
+    width: 200px;
     object-fit: contain;
     object-position: 0% 50%;
 }
