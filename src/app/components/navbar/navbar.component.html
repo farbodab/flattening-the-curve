@@ -8,7 +8,8 @@
             <button id='main-nav-button' mat-button routerLink='/analysis'>Analysis</button>
             <button id='main-nav-button' mat-button routerLink='/data'>Data</button>
             <button id='main-nav-button' mat-button routerLink='/resources'>Resources</button>
-            <button id='main-nav-button' mat-button routerLink='/connect'>Join Us</button>
+            <button id='main-nav-button' mat-button routerLink='/team'>Team</button>
+            <button id='main-nav-button' mat-button routerLink='/connect'>Connect</button>
         </div>
         <div id='primary-nav' *ngIf='!is_full'>
             <button mat-button [matMenuTriggerFor]="menu">
@@ -19,7 +20,8 @@
                 <button id='mobile-nav-button' mat-menu-item routerLink='/analysis'>Analysis</button>
                 <button id='mobile-nav-button' mat-menu-item routerLink='/data'>Data</button>
                 <button id='mobile-nav-button' mat-menu-item routerLink='/resources'>Resources</button>
-                <button id='mobile-nav-button' mat-menu-item routerLink='/connect'>Join Us</button>
+                <button id='main-nav-button' mat-button routerLink='/team'>Team</button>
+                <button id='mobile-nav-button' mat-menu-item routerLink='/connect'>Connect</button>
             </mat-menu>
         </div>
     </mat-toolbar-row>

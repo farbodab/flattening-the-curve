@@ -1,5 +1,6 @@
 #container {
     padding: 20px;
+
 }
 
 #story-frame {
@@ -11,9 +12,10 @@
 /* Three columns side by side */
 .column {
   float: left;
-  width: 33.3%;
+  width: 31%;
   margin-bottom: 16px;
   padding: 0 8px;
+
 }
 
 /* Display the columns below each other instead of side by side on small screens */
@@ -30,12 +32,29 @@
 }
 
 /* Some left and right padding inside the container */
-.container {
+.container-advisory {
   padding: 0 16px;
+  padding-top: 5px;
+  min-height: 100px;
+}
+
+/* Some left and right padding inside the container */
+.container-core {
+  padding: 0 16px;
+  padding-top: 5px;
+  min-height: 175px;
 }
 
 /* Clear floats */
-.container::after, .row::after {
+.container-advisory::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+/* Clear floats */
+.container-core::after, .row::after {
   content: "";
   clear: both;
   display: table;
@@ -44,6 +63,37 @@
 .title {
   color: grey;
 }
+
+#sub-title{
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+  color: #2b2b2b;
+  font-size: 40px;
+  text-align: center;
+}
+
+#heading-text {
+    font-family: 'Lato', sans-serif;
+    color: #2b2b2b;
+    margin: 0;
+    padding: 1em;
+    text-align: center;
+}
+
+#sub-heading{
+  font-family: 'Lato', sans-serif;
+  color: #2b2b2b;
+  font-size: 30px;
+  text-align: center;
+}
+
+#body-text {
+    font-family: 'Lato', sans-serif;
+    color: #2b2b2b;
+    margin: 0;
+    padding: 1em;
+}
+
 
 .button {
   border: none;
@@ -59,4 +109,24 @@
 
 .button:hover {
   background-color: #555;
+}
+
+#resource-box {
+    border: 1px;  
+    width:225px;
+}
+
+#resource_thumbnail {
+    height: 225px; 
+    width: 225px;
+    object-fit: contain;
+    object-position: 0% 50%;
+}
+
+#footer {
+    height:40px;
+
+    @media screen and (min-width: 1024px) {
+        height:80px;
+    }
 }
