@@ -18,7 +18,7 @@ export class AnalysisComponent implements OnInit {
   ngOnInit() {
 
     var placeholderDiv = document.getElementById('vizContainer');
-    var url = "https://public.tableau.com/views/HowsMyFlattening-Testing/Testing?:display_count=y&publish=yes&:origin=viz_share_link"
+    var url = "https://public.tableau.com/views/OntarioCOVID-19TestingAnalysis/Testing?:display_count=y&:origin=viz_share_link"
 
     var options = {
         hideTabs: true,
@@ -32,7 +32,7 @@ export class AnalysisComponent implements OnInit {
     this.viz = new tableau.Viz(placeholderDiv, url, options);
 
     var placeholderDiv = document.getElementById('vizContainertwo');
-    var url = "https://public.tableau.com/views/HowsMyFlattening-RegionalAnalysis/Dashboard1?:display_count=y&:origin=viz_share_link"
+    var url = "https://public.tableau.com/views/OntarioCOVID-19RegionalAnalysis/Dashboard1?:display_count=y&:origin=viz_share_link"
 
     var options = {
         hideTabs: true,
