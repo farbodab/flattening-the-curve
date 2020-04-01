@@ -39,7 +39,7 @@
 .container-advisory {
   padding: 0 16px;
   padding-top: 5px;
-  min-height: 100px;
+  min-height: 200px;
 }
 
 /* Some left and right padding inside the container */
@@ -72,11 +72,11 @@
   font-family: 'Lato', sans-serif;
   font-weight: bold;
   color: #2b2b2b;
-  font-size: 40px;
+  font-size: 30px;
   text-align: center;
 
   @media screen and (min-width: 1024px) {
-        font-size: 18px;
+        font-size: 40px;
     }
 }
 
@@ -91,15 +91,19 @@
 #sub-heading{
   font-family: 'Lato', sans-serif;
   color: #2b2b2b;
-  font-size: 30px;
+  font-size: 25px;
   text-align: center;
+
+  @media screen and (min-width: 1024px) {
+        font-size: 30px;
+    }
 }
 
 #body-text {
     font-family: 'Lato', sans-serif;
     color: #2b2b2b;
     margin: 0;
-    padding: 1em;
+    padding-top: 1em;
 }
 
 
