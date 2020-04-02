@@ -83,11 +83,12 @@
 #title-text {
     font-size: 40px;
     font-weight: bold;
-    color: #205D86;
+    color: #205D86 !important;
     margin-bottom: 30px;
     @media screen and (min-width: 1024px) {
         font-size: 60px;
     }
+    cursor:pointer;
 }
 
 #subtitle-text {
