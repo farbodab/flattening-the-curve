@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit {
         hideTabs: true,
         width: "650px",
         height: "900px",
+        margin: "0 auto",
         onFirstInteractive: function() {
               // The viz is now ready and can be safely used.
               console.log("Run this code when the viz has finished loading.");

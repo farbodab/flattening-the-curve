@@ -1,188 +1,184 @@
 <div class='content' style='background-color: white;'>
-    <app-navbar [shows_title]='true'></app-navbar>
-    <div id='container' style="margin-top:30px;margin-left:30px;height:100%;margin-bottom:30px">
-        <div class='mat-display-1' style='font-weight:bold;'>Ontario-Relevant Resources Database</div>
+    <app-navbar [shows_title]='true' [page]='"resources"'></app-navbar>
+    <div id='container'>
+        <h1>Ontario-Relevant Resources Database</h1>
 
-        <div>
+        <div> This page compiles Ontario-specific and Ontario-relevant articles, visualizations, simulations, and data sources. Notice a missing resource? Email <a href="mailto:info@howsmyflattening.ca"><strong>info@howsmyflattening.ca</strong></a>with an explanation of why the resource is important and we'll add it.
         </div>
 
-        <div> This page compiles Ontario-specific and Ontario-relevant articles, visualizations, simulations, and data sources. Notice a missing resource? Email <strong>info@howsmyflattening.ca</strong> with an explanation of why the resource is important and we'll add it.</div>
+        <hr>
 
-         <div class='mat-display-1' style="margin-top:30px;height:100%;margin-bottom:10px">General Information</div>
-        <div style="display:grid;grid-column-gap:10px;grid-row-gap:30px;grid-template-columns: repeat(auto-fill, minmax(200px, 1fr) );">
+        <h2>General Information</h2>
 
-          <div id = 'resource-box'>
-            <div id = 'resource_thumbnail'>
-              <a href = 'https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-NPI-modelling-16-03-2020.pdf'>
-                <img id='resource_thumbnail' src='assets/img/img_resources/ferguson.png' >
-              </a>
+        <div id='resource-set'>
+            <div id = 'resource-box'>
+                <div id = 'resource_thumbnail'>
+                    <a href = 'https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-NPI-modelling-16-03-2020.pdf'>
+                        <img id='resource_thumbnail' src='assets/img/img_resources/ferguson.png' >
+                    </a>
+                </div>
+                <div id = 'resource-title'><a href = 'https://drive.google.com/file/d/14tGJF9tdv4osPhY1-fswLcSlWZJ9zx45/view?usp=sharing'>Assessing non-pharmaceutical interventions (NPIs) in the UK</a></div>
+                <div id = 'resource-author'>Ferguson, N. et al.</div>
+                <div id = 'resource-date'>March 16, 2020</div>
             </div>
-            <div id = 'resource-title'><a href = 'https://drive.google.com/file/d/14tGJF9tdv4osPhY1-fswLcSlWZJ9zx45/view?usp=sharing'>Assessing non-pharmaceutical interventions (NPIs) in the UK</a></div>
-            <div id = 'resource-author'>Ferguson, N. et al.</div>
-            <div id = 'resource-date'>March 16, 2020</div>
-          </div>
 
-          <div id = 'resource-box'>
-            <div id = 'resource_thumbnail'>
-              <a href = 'https://drive.google.com/file/d/14tGJF9tdv4osPhY1-fswLcSlWZJ9zx45/view'>
-                <img id='resource_thumbnail' src='assets/img/img_resources/lin.png' >
-              </a>
-            </div>
-            <div id = 'resource-title'><a href = 'https://drive.google.com/file/d/14tGJF9tdv4osPhY1-fswLcSlWZJ9zx45/view'>Analysis of 25,000 Lab-Confirmed COVID-19 Cases in
+            <div id = 'resource-box'>
+                <div id = 'resource_thumbnail'>
+                    <a href = 'https://drive.google.com/file/d/14tGJF9tdv4osPhY1-fswLcSlWZJ9zx45/view'>
+                        <img id='resource_thumbnail' src='assets/img/img_resources/lin.png' >
+                    </a>
+                </div>
+                <div id = 'resource-title'><a href = 'https://drive.google.com/file/d/14tGJF9tdv4osPhY1-fswLcSlWZJ9zx45/view'>  Analysis of 25,000 Lab-Confirmed COVID-19 Cases in
 Wuhan</a></div>
-            <div id = 'resource-author'>Lin, X.</div>
-            <div id = 'resource-date'>March 14, 2020</div>
-          </div>
-
-          <div id = 'resource-box'>
-            <div id = 'resource_thumbnail'>
-              <a href = 'https://medium.com/@andreasbackhausab/coronavirus-why-its-so-deadly-in-italy-c4200a15a7bf'>
-                <img id='resource_thumbnail' src='assets/img/img_resources/backhaus.png' >
-              </a>
+                <div id = 'resource-author'>Lin, X.</div>
+                <div id = 'resource-date'>March 14, 2020</div>
             </div>
-            <div id = 'resource-title'><a href = 'https://medium.com/@andreasbackhausab/coronavirus-why-its-so-deadly-in-italy-c4200a15a7bf'>Coronavirus: Why it’s so deadly in Italy
+
+            <div id = 'resource-box'>
+                <div id = 'resource_thumbnail'>
+                    <a href = 'https://medium.com/@andreasbackhausab/coronavirus-why-its-so-deadly-in-italy-c4200a15a7bf'>
+                        <img id='resource_thumbnail' src='assets/img/img_resources/backhaus.png' >
+                    </a>
+                </div>
+                <div id = 'resource-title'><a href = 'https://medium.com/@andreasbackhausab/coronavirus-why-its-so-deadly-in-italy-c4200a15a7bf'>Coronavirus: Why it’s so deadly in Italy
 Demographics and why they are a warning to other countries</a></div>
-            <div id = 'resource-author'>Backhaus, A.</div>
-            <div id = 'resource-date'>March 13, 2020</div>
-          </div>
-      </div>
-
-        <div class='mat-display-1' style="margin-top:30px;height:100%;margin-bottom:10px">Visualizations and Analytics</div>
-
-
-        <div style="display:grid;grid-template-columns: repeat(auto-fill, minmax(200px, 1fr) );grid-column-gap:10px;grid-row-gap:30px">
-
-          <div id = 'resource-box'>
-
-            <div id = 'resource_thumbnail'>
-              <a href = 'https://datacat.cc/covid/?fbclid=IwAR3copnRa49xl_C1Jabs--4D5gKkbuhZkgG7e6NN1hnNyWY35ngpHEufDjg'>
-                <img id='resource_thumbnail' src='assets/img/img_resources/databrew.png' >
-              </a>
+                <div id = 'resource-author'>Backhaus, A.</div>
+                <div id = 'resource-date'>March 13, 2020</div>
             </div>
-            <div id = 'resource-title'><a href = 'https://datacat.cc/covid/?fbclid=IwAR3copnRa49xl_C1Jabs--4D5gKkbuhZkgG7e6NN1hnNyWY35ngpHEufDjg'>Databrew - COVID cases since country's first day with x cases</a></div>
-            <div id = 'resource-author'>Databrew</div>
-            <div id = 'resource-date'>March 11, 2020</div>
-          </div>
-
-          <div id = 'resource-box'>
-            <div id = 'resource_thumbnail'>
-              <a href = 'https://twitter.com/xingcbrew/status/1239731528474726401'>
-                <img id='resource_thumbnail' src='assets/img/img_resources/brew.png' >
-              </a>
-            </div>
-            <div id = 'resource-title'><a href = 'https://twitter.com/xingcbrew/status/1239731528474726401'>Canada growth numbers per province</a></div>
-            <div id = 'resource-author'>Brew, X.</div>
-            <div id = 'resource-date'>March 16, 2020</div>
-          </div>
-
-          <div id = 'resource-box'>
-            <div id = 'resource_thumbnail'>
-              <a href = 'https://meltingasphalt.com/interactive/outbreak/'>
-                <img id='resource_thumbnail' src='assets/img/img_resources/simler.png' >
-              </a>
-            </div>
-            <div id = 'resource-title'><a href = 'https://meltingasphalt.com/interactive/outbreak/'>A playable disease simulation</a></div>
-            <div id = 'resource-author'>Simler, K.</div>
-            <div id = 'resource-date'>March 16, 2020</div>
-          </div>
-
-
-          <div id = 'resource-box'>
-
-            <div id = 'resource_thumbnail'>
-              <a href = 'https://www.washingtonpost.com/graphics/2020/world/corona-simulator/'>
-                <img id='resource_thumbnail' src='assets/img/img_resources/stevens.png' >
-              </a>
-            </div>
-            <div id = 'resource-title'><a href = 'https://www.washingtonpost.com/graphics/2020/world/corona-simulator/'>Impact of Social distancing on flattening the curve</a></div>
-            <div id = 'resource-author'>Stevens, H.</div>
-            <div id = 'resource-date'>March 14, 2020</div>
-          </div>
-
-           <div id = 'resource-box'>
-            <div id = 'resource_thumbnail'>
-              <a href = 'https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6'>
-                <img id='resource_thumbnail' src='assets/img/img_resources/hopkins.png' >
-              </a>
-            </div>
-            <div id = 'resource-title'><a href = 'https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6'>Coronavirus COVID-19 Global Cases</a></div>
-            <div id = 'resource-author'>John Hopkins University</div>
-            <div id = 'resource-date'>n.d.</div>
-          </div>
-
-
-           <div id = 'resource-box'>
-            <div id = 'resource_thumbnail'>
-              <a href = 'https://art-bd.shinyapps.io/covid19canada/'>
-                <img id='resource_thumbnail' src='assets/img/img_resources/soucy.png' >
-              </a>
-            </div>
-            <div id = 'resource-title'><a href = 'https://art-bd.shinyapps.io/covid19canada/'>Visualizing COVID in Canada</a></div>
-            <div id = 'resource-author'>Soucy, J R., Berry, I.</div>
-            <div id = 'resource-date'>n.d.</div>
-          </div>
-
-          <div id = 'resource-box'>
-            <div id = 'resource_thumbnail'>
-              <a href = ' https://corona-calculator.herokuapp.com/ '>
-                <img id='resource_thumbnail' src='assets/img/img_resources/elementai.png' >
-              </a>
-            </div>
-            <div id = 'resource-title'><a href = ' https://corona-calculator.herokuapp.com/ '>Calculator for impact of social distancing</a></div>
-            <div id = 'resource-author'>ElementAI</div>
-            <div id = 'resource-date'>n.d.</div>
-          </div>
-
-          <div id = 'resource-box'>
-            <div id = 'resource_thumbnail'>
-              <a href = 'https://www.ihsanalytics.com/covid'>
-                <img id='resource_thumbnail' src='assets/img/img_resources/abdolhassani.png' >
-              </a>
-            </div>
-            <div id = 'resource-title'><a href = 'https://www.ihsanalytics.com/covid'>Canadian comparisons by province</a></div>
-            <div id = 'resource-author'>Abolhassani, F.</div>
-            <div id = 'resource-date'>n.d.</div>
-          </div>
-
-           <div id = 'resource-box'>
-            <div id = 'resource_thumbnail'>
-              <a href = 'https://resources-covid19canada.hub.arcgis.com'>
-                <img id='resource_thumbnail' src='assets/img/img_resources/esri.png' >
-              </a>
-            </div>
-            <div id = 'resource-title'><a href = 'https://resources-covid19canada.hub.arcgis.com'>COVID-19 in Canada Visualizations</a></div>
-            <div id = 'resource-author'>Esri Canada</div>
-            <div id = 'resource-date'>n.d.</div>
-          </div>
-
-           <div id = 'resource-box'>
-            <div id = 'resource_thumbnail'>
-              <a href = 'https://datastudio.google.com/s/sii5u3O95jY'>
-                <img id='resource_thumbnail' src='assets/img/img_resources/soares-1.png' >
-              </a>
-            </div>
-            <div id = 'resource-title'><a href = 'https://datastudio.google.com/s/sii5u3O95jY'>Cases and deaths in Canada and selected countries</a></div>
-            <div id = 'resource-author'>Soares, M.</div>
-            <div id = 'resource-date'>April 1, 2020</div>
-          </div>
-       
-
-         <div id = 'resource-box'>
-            <div id = 'resource_thumbnail'>
-              <a href = 'https://datastudio.google.com/s/mQvKawqryJY'>
-                <img id='resource_thumbnail' src='assets/img/img_resources/soares-2.png' >
-              </a>
-            </div>
-            <div id = 'resource-title'><a href = 'https://datastudio.google.com/s/mQvKawqryJY'>Cases and deaths per million in Canada and selected countries</a></div>
-            <div id = 'resource-author'>Soares, M.</div>
-            <div id = 'resource-date'>April 1, 2020</div>
-          </div>
         </div>
 
+        <hr>
 
+        <h2>Visualizations and Analytics</h2>
 
+        <div id='resource-set'>
+            <div id = 'resource-box'>
+                <div id = 'resource_thumbnail'>
+                    <a href = 'https://datacat.cc/covid/?fbclid=IwAR3copnRa49xl_C1Jabs--4D5gKkbuhZkgG7e6NN1hnNyWY35ngpHEufDjg'>
+                        <img id='resource_thumbnail' src='assets/img/img_resources/databrew.png' >
+                    </a>
+                </div>
+                <div id = 'resource-title'><a href = 'https://datacat.cc/covid/?fbclid=IwAR3copnRa49xl_C1Jabs--4D5gKkbuhZkgG7e6NN1hnNyWY35ngpHEufDjg'>Databrew - COVID cases since country's first day with x cases</a></div>
+                <div id = 'resource-author'>Databrew</div>
+                <div id = 'resource-date'>March 11, 2020</div>
+            </div>
+
+            <div id = 'resource-box'>
+                <div id = 'resource_thumbnail'>
+                    <a href = 'https://twitter.com/xingcbrew/status/1239731528474726401'>
+                        <img id='resource_thumbnail' src='assets/img/img_resources/brew.png' >
+                    </a>
+                </div>
+                <div id = 'resource-title'><a href = 'https://twitter.com/xingcbrew/status/1239731528474726401'>Canada growth numbers per province</a></div>
+                <div id = 'resource-author'>Brew, X.</div>
+                <div id = 'resource-date'>March 16, 2020</div>
+            </div>
+
+            <div id = 'resource-box'>
+                <div id = 'resource_thumbnail'>
+                    <a href = 'https://meltingasphalt.com/interactive/outbreak/'>
+                        <img id='resource_thumbnail' src='assets/img/img_resources/simler.png' >
+                    </a>
+                </div>
+                <div id = 'resource-title'><a href = 'https://meltingasphalt.com/interactive/outbreak/'>A playable disease simulation</a></div>
+                <div id = 'resource-author'>Simler, K.</div>
+                <div id = 'resource-date'>March 16, 2020</div>
+            </div>
+
+            <br/>
+
+            <div id = 'resource-box'>
+                <div id = 'resource_thumbnail'>
+                    <a href = 'https://www.washingtonpost.com/graphics/2020/world/corona-simulator/'>
+                        <img id='resource_thumbnail' src='assets/img/img_resources/stevens.png' >
+                    </a>
+                </div>
+                <div id = 'resource-title'><a href = 'https://www.washingtonpost.com/graphics/2020/world/corona-simulator/'>Impact of Social distancing on flattening the curve</a></div>
+                <div id = 'resource-author'>Stevens, H.</div>
+                <div id = 'resource-date'>March 14, 2020</div>
+            </div>
+
+             <div id = 'resource-box'>
+                <div id = 'resource_thumbnail'>
+                    <a href = 'https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6'>
+                        <img id='resource_thumbnail' src='assets/img/img_resources/hopkins.png' >
+                    </a>
+                </div>
+                <div id = 'resource-title'><a href = 'https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6'>Coronavirus COVID-19 Global Cases</a></div>
+                <div id = 'resource-author'>John Hopkins University</div>
+                <div id = 'resource-date'>n.d.</div>
+            </div>
+
+             <div id = 'resource-box'>
+                <div id = 'resource_thumbnail'>
+                    <a href = 'https://art-bd.shinyapps.io/covid19canada/'>
+                        <img id='resource_thumbnail' src='assets/img/img_resources/soucy.png' >
+                    </a>
+                </div>
+                <div id = 'resource-title'><a href = 'https://art-bd.shinyapps.io/covid19canada/'>Visualizing COVID in Canada</a></div>
+                <div id = 'resource-author'>Soucy, J R., Berry, I.</div>
+                <div id = 'resource-date'>n.d.</div>
+            </div>
+
+            <div id = 'resource-box'>
+                <div id = 'resource_thumbnail'>
+                    <a href = ' https://corona-calculator.herokuapp.com/ '>
+                        <img id='resource_thumbnail' src='assets/img/img_resources/elementai.png' >
+                    </a>
+                </div>
+                <div id = 'resource-title'><a href = ' https://corona-calculator.herokuapp.com/ '>Calculator for impact of social distancing</a></div>
+                <div id = 'resource-author'>ElementAI</div>
+                <div id = 'resource-date'>n.d.</div>
+            </div>
+
+            <div id = 'resource-box'>
+                <div id = 'resource_thumbnail'>
+                    <a href = 'https://www.ihsanalytics.com/covid'>
+                        <img id='resource_thumbnail' src='assets/img/img_resources/abdolhassani.png' >
+                    </a>
+                </div>
+                <div id = 'resource-title'><a href = 'https://www.ihsanalytics.com/covid'>Canadian comparisons by province</a></div>
+                <div id = 'resource-author'>Abolhassani, F.</div>
+                <div id = 'resource-date'>n.d.</div>
+            </div>
+
+             <div id = 'resource-box'>
+                <div id = 'resource_thumbnail'>
+                    <a href = 'https://resources-covid19canada.hub.arcgis.com'>
+                        <img id='resource_thumbnail' src='assets/img/img_resources/esri.png' >
+                    </a>
+                </div>
+                <div id = 'resource-title'><a href = 'https://resources-covid19canada.hub.arcgis.com'>COVID-19 in Canada Visualizations</a></div>
+                <div id = 'resource-author'>Esri Canada</div>
+                <div id = 'resource-date'>n.d.</div>
+            </div>
+
+            <div id = 'resource-box'>
+                <div id = 'resource_thumbnail'>
+                    <a href = 'https://datastudio.google.com/s/sii5u3O95jY'>
+                        <img id='resource_thumbnail' src='assets/img/img_resources/soares-1.png' >
+                    </a>
+                </div>
+                <div id = 'resource-title'><a href = 'https://datastudio.google.com/s/sii5u3O95jY'>Cases and deaths in Canada and selected countries</a></div>
+                <div id = 'resource-author'>Soares, M.</div>
+                <div id = 'resource-date'>April 1, 2020</div>
+            </div>
+
+            <div id = 'resource-box'>
+                <div id = 'resource_thumbnail'>
+                    <a href = 'https://datastudio.google.com/s/mQvKawqryJY'>
+                        <img id='resource_thumbnail' src='assets/img/img_resources/soares-2.png' >
+                    </a>
+                </div>
+                <div id = 'resource-title'>
+                    <a href = 'https://datastudio.google.com/s/mQvKawqryJY'>
+                        Cases and deaths per million in Canada and selected countries
+                    </a>
+                </div>
+                <div id = 'resource-author'>Soares, M.</div>
+                <div id = 'resource-date'>April 1, 2020</div>
+            </div>
         </div>
-
-        <br>
+    </div>
+    <div id='footer'></div>
 </div>
-<div id='footer' style='background-color: #DADFE1;'></div>

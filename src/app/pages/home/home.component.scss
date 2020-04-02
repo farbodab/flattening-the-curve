@@ -1,10 +1,6 @@
 
-#container {
-    color: #2B2B2B;
-}
-
 #header-container {
-    height:300px;
+    height:225px;
     width:100%;
     position: relative;
     background-color: #DADFE1;
@@ -30,13 +26,31 @@
 }
 
 #which-curve-text {
-    font-family: 'Lato', sans-serif;
     color: #434343;
-    padding:20px;
+    //padding:20px;
 
     @media screen and (min-width: 1024px) {
         flex-shrink: 0;
-        width: 300px !important;
+        width:35%;
+        //width: 300px !important;
+    }
+
+    h1 {
+        margin:0;
+    }
+}
+
+#vizContainer{
+    display: flex; 
+    justify-content: center;
+    //padding:20px;
+    height: 550px;
+    overflow:hidden;
+    margin-top:25px;
+    @media screen and (min-width: 1024px) {
+        width:65%;
+        margin-top:0;
+        margin-left:20px;
     }
 }
 
@@ -45,7 +59,6 @@
 }
 
 #who-what-content {
-    font-family: 'Lato', sans-serif;
     color: #434343;
     text-align: center;
     margin:20px 20px 0px 20px;
@@ -67,24 +80,8 @@
     align: center;
 }
 
-#footer {
-    height:40px;
-
-    @media screen and (min-width: 1024px) {
-        height:80px;
-    }
-}
-
-#resources-button {
-    font-size:20px;
-    white-space: pre-wrap !important;
-    width:300px;
-    line-height: 25px;
-    padding:20px;
-}
-
 #title-text {
-    font-size: 30px;
+    font-size: 40px;
     font-weight: bold;
     color: #205D86;
     margin-bottom: 30px;
@@ -99,37 +96,6 @@
     @media screen and (min-width: 1024px) {
         font-size: 25px;
     }
-}
-
-#divider {
-    background-color: darkgrey;
-    height:2px;
-    width:100%;
-    @media screen and (min-width: 1024px) {
-        height:4px;
-    }
-}
-
-#read-more-container {
-    text-align: left;
-    padding-top:20px;
-
-    @media screen and (min-width: 1024px) {
-        text-align: center;
-    }
-}
-
-#vizContainer{
-  @media screen and (min-width: 1024px) {
-      height: 550px;
-  }
-}
-
-#read-more-btn {
-    color: white;
-    background-color: #205D86;
-    width:150px;
-    text-align: center;
 }
 
 #explore-data {
@@ -171,6 +137,10 @@
     text-align: center;
 }
 
-.text{
-  margin-bottom: 0px;
+#read-more-container {
+    text-align: left;
+
+    @media screen and (min-width: 1024px) {
+        text-align: center;
+    }
 }

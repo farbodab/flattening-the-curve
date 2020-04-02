@@ -1,15 +1,14 @@
 <div class='content' style='background-color: white;'>
-    <app-navbar [shows_title]='true'></app-navbar>
-    <div id='container' style="margin-top:15px;margin-left:16px;height:400px;">
-        <div class='mat-headline' style='margin-top:30px;'>Datasets</div>
-        <div id = 'body-text'>
-        <p>COVID-19 is changing the world rapidly. We need to move faster.<br><br>We present our growing data sources relevant to Ontario and comparisons in a single up to date Dataset.</p>
+    <app-navbar [shows_title]='true' [page]='"data"'></app-navbar>
+    <div id='container'>
+        <h1>Datasets</h1>
+        <div>
+            COVID-19 is changing the world rapidly. We need to move faster.<br><br>We present our growing data sources relevant to Ontario and comparisons in a single up to date Dataset.<br>
         </div>
+        <hr>
 
-<hr>
-
-<!-- template for data entry 
-<div id='data-container'>
+    <!-- template for data entry 
+    <div id='data-container'>
         <div id ='left-column'>
             <div id ="dataset-name">Dataset: test_data_on</div>
             <div id = 'source'><p>Source: Government of Ontario</p></div>
@@ -47,7 +46,7 @@
     
     <div id='data-container'>
         <div id ='left-column'>
-            <div id ="dataset-name">Ontario Testing Data</div>
+            <h2>Ontario Testing Data</h2>
             <div id = 'source'><p>Source: Government of Ontario</p></div>
             <div id = 'description'><p>Time series testing data for the province of ontario which reports postives, negatives, under investigation, resolved, deaths and total tested.</p></div>
             
@@ -75,11 +74,11 @@
     </div>
 
 
-<hr>
+    <hr>
 
-<div id='data-container'>
+    <div id='data-container'>
         <div id ='left-column'>
-            <div id ="dataset-name">Canada Testing Data</div>
+            <h2>Canada Testing Data</h2>
             <div id = 'source'><p>Source: Government of Canada and News Media</p></div>
             <div id = 'description'><p>Patient level data of covid cases in canada. Compiled from publicly available information on confirmed and presumptive postive cases during the ongoing COVID-19 outbreak in Canada. Data are entered with each line representing a unique case, including age, sex, health region location, and history of travel where available.</p></div>
             
@@ -109,12 +108,11 @@
 
     </div>
 
-
-<hr>
+    <hr>
 
     <div id='data-container'>
         <div id ='left-column'>
-            <div id ="dataset-name">Ontario ICU Capacity</div>
+            <h2>Ontario ICU Capacity</h2>
             <div id = 'source'><p>Source: Critical Care Services Ontario (CCSO)</p></div>
             <div id = 'description'><p>Time series data for ICU capacity and ventilators for the province of Ontario, alongwith number of suspected and confirmed covid patients using critical care resources broken down by LHIN, region and ICU level.</p></div>
             
@@ -145,11 +143,11 @@
     </div>
 
    
-<hr>
+    <hr>
 
- <div id='data-container'>
+    <div id='data-container'>
         <div id ='left-column'>
-            <div id ="dataset-name">International Testing Data</div>
+            <h2>International Testing Data</h2>
             <div id = 'source'><p>Source: Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE)</p></div>
             <div id = 'description'><p>Time series data on covid cases in select international jurisdictions.</p></div>
             
@@ -176,8 +174,7 @@
             <p class = 'details'>Contact: N/A</p>
             </div>
         </div>
-
     </div>
-
-    <div id='footer' style='background-color: #DADFE1;'></div>
+</div>
+<div id='footer'></div>
 </div>

@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 export class NavbarComponent implements OnInit {
 
   @Input() shows_title : boolean;
+  @Input() page: string;
 
   window_subscription : Subscription;
 

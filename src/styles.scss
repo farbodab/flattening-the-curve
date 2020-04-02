@@ -7,7 +7,48 @@ html, body {
     height: 100%;
     background-color: #FFFFFF;
 }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+	margin: 0; 
+	// Lato is used for basic text, Roboto for headings
+  	//font-family: 'Lato', sans-serif;
+	//font-family: Roboto, "Helvetica Neue", sans-serif; 
+}
+
+p, div {
+    font-family: 'Lato', sans-serif;
+    color: #2b2b2b;
+}
+
+h1, h2, h3 {
+  font-family: 'Roboto', "Helvetica Neue", sans-serif;
+  color: #2b2b2b;
+  font-weight: bold;
+}
+
+h1 {
+	font-size: 35px;
+	margin-top:30px;
+  	font-weight: 500;
+}
+
+h2 {
+	font-size: 25px;
+	margin-top:25px;
+	margin-bottom:5px;
+	font-weight:500;
+    color: #205d86;
+}
+
+h3 {
+	font-size: 30px;
+	margin-top:25px;
+	margin-bottom:5px;
+	font-weight:500;
+}
+
+button {
+	color:white;
+}
 
 .content {
     width:100%;
@@ -19,6 +60,85 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 }
 
+hr {
+    margin:25px 0 0 0;
+	display: block;
+	height:0px;
+	border-color: #dcdcdc;
+	border-style: inset;
+	border-width: 1px; 
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+    //box-shadow: 0 5px 5px -5px #8c8c8c inset;
+}
+
 .mat-headline {
     font-size: 30px;
+}
+
+#container {
+	margin:0px 30px 10px 30px;
+	height:100%;
+	.mat-display-1 {
+		margin-bottom:15px;
+		font-weight: bold;
+	}
+	padding-bottom:25px
+}
+
+#body-text {
+    color: #2b2b2b;
+    margin: 0;
+    padding-top: 1em;
+}
+
+.mat-menu-content:not(.empty) {
+	padding:0 !important;
+}
+
+#footer {
+	background-color: #DADFE1;
+    height:40px;
+
+    @media screen and (min-width: 1024px) {
+        height:80px;
+    }
+}
+
+#resource-set {
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-column-gap:10px;
+    grid-row-gap:30px;
+    padding-bottom:20px;
+}
+
+#resources-button {
+    font-size:20px;
+    white-space: pre-wrap !important;
+    width:300px;
+    line-height: 25px;
+    padding:20px;
+}
+
+#divider {
+    background-color: darkgrey;
+    height:1px;
+    width:100%;
+    @media screen and (min-width: 1024px) {
+        height:4px;
+    }
+}
+
+#read-more-container {
+    text-align: left;
+    padding-top:10px;
+}
+
+#read-more-btn {
+    color: white;
+    background-color: #205D86;
+    width:150px;
+    text-align: center;
 }
