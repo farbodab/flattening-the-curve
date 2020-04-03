@@ -6,15 +6,22 @@
 
             This page highlights analyses that provide further Ontario-specific insights as we monitor performance to flatten the curve. Select an analysis below to explore.<br><br><br>
         </div>
-        <div>
-            <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-                <mat-button-toggle [routerLink]="['./critical']">Critical Care Analysis</mat-button-toggle>
-                <mat-button-toggle [routerLink]="['./regional']">Regional Analysis</mat-button-toggle>
-                <mat-button-toggle [routerLink]="['./testing']">Testing Analysis</mat-button-toggle>
-                <mat-button-toggle [routerLink]="['./capacity']">Capacity Analysis</mat-button-toggle>
+        <div  *ngIf='is_full'>
+            <mat-button-toggle-group id='full-nav' name="fontStyle" aria-label="Font Style">
+                <mat-button-toggle style='width: 100%;' [routerLink]="['./critical']">Critical Care Analysis</mat-button-toggle>
+                <mat-button-toggle style='width: 100%;' [routerLink]="['./regional']">Regional Analysis</mat-button-toggle>
+                <mat-button-toggle style='width: 100%;' [routerLink]="['./testing']">Testing Analysis</mat-button-toggle>
+                <mat-button-toggle style='width: 100%;' [routerLink]="['./capacity']">Capacity Analysis</mat-button-toggle>
             </mat-button-toggle-group>
 
         </div>
+        <div id='mobile-nav' *ngIf='!is_full'>
+            <button id='mobile-nav-btn' mat-button [routerLink]="['./critical']">Critical Care Analysis</button>
+            <button id='mobile-nav-btn' mat-button [routerLink]="['./regional']">Regional Analysis</button>
+            <button id='mobile-nav-btn' mat-button [routerLink]="['./testing']">Testing Analysis</button>
+            <button id='mobile-nav-btn' mat-button [routerLink]="['./capacity']">Capacity Analysis</button>
+        </div>
+
         <hr>
 
         <router-outlet></router-outlet>
