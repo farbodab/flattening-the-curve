@@ -23,12 +23,13 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
     var placeholderDiv = document.getElementById('vizContainer');
-    var url = "https://public.tableau.com/views/HowsMyFlattening-OntarioICUCapacity/ICUbedcapacity?:display_count=y&publish=yes&:origin=viz_share_link"
+    var url = "https://public.tableau.com/shared/22T677WC8?:display_count=y&:origin=viz_share_link"
 
     var options = {
         hideTabs: true,
         width: "650px",
         height: "900px",
+        margin: "0 auto",
         onFirstInteractive: function() {
               // The viz is now ready and can be safely used.
               console.log("Run this code when the viz has finished loading.");

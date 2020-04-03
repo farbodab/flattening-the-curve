@@ -9,6 +9,8 @@ export class AnalysisComponent implements OnInit {
   viz: any;
 
   ngOnInit() {
+
+
   }
 
 }

@@ -1,9 +1,6 @@
-#container {
-    color: #2B2B2B;
+#resource-box:hover {
+    background-color: #FAFAFA;
 }
-
-#resource-box:hover 
-{background-color: #FAFAFA;}
 
 #resource-box {
     border: 1px;  
@@ -17,6 +14,7 @@
     object-fit: cover;
     object-position: 50% 50%;
 }
+
 #resource-title {
     text-align: left;
     margin:5px 5px 0px 5px;
@@ -27,8 +25,6 @@
     @media screen and (min-width: 1024px) {
         font-size: 18px;
     }
-
-    
 }
 
 #resource-author {
@@ -40,8 +36,6 @@
     @media screen and (min-width: 1024px) {
         font-size: 16px;
     }
-
-    
 }
 
 #resource-date {
@@ -53,16 +47,6 @@
     @media screen and (min-width: 1024px) {
         font-size: 16px;
     }
-
-    
-}
-
-#footer {
-    height:40px;
-
-    @media screen and (min-width: 1024px) {
-        height:80px;
-    }
 }
 
 #resources-button {
@@ -71,18 +55,4 @@
     width:300px;
     line-height: 25px;
     padding:20px;
-}
-
-#title-text {
-    font-size: 30px;
-    font-weight: bold;
-    color: #205D86;
-    margin-bottom: 30px;
-    @media screen and (min-width: 1024px) {
-        font-size: 60px;
-    }
-}
-
-.text{
-  margin-bottom: 0px;
 }

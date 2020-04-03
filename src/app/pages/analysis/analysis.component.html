@@ -1,8 +1,9 @@
 <div class='content' style='background-color: white;'>
-    <app-navbar [shows_title]='true'></app-navbar>
+    <app-navbar [shows_title]='true' [page]='"analysis"'></app-navbar>
     <div id='container'>
-        <div class='mat-display-1' style='font-weight:bold;'>Ontario-specific COVID-19 data</div>
+        <h1>Ontario-specific COVID-19 data</h1>
         <div>
+
             This page highlights analyses that provide further Ontario-specific insights as we monitor performance to
             flatten the curve.<br><br><br>
         </div>
@@ -12,10 +13,13 @@
                 <mat-button-toggle [routerLink]="['./testing']">Testing Analysis</mat-button-toggle>
                 <mat-button-toggle [routerLink]="['./capacity']">Capacity Analysis</mat-button-toggle>
             </mat-button-toggle-group>
+
         </div>
         <hr>
+
         <router-outlet></router-outlet>
 
+
     </div>
-    <div id='footer' style='background-color: #DADFE1;'></div>
+    <div id='footer'></div>
 </div>

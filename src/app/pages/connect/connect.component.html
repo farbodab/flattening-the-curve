@@ -1,16 +1,16 @@
 <div class='content' style='background-color: white;'>
-    <app-navbar [shows_title]='true'></app-navbar>
-    <div id='container' style="margin-top:15px;margin-left:16px;height:400px;">
-        <div class='mat-headline' style='margin-top:30px;'>Want to get involved?</div>
-        <div id = 'body-text'>
-        <p>Are you a data junkie looking to make an impact on COVID? Join our academic and industry collaborative. 
-        <p>Experts, industry, or sponsors? Please connect so we can collaborate or partner.</p>
-        <p>Have a visualization you want to see on here? Tell us what it shows and why it's important and we'll post it.</p>
-        <p><strong>Contact info@howsmyflattening.ca</strong></p>
+    <app-navbar [shows_title]='true' [page]='"connect"'></app-navbar>
+    <div id='container'>
+        <h1>Want to get involved?</h1>
+        <div>
+            <p>Are you a data junkie looking to make an impact on COVID? Join our academic and industry collaborative. 
+            <p>Experts, industry, or sponsors? Please connect so we can collaborate or partner.</p>
+            <p>Have a visualization you want to see on here? Tell us what it shows and why it's important and we'll post it.</p>
+            <p>Contact: <a href="mailto:info@howsmyflattening.ca"><strong>info@howsmyflattening.ca</strong></a></p>
         </div>
 
-         <div class='mat-headline' style='margin-top:30px;'>Want updates on new visualizations we release?</div>
-        <div id = 'body-text'>
+        <h2>Want updates on new visualizations we release?</h2>
+            <div>
         <p>Sign up for our mailing list by filling out the form below!</p>
         </div>
         <button mat-raised-button id='sign-up-btn' (click)='on_sign_up_pressed();'>Sign Up</button>
