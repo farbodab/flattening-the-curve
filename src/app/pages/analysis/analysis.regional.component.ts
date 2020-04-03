@@ -13,7 +13,7 @@ export class AnalysisRegionalComponent implements OnInit {
     ngOnInit() {
 
         const placeholderDiv = document.getElementById('vizContainerRegional');
-        const url = "https://public.tableau.com/views/HowsMyFlattening-RegionalAnalysis/Dashboard1?:display_count=y&:origin=viz_share_link";
+        const url = "https://public.tableau.com/views/OntarioCOVID-19RegionalAnalysis/Dashboard1?:display_count=y&:origin=viz_share_link";
 
         const options = {
             hideTabs: true,

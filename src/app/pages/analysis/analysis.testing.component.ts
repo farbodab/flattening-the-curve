@@ -12,7 +12,7 @@ export class AnalysisTestingComponent implements OnInit {
     ngOnInit() {
 
         const placeholderDiv = document.getElementById('vizContainerTesting');
-        const url = "https://public.tableau.com/views/HowsMyFlattening-Testing/Testing?:display_count=y&publish=yes&:origin=viz_share_link";
+        const url = "https://public.tableau.com/views/OntarioCOVID-19TestingAnalysis/Testing?:display_count=y&:origin=viz_share_link";
 
         const options = {
             hideTabs: true,
