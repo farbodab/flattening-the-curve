@@ -1,14 +1,14 @@
 <div class='content' style='background-color: white;'>
     <app-navbar [shows_title]='true' [page]='"analysis"'></app-navbar>
     <div id='container'>
-        <h1>Ontario-specific COVID-19 data</h1>
+        <h1>Ontario-specific COVID-19 Analysis</h1>
         <div>
 
-            This page highlights analyses that provide further Ontario-specific insights as we monitor performance to
-            flatten the curve.<br><br><br>
+            This page highlights analyses that provide further Ontario-specific insights as we monitor performance to flatten the curve. Select an analysis below to explore.<br><br><br>
         </div>
         <div>
             <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+                <mat-button-toggle [routerLink]="['./critical']">Critical Care Analysis</mat-button-toggle>
                 <mat-button-toggle [routerLink]="['./regional']">Regional Analysis</mat-button-toggle>
                 <mat-button-toggle [routerLink]="['./testing']">Testing Analysis</mat-button-toggle>
                 <mat-button-toggle [routerLink]="['./capacity']">Capacity Analysis</mat-button-toggle>
@@ -21,5 +21,5 @@
 
 
     </div>
-    <div id='footer'></div>
+    
 </div>

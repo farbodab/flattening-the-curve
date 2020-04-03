@@ -14,6 +14,7 @@ import {StoryComponent} from './pages/story/story.component';
 import {ResourcesComponent} from './pages/resources/resources.component';
 import {ConnectComponent} from './pages/connect/connect.component';
 import {AnalysisComponent} from './pages/analysis/analysis.component';
+import {AnalysisCriticalComponent} from './pages/analysis/analysis.critical.component';
 import {AnalysisRegionalComponent} from './pages/analysis/analysis.regional.component';
 import {AnalysisTestingComponent} from './pages/analysis/analysis.testing.component';
 import {AnalysisCapacityComponent} from './pages/analysis/analysis.capacity.component';
@@ -34,6 +35,7 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
         ResourcesComponent,
         ConnectComponent,
         AnalysisComponent,
+        AnalysisCriticalComponent,
         AnalysisRegionalComponent,
         AnalysisTestingComponent,
         AnalysisCapacityComponent,

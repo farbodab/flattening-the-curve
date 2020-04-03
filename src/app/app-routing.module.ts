@@ -6,6 +6,7 @@ import {ConnectComponent} from 'src/app/pages/connect/connect.component';
 import {ResourcesComponent} from 'src/app/pages/resources/resources.component';
 import {StoryComponent} from 'src/app/pages/story/story.component';
 import {AnalysisComponent} from 'src/app/pages/analysis/analysis.component';
+import {AnalysisCriticalComponent} from './pages/analysis/analysis.critical.component';
 import {AnalysisRegionalComponent} from './pages/analysis/analysis.regional.component';
 import {AnalysisTestingComponent} from './pages/analysis/analysis.testing.component';
 import {AnalysisCapacityComponent} from './pages/analysis/analysis.capacity.component';
@@ -23,6 +24,7 @@ const routes: Routes = [
     path: 'analysis',
     component: AnalysisComponent,
     children: [
+      {path: 'critical', component: AnalysisCriticalComponent},
       {path: 'regional', component: AnalysisRegionalComponent},
       {path: 'testing', component: AnalysisTestingComponent},
       {path: 'capacity', component: AnalysisCapacityComponent},
