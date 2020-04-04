@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
     var placeholderDiv = document.getElementById('vizContainer');
-    var url = "https://public.tableau.com/views/OntarioICUCapacity6forCOVID-19/Dashboard1?:retry=yes&:display_count=y&:origin=viz_share_link"
+    var url = "https://public.tableau.com/views/OntarioICUCapacity2forCOVID-19/Dashboard1?:display_count=y&:origin=viz_share_link"
 
     var options = {
         hideTabs: true,
