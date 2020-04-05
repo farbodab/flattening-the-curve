@@ -54,3 +54,18 @@
     width:100%;
     margin:1px
 }
+
+#column-main{
+    height: 2000px;
+    @media screen and (min-width: 1024px) {
+      margin-top:25px;
+    }
+}
+
+
+#example1 {
+    height: 2000px;
+    @media screen and (min-width: 1024px) {
+      margin-top:25px;
+    }
+}
