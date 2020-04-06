@@ -4,17 +4,39 @@
         <h1>Ontario-specific COVID-19 Analysis</h1>
         <div>
 
-            This page highlights analyses that provide further Ontario-specific insights as we monitor performance to flatten the curve. Select an analysis below to explore.<br><br><br>
+            This page highlights analyses that provide further Ontario-specific insights as we monitor performance to
+            flatten the curve. Select an analysis below to explore.<br><br><br>
         </div>
-        <div  *ngIf='is_full'>
-            <mat-button-toggle-group id='full-nav' name="fontStyle" aria-label="Font Style">
-                <mat-button-toggle style='width: 100%;' [routerLink]="['./critical']">Critical Care Analysis</mat-button-toggle>
-                <mat-button-toggle style='width: 100%;' [routerLink]="['./regional']">Regional Analysis</mat-button-toggle>
-                <mat-button-toggle style='width: 100%;' [routerLink]="['./testing']">Testing Analysis</mat-button-toggle>
-                <!-- <mat-button-toggle style='width: 100%;' [routerLink]="['./growth']">Growth Analysis</mat-button-toggle> -->
-                <mat-button-toggle style='width: 100%;' [routerLink]="['./capacity']">Capacity Analysis</mat-button-toggle>
+        <div *ngIf='is_full'>
+            <mat-button-toggle-group id='full-nav' class="category-tab-group" name="fontStyle" aria-label="Font Style">
+                <div *ngFor="let card of cardCategories; index as index" class="category-card-styling"
+                    [ngClass]="{'selected-tab': card.selected}" routerLink='/analysis'>
+                    <mat-card class="example-card" (click)="selectedCategoryTab(index, card.category)"
+                        [ngClass]="{'selected-tab-card': card.selected}">
+                        <mat-card-header>
+                            <mat-card-title>{{card.header}}</mat-card-title>
+                        </mat-card-header>
+                    </mat-card>
+                </div>
             </mat-button-toggle-group>
-
+            <mat-button-toggle-group class="sub-tab-group">
+                <div *ngFor="let card of cards; index as index">
+                    <div class="sub-card-styling" [ngClass]="{'selected-visual': card.selected}"
+                        *ngIf="card.selectedCategory" [routerLink]="card.route">
+                        <mat-card class="example-card" (click)="selectedVisualTab(card.header)">
+                            <mat-card-header>
+                                <mat-card-title>{{card.header}}</mat-card-title>
+                            </mat-card-header>
+                            <img mat-card-image src={{card.thumbnail}} alt="Visual Thumbnail">
+                            <mat-card-content>
+                                <p>
+                                    {{card.content}}
+                                </p>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+            </mat-button-toggle-group>
         </div>
         <div id='mobile-nav' *ngIf='!is_full'>
             <button id='mobile-nav-btn' mat-button [routerLink]="['./critical']">Critical Care Analysis</button>
