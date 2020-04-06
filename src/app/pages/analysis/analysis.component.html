@@ -23,7 +23,7 @@
                 <div *ngFor="let card of cards; index as index">
                     <div class="sub-card-styling" [ngClass]="{'selected-visual': card.selected}"
                         *ngIf="card.selectedCategory" [routerLink]="card.route">
-                        <mat-card class="example-card" (click)="selectedVisualTab(card.header)">
+                        <mat-card class="sub-card" (click)="selectedVisualTab(card.header)">
                             <mat-card-header>
                                 <mat-card-title>{{card.header}}</mat-card-title>
                             </mat-card-header>
