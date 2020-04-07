@@ -1,13 +1,21 @@
-<div id='column-layout'>
+<div id='column-layout' mat-dialog-content>
     <div id='column-detail'>
-        <h3 class="column-title">Testing Analysis: Ontario</h3>
-        <div id='key-takeaway'><p>A casual glance at positive tests in Ontario suggests the curve is relatively flat.
-            Doubling time (not shown) has been decreasing. But a deeper analysis shows that delays in test results are
-            piling up, producing an artificial decrease in the number of confirmed cases. Approximately 25% of cases are
-            unreported.<br><br> Additionally, <a href='https://www.ontario.ca/page/2019-novel-coronavirus#section-8'>
-                Ontario is not testing all patients with flu like symptoms </a>. Even with rigorous testing, we know
-            from Wuhan that there are approximately 10 symptomatic cases for each positive test. Ontario’s ratio is
-            likely even higher.</p>
+        <div style="display: flex">
+            <h3 class="modal-title">TestingAnalysis: Ontario</h3>
+            <div class="collapse-text" *ngIf="toggleTextFlag" (click)="toggleText()">Collapse Description Below</div>
+            <div class="collapse-text" *ngIf="!toggleTextFlag" (click)="toggleText()">Expand Description</div>
+        </div>
+        <div id='key-takeaway' class="key-text" *ngIf="toggleTextFlag">
+            <p>A casual glance at positive tests in Ontario suggests the curve is relatively flat.
+                Doubling time (not shown) has been decreasing. But a deeper analysis shows that delays in test results
+                are
+                piling up, producing an artificial decrease in the number of confirmed cases. Approximately 25% of cases
+                are
+                unreported.<br><br> Additionally, <a
+                    href='https://www.ontario.ca/page/2019-novel-coronavirus#section-8'>
+                    Ontario is not testing all patients with flu like symptoms </a>. Even with rigorous testing, we know
+                from Wuhan that there are approximately 10 symptomatic cases for each positive test. Ontario’s ratio is
+                likely even higher.</p>
 
             <p>Our visualization shows the status of testing in Ontario. Hover for more details.</p>
         </div>

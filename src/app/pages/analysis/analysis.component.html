@@ -7,8 +7,11 @@
             This page highlights analyses that provide further Ontario-specific insights as we monitor performance to
             flatten the curve. Select an analysis below to explore.<br><br><br>
         </div>
+        <div id="kpiContainer">
+
+        </div>
         <div *ngIf='is_full'>
-            <mat-button-toggle-group id='full-nav' class="category-tab-group" name="fontStyle" aria-label="Font Style">
+            <!-- <mat-button-toggle-group id='full-nav' class="category-tab-group" name="fontStyle" aria-label="Font Style">
                 <div *ngFor="let card of cardCategories; index as index" class="category-card-styling"
                     [ngClass]="{'selected-tab': card.selected}" routerLink='/analysis'>
                     <mat-card class="example-card" (click)="selectedCategoryTab(index, card.category)"
@@ -36,21 +39,129 @@
                         </mat-card>
                     </div>
                 </div>
-            </mat-button-toggle-group>
+            </mat-button-toggle-group> -->
+            <form [formGroup]="filteringCheckboxes">
+                <div style="display: flex">
+                    <div *ngFor="let category of categoryList;"
+                        style="margin-right: 25px; border-radius: 6px; background-color: #205d86; color: #ffffff; padding: 6px 12px">
+                        <mat-checkbox formControlName="{{category}}">{{category}}
+                        </mat-checkbox>
+                    </div>
+                </div>
+            </form>
+            <div>
+                <div *ngIf="filteringCheckboxes.controls.Critical.value">
+                    <div style="display: flex; padding-top: 20px">
+                        <div style="line-height: 30px; min-width: 200px; font-size: 20px;">
+                            Critical Care Analysis
+                        </div>
+                        <div style="line-height: 30px; border-top: 2px solid black; width: 100%; margin-top: 15px;">
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; margin-left: 50px">
+                        <div *ngFor="let card of cards; index as index">
+                            <div class="sub-card-styling" [ngClass]="{'selected-visual': card.selected, 'opacity-styling': selectedCategory !== '' && !card.selected}"
+                                *ngIf="filteringCheckboxes.controls[card.category].value && card.category === 'Critical'"
+                                style="margin-right: 20px">
+                                <mat-card class="sub-card"
+                                    (click)="selectedVisualTab(card.header, card.selected, $event, index); openDialog(card.header, card.category, index)">
+                                    <mat-card-header>
+                                        <mat-card-title>{{card.header}}</mat-card-title>
+                                    </mat-card-header>
+                                    <img mat-card-image src={{card.thumbnail}} alt="Visual Thumbnail">
+                                    <mat-card-content>
+                                        <p>
+                                            {{card.content}}
+                                        </p>
+                                    </mat-card-content>
+                                </mat-card>
+                            </div>
+                        </div>
+                        <div *ngIf="selectedCategory === 'Critical'">
+                            <div>
+                                <router-outlet id="routerOutlet"></router-outlet>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="filteringCheckboxes.controls.Regional.value">
+                <div style="display: flex; padding-top: 20px">
+                    <div style="line-height: 30px; min-width: 200px; font-size: 20px">
+                        Regional Analysis
+                    </div>
+                    <div style="line-height: 30px; border-top: 2px solid black; width: 100%; margin-top: 15px;">
+                    </div>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; margin-left: 50px">
+                    <div *ngFor="let card of cards; index as index">
+                        <div class="sub-card-styling" [ngClass]="{'selected-visual': card.selected, 'opacity-styling': selectedCategory !== '' && !card.selected}"
+                            *ngIf="filteringCheckboxes.controls[card.category].value && card.category === 'Regional'"
+                            style="margin-right: 20px">
+                            <mat-card class="sub-card"
+                                (click)="selectedVisualTab(card.header, card.selected, $event, index); openDialog(card.header, card.category, index)">
+                                <mat-card-header>
+                                    <mat-card-title>{{card.header}}</mat-card-title>
+                                </mat-card-header>
+                                <img mat-card-image src={{card.thumbnail}} alt="Visual Thumbnail">
+                                <mat-card-content>
+                                    <p>
+                                        {{card.content}}
+                                    </p>
+                                </mat-card-content>
+                            </mat-card>
+                        </div>
+                    </div>
+                    <div *ngIf="selectedCategory === 'Regional'">
+                        <div>
+                            <router-outlet id="routerOutlet"></router-outlet>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="filteringCheckboxes.controls.Testing.value">
+                <div style="display: flex; padding-top: 20px">
+                    <div style="line-height: 30px; min-width: 200px; font-size: 20px">
+                        Testing Analysis
+                    </div>
+                    <div style="line-height: 30px; border-top: 2px solid black; width: 100%; margin-top: 15px;">
+                    </div>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; margin-left: 50px">
+                    <div *ngFor="let card of cards; index as index">
+                        <div class="sub-card-styling" [ngClass]="{'selected-visual': card.selected, 'opacity-styling': selectedCategory !== '' && !card.selected}"
+                            *ngIf="filteringCheckboxes.controls[card.category].value && card.category === 'Testing'"
+                            style="margin-right: 20px">
+                            <mat-card class="sub-card"
+                                (click)="selectedVisualTab(card.header, card.selected, $event, index); openDialog(card.header, card.category, index)">
+                                <mat-card-header>
+                                    <mat-card-title>{{card.header}}</mat-card-title>
+                                </mat-card-header>
+                                <img mat-card-image src={{card.thumbnail}} alt="Visual Thumbnail">
+                                <mat-card-content>
+                                    <p>
+                                        {{card.content}}
+                                    </p>
+                                </mat-card-content>
+                            </mat-card>
+                        </div>
+                    </div>
+                    <div *ngIf="selectedCategory === 'Testing'">
+                        <div>
+                            <router-outlet id="routerOutlet"></router-outlet>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id='mobile-nav' *ngIf='!is_full'>
-            <button id='mobile-nav-btn' mat-button [routerLink]="['./critical']">Critical Care Analysis</button>
-            <button id='mobile-nav-btn' mat-button [routerLink]="['./regional']">Regional Analysis</button>
-            <button id='mobile-nav-btn' mat-button [routerLink]="['./testing']">Testing Analysis</button>
-            <!-- <button id='mobile-nav-btn' mat-button [routerLink]="['./growth']">Growth Analysis</button> -->
-            <button id='mobile-nav-btn' mat-button [routerLink]="['./capacity']">Capacity Analysis</button>
-        </div>
-
-        <hr>
-
-        <router-outlet></router-outlet>
-
-
     </div>
-
 </div>
+<div id='mobile-nav' *ngIf='!is_full'>
+    <button id='mobile-nav-btn' mat-button [routerLink]="['./critical']">Critical Care Analysis</button>
+    <button id='mobile-nav-btn' mat-button [routerLink]="['./regional']">Regional Analysis</button>
+    <button id='mobile-nav-btn' mat-button [routerLink]="['./testing']">Testing Analysis</button>
+    <!-- <button id='mobile-nav-btn' mat-button [routerLink]="['./growth']">Growth Analysis</button> -->
+    <button id='mobile-nav-btn' mat-button [routerLink]="['./capacity']">Capacity Analysis</button>
+</div>
+
+<hr>

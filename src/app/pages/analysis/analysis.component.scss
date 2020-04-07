@@ -94,6 +94,11 @@
 .sub-card-styling {
     padding: 12px;
     width: 250px;
+    border-radius: 15px;
+
+    :hover {
+        cursor: pointer;
+    }
 }
 
 .selected-tab {
@@ -105,6 +110,15 @@
 
 .selected-visual {
     background-color: #205d86;
+}
+
+.opacity-styling {
+    opacity: 0.5;
+}
+
+.cdk-overlay-pane {
+    width: 80vw !important;
+    height: 80vh !important;
 }
 
 ::ng-deep {
@@ -161,5 +175,32 @@
 
     .sub-card {
         border-radius: 20px !important;
+        background-color: #88b7d1 !important;
+    }
+
+    .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+        background-color: #ffffff !important;
+    }
+
+    .mat-checkbox-checkmark-path {
+        stroke: #205d86 !important;
+    }
+
+    .cdk-overlay-pane {
+        width: 80vw !important;
+        max-height: 90vh !important;
+    }
+
+    .mat-dialog-content {
+        max-height: 80vh !important;
+        padding: 0 48px !important;
+    }
+
+    .key-text {
+        font-size: 12px;
+    }
+
+    .mat-dialog-container {
+        padding: 24px 48px !important;
     }
 }

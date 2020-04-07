@@ -1,21 +1,41 @@
-<div id='column-layout'>
+<div id='column-layout' mat-dialog-content>
     <div id='column-detail'>
-        <h3 class="column-title">Critical Care Analysis: Ontario</h3>
-         <div id='key-takeaway'><p>Approximately 5% of patients with COVID-19 require critical care. The Critical Care capacity map (top graph) shows the % of remaining adult ICU beds in each Local Health Integration Network (LHIN). Some hospitals have created new surge ICU capacity (for example, operating rooms), which is not reflected here. Darker shades indicate a region that is closer to reaching 100% ICU capacity. Hover or select a region to see what percentage of ICU beds are occupied, and the exact count of beds remaining. </p> 
-
-         <p><strong>Almost all regions have hit at least 50% critical care capacity, with many approaching 100%.</strong></p> 
-
-        <p>The Critical Care Capacity Breakdown bar chart (bottom graph) illustrates how the critical care capacity is split in each region. The grey bar represents the percentage of critical care beds in use by non-COVID patients.</p>
-
-         <p><strong>Before COVID, the grey bars would have nearly filled capacity; hospital activities to lower the grey bars (for example by decreasing elective surgeries requiring ICU follow up care) have helped create surge capacity.</strong></p> 
-
-         <p>The remaining coloured segments reflect COVID-related cases. Red bars show percent of confirmed COVID patients in critical care, and yellow bars show patients suspected of having COVID. Blue bars show patients with a confirmed negative COVID diagnosis. Cycle through the time windows on the top right to see how critical care beds have filled since CCSO started reporting data.</p> 
-        
-        <p>Exact counts of remaining resources (beds and ventilators) are also shown. Hover or select to see the counts. A negative number indicates that cases have exceeded conventional space and likely surged into non-conventional ICU spaces.</p>
-
-        <p>Source: Critical Care Services Ontario, manually entered daily at hospitals. Available from our <a href="./#/data" target="_blank">Data page</a>.</p>
+        <div style="display: flex">
+            <h3 class="modal-title">Critical Care Analysis: Ontario</h3>
+            <div class="collapse-text" *ngIf="toggleTextFlag" (click)="toggleText()">Collapse Description Below</div>
+            <div class="collapse-text" *ngIf="!toggleTextFlag" (click)="toggleText()">Expand Description</div>
         </div>
-    <div id='column-main'>
-        <div id="vizContainerCritical" style="border-style: solid; border-width: 2px; border-color: gray;"></div>
+        <div id='key-takeaway' class="key-text" *ngIf="toggleTextFlag">
+            <p>Approximately 5% of patients with COVID-19 require critical care. The Critical Care capacity map (top
+                graph) shows the % of remaining adult ICU beds in each Local Health Integration Network (LHIN). Some
+                hospitals have created new surge ICU capacity (for example, operating rooms), which is not reflected
+                here. Darker shades indicate a region that is closer to reaching 100% ICU capacity. Hover or select a
+                region to see what percentage of ICU beds are occupied, and the exact count of beds remaining. </p>
+
+            <p><strong>Almost all regions have hit at least 50% critical care capacity, with many approaching
+                    100%.</strong></p>
+
+            <p>The Critical Care Capacity Breakdown bar chart (bottom graph) illustrates how the critical care capacity
+                is split in each region. The grey bar represents the percentage of critical care beds in use by
+                non-COVID patients.</p>
+
+            <p><strong>Before COVID, the grey bars would have nearly filled capacity; hospital activities to lower the
+                    grey bars (for example by decreasing elective surgeries requiring ICU follow up care) have helped
+                    create surge capacity.</strong></p>
+
+            <p>The remaining coloured segments reflect COVID-related cases. Red bars show percent of confirmed COVID
+                patients in critical care, and yellow bars show patients suspected of having COVID. Blue bars show
+                patients with a confirmed negative COVID diagnosis. Cycle through the time windows on the top right to
+                see how critical care beds have filled since CCSO started reporting data.</p>
+
+            <p>Exact counts of remaining resources (beds and ventilators) are also shown. Hover or select to see the
+                counts. A negative number indicates that cases have exceeded conventional space and likely surged into
+                non-conventional ICU spaces.</p>
+
+            <p>Source: Critical Care Services Ontario, manually entered daily at hospitals. Available from our <a
+                    href="./#/data" target="_blank">Data page</a>.</p>
+        </div>
+        <div id='column-main'>
+            <div id="vizContainerCritical" style="border-style: solid; border-width: 2px; border-color: gray;"></div>
+        </div>
     </div>
-</div>

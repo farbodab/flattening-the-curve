@@ -46,6 +46,26 @@ h3 {
 	font-weight:500;
 }
 
+.modal-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+.collapse-text {
+    line-height: 25px;
+    font-size: 12px;
+    padding-left: 30px;
+    color: #205d86;
+}
+
+.collapse-text:hover {
+    cursor: pointer;
+    font-weight: bold;
+    opacity: 0.75;
+    text-decoration: 1px solid underline;
+}
+
 button {
 	color:white;
 }
