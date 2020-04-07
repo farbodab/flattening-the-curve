@@ -25,7 +25,11 @@ import {environment} from 'src/environments/environment';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireAnalyticsModule, ScreenTrackingService} from '@angular/fire/analytics';
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 
 @NgModule({
     declarations: [
@@ -51,12 +55,19 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
         BrowserAnimationsModule,
         HttpClientModule,
         MaterialModule,
-        MatButtonToggleModule
+        MatButtonToggleModule,
+        MatFormFieldModule,
+        MatCheckboxModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatDialogModule
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
-        ScreenTrackingService
+        ScreenTrackingService,
+        {provide: MatDialogRef, useValue: {}}
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    entryComponents: [AnalysisCriticalComponent]
 })
 export class AppModule { }

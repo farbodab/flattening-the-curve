@@ -1,12 +1,19 @@
-<div id='column-layout'>
+<div id='column-layout' mat-dialog-content>
     <div id='column-detail'>
-        <h3 class="column-title">Regional Analysis: Ontario</h3>
-        <div id='key-takeaway'><p>Early pandemic disease transmission is a local phenomenon. Our interactive map
-            provides an analysis of cases across regions in Ontario. Our heat map provides a bird's eye view of cases
-            over time in each region. Hover over a section for more detailed information. </p>
+        <div style="display: flex">
+            <h3 class="modal-title">Regional Analysis: Ontario</h3>
+            <div class="collapse-text" *ngIf="toggleTextFlag" (click)="toggleText()">Collapse Description Below</div>
+            <div class="collapse-text" *ngIf="!toggleTextFlag" (click)="toggleText()">Expand Description</div>
+        </div>
+        <div id='key-takeaway' class="key-text" *ngIf="toggleTextFlag">
+            <p>Early pandemic disease transmission is a local phenomenon. Our interactive map
+                provides an analysis of cases across regions in Ontario. Our heat map provides a bird's eye view of
+                cases
+                over time in each region. Hover over a section for more detailed information. </p>
 
             <p>Thanks to the researchers at <a href='https://github.com/ishaberry/Covid19Canada'>COVID-19 Canada Open
-                Data Working Group</a> for compiling the data.</p></div>
+                    Data Working Group</a> for compiling the data.</p>
+        </div>
     </div>
     <div id='column-main'>
         <div id="vizContainerRegional" style="border-style: solid; border-width: 2px; border-color: gray;"></div>

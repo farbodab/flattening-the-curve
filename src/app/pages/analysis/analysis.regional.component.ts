@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 
 declare var tableau: any;
 
@@ -7,11 +7,11 @@ declare var tableau: any;
     templateUrl: './analysis.regional.component.html'
 })
 
-export class AnalysisRegionalComponent implements OnInit {
+export class AnalysisRegionalComponent implements OnInit, OnDestroy, AfterViewInit {
     viz: any;
+    toggleTextFlag = true;
 
     ngOnInit() {
-
         const placeholderDiv = document.getElementById('vizContainerRegional');
         const url = "https://public.tableau.com/views/OntarioCOVID-19RegionalAnalysis/Dashboard1?:display_count=y&:origin=viz_share_link";
 
@@ -26,5 +26,16 @@ export class AnalysisRegionalComponent implements OnInit {
 
         };
         this.viz = new tableau.Viz(placeholderDiv, url, options);
+    }
+
+    ngAfterViewInit() {
+    }
+
+    ngOnDestroy() {
+        //this.viz.dispose();
+    }
+
+    toggleText() {
+        this.toggleTextFlag = !this.toggleTextFlag;
     }
 }

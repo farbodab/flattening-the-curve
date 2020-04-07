@@ -3,13 +3,12 @@
     <div id='header-container'>
         <div id='title-div'>
             <div >
-                <p class='mat-display-1' id='title-text'>
+                <!-- <p class='mat-display-1' id='title-text'>
                     <a class="hmf-link" href="https://twitter.com/hashtag/HowsMyFlattening?src=hashtag_click" target="_blank">
                         #HowsMyFlattening
                     </a>
-                </p>
-                <p class='mat-headline' id='subtitle-text'>A centralized data analytics and visualization hub</p>
-                <p class='mat-headline' id='subtitle-text'>monitoring Ontario's response to COVID-19</p>
+                </p> -->
+                <p class='mat-headline' id='subtitle-text'>A centralized data analytics and visualization hub monitoring Ontario's response to COVID-19</p>
             </div>
         </div>
     </div>
@@ -21,13 +20,13 @@
                     <b>Which Curve Will <span style='color:#E25F79'>Ontario</span> Follow?</b>
                 </h1>
                 <p>
-                    <strong>Once critical care (ICU) beds run out, mortality jumps from 1% to 5%.</strong>
+                    <strong>Once critical care (ICU) beds run out, mortality rate jumps from 1% to 5%.</strong>
                 </p>
                 <p>
                     This graph tracks ICU bed utilization in Ontario relative to the best case and worst case predictions released by the province.
                 </p>
                 <p>
-                    The green curve is where we stand today. We can either follow the red curve or the blue curve. Decisions today will have a 1-2 week lag.
+                    The stacked bars show Ontario's confirmed and suspected cases. We can either follow the red curve or the blue curve. Decisions today will have a 1-2 week lag.
                 </p>
 
                 <p>
@@ -53,7 +52,7 @@
             </div>
             <div id="vizContainer"></div>
         </div>
-        <div style='background-color: #DADFE1; padding-top:30px;padding-bottom:30px;'>
+        <div style='background-color: #DADFE1;'>
             <div id='explore-data'>
 
                 <div id='explore-data-cell'>
@@ -74,7 +73,7 @@
 
             </div>
             <div style='text-align: center;'>
-                <button mat-raised-button routerLink='/analysis' id='explore-data-btn'>Explore Analysis</button>
+                <div routerLink='/analysis' id='explore-data-btn'>Explore Analysis</div>
             </div>
         </div>
         <div>
@@ -86,20 +85,20 @@
 
         </div>
 
-        <div style='background-color: #DADFE1; padding-top:30px;padding-bottom:30px;'>
+        <div style='background-color: #DADFE1; padding-top:30px;'>
 
-         <div class='mat-headline' style='margin-top:30px; text-align: center;'>Sign up below for updates on new visualizations we release!</div>
+         <div class="sign-up-styling">Sign up below for updates on new visualizations we release!</div>
 
          <br><br>
 
         <div style='text-align: center;'>
-                <button mat-raised-button (click)='on_sign_up_pressed();' id='explore-data-btn'>Join Mailing List</button>
+                <div  (click)='on_sign_up_pressed();' id='explore-data-btn'>Join Mailing List</div>
             </div>
 
         </div>
 
 
 
-        <div id='footer'></div>
+        <div id='footer' style="display: none"></div>
     </div>
 </div>

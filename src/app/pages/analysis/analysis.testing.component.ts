@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 
 declare var tableau: any;
 
@@ -6,11 +6,11 @@ declare var tableau: any;
     selector: 'app-analysis-testing',
     templateUrl: './analysis.testing.component.html'
 })
-export class AnalysisTestingComponent implements OnInit {
+export class AnalysisTestingComponent implements OnInit, OnDestroy, AfterViewInit {
     viz: any;
+    toggleTextFlag = true;
 
     ngOnInit() {
-
         const placeholderDiv = document.getElementById('vizContainerTesting');
         const url = "https://public.tableau.com/views/OntarioCOVID-19TestingAnalysis/Testing?:display_count=y&:origin=viz_share_link";
 
@@ -25,5 +25,16 @@ export class AnalysisTestingComponent implements OnInit {
 
         };
         this.viz = new tableau.Viz(placeholderDiv, url, options);
+    }
+
+    ngAfterViewInit() {
+    }
+
+    ngOnDestroy() {
+        //this.viz.dispose();
+    }
+
+    toggleText() {
+        this.toggleTextFlag = !this.toggleTextFlag;
     }
 }

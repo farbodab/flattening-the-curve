@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 declare var tableau: any;
 
@@ -7,11 +8,16 @@ declare var tableau: any;
     templateUrl: './analysis.critical.component.html'
 })
 
-export class AnalysisCriticalComponent implements OnInit {
+export class AnalysisCriticalComponent implements OnInit, OnDestroy, AfterViewInit {
     viz: any;
 
-    ngOnInit() {
+    toggleTextFlag = true;
 
+    constructor(
+        public dialogRef: MatDialogRef<AnalysisCriticalComponent>
+    ) { }
+
+    ngOnInit() {
         const placeholderDiv = document.getElementById('vizContainerCritical');
         const url = "https://public.tableau.com/views/CriticalCareCapacity/Dashboard1?:display_count=y&:origin=viz_share_link";
 
@@ -26,5 +32,20 @@ export class AnalysisCriticalComponent implements OnInit {
 
         };
         this.viz = new tableau.Viz(placeholderDiv, url, options);
+    }
+
+    ngAfterViewInit() {
+    }
+
+    ngOnDestroy() {
+        //this.viz.dispose();
+    }
+
+    onNoClick(): void {
+        this.dialogRef.close();
+    }
+
+    toggleText() {
+        this.toggleTextFlag = !this.toggleTextFlag;
     }
 }
