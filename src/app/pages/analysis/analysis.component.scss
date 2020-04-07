@@ -136,15 +136,46 @@
     padding: 18px 0 18px 18px;
 }
 
+.kpi-header {
+    height: 72px;
+    display: flex;
+}
+
+.kpi-title {
+    line-height: 72px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 24px;
+    padding-left: 32px;
+    min-width: 220px;
+}
+
+.kpi-line {
+    border-top: 2px solid black;
+    top: 50%;
+    height: 36px;
+    width: 100%;
+    margin-right: 32px;
+    position: relative;
+}
+
+.center-text {
+    text-align: center;
+    width: 100%;
+}
+
 ::ng-deep {
     .mat-card-header .mat-card-title {
-        font-size: 20px !important;
+        font-size: 18px !important;
         font-weight: bold;
+        margin-bottom: 0 !important;
+        vertical-align: middle;
+        display: inline-block;
     }
 
     .mat-card-header {
         text-align: center !important;
-        min-height: 50px !important;
+        min-height: 60px !important;
     }
 
     .mat-card-header-text {
@@ -170,13 +201,6 @@
 
     .mat-card {
         padding: 0 !important;
-    }
-
-    .mat-card-header .mat-card-title {
-        margin-bottom: 0 !important;
-        vertical-align: middle;
-        display: inline-block;
-        //line-height: 50px;
     }
 
     .mat-card:not([class*="mat-elevation-z"]) {

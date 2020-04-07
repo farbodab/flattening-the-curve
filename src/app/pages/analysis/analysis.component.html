@@ -5,11 +5,14 @@
         <div>
 
             This page highlights analyses that provide further Ontario-specific insights as we monitor performance to
-            flatten the curve. The following dashboard overviews the key insights for Ontario. Select an analysis below the dashboard for an in-depth exploration.<br><br><br>
+            flatten the curve. The following dashboard overviews the key insights for Ontario. Select an analysis below
+            the dashboard for an in-depth exploration.<br><br><br>
         </div>
-        <div id="kpiContainer">
-
+        <div class="form-container kpi-header">
+            <div class="kpi-title" [ngClass]="{'center-text': !is_full}">Data At-a-Glance</div>
+            <div class="kpi-line" *ngIf='is_full'></div>
         </div>
+        <div id="kpiContainer"></div>
         <div *ngIf='is_full'>
             <!-- <mat-button-toggle-group id='full-nav' class="category-tab-group" name="fontStyle" aria-label="Font Style">
                 <div *ngFor="let card of cardCategories; index as index" class="category-card-styling"
@@ -80,11 +83,6 @@
                                 </mat-card>
                             </div>
                         </div>
-                        <div *ngIf="selectedCategory === 'Critical'">
-                            <div>
-                                <router-outlet id="routerOutlet"></router-outlet>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -114,11 +112,6 @@
                                     </p>
                                 </mat-card-content>
                             </mat-card>
-                        </div>
-                    </div>
-                    <div *ngIf="selectedCategory === 'Regional'">
-                        <div>
-                            <router-outlet id="routerOutlet"></router-outlet>
                         </div>
                     </div>
                 </div>
@@ -151,11 +144,6 @@
                             </mat-card>
                         </div>
                     </div>
-                    <div *ngIf="selectedCategory === 'Testing'">
-                        <div>
-                            <router-outlet id="routerOutlet"></router-outlet>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -167,6 +155,7 @@
     <button id='mobile-nav-btn' mat-button [routerLink]="['./testing']">Testing Analysis</button>
     <!-- <button id='mobile-nav-btn' mat-button [routerLink]="['./growth']">Growth Analysis</button> -->
     <button id='mobile-nav-btn' mat-button [routerLink]="['./capacity']">Capacity Analysis</button>
+    <router-outlet></router-outlet>
 </div>
 
 <hr>

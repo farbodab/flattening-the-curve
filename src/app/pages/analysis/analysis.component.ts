@@ -137,7 +137,7 @@ export class AnalysisComponent implements OnInit {
       placeholderDiv.remove();
     }
     switch (componentName) {
-      case 'Critical Care Analysis':
+      case 'Critical Care by Region Analysis':
         const dialogRefCritical = this.dialog.open(AnalysisCriticalComponent, {
           width: '300px',
           data: {}
