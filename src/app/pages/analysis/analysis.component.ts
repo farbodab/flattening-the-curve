@@ -45,9 +45,9 @@ export class AnalysisComponent implements OnInit {
   ];
   cards = [
     {
-      header: 'Critical Care Analysis',
+      header: 'Critical Care by Region Analysis',
       category: 'Critical',
-      content: 'Approximately 5% of patients with COVID-19 require critical care.',
+      content: 'Approximately 5% of patients with COVID-19 require critical care. What does that look like in Ontario?',
       route: 'critical',
       thumbnail: 'https://public.tableau.com/thumb/views/CriticalCareCapacity/Dashboard1?:display_count=y&:origin=viz_share_link',
       selected: false,
@@ -57,7 +57,7 @@ export class AnalysisComponent implements OnInit {
     {
       header: 'Capacity Analysis',
       category: 'Critical',
-      content: 'This is a compartment model to predict the time Ontario ICU resources will be depleted under undesirable (Italy) and better scenarios.',
+      content: 'When could Ontario ICU resources be depleted?',
       route: 'capacity',
       thumbnail: 'assets/img/capacity_visual_thumbnail.png',
       selected: false,
@@ -67,7 +67,7 @@ export class AnalysisComponent implements OnInit {
     {
       header: 'Regional Analysis',
       category: 'Regional',
-      content: 'Our interactive map provides an analysis of cases across regions in Ontario.',
+      content: 'What does COVID-19 look like in each Ontario region?',
       route: 'regional',
       thumbnail: 'https://public.tableau.com/thumb/views/OntarioCOVID-19RegionalAnalysis/Dashboard1?:display_count=y&:origin=viz_share_link',
       selected: false,
@@ -77,7 +77,7 @@ export class AnalysisComponent implements OnInit {
     {
       header: 'Testing Analysis',
       category: 'Testing',
-      content: 'Our analysis shows that delays in test results are piling up, producing an artificial decrease in the number of confirmed cases',
+      content: 'Delays in test results are piling up, producing an artificial decrease in the number of confirmed cases. What does testing in Ontario look like?',
       route: 'testing',
       thumbnail: 'https://public.tableau.com/thumb/views/OntarioCOVID-19TestingAnalysis/Testing?:display_count=y&:origin=viz_share_link',
       selected: false,
