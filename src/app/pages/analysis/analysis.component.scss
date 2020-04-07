@@ -71,6 +71,10 @@
 
 }
 
+#kpiContainer {
+    padding-bottom: 50px;
+}
+
 .category-tab-group {
     padding: 15px 15px 0 15px;
     display: flex;
@@ -119,6 +123,15 @@
 .cdk-overlay-pane {
     width: 80vw !important;
     height: 80vh !important;
+}
+
+.form-container {
+    background-color: #DADFE1;
+    border-radius: 6px;
+}
+
+.form-styling {
+    padding: 12px 0 12px 12px;
 }
 
 ::ng-deep {

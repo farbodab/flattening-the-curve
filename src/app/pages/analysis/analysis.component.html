@@ -40,15 +40,17 @@
                     </div>
                 </div>
             </mat-button-toggle-group> -->
-            <form [formGroup]="filteringCheckboxes">
-                <div style="display: flex">
-                    <div *ngFor="let category of categoryList;"
-                        style="margin-right: 25px; border-radius: 6px; background-color: #205d86; color: #ffffff; padding: 6px 12px">
-                        <mat-checkbox formControlName="{{category}}">{{category}}
-                        </mat-checkbox>
+            <div class="form-container">
+                <form [formGroup]="filteringCheckboxes" class="form-styling">
+                    <div style="display: flex">
+                        <div *ngFor="let category of categoryList;"
+                            style="margin-right: 25px; border-radius: 6px; background-color: #205d86; color: #ffffff; padding: 6px 12px">
+                            <mat-checkbox formControlName="{{category}}">{{category}}
+                            </mat-checkbox>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
             <div>
                 <div *ngIf="filteringCheckboxes.controls.Critical.value">
                     <div style="display: flex; padding-top: 20px">
@@ -60,7 +62,8 @@
                     </div>
                     <div style="display: flex; flex-wrap: wrap; margin-left: 50px">
                         <div *ngFor="let card of cards; index as index">
-                            <div class="sub-card-styling" [ngClass]="{'selected-visual': card.selected, 'opacity-styling': selectedCategory !== '' && !card.selected}"
+                            <div class="sub-card-styling"
+                                [ngClass]="{'selected-visual': card.selected, 'opacity-styling': selectedCategory !== '' && !card.selected}"
                                 *ngIf="filteringCheckboxes.controls[card.category].value && card.category === 'Critical'"
                                 style="margin-right: 20px">
                                 <mat-card class="sub-card"
@@ -95,7 +98,8 @@
                 </div>
                 <div style="display: flex; flex-wrap: wrap; margin-left: 50px">
                     <div *ngFor="let card of cards; index as index">
-                        <div class="sub-card-styling" [ngClass]="{'selected-visual': card.selected, 'opacity-styling': selectedCategory !== '' && !card.selected}"
+                        <div class="sub-card-styling"
+                            [ngClass]="{'selected-visual': card.selected, 'opacity-styling': selectedCategory !== '' && !card.selected}"
                             *ngIf="filteringCheckboxes.controls[card.category].value && card.category === 'Regional'"
                             style="margin-right: 20px">
                             <mat-card class="sub-card"
@@ -129,7 +133,8 @@
                 </div>
                 <div style="display: flex; flex-wrap: wrap; margin-left: 50px">
                     <div *ngFor="let card of cards; index as index">
-                        <div class="sub-card-styling" [ngClass]="{'selected-visual': card.selected, 'opacity-styling': selectedCategory !== '' && !card.selected}"
+                        <div class="sub-card-styling"
+                            [ngClass]="{'selected-visual': card.selected, 'opacity-styling': selectedCategory !== '' && !card.selected}"
                             *ngIf="filteringCheckboxes.controls[card.category].value && card.category === 'Testing'"
                             style="margin-right: 20px">
                             <mat-card class="sub-card"
