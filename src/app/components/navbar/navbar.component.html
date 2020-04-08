@@ -1,44 +1,49 @@
-<mat-toolbar>
-    <mat-toolbar-row>
-        <div>
-            <p class="nav-title" id='title-text'>
-                <a class="hmf-link" href="https://twitter.com/hashtag/HowsMyFlattening?src=hashtag_click"
-                    target="_blank">
-                    #HowsMyFlattening
-                </a>
-            </p>
-        </div>
-        <div id='primary-nav' *ngIf='is_full'>
-            <button id='main-nav-button' [ngClass]="{'selected': page=='home'}" mat-button routerLink='/'>Home</button>
-            <button id='main-nav-button' [ngClass]="{'selected': page=='analysis'}" mat-button
-                routerLink='/analysis'>Analysis</button>
-            <button id='main-nav-button' [ngClass]="{'selected': page=='data'}" mat-button
-                routerLink='/data'>Data</button>
-            <button id='main-nav-button' [ngClass]="{'selected': page=='resources'}" mat-button
-                routerLink='/resources'>Resources</button>
-            <button id='main-nav-button' [ngClass]="{'selected': page=='team'}" mat-button
-                routerLink='/team'>Team</button>
-            <button id='main-nav-button' [ngClass]="{'selected': page=='connect'}" mat-button
-                routerLink='/connect'>Connect</button>
-        </div>
-        <div id='primary-nav' *ngIf='!is_full'>
-            <button mat-button [matMenuTriggerFor]="menu">
-                <mat-icon>menu</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu">
-                <button id='mobile-nav-button' [ngClass]="{'selected': page=='home'}" mat-menu-item
+<div [ngClass]="{'mobile-nav': !is_full, 'desktop-nav': is_full}">
+    <mat-toolbar>
+        <mat-toolbar-row>
+            <div *ngIf="page !== 'home'">
+                <p class="nav-title" id='title-text'>
+                    <a class="hmf-link" href="https://twitter.com/hashtag/HowsMyFlattening?src=hashtag_click"
+                        target="_blank">
+                        #HowsMyFlattening
+                    </a>
+                </p>
+            </div>
+            <div id='primary-nav' *ngIf='is_full'>
+                <button id='main-nav-button' [ngClass]="{'selected': page=='home'}" mat-button
                     routerLink='/'>Home</button>
-                <button id='mobile-nav-button' [ngClass]="{'selected': page=='analysis'}" mat-menu-item
+                <button id='main-nav-button' [ngClass]="{'selected': page=='analysis'}" mat-button
                     routerLink='/analysis'>Analysis</button>
-                <button id='mobile-nav-button' [ngClass]="{'selected': page=='data'}" mat-menu-item
+                <button id='main-nav-button' [ngClass]="{'selected': page=='data'}" mat-button
                     routerLink='/data'>Data</button>
-                <button id='mobile-nav-button' [ngClass]="{'selected': page=='resources'}" mat-menu-item
+                <button id='main-nav-button' [ngClass]="{'selected': page=='resources'}" mat-button
                     routerLink='/resources'>Resources</button>
-                <button id='mobile-nav-button' [ngClass]="{'selected': page=='team'}" mat-menu-item
-                    routerLink='/team'>Team</button>
-                <button id='mobile-nav-button' [ngClass]="{'selected': page=='connect'}" mat-menu-item
-                    routerLink='/connect'>Connect</button>
-            </mat-menu>
-        </div>
-    </mat-toolbar-row>
-</mat-toolbar>
+                <div class="staggered-button">
+                    <button id='main-nav-button' [ngClass]="{'selected': page=='team'}"
+                        mat-button routerLink='/team'>Team</button>
+                    <button id='main-nav-button' [ngClass]="{'selected': page=='connect'}"
+                        mat-button routerLink='/connect'>Connect</button>
+                </div>
+            </div>
+            <div id='primary-nav' *ngIf='!is_full'>
+                <button mat-button [matMenuTriggerFor]="menu">
+                    <mat-icon>menu</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button id='mobile-nav-button' [ngClass]="{'selected': page=='home'}" mat-menu-item
+                        routerLink='/'>Home</button>
+                    <button id='mobile-nav-button' [ngClass]="{'selected': page=='analysis'}" mat-menu-item
+                        routerLink='/analysis'>Analysis</button>
+                    <button id='mobile-nav-button' [ngClass]="{'selected': page=='data'}" mat-menu-item
+                        routerLink='/data'>Data</button>
+                    <button id='mobile-nav-button' [ngClass]="{'selected': page=='resources'}" mat-menu-item
+                        routerLink='/resources'>Resources</button>
+                    <button id='mobile-nav-button' [ngClass]="{'selected': page=='team'}" mat-menu-item
+                        routerLink='/team'>Team</button>
+                    <button id='mobile-nav-button' [ngClass]="{'selected': page=='connect'}" mat-menu-item
+                        routerLink='/connect'>Connect</button>
+                </mat-menu>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>

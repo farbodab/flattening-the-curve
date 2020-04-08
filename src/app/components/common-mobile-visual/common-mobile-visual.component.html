@@ -1,0 +1,7 @@
+<div class="container-padding" [ngSwitch]="visualToRender">  
+    <app-analysis-critical *ngSwitchCase="'CriticalCareByRegion'"></app-analysis-critical>
+    <app-analysis-capacity *ngSwitchCase="'Capacity'"></app-analysis-capacity>
+    <app-analysis-regional *ngSwitchCase="'Regional'"></app-analysis-regional>
+    <app-analysis-testing *ngSwitchCase="'Testing'"></app-analysis-testing>
+    <div *ngSwitchDefault></div>
+</div>

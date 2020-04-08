@@ -16,9 +16,7 @@ export class HomeComponent implements OnInit {
   viz: any;
   tableau: any;
 
-  constructor(private api_service : ApiService) {
-
-  }
+  constructor(private api_service: ApiService) {}
 
   ngOnInit() {
 
@@ -26,12 +24,13 @@ export class HomeComponent implements OnInit {
     var url = "https://public.tableau.com/views/OntarioICUCapacity2forCOVID-19/Dashboard1?:display_count=y&:origin=viz_share_link"
 
     var options = {
-        hideTabs: true,
-        margin: "0 auto",
-        onFirstInteractive: function() {
-              // The viz is now ready and can be safely used.
-              console.log("Run this code when the viz has finished loading.");
-    }}
+      hideTabs: true,
+      margin: "0 auto",
+      onFirstInteractive: function () {
+        // The viz is now ready and can be safely used.
+        console.log("Run this code when the viz has finished loading.");
+      }
+    }
 
     this.viz = new tableau.Viz(placeholderDiv, url, options);
   }

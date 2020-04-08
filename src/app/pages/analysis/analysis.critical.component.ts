@@ -13,9 +13,7 @@ export class AnalysisCriticalComponent implements OnInit, OnDestroy, AfterViewIn
 
     toggleTextFlag = true;
 
-    constructor(
-        public dialogRef: MatDialogRef<AnalysisCriticalComponent>
-    ) { }
+    constructor() { }
 
     ngOnInit() {
         const placeholderDiv = document.getElementById('vizContainerCritical');
@@ -39,10 +37,6 @@ export class AnalysisCriticalComponent implements OnInit, OnDestroy, AfterViewIn
 
     ngOnDestroy() {
         //this.viz.dispose();
-    }
-
-    onNoClick(): void {
-        this.dialogRef.close();
     }
 
     toggleText() {
