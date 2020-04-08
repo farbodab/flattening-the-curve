@@ -15,8 +15,11 @@ export class HomeComponent implements OnInit {
   southkorea: any = "South Korea";
   viz: any;
   tableau: any;
+  is_full = true;
 
-  constructor(private api_service: ApiService) {}
+  constructor(private api_service: ApiService) {
+    this.refresh_layout(window.innerWidth);
+  }
 
   ngOnInit() {
 
@@ -41,5 +44,9 @@ export class HomeComponent implements OnInit {
 
   on_sign_up_pressed() {
     window.location.href = 'https://www.surveymonkey.com/r/Y7X86JL';
+  }
+
+  private refresh_layout(width) {
+    this.is_full = window.innerWidth >= 1024 ? true : false;
   }
 }

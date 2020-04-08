@@ -1,7 +1,7 @@
 <div [ngClass]="{'mobile-nav': !is_full, 'desktop-nav': is_full}">
     <mat-toolbar>
         <mat-toolbar-row>
-            <div *ngIf="page !== 'home'">
+            <div *ngIf="page !== 'home' || !is_full">
                 <p class="nav-title" id='title-text'>
                     <a class="hmf-link" href="https://twitter.com/hashtag/HowsMyFlattening?src=hashtag_click"
                         target="_blank">
@@ -18,12 +18,10 @@
                     routerLink='/data'>Data</button>
                 <button id='main-nav-button' [ngClass]="{'selected': page=='resources'}" mat-button
                     routerLink='/resources'>Resources</button>
-                <div class="staggered-button">
-                    <button id='main-nav-button' [ngClass]="{'selected': page=='team'}"
-                        mat-button routerLink='/team'>Team</button>
-                    <button id='main-nav-button' [ngClass]="{'selected': page=='connect'}"
-                        mat-button routerLink='/connect'>Connect</button>
-                </div>
+                <button id='main-nav-button' [ngClass]="{'selected': page=='team'}" mat-button
+                    routerLink='/team'>Team</button>
+                <button id='main-nav-button' [ngClass]="{'selected': page=='connect'}" mat-button
+                    routerLink='/connect'>Connect</button>
             </div>
             <div id='primary-nav' *ngIf='!is_full'>
                 <button mat-button [matMenuTriggerFor]="menu">

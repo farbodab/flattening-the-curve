@@ -1,7 +1,7 @@
 <app-navbar [page]='"home"'></app-navbar>
 <div id='header-container'>
     <div id='title-div'>
-        <div>
+        <div *ngIf="is_full">
             <p class='mat-display-1' id='title-text'>
                 <a class="hmf-link" href="https://twitter.com/hashtag/HowsMyFlattening?src=hashtag_click"
                     target="_blank">
