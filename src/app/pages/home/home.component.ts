@@ -15,9 +15,10 @@ export class HomeComponent implements OnInit {
   southkorea: any = "South Korea";
   viz: any;
   tableau: any;
+  is_full = true;
 
-  constructor(private api_service : ApiService) {
-
+  constructor(private api_service: ApiService) {
+    this.refresh_layout(window.innerWidth);
   }
 
   ngOnInit() {
@@ -26,12 +27,13 @@ export class HomeComponent implements OnInit {
     var url = "https://public.tableau.com/views/OntarioICUCapacity2forCOVID-19/Dashboard1?:display_count=y&:origin=viz_share_link"
 
     var options = {
-        hideTabs: true,
-        margin: "0 auto",
-        onFirstInteractive: function() {
-              // The viz is now ready and can be safely used.
-              console.log("Run this code when the viz has finished loading.");
-    }}
+      hideTabs: true,
+      margin: "0 auto",
+      onFirstInteractive: function () {
+        // The viz is now ready and can be safely used.
+        console.log("Run this code when the viz has finished loading.");
+      }
+    }
 
     this.viz = new tableau.Viz(placeholderDiv, url, options);
   }
@@ -42,5 +44,9 @@ export class HomeComponent implements OnInit {
 
   on_sign_up_pressed() {
     window.location.href = 'https://www.surveymonkey.com/r/Y7X86JL';
+  }
+
+  private refresh_layout(width) {
+    this.is_full = window.innerWidth >= 1024 ? true : false;
   }
 }

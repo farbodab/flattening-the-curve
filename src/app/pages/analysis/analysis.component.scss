@@ -1,10 +1,10 @@
-#column-layout {
+#column-layout, #column-layout-capacity {
     @media screen and (min-width: 1024px) {
         display:flex;
     }
 }
 
-#column-detail {
+#column-detail, #column-detail-capacity {
     //padding:20px;
     background-color: #FFFFFF;
     @media screen and (min-width: 1024px) {
@@ -120,11 +120,6 @@
     opacity: 0.5;
 }
 
-.cdk-overlay-pane {
-    width: 80vw !important;
-    height: 80vh !important;
-}
-
 .form-container {
     background-color: #DADFE1;
     border-radius: 6px;
@@ -164,6 +159,18 @@
     width: 100%;
 }
 
+.mobile-kpi-styling {
+    border-radius: 0;
+    
+    .kpi-title {
+        padding-left: 0;
+    }
+}
+
+.purple-font {
+    color: #391F85;
+}
+
 ::ng-deep {
     .mat-card-header .mat-card-title {
         font-size: 18px !important;
@@ -194,7 +201,7 @@
     }
 
     .mat-card-image {
-        min-height: 150px !important;
+        max-height: 150px !important;
         width: 100% !important;
         margin: 0 !important;
     }
@@ -222,7 +229,7 @@
     }
 
     .mat-checkbox-checkmark-path {
-        stroke: #205d86 !important;
+        stroke: #391F85 !important;
     }
 
     .cdk-overlay-pane {
@@ -241,5 +248,39 @@
 
     .mat-dialog-container {
         padding: 24px 48px !important;
+    }
+}
+
+#mobile-nav {
+
+    .form-container {
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .mobile-sub-card-styling {
+        width: 85% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-bottom: 15px;
+    }
+    
+    .selected-background {
+        background-color: #f7f6f2;
+    }
+
+    ::ng-deep {
+        .mat-checkbox-inner-container {
+            margin-right: 5px !important;
+        }
+
+        .mat-checkbox-layout .mat-checkbox-label {
+            font-size: 12px !important;
+            font-weight: bold;
+        }
+
+        .mat-dialog-content {
+            max-height: initial !important;
+        }
     }
 }

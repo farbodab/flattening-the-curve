@@ -1,4 +1,4 @@
-<div id='column-layout' mat-dialog-content>
+<div *ngIf="is_full" id='column-layout' mat-dialog-content>
     <div id='column-detail'>
 
         <div style="display: flex">
@@ -13,7 +13,7 @@
                 undesirable
                 (Italy) and better scenarios. They explore scenarios varying the rate of growth of
                 patients in the community/emergency department and ICU surge capacity. The effects of social distancing
-                are 
+                are
                 modeled by decreasing the growth rate after 14 days. Take a look below</p>
         </div>
 
@@ -27,5 +27,26 @@
         <iframe id="example1" src="https://pechlilab.shinyapps.io/output/"
             style="border: none; width: 100%; height: 1300px" frameborder="0"></iframe>
         <!-- <img style="width:100%;"src='assets/img/Figure4_Italy_Waiting.jpg'> -->
+    </div>
+</div>
+<div id='column-layout-capacity' mat-dialog-content>
+    <div *ngIf="!is_full" id='column-detail-capacity'>
+        <div style="display: flex">
+            <h3 class="modal-title">Capacity Analysis: Ontario</h3>
+            <div class="collapse-text" *ngIf="toggleTextFlag" (click)="toggleText()">Collapse Description Below</div>
+            <div class="collapse-text" *ngIf="!toggleTextFlag" (click)="toggleText()">Expand Description</div>
+        </div>
+        <div id='key-takeaway' class="key-text" *ngIf="toggleTextFlag">
+            <p>Researchers from the <a href='https://www.covid-19-mc.ca'>COVID-19 ModCollab</a> have
+                developed a compartment model to predict the time Ontario ICU resources will be depleted under
+                undesirable
+                (Italy) and better scenarios. They explore scenarios varying the rate of growth of
+                patients in the community/emergency department and ICU surge capacity. The effects of social distancing
+                are
+                modeled by decreasing the growth rate after 14 days. Take a look below</p>
+        </div>
+    </div>
+    <div id='column-main'>
+        <div #capacityViz id="vizContainerCapacity" style="border-style: solid; border-width: 2px; border-color: gray;"></div>
     </div>
 </div>

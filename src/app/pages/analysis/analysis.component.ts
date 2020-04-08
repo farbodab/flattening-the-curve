@@ -59,7 +59,7 @@ export class AnalysisComponent implements OnInit {
       category: 'Critical',
       content: 'When could Ontario ICU resources be depleted?',
       route: 'capacity',
-      thumbnail: 'assets/img/capacity_visual_thumbnail.png',
+      thumbnail: 'assets/img/capacity_visual.png',
       selected: false,
       selectedCategory: false,
       selectedRow: false
@@ -223,8 +223,7 @@ export class AnalysisComponent implements OnInit {
     this.filteringCheckboxes = this.formBuilder.group({
       Critical: true,
       Regional: true,
-      Testing: true,
-      Capacity: true
+      Testing: true
     });
   }
 
