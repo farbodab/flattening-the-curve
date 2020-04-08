@@ -110,7 +110,7 @@ export class AnalysisComponent implements OnInit {
     //this.selectedCategory = "Critical";
     //this.router.navigate(['/analysis/critical']);
     const placeholderDiv = document.getElementById('kpiContainer');
-    const url="https://public.tableau.com/views/KPI_15862242314660/at-a-glance?:display_count=y&:origin=viz_share_link";
+    const url="https://public.tableau.com/views/KPI_15862242314660/Dashboard1?:display_count=y&:origin=viz_share_link";
     const options = {
       hideTabs: true,
       width: "100%",
