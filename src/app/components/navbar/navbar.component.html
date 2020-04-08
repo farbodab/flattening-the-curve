@@ -9,6 +9,9 @@
                     </a>
                 </p>
             </div>
+            <div *ngIf="page === 'home' && is_full">
+                <img class='logo-styling-home' src='assets/img/logo.svg'>
+            </div>
             <div id='primary-nav' *ngIf='is_full'>
                 <button id='main-nav-button' [ngClass]="{'selected': page=='home'}" mat-button
                     routerLink='/'>Home</button>

@@ -102,35 +102,40 @@
                 <div routerLink='/analysis' id='explore-data-btn'>Explore Analysis</div>
             </div> -->
         </div>
-        <div class="home-page-card">
-            <div class="mission-header">On A Mission Together</div>
-            <p id='who-what-content' class='mat-headline'>
-                We are physicians, medical students, computational health researchers, designers and epidemiologists
-                rapidly
-                filtering and presenting emergent COVID-19 data to help Ontario <a class="home-page-link"
-                    href="https://twitter.com/hashtag/FlattenTheCurve?src=hashtag_click"
-                    target="_blank">#FlattenTheCurve</a>.
-                <br><br>
-                We connect experts and present data in an easy to digest, actionable way to help Ontario's public
-                leaders
-                and individuals act decisively as evidence grows and time ticks by.
-            </p>
-
-        </div>
-
-        <div style='background-color: #DADFE1; padding-top:30px;'>
-
-            <div class="sign-up-styling">Sign up below for updates on new visualizations we release!</div>
-
-            <br><br>
-
-            <div style='text-align: center;'>
-                <div (click)='on_sign_up_pressed();' id='explore-data-btn'>Join Mailing List</div>
+        <div class="home-page-card mission-background">
+            <div class="inner-mission-container">
+                <div class="mission-header">On A Mission Together</div>
+                <p id='who-what-content' class='mat-headline'>
+                    We are physicians, medical students, computational health researchers, designers and epidemiologists
+                    rapidly
+                    filtering and presenting emergent COVID-19 data to help Ontario <a class="home-page-link"
+                        href="https://twitter.com/hashtag/FlattenTheCurve?src=hashtag_click"
+                        target="_blank">#FlattenTheCurve</a>.
+                    <br><br>
+                    We connect experts and present data in an easy to digest, actionable way to help Ontario's public
+                    leaders
+                    and individuals act decisively as evidence grows and time ticks by.
+                </p>
             </div>
-
         </div>
 
+        <div class="mail-container">
+            <div style="display: flex;">
+                <div style="width: 25%">
+                    <img class='' src='assets/img/SignUpMail.svg'>
+                </div>
+                <div style="width: 75%; text-align: center">
+                    <div class="sign-up-styling">Sign up below for updates on new visualizations we release!</div>
+                    <button class="home-page-button" style="width: 200px" (click)='on_sign_up_pressed()'>Join Mailing
+                        List</button>
+                    <a #MailingList href="https://www.surveymonkey.com/r/Y7X86JL" target="_blank"></a>
+                </div>
+            </div>
+            <!-- <div style='text-align: center;'>
+                <div (click)='on_sign_up_pressed();' id='explore-data-btn'>Join Mailing List</div>
+            </div> -->
 
+        </div>
 
         <div id='footer' style="display: none"></div>
     </div>

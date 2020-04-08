@@ -10,16 +10,18 @@ declare var tableau: any;
 
 export class AnalysisCriticalComponent implements OnInit, OnDestroy, AfterViewInit {
     viz: any;
-
+    is_full = true;
     toggleTextFlag = true;
 
-    constructor() { }
+    constructor() {
+        this.refresh_layout(window.innerWidth);
+    }
 
     ngOnInit() {
         const placeholderDiv = document.getElementById('vizContainerCritical');
         const url = "https://public.tableau.com/views/CriticalCareCapacity/Dashboard1?:display_count=y&:origin=viz_share_link";
 
-        const options = {
+        const optionsDesktop = {
             hideTabs: true,
             width: "100%",
             height: "1450px",
@@ -29,7 +31,23 @@ export class AnalysisCriticalComponent implements OnInit, OnDestroy, AfterViewIn
             }
 
         };
-        this.viz = new tableau.Viz(placeholderDiv, url, options);
+
+        const optionsMobile = {
+            hideTabs: true,
+            width: "100%",
+            height: "2550px",
+            onFirstInteractive: function () {
+                // The viz is now ready and can be safely used.
+                console.log("Run this code when the viz has finished loading.");
+            }
+
+        };
+
+        if (this.is_full) {
+            this.viz = new tableau.Viz(placeholderDiv, url, optionsDesktop);
+        } else {
+            this.viz = new tableau.Viz(placeholderDiv, url, optionsMobile);
+        }
     }
 
     ngAfterViewInit() {
@@ -41,5 +59,9 @@ export class AnalysisCriticalComponent implements OnInit, OnDestroy, AfterViewIn
 
     toggleText() {
         this.toggleTextFlag = !this.toggleTextFlag;
+    }
+
+    private refresh_layout(width) {
+        this.is_full = window.innerWidth >= 1024 ? true : false;
     }
 }

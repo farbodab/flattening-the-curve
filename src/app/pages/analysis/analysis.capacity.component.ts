@@ -12,14 +12,13 @@ export class AnalysisCapacityComponent implements OnInit {
     viz: any;
     is_full: boolean = true;
 
-    @ViewChild('capacityViz', { static: false }) CapacityViz: ElementRef;
-
     constructor() {
         this.refresh_layout(window.innerWidth);
     }
 
     ngOnInit() {
-        const placeholderDiv = document.getElementById('vizContainerCapacity');
+        const placeholderDivMobiile = document.getElementById('capacityVizMobile');
+        const placeholderDivDesktop = document.getElementById('capacityVizDesktop');
         const url = "https://public.tableau.com/views/RequiredBeds/Dashboard1?:display_count=y&publish=yes&:origin=viz_share_link";
 
         const options = {
@@ -30,11 +29,22 @@ export class AnalysisCapacityComponent implements OnInit {
                 // The viz is now ready and can be safely used.
                 console.log("Run this code when the viz has finished loading.");
             }
+        };
 
+        const optionsDesktop = {
+            hideTabs: true,
+            width: "100%",
+            height: "840px",
+            onFirstInteractive: function () {
+                // The viz is now ready and can be safely used.
+                console.log("Run this code when the viz has finished loading.");
+            }
         };
 
         if (!this.is_full) {
-            this.CapacityViz.nativeElement = new tableau.Viz(placeholderDiv, url, options);
+            this.viz = new tableau.Viz(placeholderDivMobiile, url, options);
+        } else {
+            this.viz = new tableau.Viz(placeholderDivDesktop, url, optionsDesktop);
         }
     }
 

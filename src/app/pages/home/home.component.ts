@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 declare var tableau: any;
 
@@ -8,6 +8,8 @@ declare var tableau: any;
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
+  @ViewChild('MailingList', { static: false }) mailingList: ElementRef;
 
   graph_data = null;
   ontario: any = "Ontario";
@@ -22,6 +24,14 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getJSON('https://flatteningthecurve-staging.herokuapp.com/api/viz',
+    function(err, data) {
+      if (err !== null) {
+        alert('Something went wrong: ' + err);
+      } else {
+        console.log(JSON.stringify(data));
+      }
+    });
 
     var placeholderDiv = document.getElementById('vizContainer');
     var url = "https://public.tableau.com/views/OntarioICUCapacity2forCOVID-19/Dashboard1?:display_count=y&:origin=viz_share_link"
@@ -43,7 +53,23 @@ export class HomeComponent implements OnInit {
   }
 
   on_sign_up_pressed() {
-    window.location.href = 'https://www.surveymonkey.com/r/Y7X86JL';
+    //document.getElementById('mailingList').click();
+    this.mailingList.nativeElement.click();
+  }
+
+  getJSON(url, callback) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.responseType = 'json';
+    xhr.onload = function () {
+      let status = xhr.status;
+      if (status === 200) {
+        callback(null, xhr.response);
+      } else {
+        callback(status, xhr.response);
+      }
+    };
+    xhr.send();
   }
 
   private refresh_layout(width) {
