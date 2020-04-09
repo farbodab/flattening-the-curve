@@ -25,11 +25,26 @@
     }
 }
 
+.mission-background {
+    background-color: #ffffff;
+    @media screen and (min-width: 1024px) {
+        background-image: url("src/assets/img/Mission_Section_Asset.svg");
+        margin: 110px -75px 70px -75px;
+        padding: 40px 0 30px 0;
+    }
+}
+
+.inner-mission-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 75px 0 75px;
+}
+
 .mission-header {
     color: #391F85;
     line-height: 40px;
     font-size: 32px;
-    margin: 150px auto 0 auto;
+    margin: 0 auto 0 auto;
 }
 
 #which-curve-text {
@@ -133,7 +148,7 @@
     @media screen and (min-width: 1024px) {
         font-size: 18px;
         line-height: 27px;
-        padding: 20px 131px 100px 131px;
+        padding: 20px 131px 0 131px;
         margin: 0;
     }
 }
@@ -293,6 +308,13 @@
     margin-left: 30px;
 }
 
+.mail-container {
+    border-radius: 8px;
+    border: 1px solid #C4C4C4;
+    padding: 79px 50px 110px 40px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
 #explore-data-btn {
     color: white;
     background-color: #205D86;
@@ -317,6 +339,8 @@
 }
 
 .sign-up-styling {
-    font-size: 24px;
-    text-align: center;
+    font-size: 26px;
+    line-height: 40px;
+    color:#391F85;
+    padding-bottom: 40px;
 }
