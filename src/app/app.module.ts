@@ -20,6 +20,7 @@ import {AnalysisRegionalComponent} from './pages/analysis/analysis.regional.comp
 import {AnalysisTestingComponent} from './pages/analysis/analysis.testing.component';
 import {AnalysisCapacityComponent} from './pages/analysis/analysis.capacity.component';
 import {DataComponent} from './pages/data/data.component';
+import {OutreachComponent} from './pages/outreach/outreach.component';
 
 import {environment} from 'src/environments/environment';
 import {AngularFireModule} from '@angular/fire';
@@ -31,6 +32,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import { CommonMobileVisualComponent } from './components/common-mobile-visual/common-mobile-visual.component';
+import { OutreachComponent } from './pages/outreach/outreach.component';
 
 @NgModule({
     declarations: [
@@ -47,7 +49,8 @@ import { CommonMobileVisualComponent } from './components/common-mobile-visual/c
         AnalysisCapacityComponent,
         AnalysisGrowthComponent,
         DataComponent,
-        CommonMobileVisualComponent
+        CommonMobileVisualComponent,
+        OutreachComponent
     ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),
