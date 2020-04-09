@@ -20,7 +20,6 @@ import {AnalysisRegionalComponent} from './pages/analysis/analysis.regional.comp
 import {AnalysisTestingComponent} from './pages/analysis/analysis.testing.component';
 import {AnalysisCapacityComponent} from './pages/analysis/analysis.capacity.component';
 import {DataComponent} from './pages/data/data.component';
-import {OutreachComponent} from './pages/outreach/outreach.component';
 
 import {environment} from 'src/environments/environment';
 import {AngularFireModule} from '@angular/fire';
