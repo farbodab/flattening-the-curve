@@ -1,12 +1,20 @@
 <app-navbar [shows_title]='true' [page]='"analysis"'></app-navbar>
 <div class='content' style='background-color: white;'>
     <div id='container'>
-        <h1>Ontario-specific COVID-19 Analysis</h1>
-        <div>
+        <div [ngClass]="{'analysis-header': !is_full}">
+            <div [ngClass]="{'inner-analysis-header': !is_full}">
+                <h1>Ontario-specific COVID-19 Analysis</h1>
+                <div>
 
-            This page highlights analyses that provide further Ontario-specific insights as we monitor performance to
-            flatten the curve. The following dashboard overviews the key insights for Ontario. Select an analysis below
-            the dashboard for an in-depth exploration.<br><br><br>
+                    This page highlights analyses that provide further Ontario-specific insights as we monitor
+                    performance
+                    to
+                    flatten the curve. The following dashboard overviews the key insights for Ontario. Select an
+                    analysis
+                    below
+                    the dashboard for an in-depth exploration.<br><br><br>
+                </div>
+            </div>
         </div>
         <div class="form-container kpi-header" [ngClass]="{'mobile-kpi-styling': !is_full}">
             <div class="kpi-title purple-font" [ngClass]="{'center-text': !is_full}">Ontario at-a-Glance</div>
@@ -47,7 +55,7 @@
                 <form [formGroup]="filteringCheckboxes" class="form-styling">
                     <div style="display: flex">
                         <div *ngFor="let category of categoryList;"
-                            style="margin-right: 25px; border-radius: 6px; background-color: #391F85; color: #ffffff; padding: 6px 12px">
+                            style="margin-right: 25px; border-radius: 6px; background-color: #245D70; color: #ffffff; padding: 6px 12px">
                             <mat-checkbox formControlName="{{category}}">{{category}}
                             </mat-checkbox>
                         </div>
@@ -154,7 +162,7 @@
         <form [formGroup]="filteringCheckboxes" class="form-styling">
             <div style="display: flex">
                 <div *ngFor="let category of categoryList;"
-                    style="margin-right: 25px; border-radius: 6px; background-color: #391F85; color: #ffffff; padding: 6px 12px">
+                    style="margin-right: 25px; border-radius: 6px; background-color: #245D70; color: #ffffff; padding: 6px 12px">
                     <mat-checkbox formControlName="{{category}}">{{category}}
                     </mat-checkbox>
                 </div>
@@ -163,10 +171,12 @@
     </div>
 
     <div>
-        <div *ngIf="filteringCheckboxes.controls.Critical.value">
-            <div style="display: flex">
+        <div *ngIf="filteringCheckboxes.controls.Critical.value"
+            style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); padding-bottom: 25px;">
+            <div style="display: flex; margin-top: 15px">
                 <div style="border-top: 1px solid black; width: 100%; margin-top: 30px"></div>
-                <div class="purple-font" style="min-width: 180px; text-align: center; padding-top: 20px; padding-bottom: 10px">
+                <div class="purple-font"
+                    style="min-width: 180px; text-align: center; padding-top: 20px; padding-bottom: 10px; font-weight: bold">
                     Critical Care Analysis</div>
                 <div style="border-top: 1px solid black; width: 100%; margin-top: 30px"></div>
             </div>
@@ -196,10 +206,12 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="filteringCheckboxes.controls.Regional.value">
-            <div style="display: flex">
+        <div *ngIf="filteringCheckboxes.controls.Regional.value"
+            style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); padding-bottom: 25px;">
+            <div style="display: flex; margin-top: 15px;">
                 <div style="border-top: 1px solid black; width: 100%; margin-top: 30px"></div>
-                <div class="purple-font" style="min-width: 180px; text-align: center; padding-top: 20px; padding-bottom: 10px">
+                <div class="purple-font"
+                    style="min-width: 180px; text-align: center; padding-top: 20px; padding-bottom: 10px; font-weight: bold">
                     Regional Analysis</div>
                 <div style="border-top: 1px solid black; width: 100%; margin-top: 30px"></div>
             </div>
@@ -229,10 +241,12 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="filteringCheckboxes.controls.Testing.value">
-            <div style="display: flex">
+        <div *ngIf="filteringCheckboxes.controls.Testing.value"
+            style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); padding-bottom: 25px;">
+            <div style="display: flex; margin-top: 15px;">
                 <div style="border-top: 1px solid black; width: 100%; margin-top: 30px"></div>
-                <div class="purple-font" style="min-width: 180px; text-align: center; padding-top: 20px; padding-bottom: 10px">
+                <div class="purple-font"
+                    style="min-width: 180px; text-align: center; padding-top: 20px; padding-bottom: 10px; font-weight: bold">
                     Testing Analysis</div>
                 <div style="border-top: 1px solid black; width: 100%; margin-top: 30px"></div>
             </div>

@@ -86,6 +86,11 @@ mat-toolbar {
   }
 
   ::ng-deep {
+
+    .mat-toolbar {
+      border-bottom: 2px solid #DADFE1;
+    }
+    
       .mat-toolbar-row, .mat-toolbar-single-row {
           padding: 0 !important;
           background-color: #ffffff;

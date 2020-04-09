@@ -232,6 +232,10 @@
         background-color: #ffffff !important;
     }
 
+    .mat-checkbox-frame {
+        border-color: #ffffff;
+    }
+
     .mat-checkbox-checkmark-path {
         stroke: #391F85 !important;
     }
@@ -252,6 +256,29 @@
 
     .mat-dialog-container {
         padding: 24px 48px !important;
+    }
+}
+
+.analysis-header {
+    text-align: center;
+    background-image: url("src/assets/img/Mission_Section_Asset.svg");
+    background-repeat: no-repeat;
+    margin: 0 -50px 0 -70px;
+
+    .inner-analysis-header {
+        margin: 0 50px 0 70px;
+
+        h1 {
+            font-size: 30px;
+            margin-top: 20px;
+            padding-top: 5px;
+        }
+
+        div {
+            font-size: 14px;
+            line-height: 22px;
+            padding-top: 10px;
+        }
     }
 }
 
