@@ -61,8 +61,7 @@
                             target="_blank">Ontario Government</a>
                     </div>
                     <div>
-                        Suspected ICU cases: <a href="https://howsmyflattening.ca/#/data"
-                            target="_blank">CCSO</a>
+                        Suspected ICU cases: <a href="https://howsmyflattening.ca/#/data" target="_blank">CCSO</a>
                     </div>
                     <div>
                         Projected ICU cases: <a
@@ -78,13 +77,14 @@
                     </div>
                     <div class="explore-data-text-upper">
                         <div class='explore-data-cell-text-upper'>What does each Ontario region look like?</div>
-                        <button class="home-page-button" routerLink='/analysis'>Explore Analysis</button>
+                        <button class="home-page-button" routerLink='/analysis'>Explore <span
+                                *ngIf="is_full">Analysis</span></button>
                     </div>
                 </div>
                 <div *ngIf="!is_full" class='explore-data-container regional'>
                     <div class="explore-data-text-upper">
                         <div class='explore-data-cell-text-upper'>What does each Ontario region look like?</div>
-                        <button class="home-page-button" routerLink='/analysis'>Explore Analysis</button>
+                        <button class="home-page-button" routerLink='/analysis'>Explore</button>
                     </div>
                     <div class='explore-data-cell-upper'>
                         <img class='explore-data-img-upper' src='assets/img/Ontario.png'>
@@ -105,7 +105,8 @@
                         <img class='explore-data-img-small' src='assets/img/ICU beds.png'>
                         <div class="data-cell-container">
                             <div id='explore-data-cell-text'>When does capacity run out in Ontario?</div>
-                            <button class="home-page-button" routerLink='/analysis'>Explore Analysis</button>
+                            <button class="home-page-button" routerLink='/analysis'>Explore <span
+                                    *ngIf="is_full">Analysis</span></button>
                         </div>
                     </div>
                 </div>
