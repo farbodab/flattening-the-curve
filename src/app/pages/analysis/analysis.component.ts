@@ -111,7 +111,8 @@ export class AnalysisComponent implements OnInit {
     //this.router.navigate(['/analysis/critical']);
     const placeholderDiv = document.getElementById('kpiContainer');
     const url="https://public.tableau.com/views/KPI_15862242314660/Dashboard1?:display_count=y&:origin=viz_share_link";
-    const options = {
+    
+    const optionsDesktop = {
       hideTabs: true,
       width: "100%",
       height: "650px",
@@ -119,9 +120,23 @@ export class AnalysisComponent implements OnInit {
         // The viz is now ready and can be safely used.
         console.log("Run this code when the viz has finished loading.");
       }
-
     };
-    this.kpiViz = new tableau.Viz(placeholderDiv, url, options);
+
+    const optionsMobile = {
+      hideTabs: true,
+      width: "100%",
+      height: "2300px",
+      onFirstInteractive: function () {
+        // The viz is now ready and can be safely used.
+        console.log("Run this code when the viz has finished loading.");
+      }
+    };
+
+    if(this.is_full) {
+      this.kpiViz = new tableau.Viz(placeholderDiv, url, optionsDesktop);
+    } else {
+      this.kpiViz = new tableau.Viz(placeholderDiv, url, optionsMobile);
+    }
     this.initFilteringForm();
   }
 

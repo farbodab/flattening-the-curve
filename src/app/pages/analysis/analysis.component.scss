@@ -282,8 +282,16 @@
     }
 }
 
-#mobile-nav {
+#container.mobile-sizing {
+        margin-bottom: 0;
+        padding-bottom: 0;
+}
+    
+.mobile-sizing #kpiContainer {
+        padding-bottom: 0;
+}
 
+#mobile-nav {
     .form-container {
         margin: 0;
         border-radius: 0;
@@ -298,6 +306,16 @@
     
     .selected-background {
         background-color: #f7f6f2;
+    }
+
+    .form-styling {
+        padding: 0;
+
+        .inner-form-styling {
+            display: flex;
+            padding: 18px 0;
+            justify-content: space-around;
+        }
     }
 
     ::ng-deep {

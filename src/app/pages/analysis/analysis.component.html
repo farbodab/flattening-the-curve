@@ -1,6 +1,6 @@
 <app-navbar [shows_title]='true' [page]='"analysis"'></app-navbar>
 <div class='content' style='background-color: white;'>
-    <div id='container'>
+    <div id='container' [ngClass]="{'mobile-sizing': !is_full}">
         <div [ngClass]="{'analysis-header': !is_full}">
             <div [ngClass]="{'inner-analysis-header': !is_full}">
                 <h1>Ontario-specific COVID-19 Analysis</h1>
@@ -20,7 +20,7 @@
             <div class="kpi-title purple-font" [ngClass]="{'center-text': !is_full}">Ontario at-a-Glance</div>
             <div class="kpi-line" *ngIf='is_full'></div>
         </div>
-        <div id="kpiContainer"></div>
+        <div id="kpiContainer" [ngClass]="{'mobile-sizing': !is_full}"></div>
         <div *ngIf='is_full' [ngClass]="{'modal-opened': selectedCategory !== ''}">
             <!-- <mat-button-toggle-group id='full-nav' class="category-tab-group" name="fontStyle" aria-label="Font Style">
                 <div *ngFor="let card of cardCategories; index as index" class="category-card-styling"
@@ -160,9 +160,9 @@
 <div id='mobile-nav' *ngIf='!is_full'>
     <div class="form-container">
         <form [formGroup]="filteringCheckboxes" class="form-styling">
-            <div style="display: flex">
+            <div class="inner-form-styling">
                 <div *ngFor="let category of categoryList;"
-                    style="margin-right: 25px; border-radius: 6px; background-color: #245D70; color: #ffffff; padding: 6px 12px">
+                    style="border-radius: 6px; background-color: #245D70; color: #ffffff; padding: 6px 12px">
                     <mat-checkbox formControlName="{{category}}">{{category}}
                     </mat-checkbox>
                 </div>
