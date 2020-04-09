@@ -3,7 +3,7 @@
         <div style="display: flex">
             <h3 class="modal-title">TestingAnalysis: Ontario</h3>
             <div class="collapse-text" *ngIf="toggleTextFlag" (click)="toggleText()">Collapse Description Below</div>
-            <div class="collapse-text" *ngIf="!toggleTextFlag" (click)="toggleText()">Expand Description</div>
+            <div class="collapse-text" style="padding-bottom: 20px" *ngIf="!toggleTextFlag" (click)="toggleText()">Expand Description</div>
         </div>
         <div id='key-takeaway' class="key-text" *ngIf="toggleTextFlag">
             <p>A casual glance at positive tests in Ontario suggests the curve is relatively flat.
