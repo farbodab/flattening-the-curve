@@ -1,46 +1,42 @@
 <app-navbar [page]='"home"'></app-navbar>
-<div id='header-container'>
-    <div id='title-div'>
-        <div *ngIf="is_full">
-            <p class='mat-display-1' id='title-text'>
-                <a class="hmf-link" href="https://twitter.com/hashtag/HowsMyFlattening?src=hashtag_click"
-                    target="_blank">
-                    #HowsMyFlattening
-                </a>
-            </p>
-            <p class='mat-headline home-header-sub' id='subtitle-text'>A centralized data analytics and visualization
-                hub monitoring Ontario's response to COVID-19</p>
+<div [ngClass]="{'mobile-browser': !is_full}">
+    <div id='header-container'>
+        <img *ngIf="!is_full" class='logo-mobile-home' routerLink='/home' src='assets/img/logo.svg'>
+        <div id='title-div'>
+            <div>
+                <p *ngIf="is_full" class='mat-display-1' id='title-text'>#HowsMyFlattening</p>
+                <p class='mat-headline home-header-sub' id='subtitle-text'>A centralized data analytics and
+                    visualization
+                    hub monitoring Ontario's response to COVID-19</p>
+            </div>
         </div>
     </div>
-</div>
-<div class='content' style='background-color: white;'>
-    <div id='container' style="margin:0">
-        <div class='home-page-card'>
-            <div id='which-curve-text'>
-                <div>
-                    <h1 class="main-header-styling">
-                        Which Curve Will Ontario Follow?
-                    </h1>
-                    <p class="sub-header-styling">
-                        <strong>Once critical care (ICU) beds run out, mortality rate jumps from 1% to 5%.</strong>
-                    </p>
-                    <p class="sub-header-paragraph">
-                        This graph tracks ICU bed utilization in Ontario relative to the best case and worst case
-                        predictions released by the province.
-                    </p>
-                    <p class="sub-header-paragraph">
-                        The stacked bars show Ontario's confirmed and suspected cases. We can either follow the red
-                        curve or the blue curve. Decisions today will have a 1-2 week lag.
-                    </p>
+    <div class='content' style='background-color: white;'>
+        <div id='container' style="margin:0">
+            <div class='home-page-card which-curve'>
+                <div id='which-curve-text'>
+                    <div>
+                        <h1 class="main-header-styling">
+                            Which Curve Will Ontario Follow?
+                        </h1>
+                        <p class="sub-header-styling">
+                            <strong>Once critical care (ICU) beds run out, mortality rate jumps from 1% to 5%.</strong>
+                        </p>
+                        <p class="sub-header-paragraph">
+                            This graph tracks ICU bed utilization in Ontario relative to the best case and worst case
+                            predictions released by the province.
+                        </p>
+                        <p class="sub-header-paragraph">
+                            The stacked bars show Ontario's confirmed and suspected cases. We can either follow the red
+                            curve or the blue curve. Decisions today will have a 1-2 week lag.
+                        </p>
 
-                    <p class="sub-header-paragraph">
-                        The time to <a class="home-page-link"
-                            href="https://twitter.com/hashtag/FlattenTheCurve?src=hashtag_click"
-                            target="_blank">#FlattenTheCurve</a> is now.
-                    </p>
+                        <p class="sub-header-paragraph mobile-large">
+                            The time to <a class="home-page-link">#FlattenTheCurve</a> is now.
+                        </p>
 
 
-                    <!-- <p>
+                        <!-- <p>
                     <strong>Sources:</strong>
                 </p>
 
@@ -54,89 +50,112 @@
                 <div id='read-more-container'>
                     <button mat-raised-button (click)='on_read_more_pressed();' id='read-more-btn'>Read Full Article</button>
                 </div> -->
+                    </div>
                 </div>
-            </div>
-            <div id="vizContainer"></div>
-            <div class="sources-styling">
-                <div>Sources:</div>
-                <div>
-                    Confirmed ICU cases: <a href="https://www.ontario.ca/page/2019-novel-coronavirus"
-                        target="_blank">Ontario Government</a>
-                </div>
-                <div>
-                    Projected ICU cases: <a
-                        href="https://drive.google.com/file/d/1gZRlwXDYLTjCSUGO2veO6GWRi-2ltZ5W/view?usp=sharing"
-                        target="_blank">Ministry of Health Announcement - April 3, 2020</a>
-                </div>
-            </div>
-        </div>
-        <div class="card-container">
-            <div class='explore-data-container'>
-                <div class='explore-data-cell-upper'>
-                    <img class='explore-data-img-upper' src='assets/img/Ontario.png'>
-                </div>
-                <div class="explore-data-text-upper">
-                    <div class='explore-data-cell-text-upper'>What does each Ontario region look like?</div>
-                    <button class="home-page-button" routerLink='/analysis'>Explore Analysis</button>
-                </div>
-            </div>
-            <div class='explore-data-container half-width margin-right'>
-                <div id='explore-data-cell'>
-                    <img class='explore-data-img-small' src='assets/img/Testing.png'>
-                    <div class="data-cell-container">
-                        <div id='explore-data-cell-text'>Is Ontario’s testing accurate?</div>
-                        <button class="home-page-button" routerLink='/analysis'>Explore Analysis</button>
+                <div id="vizContainer"></div>
+                <div class="sources-styling">
+                    <div>Sources:</div>
+                    <div>
+                        Confirmed ICU cases: <a href="https://www.ontario.ca/page/2019-novel-coronavirus"
+                            target="_blank">Ontario Government</a>
+                    </div>
+                    <div>
+                        Projected ICU cases: <a
+                            href="https://drive.google.com/file/d/1gZRlwXDYLTjCSUGO2veO6GWRi-2ltZ5W/view?usp=sharing"
+                            target="_blank">Ministry of Health Announcement - April 3, 2020</a>
                     </div>
                 </div>
             </div>
-            <div class='explore-data-container half-width'>
-                <div id='explore-data-cell'>
-                    <img class='explore-data-img-small' src='assets/img/ICU beds.png'>
-                    <div class="data-cell-container">
-                        <div id='explore-data-cell-text'>When does capacity run out in Ontario?</div>
+            <div class="card-container">
+                <div *ngIf="is_full" class='explore-data-container regional'>
+                    <div class='explore-data-cell-upper'>
+                        <img class='explore-data-img-upper' src='assets/img/Ontario.png'>
+                    </div>
+                    <div class="explore-data-text-upper">
+                        <div class='explore-data-cell-text-upper'>What does each Ontario region look like?</div>
                         <button class="home-page-button" routerLink='/analysis'>Explore Analysis</button>
                     </div>
                 </div>
-            </div>
-            <!-- <div style='text-align: center;'>
+                <div *ngIf="!is_full" class='explore-data-container regional'>
+                    <div class="explore-data-text-upper">
+                        <div class='explore-data-cell-text-upper'>What does each Ontario region look like?</div>
+                        <button class="home-page-button" routerLink='/analysis'>Explore Analysis</button>
+                    </div>
+                    <div class='explore-data-cell-upper'>
+                        <img class='explore-data-img-upper' src='assets/img/Ontario.png'>
+                    </div>
+                </div>
+                <div class='explore-data-container half-width margin-right'>
+                    <div id='explore-data-cell'>
+                        <img class='explore-data-img-small' src='assets/img/Testing.png'>
+                        <div class="data-cell-container">
+                            <div id='explore-data-cell-text'>Is Ontario’s testing accurate?</div>
+                            <button class="home-page-button" routerLink='/analysis'>Explore <span
+                                    *ngIf="is_full">Analysis</span></button>
+                        </div>
+                    </div>
+                </div>
+                <div class='explore-data-container half-width capacity'>
+                    <div id='explore-data-cell'>
+                        <img class='explore-data-img-small' src='assets/img/ICU beds.png'>
+                        <div class="data-cell-container">
+                            <div id='explore-data-cell-text'>When does capacity run out in Ontario?</div>
+                            <button class="home-page-button" routerLink='/analysis'>Explore Analysis</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div style='text-align: center;'>
                 <div routerLink='/analysis' id='explore-data-btn'>Explore Analysis</div>
             </div> -->
-        </div>
-        <div class="home-page-card mission-background">
-            <div class="inner-mission-container">
-                <div class="mission-header">On A Mission Together</div>
-                <p id='who-what-content' class='mat-headline'>
-                    We are physicians, medical students, computational health researchers, designers and epidemiologists
-                    rapidly
-                    filtering and presenting emergent COVID-19 data to help Ontario <a class="home-page-link"
-                        href="https://twitter.com/hashtag/FlattenTheCurve?src=hashtag_click"
-                        target="_blank">#FlattenTheCurve</a>.
-                    <br><br>
-                    We connect experts and present data in an easy to digest, actionable way to help Ontario's public
-                    leaders
-                    and individuals act decisively as evidence grows and time ticks by.
-                </p>
             </div>
-        </div>
-
-        <div class="mail-container">
-            <div style="display: flex;">
-                <div style="width: 25%">
-                    <img class='' src='assets/img/SignUpMail.svg'>
-                </div>
-                <div style="width: 75%; text-align: center">
-                    <div class="sign-up-styling">Sign up below for updates on new visualizations we release!</div>
-                    <button class="home-page-button" style="width: 200px" (click)='on_sign_up_pressed()'>Join Mailing
-                        List</button>
-                    <a #MailingList href="https://www.surveymonkey.com/r/Y7X86JL" target="_blank"></a>
+            <div class="home-page-card mission-background">
+                <div class="inner-mission-container">
+                    <div class="mission-header">On A Mission Together</div>
+                    <p id='who-what-content' class='mat-headline'>
+                        We are physicians, medical students, computational health researchers, designers and
+                        epidemiologists
+                        rapidly
+                        filtering and presenting emergent COVID-19 data to help Ontario <a class="home-page-link"
+                            href="https://twitter.com/hashtag/FlattenTheCurve?src=hashtag_click"
+                            target="_blank">#FlattenTheCurve</a>.
+                        <br><br>
+                        We connect experts and present data in an easy to digest, actionable way to help Ontario's
+                        public
+                        leaders
+                        and individuals act decisively as evidence grows and time ticks by.
+                    </p>
                 </div>
             </div>
-            <!-- <div style='text-align: center;'>
-                <div (click)='on_sign_up_pressed();' id='explore-data-btn'>Join Mailing List</div>
-            </div> -->
 
+            <div class="mail-container">
+                <div class="inner-mail-container" style="display: flex;">
+                    <div *ngIf="is_full" style="display: flex;">
+                        <div class="mail-icon" style="width: 30%; padding-left: 30px; padding-right: 10px">
+                            <img class='' src='assets/img/SignUpMail.svg'>
+                        </div>
+                        <div class="mail-text" style="width: 65%; text-align: left">
+                            <div class="sign-up-styling">Sign up below for updates on new visualizations we release!
+                            </div>
+                            <button class="home-page-button mail-btn" (click)='on_sign_up_pressed()'>Join</button>
+                            <a #MailingList href="https://www.surveymonkey.com/r/Y7X86JL" target="_blank"></a>
+                        </div>
+                    </div>
+                    <div *ngIf="!is_full">
+                        <div class="mail-text">
+                            <div class="sign-up-styling">Sign up below for updates on new visualizations we release!
+                            </div>
+                        </div>
+                        <div class="mail-icon">
+                            <img class='' src='assets/img/SignUpMail.svg'>
+                        </div>
+                        <button class="home-page-button mail-btn" (click)='on_sign_up_pressed()'>Join</button>
+                        <a #MailingList href="https://www.surveymonkey.com/r/Y7X86JL" target="_blank"></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id='footer' style="display: none"></div>
         </div>
-
-        <div id='footer' style="display: none"></div>
     </div>
 </div>

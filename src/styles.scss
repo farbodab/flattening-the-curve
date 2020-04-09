@@ -6,12 +6,21 @@
 html, body {
     height: 100%;
     background-color: #FFFFFF;
+
+    @media screen and (max-width:1023px) {
+        overflow-x: hidden;
+    }
 }
+
 body { 
 	margin: 0; 
 	// Lato is used for basic text, Roboto for headings
   	//font-family: 'Lato', sans-serif;
-	//font-family: Roboto, "Helvetica Neue", sans-serif; 
+    //font-family: Roboto, "Helvetica Neue", sans-serif; 
+    
+    @media screen and (max-width:1023px) {
+        position: relative;
+    }
 }
 
 p, div {

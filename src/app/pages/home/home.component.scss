@@ -27,9 +27,9 @@
 
 .mission-background {
     background-color: #ffffff;
+    background-image: url("src/assets/img/Mission_Section_Asset.svg");
     @media screen and (min-width: 1024px) {
-        background-image: url("src/assets/img/Mission_Section_Asset.svg");
-        margin: 110px -75px 70px -75px;
+        margin: 110px -110px 70px -110px;
         padding: 40px 0 30px 0;
     }
 }
@@ -37,7 +37,7 @@
 .inner-mission-container {
     display: flex;
     flex-direction: column;
-    margin: 0 75px 0 75px;
+    margin: 0 110px 0 110px;
 }
 
 .mission-header {
@@ -171,10 +171,9 @@
         line-height: 55px;
         font-weight: 300;
         font-size: 48px;
-        color: #000000;
+        color: #391F85;
         margin-bottom: 14px;
     }
-    cursor:pointer;
 }
 
 #subtitle-text {
@@ -295,8 +294,14 @@
 }
 
 .home-page-button:hover {
-    opacity: 0.5;
     cursor: pointer;
+    background-color: #F2F2F2;
+    color: #391F85;
+    border-color: #391F85;
+}
+
+.home-page-button.mail-btn {
+    width: 170px;
 }
 
 .data-cell-container .home-page-button {
@@ -311,7 +316,7 @@
 .mail-container {
     border-radius: 8px;
     border: 1px solid #C4C4C4;
-    padding: 79px 50px 110px 40px;
+    padding: 79px 50px 79px 40px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -343,4 +348,216 @@
     line-height: 40px;
     color:#391F85;
     padding-bottom: 40px;
+}
+
+.mobile-browser {
+    #header-container {
+        height: 320px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .logo-mobile-home {
+        height: 130px;
+        width: 130px;
+        padding: 40px 0 15px 0;
+    }
+
+    #title-div {
+        position: initial;
+        top: initial;
+        left: initial;
+        transform: initial;
+        width: 90%;
+        margin: 0 auto 0 auto;
+
+        #subtitle-text {
+            font-size: 16px;
+            max-width: 100%;
+            margin: 0;
+        }
+    }
+
+    .mobile-large {
+        font-size: 25px;
+        padding-top: 10px;
+        max-width: 70%;
+        margin: 0 auto;
+    }
+
+    #which-curve-text {
+        margin-bottom: 0;
+
+        .sub-header-paragraph {
+            margin-top: 20px;
+        }
+    }
+
+    #vizContainer {
+        height: 500px;
+    }
+
+    .sources-styling {
+        font-size: 14px;
+        text-align: center;
+        margin: 0 70px 20px 80px;
+    }
+
+    .mail-container {
+        margin: 15px;
+        padding: 20px;
+        background-color: #f2f2f2;
+        //background-color: #E4F7FD;
+
+        .inner-mail-container {
+            flex-wrap: wrap;
+            text-align: center;
+
+            .mail-icon {
+                width: 100%;
+                padding-bottom: 30px;
+            }
+
+            .mail-text {
+                width: 100%;
+
+                .sign-up-styling {
+                    font-size: 23px;
+                    text-align: center;
+                    line-height: 30px;
+                    width: 90%;
+                    margin: 0 auto;
+                    padding-bottom: 30px;
+                }
+            }
+
+            .mail-btn {
+                width: 100%;
+            }
+        }
+    }
+
+    .explore-data-container.half-width.margin-right {
+        background: linear-gradient(251.69deg, rgba(134, 168, 231, 0.68) -10.24%, rgba(207, 228, 249, 0.923986) 30.91%, #EAF8FE 51.04%, rgba(203, 239, 252, 0.5) 68.86%, rgba(77, 200, 240, 0.4) 125.99%);
+        //box-shadow: none;
+
+        .data-cell-container {
+            display: flex;
+            padding-bottom: 10px;
+
+            #explore-data-cell {
+                margin-top: 0;
+            }
+
+            #explore-data-cell-text {
+                font-size: 24px;
+                max-width: 58%;
+                padding-right: 20px;
+            }
+        }
+
+        .explore-data-img-small {
+            margin: 0 auto 40px auto;
+        }
+    }
+
+    .explore-data-container {
+        margin-bottom: 5px;
+    }
+
+    .explore-data-container.capacity {
+        padding-top: 45px;
+
+        #explore-data-cell {
+            display: flex;
+            margin-top: 0;
+
+            .explore-data-img-small {
+                height: 130px;
+                width: 130px;
+                margin-left: 15px;
+            }
+
+            .data-cell-container {
+                width: 50%;
+                padding-right: 15px;
+
+                #explore-data-cell-text {
+                    font-size: 20px
+                }
+
+                .home-page-button {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .explore-data-container.regional {
+        display: flex;
+        padding: 60px 15px 80px 15px;
+        background-color: #f2f2f2;
+
+        .explore-data-cell-upper {
+            display: flex;
+            align-items: center;
+            padding: 0;
+
+            .explore-data-img-upper {
+                height: 130px;
+                width: 130px;
+            }
+        }
+
+        .explore-data-text-upper {
+            padding-right: 20px;
+            background-color: #f2f2f2;
+
+            .explore-data-cell-text-upper {
+                font-size: 20px;
+                padding: 0 0 30px 0;
+            }
+
+            .home-page-button {
+                width: 100%;
+                margin: 0;
+            }
+        }
+    }
+
+    .mission-background {
+        background-repeat: no-repeat;
+        text-align: center;
+        margin: 20px -30px 0 -35px;
+
+        .inner-mission-container {
+            margin: 0 50px 0 55px;
+
+            .mission-header {
+                max-width: 80%;
+                font-size: 30px;
+            }
+
+            #who-what-content {
+                font-size: 16px;
+                padding-top: 0;
+            }
+        }
+    }
+
+    .home-page-card.which-curve {
+        background-image: url("src/assets/img/Mission_Section_Asset.svg");
+        background-repeat: no-repeat;
+        margin: 0 -40px 0 -50px;
+
+        #which-curve-text {
+            margin-left: 80px;
+            margin-right: 70px;
+        }
+
+        #vizContainer {
+            margin-left: 50px;
+            margin-right: 40px;
+        }
+    }
 }

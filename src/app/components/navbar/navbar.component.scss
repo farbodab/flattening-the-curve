@@ -17,6 +17,21 @@ mat-toolbar {
   font-size: 30px;
   font-weight: bold;
   padding-left: 20px;
+  color: #391F85;
+}
+
+.nav-title:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.nav-logo {
+  padding-right: 10px;
+}
+
+.nav-logo:hover {
+  cursor: pointer;
+  opacity: 0.8;
 }
 
 #main-nav-button {
@@ -54,21 +69,30 @@ mat-toolbar {
   font-weight: bold;
 }
 
-.mobile-nav {
-    .nav-title {
-        font-size: 20px;
-    }
-
-    ::ng-deep {
-        .mat-toolbar-row, .mat-toolbar-single-row {
-            padding: 0 !important;
-        }
-    }
-}
-
 ::ng-deep {
   .mat-menu-panel.ng-trigger {
     position: absolute;
     right: 0;
+  }
+
+  .mat-toolbar-row {
+    padding: 0 16px 0 32px !important;
+  }
+}
+
+.mobile-nav {
+  .nav-title {
+      font-size: 20px;
+  }
+
+  ::ng-deep {
+      .mat-toolbar-row, .mat-toolbar-single-row {
+          padding: 0 !important;
+          background-color: #ffffff;
+      }
+
+      .mobile-menu {
+        color: #391F85 !important;
+      }
   }
 }

@@ -1,16 +1,11 @@
 <div [ngClass]="{'mobile-nav': !is_full, 'desktop-nav': is_full}">
     <mat-toolbar>
         <mat-toolbar-row>
-            <div *ngIf="page !== 'home' || !is_full">
-                <p class="nav-title" id='title-text'>
-                    <a class="hmf-link" href="https://twitter.com/hashtag/HowsMyFlattening?src=hashtag_click"
-                        target="_blank">
-                        #HowsMyFlattening
-                    </a>
-                </p>
+            <div *ngIf="is_full" class="nav-logo">
+                <img class='logo-styling-home' routerLink='/home' src='assets/img/logo.svg'>
             </div>
-            <div *ngIf="page === 'home' && is_full">
-                <img class='logo-styling-home' src='assets/img/logo.svg'>
+            <div *ngIf="page !== 'home' || !is_full" routerLink='/home'>
+                <p class="nav-title" id='title-text'>#HowsMyFlattening</p>
             </div>
             <div id='primary-nav' *ngIf='is_full'>
                 <button id='main-nav-button' [ngClass]="{'selected': page=='home'}" mat-button
@@ -28,7 +23,7 @@
             </div>
             <div id='primary-nav' *ngIf='!is_full'>
                 <button mat-button [matMenuTriggerFor]="menu">
-                    <mat-icon>menu</mat-icon>
+                    <mat-icon class="mobile-menu">menu</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
                     <button id='mobile-nav-button' [ngClass]="{'selected': page=='home'}" mat-menu-item

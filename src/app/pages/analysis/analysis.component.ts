@@ -110,7 +110,7 @@ export class AnalysisComponent implements OnInit {
     //this.selectedCategory = "Critical";
     //this.router.navigate(['/analysis/critical']);
     const placeholderDiv = document.getElementById('kpiContainer');
-    const url="https://public.tableau.com/views/KPI_15862242314660/at-a-glance?:display_count=y&:origin=viz_share_link";
+    const url = "https://public.tableau.com/views/KPI_15862242314660/at-a-glance?:display_count=y&:origin=viz_share_link";
     const options = {
       hideTabs: true,
       width: "100%",
@@ -205,14 +205,13 @@ export class AnalysisComponent implements OnInit {
 
   selectedVisualTab(header: string, selected: boolean, event: any, index: number) {
     if (selected) {
-      console.log('here');
-      // event.stopPropagation();
-      // this.router.navigate(['/analysis']);
+      this.selectedCategory = '';
     }
+
     this.cards.forEach((element) => {
       if (element.header === header) {
         element.selected = !element.selected;
-        this.selectedCategory = element.category;
+        !selected ? this.selectedCategory = element.category : this.selectedCategory = '';
       } else {
         element.selected = false;
       }
