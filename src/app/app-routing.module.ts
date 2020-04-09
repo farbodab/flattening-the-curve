@@ -12,6 +12,7 @@ import {AnalysisRegionalComponent} from './pages/analysis/analysis.regional.comp
 import {AnalysisTestingComponent} from './pages/analysis/analysis.testing.component';
 import {AnalysisCapacityComponent} from './pages/analysis/analysis.capacity.component';
 import {DataComponent} from 'src/app/pages/data/data.component';
+import {OutreachComponent} from 'src/app/pages/outreach/outreach.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'team', component: StoryComponent},
   {path: 'resources', component: ResourcesComponent},
   {path: 'connect', component: ConnectComponent},
+  {path: 'outreach', component: OutreachComponent},
   {
     path: 'analysis',
     component: AnalysisComponent,
