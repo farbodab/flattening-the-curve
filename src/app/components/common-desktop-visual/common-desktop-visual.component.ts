@@ -28,7 +28,7 @@ export class CommonDesktopVisualComponent implements OnInit, OnDestroy, AfterVie
         this.refresh_layout(window.innerWidth);
         this.visualName = data.visualName;
         this.vizUrl = data.vizUrl;
-        this.text = data.visualText;
+        this.text = data.textContent;
         this.category = data.visualCategory;
     }
 

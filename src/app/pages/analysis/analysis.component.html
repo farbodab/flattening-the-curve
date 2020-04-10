@@ -23,7 +23,7 @@
         <div id="kpiContainer" [ngClass]="{'mobile-sizing': !is_full}"></div>
         <div *ngIf='is_full' [ngClass]="{'modal-opened': selectedCategory !== ''}">
             <div class="form-container">
-                <form [formGroup]="filteringCheckboxes" class="form-styling">
+                <form *ngIf="filteringCheckboxes" [formGroup]="filteringCheckboxes" class="form-styling">
                     <div style="display: flex;">
                         <div *ngFor="let category of categoryList;"
                             style="margin-right: 25px; border-radius: 6px; background-color: #245D70; color: #ffffff; padding: 6px 12px">
@@ -33,7 +33,7 @@
                     </div>
                 </form>
             </div>
-            <div>
+            <div *ngIf="filteringCheckboxes">
                 <div *ngFor="let category of categoryList">
                     <div *ngIf="category !== 'home' && category !== 'kpi-dash'">
                         <div *ngIf="filteringCheckboxes.controls[category].value">
@@ -176,7 +176,7 @@
     </div>
     <div id='mobile-nav' *ngIf='!is_full'>
         <div class="form-container">
-            <form [formGroup]="filteringCheckboxes" class="form-styling">
+            <form *ngIf="filteringCheckboxes" [formGroup]="filteringCheckboxes" class="form-styling">
                 <div class="inner-form-styling">
                     <div *ngFor="let category of categoryList;"
                         style="border-radius: 6px; background-color: #245D70; color: #ffffff; padding: 6px 12px">
@@ -186,7 +186,7 @@
                 </div>
             </form>
         </div>
-        <div>
+        <div *ngIf="filteringCheckboxes">
             <div *ngFor="let category of categoryList">
                 <div *ngIf="category !== 'home' && category !== 'kpi-dash'">
                     <div *ngIf="filteringCheckboxes.controls[category].value"

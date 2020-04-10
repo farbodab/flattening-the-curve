@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Inject } from '@angular/core';
 import { HostService } from 'src/app/services/host.service';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -19,7 +19,7 @@ declare var tableau: any;
   styleUrls: ['./analysis.component.scss']
 })
 
-export class AnalysisComponent implements OnInit {
+export class AnalysisComponent implements OnInit, AfterViewInit {
   viz: any;
   kpiViz: any;
 
@@ -108,12 +108,14 @@ export class AnalysisComponent implements OnInit {
     this.window_subscription = this.host_service.onWindowResize.subscribe(window => {
       this.refresh_layout(window.innerWidth);
     });
-    this.initFilteringForm();
-    this.fetchVizObj();
     this.cardCategories[0].selected = true;
     //this.cards[0].selected = true;
     //this.selectedCategory = "Critical";
     //this.router.navigate(['/analysis/critical']);
+  }
+
+  ngAfterViewInit() {
+    this.fetchVizObj();
   }
 
   ngOnDestroy() {
@@ -131,6 +133,7 @@ export class AnalysisComponent implements OnInit {
         console.log(this.jsonObj);
         this.findKpiViz(this.jsonObj);
         this.iterateCategories(this.jsonObj);
+        this.initFilteringForm(this.categoryList);
       },
       error => {
         //console.error(error);
@@ -160,6 +163,7 @@ export class AnalysisComponent implements OnInit {
       }
     });
     this.categoryList = placeholderArray;
+    console.log(this.categoryList);
   }
 
   setKpiViz(urlInput: string) {
@@ -209,6 +213,11 @@ export class AnalysisComponent implements OnInit {
     dialogConfig.width = '300px';
 
     const dialogRef = this.dialog.open(CommonDesktopVisualComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+            this.jsonObj[index].selected = false;
+            this.selectedCategory = '';
+    });
+
     //const placeholderDiv = document.getElementById('routerOutlet');
     // if (this.selectedCategory !== category) {
     //   placeholderDiv.remove();
@@ -321,13 +330,17 @@ export class AnalysisComponent implements OnInit {
     console.log(this.jsonObj);
   }
 
-  initFilteringForm() {
+  initFilteringForm(obj: string[]) {
     this.filteringCheckboxes = this.formBuilder.group({
-      Critical: true,
-      Regional: true,
-      Testing: true,
-      Growth: true
+      // Critical: true,
+      // Regional: true,
+      // Testing: true,
+      // Growth: true
     });
+    obj.forEach(element => {
+      this.filteringCheckboxes.addControl(element, this.formBuilder.control(true));
+    });
+    console.log(this.filteringCheckboxes.controls);
   }
 
   routeLink(route: string, category: string) {
