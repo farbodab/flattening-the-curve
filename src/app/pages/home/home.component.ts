@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+
 declare var tableau: any;
 
 @Component({
@@ -18,34 +19,14 @@ export class HomeComponent implements OnInit {
   viz: any;
   tableau: any;
   is_full = true;
+  jsonObj: any;
 
   constructor(private api_service: ApiService) {
     this.refresh_layout(window.innerWidth);
   }
 
   ngOnInit() {
-    this.getJSON('https://flatteningthecurve-staging.herokuapp.com/api/viz',
-    function(err, data) {
-      if (err !== null) {
-        alert('Something went wrong: ' + err);
-      } else {
-        console.log(JSON.stringify(data));
-      }
-    });
-
-    var placeholderDiv = document.getElementById('vizContainer');
-    var url = "https://public.tableau.com/views/OntarioICUCapacity2forCOVID-19/Dashboard1?:display_count=y&:origin=viz_share_link"
-
-    var options = {
-      hideTabs: true,
-      margin: "0 auto",
-      onFirstInteractive: function () {
-        // The viz is now ready and can be safely used.
-        console.log("Run this code when the viz has finished loading.");
-      }
-    }
-
-    this.viz = new tableau.Viz(placeholderDiv, url, options);
+    this.fetchVizObj();
   }
 
   on_read_more_pressed() {
@@ -57,19 +38,47 @@ export class HomeComponent implements OnInit {
     this.mailingList.nativeElement.click();
   }
 
-  getJSON(url, callback) {
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
-    xhr.responseType = 'json';
-    xhr.onload = function () {
-      let status = xhr.status;
-      if (status === 200) {
-        callback(null, xhr.response);
-      } else {
-        callback(status, xhr.response);
+  fetchVizObj() {
+    this.api_service.get_viz_obj().subscribe(
+      data => {
+        console.log(data);
+        this.jsonObj = data;
+        this.findHomeViz(this.jsonObj);
+      },
+      error => {
+        //console.error(error);
       }
-    };
-    xhr.send();
+    );
+  }
+
+  findHomeViz(obj: []) {
+    let url = '';
+    obj.forEach((element, index) => {
+      if(element['category'] === 'home') {
+        url = element['viz'];
+      }
+    });
+    this.setHomeViz(url);
+  }
+
+  setHomeViz(urlInput: string) {
+    var placeholderDiv = document.getElementById('vizContainer');
+    if(urlInput === '') {
+      var url = "https://public.tableau.com/views/OntarioICUCapacity2forCOVID-19/Dashboard1?:display_count=y&:origin=viz_share_link"
+    } else {
+      //var url = "https://public.tableau.com/views/OntarioICUCapacity2forCOVID-19/Dashboard1?:display_count=y&:origin=viz_share_link"
+      var url = urlInput;
+    }
+
+    var options = {
+      hideTabs: true,
+      margin: "0 auto",
+      onFirstInteractive: function () {
+        // The viz is now ready and can be safely used.
+        console.log("Run this code when the viz has finished loading.");
+      }
+    }
+    this.viz = new tableau.Viz(placeholderDiv, url, options);
   }
 
   private refresh_layout(width) {

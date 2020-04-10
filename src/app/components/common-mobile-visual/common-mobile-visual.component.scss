@@ -1,3 +1,16 @@
 .container-padding {
     padding-top: 20px;
 }
+
+#column-main {
+    flex-grow: 1;
+}
+
+#capacity-graph {
+    width:100%;
+}
+
+#key-takeaway{
+    font-family: 'Lato', sans-serif;
+    color: #434343;
+}
