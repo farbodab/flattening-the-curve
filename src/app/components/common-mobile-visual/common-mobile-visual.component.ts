@@ -12,7 +12,6 @@ export class CommonMobileVisualComponent implements OnInit, OnDestroy {
     visualToRender = '';
 
     ngOnInit() {
-        console.log(this.visualName);
         switch (this.visualName) {
             case 'Critical Care by Region Analysis':
                 this.visualToRender = 'CriticalCareByRegion';
@@ -29,7 +28,6 @@ export class CommonMobileVisualComponent implements OnInit, OnDestroy {
             default:
                 break;
         }
-        console.log(this.visualToRender);
     }
 
     ngOnDestroy() {

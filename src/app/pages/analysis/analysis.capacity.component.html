@@ -23,7 +23,7 @@
             (ventilated and non ventilated) and ventilated beds required per day</div>
     </div>
     <div>
-        <div id="capacityVizDesktop" style="border-style: solid; border-width: 2px; border-color: gray; border-top: none; margin-bottom: 30px;">
+        <div id="capacityVizDesktop" [ngClass]="{'capacity-viz-desktop': is_full}">
         </div>
     </div>
     <!-- <img style="width:100%;"src='assets/img/Figure2_Conservative_Waiting.jpg'> -->
@@ -52,7 +52,7 @@
         </div>
     </div>
     <div id='column-main'>
-        <div id="capacityVizMobile" style="border-style: solid; border-width: 2px; border-color: gray;">
+        <div id="capacityVizMobile" [ngClass]="{'capacity-viz-mobile': !is_full}">
         </div>
     </div>
 </div>

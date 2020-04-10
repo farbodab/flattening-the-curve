@@ -259,6 +259,20 @@
     }
 }
 
+.capacity-viz-desktop {
+    border-style: solid;
+    border-width: 2px;
+    border-color: gray;
+    border-top: none;
+    margin-bottom: 30px;
+}
+
+.capacity-viz-mobile {
+    border-style: solid;
+    border-width: 2px;
+    border-color: gray;
+}
+
 .analysis-header {
     text-align: center;
     background-image: url("src/assets/img/Mission_Section_Asset.svg");
