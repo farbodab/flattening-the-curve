@@ -127,10 +127,8 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
   fetchVizObj() {
     this.api_service.get_viz_obj().subscribe(
       data => {
-        console.log(data);
         this.jsonObj = data;
         this.jsonObj = this.addSelectedProperty(this.jsonObj);
-        console.log(this.jsonObj);
         this.findKpiViz(this.jsonObj);
         this.iterateCategories(this.jsonObj);
         this.initFilteringForm(this.categoryList);
@@ -147,12 +145,14 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
 
   findKpiViz(obj: []) {
     let url = '';
+    let height = '';
     obj.forEach((element, index) => {
-      if (element['category'] === 'kpi-dash') {
+      if (element['category'] === 'Kpi-dash') {
         url = element['viz'];
+        height = element['desktopHeight'];
       }
     });
-    this.setKpiViz(url);
+    this.setKpiViz(url, height);
   }
 
   iterateCategories(obj: []) {
@@ -163,23 +163,22 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
       }
     });
     this.categoryList = placeholderArray;
-    console.log(this.categoryList);
   }
 
-  setKpiViz(urlInput: string) {
+  setKpiViz(urlInput: string, vizHeight: string) {
     const placeholderDiv = document.getElementById('kpiContainer');
-
+    let url = '';
     if (urlInput === '') {
-      var url = 'https://public.tableau.com/views/KPI_15862242314660/Dashboard1?:display_count=y&:origin=viz_share_link';
+      url = 'https://public.tableau.com/views/KPI_15862242314660/Dashboard1?:display_count=y&:origin=viz_share_link';
     } else {
-      var url = urlInput;
+      url = urlInput;
     }
 
     const optionsDesktop = {
       hideTabs: true,
-      // width: "100%",
-      // height: "650px",
-      margin: "0 auto",
+      width: "100%",
+      height: vizHeight,
+      //margin: "0 auto",
       onFirstInteractive: function () {
         // The viz is now ready and can be safely used.
         console.log("Run this code when the viz has finished loading.");
@@ -204,13 +203,14 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
     }
   }
 
-  openDialog(componentName: any, category: string, url: string, text: string, index: number): void {
+  openDialog(componentName: any, category: string, url: string, text: string, height: number, index: number): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
       visualName: componentName,
       textContent: text,
       vizUrl: url,
-      vizCategory: category
+      vizCategory: category,
+      vizHeight: height
     };
     dialogConfig.width = '300px';
 
@@ -329,7 +329,6 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
         element.selected = false;
       }
     });
-    console.log(this.jsonObj);
   }
 
   initFilteringForm(obj: string[]) {
@@ -342,7 +341,6 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
     obj.forEach(element => {
       this.filteringCheckboxes.addControl(element, this.formBuilder.control(true));
     });
-    console.log(this.filteringCheckboxes.controls);
   }
 
   routeLink(route: string, category: string) {

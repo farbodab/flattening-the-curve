@@ -16,6 +16,7 @@ export class CommonDesktopVisualComponent implements OnInit, OnDestroy, AfterVie
     vizUrl: string;
     text: string;
     category: string;
+    height: string;
 
     viz: any;
     is_full = true;
@@ -30,6 +31,7 @@ export class CommonDesktopVisualComponent implements OnInit, OnDestroy, AfterVie
         this.vizUrl = data.vizUrl;
         this.text = data.textContent;
         this.category = data.visualCategory;
+        this.height = data.vizHeight + 'px';
     }
 
     ngOnInit() {
@@ -57,13 +59,12 @@ export class CommonDesktopVisualComponent implements OnInit, OnDestroy, AfterVie
 
         const options = {
             hideTabs: true,
-            //width: "100%",
-            //height: "1500px",
-            margin: "0 auto",
+            width: "100%",
+            height: this.height,
+            //margin: "0 auto",
             onFirstInteractive: function () {
                 // The viz is now ready and can be safely used.
                 console.log("Run this code when the viz has finished loading.");
-                console.log(this.viz.getVizSize());
             }
         };
 

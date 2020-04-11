@@ -58,7 +58,7 @@
                                             *ngIf="filteringCheckboxes.controls[card.category].value && card.category === category"
                                             style="margin-right: 20px">
                                             <mat-card class="sub-card"
-                                                (click)="selectedVisualTab(card.header, card.selected, $event, index); openDialog(card.header, card.category, card.viz, card.text, index)">
+                                                (click)="selectedVisualTab(card.header, card.selected, $event, index); openDialog(card.header, card.category, card.viz, card.text, card.desktopHeight, index)">
                                                 <mat-card-header>
                                                     <mat-card-title>{{card.header}}</mat-card-title>
                                                 </mat-card-header>

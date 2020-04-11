@@ -70,6 +70,5 @@ export class CommonMobileVisualComponent implements OnInit, AfterViewInit, OnDes
         };
 
         this.viz = new tableau.Viz(this.containerDiv.nativeElement, this.vizUrl, options);
-        console.log(this.viz);
     }
 }
