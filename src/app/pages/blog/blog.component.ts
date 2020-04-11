@@ -38,6 +38,7 @@ export class BlogComponent implements OnInit {
                 console.log(this.feed.items);
                 this.feed.items.forEach(element => {
                     element.formatedPubDate = moment(element.pubDate).format('MMM DD, YYYY');
+                    console.log(element.description);
                 });
             },
             err => this.errorStream.emit(err),
