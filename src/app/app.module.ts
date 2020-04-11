@@ -33,6 +33,7 @@ import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import { CommonMobileVisualComponent } from './components/common-mobile-visual/common-mobile-visual.component';
 import { OutreachComponent } from './pages/outreach/outreach.component';
 import { CommonDesktopVisualComponent } from './components/common-desktop-visual/common-desktop-visual.component';
+import { BlogComponent } from './pages/blog/blog.component';
 
 @NgModule({
     declarations: [
@@ -48,6 +49,7 @@ import { CommonDesktopVisualComponent } from './components/common-desktop-visual
         AnalysisTestingComponent,
         AnalysisCapacityComponent,
         AnalysisGrowthComponent,
+        BlogComponent,
         DataComponent,
         CommonMobileVisualComponent,
         OutreachComponent,

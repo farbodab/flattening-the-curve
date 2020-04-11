@@ -57,16 +57,17 @@ export class CommonDesktopVisualComponent implements OnInit, OnDestroy, AfterVie
 
         const options = {
             hideTabs: true,
-            width: "100%",
-            height: "1500px",
+            //width: "100%",
+            //height: "1500px",
+            margin: "0 auto",
             onFirstInteractive: function () {
                 // The viz is now ready and can be safely used.
                 console.log("Run this code when the viz has finished loading.");
+                console.log(this.viz.getVizSize());
             }
         };
 
         this.viz = new tableau.Viz(this.containerDiv.nativeElement, this.vizUrl, options);
-        console.log(this.viz);
     }
 
     private refresh_layout(width) {

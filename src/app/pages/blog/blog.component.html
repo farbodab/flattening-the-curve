@@ -1,0 +1,38 @@
+<app-navbar [shows_title]='true' [page]='"blog"'></app-navbar>
+<div style="width: 1024px; margin: 30px auto">
+  <div style="font-weight: bold; font-size: 21px;">Latest</div>
+  <div *ngIf="feed">
+    <!-- <div style="display: flex; flex-direction: column; text-align: center">
+      <div class="ng-medium-feed-title">
+        {{ feed.title }}
+      </div>
+      <div>
+        {{ feed.description }}
+      </div>
+      <div>
+        <img [src]="feed.image" />
+      </div>
+    </div> -->
+    <div>
+      <div class="ng-medium-item-container" *ngFor="let item of feed.items"
+        style="display: flex; flex-direction: column; padding: 23px 0px">
+        <div
+          style="border: 1px solid rgba(0, 0, 0, 0.1); padding: 24px; box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 4px; border-radius: 5px">
+          <div style="font-size: 16px; line-height: 20px;">{{ item.author }}</div>
+          <div style="text-align: left; font-size: 16px; line-height: 20px;">{{ item.formatedPubDate }}</div>
+          <div style="display: flex; margin-top: 15px">
+            <div *ngFor="let category of item.categories; index as index" style="color: rgba(0, 0, 0, 0.54)">
+              {{ category }} <span *ngIf="index !== (item.categories.length - 1)">,&nbsp;</span>
+            </div>
+          </div>
+          <div (click)="redirect(item.link)" style="text-align: left; margin-top: 30px">
+            <img style="max-width: 80%; max-height: 400px" [src]="item.thumbnail" />
+          </div>
+          <div (click)="redirect(item.link)" style="text-align: left; margin-top: 20px; font-size: 34px;">
+            {{ item.title }}</div>
+          <div style="max-height: 100px; max-width: 100%; overflow-x: hidden; overflow-y: hidden; text-overflow: ellipsis"[innerHTML]="item.description"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
