@@ -1,0 +1,12 @@
+.medium-content {
+    max-height: 300px;
+    ::ng-deep {
+        figure img {
+        max-width: 100%;
+        }
+    }
+}
+
+.medium-content.content-expanded {
+    max-height: 100%;
+}

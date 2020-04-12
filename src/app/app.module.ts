@@ -32,6 +32,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import { CommonMobileVisualComponent } from './components/common-mobile-visual/common-mobile-visual.component';
 import { OutreachComponent } from './pages/outreach/outreach.component';
+import { CommonDesktopVisualComponent } from './components/common-desktop-visual/common-desktop-visual.component';
+import { BlogComponent } from './pages/blog/blog.component';
 
 @NgModule({
     declarations: [
@@ -47,9 +49,11 @@ import { OutreachComponent } from './pages/outreach/outreach.component';
         AnalysisTestingComponent,
         AnalysisCapacityComponent,
         AnalysisGrowthComponent,
+        BlogComponent,
         DataComponent,
         CommonMobileVisualComponent,
-        OutreachComponent
+        OutreachComponent,
+        CommonDesktopVisualComponent
     ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),
@@ -72,6 +76,6 @@ import { OutreachComponent } from './pages/outreach/outreach.component';
         {provide: MatDialogRef, useValue: {}}
     ],
     bootstrap: [AppComponent],
-    entryComponents: [AnalysisCriticalComponent]
+    entryComponents: [AnalysisCriticalComponent, CommonDesktopVisualComponent]
 })
 export class AppModule { }

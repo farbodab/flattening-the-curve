@@ -13,6 +13,7 @@ import {AnalysisTestingComponent} from './pages/analysis/analysis.testing.compon
 import {AnalysisCapacityComponent} from './pages/analysis/analysis.capacity.component';
 import {DataComponent} from 'src/app/pages/data/data.component';
 import {OutreachComponent} from 'src/app/pages/outreach/outreach.component';
+import { BlogComponent } from './pages/blog/blog.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'resources', component: ResourcesComponent},
   {path: 'connect', component: ConnectComponent},
   {path: 'outreach', component: OutreachComponent},
+  {path: 'blog', component: BlogComponent},
   {
     path: 'analysis',
     component: AnalysisComponent,

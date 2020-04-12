@@ -1,7 +1,37 @@
-<div class="container-padding" [ngSwitch]="visualToRender">  
+<!-- <div class="container-padding" [ngSwitch]="visualToRender">  
     <app-analysis-critical *ngSwitchCase="'CriticalCareByRegion'"></app-analysis-critical>
     <app-analysis-capacity *ngSwitchCase="'Capacity'"></app-analysis-capacity>
     <app-analysis-regional *ngSwitchCase="'Regional'"></app-analysis-regional>
     <app-analysis-testing *ngSwitchCase="'Testing'"></app-analysis-testing>
     <div *ngSwitchDefault></div>
+</div> -->
+
+<!-- <div>
+    <div>
+        {{visualName}}
+    </div>
+    <div [innerHTML]="text"></div>
+    <div>
+        {{vizUrl}}
+    </div>
+</div> -->
+<div class="container-padding">
+    <div id='column-layout' mat-dialog-content>
+        <div id='column-detail'>
+            <div style="display: flex">
+                <h3 class="modal-title">{{visualName}}</h3>
+                <div class="collapse-text" *ngIf="toggleTextFlag" (click)="toggleText()">Collapse Description Below
+                </div>
+                <div class="collapse-text" style="padding-bottom: 20px" *ngIf="!toggleTextFlag" (click)="toggleText()">
+                    Expand Description</div>
+            </div>
+            <div id='key-takeaway' class="key-text" *ngIf="toggleTextFlag">
+                <div [innerHTML]="text"></div>
+            </div>
+            <div>
+                <div #vizContainerMobile style="border-style: solid; border-width: 2px; border-color: gray;">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
