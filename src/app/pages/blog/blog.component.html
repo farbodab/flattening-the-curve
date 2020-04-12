@@ -30,9 +30,14 @@
           </div> -->
           <div style="text-align: left; margin-top: 20px; font-size: 34px;">
             {{ item.title }}</div>
-          <div *ngIf="expandedArray" (click)="expandContentToggle(index)">
+          <div *ngIf="expandedArray">
             <div class="medium-content" [ngClass]="{'content-expanded': expandedArray[index]}"
               style="max-width: 100%; overflow-x: hidden; overflow-y: hidden;" [innerHTML]="item.content"></div>
+          </div>
+          <div style="display: flex; padding-top: 20px" (click)="expandContentToggle(index)">
+            <div style="width: 20%"><span *ngIf="!expandedArray[index]">Expand</span><span
+                *ngIf="expandedArray[index]">Collapse</span> Content</div>
+            <div style="width: 100%; border-top: 2px solid black; margin-top: 10px"></div>
           </div>
         </div>
       </div>
