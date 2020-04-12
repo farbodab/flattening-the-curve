@@ -1,6 +1,8 @@
 #data-container {
     display:flex;
     flex-direction: column;
+    padding-bottom: 30px;
+    border-bottom: 2px solid;
     @media screen and (min-width: 1024px) {
         display:flex;
         flex-direction: row;
@@ -26,7 +28,7 @@
     @media screen and (min-width: 1024px) {
         //height: 275px;
         margin-left:auto;
-        max-width:250px;
+        max-width:300px;
     }
 }
 

@@ -19,9 +19,11 @@ export class BlogComponent implements OnInit {
     @Input()
     feed: Feed;
     constructor(private service: NgMediumService) {
+        this.refresh_layout(window.innerWidth);
     }
 
     expandedArray: boolean[];
+    is_full = true;
 
     ngOnInit() {
         this.fetchFeed("https://medium.com/feed/@obenfine");
@@ -52,5 +54,9 @@ export class BlogComponent implements OnInit {
             err => this.errorStream.emit(err),
         );
 
+    }
+
+    private refresh_layout(width) {
+        this.is_full = window.innerWidth >= 1024 ? true : false;
     }
 }

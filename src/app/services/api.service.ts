@@ -11,9 +11,14 @@ export class ApiService {
   readonly phunew_endpoint: string = 'https://flatteningthecurve.herokuapp.com/covid/phunew';
   readonly test_results_endpoint: string = 'https://flatteningthecurve.herokuapp.com/covid/testresults';
   readonly viz_object_endpoint: string = 'https://flatteningthecurve-staging.herokuapp.com/api/viz';
+  readonly data_object_endpoint: string = 'https://flatteningthecurve-staging.herokuapp.com/api/source';
 
   constructor(private http_client: HttpClient) {
 
+  }
+
+  get_data_obj() {
+    return this.http_client.get(this.data_object_endpoint);
   }
 
   get_viz_obj() {
