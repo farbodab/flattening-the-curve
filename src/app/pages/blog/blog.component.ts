@@ -21,6 +21,8 @@ export class BlogComponent implements OnInit {
     constructor(private service: NgMediumService) {
     }
 
+    expandedArray: boolean[];
+
     ngOnInit() {
         this.fetchFeed("https://medium.com/feed/@obenfine");
         //this.fetchFeed("https://medium.com/feed/@howsmyflattening");
@@ -31,17 +33,24 @@ export class BlogComponent implements OnInit {
         window.open(url, '_blank');
     }
 
+    expandContentToggle(index: number) {
+        this.expandedArray[index] = !this.expandedArray[index];
+    }
+
     private fetchFeed(url: string): void {
         this.service.fetchFeed(url).then(
             res => {
                 this.feed = res;
+                let expandedPlaceholder = [];
                 console.log(this.feed.items);
-                this.feed.items.forEach(element => {
+                this.feed.items.forEach((element, index) => {
                     element.formatedPubDate = moment(element.pubDate).format('MMM DD, YYYY');
-                    console.log(element.description);
+                    expandedPlaceholder[index] = false;
                 });
+                this.expandedArray = expandedPlaceholder;
             },
             err => this.errorStream.emit(err),
         );
+
     }
 }
