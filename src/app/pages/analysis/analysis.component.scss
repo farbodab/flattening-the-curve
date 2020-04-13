@@ -327,8 +327,10 @@
 
         .inner-form-styling {
             display: flex;
-            padding: 18px 0;
-            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 0 15px;
+            padding: 9px 0;
+            justify-content: space-between;
         }
     }
 
@@ -338,8 +340,8 @@
         }
 
         .mat-checkbox-layout .mat-checkbox-label {
-            font-size: 12px !important;
-            font-weight: bold;
+            font-size: 10px !important;
+            font-weight: normal;
         }
 
         .mat-dialog-content {

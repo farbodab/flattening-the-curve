@@ -1,0 +1,71 @@
+.desktop-container {
+    width: 1024px;
+    margin: 30px auto;
+}
+
+.desktop-title {
+    text-align: left;
+    margin-top: 20px;
+    font-size: 34px;
+}
+
+.desktop-toggle {
+    width: 20%;
+    text-align: center;
+}
+
+.desktop-line {
+    width: 40%;
+    border-top: 2px solid;
+    margin-top: 10px;
+}
+
+.expand-collapse-container {
+    display: flex; padding-top: 20px;
+}
+
+.mobile-container {
+    margin: 15px;
+}
+
+.mobile-inner-container {
+    width: 100%;
+}
+
+.mobile-title {
+    font-size: 25px;
+    text-align: left;
+    margin-top: 20px;
+}
+
+.mobile-toggle {
+    width: 40%;
+    font-size: 14px;
+    text-align: center;
+}
+
+.mobile-line {
+    width: 30%;
+    border-top: 2px solid;
+    margin-top: 10px;
+}
+
+.expand-collapse-container:hover {
+    cursor: pointer;
+    div {
+        color: #245D70;
+    };
+}
+
+.medium-content {
+    max-height: 300px;
+    ::ng-deep {
+        figure img {
+        max-width: 100%;
+        }
+    }
+}
+
+.medium-content.content-expanded {
+    max-height: 100%;
+}

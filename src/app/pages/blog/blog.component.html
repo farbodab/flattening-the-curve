@@ -1,0 +1,49 @@
+<app-navbar [shows_title]='true' [page]='"blog"'></app-navbar>
+<div [ngClass]="{'mobile-container': !is_full}">
+  <div [ngClass]="{'mobile-inner-container': !is_full, 'desktop-container': is_full}">
+    <div style="font-weight: bold; font-size: 21px;">Latest</div>
+    <div *ngIf="feed">
+      <!-- <div style="display: flex; flex-direction: column; text-align: center">
+      <div class="ng-medium-feed-title">
+        {{ feed.title }}
+      </div>
+      <div>
+        {{ feed.description }}
+      </div>
+      <div>
+        <img [src]="feed.image" />
+      </div>
+    </div> -->
+      <div>
+        <div class="ng-medium-item-container" *ngFor="let item of feed.items; index as index"
+          style="display: flex; flex-direction: column; padding: 23px 0px">
+          <div
+            style="border: 1px solid rgba(0, 0, 0, 0.1); padding: 24px; box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 4px; border-radius: 5px">
+            <div style="font-size: 16px; line-height: 20px;">{{ item.author }}</div>
+            <div style="text-align: left; font-size: 16px; line-height: 20px;">{{ item.formatedPubDate }}</div>
+            <div style="display: flex; margin-top: 15px; flex-wrap: wrap">
+              <div *ngFor="let category of item.categories; index as index" style="color: rgba(0, 0, 0, 0.54)">
+                {{ category }} <span *ngIf="index !== (item.categories.length - 1)">,&nbsp;</span>
+              </div>
+            </div>
+            <!-- <div (click)="redirect(item.link)" style="text-align: left; margin-top: 30px">
+            <img style="max-width: 80%; max-height: 400px" [src]="item.thumbnail" />
+          </div> -->
+            <div [ngClass]="{'desktop-title': is_full, 'mobile-title': !is_full}">
+              {{ item.title }}</div>
+            <div *ngIf="expandedArray">
+              <div class="medium-content" [ngClass]="{'content-expanded': expandedArray[index]}"
+                style="max-width: 100%; overflow-x: hidden; overflow-y: hidden;" [innerHTML]="item.content"></div>
+            </div>
+            <div class="expand-collapse-container" (click)="expandContentToggle(index)">
+              <div [ngClass]="{'desktop-line': is_full, 'mobile-line': !is_full}"></div>
+              <div [ngClass]="{'desktop-toggle': is_full, 'mobile-toggle': !is_full}"><span *ngIf="!expandedArray[index]">Expand</span><span
+                  *ngIf="expandedArray[index]">Collapse</span> Content</div>
+              <div [ngClass]="{'desktop-line': is_full, 'mobile-line': !is_full}"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

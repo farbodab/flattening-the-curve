@@ -25,6 +25,12 @@
     }
 }
 
+.home-page-card.which-curve {
+    @media screen and (min-width: 1024px) {
+        margin: 0 0 65px 0;
+    }
+}
+
 .mission-background {
     background-color: #ffffff;
     background-image: url("src/assets/img/Mission_Section_Asset.svg");
