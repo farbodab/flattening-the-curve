@@ -12,9 +12,14 @@ export class ApiService {
   readonly test_results_endpoint: string = 'https://flatteningthecurve.herokuapp.com/covid/testresults';
   readonly viz_object_endpoint: string = 'https://flatteningthecurve-staging.herokuapp.com/api/viz';
   readonly data_object_endpoint: string = 'https://flatteningthecurve-staging.herokuapp.com/api/source';
+  readonly twitter_object_endpoint: string = 'https://api.twitter.com/1.1/search/tweets.json?q=%23superbowl&result_type=recent';
 
   constructor(private http_client: HttpClient) {
 
+  }
+
+  get_twitter_obj() {
+    return this.http_client.get(this.twitter_object_endpoint);
   }
 
   get_data_obj() {

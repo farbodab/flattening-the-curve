@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter, Input, OnInit } from "@angular/core";
 import { Feed } from '../../interfaces/feed';
 import { NgMediumService } from '../../services/medium-feed.service';
+import { ApiService } from 'src/app/services/api.service';
 import * as moment from 'moment';
 
 @Component({
@@ -18,17 +19,31 @@ export class BlogComponent implements OnInit {
     }
     @Input()
     feed: Feed;
-    constructor(private service: NgMediumService) {
+    constructor(private service: NgMediumService, private api_service: ApiService) {
         this.refresh_layout(window.innerWidth);
     }
 
     expandedArray: boolean[];
     is_full = true;
+    twitterObj: any;
 
     ngOnInit() {
         this.fetchFeed("https://medium.com/feed/@obenfine");
-        //this.fetchFeed("https://medium.com/feed/@howsmyflattening");
+        //this.fetchTwitterFeed();
     }
+
+    // fetchTwitterFeed() {
+    //     this.api_service.get_twitter_obj().subscribe(
+    //         data => {
+    //             this.twitterObj = data;
+    //             console.log(this.twitterObj);
+    //         },
+    //         error => {
+    //             console.log('error');
+    //             //console.error(error);
+    //         }
+    //     );
+    // }
 
     redirect(url: string) {
         //window.location.href = url;
