@@ -35,7 +35,7 @@ export class BlogComponent implements OnInit {
             this.refresh_layout(window.innerWidth);
         });
 
-        this.fetchFeed("https://medium.com/feed/@obenfine");
+        this.fetchFeed("https://medium.com/feed/@howsmyflattening");
         //this.fetchTwitterFeed();
     }
 
