@@ -1,5 +1,7 @@
 import { Component, OnInit, HostListener, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+import { Subscription } from 'rxjs';
+import { HostService } from '../../services/host.service';
 
 declare var tableau: any;
 
@@ -20,12 +22,16 @@ export class HomeComponent implements OnInit {
   tableau: any;
   is_full = true;
   jsonObj: any;
+  window_subscription: Subscription;
 
-  constructor(private api_service: ApiService) {
+  constructor(private host_service: HostService, private api_service: ApiService) {
     this.refresh_layout(window.innerWidth);
   }
 
   ngOnInit() {
+    this.window_subscription = this.host_service.onWindowResize.subscribe(window => {
+      this.refresh_layout(window.innerWidth);
+    });
     this.fetchVizObj();
   }
 
@@ -54,7 +60,7 @@ export class HomeComponent implements OnInit {
   findHomeViz(obj: []) {
     let url = '';
     obj.forEach((element, index) => {
-      if(element['category'] === 'home') {
+      if (element['category'] === 'home') {
         url = element['viz'];
       }
     });
@@ -63,7 +69,7 @@ export class HomeComponent implements OnInit {
 
   setHomeViz(urlInput: string) {
     var placeholderDiv = document.getElementById('vizContainer');
-    if(urlInput === '') {
+    if (urlInput === '') {
       var url = "https://public.tableau.com/views/OntarioICUCapacity2forCOVID-19/Dashboard1?:display_count=y&:origin=viz_share_link"
     } else {
       //var url = "https://public.tableau.com/views/OntarioICUCapacity2forCOVID-19/Dashboard1?:display_count=y&:origin=viz_share_link"

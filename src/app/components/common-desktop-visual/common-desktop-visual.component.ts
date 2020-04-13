@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, AfterViewInit, Inject, Input, ElementRef, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { HostService } from '../../services/host.service';
 
 declare var tableau: any;
 
@@ -19,14 +20,13 @@ export class CommonDesktopVisualComponent implements OnInit, OnDestroy, AfterVie
     height: string;
 
     viz: any;
-    is_full = true;
     toggleTextFlag = true;
 
     constructor(
         private dialogRef: MatDialogRef<CommonDesktopVisualComponent>,
+        private host_service: HostService,
         @Inject(MAT_DIALOG_DATA) data
     ) {
-        this.refresh_layout(window.innerWidth);
         this.visualName = data.visualName;
         this.vizUrl = data.vizUrl;
         this.text = data.textContent;
@@ -35,8 +35,6 @@ export class CommonDesktopVisualComponent implements OnInit, OnDestroy, AfterVie
     }
 
     ngOnInit() {
-
-
     }
 
     ngAfterViewInit() {
@@ -69,9 +67,5 @@ export class CommonDesktopVisualComponent implements OnInit, OnDestroy, AfterVie
         };
 
         this.viz = new tableau.Viz(this.containerDiv.nativeElement, this.vizUrl, options);
-    }
-
-    private refresh_layout(width) {
-        this.is_full = window.innerWidth >= 1024 ? true : false;
     }
 }

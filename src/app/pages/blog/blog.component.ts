@@ -1,7 +1,10 @@
 import { Component, Output, EventEmitter, Input, OnInit } from "@angular/core";
 import { Feed } from '../../interfaces/feed';
 import { NgMediumService } from '../../services/medium-feed.service';
+import { ApiService } from 'src/app/services/api.service';
 import * as moment from 'moment';
+import { Subscription } from 'rxjs';
+import { HostService } from '../../services/host.service';
 
 @Component({
     selector: "app-blog-feed",
@@ -18,15 +21,36 @@ export class BlogComponent implements OnInit {
     }
     @Input()
     feed: Feed;
-    constructor(private service: NgMediumService) {
+    constructor(private host_service: HostService, private service: NgMediumService, private api_service: ApiService) {
+        this.refresh_layout(window.innerWidth);
     }
 
     expandedArray: boolean[];
+    is_full = true;
+    twitterObj: any;
+    window_subscription: Subscription;
 
     ngOnInit() {
+        this.window_subscription = this.host_service.onWindowResize.subscribe(window => {
+            this.refresh_layout(window.innerWidth);
+        });
+
         this.fetchFeed("https://medium.com/feed/@obenfine");
-        //this.fetchFeed("https://medium.com/feed/@howsmyflattening");
+        //this.fetchTwitterFeed();
     }
+
+    // fetchTwitterFeed() {
+    //     this.api_service.get_twitter_obj().subscribe(
+    //         data => {
+    //             this.twitterObj = data;
+    //             console.log(this.twitterObj);
+    //         },
+    //         error => {
+    //             console.log('error');
+    //             //console.error(error);
+    //         }
+    //     );
+    // }
 
     redirect(url: string) {
         //window.location.href = url;
@@ -52,5 +76,9 @@ export class BlogComponent implements OnInit {
             err => this.errorStream.emit(err),
         );
 
+    }
+
+    private refresh_layout(width) {
+        this.is_full = window.innerWidth >= 1024 ? true : false;
     }
 }
