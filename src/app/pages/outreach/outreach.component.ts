@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { HostService } from '../../services/host.service';
 
 @Component({
   selector: 'app-outreach',
@@ -6,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./outreach.component.scss']
 })
 export class OutreachComponent implements OnInit {
-
-  constructor() { }
+  window_subscription: Subscription;
+  is_full = true;
+  
+  constructor(private host_service: HostService) { }
 
   ngOnInit() {
+    this.window_subscription = this.host_service.onWindowResize.subscribe(window => {
+      this.refresh_layout(window.innerWidth);
+    });
+  }
+
+  private refresh_layout(width) {
+    this.is_full = window.innerWidth >= 1024 ? true : false;
   }
 
 }

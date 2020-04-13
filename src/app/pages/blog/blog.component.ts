@@ -3,6 +3,8 @@ import { Feed } from '../../interfaces/feed';
 import { NgMediumService } from '../../services/medium-feed.service';
 import { ApiService } from 'src/app/services/api.service';
 import * as moment from 'moment';
+import { Subscription } from 'rxjs';
+import { HostService } from '../../services/host.service';
 
 @Component({
     selector: "app-blog-feed",
@@ -19,15 +21,20 @@ export class BlogComponent implements OnInit {
     }
     @Input()
     feed: Feed;
-    constructor(private service: NgMediumService, private api_service: ApiService) {
+    constructor(private host_service: HostService, private service: NgMediumService, private api_service: ApiService) {
         this.refresh_layout(window.innerWidth);
     }
 
     expandedArray: boolean[];
     is_full = true;
     twitterObj: any;
+    window_subscription: Subscription;
 
     ngOnInit() {
+        this.window_subscription = this.host_service.onWindowResize.subscribe(window => {
+            this.refresh_layout(window.innerWidth);
+        });
+
         this.fetchFeed("https://medium.com/feed/@obenfine");
         //this.fetchTwitterFeed();
     }
