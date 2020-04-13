@@ -25,6 +25,9 @@ export class BlogComponent implements OnInit {
         this.refresh_layout(window.innerWidth);
     }
 
+    readonly medium_feed = "https://medium.com/feed/@howsmyflattening";
+    readonly medium_feed_ben = "https://medium.com/feed/@obenfine";
+
     expandedArray: boolean[];
     is_full = true;
     twitterObj: any;
@@ -35,7 +38,7 @@ export class BlogComponent implements OnInit {
             this.refresh_layout(window.innerWidth);
         });
 
-        this.fetchFeed("https://medium.com/feed/@howsmyflattening");
+        this.fetchFeed(this.medium_feed_ben);
         //this.fetchTwitterFeed();
     }
 
