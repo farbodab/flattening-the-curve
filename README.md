@@ -1,27 +1,13 @@
-# Web
+# Overview
+Thanks for taking time to contribute to this initiative! We’re glad you’re joining the effort to flatten the curve. 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.8.
+Note: If you have any specific questions that are not addressed in this document, please use the #covid-19-analysis channel to ask Farbod, and Marilise directly.
 
-## Development server
+## What to know before starting?
+We want to harness the power of various COVID-19 data and modelling outputs with experts in software development, epidemiology, public health, medicine, machine learning, and data visualization to rapidly create outputs for Ontario’s public health experts, health systems decision-makers and  government leaders to flatten the curve. 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Our objectives:
+1) Build a collaborative multidisciplinary community of top data scientists and engineers from academia and industry to support Ontario’s response to COVID-19;
+2) Building a single, open data warehouse for datasets related to COVID-19 in Ontario, to compare with analyses and NPIs from around the world;
+3) Build an open analytics platform to allow academic and industry collaboration on analyses to support rapid, data-driven decision-making for our health system;
+4) Build a single site collating and visualizing all Ontario-relevant analyses in an easy-to-interpret manner for health systems decision-makers.
