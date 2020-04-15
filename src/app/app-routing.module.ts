@@ -22,8 +22,8 @@ const routes: Routes = [
   { path: 'data', component: DataComponent },
   { path: 'team', component: StoryComponent },
   { path: 'resources', component: ResourcesComponent },
-  { path: 'connect', component: ConnectComponent },
-  // { path: 'outreach', component: OutreachComponent },
+  //{ path: 'connect', component: ConnectComponent },
+  { path: 'outreach', component: OutreachComponent },
   { path: 'blog', component: BlogComponent },
   {
     path: 'analysis',

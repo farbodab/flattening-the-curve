@@ -11,7 +11,9 @@ export class OutreachComponent implements OnInit {
   window_subscription: Subscription;
   is_full = true;
   
-  constructor(private host_service: HostService) { }
+  constructor(private host_service: HostService) { 
+    this.refresh_layout(window.innerWidth);
+  }
 
   ngOnInit() {
     this.window_subscription = this.host_service.onWindowResize.subscribe(window => {
@@ -21,6 +23,7 @@ export class OutreachComponent implements OnInit {
 
   private refresh_layout(width) {
     this.is_full = window.innerWidth >= 1024 ? true : false;
+    console.log(this.is_full);
   }
 
 }
