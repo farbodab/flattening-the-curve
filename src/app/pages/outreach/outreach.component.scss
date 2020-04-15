@@ -103,6 +103,10 @@ a.button:hover {
 	height: 416px;
 }
 
+.banner-flex {
+	display: flex;
+}
+
 .inner-container-banner {
 	padding-left: 130px;
 	padding-top: 86px;
@@ -116,7 +120,7 @@ a.button:hover {
 
 .card-row {
 	height: 315px;
-	margin-top: 32px;
+	margin-bottom: 32px;
 	min-width: 692px;
 	display: flex;
 }
@@ -206,5 +210,123 @@ a.button:hover {
 .yellow-label {
 	color:#F6C427;
 	font-weight: 500;
+}
+
+.mobile-layout {
+
+	h2 {
+		font-size: 2.125rem;
+	}
+
+	h3 {
+		font-size: 2rem;
+	}
+
+	.inner-container-banner {
+		padding-left: 0;
+		text-align: center;
+
+		.large-font {
+			font-size: 2.5rem;
+		}
+
+		.medium-font {
+			font-size: 1.75rem;
+		}
+
+		.small-font {
+			font-size: 1.25rem;
+		}
+	}
+
+	&.mobile-content-margin {
+		margin: 0px 30px 0 30px;
+	}
+
+	.banner-flex, .linear-gradient, .bottom-container {
+		margin: 0 -30px 0 -30px;
+		display: flex;
+		.content {
+			margin: 0 30px 0 30px;
+			width: 100%;
+		}
+	}
+
+	.card-row {
+		min-width: initial;
+	}
+
+	img {
+		height: 175px;
+		width: 175px;
+		margin: 0;
+		padding-top: 50px;
+	}
+
+	.card-row {
+		height: initial;
+	}
+
+	.card-1 {
+		text-align: center;
+		height: initial;
+	}
+
+	.middle {
+		padding-left: 0;
+		margin-bottom: 2rem;
+	}
+
+	.mobile-top {
+		margin-bottom: 50px;
+	}
+
+	.mobile-middle {
+		margin: 0 -30px 0 -30px;
+		background-color: #ffffff;
+
+		.card-1 {
+			box-shadow: none;
+		}
+	}
+
+	.decor-line{
+		width: initial;
+		margin: 30px 25px 0px 25px;
+	}
+
+	.mobile-bottom {
+		margin-bottom: 0;
+		padding-top: 50px;
+	}
+
+	.bottom-container {
+		padding-bottom: 40px;
+
+		h2 {
+			margin-top: 40px;
+		}
+
+		p {
+			margin-top: 1.5rem;
+		}
+
+		.inner-bottom-container {
+			text-align: center;
+			padding-top: 1rem;
+		}
+	}
+
+	.mobile-card-margin {
+		margin: 0 30px;
+
+		.decor-line {
+			margin: 30px -5px 0 -5px;
+		}
+	}
+
+	.mobile-bottom-padding {
+		padding-bottom: 1rem;
+	}
 }
 

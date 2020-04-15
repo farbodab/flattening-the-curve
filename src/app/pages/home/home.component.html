@@ -1,13 +1,16 @@
 <app-navbar [page]='"home"'></app-navbar>
 <div [ngClass]="{'mobile-browser': !is_full}">
-    <div id='header-container'>
-        <img *ngIf="!is_full" class='logo-mobile-home' routerLink='/home' src='assets/img/logo.svg'>
-        <div id='title-div'>
-            <div>
-                <p *ngIf="is_full" class='mat-display-1' id='title-text'>#HowsMyFlattening</p>
-                <p class='mat-headline home-header-sub' id='subtitle-text'>A centralized data analytics and
-                    visualization
-                    hub monitoring Ontario's response to COVID-19</p>
+    <div class='header-container'>
+        <div class="header-inner-container">
+            <img *ngIf="!is_full" class='logo-mobile-home' routerLink='/home' src='assets/img/logo.svg'>
+            <div id='title-div'>
+                <div>
+                    <p *ngIf="is_full" class='mat-display-1' id='title-text'>#HowsMyFlattening</p>
+                    <p class='mat-headline home-header-sub' id='subtitle-text'>A centralized data
+                        analytics and
+                        visualization
+                        hub monitoring Ontario's response to COVID-19</p>
+                </div>
             </div>
         </div>
     </div>
