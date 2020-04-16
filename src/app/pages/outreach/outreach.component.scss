@@ -212,6 +212,10 @@ a.button:hover {
 	font-weight: 500;
 }
 
+.card-row.mobile-top {
+	margin-top: 32px;
+}
+
 .mobile-layout {
 
 	h2 {
@@ -327,6 +331,10 @@ a.button:hover {
 
 	.mobile-bottom-padding {
 		padding-bottom: 1rem;
+	}
+
+	.mobile-top-content {
+		padding-bottom: 2rem;
 	}
 }
 
