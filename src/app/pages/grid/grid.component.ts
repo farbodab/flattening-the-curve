@@ -19,6 +19,7 @@ declare var tableau: any;
 export class GridComponent implements OnInit, AfterViewInit {
     viz: any;
     kpiViz: any;
+    graph_data = null;
 
     window_subscription: Subscription;
     is_full: boolean = true;
@@ -102,7 +103,6 @@ export class GridComponent implements OnInit, AfterViewInit {
             let placeholderArray = [];
             obj.forEach(item => {
                 if (item.category === element) {
-                    item.html = this.sanitizer.bypassSecurityTrustHtml(item.html);
                     placeholderArray.push(item);
                 }
             });

@@ -43,11 +43,9 @@
                                 <div style="display: flex; padding-top: 20px">
                                     <div class="purple-font" *ngIf="item.key !== 'Critical'"
                                         style="line-height: 30px; min-width: 200px; font-size: 20px;">
-                                        {{item.key+' Analysis'}}
                                     </div>
                                     <div class="purple-font" *ngIf="item.key === 'Critical'"
                                         style="line-height: 30px; min-width: 200px; font-size: 20px;">
-                                        {{item.key+' Care Analysis'}}
                                     </div>
                                     <div
                                         style="line-height: 30px; border-top: 2px solid black; width: 100%; margin-top: 15px;">
@@ -77,8 +75,7 @@
                                         </div>
                                     </div> -->
                                         <div style="height: 100%">
-                                            <div [id]="card.headerNoSpace" [ngClass]="{'mobile-sizing': !is_full}"
-                                                (click)="test()" [innerHTML]="card.html" style="height: 100%"></div>
+                                          <app-plot *ngIf='this.card' [graph_data]="card.html"></app-plot>
                                         </div>
                                     </div>
                                 </div>
@@ -230,6 +227,7 @@
                                             <mat-card-content>
                                                 <p>
                                                     {{card.content}}
+
                                                 </p>
                                             </mat-card-content>
                                         </mat-card>

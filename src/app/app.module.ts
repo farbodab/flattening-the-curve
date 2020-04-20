@@ -32,9 +32,15 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import { CommonMobileVisualComponent } from './components/common-mobile-visual/common-mobile-visual.component';
+import { PlotComponent } from './components/plot/plot';
 import { OutreachComponent } from './pages/outreach/outreach.component';
 import { CommonDesktopVisualComponent } from './components/common-desktop-visual/common-desktop-visual.component';
 import { BlogComponent } from './pages/blog/blog.component';
+import { PlotlyViaCDNModule } from 'angular-plotly.js';
+
+PlotlyViaCDNModule.plotlyVersion = '1.49.4'; // can be `latest` or any version number (i.e.: '1.40.0')
+PlotlyViaCDNModule.plotlyBundle = null; // optional: can be null (for full) or 'basic', 'cartesian', 'geo', 'gl3d', 'gl2d', 'mapbox' or 'finance'
+
 
 @NgModule({
     declarations: [
@@ -55,7 +61,8 @@ import { BlogComponent } from './pages/blog/blog.component';
         CommonMobileVisualComponent,
         OutreachComponent,
         CommonDesktopVisualComponent,
-        GridComponent
+        GridComponent,
+        PlotComponent
     ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),
@@ -70,7 +77,8 @@ import { BlogComponent } from './pages/blog/blog.component';
         MatCheckboxModule,
         FormsModule,
         ReactiveFormsModule,
-        MatDialogModule
+        MatDialogModule,
+        PlotlyViaCDNModule
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
