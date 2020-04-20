@@ -23,8 +23,8 @@ export class PlotComponent implements OnInit {
 
     var figure = JSON.parse(this.graph_data);
 
-    this.graph = figure
+    this.graph = figure;
 
     console.log(this.graph_data)
-}
+  }
 }

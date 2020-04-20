@@ -52,9 +52,10 @@
                                     </div>
                                 </div>
                                 <div
-                                    style="display: grid; grid-template-columns: repeat(12, 1fr); grid-template-rows: repeat(12, 1fr); margin-left: 10px; height: 5000px;">
+                                    style="display: grid; grid-template-columns: repeat(12, 1fr); grid-template-rows: repeat(12, 1fr); column-gap: 10px; row-gap: 16px; margin-left: 10px; height: 200vh;">
                                     <div *ngFor="let card of item.value; index as index"
-                                        style="grid-column: span 4; grid-row: span 1; height: 100%">
+                                        style="height: 100%;"
+                                        [ngStyle]="{'grid-column': card.column, 'grid-row': card.row}">
                                         <!-- <div *ngIf="card.category !== 'Home' && card.category !== 'Kpi-dash'">
                                         <div class="sub-card-styling"
                                             [ngClass]="{'selected-visual': card.selected, 'opacity-styling': selectedCategory !== '' && !card.selected}"
@@ -75,7 +76,7 @@
                                         </div>
                                     </div> -->
                                         <div style="height: 100%">
-                                          <app-plot *ngIf='this.card' [graph_data]="card.html"></app-plot>
+                                            <app-plot *ngIf='this.card' [graph_data]="card.html"></app-plot>
                                         </div>
                                     </div>
                                 </div>

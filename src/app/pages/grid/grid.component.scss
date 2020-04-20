@@ -177,6 +177,11 @@
 }
 
 ::ng-deep {
+
+    .modebar.modebar--hover {
+        display: none !important;
+    }
+    
     .mat-card-header .mat-card-title {
         font-size: 18px !important;
         font-weight: bold;
