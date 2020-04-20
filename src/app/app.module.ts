@@ -20,6 +20,7 @@ import {AnalysisRegionalComponent} from './pages/analysis/analysis.regional.comp
 import {AnalysisTestingComponent} from './pages/analysis/analysis.testing.component';
 import {AnalysisCapacityComponent} from './pages/analysis/analysis.capacity.component';
 import {DataComponent} from './pages/data/data.component';
+import { GridComponent } from './pages/grid/grid.component';
 
 import {environment} from 'src/environments/environment';
 import {AngularFireModule} from '@angular/fire';
@@ -53,7 +54,8 @@ import { BlogComponent } from './pages/blog/blog.component';
         DataComponent,
         CommonMobileVisualComponent,
         OutreachComponent,
-        CommonDesktopVisualComponent
+        CommonDesktopVisualComponent,
+        GridComponent
     ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),
