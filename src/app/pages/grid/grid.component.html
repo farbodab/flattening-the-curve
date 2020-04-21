@@ -2,7 +2,7 @@
 <div class='content' style='background-color: white;'>
     <div id='container' [ngClass]="{'mobile-sizing': !is_full}">
         <div [ngClass]="{'analysis-header': !is_full}">
-            <div [ngClass]="{'inner-analysis-header': !is_full}">
+            <!-- <div [ngClass]="{'inner-analysis-header': !is_full}">
                 <h1>Ontario-specific COVID-19 Analysis</h1>
                 <div>
 
@@ -14,7 +14,7 @@
                     below
                     the dashboard for an in-depth exploration.<br><br><br>
                 </div>
-            </div>
+            </div> -->
         </div>
         <!-- <div class="form-container kpi-header" [ngClass]="{'mobile-kpi-styling': !is_full}">
             <div class="kpi-title purple-font" [ngClass]="{'center-text': !is_full}">Ontario at-a-Glance</div>
@@ -41,20 +41,21 @@
                         <div *ngIf="category !== 'home' && category !== 'kpi-dash'">
                             <div *ngIf="filteringCheckboxes.controls[item.key].value">
                                 <div style="display: flex; padding-top: 20px">
-                                    <div class="purple-font" *ngIf="item.key !== 'Critical'"
+                                    <!-- <div class="purple-font" *ngIf="item.key !== 'Critical'"
                                         style="line-height: 30px; min-width: 200px; font-size: 20px;">
+                                        {{category+' Analysis'}}
                                     </div>
                                     <div class="purple-font" *ngIf="item.key === 'Critical'"
                                         style="line-height: 30px; min-width: 200px; font-size: 20px;">
+                                        {{category+' Analysis'}}
                                     </div>
                                     <div
                                         style="line-height: 30px; border-top: 2px solid black; width: 100%; margin-top: 15px;">
-                                    </div>
+                                    </div>-->
                                 </div>
                                 <div
                                     style="display: grid; grid-template-columns: repeat(12, 1fr); grid-template-rows: repeat(12, 1fr); column-gap: 10px; row-gap: 16px; margin-left: 10px; height: 200vh;">
-                                    <div *ngFor="let card of item.value; index as index"
-                                        style="height: 100%;"
+                                    <div *ngFor="let card of item.value; index as index" style="height: 100%;"
                                         [ngStyle]="{'grid-column': card.column, 'grid-row': card.row}">
                                         <!-- <div *ngIf="card.category !== 'Home' && card.category !== 'Kpi-dash'">
                                         <div class="sub-card-styling"
