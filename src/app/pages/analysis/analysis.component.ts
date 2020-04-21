@@ -187,9 +187,9 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
 
     const optionsMobile = {
       hideTabs: true,
-      // width: "100%",
-      // height: "2300px",
-      margin: "0 auto",
+      width: "100%",
+      height: "2300px",
+      //margin: "0 auto",
       onFirstInteractive: function () {
         // The viz is now ready and can be safely used.
         console.log("Run this code when the viz has finished loading.");
