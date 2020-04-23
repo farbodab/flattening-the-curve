@@ -205,3 +205,13 @@ $updatemenu-button-width:55px;
 .updatemenu-item-text {
     font-weight:500 !important;
 }
+
+.indicatorlayer {
+    .numbers {
+        transform:translate(50%, 50%);
+    }
+
+    .title {
+        transform:translate(50%, 10%);
+    }
+}
