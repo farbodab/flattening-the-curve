@@ -181,3 +181,27 @@ hr {
   color: #391F85 !important;
   text-decoration: none !important;
 }
+    
+$updatemenu-button-width:55px;
+.updatemenu-item-rect {    
+    width:$updatemenu-button-width;
+    stroke-opacity:0.5 !important;
+    rx:0;
+    ry:0;
+}
+
+.updatemenu-button {
+    transform:translate(calc(50%),calc(100% - 40px));
+}
+
+.updatemenu-button:first-child {
+    transform:translate(calc(50% - #{$updatemenu-button-width}), calc(100% - 40px));
+
+    .updatemenu-item-text {
+        transform:translate(6px, 0px);
+    }
+}
+
+.updatemenu-item-text {
+    font-weight:500 !important;
+}

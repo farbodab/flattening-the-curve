@@ -54,7 +54,7 @@
                                     </div>-->
                                 </div>
                                 <div
-                                    style="display: grid; grid-template-columns: repeat(12, 1fr); grid-template-rows: repeat(12, 1fr); column-gap: 10px; row-gap: 16px; margin-left: 10px; height: 200vh;">
+                                    style="display: grid; grid-template-columns: repeat(12, 1fr); grid-template-rows: repeat(12, 1fr); column-gap: 10px; row-gap: 16px; margin-left: 10px; height: 200vh; padding:15px">
                                     <div *ngFor="let card of item.value; index as index" style="height: 100%;"
                                         [ngStyle]="{'grid-column': card.column, 'grid-row': card.row}">
                                         <!-- <div *ngIf="card.category !== 'Home' && card.category !== 'Kpi-dash'">
