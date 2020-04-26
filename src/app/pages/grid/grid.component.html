@@ -35,13 +35,31 @@
                     </div>
                 </form>
             </div>
-            <div *ngIf="filteringCheckboxes">
+            <div *ngIf="dropdownList" style="padding-top: 50px">
+                <form [formGroup]="dropdownList">
+                    <mat-form-field>
+                        <mat-label>Select a PHU</mat-label>
+                        <mat-select formControlName="phu" disableOptionCentering
+                            (selectionChange)="routeonSelection(dropdownList.controls.phu.value)">
+                            <ngx-mat-select-search formControlName="searchCtrl" [placeholderLabel]="'Search...'"
+                                [noEntriesFoundLabel]="'Not found'" name="search"></ngx-mat-select-search>
+                            <mat-option *ngFor="let phu of phuArray |stringFilterBy:dropdownList.controls.searchCtrl.value:'phu'" [value]="phu.value">
+                                {{phu.phu}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </form>
+            </div>
+            <div *ngIf="filteringCheckboxes && dropdownList">
                 <div *ngFor="let category of gridList">
                     <div *ngFor="let item of category | keyvalue">
                         <div *ngIf="category !== 'home' && category !== 'kpi-dash'">
                             <div *ngIf="filteringCheckboxes.controls[item.key].value">
-                                <div style="display: flex; padding-top: 20px">
-                                    <!-- <div class="purple-font" *ngIf="item.key !== 'Critical'"
+                                <div *ngFor="let phu of item.value | keyvalue">
+                                    <div *ngFor="let phuGroup of phu.value | keyvalue">
+                                        <div *ngIf="phuGroup.key === dropdownList.controls.phu.value">
+                                            <div style="display: flex; padding-top: 20px">
+                                                <!-- <div class="purple-font" *ngIf="item.key !== 'Critical'"
                                         style="line-height: 30px; min-width: 200px; font-size: 20px;">
                                         {{category+' Analysis'}}
                                     </div>
@@ -52,12 +70,13 @@
                                     <div
                                         style="line-height: 30px; border-top: 2px solid black; width: 100%; margin-top: 15px;">
                                     </div>-->
-                                </div>
-                                <div
-                                    style="display: grid; grid-template-columns: repeat(12, 1fr); grid-template-rows: repeat(12, 1fr); column-gap: 10px; row-gap: 16px; margin-left: 10px; height: 200vh;">
-                                    <div *ngFor="let card of item.value; index as index" style="height: 100%;"
-                                        [ngStyle]="{'grid-column': card.column, 'grid-row': card.row}">
-                                        <!-- <div *ngIf="card.category !== 'Home' && card.category !== 'Kpi-dash'">
+                                            </div>
+                                            <div
+                                                style="display: grid; grid-template-columns: repeat(12, 1fr); grid-template-rows: repeat(12, 1fr); column-gap: 10px; row-gap: 16px; margin-left: 10px; height: 200vh;">
+                                                <div *ngFor="let phuPlot of phuGroup.value; index as index"
+                                                    style="height: 100%; padding: 10px;"
+                                                    [ngStyle]="{'grid-column': phuPlot.column, 'grid-row': phuPlot.row}">
+                                                    <!-- <div *ngIf="card.category !== 'Home' && card.category !== 'Kpi-dash'">
                                         <div class="sub-card-styling"
                                             [ngClass]="{'selected-visual': card.selected, 'opacity-styling': selectedCategory !== '' && !card.selected}"
                                             *ngIf="filteringCheckboxes.controls[card.category].value && card.category === category"
@@ -76,8 +95,11 @@
                                             </mat-card>
                                         </div>
                                     </div> -->
-                                        <div style="height: 100%">
-                                            <app-plot *ngIf='this.card' [graph_data]="card.html"></app-plot>
+                                                    <div style="height: 100%">
+                                                        <app-plot *ngIf="this.phuPlot" [graph_data]="phuPlot.html"></app-plot>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
