@@ -177,7 +177,7 @@ export class GridComponent implements OnInit, AfterViewInit {
             value: 'city_of_toronto'
         },
         {
-            phu: 'Ontario Health Unit',
+            phu: 'Ontario',
             value: 'ontario'
         }
     ];
@@ -416,7 +416,8 @@ export class GridComponent implements OnInit, AfterViewInit {
     initDropdownForm(array: any) {
         this.dropdownList = this.formBuilder.group({});
         if (this.path === '') {
-            this.dropdownList.addControl('phu', this.formBuilder.control(''));
+            this.dropdownList.addControl('phu', this.formBuilder.control('ontario'));
+            this.headerLabel = 'Ontario';
         } else {
             this.dropdownList.addControl('phu', this.formBuilder.control(this.path));
             const index = this.phuArray.findIndex(phu => phu.value === this.path);
