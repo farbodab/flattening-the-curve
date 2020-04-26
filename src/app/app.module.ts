@@ -28,6 +28,8 @@ import {AngularFireAnalyticsModule, ScreenTrackingService} from '@angular/fire/a
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSelectModule} from '@angular/material/select';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
@@ -37,6 +39,8 @@ import { OutreachComponent } from './pages/outreach/outreach.component';
 import { CommonDesktopVisualComponent } from './components/common-desktop-visual/common-desktop-visual.component';
 import { BlogComponent } from './pages/blog/blog.component';
 import { PlotlyViaCDNModule } from 'angular-plotly.js';
+
+import { MainPipe } from './pipe/pipe.module';
 
 PlotlyViaCDNModule.plotlyVersion = '1.49.4'; // can be `latest` or any version number (i.e.: '1.40.0')
 PlotlyViaCDNModule.plotlyBundle = null; // optional: can be null (for full) or 'basic', 'cartesian', 'geo', 'gl3d', 'gl2d', 'mapbox' or 'finance'
@@ -78,7 +82,10 @@ PlotlyViaCDNModule.plotlyBundle = null; // optional: can be null (for full) or '
         FormsModule,
         ReactiveFormsModule,
         MatDialogModule,
-        PlotlyViaCDNModule
+        PlotlyViaCDNModule,
+        MatSelectModule,
+        NgxMatSelectSearchModule,
+        MainPipe
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

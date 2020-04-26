@@ -25,6 +25,5 @@ export class PlotComponent implements OnInit {
 
     this.graph = figure;
 
-    console.log(this.graph_data)
   }
 }

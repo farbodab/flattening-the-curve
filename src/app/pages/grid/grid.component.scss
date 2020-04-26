@@ -181,6 +181,10 @@
     .modebar.modebar--hover {
         display: none !important;
     }
+
+    .mobile-sizing .modebar-container {
+        display: none !important;
+    }
     
     .mat-card-header .mat-card-title {
         font-size: 18px !important;
@@ -307,12 +311,20 @@
 }
 
 #container.mobile-sizing {
-        margin-bottom: 0;
+        margin: 0 15px;
         padding-bottom: 0;
 }
     
 .mobile-sizing #kpiContainer {
         padding-bottom: 0;
+}
+
+.mobile-grid-row {
+    grid-template-rows: repeat(8, 1fr);
+}
+
+.desktop-grid-row {
+    grid-template-rows: repeat(12, 1fr);
 }
 
 #mobile-nav {

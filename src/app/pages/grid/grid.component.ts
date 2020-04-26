@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit, Inject } from '@angular/core';
 import { HostService } from 'src/app/services/host.service';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, UrlTree, UrlSegment, UrlSegmentGroup, PRIMARY_OUTLET, DefaultUrlSerializer, RouterState, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
 import { ApiService } from 'src/app/services/api.service';
 import { CommonDesktopVisualComponent } from '../../components/common-desktop-visual/common-desktop-visual.component';
@@ -13,8 +13,9 @@ declare var tableau: any;
 @Component({
     selector: 'app-grid',
     templateUrl: './grid.component.html',
-    styleUrls: ['./grid.component.scss']
+    styleUrls: ['./grid.component.scss'],
 })
+
 
 export class GridComponent implements OnInit, AfterViewInit {
     viz: any;
@@ -23,19 +24,174 @@ export class GridComponent implements OnInit, AfterViewInit {
     window_subscription: Subscription;
     is_full: boolean = true;
     filteringCheckboxes: FormGroup;
+    dropdownList: FormGroup;
     selectedCategory = '';
     jsonObj: any;
     categoryList = [];
     gridList = [];
 
-    constructor(private host_service: HostService, private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog, private api_service: ApiService, private sanitizer: DomSanitizer) {
+    searchCtrl: string;
+
+    urlSegments: any;
+    path: string;
+    headerLabel = '';
+    phuArray = [
+        {
+            phu: 'Brant County Health Unit',
+            value: 'brant_county'
+        },
+        {
+            phu: 'Chatham-Kent Health Unit',
+            value: 'chatham_kent'
+        },
+        {
+            phu: 'City of Hamilton Health Unit',
+            value: 'city_of_hamilton'
+        },
+        {
+            phu: 'City of Ottawa Health Unit',
+            value: 'city_of_ottawa'
+        },
+        {
+            phu: 'City of Toronto Health Unit',
+            value: 'city_of_toronto'
+        },
+        {
+            phu: 'Durham Regional Health Unit',
+            value: 'durham_regional'
+        },
+        {
+            phu: 'Grey Bruce Health Unit',
+            value: 'grey_bruce'
+        },
+        {
+            phu: 'Haldimand-Norfolk Health Unit',
+            value: 'haldimand_norfolk'
+        },
+        {
+            phu: 'Haliburton, Kawartha, Pine Ridge District Health Unit',
+            value: 'haliburton_kawartha_pine_ridge_district'
+        },
+        {
+            phu: 'Halton Regional Health Unit',
+            value: 'halton_regional'
+        },
+        {
+            phu: 'Hastings and Prince Edward Counties Health Unit',
+            value: 'hastings_and_prince_edward_counties'
+        },
+        {
+            phu: 'Huron County Health Unit',
+            value: 'huron_county'
+        },
+        {
+            phu: 'Kingston, Frontenac, and Lennox and Addington Health Unit',
+            value: 'kingston_frontenac_and_lennox_and_addington'
+        },
+        {
+            phu: 'Lambton Health Unit',
+            value: 'lambton'
+        },
+        {
+            phu: 'Leeds, Grenville and Lanark District Health Unit',
+            value: 'leeds_grenville_and_lanark_district'
+        },
+        {
+            phu: 'Middlesex-London Health Unit',
+            value: 'middlesex_london'
+        },
+        {
+            phu: 'Niagara Regional Area Health Unit',
+            value: 'niagara_regional_area'
+        },
+        {
+            phu: 'North Bay Parry Sound District Health Unit',
+            value: 'north_bay_parry_sound_district'
+        },
+        {
+            phu: 'Northwestern Health Unit',
+            value: 'northwestern'
+        },
+        {
+            phu: 'Ontario',
+            value: 'ontario'
+        },
+        {
+            phu: 'Peel Regional Health Unit',
+            value: 'peel_regional'
+        },
+        {
+            phu: 'Perth District Health Unit',
+            value: 'perth_district'
+        },
+        {
+            phu: 'Peterborough County–City Health Unit',
+            value: 'peterborough_county_city'
+        },
+        {
+            phu: 'Porcupine Health Unit',
+            value: 'porcupine'
+        },
+        {
+            phu: 'Renfrew County and District Health Unit',
+            value: 'renfrew_county_and_district'
+        },
+        {
+            phu: 'Simcoe Muskoka District Health Unit',
+            value: 'simcoe_muskoka_district'
+        },
+        {
+            phu: 'Southwestern Public Health Unit',
+            value: 'southwestern'
+        },
+        {
+            phu: 'Sudbury and District Health Unit',
+            value: 'sudbury_and_district'
+        },
+        {
+            phu: 'The District of Algoma Health Unit',
+            value: 'the_district_of_algoma'
+        },
+        {
+            phu: 'The Eastern Ontario Health Unit',
+            value: 'the_eastern_ontario'
+        },
+        {
+            phu: 'Thunder Bay District Health Unit',
+            value: 'thunder_bay_district'
+        },
+        {
+            phu: 'Timiskaming Health Unit',
+            value: 'timiskaming'
+        },
+        {
+            phu: 'Waterloo Health Unit',
+            value: 'waterloo'
+        },
+        {
+            phu: 'Wellington-Dufferin-Guelph Health Unit',
+            value: 'wellington_dufferin_guelph'
+        },
+        {
+            phu: 'Windsor-Essex County Health Unit',
+            value: 'windsor_essex_county'
+        },
+        {
+            phu: 'York Regional Health Unit',
+            value: 'york_regional'
+        }
+    ];
+
+    constructor(private host_service: HostService, private route: ActivatedRoute, private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog, private api_service: ApiService, private sanitizer: DomSanitizer) {
         this.refresh_layout(window.innerWidth);
+        this.urlSegments = route.snapshot['_urlSegment'];
     }
 
     ngOnInit() {
         this.window_subscription = this.host_service.onWindowResize.subscribe(window => {
             this.refresh_layout(window.innerWidth);
         });
+        typeof (this.urlSegments.segments[1]) === 'undefined' ? this.path = '' : this.path = this.urlSegments.segments[1].path;
     }
 
     ngAfterViewInit() {
@@ -48,6 +204,10 @@ export class GridComponent implements OnInit, AfterViewInit {
         }
     }
 
+    // test() {
+    //     console.log(this.dropdownList.controls.phu.value);
+    // }
+
     fetchVizObj() {
         this.api_service.get_plot_obj().subscribe(
             data => {
@@ -58,6 +218,7 @@ export class GridComponent implements OnInit, AfterViewInit {
                 this.iterateCategories(this.jsonObj);
                 this.gridList = this.restructureObj(this.jsonObj, this.categoryList);
                 this.initFilteringForm(this.gridList);
+                this.initDropdownForm(this.phuArray);
                 //this.setVisuals(this.jsonObj);
             },
             error => {
@@ -100,15 +261,22 @@ export class GridComponent implements OnInit, AfterViewInit {
         let objPlaceholder = [];
         categoryList.forEach(element => {
             let placeholderArray = [];
-            obj.forEach(item => {
-                if (item.category === element) {
-                    placeholderArray.push(item);
-                }
+            this.phuArray.forEach(phu => {
+                let placeholderPhuArray = [];
+                obj.forEach(item => {
+                    if (item.category === element && (item.phu === phu.value)) {
+                        placeholderPhuArray.push(item);
+                    }
+                });
+                placeholderArray.push({
+                    [phu.value]: placeholderPhuArray
+                });
             });
             objPlaceholder.push({
                 [element]: placeholderArray
             });
         });
+        console.log(objPlaceholder);
         return objPlaceholder;
     }
 
@@ -151,13 +319,10 @@ export class GridComponent implements OnInit, AfterViewInit {
     }
 
     setVisuals(obj: any) {
-        console.log(obj);
         obj.forEach((element, index) => {
             //if (element.category !== 'Home' && element.category !== 'Kpi-dash' && this.filteringCheckboxes.controls[element.category].value) {
             if (document.getElementById(element.headerNoSpace) !== null) {
-                console.log(element);
                 const placeholderDiv = document.getElementById(element.headerNoSpace);
-                console.log(placeholderDiv);
                 const optionsDesktop = {
                     hideTabs: true,
                     width: "100%",
@@ -233,7 +398,6 @@ export class GridComponent implements OnInit, AfterViewInit {
     }
 
     initFilteringForm(obj: any) {
-        console.log(obj);
         this.filteringCheckboxes = this.formBuilder.group({
             // Critical: true,
             // Regional: true,
@@ -244,10 +408,28 @@ export class GridComponent implements OnInit, AfterViewInit {
         obj.forEach(element => {
             keysArr.push(Object.keys(element));
         });
-        console.log(keysArr);
         keysArr.forEach(element => {
             this.filteringCheckboxes.addControl(element, this.formBuilder.control(true));
         });
+    }
+
+    initDropdownForm(array: any) {
+        this.dropdownList = this.formBuilder.group({});
+        if (this.path === '') {
+            this.dropdownList.addControl('phu', this.formBuilder.control('ontario'));
+            this.headerLabel = 'Ontario';
+        } else {
+            this.dropdownList.addControl('phu', this.formBuilder.control(this.path));
+            const index = this.phuArray.findIndex(phu => phu.value === this.path);
+            this.headerLabel = this.phuArray[index].phu;
+        }
+        this.dropdownList.addControl('searchCtrl', this.formBuilder.control(''));
+    }
+
+    routeonSelection(route: string) {
+        const index = this.phuArray.findIndex(phu => phu.value === route);
+        this.headerLabel = this.phuArray[index].phu;
+        this.router.navigate(['/dashboard/' + route]);
     }
 
     routeLink(route: string, category: string) {
@@ -258,10 +440,6 @@ export class GridComponent implements OnInit, AfterViewInit {
         this.router.navigate(['/analysis/' + route]);
     }
 
-    test() {
-        console.log(document.getElementById('CapacityAnalysis'));
-        this.setVisuals(this.jsonObj);
-    }
     private refresh_layout(width) {
         this.is_full = window.innerWidth >= 1024 ? true : false;
     }
