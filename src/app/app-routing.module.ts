@@ -22,7 +22,8 @@ const routes: Routes = [
   { path: 'outreach', component: OutreachComponent },
   { path: 'blog', component: BlogComponent },
   {
-    path: 'grid', component: GridComponent, children: [
+    path: 'dashboard', component: GridComponent, children: [
+      { path: 'the_district_of_algoma', component: GridComponent},
       { path: 'brant_county', component: GridComponent },
       { path: 'durham_regional', component: GridComponent },
       { path: 'grey_bruce', component: GridComponent },
@@ -56,7 +57,8 @@ const routes: Routes = [
       { path: 'windsor_essex_county', component: GridComponent },
       { path: 'york_regional', component: GridComponent },
       { path: 'southwestern', component: GridComponent },
-      { path: 'city_of_toronto', component: GridComponent }
+      { path: 'city_of_toronto', component: GridComponent },
+      { path: 'ontario', component: GridComponent }
     ]
   },
 {

@@ -34,6 +34,7 @@ export class GridComponent implements OnInit, AfterViewInit {
 
     urlSegments: any;
     path: string;
+    headerLabel = '';
     phuArray = [
         {
             phu: 'The District of Algoma Health Unit',
@@ -112,7 +113,7 @@ export class GridComponent implements OnInit, AfterViewInit {
             value: 'city_of_ottawa'
         },
         {
-            phu: 'Peel Regional Health Unit’',
+            phu: 'Peel Regional Health Unit',
             value: 'peel_regional'
         },
         {
@@ -160,7 +161,7 @@ export class GridComponent implements OnInit, AfterViewInit {
             value: 'wellington_dufferin_guelph'
         },
         {
-            phu: 'Windsor-Essex County Health Unit’',
+            phu: 'Windsor-Essex County Health Unit',
             value: 'windsor_essex_county'
         },
         {
@@ -174,6 +175,10 @@ export class GridComponent implements OnInit, AfterViewInit {
         {
             phu: 'City of Toronto Health Unit',
             value: 'city_of_toronto'
+        },
+        {
+            phu: 'Ontario Health Unit',
+            value: 'ontario'
         }
     ];
 
@@ -187,7 +192,6 @@ export class GridComponent implements OnInit, AfterViewInit {
             this.refresh_layout(window.innerWidth);
         });
         typeof (this.urlSegments.segments[1]) === 'undefined' ? this.path = '' : this.path = this.urlSegments.segments[1].path;
-        console.log(this.path);
     }
 
     ngAfterViewInit() {
@@ -415,12 +419,16 @@ export class GridComponent implements OnInit, AfterViewInit {
             this.dropdownList.addControl('phu', this.formBuilder.control(''));
         } else {
             this.dropdownList.addControl('phu', this.formBuilder.control(this.path));
+            const index = this.phuArray.findIndex(phu => phu.value === this.path);
+            this.headerLabel = this.phuArray[index].phu;
         }
         this.dropdownList.addControl('searchCtrl', this.formBuilder.control(''));
     }
 
     routeonSelection(route: string) {
-        this.router.navigate(['/grid/' + route]);
+        const index = this.phuArray.findIndex(phu => phu.value === route);
+        this.headerLabel = this.phuArray[index].phu;
+        this.router.navigate(['/dashboard/' + route]);
     }
 
     routeLink(route: string, category: string) {

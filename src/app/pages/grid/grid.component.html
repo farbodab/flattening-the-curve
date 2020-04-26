@@ -21,8 +21,8 @@
             <div class="kpi-line" *ngIf='is_full'></div>
         </div> -->
         <!-- <div id="kpiContainer" [ngClass]="{'mobile-sizing': !is_full}"></div> -->
-        <div *ngIf='is_full' [ngClass]="{'modal-opened': selectedCategory !== ''}">
-            <div class="form-container">
+        <div [ngClass]="{'modal-opened': selectedCategory !== ''}">
+            <!-- <div class="form-container">
                 <form *ngIf="filteringCheckboxes" [formGroup]="filteringCheckboxes" class="form-styling">
                     <div style="display: flex;">
                         <div *ngFor="let category of gridList">
@@ -34,32 +34,38 @@
                         </div>
                     </div>
                 </form>
-            </div>
-            <div *ngIf="dropdownList" style="padding-top: 50px">
+            </div> -->
+            <div *ngIf="dropdownList" style="padding-top: 10px">
                 <form [formGroup]="dropdownList">
-                    <mat-form-field>
+                    <mat-form-field [style.width]="is_full ? '350px' : '100%'">
                         <mat-label>Select a PHU</mat-label>
                         <mat-select formControlName="phu" disableOptionCentering
                             (selectionChange)="routeonSelection(dropdownList.controls.phu.value)">
                             <ngx-mat-select-search formControlName="searchCtrl" [placeholderLabel]="'Search...'"
                                 [noEntriesFoundLabel]="'Not found'" name="search"></ngx-mat-select-search>
-                            <mat-option *ngFor="let phu of phuArray |stringFilterBy:dropdownList.controls.searchCtrl.value:'phu'" [value]="phu.value">
+                            <mat-option
+                                *ngFor="let phu of phuArray |stringFilterBy:dropdownList.controls.searchCtrl.value:'phu'"
+                                [value]="phu.value">
                                 {{phu.phu}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
                 </form>
             </div>
-            <div *ngIf="filteringCheckboxes && dropdownList">
+            <div *ngIf="dropdownList && is_full" style="padding-top: 30px; font-size: 24px; padding-bottom: 30px; text-align: center">
+                {{headerLabel}}
+            </div>
+            <!-- <div *ngIf="filteringCheckboxes && dropdownList"> -->
+            <div *ngIf="dropdownList">
                 <div *ngFor="let category of gridList">
                     <div *ngFor="let item of category | keyvalue">
                         <div *ngIf="category !== 'home' && category !== 'kpi-dash'">
-                            <div *ngIf="filteringCheckboxes.controls[item.key].value">
-                                <div *ngFor="let phu of item.value | keyvalue">
-                                    <div *ngFor="let phuGroup of phu.value | keyvalue">
-                                        <div *ngIf="phuGroup.key === dropdownList.controls.phu.value">
-                                            <div style="display: flex; padding-top: 20px">
-                                                <!-- <div class="purple-font" *ngIf="item.key !== 'Critical'"
+                            <!-- <div *ngIf="filteringCheckboxes.controls[item.key].value"> -->
+                            <div *ngFor="let phu of item.value | keyvalue">
+                                <div *ngFor="let phuGroup of phu.value | keyvalue">
+                                    <div *ngIf="phuGroup.key === dropdownList.controls.phu.value">
+                                        <div style="display: flex; padding-top: 20px">
+                                            <!-- <div class="purple-font" *ngIf="item.key !== 'Critical'"
                                         style="line-height: 30px; min-width: 200px; font-size: 20px;">
                                         {{category+' Analysis'}}
                                     </div>
@@ -70,318 +76,32 @@
                                     <div
                                         style="line-height: 30px; border-top: 2px solid black; width: 100%; margin-top: 15px;">
                                     </div>-->
-                                            </div>
-                                            <div
-                                                style="display: grid; grid-template-columns: repeat(12, 1fr); grid-template-rows: repeat(12, 1fr); column-gap: 10px; row-gap: 16px; margin-left: 10px; height: 200vh;">
-                                                <div *ngFor="let phuPlot of phuGroup.value; index as index"
-                                                    style="height: 100%; padding: 10px;"
-                                                    [ngStyle]="{'grid-column': phuPlot.column, 'grid-row': phuPlot.row}">
-                                                    <!-- <div *ngIf="card.category !== 'Home' && card.category !== 'Kpi-dash'">
-                                        <div class="sub-card-styling"
-                                            [ngClass]="{'selected-visual': card.selected, 'opacity-styling': selectedCategory !== '' && !card.selected}"
-                                            *ngIf="filteringCheckboxes.controls[card.category].value && card.category === category"
-                                            style="margin-right: 20px">
-                                            <mat-card class="sub-card"
-                                                (click)="selectedVisualTab(card.header, card.selected, $event, index); openDialog(card.header, card.category, card.viz, card.text, card.desktopHeight, index)">
-                                                <mat-card-header>
-                                                    <mat-card-title>{{card.header}}</mat-card-title>
-                                                </mat-card-header>
-                                                <img mat-card-image src={{card.thumbnail}} alt="Visual Thumbnail">
-                                                <mat-card-content>
-                                                    <p>
-                                                        {{card.content}}
-                                                    </p>
-                                                </mat-card-content>
-                                            </mat-card>
                                         </div>
-                                    </div> -->
-                                                    <div style="height: 100%">
-                                                        <app-plot *ngIf="this.phuPlot" [graph_data]="phuPlot.html"></app-plot>
-                                                    </div>
+                                        <div [ngClass]="{'mobile-grid-row' : !is_full, 'desktop-grid-row': is_full}"
+                                            style="display: grid; grid-template-columns: repeat(12, 1fr); row-gap: 16px;"
+                                            [style.height]="is_full ? '150vh' : '290vh'"
+                                            [style.margin-left]="is_full ? '10px' : '0'">
+                                            <div *ngFor="let phuPlot of phuGroup.value; index as index"
+                                                style="height: 100%;"
+                                                [style.grid-column]="is_full ? phuPlot.column : 'span 12'"
+                                                [style.grid-row]="is_full ? phuPlot.row : 'span 1'"
+                                                [style.padding]="is_full ? '10px' : 'initial'">
+                                                <div style="height: 100%">
+                                                    <app-plot *ngIf="this.phuPlot" [graph_data]="phuPlot.html">
+                                                    </app-plot>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- <div *ngIf="filteringCheckboxes.controls.Critical.value">
-                    <div style="display: flex; padding-top: 20px">
-                        <div class="purple-font" style="line-height: 30px; min-width: 200px; font-size: 20px;">
-                            Critical Care Analysis
-                        </div>
-                        <div style="line-height: 30px; border-top: 2px solid black; width: 100%; margin-top: 15px;">
-                        </div>
-                    </div>
-                    <div style="display: flex; flex-wrap: wrap; margin-left: 50px">
-                        <div *ngFor="let card of jsonObj; index as index">
-                            <div *ngIf="categoryList.includes(card.category)">
-                                <div class="sub-card-styling"
-                                    [ngClass]="{'selected-visual': card.selected, 'opacity-styling': selectedCategory !== '' && !card.selected}"
-                                    *ngIf="filteringCheckboxes.controls[card.category].value && card.category === 'Critical'"
-                                    style="margin-right: 20px">
-                                    <mat-card class="sub-card"
-                                        (click)="selectedVisualTab(card.header, card.selected, $event, index); openDialog(card.header, card.category, index)">
-                                        <mat-card-header>
-                                            <mat-card-title>{{card.header}}</mat-card-title>
-                                        </mat-card-header>
-                                        <img mat-card-image src={{card.thumbnail}} alt="Visual Thumbnail">
-                                        <mat-card-content>
-                                            <p>
-                                                {{card.content}}
-                                            </p>
-                                        </mat-card-content>
-                                    </mat-card>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div *ngIf="filteringCheckboxes.controls.Regional.value">
-                    <div style="display: flex; padding-top: 20px">
-                        <div class="purple-font" style="line-height: 30px; min-width: 200px; font-size: 20px">
-                            Regional Analysis
-                        </div>
-                        <div style="line-height: 30px; border-top: 2px solid black; width: 100%; margin-top: 15px;">
-                        </div>
-                    </div>
-                    <div style="display: flex; flex-wrap: wrap; margin-left: 50px">
-                        <div *ngFor="let card of jsonObj; index as index">
-                            <div *ngIf="categoryList.includes(card.category)">
-                                <div class="sub-card-styling"
-                                    [ngClass]="{'selected-visual': card.selected, 'opacity-styling': selectedCategory !== '' && !card.selected}"
-                                    *ngIf="filteringCheckboxes.controls[card.category].value && card.category === 'Regional'"
-                                    style="margin-right: 20px">
-                                    <mat-card class="sub-card"
-                                        (click)="selectedVisualTab(card.header, card.selected, $event, index); openDialog(card.header, card.category, index)">
-                                        <mat-card-header>
-                                            <mat-card-title>{{card.header}}</mat-card-title>
-                                        </mat-card-header>
-                                        <img mat-card-image src={{card.thumbnail}} alt="Visual Thumbnail">
-                                        <mat-card-content>
-                                            <p>
-                                                {{card.content}}
-                                            </p>
-                                        </mat-card-content>
-                                    </mat-card>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div *ngIf="filteringCheckboxes.controls.Testing.value">
-                    <div style="display: flex; padding-top: 20px">
-                        <div class="purple-font" style="line-height: 30px; min-width: 200px; font-size: 20px">
-                            Testing Analysis
-                        </div>
-                        <div style="line-height: 30px; border-top: 2px solid black; width: 100%; margin-top: 15px;">
-                        </div>
-                    </div>
-                    <div style="display: flex; flex-wrap: wrap; margin-left: 50px">
-                        <div *ngFor="let card of jsonObj; index as index">
-                            <div *ngIf="categoryList.includes(card.category)">
-                                <div class="sub-card-styling"
-                                    [ngClass]="{'selected-visual': card.selected, 'opacity-styling': selectedCategory !== '' && !card.selected}"
-                                    *ngIf="filteringCheckboxes.controls[card.category].value && card.category === 'Testing'"
-                                    style="margin-right: 20px">
-                                    <mat-card class="sub-card"
-                                        (click)="selectedVisualTab(card.header, card.selected, $event, index); openDialog(card.header, card.category, index)">
-                                        <mat-card-header>
-                                            <mat-card-title>{{card.header}}</mat-card-title>
-                                        </mat-card-header>
-                                        <img mat-card-image src={{card.thumbnail}} alt="Visual Thumbnail">
-                                        <mat-card-content>
-                                            <p>
-                                                {{card.content}}
-                                            </p>
-                                        </mat-card-content>
-                                    </mat-card>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-            </div>
-        </div>
-    </div>
-    <div id='mobile-nav' *ngIf='!is_full'>
-        <div class="form-container">
-            <form *ngIf="filteringCheckboxes" [formGroup]="filteringCheckboxes" class="form-styling">
-                <div class="inner-form-styling">
-                    <div *ngFor="let category of categoryList;"
-                        style="border-radius: 6px; background-color: #245D70; color: #ffffff; padding: 6px 12px; width: 22%; margin-bottom: 10px; margin-top: 10px">
-                        <mat-checkbox formControlName="{{category}}">{{category}}
-                        </mat-checkbox>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div *ngIf="filteringCheckboxes">
-            <div *ngFor="let category of categoryList">
-                <div *ngIf="category !== 'home' && category !== 'kpi-dash'">
-                    <div *ngIf="filteringCheckboxes.controls[category].value"
-                        style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); padding-bottom: 25px;">
-                        <div style="display: flex; margin-top: 15px">
-                            <div style="border-top: 1px solid black; width: 100%; margin-top: 30px"></div>
-                            <div class="purple-font" *ngIf="category !== 'Critical'"
-                                style="min-width: 180px; text-align: center; padding-top: 20px; padding-bottom: 10px; font-weight: bold">
-                                {{category+' Analysis'}}
-                            </div>
-                            <div class="purple-font" *ngIf="category === 'Critical'"
-                                style="min-width: 180px; text-align: center; padding-top: 20px; padding-bottom: 10px; font-weight: bold">
-                                {{category+' Care Analysis'}}
-                            </div>
-                            <div style="border-top: 1px solid black; width: 100%; margin-top: 30px"></div>
-                        </div>
-                        <div style="display: flex; flex-wrap: wrap;">
-                            <div *ngFor="let card of jsonObj; index as index" style="width: 100%">
-                                <div *ngIf="card.category !== 'Home' && card.category !== 'Kpi-dash'"
-                                    [ngClass]="{'selected-background': card.selected}">
-                                    <div class="sub-card-styling mobile-sub-card-styling"
-                                        [ngClass]="{'selected-visual': card.selected, 'opacity-styling': selectedCategory !== '' && !card.selected}"
-                                        *ngIf="filteringCheckboxes.controls[card.category].value && card.category === category"
-                                        style="margin-right: 20px">
-                                        <mat-card class="sub-card"
-                                            (click)="selectedVisualTab(card.header, card.selected, $event, index)">
-                                            <mat-card-header>
-                                                <mat-card-title>{{card.header}}</mat-card-title>
-                                            </mat-card-header>
-                                            <img mat-card-image src={{card.thumbnail}} alt="Visual Thumbnail">
-                                            <mat-card-content>
-                                                <p>
-                                                    {{card.content}}
-
-                                                </p>
-                                            </mat-card-content>
-                                        </mat-card>
-                                    </div>
-                                    <app-common-mobile-visual *ngIf="card.selected && card.category === category"
-                                        [visualName]="card.header" [text]="card.text" [vizUrl]="card.viz">
-                                    </app-common-mobile-visual>
-                                </div>
-                            </div>
+                            <!-- </div> -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- <div>
-            <div *ngIf="filteringCheckboxes.controls.Critical.value"
-                style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); padding-bottom: 25px;">
-                <div style="display: flex; margin-top: 15px">
-                    <div style="border-top: 1px solid black; width: 100%; margin-top: 30px"></div>
-                    <div class="purple-font"
-                        style="min-width: 180px; text-align: center; padding-top: 20px; padding-bottom: 10px; font-weight: bold">
-                        Critical Care Analysis</div>
-                    <div style="border-top: 1px solid black; width: 100%; margin-top: 30px"></div>
-                </div>
-                <div style="display: flex; flex-wrap: wrap">
-                    <div *ngFor="let card of cards; index as index" style="width: 100%">
-                        <div [ngClass]="{'selected-background': card.selected}"
-                            *ngIf="categoryList.includes(card.category)">
-                            <div class="sub-card-styling mobile-sub-card-styling"
-                                [ngClass]="{'selected-visual': card.selected, 'opacity-styling': selectedCategory !== '' && !card.selected}"
-                                *ngIf="filteringCheckboxes.controls[card.category].value && card.category === 'Critical'"
-                                style="margin-right: 20px">
-                                <mat-card class="sub-card"
-                                    (click)="selectedVisualTab(card.header, card.selected, $event, index)">
-                                    <mat-card-header>
-                                        <mat-card-title>{{card.header}}</mat-card-title>
-                                    </mat-card-header>
-                                    <img mat-card-image src={{card.thumbnail}} alt="Visual Thumbnail">
-                                    <mat-card-content>
-                                        <p>
-                                            {{card.content}}
-                                        </p>
-                                    </mat-card-content>
-                                </mat-card>
-                            </div>
-                            <app-common-mobile-visual *ngIf="card.selected && card.category === 'Critical'"
-                                [visualName]="card.header"></app-common-mobile-visual>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div *ngIf="filteringCheckboxes.controls.Regional.value"
-                style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); padding-bottom: 25px;">
-                <div style="display: flex; margin-top: 15px;">
-                    <div style="border-top: 1px solid black; width: 100%; margin-top: 30px"></div>
-                    <div class="purple-font"
-                        style="min-width: 180px; text-align: center; padding-top: 20px; padding-bottom: 10px; font-weight: bold">
-                        Regional Analysis</div>
-                    <div style="border-top: 1px solid black; width: 100%; margin-top: 30px"></div>
-                </div>
-                <div style="display: flex; flex-wrap: wrap">
-                    <div *ngFor="let card of cards; index as index" style="width: 100%">
-                        <div [ngClass]="{'selected-background': card.selected}"
-                            *ngIf="categoryList.includes(card.category)">
-                            <div class="sub-card-styling mobile-sub-card-styling"
-                                [ngClass]="{'selected-visual': card.selected, 'opacity-styling': selectedCategory !== '' && !card.selected}"
-                                *ngIf="filteringCheckboxes.controls[card.category].value && card.category === 'Regional'"
-                                style="margin-right: 20px">
-                                <mat-card class="sub-card"
-                                    (click)="selectedVisualTab(card.header, card.selected, $event, index)">
-                                    <mat-card-header>
-                                        <mat-card-title>{{card.header}}</mat-card-title>
-                                    </mat-card-header>
-                                    <img mat-card-image src={{card.thumbnail}} alt="Visual Thumbnail">
-                                    <mat-card-content>
-                                        <p>
-                                            {{card.content}}
-                                        </p>
-                                    </mat-card-content>
-                                </mat-card>
-                            </div>
-                            <app-common-mobile-visual *ngIf="card.selected && card.category === 'Regional'"
-                                [visualName]="card.header"></app-common-mobile-visual>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div *ngIf="filteringCheckboxes.controls.Testing.value"
-                style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); padding-bottom: 25px;">
-                <div style="display: flex; margin-top: 15px;">
-                    <div style="border-top: 1px solid black; width: 100%; margin-top: 30px"></div>
-                    <div class="purple-font"
-                        style="min-width: 180px; text-align: center; padding-top: 20px; padding-bottom: 10px; font-weight: bold">
-                        Testing Analysis</div>
-                    <div style="border-top: 1px solid black; width: 100%; margin-top: 30px"></div>
-                </div>
-                <div style="display: flex; flex-wrap: wrap">
-                    <div *ngFor="let card of cards; index as index" style="width: 100%">
-                        <div [ngClass]="{'selected-background': card.selected}"
-                            *ngIf="categoryList.includes(card.category)">
-                            <div class="sub-card-styling mobile-sub-card-styling"
-                                [ngClass]="{'selected-visual': card.selected, 'opacity-styling': selectedCategory !== '' && !card.selected}"
-                                *ngIf="filteringCheckboxes.controls[card.category].value && card.category === 'Testing'"
-                                style="margin-right: 20px">
-                                <mat-card class="sub-card"
-                                    (click)="selectedVisualTab(card.header, card.selected, $event, index);">
-                                    <mat-card-header>
-                                        <mat-card-title>{{card.header}}</mat-card-title>
-                                    </mat-card-header>
-                                    <img mat-card-image src={{card.thumbnail}} alt="Visual Thumbnail">
-                                    <mat-card-content>
-                                        <p>
-                                            {{card.content}}
-                                        </p>
-                                    </mat-card-content>
-                                </mat-card>
-                            </div>
-                            <app-common-mobile-visual *ngIf="card.selected && card.category === 'Testing'"
-                                [visualName]="card.header"></app-common-mobile-visual>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-    <!-- <button id='mobile-nav-btn' mat-button [routerLink]="['./critical']">Critical Care Analysis</button>
-    <button id='mobile-nav-btn' mat-button [routerLink]="['./regional']">Regional Analysis</button>
-    <button id='mobile-nav-btn' mat-button [routerLink]="['./testing']">Testing Analysis</button>
-    <button id='mobile-nav-btn' mat-button [routerLink]="['./capacity']">Capacity Analysis</button>
-    <router-outlet></router-outlet> -->
 </div>
 
 <hr>
