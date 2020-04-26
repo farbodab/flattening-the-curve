@@ -37,12 +37,24 @@ export class GridComponent implements OnInit, AfterViewInit {
     headerLabel = '';
     phuArray = [
         {
-            phu: 'The District of Algoma Health Unit',
-            value: 'the_district_of_algoma'
-        },
-        {
             phu: 'Brant County Health Unit',
             value: 'brant_county'
+        },
+        {
+            phu: 'Chatham-Kent Health Unit',
+            value: 'chatham_kent'
+        },
+        {
+            phu: 'City of Hamilton Health Unit',
+            value: 'city_of_hamilton'
+        },
+        {
+            phu: 'City of Ottawa Health Unit',
+            value: 'city_of_ottawa'
+        },
+        {
+            phu: 'City of Toronto Health Unit',
+            value: 'city_of_toronto'
         },
         {
             phu: 'Durham Regional Health Unit',
@@ -65,20 +77,12 @@ export class GridComponent implements OnInit, AfterViewInit {
             value: 'halton_regional'
         },
         {
-            phu: 'City of Hamilton Health Unit',
-            value: 'city_of_hamilton'
-        },
-        {
             phu: 'Hastings and Prince Edward Counties Health Unit',
             value: 'hastings_and_prince_edward_counties'
         },
         {
             phu: 'Huron County Health Unit',
             value: 'huron_county'
-        },
-        {
-            phu: 'Chatham-Kent Health Unit',
-            value: 'chatham_kent'
         },
         {
             phu: 'Kingston, Frontenac, and Lennox and Addington Health Unit',
@@ -109,8 +113,8 @@ export class GridComponent implements OnInit, AfterViewInit {
             value: 'northwestern'
         },
         {
-            phu: 'City of Ottawa Health Unit',
-            value: 'city_of_ottawa'
+            phu: 'Ontario',
+            value: 'ontario'
         },
         {
             phu: 'Peel Regional Health Unit',
@@ -133,16 +137,24 @@ export class GridComponent implements OnInit, AfterViewInit {
             value: 'renfrew_county_and_district'
         },
         {
-            phu: 'The Eastern Ontario Health Unit',
-            value: 'the_eastern_ontario'
-        },
-        {
             phu: 'Simcoe Muskoka District Health Unit',
             value: 'simcoe_muskoka_district'
         },
         {
+            phu: 'Southwestern Public Health Unit',
+            value: 'southwestern'
+        },
+        {
             phu: 'Sudbury and District Health Unit',
             value: 'sudbury_and_district'
+        },
+        {
+            phu: 'The District of Algoma Health Unit',
+            value: 'the_district_of_algoma'
+        },
+        {
+            phu: 'The Eastern Ontario Health Unit',
+            value: 'the_eastern_ontario'
         },
         {
             phu: 'Thunder Bay District Health Unit',
@@ -167,18 +179,6 @@ export class GridComponent implements OnInit, AfterViewInit {
         {
             phu: 'York Regional Health Unit',
             value: 'york_regional'
-        },
-        {
-            phu: 'Southwestern Public Health Unit',
-            value: 'southwestern'
-        },
-        {
-            phu: 'City of Toronto Health Unit',
-            value: 'city_of_toronto'
-        },
-        {
-            phu: 'Ontario',
-            value: 'ontario'
         }
     ];
 
