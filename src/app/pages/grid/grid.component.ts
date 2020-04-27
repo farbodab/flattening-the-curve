@@ -212,13 +212,13 @@ export class GridComponent implements OnInit, AfterViewInit {
         this.api_service.get_plot_obj().subscribe(
             data => {
                 this.jsonObj = data;
-                this.jsonObj = this.addSelectedProperty(this.jsonObj);
-                this.jsonObj = this.addHeaderNoSpaces(this.jsonObj);
-                this.findKpiViz(this.jsonObj);
+                //this.jsonObj = this.addSelectedProperty(this.jsonObj);
+                //this.jsonObj = this.addHeaderNoSpaces(this.jsonObj);
+                this.initDropdownForm(this.phuArray);
+                //this.findKpiViz(this.jsonObj);
                 this.iterateCategories(this.jsonObj);
                 this.gridList = this.restructureObj(this.jsonObj, this.categoryList);
                 this.initFilteringForm(this.gridList);
-                this.initDropdownForm(this.phuArray);
                 //this.setVisuals(this.jsonObj);
             },
             error => {
