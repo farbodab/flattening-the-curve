@@ -87,7 +87,7 @@
                                                 [style.grid-row]="is_full ? phuPlot.row : 'span 1'"
                                                 [style.padding]="is_full ? '10px' : 'initial'">
                                                 <div style="height: 100%">
-                                                    <app-plot *ngIf="this.phuPlot" [graph_data]="phuPlot.html">
+                                                    <app-plot *ngIf="this.phuPlot" [graph_data]="phuPlot.html" [mobile_size]="!is_full">
                                                     </app-plot>
                                                 </div>
                                             </div>
