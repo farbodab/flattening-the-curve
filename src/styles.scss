@@ -148,6 +148,14 @@ hr {
     padding-bottom:20px;
 }
 
+#supporters-set {
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+    grid-column-gap:10px;
+    grid-row-gap:30px;
+    padding-bottom:20px;
+}
+
 #resources-button {
     font-size:20px;
     white-space: pre-wrap !important;
