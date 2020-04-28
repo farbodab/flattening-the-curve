@@ -8,8 +8,9 @@ import { Component, OnInit, Input } from '@angular/core';
 
 export class PlotComponent implements OnInit {
 
-  @Input()
-  graph_data: any;
+  @Input() graph_data: any;
+
+  @Input() mobile_size: boolean;
 
   graph = null;
 
@@ -24,6 +25,9 @@ export class PlotComponent implements OnInit {
     var figure = JSON.parse(this.graph_data);
 
     this.graph = figure;
-
+    this.graph.layout.dragmode = false;
+    if (this.mobile_size) {
+      this.graph.layout.dragmode = false;
+    }
   }
 }

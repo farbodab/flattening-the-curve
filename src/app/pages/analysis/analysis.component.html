@@ -6,21 +6,16 @@
                 <h1>Ontario-specific COVID-19 Analysis</h1>
                 <div>
 
-                    This page highlights analyses that provide further Ontario-specific insights as we monitor
+                    Our group publishes analyses that provide further Ontario-specific insights as we monitor
                     performance
                     to
-                    flatten the curve. The following dashboard overviews the key insights for Ontario. Select an
+                    flatten the curve. Select an
                     analysis
                     below
                     the dashboard for an in-depth exploration.<br><br><br>
                 </div>
             </div>
         </div>
-        <div class="form-container kpi-header" [ngClass]="{'mobile-kpi-styling': !is_full}">
-            <div class="kpi-title purple-font" [ngClass]="{'center-text': !is_full}">Ontario at-a-Glance</div>
-            <div class="kpi-line" *ngIf='is_full'></div>
-        </div>
-        <div id="kpiContainer" [ngClass]="{'mobile-sizing': !is_full}"></div>
         <div *ngIf='is_full' [ngClass]="{'modal-opened': selectedCategory !== ''}">
             <div class="form-container">
                 <form *ngIf="filteringCheckboxes" [formGroup]="filteringCheckboxes" class="form-styling">

@@ -320,7 +320,11 @@
 }
 
 .mobile-grid-row {
-    grid-template-rows: repeat(8, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+}
+
+.mobile-grid-row-ontario {
+    grid-template-rows: repeat(19, 1fr);
 }
 
 .desktop-grid-row {

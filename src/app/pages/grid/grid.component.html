@@ -53,7 +53,7 @@
                 </form>
             </div>
             <div *ngIf="dropdownList && is_full" style="padding-top: 30px; font-size: 24px; padding-bottom: 30px; text-align: center">
-                {{headerLabel}}
+                {{headerLabel}}<br><span style="font-size:0.5em">In Beta. Please forward feedback to info@howsmyflattening.ca</span>
             </div>
             <!-- <div *ngIf="filteringCheckboxes && dropdownList"> -->
             <div *ngIf="dropdownList">
@@ -77,9 +77,9 @@
                                         style="line-height: 30px; border-top: 2px solid black; width: 100%; margin-top: 15px;">
                                     </div>-->
                                         </div>
-                                        <div [ngClass]="{'mobile-grid-row' : !is_full, 'desktop-grid-row': is_full}"
+                                        <div [ngClass]="{'mobile-grid-row' : (!is_full && phuGroup.key !== 'ontario'), 'mobile-grid-row-ontario': (!is_full && phuGroup.key === 'ontario'), 'desktop-grid-row': is_full}"
                                             style="display: grid; grid-template-columns: repeat(12, 1fr); row-gap: 16px;"
-                                            [style.height]="is_full ? '200vh' : '290vh'"
+                                            [style.height]="is_full ? '200vh' : (phuGroup.key === 'ontario'? '600vh': '350vh')"
                                             [style.margin-left]="is_full ? '10px' : '0'">
                                             <div *ngFor="let phuPlot of phuGroup.value; index as index"
                                                 style="height: 100%;"
@@ -87,7 +87,7 @@
                                                 [style.grid-row]="is_full ? phuPlot.row : 'span 1'"
                                                 [style.padding]="is_full ? '10px' : 'initial'">
                                                 <div style="height: 100%">
-                                                    <app-plot *ngIf="this.phuPlot" [graph_data]="phuPlot.html">
+                                                    <app-plot *ngIf="this.phuPlot" [graph_data]="phuPlot.html" [mobile_size]="!is_full">
                                                     </app-plot>
                                                 </div>
                                             </div>

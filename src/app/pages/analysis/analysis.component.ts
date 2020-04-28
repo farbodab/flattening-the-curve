@@ -152,7 +152,6 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
         height = element['desktopHeight'];
       }
     });
-    this.setKpiViz(url, height);
   }
 
   iterateCategories(obj: []) {
@@ -165,43 +164,6 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
     this.categoryList = placeholderArray;
   }
 
-  setKpiViz(urlInput: string, vizHeight: string) {
-    const placeholderDiv = document.getElementById('kpiContainer');
-    let url = '';
-    if (urlInput === '') {
-      url = 'https://public.tableau.com/views/KPI_15862242314660/Dashboard1?:display_count=y&:origin=viz_share_link';
-    } else {
-      url = urlInput;
-    }
-
-    const optionsDesktop = {
-      hideTabs: true,
-      width: "100%",
-      height: vizHeight,
-      //margin: "0 auto",
-      onFirstInteractive: function () {
-        // The viz is now ready and can be safely used.
-        console.log("Run this code when the viz has finished loading.");
-      }
-    };
-
-    const optionsMobile = {
-      hideTabs: true,
-      width: "100%",
-      height: "2300px",
-      //margin: "0 auto",
-      onFirstInteractive: function () {
-        // The viz is now ready and can be safely used.
-        console.log("Run this code when the viz has finished loading.");
-      }
-    };
-
-    if (this.is_full) {
-      this.kpiViz = new tableau.Viz(placeholderDiv, url, optionsDesktop);
-    } else {
-      this.kpiViz = new tableau.Viz(placeholderDiv, url, optionsMobile);
-    }
-  }
 
   openDialog(componentName: any, category: string, url: string, text: string, height: number, index: number): void {
     const dialogConfig = new MatDialogConfig();

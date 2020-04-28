@@ -20,44 +20,23 @@
                 <div id='which-curve-text'>
                     <div>
                         <h1 class="main-header-styling">
-                            Which Curve Will Ontario Follow?
+                            The Pandemic is Shifting Course
                         </h1>
                         <p class="sub-header-styling">
-                            <strong>Once critical care (ICU) beds run out, mortality rate jumps from 1% to 5%.</strong>
+                            <strong>Over the past few weeks, the tide of the pandemic has shifted into two distinct streams: the community at-large and congregate settings such as long-term care homes (LTCs), hospitals, homeless shelters, and prisons. People in these congregate settings are more vulnerable to COVID-19.</strong>
                         </p>
+                        <br>
                         <p class="sub-header-paragraph">
-                            This graph tracks ICU bed utilization in Ontario relative to the best case and worst case
-                            predictions released by the province.
+                          This graph tracks where new cases come from daily, the community at-large or LTCs and hospitals. There have been several days where the bulk of new cases are being reported from congregate settings.
                         </p>
+                        <br>
                         <p class="sub-header-paragraph">
-                            The stacked bars show Ontario's confirmed and suspected cases. We can either follow the red
-                            curve or the blue curve. Decisions today will have a 1-2 week lag.
+                            It shows us that <a class="home-page-link">#FlatteningTheCurve</a> must involve <strong>protecting our most vulnerable</strong> through comprehensive testing, intensive infection control, and other policies to minimize risk of transmission, such as restricting staff to one home and moving the homeless into temporary housing.
                         </p>
-
-                        <p class="sub-header-paragraph mobile-large">
-                            The time to <a class="home-page-link">#FlattenTheCurve</a> is now.
-                        </p>
-
-
-                        <!-- <p>
-                    <strong>Sources:</strong>
-                </p>
-
-                <ul style=" padding-left: 20px;">
-                    <li>Confirmed ICU cases: <a href ="https://www.ontario.ca/page/2019-novel-coronavirus" target="_blank">Ontario Government</a></li>
-                    <li>Suspected ICU cases: CCSO | <a href ="/#/data">Data </a></li>
-                     <li>Projected ICU cases: <a href ="https://drive.google.com/file/d/1gZRlwXDYLTjCSUGO2veO6GWRi-2ltZ5W/view?usp=sharing" target="_blank">Ministry of Health Announcement - April 3, 2020</a></li>
-
-                </ul>
-
-
-                <div id='read-more-container'>
-                    <button mat-raised-button (click)='on_read_more_pressed();' id='read-more-btn'>Read Full Article</button>
-                </div> -->
                     </div>
                 </div>
                 <div id="vizContainer"></div>
-                <div class="sources-styling">
+                <!-- <div class="sources-styling">
                     <div>Sources:</div>
                     <div>
                         Confirmed ICU cases: <a href="https://www.ontario.ca/page/2019-novel-coronavirus"
@@ -71,35 +50,16 @@
                             href="https://drive.google.com/file/d/1gZRlwXDYLTjCSUGO2veO6GWRi-2ltZ5W/view?usp=sharing"
                             target="_blank">Ministry of Health Announcement - April 3, 2020</a>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="card-container">
-                <div *ngIf="is_full" class='explore-data-container regional'>
-                    <div class='explore-data-cell-upper'>
-                        <img class='explore-data-img-upper' src='assets/img/Ontario.png'>
-                    </div>
-                    <div class="explore-data-text-upper">
-                        <div class='explore-data-cell-text-upper'>What does each Ontario region look like?</div>
-                        <button class="home-page-button" routerLink='/analysis'>Explore <span
-                                *ngIf="is_full">Analysis</span></button>
-                    </div>
-                </div>
-                <div *ngIf="!is_full" class='explore-data-container regional'>
-                    <div class="explore-data-text-upper">
-                        <div class='explore-data-cell-text-upper'>What does each Ontario region look like?</div>
-                        <button class="home-page-button" routerLink='/analysis'>Explore</button>
-                    </div>
-                    <div class='explore-data-cell-upper'>
-                        <img class='explore-data-img-upper' src='assets/img/Ontario.png'>
-                    </div>
-                </div>
                 <div class='explore-data-container half-width margin-right'>
                     <div id='explore-data-cell'>
                         <img class='explore-data-img-small' src='assets/img/Testing.png'>
                         <div class="data-cell-container">
-                            <div id='explore-data-cell-text'>Is Ontario’s testing accurate?</div>
-                            <button class="home-page-button" routerLink='/analysis'>Explore <span
-                                    *ngIf="is_full">Analysis</span></button>
+                            <div id='explore-data-cell-text'>Where are Ontario's latest metrics?</div>
+                            <button class="home-page-button" routerLink='/dashboard'>Explore <span
+                                    *ngIf="is_full">Dashboard</span></button>
                         </div>
                     </div>
                 </div>
@@ -107,7 +67,7 @@
                     <div id='explore-data-cell'>
                         <img class='explore-data-img-small' src='assets/img/ICU beds.png'>
                         <div class="data-cell-container">
-                            <div id='explore-data-cell-text'>When does capacity run out in Ontario?</div>
+                            <div id='explore-data-cell-text'>Where do I find detailed analysis?</div>
                             <button class="home-page-button" routerLink='/analysis'>Explore <span
                                     *ngIf="is_full">Analysis</span></button>
                         </div>
@@ -116,7 +76,7 @@
                 <!-- <div style='text-align: center;'>
                 <div routerLink='/analysis' id='explore-data-btn'>Explore Analysis</div>
             </div> -->
-            </div>
+            <!-- </div>
             <div class="home-page-card mission-background">
                 <div class="inner-mission-container">
                     <div class="mission-header">On A Mission Together</div>
@@ -162,22 +122,9 @@
                     </div>
                 </div>
 
-            </div>
+            </div> -->
 
             <div id='footer' style="display: none"></div>
         </div>
     </div>
 </div>
-
-<script>(function (w, d, s, l, i) {
-    w[l] = w[l] || []; w[l].push({
-        'gtm.start':
-
-            new Date().getTime(), event: 'gtm.js'
-    }); var f = d.getElementsByTagName(s)[0],
-
-        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-
-            'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-
-    })(window, document, 'script', 'dataLayer', 'GTM-W8PCSDD');</script>
