@@ -25,7 +25,7 @@ export class PlotComponent implements OnInit {
     var figure = JSON.parse(this.graph_data);
 
     this.graph = figure;
-
+    this.graph.layout.dragmode = false;
     if (this.mobile_size) {
       this.graph.layout.dragmode = false;
     }
