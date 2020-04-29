@@ -37,6 +37,10 @@ export class GridComponent implements OnInit, AfterViewInit {
     headerLabel = '';
     phuArray = [
         {
+            phu: 'Ontario',
+            value: 'ontario'
+        },
+        {
             phu: 'Brant County Health Unit',
             value: 'brant_county'
         },
@@ -111,10 +115,6 @@ export class GridComponent implements OnInit, AfterViewInit {
         {
             phu: 'Northwestern Health Unit',
             value: 'northwestern'
-        },
-        {
-            phu: 'Ontario',
-            value: 'ontario'
         },
         {
             phu: 'Peel Regional Health Unit',
@@ -224,7 +224,7 @@ export class GridComponent implements OnInit, AfterViewInit {
                 //this.setVisuals(this.jsonObj);
             },
             error => {
-                //console.error(error);
+                console.error(error);
             }
         );
     }
