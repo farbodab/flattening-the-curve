@@ -77,10 +77,11 @@
                                         style="line-height: 30px; border-top: 2px solid black; width: 100%; margin-top: 15px;">
                                     </div>-->
                                         </div>
-                                        <div [ngClass]="{'mobile-grid-row' : (!is_full && phuGroup.key !== 'ontario'), 'mobile-grid-row-ontario': (!is_full && phuGroup.key === 'ontario'), 'desktop-grid-row': is_full}"
+                                        <div [ngClass]="{'mobile-grid-row' : (!is_full && phuGroup.key !== 'ontario'), 'mobile-grid-row-ontario': (!is_full && phuGroup.key === 'ontario'), 'desktop-grid-row': is_full && phuGroup.key !== 'ontario', 'desktop-grid-row-ontario': is_full && phuGroup.key === 'ontario'}"
                                             style="display: grid; grid-template-columns: repeat(12, 1fr); row-gap: 16px;"
-                                            [style.height]="is_full ? '200vh' : (phuGroup.key === 'ontario'? '600vh': '350vh')"
-                                            [style.margin-left]="is_full ? '10px' : '0'">
+                                            [style.height]="is_full ? (phuGroup.key === 'ontario'? '150vh': '110vh') : (phuGroup.key === 'ontario'? '650vh': '375vh')"
+                                            [style.margin-left]="is_full ? '10px' : '0'"
+                                            [style.min-height]="(is_full && phuGroup.key === 'ontario') ? '1500px': '800px'">
                                             <div *ngFor="let phuPlot of phuGroup.value; index as index"
                                                 style="height: 100%;"
                                                 [style.grid-column]="is_full ? phuPlot.column : 'span 12'"
