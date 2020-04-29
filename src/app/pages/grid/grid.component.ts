@@ -192,10 +192,12 @@ export class GridComponent implements OnInit, AfterViewInit {
             this.refresh_layout(window.innerWidth);
         });
         typeof (this.urlSegments.segments[1]) === 'undefined' ? this.path = '' : this.path = this.urlSegments.segments[1].path;
+        this.fetchVizObj();
+        console.log(this.path);
     }
 
     ngAfterViewInit() {
-        this.fetchVizObj();
+        //this.fetchVizObj();
     }
 
     ngOnDestroy() {
@@ -222,7 +224,7 @@ export class GridComponent implements OnInit, AfterViewInit {
                 //this.setVisuals(this.jsonObj);
             },
             error => {
-                //console.error(error);
+                console.error(error);
             }
         );
     }
