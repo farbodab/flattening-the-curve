@@ -37,11 +37,9 @@
                 </form>
             </div> -->
             <div *ngIf="dropdownList" style="padding-top: 10px">
-                <mat-label>Select a Public Health Unit </mat-label>
                 <form [formGroup]="dropdownList">
                     <mat-form-field [style.width]="is_full ? '350px' : '100%'">
-                        <!-- <mat-label>Select a Public Health Unit</mat-label> -->
-                         
+                        <mat-label>Select a Public Health Unit</mat-label>  
                         <mat-select formControlName="phu" disableOptionCentering
                             (selectionChange)="routeonSelection(dropdownList.controls.phu.value)">
                             <ngx-mat-select-search formControlName="searchCtrl" [placeholderLabel]="'Search...'"
