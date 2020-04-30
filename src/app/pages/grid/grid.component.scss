@@ -328,7 +328,11 @@
 }
 
 .desktop-grid-row {
-    grid-template-rows: repeat(12, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+}
+
+.desktop-grid-row-ontario {
+    grid-template-rows: repeat(15, 1fr);
 }
 
 #mobile-nav {
