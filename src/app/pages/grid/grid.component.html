@@ -1,5 +1,6 @@
 <app-navbar [shows_title]='true' [page]='"dashboard"'></app-navbar>
 <div class='content' style='background-color: white; margin-top: 50px;'>
+
     <div id='container' [ngClass]="{'mobile-sizing': !is_full}">
         <div [ngClass]="{'analysis-header': !is_full}">
             <!-- <div [ngClass]="{'inner-analysis-header': !is_full}">
@@ -36,9 +37,11 @@
                 </form>
             </div> -->
             <div *ngIf="dropdownList" style="padding-top: 10px">
+                <mat-label>Select a Public Health Unit </mat-label>
                 <form [formGroup]="dropdownList">
                     <mat-form-field [style.width]="is_full ? '350px' : '100%'">
-                        <mat-label>Select a PHU</mat-label>
+                        <!-- <mat-label>Select a Public Health Unit</mat-label> -->
+                         
                         <mat-select formControlName="phu" disableOptionCentering
                             (selectionChange)="routeonSelection(dropdownList.controls.phu.value)">
                             <ngx-mat-select-search formControlName="searchCtrl" [placeholderLabel]="'Search...'"
@@ -51,6 +54,8 @@
                         </mat-select>
                     </mat-form-field>
                 </form>
+                
+                <!-- <mat-label><a target="_blank" href="https://www.phdapps.health.gov.on.ca/PHULocator/">Find a Public Health Unit</a> </mat-label> -->
             </div>
             <div *ngIf="dropdownList && is_full" style="padding-top: 30px; font-size: 24px; padding-bottom: 30px; text-align: center">
                 {{headerLabel}}<br><span style="font-size:0.5em">In Beta. Please forward feedback to info@howsmyflattening.ca</span>
