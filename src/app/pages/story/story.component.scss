@@ -104,3 +104,15 @@ h1, h3 {
     object-fit: contain;
     object-position: 0% 50%;
 }
+
+#resource-box-landscape {
+    border: 1px;  
+    width:400px;
+}
+
+#resource_thumbnail_landscape {
+    height: 200px; 
+    width: 400px;
+    object-fit: contain;
+    object-position: 0% 50%;
+}
