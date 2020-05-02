@@ -25,7 +25,7 @@ export class PlotComponent implements OnInit {
     var figure = JSON.parse(this.graph_data);
 
     this.graph = figure;
-    //this.graph.layout.dragmode = false;
+    this.graph.layout.dragmode = false;
 
     console.log(this.font_size_category);
     let title_text = this.graph.layout.title.text.split('<br>');
@@ -50,7 +50,7 @@ export class PlotComponent implements OnInit {
     console.log(this.graph);
 
     if (this.mobile_size) {
-      //this.graph.layout.dragmode = false;
+      this.graph.layout.dragmode = false;
     }
   }
 }
