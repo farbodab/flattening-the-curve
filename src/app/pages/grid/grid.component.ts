@@ -6,7 +6,6 @@ import { Router, ActivatedRoute, UrlTree, UrlSegment, UrlSegmentGroup, PRIMARY_O
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
 import { ApiService } from 'src/app/services/api.service';
 import { CommonDesktopVisualComponent } from '../../components/common-desktop-visual/common-desktop-visual.component';
-import { DomSanitizer } from '@angular/platform-browser';
 
 declare var tableau: any;
 
@@ -23,6 +22,7 @@ export class GridComponent implements OnInit, AfterViewInit {
 
     window_subscription: Subscription;
     is_full: boolean = true;
+    plot_window = '';
     filteringCheckboxes: FormGroup;
     dropdownList: FormGroup;
     selectedCategory = '';
@@ -182,14 +182,16 @@ export class GridComponent implements OnInit, AfterViewInit {
         }
     ];
 
-    constructor(private host_service: HostService, private route: ActivatedRoute, private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog, private api_service: ApiService, private sanitizer: DomSanitizer) {
+    constructor(private host_service: HostService, private route: ActivatedRoute, private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog, private api_service: ApiService) {
         this.refresh_layout(window.innerWidth);
+        this.plot_layout(window.innerWidth);
         this.urlSegments = route.snapshot['_urlSegment'];
     }
 
     ngOnInit() {
         this.window_subscription = this.host_service.onWindowResize.subscribe(window => {
             this.refresh_layout(window.innerWidth);
+            this.plot_layout(window.innerWidth);
         });
         typeof (this.urlSegments.segments[1]) === 'undefined' ? this.path = '' : this.path = this.urlSegments.segments[1].path;
         this.fetchVizObj();
@@ -206,18 +208,11 @@ export class GridComponent implements OnInit, AfterViewInit {
         }
     }
 
-    // test() {
-    //     console.log(this.dropdownList.controls.phu.value);
-    // }
-
     fetchVizObj() {
         this.api_service.get_plot_obj().subscribe(
             data => {
                 this.jsonObj = data;
-                //this.jsonObj = this.addSelectedProperty(this.jsonObj);
-                //this.jsonObj = this.addHeaderNoSpaces(this.jsonObj);
                 this.initDropdownForm(this.phuArray);
-                //this.findKpiViz(this.jsonObj);
                 this.iterateCategories(this.jsonObj);
                 this.gridList = this.restructureObj(this.jsonObj, this.categoryList);
                 this.initFilteringForm(this.gridList);
@@ -227,26 +222,6 @@ export class GridComponent implements OnInit, AfterViewInit {
                 console.error(error);
             }
         );
-    }
-
-    addSelectedProperty(obj: []) {
-        return obj.map(x => Object.assign({ selected: false }, x));
-    }
-
-    addHeaderNoSpaces(obj: any) {
-        return obj.map(x => Object.assign({ headerNoSpace: x['header'].replace(/\s/g, '') }, x));
-    }
-
-    findKpiViz(obj: []) {
-        let url = '';
-        let height = '';
-        obj.forEach((element, index) => {
-            if (element['category'] === 'Kpi-dash') {
-                url = element['viz'];
-                height = element['desktopHeight'];
-            }
-        });
-        //this.setKpiViz(url, height);
     }
 
     iterateCategories(obj: []) {
@@ -400,12 +375,7 @@ export class GridComponent implements OnInit, AfterViewInit {
     }
 
     initFilteringForm(obj: any) {
-        this.filteringCheckboxes = this.formBuilder.group({
-            // Critical: true,
-            // Regional: true,
-            // Testing: true,
-            // Growth: true
-        });
+        this.filteringCheckboxes = this.formBuilder.group({});
         let keysArr = [];
         obj.forEach(element => {
             keysArr.push(Object.keys(element));
@@ -444,5 +414,9 @@ export class GridComponent implements OnInit, AfterViewInit {
 
     private refresh_layout(width) {
         this.is_full = window.innerWidth >= 1024 ? true : false;
+    }
+
+    private plot_layout(width) {
+        this.plot_window = !this.is_full ? 'small' : (window.innerWidth > 1920 ? 'large' : 'medium');
     }
 }

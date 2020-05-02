@@ -132,8 +132,16 @@
     margin-right: -30px;
 }
 
+.plot-container {
+    background-color: #DADFE1;
+}
+
 .form-styling {
     padding: 18px 0 18px 18px;
+}
+
+.plot-check {
+    padding: 5px 0 5px 10px;
 }
 
 .kpi-header {
@@ -177,6 +185,10 @@
 }
 
 ::ng-deep {
+
+    .mat-tab-body-wrapper {
+        height: 100%;
+    }
 
     .modebar.modebar--hover {
         display: none !important;
