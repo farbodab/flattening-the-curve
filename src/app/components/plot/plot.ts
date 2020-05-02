@@ -25,23 +25,24 @@ export class PlotComponent implements OnInit {
     var figure = JSON.parse(this.graph_data);
 
     this.graph = figure;
-    this.graph.layout.dragmode = false;
+    //this.graph.layout.dragmode = false;
 
     console.log(this.font_size_category);
+    let title_text = this.graph.layout.title.text.split('<br>');
 
-    if (typeof this.graph.data[0].number !== 'undefined') {
+    if (true) {
       switch (this.font_size_category) {
         case 'small':
-          //this.graph.data[0].number.font.size = 45;
-          //this.graph.layout.template.layout.font.size = 10;
+          title_text[0] = '<span style="font-size: 1.25em">' + title_text[0] + '</span>';
+          this.graph.layout.title.text = title_text[0] + '<br>' + title_text[1] + '<br>';
           break;
         case 'medium':
-          //this.graph.data[0].number.font.size = 60;
-          //this.graph.layout.font.size = 20;
+          title_text[0] = '<span style="font-size: 1.25em">' + title_text[0] + '</span>';
+          this.graph.layout.title.text = title_text[0] + '<br>' + title_text[1] + '<br>';
           break;
         case 'large':
-          //this.graph.data[0].number.font.size = 65;
-          //this.graph.layout.template.layout.font.size = 10;
+          title_text[0] = '<span style="font-size: 1.25em">' + title_text[0] + '</span>';
+          this.graph.layout.title.text = title_text[0] + '<br>' + title_text[1] + '<br>';
           break;
       }
     }
@@ -49,7 +50,7 @@ export class PlotComponent implements OnInit {
     console.log(this.graph);
 
     if (this.mobile_size) {
-      this.graph.layout.dragmode = false;
+      //this.graph.layout.dragmode = false;
     }
   }
 }
