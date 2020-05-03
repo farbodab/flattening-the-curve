@@ -61,16 +61,18 @@
                     info@howsmyflattening.ca</span>
             </div>
             <!-- <div *ngIf="filteringCheckboxes && dropdownList"> -->
-            <div *ngIf="dropdownList">
-                <div *ngFor="let category of gridList">
-                    <div *ngFor="let item of category | keyvalue">
-                        <div *ngIf="category !== 'home' && category !== 'kpi-dash'">
-                            <!-- <div *ngIf="filteringCheckboxes.controls[item.key].value"> -->
-                            <div *ngFor="let phu of item.value | keyvalue">
-                                <div *ngFor="let phuGroup of phu.value | keyvalue">
-                                    <div *ngIf="phuGroup.key === dropdownList.controls.phu.value">
-                                        <div style="display: flex; padding-top: 20px">
-                                            <!-- <div class="purple-font" *ngIf="item.key !== 'Critical'"
+            <div *ngIf="averageForm">
+                <form [formGroup]="averageForm">
+                    <div *ngIf="dropdownList">
+                        <div *ngFor="let category of gridList">
+                            <div *ngFor="let item of category | keyvalue">
+                                <div *ngIf="category !== 'home' && category !== 'kpi-dash'">
+                                    <!-- <div *ngIf="filteringCheckboxes.controls[item.key].value"> -->
+                                    <div *ngFor="let phu of item.value | keyvalue">
+                                        <div *ngFor="let phuGroup of phu.value | keyvalue">
+                                            <div *ngIf="phuGroup.key === dropdownList.controls.phu.value">
+                                                <div style="display: flex; padding-top: 20px">
+                                                    <!-- <div class="purple-font" *ngIf="item.key !== 'Critical'"
                                         style="line-height: 30px; min-width: 200px; font-size: 20px;">
                                         {{category+' Analysis'}}
                                     </div>
@@ -81,40 +83,39 @@
                                     <div
                                         style="line-height: 30px; border-top: 2px solid black; width: 100%; margin-top: 15px;">
                                     </div>-->
-                                        </div>
-                                        <div [ngClass]="{'mobile-grid-row' : (!is_full && phuGroup.key !== 'ontario'), 'mobile-grid-row-ontario': (!is_full && phuGroup.key === 'ontario'), 'desktop-grid-row': is_full && phuGroup.key !== 'ontario', 'desktop-grid-row-ontario': is_full && phuGroup.key === 'ontario'}"
-                                            style="display: grid; grid-template-columns: repeat(12, 1fr); row-gap: 16px;"
-                                            [style.height]="is_full ? (phuGroup.key === 'ontario'? '300vh': '110vh') : (phuGroup.key === 'ontario'? '750vh': '450vh')"
-                                            [style.margin-left]="is_full ? '10px' : '0'"
-                                            [style.min-height]="(is_full && phuGroup.key === 'ontario') ? '1500px': '800px'">
-                                            <div *ngFor="let phuPlot of phuGroup.value; index as index"
-                                                style="height: 100%;"
-                                                [style.grid-column]="is_full ? phuPlot.column : 'span 12'"
-                                                [style.grid-row]="is_full ? phuPlot.row : 'span 1'"
-                                                [style.padding]="is_full ? '10px' : 'initial'">
-                                                <div style="height: 100%">
-                                                    <!-- <div class="mat-tab-labels">
+                                                </div>
+                                                <div [ngClass]="{'mobile-grid-row' : (!is_full && phuGroup.key !== 'ontario'), 'mobile-grid-row-ontario': (!is_full && phuGroup.key === 'ontario'), 'desktop-grid-row': is_full && phuGroup.key !== 'ontario', 'desktop-grid-row-ontario': is_full && phuGroup.key === 'ontario'}"
+                                                    style="display: grid; grid-template-columns: repeat(12, 1fr); row-gap: 16px;"
+                                                    [style.height]="is_full ? (phuGroup.key === 'ontario'? '300vh': '110vh') : (phuGroup.key === 'ontario'? '750vh': '450vh')"
+                                                    [style.margin-left]="is_full ? '10px' : '0'"
+                                                    [style.min-height]="(is_full && phuGroup.key === 'ontario') ? '1500px': '800px'">
+                                                    <div *ngFor="let phuPlot of phuGroup.value; index as index"
+                                                        style="height: 100%;"
+                                                        [style.grid-column]="is_full ? phuPlot.column : 'span 12'"
+                                                        [style.grid-row]="is_full ? phuPlot.row : 'span 1'"
+                                                        [style.padding]="is_full ? '10px' : 'initial'">
+                                                        <div style="height: 100%">
+                                                            <!-- <div class="mat-tab-labels">
                                                         <div class="mat-tab-label">hi</div>
                                                         <div class="mat-tab-label">bye</div>
                                                     </div>-->
-                                                    <form *ngIf="filteringCheckboxes" [formGroup]="filteringCheckboxes"
-                                                        class="plot-check">
-                                                        <div style="display: flex;">
-                                                            <div *ngFor="let category of gridList">
-                                                                <div *ngFor="let item of category | keyvalue"
+                                                            <div style="display: flex;" class="plot-check">
+                                                                <div *ngIf="averageForm.controls[phuPlot.category + '' +phuPlot.header].value !== 'none'"
                                                                     style="height: 20px; margin-right: 25px; border-radius: 6px; background-color: #245D70; color: #ffffff; padding: 6px 12px">
-                                                                    <mat-checkbox formControlName="{{item.key}}">
+                                                                    <mat-checkbox (change)="test()"
+                                                                        [formControlName]="phuPlot.category + '' +phuPlot.header">
                                                                         7 Day Avg.
                                                                     </mat-checkbox>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </form>
-                                                <app-plot style="height: 90%; display: inline-block; width: 100%"
-                                                    *ngIf="this.phuPlot" [graph_data]="phuPlot.html"
-                                                    [mobile_size]="!is_full" [font_size_category]="plot_window">
-                                                </app-plot>
-                                                <!-- <mat-tab-group style="height: 100%">
+                                                            <app-plot
+                                                                style="display: inline-block; width: 100%"
+                                                                [style.height]="averageForm.controls[phuPlot.category + '' +phuPlot.header].value === 'none' ? '100%' : '90%'"
+                                                                [graph_data]="phuPlot.html" [mobile_size]="!is_full"
+                                                                [display_average]="averageForm.controls[phuPlot.category + '' +phuPlot.header].value"
+                                                                [font_size_category]="plot_window">
+                                                            </app-plot>
+                                                            <!-- <mat-tab-group style="height: 100%">
                                                         <mat-tab label="First">
                                                             <div class="plot-container" style="height: 15%">
                                                                 <form *ngIf="filteringCheckboxes"
@@ -164,19 +165,21 @@
                                                             </app-plot>
                                                         </mat-tab>
                                                     </mat-tab-group> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- </div> -->
                                 </div>
                             </div>
                         </div>
-                        <!-- </div> -->
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
-</div>
 </div>
 
 <hr>

@@ -25,6 +25,7 @@ export class GridComponent implements OnInit, AfterViewInit {
     plot_window = '';
     filteringCheckboxes: FormGroup;
     dropdownList: FormGroup;
+    averageForm: FormGroup;
     selectedCategory = '';
     jsonObj: any;
     categoryList = [];
@@ -195,7 +196,6 @@ export class GridComponent implements OnInit, AfterViewInit {
         });
         typeof (this.urlSegments.segments[1]) === 'undefined' ? this.path = '' : this.path = this.urlSegments.segments[1].path;
         this.fetchVizObj();
-        console.log(this.path);
     }
 
     ngAfterViewInit() {
@@ -213,6 +213,7 @@ export class GridComponent implements OnInit, AfterViewInit {
             data => {
                 this.jsonObj = data;
                 this.initDropdownForm(this.phuArray);
+                this.iterateAverageForm(this.jsonObj);
                 this.iterateCategories(this.jsonObj);
                 this.gridList = this.restructureObj(this.jsonObj, this.categoryList);
                 this.initFilteringForm(this.gridList);
@@ -253,7 +254,6 @@ export class GridComponent implements OnInit, AfterViewInit {
                 [element]: placeholderArray
             });
         });
-        console.log(objPlaceholder);
         return objPlaceholder;
     }
 
@@ -398,6 +398,17 @@ export class GridComponent implements OnInit, AfterViewInit {
         this.dropdownList.addControl('searchCtrl', this.formBuilder.control(''));
     }
 
+    iterateAverageForm(array: any) {
+        this.averageForm = this.formBuilder.group({});
+        array.filter(element => {
+            if(element.html.includes('7 Day Average')) {
+                this.averageForm.addControl(element.category + '' + element.header, this.formBuilder.control(true));
+            } else {
+                this.averageForm.addControl(element.category + '' + element.header, this.formBuilder.control('none'));
+            }
+        });
+    }
+
     routeonSelection(route: string) {
         const index = this.phuArray.findIndex(phu => phu.value === route);
         this.headerLabel = this.phuArray[index].phu;
@@ -410,6 +421,10 @@ export class GridComponent implements OnInit, AfterViewInit {
             placeholderDiv.remove();
         }
         this.router.navigate(['/analysis/' + route]);
+    }
+
+    test() {
+        console.log(this.averageForm.controls);
     }
 
     private refresh_layout(width) {
