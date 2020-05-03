@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChange, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-plot',
@@ -13,15 +13,24 @@ export class PlotComponent implements OnInit, OnChanges {
   @Input() font_size_category: string;
   @Input() display_average: any;
   @Input() view: string;
+  @Input() cat: string;
 
   graph = null;
 
   ngOnInit() {
-    this.redraw();
+    if (this.cat !== 'ontarioin hospital') {
+      // console.log(this.cat);
+      // const datum = JSON.parse(this.graph_data);
+      // console.log('hospital2 layout'+JSON.stringify(datum.layout));
+      // console.log('hospital2 data '+JSON.stringify(datum.data));
+      this.redraw();
+    }
   }
 
   ngOnChanges() {
-    this.redraw();
+    if (this.cat !== 'ontarioin hospital') {
+      this.redraw();
+    }
   }
 
   private redraw() {
@@ -42,14 +51,14 @@ export class PlotComponent implements OnInit, OnChanges {
         let view_array_y = [];
         if (typeof element.x !== 'undefined') {
           element.x.reverse().forEach((xElement, xIndex) => {
-            if (xIndex < 8) {
+            if (xIndex < 7) {
               console.log(xIndex);
               view_array_x.push(xElement);
             }
           });
           element.x = view_array_x.reverse();
           element.y.reverse().forEach((yElement, yIndex) => {
-            if (yIndex < 8) {
+            if (yIndex < 7) {
               view_array_y.push(yElement);
             }
           });
@@ -86,9 +95,10 @@ export class PlotComponent implements OnInit, OnChanges {
 
     console.log(data_placeholder_average);
 
+    figure.layout.dragmode = false;
     this.graph = figure;
     console.log(this.graph);
-    this.graph.layout.dragmode = false;
+    //this.graph.layout.dragmode = false;
 
     //let title_text = this.graph.layout.title.text.split('<br>');
 
@@ -110,7 +120,8 @@ export class PlotComponent implements OnInit, OnChanges {
     // }
 
     if (this.mobile_size) {
-      this.graph.layout.dragmode = false;
+      //this.graph.layout.dragmode = false;
     }
   }
 }
+

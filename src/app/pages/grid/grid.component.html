@@ -97,26 +97,26 @@
                                                         <div style="height: 100%">
                                                             <div style="height: 25px">
                                                                 <div
-                                                                    *ngIf="averageForm.controls[phuPlot.category + '' +phuPlot.header + 'view'].value !== 'none'">
+                                                                    *ngIf="averageForm.controls[phuPlot.phu + '' +phuPlot.header + 'view'].value !== 'none'">
                                                                     <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #666666">
                                                                         <div class="tab-styling"
-                                                                            [ngClass]="{'tab-selected': averageForm.controls[phuPlot.category + '' + phuPlot.header + 'view'].value === 'allTime'}"
-                                                                            (click)="averageForm.controls[phuPlot.category + '' + phuPlot.header + 'view'].setValue('allTime')">
+                                                                            [ngClass]="{'tab-selected': averageForm.controls[phuPlot.phu + '' + phuPlot.header + 'view'].value === 'allTime'}"
+                                                                            (click)="averageForm.controls[phuPlot.phu + '' + phuPlot.header + 'view'].setValue('allTime')">
                                                                             All Time</div>
                                                                         <div class="tab-styling"
-                                                                            [ngClass]="{'tab-selected': averageForm.controls[phuPlot.category + '' + phuPlot.header + 'view'].value === 'week'}"
-                                                                            (click)="averageForm.controls[phuPlot.category + '' + phuPlot.header + 'view'].setValue('week')">
+                                                                            [ngClass]="{'tab-selected': averageForm.controls[phuPlot.phu + '' + phuPlot.header + 'view'].value === 'week'}"
+                                                                            (click)="averageForm.controls[phuPlot.phu + '' + phuPlot.header + 'view'].setValue('week')">
                                                                             Prior Week</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div style="display: flex; height: 40px">
                                                                 <div class="plot-check"
-                                                                    *ngIf="averageForm.controls[phuPlot.category + '' +phuPlot.header + 'average'].value !== 'none'">
+                                                                    *ngIf="averageForm.controls[phuPlot.phu + '' +phuPlot.header + 'average'].value !== 'none'">
                                                                     <div
                                                                         style="height: 20px; margin-right: 25px; border-radius: 6px; background-color: #245D70; color: #ffffff; padding: 6px 12px">
                                                                         <mat-checkbox
-                                                                            [formControlName]="phuPlot.category + '' +phuPlot.header + 'average'">
+                                                                            [formControlName]="phuPlot.phu + '' +phuPlot.header + 'average'">
                                                                             7 Day Avg.
                                                                         </mat-checkbox>
                                                                     </div>
@@ -125,9 +125,9 @@
                                                             <app-plot
                                                                 style="display: inline-block; width: 100%; height: calc(100% - 65px);"
                                                                 [graph_data]="phuPlot.html" [mobile_size]="!is_full"
-                                                                [display_average]="averageForm.controls[phuPlot.category + '' +phuPlot.header + 'average'].value"
-                                                                [font_size_category]="plot_window"
-                                                                [view]="averageForm.controls[phuPlot.category + '' +phuPlot.header + 'view'].value">
+                                                                [display_average]="averageForm.controls[phuPlot.phu + '' +phuPlot.header + 'average'].value"
+                                                                [font_size_category]="plot_window" [cat]="phuPlot.phu+ '' +phuPlot.header"
+                                                                [view]="averageForm.controls[phuPlot.phu + '' +phuPlot.header + 'view'].value">
                                                             </app-plot>
                                                             <!-- <mat-tab-group style="height: 100%">
                                                         <mat-tab label="First">

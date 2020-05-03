@@ -404,16 +404,16 @@ export class GridComponent implements OnInit, AfterViewInit {
         this.averageForm = this.formBuilder.group({});
         array.filter(element => {
             if(element.html.includes('7 Day Average')) {
-                this.averageForm.addControl(element.category + '' + element.header + 'average', this.formBuilder.control(true));
+                this.averageForm.addControl(element.phu + '' + element.header + 'average', this.formBuilder.control(true));
             } else {
-                this.averageForm.addControl(element.category + '' + element.header + 'average', this.formBuilder.control('none'));
+                this.averageForm.addControl(element.phu + '' + element.header + 'average', this.formBuilder.control('none'));
             }
         });
         array.filter(element => {
             if(element.html.includes('2020-05-01T00:00:00')) {
-                this.averageForm.addControl(element.category + '' + element.header + 'view', this.formBuilder.control('allTime'));
+                this.averageForm.addControl(element.phu + '' + element.header + 'view', this.formBuilder.control('allTime'));
             } else {
-                this.averageForm.addControl(element.category + '' + element.header + 'view', this.formBuilder.control('none'));
+                this.averageForm.addControl(element.phu + '' + element.header + 'view', this.formBuilder.control('none'));
             }
         });
         console.log(this.averageForm);
