@@ -190,6 +190,7 @@ export class GridComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
+        console.log('hi');
         this.window_subscription = this.host_service.onWindowResize.subscribe(window => {
             this.refresh_layout(window.innerWidth);
             this.plot_layout(window.innerWidth);
@@ -221,6 +222,7 @@ export class GridComponent implements OnInit, AfterViewInit {
             },
             error => {
                 console.error(error);
+                alert(error);
             }
         );
     }
