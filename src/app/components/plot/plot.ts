@@ -25,10 +25,15 @@ export class PlotComponent implements OnInit, OnChanges {
       // console.log('hospital2 data '+JSON.stringify(datum.data));
       this.redraw();
     }
+    else {
+      this.redraw();
+    }
   }
 
   ngOnChanges() {
     if (this.cat !== 'ontarioin hospital') {
+      this.redraw();
+    } else {
       this.redraw();
     }
   }
