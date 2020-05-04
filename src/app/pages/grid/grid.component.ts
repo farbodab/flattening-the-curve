@@ -30,6 +30,7 @@ export class GridComponent implements OnInit, AfterViewInit {
     jsonObj: any;
     categoryList = [];
     gridList = [];
+    tab_obj = {};
 
     searchCtrl: string;
 
@@ -190,7 +191,6 @@ export class GridComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
-        console.log('hi');
         this.window_subscription = this.host_service.onWindowResize.subscribe(window => {
             this.refresh_layout(window.innerWidth);
             this.plot_layout(window.innerWidth);
@@ -214,9 +214,11 @@ export class GridComponent implements OnInit, AfterViewInit {
             data => {
                 this.jsonObj = data;
                 this.initDropdownForm(this.phuArray);
-                this.iterateAverageForm(this.jsonObj);
+                this.tab_obj = this.initTabGroupings(this.jsonObj);
+                this.iterateAverageForm(this.jsonObj, this.tab_obj);
                 this.iterateCategories(this.jsonObj);
                 this.gridList = this.restructureObj(this.jsonObj, this.categoryList);
+                console.log('grid ' + JSON.stringify(this.gridList));
                 this.initFilteringForm(this.gridList);
                 //this.setVisuals(this.jsonObj);
             },
@@ -239,21 +241,30 @@ export class GridComponent implements OnInit, AfterViewInit {
 
     restructureObj(obj: any, categoryList: any[]) {
         let objPlaceholder = [];
+        let data_obj = {};
         categoryList.forEach(element => {
             let placeholderArray = [];
             this.phuArray.forEach(phu => {
-                let placeholderPhuArray = [];
+                let group_array = [];
+                let group_obj = {};
                 obj.forEach(item => {
-                    if (item.category === element && (item.phu === phu.value)) {
-                        placeholderPhuArray.push(item);
+                    if (item.category === element && (item.phu === phu.value) && !group_array.includes(item.group)) {
+                        group_array.push(item.group);
+                        let placeholderPhuArray = [item];
+                        let header_array = [item.header];
+                        obj.forEach(elementThree => {
+                            if (item.phu === elementThree.phu && item.group === elementThree.group && !header_array.includes(elementThree.header)) {
+                                header_array.push(elementThree.header);
+                                placeholderPhuArray.push(elementThree);
+                            }
+                        });
+                        Object.assign(group_obj, { [item.group]: placeholderPhuArray });
                     }
                 });
-                placeholderArray.push({
-                    [phu.value]: placeholderPhuArray
-                });
+                data_obj[phu.value] = group_obj;
             });
             objPlaceholder.push({
-                [element]: placeholderArray
+                [element]: data_obj
             });
         });
         return objPlaceholder;
@@ -400,23 +411,68 @@ export class GridComponent implements OnInit, AfterViewInit {
         this.dropdownList.addControl('searchCtrl', this.formBuilder.control(''));
     }
 
-    iterateAverageForm(array: any) {
+    initTabGroupings(array: any) {
+        let tab_obj = {};
+        let phu_array = [];
+        array.forEach(element => {
+            if (!phu_array.includes(element.phu)) {
+                phu_array.push(element.phu);
+                let group_array = [];
+                let group_obj = {};
+                array.forEach(elementTwo => {
+                    if (elementTwo.phu === element.phu && !group_array.includes(elementTwo.group)) {
+                        group_array.push(elementTwo.group);
+                        let header_array = [{
+                            header: elementTwo.header,
+                            tab: elementTwo.tab
+                        }];
+                        let header_array_check = [elementTwo.header];
+                        array.forEach(elementThree => {
+                            if (elementTwo.phu === elementThree.phu && elementTwo.group === elementThree.group && !header_array_check.includes(elementThree.header)) {
+                                header_array_check.push(elementThree.header);
+                                header_array.push({
+                                    header: elementThree.header,
+                                    tab: elementThree.tab
+                                });
+                            }
+                        });
+                        Object.assign(group_obj, { [elementTwo.group]: header_array });
+                    }
+                });
+                tab_obj[element.phu] = group_obj;
+            }
+        });
+        return tab_obj;
+    }
+
+    iterateAverageForm(array: any, tabObj: any) {
         this.averageForm = this.formBuilder.group({});
         array.filter(element => {
-            if(element.html.includes('7 Day Average')) {
+            if (element.html.includes('7 Day Average')) {
                 this.averageForm.addControl(element.phu + '' + element.header + 'average', this.formBuilder.control(true));
             } else {
                 this.averageForm.addControl(element.phu + '' + element.header + 'average', this.formBuilder.control('none'));
             }
         });
         array.filter(element => {
-            if(element.html.includes('2020-05-01T00:00:00')) {
+            if (element.html.includes('2020-05-01T00:00:00')) {
                 this.averageForm.addControl(element.phu + '' + element.header + 'view', this.formBuilder.control('allTime'));
             } else {
                 this.averageForm.addControl(element.phu + '' + element.header + 'view', this.formBuilder.control('none'));
             }
         });
-        console.log(this.averageForm);
+        Object.keys(tabObj).forEach(element => {
+            Object.keys(tabObj[element]).forEach(elementTwo => {
+                tabObj[element][elementTwo].filter((elementThree, index) => {
+                    if (index === 0) {
+                        this.averageForm.addControl(element + '' + elementTwo + '' + elementThree['header'], this.formBuilder.control(true));
+                    } else {
+                        this.averageForm.addControl(element + '' + elementTwo + '' + elementThree['header'], this.formBuilder.control(false));
+                    }
+                });
+            });
+        });
+        console.log(this.averageForm.controls);
     }
 
     routeonSelection(route: string) {
@@ -427,6 +483,17 @@ export class GridComponent implements OnInit, AfterViewInit {
 
     changeView(view: string, controlName: string) {
         this.averageForm.controls[controlName].setValue(view);
+    }
+
+    changeTabs(controlName: string, tabGroup: [], selectedHeader: string) {
+        tabGroup.filter(element => {
+            const headerString = element['header'];
+            if (headerString !== selectedHeader) {
+                this.averageForm.controls[controlName+''+headerString].setValue(false);
+            } else {
+                this.averageForm.controls[controlName+''+headerString].setValue(true);
+            }
+        });
     }
 
     routeLink(route: string, category: string) {

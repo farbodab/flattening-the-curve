@@ -36,13 +36,8 @@ export class PlotComponent implements OnInit, OnChanges {
   private redraw() {
     this.graph = null;
     var figure = JSON.parse(this.graph_data);
-
     let data_placeholder_average: any;
     let data_placeholder_view: any;
-
-    console.log(JSON.parse(this.graph_data));
-
-    console.log(this.display_average);
 
     if (this.view === 'week') {
       let week_data = figure.data;
@@ -52,7 +47,6 @@ export class PlotComponent implements OnInit, OnChanges {
         if (typeof element.x !== 'undefined') {
           element.x.reverse().forEach((xElement, xIndex) => {
             if (xIndex < 7) {
-              console.log(xIndex);
               view_array_x.push(xElement);
             }
           });
@@ -72,9 +66,6 @@ export class PlotComponent implements OnInit, OnChanges {
       data_placeholder_view = figure.data;
     }
 
-    console.log(data_placeholder_view);
-
-
     let average_array = [];
     if (this.display_average === 'none') {
       data_placeholder_average = data_placeholder_view;
@@ -82,10 +73,8 @@ export class PlotComponent implements OnInit, OnChanges {
       data_placeholder_average = data_placeholder_view;
     } else {
       data_placeholder_average = data_placeholder_view.filter(element => {
-        console.log(element);
         if (element.name !== '7 Day Average') {
           average_array.push(element);
-          console.log(average_array);
         }
       });
       data_placeholder_average = average_array;
@@ -93,11 +82,9 @@ export class PlotComponent implements OnInit, OnChanges {
 
     figure.data = data_placeholder_average;
 
-    console.log(data_placeholder_average);
 
     figure.layout.dragmode = false;
     this.graph = figure;
-    console.log(this.graph);
     //this.graph.layout.dragmode = false;
 
     //let title_text = this.graph.layout.title.text.split('<br>');
