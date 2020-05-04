@@ -218,7 +218,6 @@ export class GridComponent implements OnInit, AfterViewInit {
                 this.iterateAverageForm(this.jsonObj, this.tab_obj);
                 this.iterateCategories(this.jsonObj);
                 this.gridList = this.restructureObj(this.jsonObj, this.categoryList);
-                console.log('grid ' + JSON.stringify(this.gridList));
                 this.initFilteringForm(this.gridList);
                 //this.setVisuals(this.jsonObj);
             },
@@ -422,18 +421,24 @@ export class GridComponent implements OnInit, AfterViewInit {
                 array.forEach(elementTwo => {
                     if (elementTwo.phu === element.phu && !group_array.includes(elementTwo.group)) {
                         group_array.push(elementTwo.group);
-                        let header_array = [{
+
+                        let header_array = [];
+                        header_array[elementTwo.tab_order] = {
                             header: elementTwo.header,
-                            tab: elementTwo.tab
-                        }];
+                            tab: elementTwo.tab,
+                            order: elementTwo.tab_order
+                        };
+
                         let header_array_check = [elementTwo.header];
                         array.forEach(elementThree => {
                             if (elementTwo.phu === elementThree.phu && elementTwo.group === elementThree.group && !header_array_check.includes(elementThree.header)) {
                                 header_array_check.push(elementThree.header);
-                                header_array.push({
+
+                                header_array[elementThree.tab_order] = {
                                     header: elementThree.header,
-                                    tab: elementThree.tab
-                                });
+                                    tab: elementThree.tab,
+                                    order: elementTwo.tab_order
+                                };
                             }
                         });
                         Object.assign(group_obj, { [elementTwo.group]: header_array });
@@ -459,7 +464,6 @@ export class GridComponent implements OnInit, AfterViewInit {
         for (var i = 0; i < keys.length; i++) {
             new_array.push(obj_1[keys[i]]);
         }
-        console.log('here '+JSON.stringify(new_array[0][0]));
         return new_array;
     }
 
@@ -481,7 +485,7 @@ export class GridComponent implements OnInit, AfterViewInit {
         });
         Object.keys(tabObj).forEach(element => {
             Object.keys(tabObj[element]).forEach(elementTwo => {
-                tabObj[element][elementTwo].filter((elementThree, index) => {
+                tabObj[element][elementTwo].forEach((elementThree, index) => {
                     if (index === 0) {
                         this.averageForm.addControl(element + '' + elementTwo + '' + elementThree['header'], this.formBuilder.control(true));
                     } else {
