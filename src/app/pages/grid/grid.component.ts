@@ -261,7 +261,7 @@ export class GridComponent implements OnInit, AfterViewInit {
                         Object.assign(group_obj, { [item.group]: placeholderPhuArray });
                     }
                 });
-                data_obj[phu.value] = group_obj;
+                data_obj[phu.value] = this.sortKeys(group_obj);
             });
             objPlaceholder.push({
                 [element]: data_obj
@@ -445,6 +445,24 @@ export class GridComponent implements OnInit, AfterViewInit {
         return tab_obj;
     }
 
+    sortKeys(obj_1: {}) {
+        let keys = Object.keys(obj_1);
+        var key = Object.keys(obj_1).filter((element, index) => {
+            let placeholder_map_spot = keys[1];
+            if (element === 'map') {
+                keys[1] = element;
+                keys[index] = placeholder_map_spot;
+            }
+        });
+
+        var new_array = [];
+        for (var i = 0; i < keys.length; i++) {
+            new_array.push(obj_1[keys[i]]);
+        }
+        console.log('here '+JSON.stringify(new_array[0][0]));
+        return new_array;
+    }
+
     iterateAverageForm(array: any, tabObj: any) {
         this.averageForm = this.formBuilder.group({});
         array.filter(element => {
@@ -489,9 +507,9 @@ export class GridComponent implements OnInit, AfterViewInit {
         tabGroup.filter(element => {
             const headerString = element['header'];
             if (headerString !== selectedHeader) {
-                this.averageForm.controls[controlName+''+headerString].setValue(false);
+                this.averageForm.controls[controlName + '' + headerString].setValue(false);
             } else {
-                this.averageForm.controls[controlName+''+headerString].setValue(true);
+                this.averageForm.controls[controlName + '' + headerString].setValue(true);
             }
         });
     }

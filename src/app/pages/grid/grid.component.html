@@ -75,39 +75,39 @@
                                                 [style.height]="is_full ? (phu.key === 'ontario'? '100vh': '110vh') : (phu.key === 'ontario'? '750vh': '450vh')"
                                                 [style.margin-left]="is_full ? '10px' : '0'"
                                                 [style.min-height]="(is_full && phu.key === 'ontario') ? '1500px': '800px'">
-                                                <div *ngFor="let phuGroup of phu.value | keyvalue"
+                                                <div *ngFor="let phuGroup of phu.value; index as index"
                                                     style="height: 100%; background-color: #343332"
-                                                    [style.grid-column]="is_full ? 'span 3' : 'span 12'"
-                                                    [style.grid-row]="is_full ? 'span 3' : 'span 1'"
+                                                    [style.grid-column]="is_full ? (phuGroup[0].group === 'map' ? 'span 6' : 'span 3') : 'span 12'"
+                                                    [style.grid-row]="is_full ? (phuGroup[0].group === 'map' ? 'span 6' : 'span 3') : 'span 1'"
                                                     [style.padding]="is_full ? '10px' : 'initial'">
-                                                    <div *ngFor="let phuPlot of phuGroup.value; index as index"
-                                                        [style.height]="averageForm.controls[phuPlot.phu + '' + phuPlot.group + '' + phuPlot.header].value ? '100%' : '0'">
-                                                        <div *ngIf="averageForm.controls[phuPlot.phu + '' + phuPlot.group + '' + phuPlot.header].value"
+                                                    <div *ngFor="let phuPlot of phuGroup | keyvalue"
+                                                        [style.height]="averageForm.controls[phuPlot.value.phu + '' + phuPlot.value.group + '' + phuPlot.value.header].value ? '100%' : '0'">
+                                                        <div *ngIf="averageForm.controls[phuPlot.value.phu + '' + phuPlot.value.group + '' + phuPlot.value.header].value"
                                                             style="height: 100%">
                                                             <div style="height: 100%">
                                                                 <div style="height: 25px">
                                                                     <div
-                                                                        *ngIf="averageForm.controls[phuPlot.phu + '' +phuPlot.header + 'view'].value !== 'none'">
+                                                                        *ngIf="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'view'].value !== 'none'">
                                                                         <div
                                                                             style="display: flex; justify-content: space-between; border-bottom: 1px solid #666666">
                                                                             <div class="tab-styling"
-                                                                                [ngClass]="{'tab-selected': averageForm.controls[phuPlot.phu + '' + phuPlot.header + 'view'].value === 'allTime'}"
-                                                                                (click)="averageForm.controls[phuPlot.phu + '' + phuPlot.header + 'view'].setValue('allTime')">
+                                                                                [ngClass]="{'tab-selected': averageForm.controls[phuPlot.value.phu + '' + phuPlot.value.header + 'view'].value === 'allTime'}"
+                                                                                (click)="averageForm.controls[phuPlot.value.phu + '' + phuPlot.value.header + 'view'].setValue('allTime')">
                                                                                 All Time</div>
                                                                             <div class="tab-styling"
-                                                                                [ngClass]="{'tab-selected': averageForm.controls[phuPlot.phu + '' + phuPlot.header + 'view'].value === 'week'}"
-                                                                                (click)="averageForm.controls[phuPlot.phu + '' + phuPlot.header + 'view'].setValue('week')">
+                                                                                [ngClass]="{'tab-selected': averageForm.controls[phuPlot.value.phu + '' + phuPlot.value.header + 'view'].value === 'week'}"
+                                                                                (click)="averageForm.controls[phuPlot.value.phu + '' + phuPlot.value.header + 'view'].setValue('week')">
                                                                                 Prior Week</div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div style="display: flex; height: 40px">
                                                                     <div class="plot-check"
-                                                                        *ngIf="averageForm.controls[phuPlot.phu + '' +phuPlot.header + 'average'].value !== 'none'">
+                                                                        *ngIf="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'average'].value !== 'none'">
                                                                         <div
                                                                             style="height: 20px; margin-right: 25px; border-radius: 6px; background-color: #245D70; color: #ffffff; padding: 6px 12px">
                                                                             <mat-checkbox
-                                                                                [formControlName]="phuPlot.phu + '' +phuPlot.header + 'average'">
+                                                                                [formControlName]="phuPlot.value.phu + '' +phuPlot.value.header + 'average'">
                                                                                 7 Day Avg.
                                                                             </mat-checkbox>
                                                                         </div>
@@ -115,14 +115,14 @@
                                                                 </div>
                                                                 <app-plot
                                                                     style="display: inline-block; width: 100%; height: calc(100% - 105px);"
-                                                                    [graph_data]="phuPlot.html" [mobile_size]="!is_full"
-                                                                    [display_average]="averageForm.controls[phuPlot.phu + '' +phuPlot.header + 'average'].value"
+                                                                    [graph_data]="phuPlot.value.html" [mobile_size]="!is_full"
+                                                                    [display_average]="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'average'].value"
                                                                     [font_size_category]="plot_window"
-                                                                    [cat]="phuPlot.phu+ '' +phuPlot.header"
-                                                                    [view]="averageForm.controls[phuPlot.phu + '' +phuPlot.header + 'view'].value">
+                                                                    [cat]="phuPlot.value.phu+ '' +phuPlot.value.header"
+                                                                    [view]="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'view'].value">
                                                                 </app-plot>
                                                                 <div *ngFor="let phuTab of tab_obj | keyvalue">
-                                                                    <div *ngIf="phuTab.key === phuPlot.phu">
+                                                                    <div *ngIf="phuTab.key === phuPlot.value.phu">
                                                                         <div
                                                                             *ngFor="let phuTabGroup of phuTab.value | keyvalue">
                                                                             <!-- <div *ngIf="phuTabGroup.key === phuPlot.group"
@@ -137,13 +137,13 @@
                                                                                         {{phuTabHeader.tab}}</div>
                                                                                 </div>
                                                                             </div> -->
-                                                                            <div *ngIf="phuTabGroup.key === phuPlot.group"
+                                                                            <div *ngIf="phuTabGroup.key === phuPlot.value.group"
                                                                                 class="plot-tab-group"
                                                                                 [style.display]="phuTabGroup.value.length === 1 ? 'none': 'flex'">
                                                                                 <div *ngFor="let phuTabHeader of phuTabGroup.value; index as index">
                                                                                     <div class="bottom-tab-styling"
-                                                                                    [ngClass]="{'bottom-tab-selected': averageForm.controls[phuPlot.phu + '' + phuPlot.group + '' +phuTabHeader.header].value}"
-                                                                                        (click)="changeTabs(phuPlot.phu + '' + phuPlot.group, phuTabGroup.value, phuTabHeader.header)">
+                                                                                    [ngClass]="{'bottom-tab-selected': averageForm.controls[phuPlot.value.phu + '' + phuPlot.value.group + '' +phuTabHeader.header].value}"
+                                                                                        (click)="changeTabs(phuPlot.value.phu + '' + phuPlot.value.group, phuTabGroup.value, phuTabHeader.header)">
                                                                                         {{phuTabHeader.tab}}</div>
                                                                                 </div>
                                                                             </div>
