@@ -383,15 +383,15 @@
 }
 
 .mobile-grid-row {
-    grid-template-rows: repeat(12, 1fr);
+    grid-template-rows: repeat(5, 1fr);
 }
 
 .mobile-grid-row-ontario {
-    grid-template-rows: repeat(19, 1fr);
+    grid-template-rows: repeat(9, 1fr);
 }
 
 .desktop-grid-row {
-    grid-template-rows: repeat(9, 1fr);
+    grid-template-rows: repeat(6, 1fr);
 }
 
 .desktop-grid-row-ontario {
