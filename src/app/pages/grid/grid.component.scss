@@ -132,8 +132,67 @@
     margin-right: -30px;
 }
 
+.plot-container {
+    background-color: #DADFE1;
+}
+
 .form-styling {
     padding: 18px 0 18px 18px;
+}
+
+.plot-check {
+    padding: 5px 0 5px 0px;
+}
+
+.tab-selected {
+    border-bottom: solid 3px #ffffff;
+    color: #000000;
+    font-weight: bold;
+    background-color: #ffffff;
+}
+
+.tab-styling {
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: center;
+    width: 50%;
+    text-align: center;
+
+    &:not(.tab-selected) {
+        color: #ffffff;
+    }
+
+    &:hover {
+        &:not(.tab-selected) {
+            border-bottom: solid 2px #ffffff;
+        }
+        cursor: pointer;
+    }
+}
+
+.plot-tab-group {
+    height: 40;
+    line-height: 30px;
+    border-top: 1px solid #666666;
+    overflow-x: auto;
+    white-space: nowrap;
+    justify-content: space-around;
+}
+
+.bottom-tab-selected {
+    border-bottom: solid 3px #ffffff;
+    font-weight: bold;
+}
+
+.bottom-tab-styling {
+    color: #ffffff;
+
+    &:hover {
+        &:not(.tab-selected) {
+            border-bottom: solid 2px #ffffff;
+        }
+        cursor: pointer;
+    }
 }
 
 .kpi-header {
@@ -177,6 +236,10 @@
 }
 
 ::ng-deep {
+
+    .mat-tab-body-wrapper {
+        height: 100%;
+    }
 
     .modebar.modebar--hover {
         display: none !important;
@@ -320,19 +383,19 @@
 }
 
 .mobile-grid-row {
-    grid-template-rows: repeat(12, 1fr);
+    grid-template-rows: repeat(5, 1fr);
 }
 
 .mobile-grid-row-ontario {
-    grid-template-rows: repeat(19, 1fr);
-}
-
-.desktop-grid-row {
     grid-template-rows: repeat(9, 1fr);
 }
 
+.desktop-grid-row {
+    grid-template-rows: repeat(6, 1fr);
+}
+
 .desktop-grid-row-ontario {
-    grid-template-rows: repeat(15, 1fr);
+    grid-template-rows: repeat(9, 1fr);
 }
 
 #mobile-nav {
