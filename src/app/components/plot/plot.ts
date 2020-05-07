@@ -89,12 +89,17 @@ export class PlotComponent implements OnInit, OnChanges {
 
 
     figure.layout.dragmode = false;
+
     this.graph = figure;
-    //this.graph.layout.dragmode = false;
 
-    //let title_text = this.graph.layout.title.text.split('<br>');
+    if(typeof this.graph.layout.font === 'undefined') {
+    } else {
+      this.graph.layout.font.size = 10;
+    }
+    //Sconsole.log('graph '+JSON.stringify(this.graph));
 
-    // if (true) {
+    // if (false) {
+    //   let title_text = this.graph.layout.title.text.split('<br>');
     //   switch (this.font_size_category) {
     //     case 'small':
     //       title_text[0] = '<span style="font-size: 1.25em">' + title_text[0] + '</span>';

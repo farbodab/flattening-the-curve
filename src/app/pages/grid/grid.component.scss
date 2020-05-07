@@ -177,6 +177,7 @@
     overflow-x: auto;
     white-space: nowrap;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .bottom-tab-selected {
@@ -186,6 +187,7 @@
 
 .bottom-tab-styling {
     color: #ffffff;
+    padding: 0 5px;
 
     &:hover {
         &:not(.tab-selected) {
