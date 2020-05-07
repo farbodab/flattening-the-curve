@@ -141,7 +141,7 @@
 }
 
 .plot-check {
-    padding: 5px 0 5px 0px;
+    padding: 10px 0 5px 0px;
 }
 
 .tab-selected {
@@ -171,7 +171,7 @@
 }
 
 .plot-tab-group {
-    height: 40;
+    height: 40px;
     line-height: 30px;
     border-top: 1px solid #666666;
     overflow-x: auto;
@@ -248,7 +248,7 @@
     .mobile-sizing .modebar-container {
         display: none !important;
     }
-    
+
     .mat-card-header .mat-card-title {
         font-size: 18px !important;
         font-weight: bold;
@@ -398,7 +398,56 @@
     grid-template-rows: repeat(9, 1fr);
 }
 
+.plot-container {
+    height: 100%;
+    background-color: #343332;
+}
+
+.upper-tab-container {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #666666;
+}
+
+.plot-styling {
+    display: inline-block;
+    width: 100%;
+
+    &:not(.map-selector) {
+        height: calc(100% - 110px);
+    }
+
+    &.map-selector {
+        height: 98%;
+    }
+}
+
+.mobile-sizing {
+    .plot-check {
+        padding-left: 5px;
+    }
+    .upper-tab-container {
+        border: 2px solid #666666;
+    }
+    .tab-styling {
+        font-size: 20px;
+        line-height:35px;
+    }
+    .plot-styling {
+
+        &:not(.map-selector) {
+            height: calc(100% - 130px);
+        }
+    
+        &.map-selector {
+            height: 98%;
+        }
+    }
+}
+
+
 #mobile-nav {
+
     .form-container {
         margin: 0;
         border-radius: 0;
