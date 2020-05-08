@@ -6,7 +6,7 @@ import { Router, ActivatedRoute, UrlTree, UrlSegment, UrlSegmentGroup, PRIMARY_O
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
 import { ApiService } from 'src/app/services/api.service';
 import { CommonDesktopVisualComponent } from '../../components/common-desktop-visual/common-desktop-visual.component';
-import { DomSanitizer } from '@angular/platform-browser';
+import * as moment from 'moment';
 
 declare var tableau: any;
 
@@ -23,12 +23,15 @@ export class GridComponent implements OnInit, AfterViewInit {
 
     window_subscription: Subscription;
     is_full: boolean = true;
+    plot_window = '';
     filteringCheckboxes: FormGroup;
     dropdownList: FormGroup;
+    averageForm: FormGroup;
     selectedCategory = '';
     jsonObj: any;
     categoryList = [];
     gridList = [];
+    tab_obj = {};
 
     searchCtrl: string;
 
@@ -182,18 +185,19 @@ export class GridComponent implements OnInit, AfterViewInit {
         }
     ];
 
-    constructor(private host_service: HostService, private route: ActivatedRoute, private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog, private api_service: ApiService, private sanitizer: DomSanitizer) {
+    constructor(private host_service: HostService, private route: ActivatedRoute, private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog, private api_service: ApiService) {
         this.refresh_layout(window.innerWidth);
+        this.plot_layout(window.innerWidth);
         this.urlSegments = route.snapshot['_urlSegment'];
     }
 
     ngOnInit() {
         this.window_subscription = this.host_service.onWindowResize.subscribe(window => {
             this.refresh_layout(window.innerWidth);
+            this.plot_layout(window.innerWidth);
         });
         typeof (this.urlSegments.segments[1]) === 'undefined' ? this.path = '' : this.path = this.urlSegments.segments[1].path;
         this.fetchVizObj();
-        console.log(this.path);
     }
 
     ngAfterViewInit() {
@@ -206,18 +210,13 @@ export class GridComponent implements OnInit, AfterViewInit {
         }
     }
 
-    // test() {
-    //     console.log(this.dropdownList.controls.phu.value);
-    // }
-
     fetchVizObj() {
         this.api_service.get_plot_obj().subscribe(
             data => {
                 this.jsonObj = data;
-                //this.jsonObj = this.addSelectedProperty(this.jsonObj);
-                //this.jsonObj = this.addHeaderNoSpaces(this.jsonObj);
                 this.initDropdownForm(this.phuArray);
-                //this.findKpiViz(this.jsonObj);
+                this.tab_obj = this.initTabGroupings(this.jsonObj);
+                this.iterateAverageForm(this.jsonObj, this.tab_obj);
                 this.iterateCategories(this.jsonObj);
                 this.gridList = this.restructureObj(this.jsonObj, this.categoryList);
                 this.initFilteringForm(this.gridList);
@@ -225,28 +224,9 @@ export class GridComponent implements OnInit, AfterViewInit {
             },
             error => {
                 console.error(error);
+                alert(error);
             }
         );
-    }
-
-    addSelectedProperty(obj: []) {
-        return obj.map(x => Object.assign({ selected: false }, x));
-    }
-
-    addHeaderNoSpaces(obj: any) {
-        return obj.map(x => Object.assign({ headerNoSpace: x['header'].replace(/\s/g, '') }, x));
-    }
-
-    findKpiViz(obj: []) {
-        let url = '';
-        let height = '';
-        obj.forEach((element, index) => {
-            if (element['category'] === 'Kpi-dash') {
-                url = element['viz'];
-                height = element['desktopHeight'];
-            }
-        });
-        //this.setKpiViz(url, height);
     }
 
     iterateCategories(obj: []) {
@@ -261,24 +241,32 @@ export class GridComponent implements OnInit, AfterViewInit {
 
     restructureObj(obj: any, categoryList: any[]) {
         let objPlaceholder = [];
+        let data_obj = {};
         categoryList.forEach(element => {
             let placeholderArray = [];
             this.phuArray.forEach(phu => {
-                let placeholderPhuArray = [];
+                let group_array = [];
+                let group_obj = {};
                 obj.forEach(item => {
-                    if (item.category === element && (item.phu === phu.value)) {
-                        placeholderPhuArray.push(item);
+                    if (item.category === element && (item.phu === phu.value) && !group_array.includes(item.group)) {
+                        group_array.push(item.group);
+                        let placeholderPhuArray = [item];
+                        let header_array = [item.header];
+                        obj.forEach(elementThree => {
+                            if (item.phu === elementThree.phu && item.group === elementThree.group && !header_array.includes(elementThree.header)) {
+                                header_array.push(elementThree.header);
+                                placeholderPhuArray.push(elementThree);
+                            }
+                        });
+                        Object.assign(group_obj, { [item.group]: placeholderPhuArray });
                     }
                 });
-                placeholderArray.push({
-                    [phu.value]: placeholderPhuArray
-                });
+                data_obj[phu.value] = this.sortKeys(group_obj);
             });
             objPlaceholder.push({
-                [element]: placeholderArray
+                [element]: data_obj
             });
         });
-        console.log(objPlaceholder);
         return objPlaceholder;
     }
 
@@ -400,12 +388,7 @@ export class GridComponent implements OnInit, AfterViewInit {
     }
 
     initFilteringForm(obj: any) {
-        this.filteringCheckboxes = this.formBuilder.group({
-            // Critical: true,
-            // Regional: true,
-            // Testing: true,
-            // Growth: true
-        });
+        this.filteringCheckboxes = this.formBuilder.group({});
         let keysArr = [];
         obj.forEach(element => {
             keysArr.push(Object.keys(element));
@@ -428,10 +411,116 @@ export class GridComponent implements OnInit, AfterViewInit {
         this.dropdownList.addControl('searchCtrl', this.formBuilder.control(''));
     }
 
+    initTabGroupings(array: any) {
+        let tab_obj = {};
+        let phu_array = [];
+        array.forEach(element => {
+            if (!phu_array.includes(element.phu)) {
+                phu_array.push(element.phu);
+                let group_array = [];
+                let group_obj = {};
+                array.forEach(elementTwo => {
+                    if (elementTwo.phu === element.phu && !group_array.includes(elementTwo.group)) {
+                        group_array.push(elementTwo.group);
+
+                        let header_array = [];
+                        header_array[elementTwo.tab_order] = {
+                            header: elementTwo.header,
+                            tab: elementTwo.tab,
+                            order: elementTwo.tab_order
+                        };
+
+                        let header_array_check = [elementTwo.header];
+                        array.forEach(elementThree => {
+                            if (elementTwo.phu === elementThree.phu && elementTwo.group === elementThree.group && !header_array_check.includes(elementThree.header)) {
+                                header_array_check.push(elementThree.header);
+
+                                header_array[elementThree.tab_order] = {
+                                    header: elementThree.header,
+                                    tab: elementThree.tab,
+                                    order: elementTwo.tab_order
+                                };
+                            }
+                        });
+                        Object.assign(group_obj, { [elementTwo.group]: header_array });
+                    }
+                });
+                tab_obj[element.phu] = group_obj;
+            }
+        });
+        return tab_obj;
+    }
+
+    sortKeys(obj_1: {}) {
+        let keys = Object.keys(obj_1);
+        var key = Object.keys(obj_1).filter((element, index) => {
+            let placeholder_map_spot = keys[1];
+            if (element === 'map') {
+                keys[1] = element;
+                keys[index] = placeholder_map_spot;
+            }
+        });
+
+        var new_array = [];
+        for (var i = 0; i < keys.length; i++) {
+            new_array.push(obj_1[keys[i]]);
+        }
+        return new_array;
+    }
+
+    iterateAverageForm(array: any, tabObj: any) {
+        this.averageForm = this.formBuilder.group({});
+        const momentConst = moment().subtract(2, 'days').format('YYYY-MM-DD');
+        const priorDate = momentConst.toString() + 'T00:00:00';
+        //2020-05-01T00:00:00
+
+        array.filter(element => {
+            if (element.html.includes('7 Day Average')) {
+                this.averageForm.addControl(element.phu + '' + element.header + 'average', this.formBuilder.control(true));
+            } else {
+                this.averageForm.addControl(element.phu + '' + element.header + 'average', this.formBuilder.control('none'));
+            }
+        });
+        array.filter(element => {
+            if (element.html.includes(priorDate)) {
+                this.averageForm.addControl(element.phu + '' + element.header + 'view', this.formBuilder.control('allTime'));
+            } else {
+                this.averageForm.addControl(element.phu + '' + element.header + 'view', this.formBuilder.control('none'));
+            }
+        });
+        Object.keys(tabObj).forEach(element => {
+            Object.keys(tabObj[element]).forEach(elementTwo => {
+                tabObj[element][elementTwo].forEach((elementThree, index) => {
+                    if (index === 0) {
+                        this.averageForm.addControl(element + '' + elementTwo + '' + elementThree['header'], this.formBuilder.control(true));
+                    } else {
+                        this.averageForm.addControl(element + '' + elementTwo + '' + elementThree['header'], this.formBuilder.control(false));
+                    }
+                });
+            });
+        });
+        console.log(this.averageForm.controls);
+    }
+
     routeonSelection(route: string) {
         const index = this.phuArray.findIndex(phu => phu.value === route);
         this.headerLabel = this.phuArray[index].phu;
         this.router.navigate(['/dashboard/' + route]);
+    }
+
+    changeView(view: string, controlName: string) {
+        this.averageForm.controls[controlName].setValue(view);
+    }
+
+    changeTabs(controlName: string, tabGroup: [], selectedHeader: string) {
+        tabGroup.filter(element => {
+            const headerString = element['header'];
+            if (headerString !== selectedHeader) {
+                this.averageForm.controls[controlName + '' + headerString].setValue(false);
+            } else {
+                this.averageForm.controls[controlName + '' + headerString].setValue(true);
+            }
+        });
     }
 
     routeLink(route: string, category: string) {
@@ -444,5 +533,9 @@ export class GridComponent implements OnInit, AfterViewInit {
 
     private refresh_layout(width) {
         this.is_full = window.innerWidth >= 1024 ? true : false;
+    }
+
+    private plot_layout(width) {
+        this.plot_window = !this.is_full ? 'small' : (window.innerWidth > 1080 ? (window.innerHeight > 1440 ? 'xlarge' : 'large') : 'medium');
     }
 }
