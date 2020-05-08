@@ -6,6 +6,7 @@ import { Router, ActivatedRoute, UrlTree, UrlSegment, UrlSegmentGroup, PRIMARY_O
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
 import { ApiService } from 'src/app/services/api.service';
 import { CommonDesktopVisualComponent } from '../../components/common-desktop-visual/common-desktop-visual.component';
+import * as moment from 'moment';
 
 declare var tableau: any;
 
@@ -469,6 +470,10 @@ export class GridComponent implements OnInit, AfterViewInit {
 
     iterateAverageForm(array: any, tabObj: any) {
         this.averageForm = this.formBuilder.group({});
+        const momentConst = moment().subtract(2, 'days').format('YYYY-MM-DD');
+        const priorDate = momentConst.toString() + 'T00:00:00';
+        //2020-05-01T00:00:00
+
         array.filter(element => {
             if (element.html.includes('7 Day Average')) {
                 this.averageForm.addControl(element.phu + '' + element.header + 'average', this.formBuilder.control(true));
@@ -477,7 +482,7 @@ export class GridComponent implements OnInit, AfterViewInit {
             }
         });
         array.filter(element => {
-            if (element.html.includes('2020-05-01T00:00:00')) {
+            if (element.html.includes(priorDate)) {
                 this.averageForm.addControl(element.phu + '' + element.header + 'view', this.formBuilder.control('allTime'));
             } else {
                 this.averageForm.addControl(element.phu + '' + element.header + 'view', this.formBuilder.control('none'));
@@ -531,6 +536,6 @@ export class GridComponent implements OnInit, AfterViewInit {
     }
 
     private plot_layout(width) {
-        this.plot_window = !this.is_full ? 'small' : (window.innerWidth > 1920 ? 'large' : 'medium');
+        this.plot_window = !this.is_full ? 'small' : (window.innerWidth > 1080 ? (window.innerHeight > 1440 ? 'xlarge' : 'large') : 'medium');
     }
 }
