@@ -29,6 +29,8 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
+import {MatTabsModule} from '@angular/material/tabs'; 
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -85,7 +87,9 @@ PlotlyViaCDNModule.plotlyBundle = null; // optional: can be null (for full) or '
         PlotlyViaCDNModule,
         MatSelectModule,
         NgxMatSelectSearchModule,
-        MainPipe
+        MainPipe,
+        MatTabsModule,
+        MatProgressSpinnerModule
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
