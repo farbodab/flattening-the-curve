@@ -89,12 +89,31 @@ export class PlotComponent implements OnInit, OnChanges {
 
 
     figure.layout.dragmode = false;
+
     this.graph = figure;
-    //this.graph.layout.dragmode = false;
 
-    //let title_text = this.graph.layout.title.text.split('<br>');
+    if(typeof this.graph.layout.font !== 'undefined') {
+      switch(this.font_size_category) {
+        case 'small':
+          this.graph.layout.font.size = 9;
+          break;
+        case 'medium':
+          this.graph.layout.font.size = 11;
+          break;
+        case 'large':
+          this.graph.layout.font.size = 15;
+          break;
+        case 'xlarge':
+          this.graph.layout.font.size = 20;
+          break;
+        default:
+          break;
+      }
+    }
+    //Sconsole.log('graph '+JSON.stringify(this.graph));
 
-    // if (true) {
+    // if (false) {
+    //   let title_text = this.graph.layout.title.text.split('<br>');
     //   switch (this.font_size_category) {
     //     case 'small':
     //       title_text[0] = '<span style="font-size: 1.25em">' + title_text[0] + '</span>';
@@ -116,4 +135,3 @@ export class PlotComponent implements OnInit, OnChanges {
     }
   }
 }
-
