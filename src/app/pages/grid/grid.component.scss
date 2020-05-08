@@ -227,7 +227,7 @@
 
 .mobile-kpi-styling {
     border-radius: 0;
-    
+
     .kpi-title {
         padding-left: 0;
     }
@@ -379,7 +379,7 @@
         margin: 0 15px;
         padding-bottom: 0;
 }
-    
+
 .mobile-sizing #kpiContainer {
         padding-bottom: 0;
 }
@@ -440,7 +440,7 @@
         &:not(.map-selector) {
             height: calc(100% - 130px);
         }
-    
+
         &.map-selector {
             height: 98%;
         }
@@ -461,7 +461,7 @@
         margin-right: auto !important;
         padding-bottom: 15px;
     }
-    
+
     .selected-background {
         background-color: #f7f6f2;
     }

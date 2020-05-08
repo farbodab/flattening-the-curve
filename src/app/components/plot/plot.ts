@@ -95,13 +95,16 @@ export class PlotComponent implements OnInit, OnChanges {
     if(typeof this.graph.layout.font !== 'undefined') {
       switch(this.font_size_category) {
         case 'small':
-          this.graph.layout.font.size = 10;
+          this.graph.layout.font.size = 9;
           break;
         case 'medium':
-          this.graph.layout.font.size = 13;
+          this.graph.layout.font.size = 11;
           break;
         case 'large':
-          this.graph.layout.font.size = 30;
+          this.graph.layout.font.size = 15;
+          break;
+        case 'xlarge':
+          this.graph.layout.font.size = 20;
           break;
         default:
           break;
@@ -132,4 +135,3 @@ export class PlotComponent implements OnInit, OnChanges {
     }
   }
 }
-

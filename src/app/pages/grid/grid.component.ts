@@ -536,6 +536,6 @@ export class GridComponent implements OnInit, AfterViewInit {
     }
 
     private plot_layout(width) {
-        this.plot_window = !this.is_full ? 'small' : (window.innerWidth > 1920 ? 'large' : 'medium');
+        this.plot_window = !this.is_full ? 'small' : (window.innerWidth > 1080 ? (window.innerHeight > 1440 ? 'xlarge' : 'large') : 'medium');
     }
 }
