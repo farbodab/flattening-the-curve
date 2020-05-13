@@ -149,6 +149,14 @@
     color: #000000;
     font-weight: bold;
     background-color: #ffffff;
+    text-decoration: underline solid 2px #000000;
+}
+
+.selected-header-styling {
+    padding-top: 30px;
+    font-size: 35px;
+    padding-bottom: 30px;
+    text-align: center;
 }
 
 .tab-styling {
@@ -178,11 +186,14 @@
     white-space: nowrap;
     justify-content: space-around;
     flex-wrap: wrap;
+    background-color: #666666;
+    margin: 0 -10px 0 -10px;
 }
 
 .bottom-tab-selected {
-    border-bottom: solid 3px #ffffff;
+    border-bottom: solid 3px #000000;
     font-weight: bold;
+    color: #000000;
 }
 
 .bottom-tab-styling {
@@ -190,7 +201,7 @@
     padding: 0 5px;
 
     &:hover {
-        &:not(.tab-selected) {
+        &:not(.bottom-tab-selected) {
             border-bottom: solid 2px #ffffff;
         }
         cursor: pointer;
@@ -238,6 +249,11 @@
 }
 
 ::ng-deep {
+
+    .mat-form-field-label-wrapper {
+        font-size: 20px;
+        line-height: 20px;
+    }
 
     .mat-tab-body-wrapper {
         height: 100%;
@@ -408,7 +424,14 @@
 .upper-tab-container {
     display: flex;
     justify-content: space-between;
+    margin: -10px -10px 0 -10px;
+    border-left: 1px solid #343332;
+    border-right: 1px solid #343332;
     border-bottom: 1px solid #666666;
+    border-top: 1px solid #666666;
+    background-color: #666666;
+    height: 35px;
+    line-height: 35px;
 }
 
 .plot-styling {
@@ -430,6 +453,11 @@
     }
     .upper-tab-container {
         border: 2px solid #666666;
+        margin: 0;
+    }
+    .plot-tab-group {
+        margin: 0;
+        border: initial;
     }
     .tab-styling {
         font-size: 20px;
