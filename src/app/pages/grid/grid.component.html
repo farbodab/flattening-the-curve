@@ -60,8 +60,8 @@
                 <!-- <mat-label><a target="_blank" href="https://www.phdapps.health.gov.on.ca/PHULocator/">Find a Public Health Unit</a> </mat-label> -->
             </div>
             <div *ngIf="dropdownList && is_full"
-                style="padding-top: 30px; font-size: 24px; padding-bottom: 30px; text-align: center">
-                {{headerLabel}}<br><span style="font-size:0.5em">In Beta. Please forward feedback to
+                class="selected-header-styling">
+                {{headerLabel}}<br><span style="font-size:0.457em">In Beta. Please forward feedback to
                     info@howsmyflattening.ca</span>
             </div>
             <!-- <div *ngIf="filteringCheckboxes && dropdownList"> -->
@@ -90,7 +90,7 @@
                                                         <div *ngIf="averageForm.controls[phuPlot.value.phu + '' + phuPlot.value.group + '' + phuPlot.value.header].value"
                                                             style="height: 100%">
                                                             <div style="height: 100%">
-                                                                <div [style.height]="(is_full ? '25px' : '35px')"
+                                                                <div [style.height]="(is_full ? '35px' : '35px')"
                                                                     [style.display]="(phuGroup[0].group === 'map' ? 'none': 'block')">
                                                                     <div
                                                                         *ngIf="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'view'].value !== 'none'">

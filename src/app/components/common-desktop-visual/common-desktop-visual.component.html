@@ -1,6 +1,6 @@
 <div style="padding-bottom: 30px">
-    <div>{{visualName}}</div>
-    <div [innerHTML]="text"></div>
+    <div class="header-styling">{{visualName}}</div>
+    <div class="text-styling" [innerHTML]="text"></div>
     <div #vizContainerDesktop style="border-style: solid; border-width: 2px; border-color: gray;"></div>
     <div *ngIf="visualName === 'Capacity Analysis'">
         <iframe id="example1" src="https://pechlilab.shinyapps.io/output/"
