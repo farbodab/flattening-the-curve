@@ -18,6 +18,7 @@ export class CommonDesktopVisualComponent implements OnInit, OnDestroy, AfterVie
     text: string;
     category: string;
     height: string;
+    type: string;
 
     viz: any;
     toggleTextFlag = true;
@@ -32,13 +33,17 @@ export class CommonDesktopVisualComponent implements OnInit, OnDestroy, AfterVie
         this.text = data.textContent;
         this.category = data.visualCategory;
         this.height = data.vizHeight + 'px';
+        this.type = data.vizType;
     }
 
     ngOnInit() {
+        console.log(this.viz);
     }
 
     ngAfterViewInit() {
-        this.constructViz();
+        if (this.type === 'Tableau') {
+            this.constructViz();
+        }
     }
 
     ngOnDestroy() {
