@@ -165,14 +165,15 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
   }
 
 
-  openDialog(componentName: any, category: string, url: string, text: string, height: number, index: number): void {
+  openDialog(componentName: any, category: string, type: string, url: string, text: string, height: number, index: number): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
       visualName: componentName,
       textContent: text,
       vizUrl: url,
       vizCategory: category,
-      vizHeight: height
+      vizHeight: height,
+      vizType: type
     };
     dialogConfig.width = '300px';
 

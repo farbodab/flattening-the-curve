@@ -14,6 +14,7 @@ export class PlotComponent implements OnInit, OnChanges {
   @Input() display_average: any;
   @Input() view: string;
   @Input() cat: string;
+  @Input() analysis: boolean;
 
   graph = null;
 
@@ -40,98 +41,103 @@ export class PlotComponent implements OnInit, OnChanges {
 
   private redraw() {
     this.graph = null;
+    console.log(this.graph_data);
     var figure = JSON.parse(this.graph_data);
     let data_placeholder_average: any;
     let data_placeholder_view: any;
 
-    if (this.view === 'week') {
-      let week_data = figure.data;
-      data_placeholder_view = week_data.filter((element, index) => {
-        let view_array_x = [];
-        let view_array_y = [];
-        if (typeof element.x !== 'undefined') {
-          element.x.reverse().forEach((xElement, xIndex) => {
-            if (xIndex < 7) {
-              view_array_x.push(xElement);
-            }
-          });
-          element.x = view_array_x.reverse();
-          element.y.reverse().forEach((yElement, yIndex) => {
-            if (yIndex < 7) {
-              view_array_y.push(yElement);
-            }
-          });
-          element.y = view_array_y.reverse();
-        }
-      });
-      data_placeholder_view = week_data;
-    } else if (this.view === 'allTime') {
-      data_placeholder_view = figure.data;
-    } else if (this.view === 'none') {
-      data_placeholder_view = figure.data;
-    }
-
-    let average_array = [];
-    if (this.display_average === 'none') {
-      data_placeholder_average = data_placeholder_view;
-    } else if (this.display_average) {
-      data_placeholder_average = data_placeholder_view;
-    } else {
-      data_placeholder_average = data_placeholder_view.filter(element => {
-        if (element.name !== '7 Day Average') {
-          average_array.push(element);
-        }
-      });
-      data_placeholder_average = average_array;
-    }
-
-    figure.data = data_placeholder_average;
-
-
-    figure.layout.dragmode = false;
-
-    this.graph = figure;
-
-    if(typeof this.graph.layout.font !== 'undefined') {
-      switch(this.font_size_category) {
-        case 'small':
-          this.graph.layout.font.size = 9;
-          break;
-        case 'medium':
-          this.graph.layout.font.size = 11;
-          break;
-        case 'large':
-          this.graph.layout.font.size = 15;
-          break;
-        case 'xlarge':
-          this.graph.layout.font.size = 20;
-          break;
-        default:
-          break;
+    if (this.analysis === false) {
+      if (this.view === 'week') {
+        let week_data = figure.data;
+        data_placeholder_view = week_data.filter((element, index) => {
+          let view_array_x = [];
+          let view_array_y = [];
+          if (typeof element.x !== 'undefined') {
+            element.x.reverse().forEach((xElement, xIndex) => {
+              if (xIndex < 7) {
+                view_array_x.push(xElement);
+              }
+            });
+            element.x = view_array_x.reverse();
+            element.y.reverse().forEach((yElement, yIndex) => {
+              if (yIndex < 7) {
+                view_array_y.push(yElement);
+              }
+            });
+            element.y = view_array_y.reverse();
+          }
+        });
+        data_placeholder_view = week_data;
+      } else if (this.view === 'allTime') {
+        data_placeholder_view = figure.data;
+      } else if (this.view === 'none') {
+        data_placeholder_view = figure.data;
       }
-    }
-    //Sconsole.log('graph '+JSON.stringify(this.graph));
 
-    // if (false) {
-    //   let title_text = this.graph.layout.title.text.split('<br>');
-    //   switch (this.font_size_category) {
-    //     case 'small':
-    //       title_text[0] = '<span style="font-size: 1.25em">' + title_text[0] + '</span>';
-    //       this.graph.layout.title.text = title_text[0] + '<br>' + title_text[1] + '<br>';
-    //       break;
-    //     case 'medium':
-    //       title_text[0] = '<span style="font-size: 1.25em">' + title_text[0] + '</span>';
-    //       this.graph.layout.title.text = title_text[0] + '<br>' + title_text[1] + '<br>';
-    //       break;
-    //     case 'large':
-    //       title_text[0] = '<span style="font-size: 1.25em">' + title_text[0] + '</span>';
-    //       this.graph.layout.title.text = title_text[0] + '<br>' + title_text[1] + '<br>';
-    //       break;
-    //   }
-    // }
+      let average_array = [];
+      if (this.display_average === 'none') {
+        data_placeholder_average = data_placeholder_view;
+      } else if (this.display_average) {
+        data_placeholder_average = data_placeholder_view;
+      } else {
+        data_placeholder_average = data_placeholder_view.filter(element => {
+          if (element.name !== '7 Day Average') {
+            average_array.push(element);
+          }
+        });
+        data_placeholder_average = average_array;
+      }
 
-    if (this.mobile_size) {
-      //this.graph.layout.dragmode = false;
+      figure.data = data_placeholder_average;
+
+
+      figure.layout.dragmode = false;
+
+      this.graph = figure;
+
+      if (typeof this.graph.layout.font !== 'undefined') {
+        switch (this.font_size_category) {
+          case 'small':
+            this.graph.layout.font.size = 9;
+            break;
+          case 'medium':
+            this.graph.layout.font.size = 11;
+            break;
+          case 'large':
+            this.graph.layout.font.size = 15;
+            break;
+          case 'xlarge':
+            this.graph.layout.font.size = 20;
+            break;
+          default:
+            break;
+        }
+      }
+      //Sconsole.log('graph '+JSON.stringify(this.graph));
+
+      // if (false) {
+      //   let title_text = this.graph.layout.title.text.split('<br>');
+      //   switch (this.font_size_category) {
+      //     case 'small':
+      //       title_text[0] = '<span style="font-size: 1.25em">' + title_text[0] + '</span>';
+      //       this.graph.layout.title.text = title_text[0] + '<br>' + title_text[1] + '<br>';
+      //       break;
+      //     case 'medium':
+      //       title_text[0] = '<span style="font-size: 1.25em">' + title_text[0] + '</span>';
+      //       this.graph.layout.title.text = title_text[0] + '<br>' + title_text[1] + '<br>';
+      //       break;
+      //     case 'large':
+      //       title_text[0] = '<span style="font-size: 1.25em">' + title_text[0] + '</span>';
+      //       this.graph.layout.title.text = title_text[0] + '<br>' + title_text[1] + '<br>';
+      //       break;
+      //   }
+      // }
+
+      if (this.mobile_size) {
+        //this.graph.layout.dragmode = false;
+      }
+    } else {
+      this.graph = figure;
     }
   }
 }

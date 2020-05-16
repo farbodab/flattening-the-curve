@@ -122,7 +122,7 @@
                                                                 <app-plot class="plot-styling"
                                                                     [ngClass]="{'map-selector': phuGroup[0].group === 'map'}"
                                                                     [graph_data]="phuPlot.value.html"
-                                                                    [mobile_size]="!is_full"
+                                                                    [mobile_size]="!is_full" [analysis]="false"
                                                                     [display_average]="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'average'].value"
                                                                     [font_size_category]="plot_window"
                                                                     [cat]="phuPlot.value.phu+ '' +phuPlot.value.header"

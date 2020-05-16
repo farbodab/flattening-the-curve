@@ -1,6 +1,15 @@
 <div style="padding-bottom: 30px">
-    <div class="header-styling">{{visualName}}</div>
-    <div class="text-styling" [innerHTML]="text"></div>
+    <div style="display: flex">
+        <div class="header-styling">{{visualName}}</div>
+        <div class="collapse-text" *ngIf="toggleTextFlag" (click)="toggleText()">Collapse Description Below
+        </div>
+        <div class="collapse-text" style="padding-bottom: 20px" *ngIf="!toggleTextFlag" (click)="toggleText()">
+            Expand Description</div>
+    </div>
+    <div class="text-styling" [innerHTML]="text" *ngIf="toggleTextFlag"></div>
+    <div *ngIf="type === 'Plotly'">
+        <app-plot class="plot-styling" [analysis]="true" [graph_data]="vizUrl"></app-plot>
+    </div>
     <div #vizContainerDesktop style="border-style: solid; border-width: 2px; border-color: gray;"></div>
     <div *ngIf="visualName === 'Capacity Analysis'">
         <iframe id="example1" src="https://pechlilab.shinyapps.io/output/"
