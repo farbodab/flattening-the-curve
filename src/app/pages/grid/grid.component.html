@@ -59,8 +59,7 @@
 
                 <!-- <mat-label><a target="_blank" href="https://www.phdapps.health.gov.on.ca/PHULocator/">Find a Public Health Unit</a> </mat-label> -->
             </div>
-            <div *ngIf="dropdownList && is_full"
-                class="selected-header-styling">
+            <div *ngIf="dropdownList && is_full" class="selected-header-styling">
                 {{headerLabel}}<br><span style="font-size:0.457em">In Beta. Please forward feedback to
                     info@howsmyflattening.ca</span>
             </div>
@@ -91,7 +90,9 @@
                                                             style="height: 100%">
                                                             <div style="height: 100%">
                                                                 <div [style.height]="(is_full ? '35px' : '35px')"
-                                                                    [style.display]="(phuGroup[0].group === 'map' ? 'none': 'block')">
+                                                                    style="margin: -10px -10px 0 -10px;"
+                                                                    [style.display]=" (phuGroup[0].group==='map'
+                                                                    ? 'none' : 'block' )">
                                                                     <div
                                                                         *ngIf="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'view'].value !== 'none'">
                                                                         <div class="upper-tab-container">
@@ -122,7 +123,7 @@
                                                                 <app-plot class="plot-styling"
                                                                     [ngClass]="{'map-selector': phuGroup[0].group === 'map'}"
                                                                     [graph_data]="phuPlot.value.html"
-                                                                    [mobile_size]="!is_full"
+                                                                    [mobile_size]="!is_full" [analysis]="false"
                                                                     [display_average]="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'average'].value"
                                                                     [font_size_category]="plot_window"
                                                                     [cat]="phuPlot.value.phu+ '' +phuPlot.value.header"
