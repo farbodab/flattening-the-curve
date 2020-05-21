@@ -53,7 +53,7 @@
                                             *ngIf="filteringCheckboxes.controls[card.category].value && card.category === category"
                                             style="margin-right: 20px">
                                             <mat-card class="sub-card"
-                                                (click)="selectedVisualTab(card.header, card.selected, $event, index); openDialog(card.header, card.category, card.viz_type, card.viz, card.text, card.desktopHeight, index)">
+                                                (click)="selectedVisualTab(card.header, card.selected, $event, index); openDialog(card.header, card.category, card.viz_type, card.viz, card.text_top, card.text_bottom, card.desktopHeight, index)">
                                                 <mat-card-header>
                                                     <mat-card-title>{{card.header}}</mat-card-title>
                                                 </mat-card-header>
@@ -219,7 +219,7 @@
                                         </mat-card>
                                     </div>
                                     <app-common-mobile-visual *ngIf="card.selected && card.category === category"
-                                        [visualName]="card.header" [text]="card.text" [vizUrl]="card.viz" [type]="card.viz_type"></app-common-mobile-visual>
+                                        [visualName]="card.header" [topText]="card.text_top" [bottomText]="card.text_bottom" [vizUrl]="card.viz" [type]="card.viz_type"></app-common-mobile-visual>
                                 </div>
                             </div>
                         </div>
