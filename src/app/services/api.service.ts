@@ -11,11 +11,11 @@ export class ApiService {
   readonly phunew_endpoint: string = 'https://flatteningthecurve.herokuapp.com/covid/phunew';
   readonly test_results_endpoint: string = 'https://flatteningthecurve.herokuapp.com/covid/testresults';
   readonly viz_object_endpoint: string = 'https://flatteningthecurve-staging.herokuapp.com/api/viz';
-  //readonly viz_object_endpoint: string = 'https://flatteningthecurve.herokuapp.com/api/viz';
-  readonly plot_object_endpoint: string = 'https://flatteningthecurve-staging.herokuapp.com/api/plots';
-  //readonly plot_object_endpoint: string = 'https://flatteningthecurve.herokuapp.com/api/plots';
-  readonly data_object_endpoint: string = 'https://flatteningthecurve-staging.herokuapp.com/api/source';
-  //readonly data_object_endpoint: string = 'https://flatteningthecurve.herokuapp.com/api/source';
+  readonly viz_object_endpoint: string = 'https://flatteningthecurve.herokuapp.com/api/viz';
+  //readonly plot_object_endpoint: string = 'https://flatteningthecurve-staging.herokuapp.com/api/plots';
+  readonly plot_object_endpoint: string = 'https://flatteningthecurve.herokuapp.com/api/plots';
+  //readonly data_object_endpoint: string = 'https://flatteningthecurve-staging.herokuapp.com/api/source';
+  readonly data_object_endpoint: string = 'https://flatteningthecurve.herokuapp.com/api/source';
 
   constructor(private http_client: HttpClient) {
 
