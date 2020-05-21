@@ -15,7 +15,8 @@ export class CommonDesktopVisualComponent implements OnInit, OnDestroy, AfterVie
 
     visualName: string;
     vizUrl: string;
-    text: string;
+    topText: string;
+    bottomText: string;
     category: string;
     height: string;
     type: string;
@@ -30,7 +31,8 @@ export class CommonDesktopVisualComponent implements OnInit, OnDestroy, AfterVie
     ) {
         this.visualName = data.visualName;
         this.vizUrl = data.vizUrl;
-        this.text = data.textContent;
+        this.topText = data.topTextContent;
+        this.bottomText = data.bottomTextContent;
         this.category = data.visualCategory;
         this.height = data.vizHeight + 'px';
         this.type = data.vizType;
