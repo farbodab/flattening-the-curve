@@ -12,7 +12,8 @@ export class CommonMobileVisualComponent implements OnInit, AfterViewInit, OnDes
     @ViewChild('vizContainerMobile', { static: true }) containerDiv: ElementRef;
 
     @Input() visualName: string;
-    @Input() text: string;
+    @Input() topText: string;
+    @Input() bottomText: string;
     @Input() vizUrl: string;
     @Input() type: string;
 
