@@ -9,11 +9,13 @@ declare var tableau: any;
 })
 
 export class CommonMobileVisualComponent implements OnInit, AfterViewInit, OnDestroy {
-    @ViewChild('vizContainerMobile', {static: true}) containerDiv: ElementRef;
+    @ViewChild('vizContainerMobile', { static: true }) containerDiv: ElementRef;
 
     @Input() visualName: string;
-    @Input() text: string;
+    @Input() topText: string;
+    @Input() bottomText: string;
     @Input() vizUrl: string;
+    @Input() type: string;
 
     visualToRender = '';
     toggleTextFlag = true;
@@ -38,11 +40,15 @@ export class CommonMobileVisualComponent implements OnInit, AfterViewInit, OnDes
         //         break;
         // }
         this.idPlaceholder = this.visualName.split(' ');
-        this.constructViz();
+        if (this.type === 'Tableau') {
+            this.constructViz();
+        }
     }
 
     ngAfterViewInit() {
-        this.constructViz();
+        if (this.type === 'Tableau') {
+            this.constructViz();
+        }
     }
 
     ngOnDestroy() {

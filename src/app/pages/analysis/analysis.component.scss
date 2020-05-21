@@ -128,7 +128,7 @@
 }
 
 .form-styling {
-    padding: 18px 0 18px 18px;
+    padding: 18px 18px 0 18px;
 }
 
 .kpi-header {
@@ -251,7 +251,7 @@
     }
 
     .key-text {
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .mat-dialog-container {
@@ -320,6 +320,7 @@
     
     .selected-background {
         background-color: #f7f6f2;
+        padding-top: 12px;
     }
 
     .form-styling {

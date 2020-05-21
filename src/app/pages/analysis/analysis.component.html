@@ -19,9 +19,9 @@
         <div *ngIf='is_full' [ngClass]="{'modal-opened': selectedCategory !== ''}">
             <div class="form-container">
                 <form *ngIf="filteringCheckboxes" [formGroup]="filteringCheckboxes" class="form-styling">
-                    <div style="display: flex;">
+                    <div style="display: flex; flex-wrap: wrap">
                         <div *ngFor="let category of categoryList;"
-                            style="margin-right: 25px; border-radius: 6px; background-color: #245D70; color: #ffffff; padding: 6px 12px">
+                            style="margin-right: 25px; margin-bottom: 18px; border-radius: 6px; background-color: #245D70; color: #ffffff; padding: 6px 12px">
                             <mat-checkbox formControlName="{{category}}">{{category}}
                             </mat-checkbox>
                         </div>
@@ -53,7 +53,7 @@
                                             *ngIf="filteringCheckboxes.controls[card.category].value && card.category === category"
                                             style="margin-right: 20px">
                                             <mat-card class="sub-card"
-                                                (click)="selectedVisualTab(card.header, card.selected, $event, index); openDialog(card.header, card.category, card.viz, card.text, card.desktopHeight, index)">
+                                                (click)="selectedVisualTab(card.header, card.selected, $event, index); openDialog(card.header, card.category, card.viz_type, card.viz, card.text_top, card.text_bottom, card.desktopHeight, index)">
                                                 <mat-card-header>
                                                     <mat-card-title>{{card.header}}</mat-card-title>
                                                 </mat-card-header>
@@ -219,7 +219,7 @@
                                         </mat-card>
                                     </div>
                                     <app-common-mobile-visual *ngIf="card.selected && card.category === category"
-                                        [visualName]="card.header" [text]="card.text" [vizUrl]="card.viz" ></app-common-mobile-visual>
+                                        [visualName]="card.header" [topText]="card.text_top" [bottomText]="card.text_bottom" [vizUrl]="card.viz" [type]="card.viz_type"></app-common-mobile-visual>
                                 </div>
                             </div>
                         </div>

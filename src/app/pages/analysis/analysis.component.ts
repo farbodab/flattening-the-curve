@@ -23,71 +23,6 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
   viz: any;
   kpiViz: any;
 
-  cardCategories = [
-    {
-      header: 'Critical Care Analysis',
-      category: 'Critical',
-      selected: false,
-    },
-    {
-      header: 'Regional Analysis',
-      category: 'Regional',
-      selected: false
-    },
-    {
-      header: 'Testing Analysis',
-      category: 'Testing',
-      selected: false
-    },
-    {
-      header: 'Capacity Analysis',
-      category: 'capacity',
-      selected: false
-    }
-  ];
-  cards = [
-    {
-      header: 'Critical Care by Region Analysis',
-      category: 'Critical',
-      content: 'Approximately 5% of patients with COVID-19 require critical care. What does that look like in Ontario?',
-      route: 'critical',
-      thumbnail: 'https://public.tableau.com/thumb/views/CriticalCareCapacity/Dashboard1?:display_count=y&:origin=viz_share_link',
-      selected: false,
-      selectedCategory: false,
-      selectedRow: false
-    },
-    {
-      header: 'Capacity Analysis',
-      category: 'Critical',
-      content: 'When could Ontario ICU resources be depleted?',
-      route: 'capacity',
-      thumbnail: 'assets/img/capacity_visual.png',
-      selected: false,
-      selectedCategory: false,
-      selectedRow: false
-    },
-    {
-      header: 'Regional Analysis',
-      category: 'Regional',
-      content: 'What does COVID-19 look like in each Ontario region?',
-      route: 'regional',
-      thumbnail: 'https://public.tableau.com/thumb/views/OntarioCOVID-19RegionalAnalysis/Dashboard1?:display_count=y&:origin=viz_share_link',
-      selected: false,
-      selectedCategory: false,
-      selectedRow: false
-    },
-    {
-      header: 'Testing Analysis',
-      category: 'Testing',
-      content: 'Delays in test results are piling up, producing an artificial decrease in the number of confirmed cases. What does testing in Ontario look like?',
-      route: 'testing',
-      thumbnail: 'https://public.tableau.com/thumb/views/OntarioCOVID-19TestingAnalysis/Testing?:display_count=y&:origin=viz_share_link',
-      selected: false,
-      selectedCategory: false,
-      selectedRow: false
-    }
-  ];
-
   categoryList = [
     'Critical',
     'Regional',
@@ -108,10 +43,6 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
     this.window_subscription = this.host_service.onWindowResize.subscribe(window => {
       this.refresh_layout(window.innerWidth);
     });
-    this.cardCategories[0].selected = true;
-    //this.cards[0].selected = true;
-    //this.selectedCategory = "Critical";
-    //this.router.navigate(['/analysis/critical']);
   }
 
   ngAfterViewInit() {
@@ -165,15 +96,18 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
   }
 
 
-  openDialog(componentName: any, category: string, url: string, text: string, height: number, index: number): void {
+  openDialog(componentName: any, category: string, type: string, url: string, topText: string, bottomText: string, height: number, index: number): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
       visualName: componentName,
-      textContent: text,
+      topTextContent: topText,
+      bottomTextContent: bottomText,
       vizUrl: url,
       vizCategory: category,
-      vizHeight: height
+      vizHeight: height,
+      vizType: type
     };
+
     dialogConfig.width = '300px';
 
     const dialogRef = this.dialog.open(CommonDesktopVisualComponent, dialogConfig);
@@ -233,24 +167,6 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
     //   default:
     //     break;
     // }
-  }
-
-  selectedCategoryTab(index: number, category: string) {
-    this.cardCategories.forEach((element) => {
-      if (element.category === category) {
-        element.selected = true;
-      } else {
-        element.selected = false;
-      }
-    });
-    this.cards.forEach((element) => {
-      element.selected = false;
-      if (element.category === category) {
-        element.selectedCategory = true;
-      } else {
-        element.selectedCategory = false;
-      }
-    });
   }
 
   selectedVisualTab(header: string, selected: boolean, event: any, index: number) {
