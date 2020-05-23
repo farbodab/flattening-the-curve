@@ -1,12 +1,11 @@
 <app-navbar [shows_title]='true' [page]='"data"'></app-navbar>
-<div class='content' style='background-color: white;'>
+<div class='content' style='background-color: white;' [ngClass]="{'mobile-sizing': !is_full}">
     <div id='container'>
         <h1>Datasets</h1>
         <div>
             COVID-19 is changing the world rapidly. We need to move faster.<br><br>We present our growing data sources
             relevant to Ontario and comparisons in a single up to date Dataset.<br>
         </div>
-        <hr>
 
         <!-- template for data entry 
     <div id='data-container'>
@@ -42,345 +41,83 @@
     </div>
 
     <hr> -->
-        <div *ngIf="jsonObj !== 'error'">
-            <div *ngFor="let data of jsonObj; index as index">
-                <div id='data-container'>
-                    <div id='left-column'>
-                        <h2>{{data.name}}</h2>
-                        <div *ngIf="data.source !== 'NaN'" id='source'>
-                            <p>Source:&nbsp;{{data.source}}</p>
-                        </div>
-                        <div *ngIf="data.description !== 'NaN'" id='description'>
-                            <p>{{data.description}}</p>
-                        </div>
-
-
-                        <div id='read-more-container'>
-                            <a style="padding: 2px" *ngIf="data.download !== 'NaN'" mat-raised-button [href]="data.download" id='read-more-btn'>Download Data</a>
-                        </div>
-
-                    </div>
-
-                    <div id='right-column'>
-
-                        <br><br>
-                        <div id="details"> Details:</div>
-
-                        <div id="details-body">
-                            <p *ngIf="data.data_feed_type !== 'NaN'" class='details'><strong>Data feedtype:</strong>&nbsp;{{data.data_feed_type}}</p>
-                            <p *ngIf="data.refresh !== 'NaN'"class='details'><strong>Refresh rate:</strong>&nbsp;{{data.refresh}}</p>
-                            <a style="padding: 2px" *ngIf="data.link !== 'NaN'" class='details' [href]="data.link">Source Link</a>
-
-                            <br>
-                            <p *ngIf="data.contributor !== 'NaN'" class='details'><strong>Contributor:</strong>&nbsp;{{data.contributor}}</p>
-                            <a style="padding: 2px" *ngIf="data.contact !== 'NaN'" class='details' [href]="data.contact">Contact Link</a>
+        <div *ngIf="filteringCheckboxes">
+            <div class="form-container">
+                <div class="form-styling form-header">Data Category</div>
+                <form *ngIf="filteringCheckboxes" [formGroup]="filteringCheckboxes" class="form-styling">
+                    <div style="display: flex; flex-wrap: wrap" class="inner-form-styling">
+                        <div *ngFor="let category of dataCategoryList;" class="checkbox-styling">
+                            <mat-checkbox formControlName="{{category}}">{{category}}
+                            </mat-checkbox>
                         </div>
                     </div>
+                </form>
+            </div>
+            <div class="form-container">
+                <div class="form-styling form-header">Data Region</div>
+                <form *ngIf="filteringCheckboxes" [formGroup]="filteringCheckboxes" class="form-styling">
+                    <div style="display: flex; flex-wrap: wrap" class="inner-form-styling">
+                        <div *ngFor="let region of dataRegionList;" class="checkbox-styling">
+                            <mat-checkbox formControlName="{{region}}">{{region}}
+                            </mat-checkbox>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div *ngIf="jsonObj !== 'error'">
+                <div *ngFor="let category of dataCategoryList" class="outer-category-box">
+                    <div *ngIf="filteringCheckboxes.controls[category].value" class="category-box">
+                        <div class="category-inner-box">
+                            <div class="data-set-header">{{category}} Data Sets</div>
+                            <div *ngFor="let data of jsonObj; index as index">
+                                <div *ngIf="data.type === category && filteringCheckboxes.controls[data.region].value">
+                                    <div id='data-container'>
+                                        <div id='left-column'>
+                                            <h2>{{data.name}}</h2>
+                                            <div *ngIf="data.source !== 'NaN'" id='source'>
+                                                <p>Source:&nbsp;{{data.source}}</p>
+                                            </div>
+                                            <div *ngIf="data.description !== 'NaN'" id='description'>
+                                                <p>{{data.description}}</p>
+                                            </div>
 
+
+                                            <div id='read-more-container'>
+                                                <a style="padding: 2px" *ngIf="data.download !== 'NaN'"
+                                                    mat-raised-button [href]="data.download" id='read-more-btn'>Download
+                                                    Data</a>
+                                            </div>
+
+                                        </div>
+
+                                        <div id='right-column'>
+
+                                            <br><br>
+                                            <div id="details"> Details:</div>
+
+                                            <div id="details-body">
+                                                <p *ngIf="data.data_feed_type !== 'NaN'" class='details'><strong>Data
+                                                        feedtype:</strong>&nbsp;{{data.data_feed_type}}</p>
+                                                <p *ngIf="data.refresh !== 'NaN'" class='details'><strong>Refresh
+                                                        rate:</strong>&nbsp;{{data.refresh}}</p>
+                                                <a style="padding: 2px" *ngIf="data.link !== 'NaN'" class='details'
+                                                    [href]="data.link">Source Link</a>
+
+                                                <br>
+                                                <p *ngIf="data.contributor !== 'NaN'" class='details'>
+                                                    <strong>Contributor:</strong>&nbsp;{{data.contributor}}</p>
+                                                <a style="padding: 2px" *ngIf="data.contact !== 'NaN'" class='details'
+                                                    [href]="data.contact">Contact Link</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <!--<div id='data-container'>
-            <div id='left-column'>
-                <h2>Ontario ICU Capacity</h2>
-                <div id='source'>
-                    <p>Source: Critical Care Services Ontario (CCSO)</p>
-                </div>
-                <div id='description'>
-                    <p>Time series data for ICU capacity and ventilators for the province of Ontario,
-                        alongwith number of suspected and confirmed covid patients using critical care resources broken
-                        down
-                        by LHIN, region and ICU level.</p>
-                </div>
-
-
-                <div id='read-more-container'>
-                    <a mat-raised-button href="http://flatteningthecurve.herokuapp.com/data/icucapacity"
-                        id='read-more-btn'>Download Data</a>
-                </div>
-
-            </div>
-
-            <div id='right-column'>
-
-                <br><br>
-                <div id="details"> Details:</div>
-
-                <div id="details-body">
-                    <p class='details'>Data feedtype: Automatic</p>
-                    <p class='details'>Refresh rate: Daily</p>
-                    <p class='details'>Source link: N/A</p>
-
-                    <br>
-                    <p class='details'>Contributor: James Hooks</p>
-                    <p class='details'>Contact: N/A</p>
-                </div>
-            </div>
-
-        </div>
-        <hr>
-        <div id='data-container'>
-            <div id='left-column'>
-                <h2>Ontario Testing Data</h2>
-                <div id='source'>
-                    <p>Source: Government of Ontario</p>
-                </div>
-                <div id='description'>
-                    <p>Time series testing data for the province of ontario which reports postives,
-                        negatives, under investigation, resolved, deaths and total tested.</p>
-                </div>
-
-                <div id='read-more-container'>
-                    <a mat-raised-button href="https://flatteningthecurve.herokuapp.com/data/covidtests"
-                        id='read-more-btn'>Download Data</a>
-                </div>
-
-            </div>
-
-            <div id='right-column'>
-                <br><br>
-                <div id="details"> Details: </div>
-
-                <div id="details-body">
-                    <p class='details'>Data feedtype: Automatic</p>
-                    <p class='details'>Refresh rate: 190 minute interval</p>
-                    <p class='details'><a href="https://www.ontario.ca/page/2019-novel-coronavirus">Source link</a></p>
-
-                    <br>
-                    <p class='details'>Contributor: David Madras</p>
-                    <p class='details'>Contact: madras@cs.toronto.edu</p>
-                </div>
-            </div>
-
-        </div>
-        <hr>
-        <div id='data-container'>
-            <div id='left-column'>
-                <h2>Interventions Data</h2>
-                <div id='source'>
-                    <p>Source: Regional Canadian Government Announcements</p>
-                </div>
-                <div id='description'>
-                    <p>Chronological dataset of all non-pharmaceutical interventions implemented in
-                        Ontario from January 1 to March 31</p>
-                </div>
-                <div id='read-more-container'>
-                    <a mat-raised-button href="https://flatteningthecurve.herokuapp.com/data/npi"
-                        id='read-more-btn'>Download
-                        Data</a>
-                </div>
-            </div>
-            <div id='right-column'>
-                <br><br>
-                <div id="details"> Details:</div>
-                <div id="details-body">
-                    <p class='details'>Data feedtype: Automatic</p>
-                    <p class='details'>Refresh rate: 120 minute interval</p>
-                    <p class='details'><a
-                            href="https://github.com/jajsmith/COVID19NonPharmaceuticalInterventions">Source
-                            link</a></p>
-                    <br>
-                    <p class='details'>Contributor: howsmyflattening.ca Team</p>
-                    <p class='details'>Contact: N/A</p>
-                </div>
-            </div>
-        </div>
-
-        <hr>
-
-        <div id='data-container'>
-            <div id='left-column'>
-                <h2>Canada Testing Data</h2>
-                <div id='source'>
-                    <p>Source: Government of Canada and News Media</p>
-                </div>
-                <div id='description'>
-                    <p>Patient level data of covid cases in canada. Compiled from publicly available
-                        information on confirmed and presumptive postive cases during the ongoing COVID-19 outbreak in
-                        Canada. Data are entered with each line representing a unique case, including age, sex, health
-                        region location, and history of travel where available.</p>
-                </div>
-
-
-                <div id='read-more-container'>
-                    <a mat-raised-button href="https://flatteningthecurve.herokuapp.com/data/covid"
-                        id='read-more-btn'>Download Data</a>
-                </div>
-
-            </div>
-
-            <div id='right-column'>
-
-                <br><br>
-                <div id="details"> Details: </div>
-
-                <div id="details-body">
-                    <p class='details'>Data feedtype: Manual</p>
-                    <p class='details'>Refresh rate: Once a day</p>
-                    <p class='details'><a href="https://github.com/ishaberry/Covid19Canada">Source link</a></p>
-
-                    <br>
-                    <p class='details'>Contributor: COVID-19 Canada Open Data Working Group</p>
-                    <p class='details'>Contact: N/A</p>
-                </div>
-            </div>
-
-        </div>
-
-        <hr>
-        <div id='data-container'>
-            <div id='left-column'>
-                <h2>Canada Mortality Data</h2>
-                <div id='source'>
-                    <p>Source: Government of Canada and News Media</p>
-                </div>
-                <div id='description'>
-                    <p>Patient level data of case mortalities in canada. Compiled from publicly
-                        available information on confirmed and presumptive postive cases during the ongoing COVID-19
-                        outbreak in Canada. Data are entered with each line representing a unique case, including age,
-                        sex,
-                        health region location when available</p>
-                </div>
-                <div id='read-more-container'>
-                    <a mat-raised-button href="https://flatteningthecurve.herokuapp.com/data/canadamortality"
-                        id='read-more-btn'>Download Data</a>
-                </div>
-            </div>
-            <div id='right-column'>
-                <br><br>
-                <div id="details"> Details:</div>
-                <div id="details-body">
-                    <p class='details'>Data feedtype: Automatic</p>
-                    <p class='details'>Refresh rate: 120 minute interval</p>
-                    <p class='details'><a href="https://github.com/ishaberry/Covid19Canada">Source link</a></p>
-                    <br>
-                    <p class='details'>Contributor: COVID-19 Canada Open Data Working Group</p>
-                    <p class='details'>Contact: N/A</p>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div id='data-container'>
-            <div id='left-column'>
-                <h2>Canada Recovered Data</h2>
-                <div id='source'>
-                    <p>Source: Government of Canada and News Media</p>
-                </div>
-                <div id='description'>
-                    <p>Time series data of case recovery. Aggregated daily</p>
-                </div>
-                <div id='read-more-container'>
-                    <a mat-raised-button href="https://flatteningthecurve.herokuapp.com/data/canadarecovered"
-                        id='read-more-btn'>Download Data</a>
-                </div>
-            </div>
-            <div id='right-column'>
-                <br><br>
-                <div id="details"> Details:</div>
-                <div id="details-body">
-                    <p class='details'>Data feedtype: Automatic</p>
-                    <p class='details'>Refresh rate: 120 minute interval</p>
-                    <p class='details'><a href="https://github.com/ishaberry/Covid19Canada">Source link</a></p>
-                    <br>
-                    <p class='details'>Contributor: COVID-19 Canada Open Data Working Group</p>
-                    <p class='details'>Contact: N/A</p>
-                </div>
-            </div>
-        </div>
-        <hr>
-
-        <div id='data-container'>
-            <div id='left-column'>
-                <h2>International Testing Data</h2>
-                <div id='source'>
-                    <p>Source: Johns Hopkins University Center for Systems Science and Engineering (JHU
-                        CSSE)</p>
-                </div>
-                <div id='description'>
-                    <p>Time series data on covid cases in select international jurisdictions.</p>
-                </div>
-
-
-                <div id='read-more-container'>
-                    <a mat-raised-button href="https://flatteningthecurve.herokuapp.com/data/internationaldata"
-                        id='read-more-btn'>Download Data</a>
-                </div>
-
-            </div>
-
-            <div id='right-column'>
-
-                <br><br>
-                <div id="details"> Details:</div>
-
-                <div id="details-body">
-                    <p class='details'>Data feedtype: Automatic</p>
-                    <p class='details'>Refresh rate: 190 minute interval</p>
-                    <p class='details'><a href="https://github.com/CSSEGISandData/COVID-19">Source link</a></p>
-
-                    <br>
-                    <p class='details'>Contributor: N/A</p>
-                    <p class='details'>Contact: N/A</p>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div id='data-container'>
-            <div id='left-column'>
-                <h2>International Mortality Data</h2>
-                <div id='source'>
-                    <p>Source: Johns Hopkins University Center for Systems Science and Engineering (JHU
-                        CSSE)</p>
-                </div>
-                <div id='description'>
-                    <p>Time series data on covid mortality in international jurisdictions</p>
-                </div>
-                <div id='read-more-container'>
-                    <a mat-raised-button href="https://flatteningthecurve.herokuapp.com/data/internationalmortality"
-                        id='read-more-btn'>Download Data</a>
-                </div>
-            </div>
-            <div id='right-column'>
-                <br><br>
-                <div id="details"> Details:</div>
-                <div id="details-body">
-                    <p class='details'>Data feedtype: Automatic</p>
-                    <p class='details'>Refresh rate: 120 minute interval</p>
-                    <br>
-                    <p class='details'>Contributor: N/A</p>
-                    <p class='details'>Contact: N/A</p>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div id='data-container'>
-            <div id='left-column'>
-                <h2>International Recovered Data</h2>
-                <div id='source'>
-                    <p>Source: Johns Hopkins University Center for Systems Science and Engineering (JHU
-                        CSSE)</p>
-                </div>
-                <div id='description'>
-                    <p>Time series data on covid recovery in international jurisdictions</p>
-                </div>
-                <div id='read-more-container'>
-                    <a mat-raised-button href="https://flatteningthecurve.herokuapp.com/data/internationalrecovered"
-                        id='read-more-btn'>Download Data</a>
-                </div>
-            </div>
-            <div id='right-column'>
-                <br><br>
-                <div id="details"> Details:</div>
-                <div id="details-body">
-                    <p class='details'>Data feedtype: Automatic</p>
-                    <p class='details'>Refresh rate: 120 minute interval</p>
-                    <br>
-                    <p class='details'>Contributor: N/A</p>
-                    <p class='details'>Contact: N/A</p>
-                </div>
-            </div>
-        </div> -->
-
     </div>
     <div id='footer'></div>
 </div>
