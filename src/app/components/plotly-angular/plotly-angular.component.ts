@@ -199,7 +199,7 @@ export class AngularPlotlyComponent implements OnInit, OnChanges, OnDestroy, DoC
         return classes.join(' ');
     }
 
-    createPlot(): Promise<void> {
+    createPlot(): any {
         return this.plotly.newPlot(this.plotEl.nativeElement, this.data, this.layout, this.config, this.frames).then(plotlyInstance => {
             this.plotlyInstance = plotlyInstance;
             this.getWindow().gd = this.debug ? plotlyInstance : undefined;
