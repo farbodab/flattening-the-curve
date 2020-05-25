@@ -3,7 +3,7 @@ import { HostService } from 'src/app/services/host.service';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, UrlTree, UrlSegment, UrlSegmentGroup, PRIMARY_OUTLET, DefaultUrlSerializer, RouterState, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig, MatTooltip } from '@angular/material';
 import { ApiService } from 'src/app/services/api.service';
 import { CommonDesktopVisualComponent } from '../../components/common-desktop-visual/common-desktop-visual.component';
 import * as moment from 'moment';
@@ -38,6 +38,7 @@ export class GridComponent implements OnInit, AfterViewInit {
     tab_obj = {};
 
     searchCtrl: string;
+    iconHover: string;
 
     urlSegments: any;
     path: string;
@@ -218,6 +219,11 @@ export class GridComponent implements OnInit, AfterViewInit {
         if (this.fetch_subscribe) {
             this.fetch_subscribe.unsubscribe();
         }
+    }
+
+    toggleHover(str: string) {
+        console.log(str);
+        this.iconHover = str;
     }
 
     fetchVizObj() {

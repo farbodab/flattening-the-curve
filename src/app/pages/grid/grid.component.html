@@ -93,13 +93,21 @@
                                                                     ? 'none' : 'block' )">
                                                                     <div>
                                                                         <div class="upper-tab-container">
-                                                                            <div *ngIf="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'view'].value === 'none'">
+                                                                            <div style="display: flex"
+                                                                                *ngIf="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'view'].value === 'none'"
+                                                                                (mouseover)="toggleHover(phuPlot.value.phu+ '' +phuPlot.value.header+ 'true')"
+                                                                                (mouseout)="toggleHover(phuPlot.value.phu+ '' +phuPlot.value.header+ 'false')">
                                                                                 <mat-icon
                                                                                     (click)="openDialog(phuPlot.value.viz_title, 'hi', phuPlot.value.html, phuPlot.value.text_top, phuPlot.value.text_bottom, 500, 0)"
-                                                                                    svgIcon="thumbs-up" aria-hidden="false"
+                                                                                    svgIcon="thumbs-up"
+                                                                                    aria-hidden="false"
                                                                                     aria-label="Example thumbs up SVG icon"
                                                                                     class="info-icon-styling-first-row">
                                                                                 </mat-icon>
+                                                                                <div class="tooltip-text-first-row"
+                                                                                    [style.display]="(iconHover === phuPlot.value.phu+ '' +phuPlot.value.header+ 'true' ? 'flex': 'none')">
+                                                                                    Click for more information!
+                                                                                </div>
                                                                             </div>
                                                                             <div *ngIf="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'view'].value !== 'none'"
                                                                                 class="tab-styling"
@@ -116,13 +124,20 @@
                                                                 </div>
                                                                 <div style="height: 45px"
                                                                     [style.display]="(phuGroup[0].group === 'map' ? 'none': 'flex')">
-                                                                    <div *ngIf="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'view'].value !== 'none'">
+                                                                    <div style="display: flex"
+                                                                        *ngIf="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'view'].value !== 'none'"
+                                                                        (mouseover)="toggleHover(phuPlot.value.phu+ '' +phuPlot.value.header+ 'true')"
+                                                                        (mouseout)="toggleHover(phuPlot.value.phu+ '' +phuPlot.value.header+ 'false')">
                                                                         <mat-icon
                                                                             (click)="openDialog(phuPlot.value.viz_title, 'hi', phuPlot.value.html, phuPlot.value.text_top, phuPlot.value.text_bottom, 500, 0)"
                                                                             svgIcon="thumbs-up" aria-hidden="false"
                                                                             aria-label="Example thumbs up SVG icon"
                                                                             class="info-icon-styling-second-row">
                                                                         </mat-icon>
+                                                                        <div class="tooltip-text-second-row"
+                                                                            [style.display]="(iconHover === phuPlot.value.phu+ '' +phuPlot.value.header+ 'true' ? 'flex': 'none')">
+                                                                            Click for more information!
+                                                                        </div>
                                                                     </div>
                                                                     <div class="plot-check"
                                                                         *ngIf="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'average'].value !== 'none'">

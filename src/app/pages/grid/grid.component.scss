@@ -257,12 +257,42 @@
     padding-left: 10px;
 }
 
+.tooltip-text-first-row {
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    position: absolute;
+    margin-left: 40px;
+    font-size: 10px;
+    margin-top: 5px;
+    background-color: #c4f5f3;
+    z-index: 1;
+    border-radius: 7px;
+}
+
 .info-icon-styling-second-row {
     height: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
     padding-right: 10px;
+}
+
+.tooltip-text-second-row {
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    position: absolute;
+    margin-left: 30px;
+    font-size: 10px;
+    margin-top: 10px;
+    background-color: #c4f5f3;
+    z-index: 1;
+    border-radius: 7px;
 }
 
 ::ng-deep {
