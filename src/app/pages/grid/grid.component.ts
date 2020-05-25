@@ -222,7 +222,6 @@ export class GridComponent implements OnInit, AfterViewInit {
     }
 
     toggleHover(str: string) {
-        console.log(str);
         this.iconHover = str;
     }
 
