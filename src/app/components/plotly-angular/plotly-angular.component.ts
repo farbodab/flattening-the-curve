@@ -101,10 +101,11 @@ export class AngularPlotlyComponent implements OnInit, OnChanges, OnDestroy, DoC
     ) { }
 
     ngOnInit() {
-        this.createPlot().then(() => {
-            const figure = this.createFigure();
-            this.initialized.emit(figure);
-        });
+        // this.fetch_plot = this.createPlot().subscribe(data => {
+        //     const figure = this.createFigure();
+        //     this.initialized.emit(figure);
+        // });
+        this.createPlot();
 
 
         if (this.plotly.debug && this.click.observers.length > 0) {
