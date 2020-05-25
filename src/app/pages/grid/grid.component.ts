@@ -7,6 +7,9 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angu
 import { ApiService } from 'src/app/services/api.service';
 import { CommonDesktopVisualComponent } from '../../components/common-desktop-visual/common-desktop-visual.component';
 import * as moment from 'moment';
+import {MatIconModule} from '@angular/material/icon';
+import {MatIconRegistry} from '@angular/material/icon';
+import {DomSanitizer} from '@angular/platform-browser';
 
 declare var tableau: any;
 
@@ -22,6 +25,7 @@ export class GridComponent implements OnInit, AfterViewInit {
     kpiViz: any;
 
     window_subscription: Subscription;
+    fetch_subscribe: Subscription;
     is_full: boolean = true;
     plot_window = '';
     filteringCheckboxes: FormGroup;
@@ -185,10 +189,13 @@ export class GridComponent implements OnInit, AfterViewInit {
         }
     ];
 
-    constructor(private host_service: HostService, private route: ActivatedRoute, private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog, private api_service: ApiService) {
+    constructor(private host_service: HostService, private route: ActivatedRoute, private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog, private api_service: ApiService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
         this.refresh_layout(window.innerWidth);
         this.plot_layout(window.innerWidth);
         this.urlSegments = route.snapshot['_urlSegment'];
+        iconRegistry.addSvgIcon(
+            'thumbs-up',
+            sanitizer.bypassSecurityTrustResourceUrl('assets/img/logo.svg'));
     }
 
     ngOnInit() {
@@ -208,10 +215,13 @@ export class GridComponent implements OnInit, AfterViewInit {
         if (this.window_subscription) {
             this.window_subscription.unsubscribe();
         }
+        if (this.fetch_subscribe) {
+            this.fetch_subscribe.unsubscribe();
+        }
     }
 
     fetchVizObj() {
-        this.api_service.get_plot_obj().subscribe(
+        this.fetch_subscribe = this.api_service.get_plot_obj().subscribe(
             data => {
                 this.jsonObj = data;
                 this.initDropdownForm(this.phuArray);
@@ -329,21 +339,21 @@ export class GridComponent implements OnInit, AfterViewInit {
         });
     }
 
-    openDialog(componentName: any, category: string, url: string, text: string, height: number, index: number): void {
+    openDialog(componentName: any, category: string, url: string, topText: string, bottomText: string, height: number): void {
         const dialogConfig = new MatDialogConfig();
         dialogConfig.data = {
             visualName: componentName,
-            textContent: text,
             vizUrl: url,
             vizCategory: category,
-            vizHeight: height
+            vizHeight: height,
+            topTextContent: topText,
+            bottomTextContent: bottomText,
+            vizType: 'Plotly'
         };
         dialogConfig.width = '300px';
 
         const dialogRef = this.dialog.open(CommonDesktopVisualComponent, dialogConfig);
         dialogRef.afterClosed().subscribe(result => {
-            this.jsonObj[index].selected = false;
-            this.selectedCategory = '';
         });
     }
 

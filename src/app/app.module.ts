@@ -37,6 +37,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import { CommonMobileVisualComponent } from './components/common-mobile-visual/common-mobile-visual.component';
 import { PlotComponent } from './components/plot/plot';
+import { AngularPlotlyComponent } from './components/plotly-angular/plotly-angular.component';
 import { OutreachComponent } from './pages/outreach/outreach.component';
 import { CommonDesktopVisualComponent } from './components/common-desktop-visual/common-desktop-visual.component';
 import { BlogComponent } from './pages/blog/blog.component';
@@ -68,7 +69,8 @@ PlotlyViaCDNModule.plotlyBundle = null; // optional: can be null (for full) or '
         OutreachComponent,
         CommonDesktopVisualComponent,
         GridComponent,
-        PlotComponent
+        PlotComponent,
+        AngularPlotlyComponent
     ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),

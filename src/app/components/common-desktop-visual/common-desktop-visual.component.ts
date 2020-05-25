@@ -39,7 +39,6 @@ export class CommonDesktopVisualComponent implements OnInit, OnDestroy, AfterVie
     }
 
     ngOnInit() {
-        console.log(this.viz);
     }
 
     ngAfterViewInit() {

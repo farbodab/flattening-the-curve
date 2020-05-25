@@ -89,17 +89,25 @@
                                                             style="height: 100%">
                                                             <div style="height: 100%">
                                                                 <div [style.height]="(is_full ? '35px' : '35px')"
-                                                                    style="margin: -10px -10px 0 -10px;"
-                                                                    [style.display]=" (phuGroup[0].group==='map'
+                                                                    class="dashboard-tile" [style.display]=" (phuGroup[0].group==='map'
                                                                     ? 'none' : 'block' )">
-                                                                    <div
-                                                                        *ngIf="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'view'].value !== 'none'">
+                                                                    <div>
                                                                         <div class="upper-tab-container">
-                                                                            <div class="tab-styling"
+                                                                            <div *ngIf="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'view'].value === 'none'">
+                                                                                <mat-icon
+                                                                                    (click)="openDialog(phuPlot.value.viz_title, 'hi', phuPlot.value.html, phuPlot.value.text_top, phuPlot.value.text_bottom, 500, 0)"
+                                                                                    svgIcon="thumbs-up" aria-hidden="false"
+                                                                                    aria-label="Example thumbs up SVG icon"
+                                                                                    class="info-icon-styling-first-row">
+                                                                                </mat-icon>
+                                                                            </div>
+                                                                            <div *ngIf="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'view'].value !== 'none'"
+                                                                                class="tab-styling"
                                                                                 [ngClass]="{'tab-selected': averageForm.controls[phuPlot.value.phu + '' + phuPlot.value.header + 'view'].value === 'allTime'}"
                                                                                 (click)="averageForm.controls[phuPlot.value.phu + '' + phuPlot.value.header + 'view'].setValue('allTime')">
                                                                                 All Time</div>
-                                                                            <div class="tab-styling"
+                                                                            <div *ngIf="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'view'].value !== 'none'"
+                                                                                class="tab-styling"
                                                                                 [ngClass]="{'tab-selected': averageForm.controls[phuPlot.value.phu + '' + phuPlot.value.header + 'view'].value === 'week'}"
                                                                                 (click)="averageForm.controls[phuPlot.value.phu + '' + phuPlot.value.header + 'view'].setValue('week')">
                                                                                 Prior Week</div>
@@ -108,6 +116,14 @@
                                                                 </div>
                                                                 <div style="height: 45px"
                                                                     [style.display]="(phuGroup[0].group === 'map' ? 'none': 'flex')">
+                                                                    <div *ngIf="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'view'].value !== 'none'">
+                                                                        <mat-icon
+                                                                            (click)="openDialog(phuPlot.value.viz_title, 'hi', phuPlot.value.html, phuPlot.value.text_top, phuPlot.value.text_bottom, 500, 0)"
+                                                                            svgIcon="thumbs-up" aria-hidden="false"
+                                                                            aria-label="Example thumbs up SVG icon"
+                                                                            class="info-icon-styling-second-row">
+                                                                        </mat-icon>
+                                                                    </div>
                                                                     <div class="plot-check"
                                                                         *ngIf="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'average'].value !== 'none'">
                                                                         <div
