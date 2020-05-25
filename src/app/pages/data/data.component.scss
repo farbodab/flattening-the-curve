@@ -32,6 +32,47 @@
     }
 }
 
+.form-container {
+    background-color: #DADFE1;
+    border-radius: 6px;
+    margin: 20px -30px 20px -30px;
+}
+
+.form-styling {
+    padding: 18px 18px 0 18px;
+}
+
+.outer-category-box {
+    padding: 10px 0 10px 0;
+}
+
+.category-box {
+    margin: 0 -30px 0 -30px;
+    border: 2px solid #666666;
+    padding: 20px 0 20px 0;
+    border-radius: 10px;
+}
+
+.category-inner-box {
+    margin: 0 30px 0 30px;
+}
+
+.data-set-header {
+    color: #391F85;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.checkbox-styling {
+    margin-right: 25px;
+    margin-bottom: 18px;
+    border-radius: 6px;
+    background-color: #245D70;
+    color: #ffffff;
+    padding: 6px 12px;
+}
+
 #dataset-name{
     font-weight: bold;
     color: #2b2b2b;
@@ -101,4 +142,73 @@ p.details {
 
 table, th, td {
     border: 1px solid black;
+}
+
+::ng-deep {
+    .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+        background-color: #ffffff !important;
+    }
+
+    .mat-checkbox-frame {
+        border-color: #ffffff;
+    }
+
+    .mat-checkbox-checkmark-path {
+        stroke: #391F85 !important;
+    }
+}
+
+.mobile-sizing {
+    .form-styling {
+        padding: 0;
+
+        .inner-form-styling {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 15px;
+            padding: 9px 0;
+            justify-content: space-between;
+        }
+    }
+
+    .form-container {
+        margin: 20px -30px 20px -30px;
+        border-radius: 0;
+    }
+
+    .checkbox-styling {
+        padding: 6px 6px;
+        width: 22%;
+        margin: 10px 0 10px 0;
+    }
+
+    .form-header {
+        padding: 10px 15px 0 15px;
+        width: 50%;
+        text-align: center;
+        margin: auto;
+    }
+    
+    .category-box {
+        margin: 0 -20px 0 -20px;
+    }
+
+    .inner-category-box {
+        margin: 0 20px 0 20px;
+    }
+
+    ::ng-deep {
+        .mat-checkbox-inner-container {
+            margin-right: 5px !important;
+        }
+
+        .mat-checkbox-layout .mat-checkbox-label {
+            font-size: 10px !important;
+            font-weight: normal;
+        }
+
+        .mat-dialog-content {
+            max-height: initial !important;
+        }
+    }
 }
