@@ -10,6 +10,8 @@ import { AnalysisTestingComponent } from './analysis.testing.component';
 import { AnalysisCapacityComponent } from './analysis.capacity.component';
 import { ApiService } from 'src/app/services/api.service';
 import { CommonDesktopVisualComponent } from '../../components/common-desktop-visual/common-desktop-visual.component';
+import { Moment } from 'moment';
+import * as moment from 'moment';
 
 declare var tableau: any;
 
@@ -34,12 +36,16 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
   filteringCheckboxes: FormGroup;
   selectedCategory = '';
   jsonObj: any;
+  todaysDate: Moment;
+  moment: any = moment;
+  newToggle = true;
 
   constructor(private host_service: HostService, private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog, private api_service: ApiService) {
     this.refresh_layout(window.innerWidth);
   }
 
   ngOnInit() {
+    this.todaysDate = moment(new Date());
     this.window_subscription = this.host_service.onWindowResize.subscribe(window => {
       this.refresh_layout(window.innerWidth);
     });
@@ -95,7 +101,6 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
     this.categoryList = placeholderArray;
   }
 
-
   openDialog(componentName: any, category: string, type: string, url: string, topText: string, bottomText: string, height: number, index: number): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
@@ -115,58 +120,10 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
             this.jsonObj[index].selected = false;
             this.selectedCategory = '';
     });
+  }
 
-    //const placeholderDiv = document.getElementById('routerOutlet');
-    // if (this.selectedCategory !== category) {
-    //   placeholderDiv.remove();
-    // }
-    //  switch (componentName) {
-    //   case 'Critical Care by Region Analysis':
-    //     const dialogRefCritical = this.dialog.open(AnalysisCriticalComponent, {
-    //       width: '300px',
-    //       data: {}
-    //     });
-
-    //     dialogRefCritical.afterClosed().subscribe(result => {
-    //       this.cards[index].selected = false;
-    //       this.selectedCategory = '';
-    //     });
-    //     break;
-    //   case 'Capacity Analysis':
-    //     const dialogRefCapacity = this.dialog.open(AnalysisCapacityComponent, {
-    //       width: '300px',
-    //       data: {}
-    //     });
-
-    //     dialogRefCapacity.afterClosed().subscribe(result => {
-    //       this.cards[index].selected = false;
-    //       this.selectedCategory = '';
-    //     });
-    //     break;
-    //   case 'Regional Analysis':
-    //     const dialogRefRegional = this.dialog.open(AnalysisRegionalComponent, {
-    //       width: '300px',
-    //       data: {}
-    //     });
-    //     dialogRefRegional.afterClosed().subscribe(result => {
-    //       this.cards[index].selected = false;
-    //       this.selectedCategory = '';
-    //     });
-    //     break;
-    //   case 'Testing Analysis':
-    //     const dialogRefTesting = this.dialog.open(AnalysisTestingComponent, {
-    //       width: '300px',
-    //       data: {}
-    //     });
-
-    //     dialogRefTesting.afterClosed().subscribe(result => {
-    //       this.cards[index].selected = false;
-    //       this.selectedCategory = '';
-    //     });
-    //     break;
-    //   default:
-    //     break;
-    // }
+  toggleNewAnalysis(bool: boolean) {
+    this.newToggle = bool;
   }
 
   selectedVisualTab(header: string, selected: boolean, event: any, index: number) {

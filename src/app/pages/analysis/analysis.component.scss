@@ -99,10 +99,26 @@
     padding: 12px;
     width: 250px;
     border-radius: 15px;
+    margin-right: 20px;
+    display: flex;
 
     :hover {
         cursor: pointer;
     }
+}
+
+.new-collapse-icon {
+    height: 35px;
+    padding-right: 15px;
+    margin-left: -39px;
+    font-size: 30px;
+}
+
+.new-analysis-icon {
+    position: absolute;
+    z-index: 1;
+    margin-left: -15px;
+    font-size: 35px;
 }
 
 .selected-tab {
@@ -278,6 +294,7 @@
     background-image: url("src/assets/img/Mission_Section_Asset.svg");
     background-repeat: no-repeat;
     margin: 0 -50px 0 -70px;
+    padding-bottom: 10px;
 
     .inner-analysis-header {
         margin: 0 50px 0 70px;
@@ -316,6 +333,10 @@
         margin-left: auto !important;
         margin-right: auto !important;
         padding-bottom: 15px;
+    }
+
+    .sub-card {
+        width: 100%;
     }
     
     .selected-background {

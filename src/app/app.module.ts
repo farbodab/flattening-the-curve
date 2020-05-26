@@ -29,14 +29,17 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
-import {MatTabsModule} from '@angular/material/tabs'; 
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatIconModule} from '@angular/material/icon';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import { CommonMobileVisualComponent } from './components/common-mobile-visual/common-mobile-visual.component';
 import { PlotComponent } from './components/plot/plot';
+import { AngularPlotlyComponent } from './components/plotly-angular/plotly-angular.component';
 import { OutreachComponent } from './pages/outreach/outreach.component';
 import { CommonDesktopVisualComponent } from './components/common-desktop-visual/common-desktop-visual.component';
 import { BlogComponent } from './pages/blog/blog.component';
@@ -44,7 +47,7 @@ import { PlotlyViaCDNModule } from 'angular-plotly.js';
 
 import { MainPipe } from './pipe/pipe.module';
 
-PlotlyViaCDNModule.plotlyVersion = '1.49.4'; // can be `latest` or any version number (i.e.: '1.40.0')
+PlotlyViaCDNModule.plotlyVersion = 'latest'; // can be `latest` or any version number (i.e.: '1.40.0')
 PlotlyViaCDNModule.plotlyBundle = null; // optional: can be null (for full) or 'basic', 'cartesian', 'geo', 'gl3d', 'gl2d', 'mapbox' or 'finance'
 
 
@@ -68,7 +71,8 @@ PlotlyViaCDNModule.plotlyBundle = null; // optional: can be null (for full) or '
         OutreachComponent,
         CommonDesktopVisualComponent,
         GridComponent,
-        PlotComponent
+        PlotComponent,
+        AngularPlotlyComponent
     ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),
@@ -89,7 +93,9 @@ PlotlyViaCDNModule.plotlyBundle = null; // optional: can be null (for full) or '
         NgxMatSelectSearchModule,
         MainPipe,
         MatTabsModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatTooltipModule,
+        MatIconModule
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

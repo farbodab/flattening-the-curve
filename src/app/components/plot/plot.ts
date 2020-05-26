@@ -20,10 +20,6 @@ export class PlotComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     if (this.cat !== 'ontarioin hospital') {
-      // console.log(this.cat);
-      // const datum = JSON.parse(this.graph_data);
-      // console.log('hospital2 layout'+JSON.stringify(datum.layout));
-      // console.log('hospital2 data '+JSON.stringify(datum.data));
       this.redraw();
     }
     else {
@@ -41,7 +37,6 @@ export class PlotComponent implements OnInit, OnChanges {
 
   private redraw() {
     this.graph = null;
-    console.log(this.graph_data);
     var figure = JSON.parse(this.graph_data);
     let data_placeholder_average: any;
     let data_placeholder_view: any;
@@ -113,7 +108,6 @@ export class PlotComponent implements OnInit, OnChanges {
             break;
         }
       }
-      //Sconsole.log('graph '+JSON.stringify(this.graph));
 
       // if (false) {
       //   let title_text = this.graph.layout.title.text.split('<br>');

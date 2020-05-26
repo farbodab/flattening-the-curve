@@ -12,11 +12,49 @@
                     flatten the curve. Select an
                     analysis
                     below
-                    the dashboard for an in-depth exploration.<br><br><br>
+                    the dashboard for an in-depth exploration.<br>
                 </div>
             </div>
         </div>
         <div *ngIf='is_full' [ngClass]="{'modal-opened': selectedCategory !== ''}">
+            <div style="padding-bottom: 25px">
+                <div style="display: flex; padding-top: 20px">
+                    <mat-icon *ngIf="newToggle" class="new-collapse-icon" (click)="toggleNewAnalysis(false)">
+                        keyboard_arrow_down</mat-icon>
+                    <mat-icon *ngIf="!newToggle" (click)="toggleNewAnalysis(true)" class="new-collapse-icon">
+                        keyboard_arrow_up</mat-icon>
+                    <div class="purple-font" style="line-height: 30px; min-width: 200px; font-size: 20px;">
+                        Published This Week
+                    </div>
+                    <div style="line-height: 30px; border-top: 2px solid black; width: 100%; margin-top: 15px;">
+                    </div>
+                </div>
+                <div *ngIf="newToggle" style="display: flex; flex-wrap: wrap; margin-left: 50px;">
+                    <div *ngFor="let card of jsonObj; index as index">
+                        <div *ngIf="card.category !== 'Home' && card.category !== 'Kpi-dash'">
+                            <div class="sub-card-styling"
+                                [ngClass]="{'selected-visual': card.selected, 'opacity-styling': selectedCategory !== '' && !card.selected}"
+                                *ngIf="(moment.duration(todaysDate.diff(card.date))).asDays() < 8">
+                                <mat-icon class="new-analysis-icon">
+                                    fiber_new
+                                </mat-icon>
+                                <mat-card class="sub-card"
+                                    (click)="selectedVisualTab(card.header, card.selected, $event, index); openDialog(card.header, card.category, card.viz_type, card.viz, card.text_top, card.text_bottom, card.desktopHeight, index)">
+                                    <mat-card-header>
+                                        <mat-card-title>{{card.header}}</mat-card-title>
+                                    </mat-card-header>
+                                    <img mat-card-image src={{card.thumbnail}} alt="Visual Thumbnail">
+                                    <mat-card-content>
+                                        <p>
+                                            {{card.content}}
+                                        </p>
+                                    </mat-card-content>
+                                </mat-card>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="form-container">
                 <form *ngIf="filteringCheckboxes" [formGroup]="filteringCheckboxes" class="form-styling">
                     <div style="display: flex; flex-wrap: wrap">
@@ -52,6 +90,10 @@
                                             [ngClass]="{'selected-visual': card.selected, 'opacity-styling': selectedCategory !== '' && !card.selected}"
                                             *ngIf="filteringCheckboxes.controls[card.category].value && card.category === category"
                                             style="margin-right: 20px">
+                                            <mat-icon *ngIf="(moment.duration(todaysDate.diff(card.date))).asDays() < 8"
+                                                class="new-analysis-icon">
+                                                fiber_new
+                                            </mat-icon>
                                             <mat-card class="sub-card"
                                                 (click)="selectedVisualTab(card.header, card.selected, $event, index); openDialog(card.header, card.category, card.viz_type, card.viz, card.text_top, card.text_bottom, card.desktopHeight, index)">
                                                 <mat-card-header>
@@ -170,6 +212,48 @@
         </div>
     </div>
     <div id='mobile-nav' *ngIf='!is_full'>
+        <div style="padding-bottom: 25px">
+            <div style="display: flex; margin-top: 15px">
+                <div style="border-top: 1px solid black; width: 100%; margin-top: 30px"></div>
+                <div class="purple-font"
+                    style="min-width: 180px; text-align: center; padding-top: 20px; padding-bottom: 10px; font-weight: bold">
+                    Published This Week
+                </div>
+                <div style="border-top: 1px solid black; width: 100%; margin-top: 30px"></div>
+            </div>
+            <div *ngIf="newToggle" style="display: flex; flex-wrap: wrap;">
+                <div *ngFor="let card of jsonObj; index as index" style="width: 100%">
+                    <div *ngIf="card.category !== 'Home' && card.category !== 'Kpi-dash'"
+                        [ngClass]="{'selected-background': card.selected}">
+                        <div class="sub-card-styling mobile-sub-card-styling"
+                            [ngClass]="{'selected-visual': card.selected, 'opacity-styling': selectedCategory !== '' && !card.selected}"
+                            *ngIf="(moment.duration(todaysDate.diff(card.date))).asDays() < 8"
+                            style="margin-right: 20px">
+                            <mat-icon *ngIf="(moment.duration(todaysDate.diff(card.date))).asDays() < 8"
+                                class="new-analysis-icon">
+                                fiber_new
+                            </mat-icon>
+                            <mat-card class="sub-card"
+                                (click)="selectedVisualTab(card.header, card.selected, $event, index)">
+                                <mat-card-header>
+                                    <mat-card-title>{{card.header}}</mat-card-title>
+                                </mat-card-header>
+                                <img mat-card-image src={{card.thumbnail}} alt="Visual Thumbnail">
+                                <mat-card-content>
+                                    <p>
+                                        {{card.content}}
+                                    </p>
+                                </mat-card-content>
+                            </mat-card>
+                        </div>
+                        <app-common-mobile-visual *ngIf="card.selected"
+                            [visualName]="card.header" [topText]="card.text_top"
+                            [bottomText]="card.text_bottom" [vizUrl]="card.viz" [type]="card.viz_type">
+                        </app-common-mobile-visual>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="form-container">
             <form *ngIf="filteringCheckboxes" [formGroup]="filteringCheckboxes" class="form-styling">
                 <div class="inner-form-styling">
@@ -186,25 +270,18 @@
                 <div *ngIf="category !== 'home' && category !== 'kpi-dash'">
                     <div *ngIf="filteringCheckboxes.controls[category].value"
                         style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); padding-bottom: 25px;">
-                        <div style="display: flex; margin-top: 15px">
-                            <div style="border-top: 1px solid black; width: 100%; margin-top: 30px"></div>
-                            <div class="purple-font" *ngIf="category !== 'Critical'"
-                                style="min-width: 180px; text-align: center; padding-top: 20px; padding-bottom: 10px; font-weight: bold">
-                                {{category+' Analysis'}}
-                            </div>
-                            <div class="purple-font" *ngIf="category === 'Critical'"
-                                style="min-width: 180px; text-align: center; padding-top: 20px; padding-bottom: 10px; font-weight: bold">
-                                {{category+' Care Analysis'}}
-                            </div>
-                            <div style="border-top: 1px solid black; width: 100%; margin-top: 30px"></div>
-                        </div>
                         <div style="display: flex; flex-wrap: wrap;">
                             <div *ngFor="let card of jsonObj; index as index" style="width: 100%">
-                                <div *ngIf="card.category !== 'Home' && card.category !== 'Kpi-dash'" [ngClass]="{'selected-background': card.selected}">
+                                <div *ngIf="card.category !== 'Home' && card.category !== 'Kpi-dash'"
+                                    [ngClass]="{'selected-background': card.selected}">
                                     <div class="sub-card-styling mobile-sub-card-styling"
                                         [ngClass]="{'selected-visual': card.selected, 'opacity-styling': selectedCategory !== '' && !card.selected}"
                                         *ngIf="filteringCheckboxes.controls[card.category].value && card.category === category"
                                         style="margin-right: 20px">
+                                        <mat-icon *ngIf="(moment.duration(todaysDate.diff(card.date))).asDays() < 8"
+                                            class="new-analysis-icon">
+                                            fiber_new
+                                        </mat-icon>
                                         <mat-card class="sub-card"
                                             (click)="selectedVisualTab(card.header, card.selected, $event, index)">
                                             <mat-card-header>
@@ -219,7 +296,9 @@
                                         </mat-card>
                                     </div>
                                     <app-common-mobile-visual *ngIf="card.selected && card.category === category"
-                                        [visualName]="card.header" [topText]="card.text_top" [bottomText]="card.text_bottom" [vizUrl]="card.viz" [type]="card.viz_type"></app-common-mobile-visual>
+                                        [visualName]="card.header" [topText]="card.text_top"
+                                        [bottomText]="card.text_bottom" [vizUrl]="card.viz" [type]="card.viz_type">
+                                    </app-common-mobile-visual>
                                 </div>
                             </div>
                         </div>
