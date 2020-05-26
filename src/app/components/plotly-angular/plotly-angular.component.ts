@@ -25,7 +25,7 @@ import { PlotlyService } from 'angular-plotly.js';
     template: `<div #plot [attr.id]="divId" [className]="getClassName()" [ngStyle]="style"></div>`,
     providers: [PlotlyService],
 })
-export class AngularPlotlyComponent implements OnInit, OnDestroy {
+export class AngularPlotlyComponent implements OnInit, OnDestroy, OnChanges, DoCheck {
     protected defaultClassName = 'js-plotly-plot';
 
     public plotlyInstance: Plotly.PlotlyHTMLElement;
@@ -126,63 +126,63 @@ export class AngularPlotlyComponent implements OnInit, OnDestroy {
         //PlotlyService.remove(this.plotlyInstance);
     }
 
-    // ngOnChanges(changes: SimpleChanges) {
-    //     let shouldUpdate = false;
+    ngOnChanges(changes: SimpleChanges) {
+        let shouldUpdate = false;
 
-    //     const revision: SimpleChange = changes.revision;
-    //     if (revision && !revision.isFirstChange()) {
-    //         shouldUpdate = true;
-    //     }
+        const revision: SimpleChange = changes.revision;
+        if (revision && !revision.isFirstChange()) {
+            shouldUpdate = true;
+        }
 
-    //     const debug: SimpleChange = changes.debug;
-    //     if (debug && !debug.isFirstChange()) {
-    //         shouldUpdate = true;
-    //     }
+        const debug: SimpleChange = changes.debug;
+        if (debug && !debug.isFirstChange()) {
+            shouldUpdate = true;
+        }
 
-    //     if (shouldUpdate) {
-    //         this.updatePlot();
-    //     }
+        if (shouldUpdate) {
+            this.updatePlot();
+        }
 
-    //     this.updateWindowResizeHandler();
-    // }
+        this.updateWindowResizeHandler();
+    }
 
-    // ngDoCheck() {
-    //     if (this.updateOnlyWithRevision) {
-    //         return false;
-    //     }
+    ngDoCheck() {
+        if (this.updateOnlyWithRevision) {
+            return false;
+        }
 
-    //     let shouldUpdate = false;
+        let shouldUpdate = false;
 
-    //     if (this.updateOnLayoutChange) {
-    //         if (this.layoutDiffer) {
-    //             const layoutHasDiff = this.layoutDiffer.diff(this.layout);
-    //             if (layoutHasDiff) {
-    //                 shouldUpdate = true;
-    //             }
-    //         } else if (this.layout) {
-    //             this.layoutDiffer = this.keyValueDiffers.find(this.layout).create();
-    //         } else {
-    //             this.layoutDiffer = undefined;
-    //         }
-    //     }
+        if (this.updateOnLayoutChange) {
+            if (this.layoutDiffer) {
+                const layoutHasDiff = this.layoutDiffer.diff(this.layout);
+                if (layoutHasDiff) {
+                    shouldUpdate = true;
+                }
+            } else if (this.layout) {
+                this.layoutDiffer = this.keyValueDiffers.find(this.layout).create();
+            } else {
+                this.layoutDiffer = undefined;
+            }
+        }
 
-    //     if (this.updateOnDataChange) {
-    //         if (this.dataDiffer) {
-    //             const dataHasDiff = this.dataDiffer.diff(this.data);
-    //             if (dataHasDiff) {
-    //                 shouldUpdate = true;
-    //             }
-    //         } else if (Array.isArray(this.data)) {
-    //             this.dataDiffer = this.iterableDiffers.find(this.data).create(this.dataDifferTrackBy);
-    //         } else {
-    //             this.dataDiffer = undefined;
-    //         }
-    //     }
+        if (this.updateOnDataChange) {
+            if (this.dataDiffer) {
+                const dataHasDiff = this.dataDiffer.diff(this.data);
+                if (dataHasDiff) {
+                    shouldUpdate = true;
+                }
+            } else if (Array.isArray(this.data)) {
+                this.dataDiffer = this.iterableDiffers.find(this.data).create(this.dataDifferTrackBy);
+            } else {
+                this.dataDiffer = undefined;
+            }
+        }
 
-    //     if (shouldUpdate && this.plotlyInstance) {
-    //         this.updatePlot();
-    //     }
-    // }
+        if (shouldUpdate && this.plotlyInstance) {
+            this.updatePlot();
+        }
+    }
 
     getWindow(): any {
         return window;
@@ -201,25 +201,25 @@ export class AngularPlotlyComponent implements OnInit, OnDestroy {
     }
 
     createPlot(): any {
-    //     return this.plotly.newPlot(this.plotEl.nativeElement, this.data, this.layout, this.config, this.frames).then(plotlyInstance => {
-    //         this.plotlyInstance = plotlyInstance;
-    //         this.getWindow().gd = this.debug ? plotlyInstance : undefined;
+        return this.plotly.newPlot(this.plotEl.nativeElement, this.data, this.layout, this.config, this.frames).then(plotlyInstance => {
+            this.plotlyInstance = plotlyInstance;
+            this.getWindow().gd = this.debug ? plotlyInstance : undefined;
 
-    //         this.eventNames.forEach(name => {
-    //             const eventName = `plotly_${name.toLowerCase()}`;
-    //             plotlyInstance.on(eventName, (data: any) => (this[name] as EventEmitter<void>).emit(data));
-    //         });
+            this.eventNames.forEach(name => {
+                const eventName = `plotly_${name.toLowerCase()}`;
+                plotlyInstance.on(eventName, (data: any) => (this[name] as EventEmitter<void>).emit(data));
+            });
 
-    //         plotlyInstance.on('plotly_click', (data: any) => {
-    //             this.click.emit(data);
-    //             this.plotly_click.emit(data);
-    //         });
+            plotlyInstance.on('plotly_click', (data: any) => {
+                this.click.emit(data);
+                this.plotly_click.emit(data);
+            });
 
-    //         this.updateWindowResizeHandler();
-    //     }, err => {
-    //         console.error('Error while plotting:', err);
-    //         this.error.emit(err);
-    //     });
+            this.updateWindowResizeHandler();
+        }, err => {
+            console.error('Error while plotting:', err);
+            this.error.emit(err);
+        });
     return this.plotly.newPlot(this.plotEl.nativeElement, this.data, this.layout, this.config, this.frames);
     }
 
@@ -234,23 +234,23 @@ export class AngularPlotlyComponent implements OnInit, OnDestroy {
         return figure;
     }
 
-    // updatePlot() {
-    //     if (!this.plotlyInstance) {
-    //         const error = new Error(`Plotly component wasn't initialized`);
-    //         this.error.emit(error);
-    //         throw error;
-    //     }
+    updatePlot() {
+        if (!this.plotlyInstance) {
+            const error = new Error(`Plotly component wasn't initialized`);
+            this.error.emit(error);
+            throw error;
+        }
 
-    //     const layout = {...this.layout};
+        const layout = {...this.layout};
 
-    //     return this.plotly.update(this.plotlyInstance, this.data, layout, this.config, this.frames).then(() => {
-    //         const figure = this.createFigure();
-    //         this.update.emit(figure);
-    //     }, err => {
-    //         console.error('Error while updating plot:', err);
-    //         this.error.emit(err);
-    //     });
-    // }
+        return this.plotly.update(this.plotlyInstance, this.data, layout, this.config, this.frames).then(() => {
+            const figure = this.createFigure();
+            this.update.emit(figure);
+        }, err => {
+            console.error('Error while updating plot:', err);
+            this.error.emit(err);
+        });
+    }
 
     updateWindowResizeHandler() {
         if (this.useResizeHandler) {

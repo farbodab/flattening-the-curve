@@ -99,10 +99,24 @@
     padding: 12px;
     width: 250px;
     border-radius: 15px;
+    margin-right: 20px;
+    display: flex;
 
     :hover {
         cursor: pointer;
     }
+}
+
+.new-collapse-icon {
+    height: 35px;
+    padding-right: 15px;
+    margin-left: -39px;
+}
+
+.new-analysis-icon {
+    position: absolute;
+    z-index: 1;
+    margin-left: -10px;
 }
 
 .selected-tab {
@@ -316,6 +330,10 @@
         margin-left: auto !important;
         margin-right: auto !important;
         padding-bottom: 15px;
+    }
+
+    .sub-card {
+        width: 100%;
     }
     
     .selected-background {

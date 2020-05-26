@@ -10,6 +10,8 @@ import { AnalysisTestingComponent } from './analysis.testing.component';
 import { AnalysisCapacityComponent } from './analysis.capacity.component';
 import { ApiService } from 'src/app/services/api.service';
 import { CommonDesktopVisualComponent } from '../../components/common-desktop-visual/common-desktop-visual.component';
+import { Moment } from 'moment';
+import * as moment from 'moment';
 
 declare var tableau: any;
 
@@ -34,12 +36,16 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
   filteringCheckboxes: FormGroup;
   selectedCategory = '';
   jsonObj: any;
+  todaysDate: Moment;
+  moment: any = moment;
+  newToggle = true;
 
   constructor(private host_service: HostService, private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog, private api_service: ApiService) {
     this.refresh_layout(window.innerWidth);
   }
 
   ngOnInit() {
+    this.todaysDate = moment(new Date());
     this.window_subscription = this.host_service.onWindowResize.subscribe(window => {
       this.refresh_layout(window.innerWidth);
     });
@@ -114,6 +120,10 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
             this.jsonObj[index].selected = false;
             this.selectedCategory = '';
     });
+  }
+
+  toggleNewAnalysis(bool: boolean) {
+    this.newToggle = bool;
   }
 
   selectedVisualTab(header: string, selected: boolean, event: any, index: number) {
