@@ -28,6 +28,16 @@
     width: 100%;
     display: block;
   }
+
+  #resource-box-landscape {
+    width: 50%;
+    display: block;
+  }
+
+  #resource_thumbnail_landscape {
+    width: 50%;
+    display: block;
+  }
 }
 
 /* Add some shadows to create a card effect */
@@ -99,10 +109,11 @@ h1, h3 {
 }
 
 #supporters-set{
-  width:600px;
+  
   margin-left: auto ;
   margin-right: auto ;
 }
+
 #resource-box {
     border: 1px;  
     width:175px;
@@ -118,20 +129,27 @@ h1, h3 {
 
 #resource-box-landscape {
     border: 1px;  
-    width:400px;
+    width:100%;
 }
 
 #resource_thumbnail_landscape {
-    height: 200px; 
-    width: 300px;
+    height: 150px;
+    width: 100%;
     object-fit: contain;
     object-position: 0% 50%;
+}
+
+.grid-landscape {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 400px, 1fr));
+  grid-gap: 1rem;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 1rem;
+
 }
 
 .grid > div > a {
