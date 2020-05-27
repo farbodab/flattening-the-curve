@@ -9,7 +9,7 @@
 		<hr>
 
 		<h3>Advisory Team: Clinical, Scientific, and Public Health</h3>
-		<div id = 'body-text' class="row">
+		<div id='body-text' class="row">
 			<div class="column">
 				<div class="card">
 					<div class="container-advisory">
@@ -58,7 +58,7 @@
 		<hr>
 
 		<h3>Core Team</h3>
-		<div id = 'body-text' class="row">
+		<div id='body-text' class="row">
 			<div class="column">
 				<div class="card">
 					<div class="container-core">
@@ -196,7 +196,8 @@
 					<div class="container-core">
 						<h2>Liam McCoy</h2>
 						<p class="title">MD/MSc candidate</p>
-						<p>Faculty of Medicine and Institute of Health Policy, Management and Evaluation, University of Toronto; Vector Institute</p>
+						<p>Faculty of Medicine and Institute of Health Policy, Management and Evaluation, University of
+							Toronto; Vector Institute</p>
 						<p></p>
 					</div>
 				</div>
@@ -228,7 +229,7 @@
 		<hr>
 
 		<h3>Contributors</h3>
-		<div id = 'body-text' class="row">
+		<div id='body-text' class="row">
 			<div class="column">
 				<div class="card">
 					<div class="container-core">
@@ -486,26 +487,26 @@
 		<h3>Supporters</h3>
 		<div id='body-text' class='row'>
 			<div id='supporters-set'>
-				<div id = 'resource-box'>
-					<div id = 'resource_thumbnail'>
-						<a target="_blank" href = 'https://trilliumhealthpartners.ca'>
-							<img id='resource_thumbnail' src='assets/img/team_supporters/thp.png' >
+				<div id='resource-box'>
+					<div id='resource_thumbnail'>
+						<a target="_blank" href='https://trilliumhealthpartners.ca'>
+							<img id='resource_thumbnail' src='assets/img/team_supporters/thp.png'>
 						</a>
 					</div>
 				</div>
 
-				<div id = 'resource-box'>
-					<div id = 'resource_thumbnail'>
-						<a target="_blank" href = 'https://vectorinstitute.ai'>
-							<img id='resource_thumbnail' src='assets/img/team_supporters/vector.png' >
+				<div id='resource-box'>
+					<div id='resource_thumbnail'>
+						<a target="_blank" href='https://vectorinstitute.ai'>
+							<img id='resource_thumbnail' src='assets/img/team_supporters/vector.png'>
 						</a>
 					</div>
 				</div>
 
-				<div id = 'resource-box'>
-					<div id = 'resource_thumbnail'>
-						<a target="_blank" href = 'https://www.klick.com/'>
-							<img id='resource_thumbnail' src='assets/img/team_supporters/klick.png' >
+				<div id='resource-box'>
+					<div id='resource_thumbnail'>
+						<a target="_blank" href='https://www.klick.com/'>
+							<img id='resource_thumbnail' src='assets/img/team_supporters/klick.png'>
 						</a>
 					</div>
 				</div>
@@ -513,32 +514,74 @@
 
 			<div id='supporters-set'>
 
-				<div id = 'resource-box'>
-					<div id = 'resource_thumbnail'>
-						<a target="_blank" href = 'http://taglab.utoronto.ca'>
-							<img id='resource_thumbnail' src='assets/img/team_supporters/taglab.jpg' >
+				<div id='resource-box'>
+					<div id='resource_thumbnail'>
+						<a target="_blank" href='http://taglab.utoronto.ca'>
+							<img id='resource_thumbnail' src='assets/img/team_supporters/taglab.jpg'>
 						</a>
 					</div>
 				</div>
 
-				<div id = 'resource-box'>
-					<div id = 'resource_thumbnail'>
-						<a target="_blank" href = 'http://ontario.himsschapter.org/'>
-							<img id='resource_thumbnail' src='assets/img/team_supporters/himss_logo.png' >
+				<div id='resource-box'>
+					<div id='resource_thumbnail'>
+						<a target="_blank" href='http://ontario.himsschapter.org/'>
+							<img id='resource_thumbnail' src='assets/img/team_supporters/himss_logo.png'>
 						</a>
 					</div>
 				</div>
 
-				<div id = 'resource-box-landscape'>
-					<div id = 'resource_thumbnail_landscape'>
-						<a target="_blank" href = 'https://pophealthanalytics.com'>
-							<img id='resource_thumbnail_landscape' src='assets/img/team_supporters/pophealth.png' >
+				<div id='resource-box-landscape'>
+					<div id='resource_thumbnail_landscape'>
+						<a target="_blank" href='https://pophealthanalytics.com'>
+							<img id='resource_thumbnail_landscape' src='assets/img/team_supporters/pophealth.png'>
 						</a>
 					</div>
 				</div>
 
 			</div>
 
+		</div>
+	</div>
+
+	<div *ngIf="teamForm" style="height: 450px">
+		<div style="display: flex; background-color: #666666">
+			<div>Our People</div>
+		</div>
+		<div style="display: flex">
+			<div style="height: 400px; width: 200px; border: 1px solid black; margin-right: 20px">
+				<form [formGroup]="teamForm">
+					<div *ngFor="let choice of teamChoices | keyvalue" (click)="toggleSelect(choice)">
+						<div style="display: flex">
+							<div *ngIf="choice !== 'All' && choice !== 'Contributors'">{{choice.key+'s'}}</div>
+							<div>{{choice.value}}</div>
+						</div>
+						<div style="display: flex">
+							<div *ngIf="choice === 'All' || choice === 'Contributors'">{{choice.key}}</div>
+							<div>{{choice.value}}</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div style="display: flex; width: 100%; flex: 1; flex-wrap: wrap; overflow-y: auto; max-height: 400px">
+				<div *ngFor="let card of jsonObj; index as index" style="width: 31%; margin-right: auto" [style.display]="teamForm.controls[card.team_status].value || teamForm.controls['All'].value ? 'flex' : 'none'">
+					<div *ngIf="card.team_status !== 'Advisor'" style="width: 100%">
+						<div class="card"
+							*ngIf="teamForm.controls[card.team_status].value || teamForm.controls['All'].value">
+							<div class="container-core">
+								<h2 style="display: flex">
+									<div *ngIf="card.title !== 'NaN'">{{card.title}}&nbsp;</div>{{card.first_name}}
+									{{card.last_name}}
+								</h2>
+								<p *ngIf="card.education !== 'NaN'" class="title">{{card.education}}</p>
+								<p *ngIf="card.role !== 'NaN'">{{card.role}}</p>
+								<p *ngIf="card.affiliation !== 'NaN'">{{card.affiliation}}</p>
+								<p></p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
 		</div>
 	</div>
 
