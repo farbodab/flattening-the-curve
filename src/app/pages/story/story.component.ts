@@ -13,7 +13,7 @@ export class StoryComponent implements OnInit, AfterViewInit {
   teamForm: FormGroup;
 
   teamChoices = ['Leader', 'Maintainer', 'Committer', 'Contributors', 'All'];
-  teamChoicesObj = {};
+  teamChoicesCount = [];
 
   constructor(private api_service: ApiService, private formBuilder: FormBuilder) { }
 
@@ -29,7 +29,7 @@ export class StoryComponent implements OnInit, AfterViewInit {
       data => {
         this.jsonObj = data;
         this.initTeamForm(this.teamChoices);
-        this.teamChoicesObj = this.iterateTeam(this.jsonObj, this.teamChoices);
+        this.teamChoicesCount = this.iterateTeam(this.jsonObj, this.teamChoices);
       },
       error => {
         this.jsonObj = 'error';
@@ -56,17 +56,16 @@ export class StoryComponent implements OnInit, AfterViewInit {
   }
 
   iterateTeam(obj: any, choices: string[]) {
-    let placeholderObj = {};
-
-    choices.forEach(element => {
-      placeholderObj[element] = 0;
-    });
+    let placeholderArray = new Array(choices.length).fill(0);
 
     obj.forEach(element => {
-      placeholderObj[element.team_status] = 1;
+      if (element.team_status !== 'Advisor') {
+        placeholderArray[choices.indexOf(element.team_status)] += 1;
+        placeholderArray[choices.indexOf('All')] += 1;
+      }
     });
 
-    return placeholderObj;
-  };
+    return placeholderArray;
+  }
 
 }

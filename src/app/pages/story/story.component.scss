@@ -127,3 +127,31 @@ h1, h3 {
     object-fit: contain;
     object-position: 0% 50%;
 }
+
+.choices-styling {
+  display: flex;
+  padding-bottom: 15px;
+}
+
+.choices-count {
+  margin-left: auto;
+  padding: 0 5px;
+  border: 1px solid #666666;
+  border-radius: 8px;
+  color: #666666;
+}
+
+
+::ng-deep {
+  .selected-color {
+    .choices-text {
+      color: #205D86;
+      font-weight: bold;
+    }
+    .choices-count {
+      color: #205D86;
+      border-color: #205D86;
+      font-weight: bold;
+    }
+  }
+}
