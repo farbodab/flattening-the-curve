@@ -128,6 +128,7 @@ h1, h3 {
     object-position: 0% 50%;
 }
 
+
 .choices-styling {
   display: flex;
   padding-bottom: 20px;
@@ -251,3 +252,32 @@ h1, h3 {
     }
   }
 }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 1rem;
+}
+
+.grid > div > a {
+  padding: 1rem;
+  display: grid;
+}
+
+.grid > div > a::before {
+  content: "";
+  padding-bottom: 100%;
+  display: block;
+}
+
+.grid > div > a::before,
+.grid > div > a >  img {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.grid > div > a > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
