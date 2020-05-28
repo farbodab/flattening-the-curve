@@ -6,7 +6,7 @@
         <div class="collapse-text" style="padding-bottom: 20px" *ngIf="!toggleTextFlag" (click)="toggleText()">
             Expand Description</div>
     </div>
-    <div class="text-styling" [innerHTML]="topText" *ngIf="bottomText !== 'NaN' && toggleTextFlag"></div>
+    <div class="text-styling" [innerHTML]="topText" *ngIf="topText !== 'NaN' && toggleTextFlag"></div>
     <div *ngIf="type === 'Plotly'">
         <app-plot class="plot-styling" [analysis]="true" [graph_data]="vizUrl"></app-plot>
     </div>

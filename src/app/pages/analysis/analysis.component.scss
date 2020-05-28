@@ -114,6 +114,10 @@
     font-size: 30px;
 }
 
+.new-collapse-icon:hover {
+    cursor: pointer;
+}
+
 .new-analysis-icon {
     position: absolute;
     z-index: 1;
@@ -205,6 +209,7 @@
 
     .mat-card-header-text {
         width: 100% !important;
+        height: 80px;
     }
 
     .mat-card-content {
@@ -221,7 +226,7 @@
     }
 
     .mat-card-image {
-        max-height: 150px !important;
+        height: 150px !important;
         width: 100% !important;
         margin: 0 !important;
     }
