@@ -107,11 +107,12 @@ h1, h3 {
 #resource-box {
     border: 1px;  
     width:175px;
+    padding: 10px
 }
 
 #resource_thumbnail {
-    height: 200px; 
-    width: 175px;
+    height: 150px; 
+    width: 150px;
     object-fit: contain;
     object-position: 0% 50%;
 
@@ -123,7 +124,7 @@ h1, h3 {
 }
 
 #resource_thumbnail_landscape {
-    height: 100px;
+    height: 150px;
     width: 100%;
     object-fit: contain;
     object-position: 0% 50%;
@@ -131,7 +132,7 @@ h1, h3 {
 
 .grid-landscape {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 400px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 1rem;
 }
 
@@ -140,18 +141,6 @@ h1, h3 {
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 1rem;
 
-}
-
-.logo-landscape{
-  grid-column: span 2;
-  grid-row: span 1;
-}
-
-.item {
-  /* Center the contents of the grid items. Making each grid item a Flex Container */
-  display: flex;
-
-   
 }
 
 .grid > div > a {
@@ -300,3 +289,37 @@ h1, h3 {
     }
   }
 }
+
+ /* Each item in the grid contains numbers */
+  .item {
+  /* Center the contents of the grid items. Making each grid item a Flex Container */
+  display: flex;
+ 
+  /* Horizontal and Vertical centering */
+  justify-content: center;
+  align-items: center;
+  border: 5px solid #87b5ff;
+  border-radius: 3px;
+  font-size: 2em;
+  font-family: sans-serif;
+  font-weight: bold;
+  background-color: #1c57b5
+  }
+
+* {
+      box-sizing: border-box;
+}
+
+.grid-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 2rem;
+  }
+
+.item5 {
+      grid-column: span 2;
+  }
+
+  .item6 {
+      grid-column: span 2;
+  }
