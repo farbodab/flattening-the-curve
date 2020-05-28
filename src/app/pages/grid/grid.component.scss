@@ -257,6 +257,10 @@
     padding-left: 10px;
     color: #F0C03E;
     font-size: 30px;
+
+    &:hover {
+        cursor: hand;
+    }
 }
 
 .tooltip-text-first-row {
@@ -282,6 +286,10 @@
     padding-right: 10px;
     color: #F0C03E;
     font-size: 30px;
+}
+
+.info-icon-styling-first-row:hover, .info-icon-styling-second-row:hover {
+    cursor: pointer;
 }
 
 .tooltip-text-second-row {
