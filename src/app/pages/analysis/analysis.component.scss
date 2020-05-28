@@ -209,6 +209,7 @@
 
     .mat-card-header-text {
         width: 100% !important;
+        height: 80px;
     }
 
     .mat-card-content {
@@ -225,7 +226,7 @@
     }
 
     .mat-card-image {
-        max-height: 150px !important;
+        height: 150px !important;
         width: 100% !important;
         margin: 0 !important;
     }
