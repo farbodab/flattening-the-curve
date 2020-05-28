@@ -99,10 +99,11 @@ h1, h3 {
 }
 
 #supporters-set{
-  width:600px;
+  
   margin-left: auto ;
   margin-right: auto ;
 }
+
 #resource-box {
     border: 1px;  
     width:175px;
@@ -118,14 +119,61 @@ h1, h3 {
 
 #resource-box-landscape {
     border: 1px;  
-    width:400px;
+    width:100%;
 }
 
 #resource_thumbnail_landscape {
-    height: 200px; 
-    width: 300px;
+    height: 100px;
+    width: 100%;
     object-fit: contain;
     object-position: 0% 50%;
+}
+
+.grid-landscape {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 400px, 1fr));
+  grid-gap: 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 1rem;
+
+}
+
+.logo-landscape{
+  grid-column: span 2;
+  grid-row: span 1;
+}
+
+.item {
+  /* Center the contents of the grid items. Making each grid item a Flex Container */
+  display: flex;
+
+   
+}
+
+.grid > div > a {
+  padding: 1rem;
+  display: grid;
+}
+
+.grid > div > a::before {
+  content: "";
+  padding-bottom: 100%;
+  display: block;
+}
+
+.grid > div > a::before,
+.grid > div > a >  img {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.grid > div > a > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 
@@ -252,39 +300,3 @@ h1, h3 {
     }
   }
 }
-
-.grid-landscape {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 400px, 1fr));
-  grid-gap: 1rem;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 1rem;
-
-}
-
-.grid > div > a {
-  padding: 1rem;
-  display: grid;
-}
-
-.grid > div > a::before {
-  content: "";
-  padding-bottom: 100%;
-  display: block;
-}
-
-.grid > div > a::before,
-.grid > div > a >  img {
-  grid-area: 1 / 1 / 2 / 2;
-}
-
-.grid > div > a > img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
