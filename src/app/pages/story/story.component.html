@@ -8,51 +8,169 @@
 
 		<hr>
 
-		<div *ngIf="teamForm" style="height: 450px">
-			<div style="display: flex; background-color: #205D86;">
-				<div style="color: #ffffff; margin-left: 15px; padding: 15px 0">Our People</div>
-			</div>
-			<div style="display: flex">
-				<div style="height: 400px; width: 325px; border: 1px solid #205D86; margin-right: 20px">
-					<form [formGroup]="teamForm" style="padding-top: 20px; margin: 0 15px">
-						<div *ngFor="let choice of teamChoices; index as index" (click)="toggleSelect(choice)">
-							<div *ngIf="choice !== 'All' && choice !== 'Contributors'" class="choices-styling"
-								[ngClass]="{'selected-color': teamForm.controls[choice].value}">
-								<div class="choices-text">{{choice+'s'}}</div>
-								<div class="choices-count">
-									{{teamChoicesCount[index]}}</div>
+		<div *ngIf="is_full">
+			<div *ngIf=" teamForm" style="height: 450px">
+				<div style="display: flex; background-color: #005E72;">
+					<div style="color: #ffffff; margin-left: 15px; font-size: 18px; line-height: 48px">Our People</div>
+				</div>
+				<div style="display: flex">
+					<div style="height: 400px; width: 325px; border: 1px solid #DCDCDC; margin-right: 20px">
+						<form [formGroup]="teamForm" style="padding-top: 20px; margin: 0 15px">
+							<div *ngFor="let choice of teamChoices; index as index" (click)="toggleSelect(choice)">
+								<div *ngIf="choice !== 'All' && choice !== 'Contributors'" class="choices-styling"
+									[ngClass]="{'selected-color': teamForm.controls[choice].value}">
+									<div class="choices-text">{{choice+'s'}}</div>
+									<div class="choices-count">
+										{{teamChoicesCount[index]}}</div>
+								</div>
+								<div *ngIf="choice === 'All' || choice === 'Contributors'" class="choices-styling"
+									[ngClass]="{'selected-color': teamForm.controls[choice].value}">
+									<div class="choices-text">{{choice}}</div>
+									<div class="choices-count">
+										{{teamChoicesCount[index]}}</div>
+								</div>
 							</div>
-							<div *ngIf="choice === 'All' || choice === 'Contributors'" class="choices-styling"
-								[ngClass]="{'selected-color': teamForm.controls[choice].value}">
-								<div class="choices-text">{{choice}}</div>
-								<div class="choices-count">
-									{{teamChoicesCount[index]}}</div>
+						</form>
+					</div>
+					<div style="width: 100%;">
+						<div
+							style="margin-top: 20px; padding-bottom: 10px; display: flex; width: 100%; max-height: 370px; overflow-y: auto; flex-wrap: wrap; flex: 1">
+							<div *ngFor="let card of jsonObj; index as index" style="width: 31%; margin-right: auto;"
+								[style.display]="teamForm.controls[card.team_status].value || teamForm.controls['All'].value ? 'flex' : 'none'">
+								<div *ngIf="card.team_status !== 'Advisor'"
+									style="width: 100%; padding-bottom: 20px; padding-left: 5px">
+									<div class="card"
+										*ngIf="teamForm.controls[card.team_status].value || teamForm.controls['All'].value">
+										<div class="container-core">
+											<div class="card-title" *ngIf="card.title !== 'NaN'" style="display: flex">
+												{{card.title}}
+												{{card.first_name}}
+												{{card.last_name}}
+											</div>
+											<div class="card-title" *ngIf="card.title === 'NaN'" style="display: flex">
+												{{card.first_name}}
+												{{card.last_name}}
+											</div>
+											<p *ngIf="card.education !== 'NaN'" class="title">{{card.education}}</p>
+											<p *ngIf="card.role !== 'NaN'" style="color: #005E72">{{card.role}}</p>
+											<p *ngIf="card.affiliation !== 'NaN'">{{card.affiliation}}</p>
+											<p></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div style="width: 100%; padding-top: 50px;">
+				<div style="display: flex; background-color: #005E72;">
+					<div style="color: #ffffff; margin-left: 15px; font-size: 18px; line-height: 48px">Our Advisors
+					</div>
+				</div>
+				<div
+					style="margin-top: 20px; padding-bottom: 10px; display: flex; width: 100%; flex-wrap: wrap; justify-content: space-between">
+					<div *ngFor="let card of jsonObj; index as index" style="width: 31%;">
+						<div *ngIf="card.team_status === 'Advisor'" style="padding-bottom: 20px;">
+							<div class="card">
+								<div class="container-core">
+									<div class="card-title" *ngIf="card.title !== 'NaN'" style="display: flex">
+										{{card.title}}
+										{{card.first_name}}
+										{{card.last_name}}
+									</div>
+									<div class="card-title" *ngIf="card.title === 'NaN'" style="display: flex">
+										{{card.first_name}}
+										{{card.last_name}}
+									</div>
+									<p *ngIf="card.education !== 'NaN'" class="title">{{card.education}}</p>
+									<p *ngIf="card.role !== 'NaN'" style="color: #005E72">{{card.role}}</p>
+									<p *ngIf="card.affiliation !== 'NaN'">{{card.affiliation}}</p>
+									<p></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div *ngIf="!is_full" [ngClass]="{'mobile-sizing': !is_full}">
+			<div>
+				<div class="form-container">
+					<div class="form-styling form-header">Our People</div>
+					<form *ngIf="teamForm" [formGroup]="teamForm" class="form-styling">
+						<div style="display: flex; flex-wrap: wrap" class="inner-form-styling">
+							<div *ngFor="let choice of teamChoices; index as index" class="checkbox-styling"
+								[style.display]="choice !== 'All' ? 'initial': 'none'">
+								<mat-checkbox *ngIf="choice !== 'Contributors'" formControlName="{{choice}}">
+									{{choice+'s'}}
+									<span class="choices-count">
+										{{teamChoicesCount[index]}}</span>
+								</mat-checkbox>
+								<mat-checkbox *ngIf="choice === 'Contributors'" formControlName="{{choice}}">{{choice}}
+									<span class="choices-count">
+										{{teamChoicesCount[index]}}</span>
+								</mat-checkbox>
 							</div>
 						</div>
 					</form>
 				</div>
-				<div style="width: 100%;">
-					<div
-						style="margin-top: 20px; padding-bottom: 10px; display: flex; width: 100%; max-height: 370px; overflow-y: auto; flex-wrap: wrap; flex: 1">
-						<div *ngFor="let card of jsonObj; index as index" style="width: 31%; padding-bottom: 20px; margin-right: auto"
-							[style.display]="teamForm.controls[card.team_status].value || teamForm.controls['All'].value ? 'flex' : 'none'">
-							<div *ngIf="card.team_status !== 'Advisor'" style="width: 100%">
-								<div class="card"
-									*ngIf="teamForm.controls[card.team_status].value || teamForm.controls['All'].value">
-									<div class="container-core">
-										<h2 *ngIf="card.title !== 'NaN'" style="display: flex">{{card.title}}
-											{{card.first_name}}
-											{{card.last_name}}
-										</h2>
-										<h2 *ngIf="card.title === 'NaN'" style="display: flex">
-											{{card.first_name}}
-											{{card.last_name}}
-										</h2>
-										<p *ngIf="card.education !== 'NaN'" class="title">{{card.education}}</p>
-										<p *ngIf="card.role !== 'NaN'">{{card.role}}</p>
-										<p *ngIf="card.affiliation !== 'NaN'">{{card.affiliation}}</p>
-										<p></p>
+			</div>
+
+			<div style="width: 100%; padding-bottom: 20px">
+				<div
+					style="margin-top: 20px; padding-bottom: 10px; display: flex; width: 100%; overflow-y: auto; flex-wrap: wrap; flex: 1">
+					<div *ngFor="let card of jsonObj; index as index" style="width: 100%; margin-right: auto;"
+						[style.display]="teamForm.controls[card.team_status].value ? 'flex' : 'none'">
+						<div *ngIf="card.team_status !== 'Advisor'"
+							style="width: 100%; padding-bottom: 20px; padding-left: 5px">
+							<div class="card" *ngIf="teamForm.controls[card.team_status].value">
+								<div class="container-core align-center">
+									<div class="card-title" *ngIf="card.title !== 'NaN'">
+										{{card.title}}
+										{{card.first_name}}
+										{{card.last_name}}
 									</div>
+									<div class="card-title" *ngIf="card.title === 'NaN'">
+										{{card.first_name}}
+										{{card.last_name}}
+									</div>
+									<p *ngIf="card.education !== 'NaN'" class="title">{{card.education}}</p>
+									<p *ngIf="card.role !== 'NaN'" style="color: #005E72">{{card.role}}</p>
+									<p *ngIf="card.affiliation !== 'NaN'">{{card.affiliation}}</p>
+									<p></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div style="width: 100%;">
+				<div class="form-container">
+					<div class="form-styling advisor-header">Our Advisors</div>
+				</div>
+				<div
+					style="margin-top: 20px; padding-bottom: 10px; display: flex; width: 100%; overflow-y: auto; flex-wrap: wrap; flex: 1">
+					<div *ngFor="let card of jsonObj; index as index" style="width: 100%; margin-right: auto;">
+						<div *ngIf="card.team_status === 'Advisor'"
+							style="width: 100%; padding-bottom: 20px; padding-left: 5px">
+							<div class="card">
+								<div class="container-core align-center">
+									<div class="card-title" *ngIf="card.title !== 'NaN'">
+										{{card.title}}
+										{{card.first_name}}
+										{{card.last_name}}
+									</div>
+									<div class="card-title" *ngIf="card.title === 'NaN'">
+										{{card.first_name}}
+										{{card.last_name}}
+									</div>
+									<p *ngIf="card.education !== 'NaN'" class="title">{{card.education}}</p>
+									<p *ngIf="card.role !== 'NaN'" style="color: #005E72">{{card.role}}</p>
+									<p *ngIf="card.affiliation !== 'NaN'">{{card.affiliation}}</p>
+									<p></p>
 								</div>
 							</div>
 						</div>

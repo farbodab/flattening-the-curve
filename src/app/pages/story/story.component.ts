@@ -1,6 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { HostService } from '../../services/host.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-story',
@@ -11,13 +13,20 @@ export class StoryComponent implements OnInit, AfterViewInit {
 
   jsonObj: any;
   teamForm: FormGroup;
+  is_full = true;
+  window_subscription: Subscription;
 
   teamChoices = ['Leader', 'Maintainer', 'Committer', 'Contributors', 'All'];
   teamChoicesCount = [];
 
-  constructor(private api_service: ApiService, private formBuilder: FormBuilder) { }
+  constructor(private host_service: HostService, private api_service: ApiService, private formBuilder: FormBuilder) { 
+    this.refresh_layout(window.innerWidth);
+  }
 
   ngOnInit() {
+    this.window_subscription = this.host_service.onWindowResize.subscribe(window => {
+      this.refresh_layout(window.innerWidth);
+    });
   }
 
   ngAfterViewInit() {
@@ -68,4 +77,7 @@ export class StoryComponent implements OnInit, AfterViewInit {
     return placeholderArray;
   }
 
+  private refresh_layout(width) {
+    this.is_full = window.innerWidth >= 1024 ? true : false;
+  }
 }
