@@ -19,6 +19,7 @@ export class ApiService {
   //readonly team_object_endpoint: string = 'https://flatteningthecurve-staging.herokuapp.com/api/team';
   readonly team_object_endpoint: string = 'https://flatteningthecurve.herokuapp.com/api/team';
 
+
   constructor(private http_client: HttpClient) {
 
   }

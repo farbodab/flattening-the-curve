@@ -28,6 +28,16 @@
     width: 100%;
     display: block;
   }
+
+  #resource-box-landscape {
+    width: 50%;
+    display: block;
+  }
+
+  #resource_thumbnail_landscape {
+    width: 50%;
+    display: block;
+  }
 }
 
 /* Add some shadows to create a card effect */
@@ -385,3 +395,4 @@ h1, h3 {
   .item6 {
       grid-column: span 2;
   }
+
