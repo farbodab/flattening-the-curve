@@ -188,6 +188,45 @@ h1, h3 {
   color: #005E72;
 }
 
+.team-tooltip {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 15px;
+  color: #F0C03E;
+}
+
+.team-tooltip:hover {
+  cursor: pointer;
+}
+
+.desktop-pop {
+  border-radius: 15px;
+  opacity: 0.98;
+  width: 700px;
+  position: absolute;
+  margin-left: 160px;
+  margin-top: -40px;
+  background-color: #391F85;
+  padding: 20px;
+}
+
+.pop-text-container {
+  padding-bottom: 20px;
+  display: flex;
+}
+
+.pop-text-title {
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.pop-text {
+  color: #ffffff;
+  padding-left: 15px;
+}
+
 ::ng-deep {
   .selected-color {
     .choices-text {
@@ -203,6 +242,11 @@ h1, h3 {
 }
 
 .mobile-sizing {
+  .team-tooltip {
+    align-items: initial;
+    color: #391F85;
+  }
+
   .choices-count {
     border-color: #ffffff;
     color: #ffffff;
