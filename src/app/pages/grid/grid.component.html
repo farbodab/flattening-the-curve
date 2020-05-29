@@ -152,6 +152,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <app-plot class="plot-styling"
+                                                                    *ngIf="phuGroup[0].group !== 'map'"
                                                                     [ngClass]="{'map-selector': phuGroup[0].group === 'map'}"
                                                                     [graph_data]="phuPlot.value.html"
                                                                     [mobile_size]="!is_full" [analysis]="false"
@@ -160,6 +161,14 @@
                                                                     [cat]="phuPlot.value.phu+ '' +phuPlot.value.header"
                                                                     [view]="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'view'].value">
                                                                 </app-plot>
+                                                                <div *ngIf="phuGroup[0].group === 'map'"
+                                                                    class="embed-container">
+                                                                    <iframe width="500" height="400" frameborder="0"
+                                                                        scrolling="no" marginheight="0" marginwidth="0"
+                                                                        itle="Main Page Map"
+                                                                        src="//howsmyflattening.maps.arcgis.com/apps/Embed/index.html?webmap=7c17e91c98694b7d982d37995dadf3ea&extent=-99.8541,41.6319,-67.4005,53.6902&zoom=true&previewImage=false&scale=true&search=true&searchextent=false&legendlayers=true&disable_scroll=true&theme=dark">
+                                                                    </iframe>
+                                                                </div>
                                                                 <div *ngFor="let phuTab of tab_obj | keyvalue"
                                                                     [style.display]="(phuGroup[0].group === 'map' ? 'none': 'initial')">
                                                                     <div *ngIf="phuTab.key === phuPlot.value.phu">

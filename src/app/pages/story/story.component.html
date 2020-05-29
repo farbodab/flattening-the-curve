@@ -2,7 +2,7 @@
 <div class='content team' style='background-color: white;'>
 	<div id='container'>
 		<div id='heading-text'>
-			<h1 id='sub-title'>Our Team</h1>
+			<h1 id='sub-title'>Meet The Team</h1>
 			<p>Here is the amazing team of volunteers who make this project possible!</p>
 		</div>
 
@@ -112,10 +112,10 @@
 		<div *ngIf="!is_full" [ngClass]="{'mobile-sizing': !is_full}">
 			<div>
 				<div class="form-container">
-					<div class="form-styling form-header" style="display: flex">
+					<div class="form-styling form-header">
 						<div class="">Our People</div>
-						<mat-icon class="team-tooltip">info</mat-icon>
-						<div style="width: 200px; background-color: #666666; height: 200px"></div>
+						<!-- <mat-icon class="team-tooltip">info</mat-icon> -->
+						<!-- <div style="width: 200px; background-color: #666666; height: 200px"></div> -->
 					</div>
 					<form *ngIf="teamForm" [formGroup]="teamForm" class="form-styling">
 						<div style="display: flex; flex-wrap: wrap" class="inner-form-styling">
