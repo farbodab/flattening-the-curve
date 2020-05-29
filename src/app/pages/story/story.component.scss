@@ -241,6 +241,23 @@ h1, h3 {
   }
 }
 
+.card-container-styling {
+  width: 31%;
+  padding-right: 10px;
+}
+
+.team-box {
+  margin-top: 20px;
+  padding-bottom: 10px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  max-height: 370px;
+  overflow-y: auto;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
 .mobile-sizing {
   .team-tooltip {
     align-items: initial;
@@ -286,7 +303,7 @@ h1, h3 {
     background-color: #245D70;
     color: #ffffff;
     padding: 6px 6px;
-    width: 40%
+    width: 44%
   }
 
   .form-header {
@@ -304,6 +321,7 @@ h1, h3 {
     margin: auto;
     font-size: 24px;
   }
+  
 
   ::ng-deep {
     .mat-checkbox-inner-container {
