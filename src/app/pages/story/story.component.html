@@ -3,481 +3,202 @@
 <div class='content team' style='background-color: white;'>
 	<div id='container'>
 		<div id='heading-text'>
-			<h1 id='sub-title'>Our Team</h1>
+			<h1 id='sub-title'>Meet The Team</h1>
 			<p>Here is the amazing team of volunteers who make this project possible!</p>
 		</div>
 
 		<hr>
 
-		<h3>Advisory Team: Clinical, Scientific, and Public Health</h3>
-		<div id = 'body-text' class="row">
-			<div class="column">
-				<div class="card">
-					<div class="container-advisory">
-						<h2>Dr. Jenn Kwan </h2>
-						<p class="title">MD</p>
-						<p></p>
-						<p></p>
+		<div *ngIf="is_full">
+			<div *ngIf=" teamForm" style="height: 450px">
+				<div style="display: flex; background-color: #005E72;">
+					<div style="display: flex">
+						<div style="color: #ffffff; margin-left: 15px; font-size: 18px; line-height: 48px">Our People
+						</div>
+						<mat-icon (mouseover)="toggleHover(true)" (mouseout)="toggleHover(false)" class=" team-tooltip">
+							info
+						</mat-icon>
+						<div class="desktop-pop" [style.display]="tooltipToggle ? 'block' : 'none'">
+							<div *ngFor="let level of tooltipArray">
+								<div *ngFor="let obj of level | keyvalue" class="pop-text-container">
+									<div class="pop-text-title">{{obj.key+': '}}</div>
+									<div class="pop-text">{{obj.value}}</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div style="display: flex">
+					<div style="height: 400px; width: 325px; border: 1px solid #DCDCDC; margin-right: 20px">
+						<form [formGroup]="teamForm" style="padding-top: 20px; margin: 0 15px">
+							<div *ngFor="let choice of teamChoices; index as index" (click)="toggleSelect(choice)">
+								<div *ngIf="choice !== 'All' && choice !== 'Contributors'" class="choices-styling"
+									[ngClass]="{'selected-color': teamForm.controls[choice].value}">
+									<div class="choices-text">{{choice+'s'}}</div>
+									<div class="choices-count">
+										{{teamChoicesCount[index]}}</div>
+								</div>
+								<div *ngIf="choice === 'All' || choice === 'Contributors'" class="choices-styling"
+									[ngClass]="{'selected-color': teamForm.controls[choice].value}">
+									<div class="choices-text">{{choice}}</div>
+									<div class="choices-count">
+										{{teamChoicesCount[index]}}</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div style="width: 100%;">
+						<div class="team-box">
+							<div *ngFor="let card of jsonObj; index as index" class="card-container-styling"
+								[style.display]="teamForm.controls[card.team_status].value || teamForm.controls['All'].value ? 'flex' : 'none'">
+								<div style="width: 100%; padding-bottom: 20px; padding-left: 5px">
+									<div class="card"
+										*ngIf="teamForm.controls[card.team_status].value || teamForm.controls['All'].value">
+										<div class="container-core">
+											<div class="card-title" *ngIf="card.title !== 'NaN'" style="display: flex">
+												{{card.title}}
+												{{card.first_name}}
+												{{card.last_name}}
+											</div>
+											<div class="card-title" *ngIf="card.title === 'NaN'" style="display: flex">
+												{{card.first_name}}
+												{{card.last_name}}
+											</div>
+											<p *ngIf="card.education !== 'NaN'" class="title">{{card.education}}</p>
+											<p *ngIf="card.role !== 'NaN'" style="color: #005E72">{{card.role}}</p>
+											<p *ngIf="card.affiliation !== 'NaN'">{{card.affiliation}}</p>
+											<p></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 
-			<div class="column">
-				<div class="card">
-					<div class="container-advisory">
-						<h2>Dr. David Fisman </h2>
-						<p class="title">MD MPH</p>
-						<p>Dalla Lana School of Public Health</p>
-						<p></p>
+			<!-- <div style="width: 100%; padding-top: 50px;">
+				<div style="display: flex; background-color: #005E72;">
+					<div style="color: #ffffff; margin-left: 15px; font-size: 18px; line-height: 48px">Our Advisors
 					</div>
 				</div>
-			</div>
-
-			<div class="column">
-				<div class="card">
-					<div class="container-advisory">
-						<h2>Dr. Marzyeh Ghassemi </h2>
-						<p class="title">PhD</p>
-						<p> Vector Institute for Artificial Intelligence</p>
-						<p></p>
+				<div
+					style="margin-top: 20px; padding-bottom: 10px; display: flex; width: 100%; flex-wrap: wrap; justify-content: space-between">
+					<div *ngFor="let card of jsonObj; index as index" style="width: 31%;">
+						<div *ngIf="card.team_status === 'Advisor'" style="padding-bottom: 20px;">
+							<div class="card">
+								<div class="container-core">
+									<div class="card-title" *ngIf="card.title !== 'NaN'" style="display: flex">
+										{{card.title}}
+										{{card.first_name}}
+										{{card.last_name}}
+									</div>
+									<div class="card-title" *ngIf="card.title === 'NaN'" style="display: flex">
+										{{card.first_name}}
+										{{card.last_name}}
+									</div>
+									<p *ngIf="card.education !== 'NaN'" class="title">{{card.education}}</p>
+									<p *ngIf="card.role !== 'NaN'" style="color: #005E72">{{card.role}}</p>
+									<p *ngIf="card.affiliation !== 'NaN'">{{card.affiliation}}</p>
+									<p></p>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-
-			<div class="column">
-				<div class="card">
-					<div class="container-advisory">
-						<h2>Dr. Isaac Bogoch </h2>
-						<p class="title">MD</p>
-						<p>University Health Network</p>
-						<p></p>
-					</div>
-				</div>
-			</div>
+			</div> -->
 		</div>
 
-		<hr>
 
-		<h3>Core Team</h3>
-		<div id = 'body-text' class="row">
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>Farbod Abolhassani</h2>
-						<p class="title">MHI</p>
-						<p>Medtronic Canada</p>
-						<p></p>
+		<div *ngIf="!is_full" [ngClass]="{'mobile-sizing': !is_full}">
+			<div>
+				<div class="form-container">
+					<div class="form-styling form-header">
+						<div class="">Our People</div>
+						<!-- <mat-icon class="team-tooltip">info</mat-icon> -->
+						<!-- <div style="width: 200px; background-color: #666666; height: 200px"></div> -->
 					</div>
+					<form *ngIf="teamForm" [formGroup]="teamForm" class="form-styling">
+						<div style="display: flex; flex-wrap: wrap" class="inner-form-styling">
+							<div *ngFor="let choice of teamChoices; index as index" class="checkbox-styling"
+								[style.display]="choice !== 'All' ? 'initial': 'none'">
+								<mat-checkbox *ngIf="choice !== 'Contributors'" formControlName="{{choice}}">
+									{{choice+'s'}}
+									<span class="choices-count">
+										{{teamChoicesCount[index]}}</span>
+								</mat-checkbox>
+								<mat-checkbox *ngIf="choice === 'Contributors'" formControlName="{{choice}}">{{choice}}
+									<span class="choices-count">
+										{{teamChoicesCount[index]}}</span>
+								</mat-checkbox>
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
 
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>Ali Vahit Esensoy</h2>
-						<p class="title">PhD</p>
-						<p>Senior Director, Data Science; Klick Health</p>
-						<p></p>
+			<div style="width: 100%; padding-bottom: 20px">
+				<div
+					style="margin-top: 20px; padding-bottom: 10px; display: flex; width: 100%; overflow-y: auto; flex-wrap: wrap; flex: 1">
+					<div *ngFor="let card of jsonObj; index as index" style="width: 100%; margin-right: auto;"
+						[style.display]="teamForm.controls[card.team_status].value ? 'flex' : 'none'">
+						<div style="width: 100%; padding-bottom: 20px; padding-left: 5px">
+							<div class="card" *ngIf="teamForm.controls[card.team_status].value">
+								<div class="container-core align-center">
+									<div class="card-title" *ngIf="card.title !== 'NaN'">
+										{{card.title}}
+										{{card.first_name}}
+										{{card.last_name}}
+									</div>
+									<div class="card-title" *ngIf="card.title === 'NaN'">
+										{{card.first_name}}
+										{{card.last_name}}
+									</div>
+									<p *ngIf="card.education !== 'NaN'" class="title">{{card.education}}</p>
+									<p *ngIf="card.role !== 'NaN'" style="color: #005E72">{{card.role}}</p>
+									<p *ngIf="card.affiliation !== 'NaN'">{{card.affiliation}}</p>
+									<p></p>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>Dandi Feng</h2>
-						<p class="title">MI</p>
-						<p>UX Researcher, Porter Airlines</p>
-						<p></p>
+			<!--<div style="width: 100%;">
+				<div class="form-container">
+					<div class="form-styling advisor-header">Our Advisors</div>
+				</div>
+				<div
+					style="margin-top: 20px; padding-bottom: 10px; display: flex; width: 100%; overflow-y: auto; flex-wrap: wrap; flex: 1">
+					<div *ngFor="let card of jsonObj; index as index" style="width: 100%; margin-right: auto;">
+						<div *ngIf="card.team_status === 'Advisor'"
+							style="width: 100%; padding-bottom: 20px; padding-left: 5px">
+							<div class="card">
+								<div class="container-core align-center">
+									<div class="card-title" *ngIf="card.title !== 'NaN'">
+										{{card.title}}
+										{{card.first_name}}
+										{{card.last_name}}
+									</div>
+									<div class="card-title" *ngIf="card.title === 'NaN'">
+										{{card.first_name}}
+										{{card.last_name}}
+									</div>
+									<p *ngIf="card.education !== 'NaN'" class="title">{{card.education}}</p>
+									<p *ngIf="card.role !== 'NaN'" style="color: #005E72">{{card.role}}</p>
+									<p *ngIf="card.affiliation !== 'NaN'">{{card.affiliation}}</p>
+									<p></p>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>Dr. Ben Fine</h2>
-						<p class="title">SM MD</p>
-						<p>Trillium Health Partners</p>
-						<p></p>
-					</div>
-				</div>
-			</div>
-
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>Sri Gowrishankar</h2>
-						<p class="title">P.Eng</p>
-						<p>Institute for Better Health</p>
-						<p></p>
-					</div>
-				</div>
-			</div>
-
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>James Hooks</h2>
-						<p class="title">BSc</p>
-						<p>University of Toronto Department of Computer Science</p>
-						<p></p>
-					</div>
-				</div>
-			</div>
-
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>Marilise Kassouf</h2>
-						<p class="title">MSc</p>
-						<p>Medtronic Canada</p>
-						<p></p>
-					</div>
-				</div>
-			</div>
-
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>Shaun Kenney</h2>
-						<p class="title">BSc</p>
-						<p>Technical Consultant & Developer, IBM</p>
-						<p></p>
-					</div>
-				</div>
-			</div>
-
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>Andrew Lee</h2>
-						<p class="title"></p>
-						<p>Technical Architect; Klick Health</p>
-						<p></p>
-					</div>
-				</div>
-			</div>
-
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>Francisco Lee</h2>
-						<p class="title">MHI</p>
-						<p>Integration Specialist, Verto Inc.</p>
-						<p></p>
-					</div>
-				</div>
-			</div>
-
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>Amna Liaqat</h2>
-						<p class="title">PhD student</p>
-						<p>University of Toronto Computer Science; Technologies for Aging Gracefully Lab (TAGlab)</p>
-						<p></p>
-					</div>
-				</div>
-			</div>
-
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>Valerie Mais</h2>
-						<p class="title">MI student</p>
-						<p>Faculty of Information, University of Toronto</p>
-						<p></p>
-					</div>
-				</div>
-			</div>
-
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>Liam McCoy</h2>
-						<p class="title">MD/MSc candidate</p>
-						<p>Faculty of Medicine and Institute of Health Policy, Management and Evaluation, University of Toronto; Vector Institute</p>
-						<p></p>
-					</div>
-				</div>
-			</div>
-
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>Dr. Laura Rosella</h2>
-						<p class="title"> PhD</p>
-						<p>University of Toronto</p>
-						<p></p>
-					</div>
-				</div>
-			</div>
-
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>Alfred J. Whitehead</h2>
-						<p class="title">MS</p>
-						<p>EVP Applied Sciences; Klick Health</p>
-						<p></p>
-					</div>
-				</div>
-			</div>
+			</div>-->
 		</div>
-
-		<hr>
-
-		<h3>Contributors</h3>
-		<div id = 'body-text' class="row">
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>Kavya Anchuri</h2>
-						<p class="title">MD student</p>
-						<p>Cumming School of Medicine, University of Calgary</p>
-						<p></p>
-					</div>
-				</div>
-			</div>
-
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>Isha Berry</h2>
-						<p class="title">PhD candidate</p>
-						<p>Dalla Lana School of Public Health, University of Toronto</p>
-						<p></p>
-					</div>
-				</div>
-			</div>
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>Vinyas Harish</h2>
-						<p class="title">MD/PhD student</p>
-						<p>Dalla Lana School of Public Health, University of Toronto</p>
-						<p></p>
-					</div>
-				</div>
-			</div>
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>Sophie Hu</h2>
-						<p class="title">MD/MSc student</p>
-						<p>Cumming School of Medicine, University of Calgary</p>
-						<p></p>
-					</div>
-				</div>
-			</div>
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>Atif Kukaswadia</h2>
-						<p class="title">PhD, MSc</p>
-						<p>Senior Consultant, IQVIA Canada</p>
-						<p></p>
-					</div>
-				</div>
-			</div>
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>Brenna Li</h2>
-						<p class="title">PhD student</p>
-						<p>University of Toronto Department of Computer Science; DGP Lab</p>
-						<p></p>
-					</div>
-				</div>
-			</div>
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>David Madras</h2>
-						<p class="title">PhD student</p>
-						<p>University of Toronto; Vector Institute</p>
-						<p></p>
-					</div>
-				</div>
-			</div>
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>Nykan Mirchi</h2>
-						<p class="title">MD student</p>
-						<p>University of Toronto Faculty of Medicine</p>
-						<p></p>
-					</div>
-				</div>
-			</div>
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>Shems Saleh</h2>
-						<p class="title">MSc</p>
-						<p>Vector Institute</p>
-						<p></p>
-					</div>
-				</div>
-			</div>
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>Petr Smirnov</h2>
-						<p class="title">PhD candidate</p>
-						<p>Department of Medical Biophysics, University of Toronto</p>
-						<p></p>
-					</div>
-				</div>
-			</div>
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>Jonathan Smith</h2>
-						<p class="title">BCS/BBA</p>
-						<p>Machine Learning Scientist, Layer 6 AI</p>
-						<p></p>
-					</div>
-				</div>
-			</div>
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>Marc Soares</h2>
-						<p class="title">BMath, BBA</p>
-						<p>Head of Analytics Solutions, ClickInsight</p>
-						<p></p>
-					</div>
-				</div>
-			</div>
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>Jean-Paul R. Soucy</h2>
-						<p class="title">PhD student</p>
-						<p>Dalla Lana School of Public Health, University of Toronto</p>
-						<p></p>
-					</div>
-				</div>
-			</div>
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>Jonathan Wang</h2>
-						<p class="title">MASc</p>
-						<p>Ontario Health (Cancer Care Ontario)</p>
-						<p></p>
-					</div>
-				</div>
-			</div>
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>Cindy Yang</h2>
-						<p class="title">PhD candidate</p>
-						<p>Department of Medical Biophysics, University of Toronto</p>
-						<p></p>
-					</div>
-				</div>
-			</div>
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>Seungeun Yi</h2>
-						<p class="title">MSc</p>
-						<p>Machine Learning Scientist, Layer 6 AI</p>
-						<p></p>
-					</div>
-				</div>
-			</div>
-			<div class="column">
-				<div class="card">
-					<div class="container-core">
-						<h2>Jennifer Zheng</h2>
-						<p class="title">MD student</p>
-						<p>University of Toronto Faculty of Medicine</p>
-						<p></p>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!--  <h1>Advisory Team: Clinical, Scientific, and Public Health</div>
-		<div class="column">
-			<div class="card">
-				<div class="container-core">
-					<h2>Andrew Lee</h2>
-					<p class="title">Website</p>
-					<p>Some text that describes me lorem ipsum ipsum lorem.</p>
-					<p>example@example.com</p>
-				</div>
-			</div>
-		</div>
-		<div class="column">
-			<div class="card">
-				<div class="container-core">
-					<h2>Ali Vahit Esensoy</h2>
-					<p class="title">Analytics</p>
-					<p>Some text that describes me lorem ipsum ipsum lorem.</p>
-					<p>example@example.com</p>
-				</div>
-			</div>
-		</div>
-		<div class="column">
-			<div class="card">
-				<div class="container-core">
-					<h2>Sri Gowrishankar</h2>
-					<p class="title">Data Engineering</p>
-					<p>Some text that describes me lorem ipsum ipsum lorem.</p>
-					<p>example@example.com</p>
-				</div>
-			</div>
-		</div>
-		<div class="column">
-			<div class="card">
-				<div class="container-core">
-					<h2>David Madras</h2>
-					<p class="title">Data Engineering</p>
-					<p>Some text that describes me lorem ipsum ipsum lorem.</p>
-					<p>example@example.com</p>
-				</div>
-			</div>
-		</div>
-		<div class="column">
-			<div class="card">
-				<div class="container-core">
-					<h2>Petr Smirnov</h2>
-					<p class="title">Data Engineering</p>
-					<p>Some text that describes me lorem ipsum ipsum lorem.</p>
-					<p>example@example.com</p>
-				</div>
-			</div>
-		</div>
-		<div class="column">
-			<div class="card">
-				<div class="container-core">
-					<h2>Liam McCoy</h2>
-					<p class="title">Interventions</p>
-					<p>Some text that describes me lorem ipsum ipsum lorem.</p>
-					<p>example@example.com</p>
-				</div>
-			</div>
-		</div>
-		<div class="column">
-			<div class="card">
-				<div class="container-core">
-					<h2>Vinyas Harish</h2>
-					<p class="title">Interventions</p>
-					<p>Some text that describes me lorem ipsum ipsum lorem.</p>
-					<p>example@example.com</p>
-				</div>
-			</div>
-		</div> -->
 
 		<hr>
 		
-		<div id='body-text' class='row'>
+		<div >
 			<div id='supporters-set'>
 				<div id = 'resource-box'>
 					<div id = 'resource_thumbnail'>
@@ -500,8 +221,6 @@
 						</a>
 					</div>
 				</div>
-			</div>
-			<div id='supporters-set'>
 				<div id = 'resource-box'>
 					<div id = 'resource_thumbnail'>
 						<a target="_blank" href = 'http://taglab.utoronto.ca'>
@@ -516,54 +235,15 @@
 						</a>
 					</div>
 				</div>
-				<div id = 'resource-box-landscape'>
-					<div id = 'resource_thumbnail_landscape'>
-						<a target="_blank" href = 'https://pophealthanalytics.com'>
-							<img id='resource_thumbnail_landscape' src='assets/img/team_supporters/pophealth.png' >
-						</a>
-					</div>
-				</div>
 			</div>
 		
 	
 
-<!-- 	<h3>Supporters</h3>
 
-	<div class="grid">
-  <div><a target="_blank" href = 'https://trilliumhealthpartners.ca'><img src="assets/img/team_supporters/thp.png" alt=""></a></div>
-
-  	<div><a target="_blank" href = 'https://vectorinstitute.ai'><img src='assets/img/team_supporters/vector.png' ></a></div>
-
-	 <div><a target="_blank" href = 'https://www.klick.com/'><img src='assets/img/team_supporters/klick.png'></a></div>
-
-</div>
-
-
-<div class="grid">
-<div><a target="_blank" href = 'http://taglab.utoronto.ca'><img src='assets/img/team_supporters/taglab.jpg' ></a></div>
-
-	<div> <a target="_blank" href = 'http://ontario.himsschapter.org/'><img src='assets/img/team_supporters/himss_logo.png' ></a></div>
-
-	<div><a target="_blank" href = 'https://pophealthanalytics.com'><img src='assets/img/team_supporters/pophealth.png' ></a></div>
-</div> -->
-
-<!-- <div class="grid-landscape">
+<div class="grid-landscape">
+<div ><a target="_blank" href = 'http://www.dlsph.utoronto.ca'><img id= 'resource_thumbnail_landscape' src= 'assets/img/team_supporters/dlsph.png' ></a></div>
 
 <div ><a target="_blank" href = 'https://pophealthanalytics.com'><img id= 'resource_thumbnail_landscape' src= 'assets/img/team_supporters/pophealth.png' ></a></div>
 
 </div>
 
-<div class="grid-landscape"> -->
-
-<div class="grid-landscape">
-<div ><a target="_blank" href = 'http://www.dlsph.utoronto.ca'><img id= 'resource_thumbnail_landscape' src= 'assets/img/team_supporters/dlsph.png' ></a></div>
-
-</div>
-
-
-
-
-
-	<div id='footer'></div>
-
-</div>

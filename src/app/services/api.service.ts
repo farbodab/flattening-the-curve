@@ -16,9 +16,16 @@ export class ApiService {
   readonly plot_object_endpoint: string = 'https://flatteningthecurve.herokuapp.com/api/plots';
   //readonly data_object_endpoint: string = 'https://flatteningthecurve-staging.herokuapp.com/api/source';
   readonly data_object_endpoint: string = 'https://flatteningthecurve.herokuapp.com/api/source';
+  //readonly team_object_endpoint: string = 'https://flatteningthecurve-staging.herokuapp.com/api/team';
+  readonly team_object_endpoint: string = 'https://flatteningthecurve.herokuapp.com/api/team';
+
 
   constructor(private http_client: HttpClient) {
 
+  }
+
+  get_team_obj() {
+    return this.http_client.get(this.team_object_endpoint);
   }
 
   get_data_obj() {

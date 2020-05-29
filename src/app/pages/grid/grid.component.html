@@ -60,8 +60,7 @@
                 <!-- <mat-label><a target="_blank" href="https://www.phdapps.health.gov.on.ca/PHULocator/">Find a Public Health Unit</a> </mat-label> -->
             </div>
             <div *ngIf="dropdownList && is_full" class="selected-header-styling">
-                {{headerLabel}}<br><span style="font-size:0.457em">In Beta. Please forward feedback to
-                    info@howsmyflattening.ca</span>
+                {{headerLabel}}
             </div>
             <!-- <div *ngIf="filteringCheckboxes && dropdownList"> -->
             <div *ngIf="averageForm">
@@ -90,17 +89,33 @@
                                                             style="height: 100%">
                                                             <div style="height: 100%">
                                                                 <div [style.height]="(is_full ? '35px' : '35px')"
-                                                                    style="margin: -10px -10px 0 -10px;"
-                                                                    [style.display]=" (phuGroup[0].group==='map'
+                                                                    class="dashboard-tile" [style.display]=" (phuGroup[0].group==='map'
                                                                     ? 'none' : 'block' )">
-                                                                    <div
-                                                                        *ngIf="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'view'].value !== 'none'">
+                                                                    <div>
                                                                         <div class="upper-tab-container">
-                                                                            <div class="tab-styling"
+                                                                            <div style="display: flex"
+                                                                                *ngIf="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'view'].value === 'none'"
+                                                                                (mouseover)="toggleHover(phuPlot.value.phu+ '' +phuPlot.value.header+ 'true')"
+                                                                                (mouseout)="toggleHover(phuPlot.value.phu+ '' +phuPlot.value.header+ 'false')">
+                                                                                <mat-icon
+                                                                                    (click)="openDialog(phuPlot.value.viz_title, 'plot', phuPlot.value.html, phuPlot.value.text_top, phuPlot.value.text_bottom, 500, 0)"
+                                                                                    aria-hidden="false"
+                                                                                    aria-label="Example thumbs up SVG icon"
+                                                                                    class="info-icon-styling-first-row">
+                                                                                    info
+                                                                                </mat-icon>
+                                                                                <div class="tooltip-text-first-row"
+                                                                                    [style.display]="(iconHover === phuPlot.value.phu+ '' +phuPlot.value.header+ 'true' ? 'flex': 'none')">
+                                                                                    See details
+                                                                                </div>
+                                                                            </div>
+                                                                            <div *ngIf="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'view'].value !== 'none'"
+                                                                                class="tab-styling"
                                                                                 [ngClass]="{'tab-selected': averageForm.controls[phuPlot.value.phu + '' + phuPlot.value.header + 'view'].value === 'allTime'}"
                                                                                 (click)="averageForm.controls[phuPlot.value.phu + '' + phuPlot.value.header + 'view'].setValue('allTime')">
                                                                                 All Time</div>
-                                                                            <div class="tab-styling"
+                                                                            <div *ngIf="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'view'].value !== 'none'"
+                                                                                class="tab-styling"
                                                                                 [ngClass]="{'tab-selected': averageForm.controls[phuPlot.value.phu + '' + phuPlot.value.header + 'view'].value === 'week'}"
                                                                                 (click)="averageForm.controls[phuPlot.value.phu + '' + phuPlot.value.header + 'view'].setValue('week')">
                                                                                 Prior Week</div>
@@ -109,6 +124,22 @@
                                                                 </div>
                                                                 <div style="height: 45px"
                                                                     [style.display]="(phuGroup[0].group === 'map' ? 'none': 'flex')">
+                                                                    <div style="display: flex"
+                                                                        *ngIf="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'view'].value !== 'none'"
+                                                                        (mouseover)="toggleHover(phuPlot.value.phu+ '' +phuPlot.value.header+ 'true')"
+                                                                        (mouseout)="toggleHover(phuPlot.value.phu+ '' +phuPlot.value.header+ 'false')">
+                                                                        <mat-icon
+                                                                            (click)="openDialog(phuPlot.value.viz_title, 'plot', phuPlot.value.html, phuPlot.value.text_top, phuPlot.value.text_bottom, 500, 0)"
+                                                                            aria-hidden="false"
+                                                                            aria-label="Example thumbs up SVG icon"
+                                                                            class="info-icon-styling-second-row">
+                                                                            info
+                                                                        </mat-icon>
+                                                                        <div class="tooltip-text-second-row"
+                                                                            [style.display]="(iconHover === phuPlot.value.phu+ '' +phuPlot.value.header+ 'true' ? 'flex': 'none')">
+                                                                            See details
+                                                                        </div>
+                                                                    </div>
                                                                     <div class="plot-check"
                                                                         *ngIf="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'average'].value !== 'none'">
                                                                         <div
@@ -121,6 +152,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <app-plot class="plot-styling"
+                                                                    *ngIf="phuGroup[0].group !== 'map'"
                                                                     [ngClass]="{'map-selector': phuGroup[0].group === 'map'}"
                                                                     [graph_data]="phuPlot.value.html"
                                                                     [mobile_size]="!is_full" [analysis]="false"
@@ -129,6 +161,14 @@
                                                                     [cat]="phuPlot.value.phu+ '' +phuPlot.value.header"
                                                                     [view]="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'view'].value">
                                                                 </app-plot>
+                                                                <div *ngIf="phuGroup[0].group === 'map'"
+                                                                    class="embed-container">
+                                                                    <iframe width="500" height="400" frameborder="0"
+                                                                        scrolling="no" marginheight="0" marginwidth="0"
+                                                                        itle="Main Page Map"
+                                                                        src="//howsmyflattening.maps.arcgis.com/apps/Embed/index.html?webmap=7c17e91c98694b7d982d37995dadf3ea&extent=-99.8541,41.6319,-67.4005,53.6902&zoom=true&previewImage=false&scale=true&search=true&searchextent=false&legendlayers=true&disable_scroll=true&theme=dark">
+                                                                    </iframe>
+                                                                </div>
                                                                 <div *ngFor="let phuTab of tab_obj | keyvalue"
                                                                     [style.display]="(phuGroup[0].group === 'map' ? 'none': 'initial')">
                                                                     <div *ngIf="phuTab.key === phuPlot.value.phu">

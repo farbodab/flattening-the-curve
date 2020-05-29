@@ -11,3 +11,9 @@
     border-width: 2px;
     border-color: gray;
 }
+
+::ng-deep {
+    .modebar-container {
+        display: none !important;
+    }
+}

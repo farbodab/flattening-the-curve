@@ -117,11 +117,12 @@ h1, h3 {
 #resource-box {
     border: 1px;  
     width:175px;
+    padding: 10px
 }
 
 #resource_thumbnail {
-    height: 200px; 
-    width: 175px;
+    height: 150px; 
+    width: 150px;
     object-fit: contain;
     object-position: 0% 50%;
 
@@ -141,7 +142,7 @@ h1, h3 {
 
 .grid-landscape {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 400px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 1rem;
 }
 
@@ -173,3 +174,225 @@ h1, h3 {
   height: 100%;
   object-fit: contain;
 }
+
+
+.choices-styling {
+  display: flex;
+  padding-bottom: 20px;
+}
+
+.choices-styling:hover {
+  cursor: pointer;
+}
+
+.choices-count {
+  margin-left: auto;
+  padding: 0 5px;
+  border: 1px solid #666666;
+  border-radius: 8px;
+  color: #666666;
+}
+
+.card-title {
+  font-size: 20px;
+  color: #005E72;
+}
+
+.team-tooltip {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 15px;
+  color: #F0C03E;
+}
+
+.team-tooltip:hover {
+  cursor: pointer;
+}
+
+.desktop-pop {
+  border-radius: 15px;
+  opacity: 0.98;
+  width: 700px;
+  position: absolute;
+  margin-left: 160px;
+  margin-top: -40px;
+  background-color: #391F85;
+  padding: 20px;
+}
+
+.pop-text-container {
+  padding-bottom: 20px;
+  display: flex;
+}
+
+.pop-text-title {
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.pop-text {
+  color: #ffffff;
+  padding-left: 15px;
+}
+
+::ng-deep {
+  .selected-color {
+    .choices-text {
+      color: #005E72;
+      font-weight: bold;
+    }
+    .choices-count {
+      color: #005E72;
+      border-color: #005E72;
+      font-weight: bold;
+    }
+  }
+}
+
+.card-container-styling {
+  width: 31%;
+  padding-right: 10px;
+}
+
+.team-box {
+  margin-top: 20px;
+  padding-bottom: 10px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  max-height: 370px;
+  overflow-y: auto;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.mobile-sizing {
+  .team-tooltip {
+    align-items: initial;
+    color: #391F85;
+  }
+
+  .choices-count {
+    border-color: #ffffff;
+    color: #ffffff;
+    margin-left: 10px;
+  }
+
+  .container-core{
+    text-align: center;
+  }
+  
+  .card-title {
+    display: inline-block;
+    text-align: center;
+  }
+
+  .form-container {
+    background-color: #DADFE1;
+    border-radius: 6px;
+    margin: 20px -30px 20px -30px;
+  }
+
+  .form-styling {
+    padding: 0;
+
+    .inner-form-styling {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 15px;
+        padding: 9px 0;
+        justify-content: space-between;
+    }
+  }
+
+  .checkbox-styling {
+    margin: 10px 0 10px 0;
+    border-radius: 6px;
+    background-color: #245D70;
+    color: #ffffff;
+    padding: 6px 6px;
+    width: 44%
+  }
+
+  .form-header {
+    padding: 10px 15px 0 15px;
+    width: 50%;
+    text-align: center;
+    margin: auto;
+    font-size: 24px;
+  }
+  
+  .advisor-header {
+    padding: 20px;
+    width: 50%;
+    text-align: center;
+    margin: auto;
+    font-size: 24px;
+  }
+  
+
+  ::ng-deep {
+    .mat-checkbox-inner-container {
+        margin-right: 5px !important;
+    }
+
+    .mat-checkbox-layout .mat-checkbox-label {
+        font-size: 12px !important;
+        font-weight: normal;
+        margin-left: 10px;
+    }
+
+    .mat-dialog-content {
+        max-height: initial !important;
+    }
+
+    .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+      background-color: #ffffff !important;
+    }
+  
+    .mat-checkbox-frame {
+      border-color: #ffffff;
+    }
+  
+    .mat-checkbox-checkmark-path {
+      stroke: #391F85 !important;
+    }
+  }
+}
+
+ /* Each item in the grid contains numbers */
+  .item {
+  /* Center the contents of the grid items. Making each grid item a Flex Container */
+  display: flex;
+ 
+  /* Horizontal and Vertical centering */
+  justify-content: center;
+  align-items: center;
+  border: 5px solid #87b5ff;
+  border-radius: 3px;
+  font-size: 2em;
+  font-family: sans-serif;
+  font-weight: bold;
+  background-color: #1c57b5
+  }
+
+* {
+      box-sizing: border-box;
+}
+
+.grid-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 2rem;
+  }
+
+.item5 {
+      grid-column: span 2;
+  }
+
+  .item6 {
+      grid-column: span 2;
+  }
+
