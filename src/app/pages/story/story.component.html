@@ -47,9 +47,8 @@
 						</form>
 					</div>
 					<div style="width: 100%;">
-						<div
-							style="margin-top: 20px; padding-bottom: 10px; display: flex; width: 100%; max-height: 370px; overflow-y: auto; flex-wrap: wrap; flex: 1">
-							<div *ngFor="let card of jsonObj; index as index" style="width: 31%; margin-right: auto;"
+						<div class="team-box">
+							<div *ngFor="let card of jsonObj; index as index" class="card-container-styling"
 								[style.display]="teamForm.controls[card.team_status].value || teamForm.controls['All'].value ? 'flex' : 'none'">
 								<div style="width: 100%; padding-bottom: 20px; padding-left: 5px">
 									<div class="card"
@@ -141,8 +140,7 @@
 					style="margin-top: 20px; padding-bottom: 10px; display: flex; width: 100%; overflow-y: auto; flex-wrap: wrap; flex: 1">
 					<div *ngFor="let card of jsonObj; index as index" style="width: 100%; margin-right: auto;"
 						[style.display]="teamForm.controls[card.team_status].value ? 'flex' : 'none'">
-						<div *ngIf="card.team_status !== 'Advisor'"
-							style="width: 100%; padding-bottom: 20px; padding-left: 5px">
+						<div style="width: 100%; padding-bottom: 20px; padding-left: 5px">
 							<div class="card" *ngIf="teamForm.controls[card.team_status].value">
 								<div class="container-core align-center">
 									<div class="card-title" *ngIf="card.title !== 'NaN'">
@@ -164,7 +162,7 @@
 					</div>
 				</div>
 			</div>
-			<div style="width: 100%;">
+			<!--<div style="width: 100%;">
 				<div class="form-container">
 					<div class="form-styling advisor-header">Our Advisors</div>
 				</div>
@@ -193,7 +191,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div>-->
 		</div>
 
 		<hr>
