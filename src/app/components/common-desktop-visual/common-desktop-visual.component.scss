@@ -12,6 +12,11 @@
     border-color: gray;
 }
 
+.embed-container iframe {
+    width: 100%;
+    height: 725px;
+}
+
 ::ng-deep {
     .modebar-container {
         display: none !important;

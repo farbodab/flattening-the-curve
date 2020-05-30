@@ -20,6 +20,7 @@ export class CommonDesktopVisualComponent implements OnInit, OnDestroy, AfterVie
     category: string;
     height: string;
     type: string;
+    mapPopup = false;
 
     viz: any;
     toggleTextFlag = true;

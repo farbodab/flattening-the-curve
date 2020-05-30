@@ -70,7 +70,7 @@ export class HomeComponent implements OnInit {
   setHomeViz(urlInput: string) {
     var placeholderDiv = document.getElementById('vizContainer');
     if (urlInput === '') {
-      var url = "https://public.tableau.com/views/HowsMyFlatteningNewCOVID-19CasesinOntarioV2/Dashboard?:display_count=y&:origin=viz_share_link"
+      var url = "https://public.tableau.com/views/Ontarios2COVID-19Curves/Dashboard?:display_count=y&:origin=viz_share_link"
     } else {
       //var url = "https://public.tableau.com/views/OntarioICUCapacity2forCOVID-19/Dashboard1?:display_count=y&:origin=viz_share_link"
       var url = urlInput;
