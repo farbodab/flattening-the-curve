@@ -39,6 +39,7 @@ export class GridComponent implements OnInit, AfterViewInit {
 
     searchCtrl: string;
     iconHover: string;
+    mapHover = false;
 
     urlSegments: any;
     path: string;
@@ -225,6 +226,10 @@ export class GridComponent implements OnInit, AfterViewInit {
         this.iconHover = str;
     }
 
+    toggleMap(bool: boolean) {
+        this.mapHover = bool;
+    }
+
     fetchVizObj() {
         this.fetch_subscribe = this.api_service.get_plot_obj().subscribe(
             data => {
@@ -353,7 +358,7 @@ export class GridComponent implements OnInit, AfterViewInit {
             vizHeight: height,
             topTextContent: topText,
             bottomTextContent: bottomText,
-            vizType: 'Plotly'
+            vizType: category === 'Map' ? 'Map' : 'Plotly'
         };
         dialogConfig.width = '300px';
 
@@ -514,7 +519,6 @@ export class GridComponent implements OnInit, AfterViewInit {
                 });
             });
         });
-        console.log(this.averageForm.controls);
     }
 
     routeonSelection(route: string) {
