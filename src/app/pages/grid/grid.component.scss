@@ -491,6 +491,14 @@ small {
     }
 }
 
+.info-icon-styling-first-row {
+    padding-left: 15px;
+}
+
+.info-icon-styling-second-row {
+    padding-left: 15px;
+}
+
 #container.mobile-sizing {
         margin: 0 15px;
         padding-bottom: 0;
@@ -587,11 +595,6 @@ small {
 }
 
 #mobile-nav {
-
-    .info-icon-styling-first-row, .info-icon-styling-second-row {
-        padding-left: 15px;
-    }
-
     .form-container {
         margin: 0;
         border-radius: 0;
