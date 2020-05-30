@@ -161,6 +161,19 @@
                                                                     [cat]="phuPlot.value.phu+ '' +phuPlot.value.header"
                                                                     [view]="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'view'].value">
                                                                 </app-plot>
+                                                                <div *ngIf="phuGroup[0].group === 'map' && is_full"
+                                                                    style="display: flex; height: 25px; position: relative">
+                                                                    <div style="color: #ffffff; font-size: 18px; margin-top: -2px">Map in
+                                                                        Beta</div>
+                                                                    <mat-icon
+                                                                        (click)="openDialog('Map in Beta', 'Map', '', 'NaN', 'NaN', 500)"
+                                                                        class="map-toggle" (mouseover)="toggleMap(true)"
+                                                                        (mouseout)="toggleMap(false)">fullscreen</mat-icon>
+                                                                    <div class="map-tooltip"
+                                                                        [style.display]="(mapHover? 'flex': 'none')">
+                                                                        Expand map
+                                                                    </div>
+                                                                </div>
                                                                 <div *ngIf="phuGroup[0].group === 'map'"
                                                                     class="embed-container">
                                                                     <iframe width="500" height="400" frameborder="0"
