@@ -519,7 +519,6 @@ export class GridComponent implements OnInit, AfterViewInit {
                 });
             });
         });
-        console.log(this.averageForm.controls);
     }
 
     routeonSelection(route: string) {
