@@ -307,8 +307,36 @@
     border-radius: 7px;
 }
 
+.map-toggle {
+    font-size: 35px;
+    color: #ffffff;
+    margin: -10px 5px 0 auto;
+}
+
+.map-toggle:hover {
+    cursor: pointer;
+}
+
+.map-tooltip {
+    right: 30px;
+    top: -10px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    position: absolute;
+    font-size: 10px;
+    margin-top: 5px;
+    background-color: #fce6ac;
+    z-index: 1;
+    border-radius: 7px;
+}
+
 .embed-container {
-    position: relative; height: 100%; max-width: 100%;
+    position: relative;
+    height: calc(100% - 25px);
+    max-width: 100%;
 }
 
 .embed-container iframe, .embed-container object, .embed-container iframe{
@@ -407,7 +435,8 @@ small {
     }
 
     .cdk-overlay-pane {
-        width: 80vw !important;
+        width: 90vw !important;
+        max-width: 90vw !important;
         max-height: 90vh !important;
     }
 
@@ -556,7 +585,6 @@ small {
         }
     }
 }
-
 
 #mobile-nav {
 
