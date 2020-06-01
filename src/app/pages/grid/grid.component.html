@@ -163,10 +163,9 @@
                                                                 </app-plot>
                                                                 <div *ngIf="phuGroup[0].group === 'map' && is_full"
                                                                     style="display: flex; height: 25px; position: relative">
-                                                                    <div style="color: #ffffff; font-size: 18px; margin-top: -2px">Map in
-                                                                        Beta</div>
+                                                                    <div style="color: #ffffff; font-size: 18px; margin-top: -2px">Regional Hot Spots - Days Since New Case (Beta)</div>
                                                                     <mat-icon
-                                                                        (click)="openDialog('Map in Beta', 'Map', '', 'NaN', 'NaN', 500)"
+                                                                        (click)="openDialog('Regional Hot Spots - Days Since New Case (Beta)', 'Map', '', 'NaN', 'NaN', 500)"
                                                                         class="map-toggle" (mouseover)="toggleMap(true)"
                                                                         (mouseout)="toggleMap(false)">fullscreen</mat-icon>
                                                                     <div class="map-tooltip"
@@ -176,11 +175,7 @@
                                                                 </div>
                                                                 <div *ngIf="phuGroup[0].group === 'map'"
                                                                     class="embed-container">
-                                                                    <iframe width="500" height="400" frameborder="0"
-                                                                        scrolling="no" marginheight="0" marginwidth="0"
-                                                                        itle="Main Page Map"
-                                                                        src="//howsmyflattening.maps.arcgis.com/apps/Embed/index.html?webmap=7c17e91c98694b7d982d37995dadf3ea&extent=-99.8541,41.6319,-67.4005,53.6902&zoom=true&previewImage=false&scale=true&search=true&searchextent=false&legendlayers=true&disable_scroll=true&theme=dark">
-                                                                    </iframe>
+                                                                    <iframe src=" https://howsmyflattening.maps.arcgis.com/apps/Minimalist/index.html?appid=de0ea127da49495393346fcc7c92625d" height="400" width="500"></iframe>
                                                                 </div>
                                                                 <div *ngFor="let phuTab of tab_obj | keyvalue"
                                                                     [style.display]="(phuGroup[0].group === 'map' ? 'none': 'initial')">
