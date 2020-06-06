@@ -19,11 +19,21 @@
 .footer {
     width: 100%;
     background: #F0F2F5;
-    height: 120px;
+    height: 160px;
     text-align: center;
 }
 
+.footer-text{
+    padding-top: 20px;
+}
+
 .inner-footer {
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+    align-items: center;
+    height: 120px;
+    margin: auto;
 }
 
 #title-div {
@@ -625,5 +635,16 @@
         border-top: 3px solid #DCDCDC;
         width: 100%;
         margin: 20px 0;
+    }
+
+    .footer {
+        height: initial;
+    }
+
+    .inner-footer {
+        height: initial;
+        padding-bottom: 20px;
+        display: inline-block;
+        width: 100%;
     }
 }
