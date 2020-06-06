@@ -601,7 +601,7 @@
     .home-page-card.which-curve {
         //background-image: url("src/assets/img/Mission_Section_Asset.svg");
         //background-repeat: no-repeat;
-        margin: 0 -40px 0 -50px;
+        margin: 0 -40px 20px -50px;
 
         #which-curve-text {
             margin-left: 80px;
@@ -616,6 +616,7 @@
 
     .card-container {
         height: initial;
+        padding-top: 20px;
         padding-bottom: 10px;
     }
 
