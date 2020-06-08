@@ -61,10 +61,13 @@ const routes: Routes = [
       { path: 'ontario', component: GridComponent }
     ]
   },
-{
-  path: 'analysis',
-    component: AnalysisComponent
+
+{path: 'analysis', component: AnalysisComponent, children: [
+      { path: 'capacity', component: AnalysisComponent},
+      { path: 'critical_care', component: AnalysisComponent}
+  ] 
 }
+
 ];
 
 @NgModule({

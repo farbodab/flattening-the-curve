@@ -40,6 +40,20 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
   moment: any = moment;
   newToggle = true;
 
+  urlSegments: any;
+    path: string;
+    vizArray = [
+        {
+            viz: 'capacity',
+            value: 'Capacity Analysis'
+        },
+
+        {
+            viz: 'critical_care',
+            value: 'Critical Care Trends'
+        }
+    ];
+
   constructor(private host_service: HostService, private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog, private api_service: ApiService) {
     this.refresh_layout(window.innerWidth);
   }
@@ -49,11 +63,18 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
     this.window_subscription = this.host_service.onWindowResize.subscribe(window => {
       this.refresh_layout(window.innerWidth);
     });
+
   }
 
   ngAfterViewInit() {
+  var viz_obj = [];
     this.fetchVizObj();
+     console.log(viz_obj);
+    
+    
+    
   }
+
 
   ngOnDestroy() {
     if (this.window_subscription) {
@@ -69,11 +90,48 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
         this.findKpiViz(this.jsonObj);
         this.iterateCategories(this.jsonObj);
         this.initFilteringForm(this.categoryList);
-      },
-      error => {
-        //console.error(error);
+
+        //store viz array
+        var viz_obj = this.jsonObj.slice();
+        console.log(viz_obj);
+
+        //inital_url is the url the analysis page is accessed with
+    var initial_url = this.router.url;
+
+    //grab url after the last slash, to id the modal from viz array that needs to open
+    var modal_url = '';
+
+    if (initial_url !== '/analysis'){
+      modal_url = /[^/]*$/.exec(initial_url)[0]; 
+      this.getModalViz(modal_url);
+    }
       }
+
     );
+    
+  }
+
+  getModalViz(modal_url: string) {
+    //get viz header from viz array for db look-up
+    var viz_header = this.vizArray.find(x=>x.viz === modal_url).value;
+    console.log(viz_header);
+    var viz_modal = [];
+
+    console.log(this.jsonObj);
+
+    this.jsonObj.forEach((element) => {
+      if (element.header === viz_header) {
+        viz_modal = element.content;
+
+        console.log(element.text_top);
+        this.selectedVisualTab(element.header, true, 0, 0); 
+        this.openDialog(element.header, element.category, element.viz_type, element.viz, element.text_top, element.text_bottom, element.desktopHeight, 0); 
+      } 
+      
+    });
+
+
+    
   }
 
   addSelectedProperty(obj: []) {
@@ -164,6 +222,7 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
         element.selected = false;
       }
     });
+
   }
 
   initFilteringForm(obj: string[]) {
@@ -178,12 +237,21 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
     });
   }
 
-  routeLink(route: string, category: string) {
-    const placeholderDiv = document.getElementById('routerOutlet');
-    if (this.selectedCategory !== category) {
-      placeholderDiv.remove();
-    }
-    this.router.navigate(['/analysis/' + route]);
+  routeonSelection(route: string) {
+    //const placeholderDiv = document.getElementById('routerOutlet');
+    //if (this.selectedCategory !== category) {
+    //  placeholderDiv.remove();
+    //}
+    //this.router.navigate(['/analysis/' + route]);
+
+   // const index = this.vizArray.findIndex(viz => viz.value === route);
+   // this.headerLabel = this.vizArray[index].viz;
+
+    //const selectedurl = this.vizArray.findIndex(viz => viz.value === route);
+
+    var slug = this.vizArray.find(x=>x.value === route).viz;
+
+    this.router.navigate(['/analysis/' + slug]);
   }
 
   private refresh_layout(width) {
