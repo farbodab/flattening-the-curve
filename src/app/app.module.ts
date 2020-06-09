@@ -33,6 +33,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatIconModule} from '@angular/material/icon';
+import {MatSnackBarModule} from '@angular/material/snack-bar'; 
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -95,7 +96,8 @@ PlotlyViaCDNModule.plotlyBundle = null; // optional: can be null (for full) or '
         MatTabsModule,
         MatProgressSpinnerModule,
         MatTooltipModule,
-        MatIconModule
+        MatIconModule,
+        MatSnackBarModule
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

@@ -16,6 +16,26 @@
     //background: linear-gradient(251.69deg, rgba(134, 168, 231, 0.68) -10.24%, rgba(207, 228, 249, 0.923986) 30.91%, #EAF8FE 51.04%, rgba(203, 239, 252, 0.5) 68.86%, rgba(77, 200, 240, 0.4) 125.99%);
 }
 
+.footer {
+    width: 100%;
+    background: #F0F2F5;
+    height: 160px;
+    text-align: center;
+}
+
+.footer-text{
+    padding-top: 20px;
+}
+
+.inner-footer {
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+    align-items: center;
+    height: 120px;
+    margin: auto;
+}
+
 #title-div {
     position: absolute;
     top:40%;
@@ -126,6 +146,17 @@
 .card-container {
     display: flex;
     flex-wrap: wrap;
+    height: 180px;
+    justify-content: space-between;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+    border-radius: 6px;
+    padding: 0 33px 0 33px;
+}
+
+.container-divider {
+    border-left: 1px solid #DCDCDC;
+    margin: 23px 0;
 }
 
 #which-curve-text .sub-header-paragraph {
@@ -219,7 +250,7 @@
 
 #explore-data-cell {
     text-align: center;
-    margin: 50px 0px 50px 0px;
+    margin-bottom: 20px;
 
     @media screen and (min-width: 1024px) {
        width: 100%;
@@ -245,15 +276,15 @@
     }
 }
 
-.explore-data-container.half-width {
+.half-width-left {
     @media screen and (min-width: 1024px) {
-        width: 49%;
+        padding-top: 30px;
     }
 }
 
-.explore-data-container.half-width.margin-right {
+.half-width-right {
     @media screen and (min-width: 1024px) {
-        margin-right: auto;
+        padding-top: 30px;
     }
 }
 
@@ -271,7 +302,6 @@
 
 .data-cell-container {
     background: #ffffff;
-    padding: 40px 21px 37px 21px;
     text-align: left;
 }
 
@@ -581,7 +611,7 @@
     .home-page-card.which-curve {
         //background-image: url("src/assets/img/Mission_Section_Asset.svg");
         //background-repeat: no-repeat;
-        margin: 0 -40px 0 -50px;
+        margin: 0 -40px 20px -50px;
 
         #which-curve-text {
             margin-left: 80px;
@@ -592,5 +622,29 @@
             margin-left: 50px;
             margin-right: 40px;
         }
+    }
+
+    .card-container {
+        height: initial;
+        padding-top: 20px;
+        padding-bottom: 10px;
+    }
+
+    .container-divider {
+        border-left: none;
+        border-top: 3px solid #DCDCDC;
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    .footer {
+        height: initial;
+    }
+
+    .inner-footer {
+        height: initial;
+        padding-bottom: 20px;
+        display: inline-block;
+        width: 100%;
     }
 }
