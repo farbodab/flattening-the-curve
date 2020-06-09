@@ -81,7 +81,7 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
         //open pop-up, else trigger page not found notice + redirect
         if (typeof (this.triggerDirectPopup) !== 'undefined' && this.triggerDirectPopup[0] !== '') {
           if (this.is_full) {
-            this.selectedVisualTab(this.triggerDirectPopup[1].header, true, 0, 0);
+            this.selectedVisualTab(this.triggerDirectPopup[1].header, false, 0, 0);
             this.openDialog(this.triggerDirectPopup[1].header, this.triggerDirectPopup[1].category, this.triggerDirectPopup[1].viz_type, this.triggerDirectPopup[1].viz, this.triggerDirectPopup[1].text_top, this.triggerDirectPopup[1].text_bottom, this.triggerDirectPopup[1].desktopHeight, 0);
           }
         } else if (this.path !== '') {
