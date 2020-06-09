@@ -86,11 +86,7 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
             horizontalPosition: 'center',
             verticalPosition: 'top'
           });
-          const urlRoute = this
-            .router
-            .createUrlTree([{}])
-            .toString();
-          this.location.go(urlRoute);
+          this.router.navigate(['/analysis']);
         }
       },
       error => {
@@ -153,11 +149,7 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(CommonDesktopVisualComponent, dialogConfig);
     dialogRef.afterOpened().subscribe(result => {
       if (typeof (this.triggerDirectPopup) === 'undefined' || this.triggerDirectPopup[0] === '') {
-        const urlRoute = this
-          .router
-          .createUrlTree([componentName.toLowerCase().split(' ').join('_')], { relativeTo: this.route })
-          .toString();
-        this.location.go(urlRoute);
+        this.router.navigate(['/analysis/' + componentName.toLowerCase().split(' ').join('_')]);
       }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -166,11 +158,7 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
       if (typeof (this.triggerDirectPopup) !== 'undefined') {
         this.triggerDirectPopup[0] = '';
       }
-      const urlRoute = this
-        .router
-        .createUrlTree([{}])
-        .toString();
-      this.location.go(urlRoute);
+      this.router.navigate(['/analysis']);
     });
   }
 
@@ -181,13 +169,10 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
   selectedVisualTab(header: string, selected: boolean, event: any, index: number) {
     if (selected) {
       this.selectedCategory = '';
+      this.router.navigate(['/analysis']);
+    } else {
+      this.router.navigate(['/analysis/' + header.toLowerCase().split(' ').join('_')]);
     }
-
-    const urlRoute = this
-          .router
-          .createUrlTree([header.toLowerCase().split(' ').join('_')], { relativeTo: this.route })
-          .toString();
-        this.location.go(urlRoute);
 
     this.jsonObj.forEach((element) => {
       if (element.header === header) {
