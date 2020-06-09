@@ -77,7 +77,9 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
         this.iterateCategories(this.jsonObj);
         this.initFilteringForm(this.categoryList);
         if (typeof (this.triggerDirectPopup) !== 'undefined' && this.triggerDirectPopup[0] !== '') {
-          this.openDialog(this.triggerDirectPopup[1].header, this.triggerDirectPopup[1].category, this.triggerDirectPopup[1].viz_type, this.triggerDirectPopup[1].viz, this.triggerDirectPopup[1].text_top, this.triggerDirectPopup[1].text_bottom, this.triggerDirectPopup[1].desktopHeight, 0);
+          if (this.is_full) {
+            this.openDialog(this.triggerDirectPopup[1].header, this.triggerDirectPopup[1].category, this.triggerDirectPopup[1].viz_type, this.triggerDirectPopup[1].viz, this.triggerDirectPopup[1].text_top, this.triggerDirectPopup[1].text_bottom, this.triggerDirectPopup[1].desktopHeight, 0);
+          }
         } else if (this.path !== '') {
           this._snackBar.open('Analysis not found -- taking you back to the Analysis Page', 'Close', {
             duration: 5000,
@@ -112,18 +114,25 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
     });
   }
 
-  iterateCategories(obj: []) {
+  iterateCategories(obj: any) {
     let placeholderArray = [];
+    let indexFound: number;
+    let found = false;
     obj.forEach((element, index) => {
       let header: any;
       header = element['header'];
       if (this.path !== '' && this.path === header.toLowerCase().split(' ').join('_')) {
         this.triggerDirectPopup = [this.path, element];
+        found = true;
+        indexFound = index;
       }
       if (!placeholderArray.includes(element['category']) && element['category'] !== ('Kpi-dash') && element['category'] !== ('Home')) {
         placeholderArray.push(element['category']);
       }
     });
+    if (found) {
+      obj[indexFound].selected = true;
+    }
     this.categoryList = placeholderArray;
   }
 
@@ -146,7 +155,7 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
       if (typeof (this.triggerDirectPopup) === 'undefined' || this.triggerDirectPopup[0] === '') {
         const urlRoute = this
           .router
-          .createUrlTree([componentName.split(' ').join('_')], { relativeTo: this.route })
+          .createUrlTree([componentName.toLowerCase().split(' ').join('_')], { relativeTo: this.route })
           .toString();
         this.location.go(urlRoute);
       }
@@ -174,30 +183,11 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
       this.selectedCategory = '';
     }
 
-    // this.jsonObj = this.jsonObj.map(element => {
-    //   if(element.header === header) {
-    //     element = {
-    //       category: element.category,
-    //       content: element.content,
-    //       header: element.header,
-    //       text: element.text,
-    //       thumbnail: element.thumbnail,
-    //       viz: element.viz,
-    //       selected: !element.selected
-    //     };
-    //     !selected ? this.selectedCategory = element.category : this.selectedCategory = '';
-    //   } else {
-    //     element = {
-    //       category: element.category,
-    //       content: element.content,
-    //       header: element.header,
-    //       text: element.text,
-    //       thumbnail: element.thumbnail,
-    //       viz: element.viz,
-    //       selected: false
-    //     };
-    //   }
-    // });
+    const urlRoute = this
+          .router
+          .createUrlTree([header.toLowerCase().split(' ').join('_')], { relativeTo: this.route })
+          .toString();
+        this.location.go(urlRoute);
 
     this.jsonObj.forEach((element) => {
       if (element.header === header) {
@@ -205,6 +195,9 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
         !selected ? this.selectedCategory = element.category : this.selectedCategory = '';
       } else {
         element.selected = false;
+      }
+      if (element.selected) {
+        console.log(element.header + ' ' + element.selected);
       }
     });
   }
