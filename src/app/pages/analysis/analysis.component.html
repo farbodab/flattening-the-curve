@@ -38,8 +38,9 @@
                                 <mat-icon class="new-analysis-icon">
                                     fiber_new
                                 </mat-icon>
+                                <!-- open modal and reroute to modal url  -->
                                 <mat-card class="sub-card"
-                                    (click)="selectedVisualTab(card.header, card.selected, $event, index); openDialog(card.header, card.category, card.viz_type, card.viz, card.text_top, card.text_bottom, card.desktopHeight, index)">
+                                    (click)="selectedVisualTab(card.header, card.selected, $event, index); openDialog(card.header, card.category, card.viz_type, card.viz, card.text_top, card.text_bottom, card.desktopHeight, index); routeonSelection(card.header)">
                                     <mat-card-header>
                                         <mat-card-title>{{card.header}}</mat-card-title>
                                     </mat-card-header>
@@ -94,6 +95,7 @@
                                                 class="new-analysis-icon">
                                                 fiber_new
                                             </mat-icon>
+                                             <!-- open modal and reroute to modal url  -->
                                             <mat-card class="sub-card"
                                                 (click)="selectedVisualTab(card.header, card.selected, $event, index); openDialog(card.header, card.category, card.viz_type, card.viz, card.text_top, card.text_bottom, card.desktopHeight, index); routeonSelection(card.header)"
 

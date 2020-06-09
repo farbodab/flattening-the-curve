@@ -64,7 +64,24 @@ const routes: Routes = [
 
 {path: 'analysis', component: AnalysisComponent, children: [
       { path: 'capacity', component: AnalysisComponent},
-      { path: 'critical_care', component: AnalysisComponent}
+      { path: 'critical_care', component: AnalysisComponent},
+      { path: 'critical_care_by_region', component: AnalysisComponent},
+      { path: 'hospitalization', component: AnalysisComponent},
+      { path: 'cases_by_age_and_setting', component: AnalysisComponent},
+      { path: 'cases_by_setting', component: AnalysisComponent},
+      { path: 'reproductive_number', component: AnalysisComponent},
+      { path: 'sources_of_infection', component: AnalysisComponent},
+      { path: 'apple_mobility', component: AnalysisComponent},
+      { path: 'google_mobility', component: AnalysisComponent},
+      { path: 'forecasted_cases', component: AnalysisComponent},
+      { path: 'transmission_and_mitigation', component: AnalysisComponent},
+      { path: 'regional', component: AnalysisComponent},
+      { path: 'socioeconomic', component: AnalysisComponent},
+      { path: 'socioeconomic_trends', component: AnalysisComponent},
+      { path: 'testing_rate', component: AnalysisComponent},
+      { path: 'canadian', component: AnalysisComponent},
+      { path: 'death', component: AnalysisComponent},
+      { path: 'international', component: AnalysisComponent}
   ] 
 }
 
