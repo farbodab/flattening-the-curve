@@ -82,7 +82,7 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
           }
         } else if (this.path !== '') {
           this._snackBar.open('Analysis not found -- taking you back to the Analysis Page', 'Close', {
-            duration: 5000,
+            duration: 50000,
             horizontalPosition: 'center',
             verticalPosition: 'top'
           });
