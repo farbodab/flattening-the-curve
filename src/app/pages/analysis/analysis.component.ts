@@ -2,8 +2,9 @@ import { Component, OnInit, AfterViewInit, Inject } from '@angular/core';
 import { HostService } from 'src/app/services/host.service';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AnalysisCriticalComponent } from './analysis.critical.component';
 import { AnalysisRegionalComponent } from './analysis.regional.component';
 import { AnalysisTestingComponent } from './analysis.testing.component';
@@ -12,6 +13,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { CommonDesktopVisualComponent } from '../../components/common-desktop-visual/common-desktop-visual.component';
 import { Moment } from 'moment';
 import * as moment from 'moment';
+import { Location } from '@angular/common';
 
 declare var tableau: any;
 
@@ -39,9 +41,13 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
   todaysDate: Moment;
   moment: any = moment;
   newToggle = true;
+  urlSegments: any;
+  path: string;
+  triggerDirectPopup: any[];
 
-  constructor(private host_service: HostService, private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog, private api_service: ApiService) {
+  constructor(private host_service: HostService, private location: Location, private route: ActivatedRoute, private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog, private api_service: ApiService, private _snackBar: MatSnackBar) {
     this.refresh_layout(window.innerWidth);
+    this.urlSegments = route.snapshot['_urlSegment'];
   }
 
   ngOnInit() {
@@ -49,6 +55,7 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
     this.window_subscription = this.host_service.onWindowResize.subscribe(window => {
       this.refresh_layout(window.innerWidth);
     });
+    typeof (this.urlSegments.segments[1]) === 'undefined' ? this.path = '' : this.path = this.urlSegments.segments[1].path;
   }
 
   ngAfterViewInit() {
@@ -69,6 +76,20 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
         this.findKpiViz(this.jsonObj);
         this.iterateCategories(this.jsonObj);
         this.initFilteringForm(this.categoryList);
+        if (typeof (this.triggerDirectPopup) !== 'undefined' && this.triggerDirectPopup[0] !== '') {
+          this.openDialog(this.triggerDirectPopup[1].header, this.triggerDirectPopup[1].category, this.triggerDirectPopup[1].viz_type, this.triggerDirectPopup[1].viz, this.triggerDirectPopup[1].text_top, this.triggerDirectPopup[1].text_bottom, this.triggerDirectPopup[1].desktopHeight, 0);
+        } else if (this.path !== '') {
+          this._snackBar.open('Analysis not found -- taking you back to the Analysis Page', 'Close', {
+            duration: 5000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top'
+          });
+          const urlRoute = this
+            .router
+            .createUrlTree([{}])
+            .toString();
+          this.location.go(urlRoute);
+        }
       },
       error => {
         //console.error(error);
@@ -77,7 +98,7 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
   }
 
   addSelectedProperty(obj: []) {
-    return obj.map(x => Object.assign({selected: false}, x));
+    return obj.map(x => Object.assign({ selected: false }, x));
   }
 
   findKpiViz(obj: []) {
@@ -94,6 +115,11 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
   iterateCategories(obj: []) {
     let placeholderArray = [];
     obj.forEach((element, index) => {
+      let header: any;
+      header = element['header'];
+      if (this.path !== '' && this.path === header.toLowerCase().split(' ').join('_')) {
+        this.triggerDirectPopup = [this.path, element];
+      }
       if (!placeholderArray.includes(element['category']) && element['category'] !== ('Kpi-dash') && element['category'] !== ('Home')) {
         placeholderArray.push(element['category']);
       }
@@ -116,9 +142,26 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
     dialogConfig.width = '300px';
 
     const dialogRef = this.dialog.open(CommonDesktopVisualComponent, dialogConfig);
+    dialogRef.afterOpened().subscribe(result => {
+      if (typeof (this.triggerDirectPopup) === 'undefined' || this.triggerDirectPopup[0] === '') {
+        const urlRoute = this
+          .router
+          .createUrlTree([componentName.split(' ').join('_')], { relativeTo: this.route })
+          .toString();
+        this.location.go(urlRoute);
+      }
+    });
     dialogRef.afterClosed().subscribe(result => {
-            this.jsonObj[index].selected = false;
-            this.selectedCategory = '';
+      this.jsonObj[index].selected = false;
+      this.selectedCategory = '';
+      if (typeof (this.triggerDirectPopup) !== 'undefined') {
+        this.triggerDirectPopup[0] = '';
+      }
+      const urlRoute = this
+        .router
+        .createUrlTree([{}])
+        .toString();
+      this.location.go(urlRoute);
     });
   }
 

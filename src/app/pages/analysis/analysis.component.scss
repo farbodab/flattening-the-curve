@@ -192,6 +192,15 @@
 }
 
 ::ng-deep {
+
+    .mat-snack-bar-container {
+        margin: auto !important;
+    }
+
+    .mat-simple-snackbar-action {
+        color: #ffffff !important;
+    }
+
     .mat-card-header .mat-card-title {
         font-size: 18px !important;
         font-weight: bold;
