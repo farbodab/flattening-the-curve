@@ -59,6 +59,7 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    //populate analysis page with cards
     this.fetchVizObj();
   }
 
@@ -69,6 +70,7 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
   }
 
   fetchVizObj() {
+    //Fetch all analysis objects 
     this.api_service.get_viz_obj().subscribe(
       data => {
         this.jsonObj = data;
@@ -76,6 +78,7 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
         this.findKpiViz(this.jsonObj);
         this.iterateCategories(this.jsonObj);
         this.initFilteringForm(this.categoryList);
+        //open pop-up, else trigger page not found notice + redirect
         if (typeof (this.triggerDirectPopup) !== 'undefined' && this.triggerDirectPopup[0] !== '') {
           if (this.is_full) {
             this.openDialog(this.triggerDirectPopup[1].header, this.triggerDirectPopup[1].category, this.triggerDirectPopup[1].viz_type, this.triggerDirectPopup[1].viz, this.triggerDirectPopup[1].text_top, this.triggerDirectPopup[1].text_bottom, this.triggerDirectPopup[1].desktopHeight, 0);
@@ -114,6 +117,7 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
     let placeholderArray = [];
     let indexFound: number;
     let found = false;
+    //generate dynamic urls for each pop-up from analysis header
     obj.forEach((element, index) => {
       let header: any;
       header = element['header'];
@@ -171,6 +175,7 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
       this.selectedCategory = '';
       this.router.navigate(['/analysis']);
     } else {
+      //generate dynamic url from analysis heading
       this.router.navigate(['/analysis/' + header.toLowerCase().split(' ').join('_')]);
     }
 
