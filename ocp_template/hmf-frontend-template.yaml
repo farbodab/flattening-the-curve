@@ -33,7 +33,7 @@ parameters:
   - name: BUILD_OUTPUT_DIR
     description: The location of the compiled static files from your web apps builder
     displayName: Output Directory
-    value: /opt/app-root/src
+    value: /tmp/dist
     required: true
   - name: NPM_SCRIPT
     description: The npm script to run as indicated in package.json->scripts
