@@ -223,7 +223,7 @@
             </div>
             <div *ngIf="newToggle" style="display: flex; flex-wrap: wrap;">
                 <div *ngFor="let card of jsonObj; index as index" style="width: 100%">
-                    <div *ngIf="card.category !== 'Home' && card.category !== 'Kpi-dash'"
+                    <div *ngIf="card.category !== 'Home' && card.category !== 'Kpi-dash' && (moment.duration(todaysDate.diff(card.date))).asDays() < 8"
                         [ngClass]="{'selected-background': card.selected}">
                         <div class="sub-card-styling mobile-sub-card-styling"
                             [ngClass]="{'selected-visual': card.selected, 'opacity-styling': selectedCategory !== '' && !card.selected}"
