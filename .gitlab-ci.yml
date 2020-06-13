@@ -46,7 +46,7 @@ review:
     #- oc delete configmap $APP-config 2> /dev/null || RESULT=$?
     - oc apply -f $TEMPLATE_FILE
     - oc new-app --template $TEMPLATE_NAME -p APP_HOST=$APP_HOST -p APP_NAME=$APP -p SOURCE_REPOSITORY_REF=$CI_COMMIT_REF_NAME -p SOURCE_REPOSITORY_URL=$CI_REPOSITORY_URL
-    - sleep 5s && mv $CONFIG_FILE src/assets/config/config.json
+    - sleep 1 && mv $CONFIG_FILE src/assets/config/config.json
     - oc create configmap $APP-config --from-file=src/assets/config/config.json
     - oc label configmap $APP-config app=$APP
   variables:
