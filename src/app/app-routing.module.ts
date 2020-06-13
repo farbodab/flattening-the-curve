@@ -63,7 +63,14 @@ const routes: Routes = [
   },
 {
   path: 'analysis',
-    component: AnalysisComponent
+    component: AnalysisComponent,
+    children:[
+      {
+        path: ':viz', //:type is dynamic here
+        component: AnalysisComponent
+      }
+    ]
+
 }
 ];
 
