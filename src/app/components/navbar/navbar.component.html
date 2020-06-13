@@ -21,7 +21,7 @@
                 <button id='main-nav-button' [ngClass]="{'selected': page=='blog'}" mat-button
                     routerLink='/blog'>Blog</button>
                 <button id='main-nav-button' [ngClass]="{'selected': page=='outreach'}" mat-button
-                    routerLink='/outreach'>Outreach</button>
+                    routerLink='/outreach'>Get Involved</button>
             </div>
             <div id='primary-nav' *ngIf='!is_full'>
                 <button mat-button [matMenuTriggerFor]="menu">
@@ -41,7 +41,7 @@
                     <button id='mobile-nav-button' [ngClass]="{'selected': page=='blog'}" mat-menu-item
                         routerLink='/blog'>Blog</button>
                     <button id='mobile-nav-button' [ngClass]="{'selected': page=='outreach'}" mat-menu-item
-                        routerLink='/outreach'>Outreach</button>
+                        routerLink='/outreach'>Get Involved</button>
                 </mat-menu>
             </div>
         </mat-toolbar-row>
