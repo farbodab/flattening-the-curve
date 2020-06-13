@@ -1,16 +1,16 @@
 image: ebits/openshift-client
-  
+
 stages:
   - development
   - staging
   - production
   - cleanup
-      
+
 variables:
   TEMPLATE_FILE: "./ocp_template/hmf-frontend-template.yaml"
   TEMPLATE_NAME: hmf-frontend
   COMPONENT_NAME: hmf-frontend
- 
+
 .deploy: &deploy
   before_script:
     - oc login --server="$OPENSHIFT_SERVER" --token="$OPENSHIFT_TOKEN" --insecure-skip-tls-verify
@@ -19,20 +19,21 @@ variables:
     #- RESULT=0
     #- oc create configmap $APP-config --from-file=src/assets/config/config.json 2> /dev/null || RESULT=$?
     #- echo $RESULT
-    #- (if [ "$RESULT" == 1 ]; then 
+    #- (if [ "$RESULT" == 1 ]; then
     #        oc delete cm $APP-config;
     #        oc create configmap $APP-config --from-file=src/assets/config/config.json;
     #        oc label configmap $APP-config app=$APP;
     #   fi);
+    - mv $CONFIG_FILE src/assets/config/config.json
     - oc apply -f $TEMPLATE_FILE
     - RESULT=0
     - oc get services $APP 2> /dev/null || RESULT=$?
     - echo $RESULT
-    - (if [ "$RESULT" == 1 ]; then 
+    - (if [ "$RESULT" == 1 ]; then
             oc new-app --template $TEMPLATE_NAME -p APP_HOST=$APP_HOST -p APP_NAME=$APP -p SOURCE_REPOSITORY_REF=$CI_COMMIT_REF_NAME -p SOURCE_REPOSITORY_URL=$CI_REPOSITORY_URL;
             exit 0;
-       else 
-            oc start-build $APP-builder; 
+       else
+            oc start-build $APP-builder;
             exit 0;
        fi);
   tags: [hmf]
@@ -45,9 +46,9 @@ review:
     #- oc delete configmap $APP-config 2> /dev/null || RESULT=$?
     - oc apply -f $TEMPLATE_FILE
     - oc new-app --template $TEMPLATE_NAME -p APP_HOST=$APP_HOST -p APP_NAME=$APP -p SOURCE_REPOSITORY_REF=$CI_COMMIT_REF_NAME -p SOURCE_REPOSITORY_URL=$CI_REPOSITORY_URL
-    #- sleep 5 && mv $CONFIG_FILE src/assets/config/config.json
-    #- oc create configmap $APP-config --from-file=src/assets/config/config.json
-    #- oc label configmap $APP-config app=$APP
+    - sleep 5 && mv $CONFIG_FILE src/assets/config/config.json
+    - oc create configmap $APP-config --from-file=src/assets/config/config.json
+    - oc label configmap $APP-config app=$APP
   variables:
     OPENSHIFT_TOKEN: $OPENSHIFT_REVIEW_TOKEN
     APP: review-$CI_COMMIT_REF_NAME
@@ -63,7 +64,7 @@ review:
     - master
     - staging
   tags: [hmf]
-  
+
 stop-review:
   <<: *deploy
   stage: cleanup
@@ -84,7 +85,7 @@ stop-review:
     - master
     - staging
   tags: [hmf]
-  
+
 staging:
   <<: *deploy
   stage: staging
@@ -99,7 +100,7 @@ staging:
   only:
     - staging
   tags: [hmf]
-  
+
 production:
   <<: *deploy
   stage: production
