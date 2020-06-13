@@ -30,7 +30,6 @@ export class ApiService {
 
   constructor(private http_client: HttpClient, private config: AppConfigService) {
     this.appConfigProperties = this.config.getConfig();
-    console.log(this.appConfigProperties);
   }
 
   get_twitter_obj() {
