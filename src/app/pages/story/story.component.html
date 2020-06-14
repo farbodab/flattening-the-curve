@@ -1,4 +1,3 @@
-
 <app-navbar [shows_title]='true' [page]='"team"'></app-navbar>
 <div class='content team' style='background-color: white;'>
 	<div id='container'>
@@ -67,7 +66,11 @@
 											<p *ngIf="card.education !== 'NaN'" class="title">{{card.education}}</p>
 											<p *ngIf="card.role !== 'NaN'" style="color: #005E72">{{card.role}}</p>
 											<p *ngIf="card.affiliation !== 'NaN'">{{card.affiliation}}</p>
-											<p></p>
+											<button *ngIf="card.linkedin !== 'NaN'" mat-button class="linkedin-toggle">
+												<a [href]="card.linkedin" target="_blank">
+													<img class='linkedin-icon' src='assets/img/linkedin-square.png'>
+												</a>
+											</button>
 										</div>
 									</div>
 								</div>
@@ -197,53 +200,54 @@
 		</div>
 
 		<hr>
-		
-		<div >
+
+		<div>
 			<div id='supporters-set'>
-				<div id = 'resource-box'>
-					<div id = 'resource_thumbnail'>
-						<a target="_blank" href = 'https://trilliumhealthpartners.ca'>
-							<img id='resource_thumbnail' src='assets/img/team_supporters/thp.png' >
+				<div id='resource-box'>
+					<div id='resource_thumbnail'>
+						<a target="_blank" href='https://trilliumhealthpartners.ca'>
+							<img id='resource_thumbnail' src='assets/img/team_supporters/thp.png'>
 						</a>
 					</div>
 				</div>
-				<div id = 'resource-box'>
-					<div id = 'resource_thumbnail'>
-						<a target="_blank" href = 'https://vectorinstitute.ai'>
-							<img id='resource_thumbnail' src='assets/img/team_supporters/vector.png' >
+				<div id='resource-box'>
+					<div id='resource_thumbnail'>
+						<a target="_blank" href='https://vectorinstitute.ai'>
+							<img id='resource_thumbnail' src='assets/img/team_supporters/vector.png'>
 						</a>
 					</div>
 				</div>
-				<div id = 'resource-box'>
-					<div id = 'resource_thumbnail'>
-						<a target="_blank" href = 'https://www.klick.com/'>
-							<img id='resource_thumbnail' src='assets/img/team_supporters/klick.png' >
+				<div id='resource-box'>
+					<div id='resource_thumbnail'>
+						<a target="_blank" href='https://www.klick.com/'>
+							<img id='resource_thumbnail' src='assets/img/team_supporters/klick.png'>
 						</a>
 					</div>
 				</div>
-				<div id = 'resource-box'>
-					<div id = 'resource_thumbnail'>
-						<a target="_blank" href = 'http://taglab.utoronto.ca'>
-							<img id='resource_thumbnail' src='assets/img/team_supporters/taglab.jpg' >
+				<div id='resource-box'>
+					<div id='resource_thumbnail'>
+						<a target="_blank" href='http://taglab.utoronto.ca'>
+							<img id='resource_thumbnail' src='assets/img/team_supporters/taglab.jpg'>
 						</a>
 					</div>
 				</div>
-				<div id = 'resource-box'>
-					<div id = 'resource_thumbnail'>
-						<a target="_blank" href = 'http://ontario.himsschapter.org/'>
-							<img id='resource_thumbnail' src='assets/img/team_supporters/himss_logo.png' >
+				<div id='resource-box'>
+					<div id='resource_thumbnail'>
+						<a target="_blank" href='http://ontario.himsschapter.org/'>
+							<img id='resource_thumbnail' src='assets/img/team_supporters/himss_logo.png'>
 						</a>
 					</div>
 				</div>
 			</div>
-		
-	
 
 
-<div class="grid-landscape">
-<div ><a target="_blank" href = 'http://www.dlsph.utoronto.ca'><img id= 'resource_thumbnail_landscape' src= 'assets/img/team_supporters/dlsph.png' ></a></div>
 
-<div ><a target="_blank" href = 'https://pophealthanalytics.com'><img id= 'resource_thumbnail_landscape' src= 'assets/img/team_supporters/pophealth.png' ></a></div>
 
-</div>
+			<div class="grid-landscape">
+				<div><a target="_blank" href='http://www.dlsph.utoronto.ca'><img id='resource_thumbnail_landscape'
+							src='assets/img/team_supporters/dlsph.png'></a></div>
 
+				<div><a target="_blank" href='https://pophealthanalytics.com'><img id='resource_thumbnail_landscape'
+							src='assets/img/team_supporters/pophealth.png'></a></div>
+
+			</div>

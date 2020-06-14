@@ -56,7 +56,7 @@
 .container-core {
   padding: 0 16px;
   padding-top: 5px;
-  min-height: 200px;
+  min-height: 220px;
 }
 
 /* Clear floats */
@@ -235,6 +235,15 @@ h1, h3 {
 .pop-text {
   color: #ffffff;
   padding-left: 15px;
+}
+
+.linkedin-toggle {
+  padding: 0;
+  min-width: 0 !important;
+
+  .linkedin-icon {
+    height: 30px;
+  }
 }
 
 ::ng-deep {
