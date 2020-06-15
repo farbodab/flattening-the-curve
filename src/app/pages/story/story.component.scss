@@ -40,6 +40,82 @@
   }
 }
 
+.heading-title {
+  color: #391F85;
+  font-size: 48px;
+  line-height: 48px;
+  margin-top: 30px;
+}
+
+.heading-text-container {
+  padding-top: 25px;
+}
+
+.left-container {
+  width: 50%;
+  font-size: 26px;
+  line-height: 48px;
+  color: #2B2B2B;
+}
+
+.middle-container {
+  border-left: 2px solid #005E72;
+  width: 5%;
+}
+
+.right-container {
+  width: 40%;
+  font-size: 18px;
+  line-height: 27px;
+  color: #2B2B2B;
+}
+
+.heading-text-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.get-involved-text {
+  padding-top: 10px;
+  color: #005E72;
+
+  a {
+    text-decoration: none;
+    color: #391F85;
+  }
+}
+
+.icon-section {
+  padding-top: 75px;
+}
+
+.icon-header {
+  font-size: 32px;
+  line-height: 48px;
+  color: #391F85;
+  padding-bottom: 15px;
+}
+
+.icon-container {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+}
+
+.tooltip-icon {
+  padding-right: 15px;
+  height: 30px;
+}
+
+.right-text {
+  padding-bottom: 10px;
+
+  span {
+    color: #391F85;
+    font-size: 24px;
+  }
+}
+
 /* Add some shadows to create a card effect */
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -56,7 +132,7 @@
 .container-core {
   padding: 0 16px;
   padding-top: 5px;
-  min-height: 200px;
+  min-height: 220px;
 }
 
 /* Clear floats */
@@ -237,6 +313,15 @@ h1, h3 {
   padding-left: 15px;
 }
 
+.linkedin-toggle {
+  padding: 0;
+  min-width: 0 !important;
+
+  .linkedin-icon {
+    height: 30px;
+  }
+}
+
 ::ng-deep {
   .selected-color {
     .choices-text {
@@ -262,7 +347,7 @@ h1, h3 {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  max-height: 370px;
+  max-height: 470px;
   overflow-y: auto;
   flex-wrap: wrap;
   flex: 1;
@@ -282,6 +367,50 @@ h1, h3 {
 
   .container-core{
     text-align: center;
+    padding-top: 20px;
+  }
+
+  .heading-text-container {
+    flex-wrap: wrap;
+    padding-top: 15px;
+  }
+
+  .left-container {
+    width: 100%;
+    font-size: 22px;
+    line-height: 40px;
+  }
+
+  .middle-container {
+    width: 100%;
+    border-left: none;
+    border-top: 2px solid #005E72;
+    margin: 20px -10px;
+  }
+
+  .right-container {
+    width: 100%;
+  }
+
+  .heading-title {
+    font-size: 35px;
+    margin-top: 20px;
+  }
+
+  .icon-header {
+    text-align: center;
+  }
+
+  .icon-section {
+    padding-top: 40px;
+  }
+
+  .icon-category {
+    margin-left: auto;
+  }
+
+  .linkedin-toggle {
+    margin-right: auto;
   }
   
   .card-title {
