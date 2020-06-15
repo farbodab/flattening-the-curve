@@ -51,7 +51,7 @@
 }
 
 .left-container {
-  width: 55%;
+  width: 50%;
   font-size: 26px;
   line-height: 48px;
   color: #2B2B2B;
@@ -71,6 +71,17 @@
 
 .heading-text-container {
   display: flex;
+  justify-content: space-between;
+}
+
+.get-involved-text {
+  padding-top: 10px;
+  color: #005E72;
+
+  a {
+    text-decoration: none;
+    color: #391F85;
+  }
 }
 
 .icon-section {
