@@ -9,13 +9,18 @@
 				</div>
 				<div class="middle-container"></div>
 				<div class="right-container">
-					<div>
-						We deliver trusted, real-time data, initiate analytic-centric collaboration, and provide data
-						visualizations all in one place.
+					<div class="right-text">
+						<span>240+</span> Slack Members
+					</div>
+					<div class="right-text">
+						<span>15+</span> data analyses on Ontario's response
+					</div>
+					<div class="right-text">
+						<span>20+</span> KPIs monitored in near real-time
 					</div>
 					<div class="get-involved-text">
-						If you want to get involved, click <a
-							href="https://gitlab.com/howsmyflattening/www-howsmyflattening-ca/-/wikis/home">here</a>.
+						If you want to get involved, <a
+							href="https://gitlab.com/howsmyflattening/www-howsmyflattening-ca/-/wikis/home">check out our Gitlab</a>.
 					</div>
 				</div>
 			</div>
@@ -34,10 +39,10 @@
 			<hr>
 
 			<div *ngIf="is_full">
-				<div *ngIf=" teamForm" style="height: 450px">
+				<div *ngIf=" teamForm" style="height: 520px">
 					<div style="display: flex; background-color: #005E72;">
 						<div style="display: flex">
-							<div style="color: #ffffff; margin-left: 15px; font-size: 18px; line-height: 48px">Our
+							<div style="color: #ffffff; margin-left: 15px; font-size: 24px; line-height: 48px">Our
 								People
 							</div>
 							<mat-icon (mouseover)="toggleHover(true)" (mouseout)="toggleHover(false)"
@@ -55,7 +60,7 @@
 						</div>
 					</div>
 					<div style="display: flex">
-						<div style="height: 400px; width: 325px; border: 1px solid #DCDCDC; margin-right: 20px">
+						<div style="height: 480px; width: 325px; border: 1px solid #DCDCDC; margin-right: 20px">
 							<form [formGroup]="teamForm" style="padding-top: 20px; margin: 0 15px">
 								<div *ngFor="let choice of teamChoices; index as index" (click)="toggleSelect(choice)">
 									<div *ngIf="choice !== 'All' && choice !== 'Contributors'" class="choices-styling"
@@ -98,9 +103,13 @@
 												<div style="display: flex">
 													<div>
 														<img *ngIf="card.team === 'Data scouting and curation'"
-															class='tooltip-icon' src='assets/img/data_tooltip.png'>
+															class='tooltip-icon' src='assets/img/data-label.svg'>
 														<img *ngIf="card.team === 'Data Analysis'" class='tooltip-icon'
-															src='assets/img/analytics_tooltip.png'>
+															src='assets/img/data-analytics-label.svg'>
+														<img *ngIf="card.team === 'Hub operations'" class='tooltip-icon'
+															src='assets/img/hub-ops-label.svg'>
+														<img *ngIf="card.team === 'Website Development'"
+															class='tooltip-icon' src='assets/img/website-label.svg'>
 													</div>
 													<button *ngIf="card.linkedin !== 'NaN'" mat-button
 														class="linkedin-toggle">

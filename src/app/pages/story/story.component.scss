@@ -98,10 +98,21 @@
 .icon-container {
   display: flex;
   justify-content: space-between;
+  padding-bottom: 20px;
 }
 
 .tooltip-icon {
   padding-right: 15px;
+  height: 30px;
+}
+
+.right-text {
+  padding-bottom: 10px;
+
+  span {
+    color: #391F85;
+    font-size: 24px;
+  }
 }
 
 /* Add some shadows to create a card effect */
@@ -335,7 +346,7 @@ h1, h3 {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  max-height: 370px;
+  max-height: 470px;
   overflow-y: auto;
   flex-wrap: wrap;
   flex: 1;
