@@ -33,14 +33,13 @@
                     <div *ngFor="let card of jsonObj; index as index">
                         <div *ngIf="card.category !== 'Home' && card.category !== 'Kpi-dash'">
                             <div class="sub-card-styling"
-                                [ngClass]="{'selected-visual': card.selected, 'opacity-styling': selectedCategory !== '' && !card.selected}" 
+                                [ngClass]="{'selected-visual': card.selected, 'opacity-styling': selectedCategory !== '' && !card.selected}"
                                 *ngIf="(moment.duration(todaysDate.diff(card.date))).asDays() < 8">
                                 <mat-icon class="new-analysis-icon">
                                     fiber_new
                                 </mat-icon>
-                                <!-- open modal and reroute to modal url  -->
                                 <mat-card class="sub-card"
-                                    (click)="selectedVisualTab(card.header, card.selected, $event, index); openDialog(card.header, card.category, card.viz_type, card.viz, card.text_top, card.text_bottom, card.desktopHeight, index); routeonSelection(card.header)">
+                                    (click)="selectedVisualTab(card.header, card.selected, $event, index); openDialog(card.header, card.category, card.viz_type, card.viz, card.text_top, card.text_bottom, card.desktopHeight, index)">
                                     <mat-card-header>
                                         <mat-card-title>{{card.header}}</mat-card-title>
                                     </mat-card-header>
@@ -95,11 +94,8 @@
                                                 class="new-analysis-icon">
                                                 fiber_new
                                             </mat-icon>
-                                             <!-- open modal and reroute to modal url  -->
                                             <mat-card class="sub-card"
-                                                (click)="selectedVisualTab(card.header, card.selected, $event, index); openDialog(card.header, card.category, card.viz_type, card.viz, card.text_top, card.text_bottom, card.desktopHeight, index); routeonSelection(card.header)"
-
-                                                >
+                                                (click)="selectedVisualTab(card.header, card.selected, $event, index); openDialog(card.header, card.category, card.viz_type, card.viz, card.text_top, card.text_bottom, card.desktopHeight, index)">
                                                 <mat-card-header>
                                                     <mat-card-title>{{card.header}}</mat-card-title>
                                                 </mat-card-header>
@@ -117,6 +113,101 @@
                         </div>
                     </div>
                 </div>
+                <!-- <div *ngIf="filteringCheckboxes.controls.Critical.value">
+                    <div style="display: flex; padding-top: 20px">
+                        <div class="purple-font" style="line-height: 30px; min-width: 200px; font-size: 20px;">
+                            Critical Care Analysis
+                        </div>
+                        <div style="line-height: 30px; border-top: 2px solid black; width: 100%; margin-top: 15px;">
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; margin-left: 50px">
+                        <div *ngFor="let card of jsonObj; index as index">
+                            <div *ngIf="categoryList.includes(card.category)">
+                                <div class="sub-card-styling"
+                                    [ngClass]="{'selected-visual': card.selected, 'opacity-styling': selectedCategory !== '' && !card.selected}"
+                                    *ngIf="filteringCheckboxes.controls[card.category].value && card.category === 'Critical'"
+                                    style="margin-right: 20px">
+                                    <mat-card class="sub-card"
+                                        (click)="selectedVisualTab(card.header, card.selected, $event, index); openDialog(card.header, card.category, index)">
+                                        <mat-card-header>
+                                            <mat-card-title>{{card.header}}</mat-card-title>
+                                        </mat-card-header>
+                                        <img mat-card-image src={{card.thumbnail}} alt="Visual Thumbnail">
+                                        <mat-card-content>
+                                            <p>
+                                                {{card.content}}
+                                            </p>
+                                        </mat-card-content>
+                                    </mat-card>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="filteringCheckboxes.controls.Regional.value">
+                    <div style="display: flex; padding-top: 20px">
+                        <div class="purple-font" style="line-height: 30px; min-width: 200px; font-size: 20px">
+                            Regional Analysis
+                        </div>
+                        <div style="line-height: 30px; border-top: 2px solid black; width: 100%; margin-top: 15px;">
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; margin-left: 50px">
+                        <div *ngFor="let card of jsonObj; index as index">
+                            <div *ngIf="categoryList.includes(card.category)">
+                                <div class="sub-card-styling"
+                                    [ngClass]="{'selected-visual': card.selected, 'opacity-styling': selectedCategory !== '' && !card.selected}"
+                                    *ngIf="filteringCheckboxes.controls[card.category].value && card.category === 'Regional'"
+                                    style="margin-right: 20px">
+                                    <mat-card class="sub-card"
+                                        (click)="selectedVisualTab(card.header, card.selected, $event, index); openDialog(card.header, card.category, index)">
+                                        <mat-card-header>
+                                            <mat-card-title>{{card.header}}</mat-card-title>
+                                        </mat-card-header>
+                                        <img mat-card-image src={{card.thumbnail}} alt="Visual Thumbnail">
+                                        <mat-card-content>
+                                            <p>
+                                                {{card.content}}
+                                            </p>
+                                        </mat-card-content>
+                                    </mat-card>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="filteringCheckboxes.controls.Testing.value">
+                    <div style="display: flex; padding-top: 20px">
+                        <div class="purple-font" style="line-height: 30px; min-width: 200px; font-size: 20px">
+                            Testing Analysis
+                        </div>
+                        <div style="line-height: 30px; border-top: 2px solid black; width: 100%; margin-top: 15px;">
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; margin-left: 50px">
+                        <div *ngFor="let card of jsonObj; index as index">
+                            <div *ngIf="categoryList.includes(card.category)">
+                                <div class="sub-card-styling"
+                                    [ngClass]="{'selected-visual': card.selected, 'opacity-styling': selectedCategory !== '' && !card.selected}"
+                                    *ngIf="filteringCheckboxes.controls[card.category].value && card.category === 'Testing'"
+                                    style="margin-right: 20px">
+                                    <mat-card class="sub-card"
+                                        (click)="selectedVisualTab(card.header, card.selected, $event, index); openDialog(card.header, card.category, index)">
+                                        <mat-card-header>
+                                            <mat-card-title>{{card.header}}</mat-card-title>
+                                        </mat-card-header>
+                                        <img mat-card-image src={{card.thumbnail}} alt="Visual Thumbnail">
+                                        <mat-card-content>
+                                            <p>
+                                                {{card.content}}
+                                            </p>
+                                        </mat-card-content>
+                                    </mat-card>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
             </div>
         </div>
     </div>
@@ -132,7 +223,7 @@
             </div>
             <div *ngIf="newToggle" style="display: flex; flex-wrap: wrap;">
                 <div *ngFor="let card of jsonObj; index as index" style="width: 100%">
-                    <div *ngIf="card.category !== 'Home' && card.category !== 'Kpi-dash'"
+                    <div *ngIf="card.category !== 'Home' && card.category !== 'Kpi-dash' && (moment.duration(todaysDate.diff(card.date))).asDays() < 8"
                         [ngClass]="{'selected-background': card.selected}">
                         <div class="sub-card-styling mobile-sub-card-styling"
                             [ngClass]="{'selected-visual': card.selected, 'opacity-styling': selectedCategory !== '' && !card.selected}"
