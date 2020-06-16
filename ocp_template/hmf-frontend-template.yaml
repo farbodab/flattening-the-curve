@@ -174,10 +174,6 @@ objects:
         labels:
           app: ${APP_NAME}
       spec:
-        volumes:
-          - name: ${APP_NAME}-volume
-            configMap:
-              name: ${APP_NAME}-config
         containers:
         - env:
           - name: KUBERNETES_NAMESPACE
@@ -187,9 +183,6 @@ objects:
           image: ${APP_NAME}-runtime
           imagePullPolicy: IfNotPresent
           name: ${APP_NAME}-runtime
-          volumeMounts:
-            - name: ${APP_NAME}-volume
-              mountPath: /opt/app-root/src/assets/config
           ports:
           - containerPort: 8080
             name: http
@@ -220,7 +213,7 @@ objects:
     selector:
       app: ${APP_NAME}
 - apiVersion: v1
-  kind: Route
+  kind: Route 
   metadata:
     labels:
       app: ${APP_NAME}
