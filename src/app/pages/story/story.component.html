@@ -1,73 +1,125 @@
-
 <app-navbar [shows_title]='true' [page]='"team"'></app-navbar>
-<div class='content team' style='background-color: white;'>
+<div class='content team' style='background-color: white;' [ngClass]="{'mobile-sizing': !is_full}">
 	<div id='container'>
-		<div id='heading-text'>
-			<h1 id='sub-title'>Meet The Team</h1>
-			<p>Here is the amazing team of volunteers who make this project possible!</p>
-		</div>
-
-		<hr>
-
-		<div *ngIf="is_full">
-			<div *ngIf=" teamForm" style="height: 450px">
-				<div style="display: flex; background-color: #005E72;">
-					<div style="display: flex">
-						<div style="color: #ffffff; margin-left: 15px; font-size: 18px; line-height: 48px">Our People
-						</div>
-						<mat-icon (mouseover)="toggleHover(true)" (mouseout)="toggleHover(false)" class=" team-tooltip">
-							info
-						</mat-icon>
-						<div class="desktop-pop" [style.display]="tooltipToggle ? 'block' : 'none'">
-							<div *ngFor="let level of tooltipArray">
-								<div *ngFor="let obj of level | keyvalue" class="pop-text-container">
-									<div class="pop-text-title">{{obj.key+': '}}</div>
-									<div class="pop-text">{{obj.value}}</div>
-								</div>
-							</div>
-						</div>
+		<div class='heading-container'>
+			<div class="heading-title">Meet The Team</div>
+			<div class="heading-text-container">
+				<div class="left-container">
+					Our team of experts stands behind the mission of fighting and ending COVID-19.
+				</div>
+				<div class="middle-container"></div>
+				<div class="right-container">
+					<div class="right-text">
+						<span>240+</span> Slack Members
+					</div>
+					<div class="right-text">
+						<span>15+</span> data analyses on Ontario's response
+					</div>
+					<div class="right-text">
+						<span>20+</span> KPIs monitored in near real-time
+					</div>
+					<div class="get-involved-text">
+						If you want to get involved, <a
+							href="https://gitlab.com/howsmyflattening/www-howsmyflattening-ca/-/wikis/home">check out our Gitlab</a>.
 					</div>
 				</div>
-				<div style="display: flex">
-					<div style="height: 400px; width: 325px; border: 1px solid #DCDCDC; margin-right: 20px">
-						<form [formGroup]="teamForm" style="padding-top: 20px; margin: 0 15px">
-							<div *ngFor="let choice of teamChoices; index as index" (click)="toggleSelect(choice)">
-								<div *ngIf="choice !== 'All' && choice !== 'Contributors'" class="choices-styling"
-									[ngClass]="{'selected-color': teamForm.controls[choice].value}">
-									<div class="choices-text">{{choice+'s'}}</div>
-									<div class="choices-count">
-										{{teamChoicesCount[index]}}</div>
-								</div>
-								<div *ngIf="choice === 'All' || choice === 'Contributors'" class="choices-styling"
-									[ngClass]="{'selected-color': teamForm.controls[choice].value}">
-									<div class="choices-text">{{choice}}</div>
-									<div class="choices-count">
-										{{teamChoicesCount[index]}}</div>
+			</div>
+		</div>
+		<div class="icon-section">
+			<div class="icon-header">Our team works on</div>
+			<div>
+				<div class="icon-container">
+					<img class='' src='assets/img/website_icon.png'>
+					<img class='' src='assets/img/data_icon.png'>
+					<img class='' src='assets/img/analytics_icon.png'>
+					<img class='' src='assets/img/hub_icon.png'>
+				</div>
+			</div>
+
+			<hr>
+
+			<div *ngIf="is_full">
+				<div *ngIf=" teamForm" style="height: 520px">
+					<div style="display: flex; background-color: #005E72;">
+						<div style="display: flex">
+							<div style="color: #ffffff; margin-left: 15px; font-size: 24px; line-height: 48px">Our
+								People
+							</div>
+							<mat-icon (mouseover)="toggleHover(true)" (mouseout)="toggleHover(false)"
+								class=" team-tooltip">
+								info
+							</mat-icon>
+							<div class="desktop-pop" [style.display]="tooltipToggle ? 'block' : 'none'">
+								<div *ngFor="let level of tooltipArray">
+									<div *ngFor="let obj of level | keyvalue" class="pop-text-container">
+										<div class="pop-text-title">{{obj.key+': '}}</div>
+										<div class="pop-text">{{obj.value}}</div>
+									</div>
 								</div>
 							</div>
-						</form>
+						</div>
 					</div>
-					<div style="width: 100%;">
-						<div class="team-box">
-							<div *ngFor="let card of jsonObj; index as index" class="card-container-styling"
-								[style.display]="teamForm.controls[card.team_status].value || teamForm.controls['All'].value ? 'flex' : 'none'">
-								<div style="width: 100%; padding-bottom: 20px; padding-left: 5px">
-									<div class="card"
-										*ngIf="teamForm.controls[card.team_status].value || teamForm.controls['All'].value">
-										<div class="container-core">
-											<div class="card-title" *ngIf="card.title !== 'NaN'" style="display: flex">
-												{{card.title}}
-												{{card.first_name}}
-												{{card.last_name}}
+					<div style="display: flex">
+						<div style="height: 480px; width: 325px; border: 1px solid #DCDCDC; margin-right: 20px">
+							<form [formGroup]="teamForm" style="padding-top: 20px; margin: 0 15px">
+								<div *ngFor="let choice of teamChoices; index as index" (click)="toggleSelect(choice)">
+									<div *ngIf="choice !== 'All' && choice !== 'Contributors'" class="choices-styling"
+										[ngClass]="{'selected-color': teamForm.controls[choice].value}">
+										<div class="choices-text">{{choice+'s'}}</div>
+										<div class="choices-count">
+											{{teamChoicesCount[index]}}</div>
+									</div>
+									<div *ngIf="choice === 'All' || choice === 'Contributors'" class="choices-styling"
+										[ngClass]="{'selected-color': teamForm.controls[choice].value}">
+										<div class="choices-text">{{choice}}</div>
+										<div class="choices-count">
+											{{teamChoicesCount[index]}}</div>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div style="width: 100%;">
+							<div class="team-box">
+								<div *ngFor="let card of jsonObj; index as index" class="card-container-styling"
+									[style.display]="teamForm.controls[card.team_status].value || teamForm.controls['All'].value ? 'flex' : 'none'">
+									<div style="width: 100%; padding-bottom: 20px; padding-left: 5px">
+										<div class="card"
+											*ngIf="teamForm.controls[card.team_status].value || teamForm.controls['All'].value">
+											<div class="container-core">
+												<div class="card-title" *ngIf="card.title !== 'NaN'"
+													style="display: flex">
+													{{card.title}}
+													{{card.first_name}}
+													{{card.last_name}}
+												</div>
+												<div class="card-title" *ngIf="card.title === 'NaN'"
+													style="display: flex">
+													{{card.first_name}}
+													{{card.last_name}}
+												</div>
+												<p *ngIf="card.education !== 'NaN'" class="title">{{card.education}}</p>
+												<p *ngIf="card.role !== 'NaN'" style="color: #005E72">{{card.role}}</p>
+												<p *ngIf="card.affiliation !== 'NaN'">{{card.affiliation}}</p>
+												<div style="display: flex">
+													<div>
+														<img *ngIf="card.team === 'Data scouting and curation'"
+															class='tooltip-icon' src='assets/img/data-label.svg'>
+														<img *ngIf="card.team === 'Data Analysis'" class='tooltip-icon'
+															src='assets/img/data-analytics-label.svg'>
+														<img *ngIf="card.team === 'Hub Operations'" class='tooltip-icon'
+															src='assets/img/hub-ops-label.svg'>
+														<img *ngIf="card.team === 'Website Development'"
+															class='tooltip-icon' src='assets/img/website-label.svg'>
+													</div>
+													<button *ngIf="card.linkedin !== 'NaN'" mat-button
+														class="linkedin-toggle">
+														<a [href]="card.linkedin" target="_blank">
+															<img class='linkedin-icon'
+																src='assets/img/linkedin-square.png'>
+														</a>
+													</button>
+												</div>
 											</div>
-											<div class="card-title" *ngIf="card.title === 'NaN'" style="display: flex">
-												{{card.first_name}}
-												{{card.last_name}}
-											</div>
-											<p *ngIf="card.education !== 'NaN'" class="title">{{card.education}}</p>
-											<p *ngIf="card.role !== 'NaN'" style="color: #005E72">{{card.role}}</p>
-											<p *ngIf="card.affiliation !== 'NaN'">{{card.affiliation}}</p>
-											<p></p>
 										</div>
 									</div>
 								</div>
@@ -75,9 +127,8 @@
 						</div>
 					</div>
 				</div>
-			</div>
 
-			<!-- <div style="width: 100%; padding-top: 50px;">
+				<!-- <div style="width: 100%; padding-top: 50px;">
 				<div style="display: flex; background-color: #005E72;">
 					<div style="color: #ffffff; margin-left: 15px; font-size: 18px; line-height: 48px">Our Advisors
 					</div>
@@ -107,64 +158,77 @@
 					</div>
 				</div>
 			</div> -->
-		</div>
-
-
-		<div *ngIf="!is_full" [ngClass]="{'mobile-sizing': !is_full}">
-			<div>
-				<div class="form-container">
-					<div class="form-styling form-header">
-						<div class="">Our People</div>
-						<!-- <mat-icon class="team-tooltip">info</mat-icon> -->
-						<!-- <div style="width: 200px; background-color: #666666; height: 200px"></div> -->
-					</div>
-					<form *ngIf="teamForm" [formGroup]="teamForm" class="form-styling">
-						<div style="display: flex; flex-wrap: wrap" class="inner-form-styling">
-							<div *ngFor="let choice of teamChoices; index as index" class="checkbox-styling"
-								[style.display]="choice !== 'All' ? 'initial': 'none'">
-								<mat-checkbox *ngIf="choice !== 'Contributors'" formControlName="{{choice}}">
-									{{choice+'s'}}
-									<span class="choices-count">
-										{{teamChoicesCount[index]}}</span>
-								</mat-checkbox>
-								<mat-checkbox *ngIf="choice === 'Contributors'" formControlName="{{choice}}">{{choice}}
-									<span class="choices-count">
-										{{teamChoicesCount[index]}}</span>
-								</mat-checkbox>
-							</div>
-						</div>
-					</form>
-				</div>
 			</div>
 
-			<div style="width: 100%; padding-bottom: 20px">
-				<div
-					style="margin-top: 20px; padding-bottom: 10px; display: flex; width: 100%; overflow-y: auto; flex-wrap: wrap; flex: 1">
-					<div *ngFor="let card of jsonObj; index as index" style="width: 100%; margin-right: auto;"
-						[style.display]="teamForm.controls[card.team_status].value ? 'flex' : 'none'">
-						<div style="width: 100%; padding-bottom: 20px; padding-left: 5px">
-							<div class="card" *ngIf="teamForm.controls[card.team_status].value">
-								<div class="container-core align-center">
-									<div class="card-title" *ngIf="card.title !== 'NaN'">
-										{{card.title}}
-										{{card.first_name}}
-										{{card.last_name}}
+
+			<div *ngIf="!is_full" [ngClass]="{'mobile-sizing': !is_full}">
+				<div>
+					<div class="form-container">
+						<div class="form-styling form-header">
+							<div class="">Our People</div>
+							<!-- <mat-icon class="team-tooltip">info</mat-icon> -->
+							<!-- <div style="width: 200px; background-color: #666666; height: 200px"></div> -->
+						</div>
+						<form *ngIf="teamForm" [formGroup]="teamForm" class="form-styling">
+							<div style="display: flex; flex-wrap: wrap" class="inner-form-styling">
+								<div *ngFor="let choice of teamChoices; index as index" class="checkbox-styling"
+									[style.display]="choice !== 'All' ? 'initial': 'none'">
+									<mat-checkbox *ngIf="choice !== 'Contributors'" formControlName="{{choice}}">
+										{{choice+'s'}}
+										<span class="choices-count">
+											{{teamChoicesCount[index]}}</span>
+									</mat-checkbox>
+									<mat-checkbox *ngIf="choice === 'Contributors'" formControlName="{{choice}}">
+										{{choice}}
+										<span class="choices-count">
+											{{teamChoicesCount[index]}}</span>
+									</mat-checkbox>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+
+				<div style="width: 100%; padding-bottom: 20px">
+					<div
+						style="margin-top: 20px; padding-bottom: 10px; display: flex; width: 100%; overflow-y: auto; flex-wrap: wrap; flex: 1">
+						<div *ngFor="let card of jsonObj; index as index" style="width: 100%; margin-right: auto;"
+							[style.display]="teamForm.controls[card.team_status].value ? 'flex' : 'none'">
+							<div style="width: 100%; padding-bottom: 20px; padding-left: 5px">
+								<div class="card" *ngIf="teamForm.controls[card.team_status].value">
+									<div class="container-core align-center">
+										<div class="card-title" *ngIf="card.title !== 'NaN'">
+											{{card.title}}
+											{{card.first_name}}
+											{{card.last_name}}
+										</div>
+										<div class="card-title" *ngIf="card.title === 'NaN'">
+											{{card.first_name}}
+											{{card.last_name}}
+										</div>
+										<p *ngIf="card.education !== 'NaN'" class="title">{{card.education}}</p>
+										<p *ngIf="card.role !== 'NaN'" style="color: #005E72">{{card.role}}</p>
+										<p *ngIf="card.affiliation !== 'NaN'">{{card.affiliation}}</p>
+										<div style="display: flex">
+											<div class="icon-category">
+												<img *ngIf="card.team === 'Data scouting and curation'"
+													class='tooltip-icon' src='assets/img/data_tooltip.png'>
+												<img *ngIf="card.team === 'Data Analysis'" class='tooltip-icon'
+													src='assets/img/analytics_tooltip.png'>
+											</div>
+											<button *ngIf="card.linkedin !== 'NaN'" mat-button class="linkedin-toggle">
+												<a [href]="card.linkedin" target="_blank">
+													<img class='linkedin-icon' src='assets/img/linkedin-square.png'>
+												</a>
+											</button>
+										</div>
 									</div>
-									<div class="card-title" *ngIf="card.title === 'NaN'">
-										{{card.first_name}}
-										{{card.last_name}}
-									</div>
-									<p *ngIf="card.education !== 'NaN'" class="title">{{card.education}}</p>
-									<p *ngIf="card.role !== 'NaN'" style="color: #005E72">{{card.role}}</p>
-									<p *ngIf="card.affiliation !== 'NaN'">{{card.affiliation}}</p>
-									<p></p>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<!--<div style="width: 100%;">
+				<!--<div style="width: 100%;">
 				<div class="form-container">
 					<div class="form-styling advisor-header">Our Advisors</div>
 				</div>
@@ -194,56 +258,60 @@
 					</div>
 				</div>
 			</div>-->
-		</div>
+			</div>
 
-		<hr>
-		
-		<div >
-			<div id='supporters-set'>
-				<div id = 'resource-box'>
-					<div id = 'resource_thumbnail'>
-						<a target="_blank" href = 'https://trilliumhealthpartners.ca'>
-							<img id='resource_thumbnail' src='assets/img/team_supporters/thp.png' >
-						</a>
+			<hr>
+
+			<div>
+				<div id='supporters-set'>
+					<div id='resource-box'>
+						<div id='resource_thumbnail'>
+							<a target="_blank" href='https://trilliumhealthpartners.ca'>
+								<img id='resource_thumbnail' src='assets/img/team_supporters/thp.png'>
+							</a>
+						</div>
+					</div>
+					<div id='resource-box'>
+						<div id='resource_thumbnail'>
+							<a target="_blank" href='https://vectorinstitute.ai'>
+								<img id='resource_thumbnail' src='assets/img/team_supporters/vector.png'>
+							</a>
+						</div>
+					</div>
+					<div id='resource-box'>
+						<div id='resource_thumbnail'>
+							<a target="_blank" href='https://www.klick.com/'>
+								<img id='resource_thumbnail' src='assets/img/team_supporters/klick.png'>
+							</a>
+						</div>
+					</div>
+					<div id='resource-box'>
+						<div id='resource_thumbnail'>
+							<a target="_blank" href='http://taglab.utoronto.ca'>
+								<img id='resource_thumbnail' src='assets/img/team_supporters/taglab.jpg'>
+							</a>
+						</div>
+					</div>
+					<div id='resource-box'>
+						<div id='resource_thumbnail'>
+							<a target="_blank" href='http://ontario.himsschapter.org/'>
+								<img id='resource_thumbnail' src='assets/img/team_supporters/himss_logo.png'>
+							</a>
+						</div>
 					</div>
 				</div>
-				<div id = 'resource-box'>
-					<div id = 'resource_thumbnail'>
-						<a target="_blank" href = 'https://vectorinstitute.ai'>
-							<img id='resource_thumbnail' src='assets/img/team_supporters/vector.png' >
-						</a>
-					</div>
-				</div>
-				<div id = 'resource-box'>
-					<div id = 'resource_thumbnail'>
-						<a target="_blank" href = 'https://www.klick.com/'>
-							<img id='resource_thumbnail' src='assets/img/team_supporters/klick.png' >
-						</a>
-					</div>
-				</div>
-				<div id = 'resource-box'>
-					<div id = 'resource_thumbnail'>
-						<a target="_blank" href = 'http://taglab.utoronto.ca'>
-							<img id='resource_thumbnail' src='assets/img/team_supporters/taglab.jpg' >
-						</a>
-					</div>
-				</div>
-				<div id = 'resource-box'>
-					<div id = 'resource_thumbnail'>
-						<a target="_blank" href = 'http://ontario.himsschapter.org/'>
-							<img id='resource_thumbnail' src='assets/img/team_supporters/himss_logo.png' >
-						</a>
-					</div>
+
+
+
+
+				<div class="grid-landscape">
+					<div><a target="_blank" href='http://www.dlsph.utoronto.ca'><img id='resource_thumbnail_landscape'
+								src='assets/img/team_supporters/dlsph.png'></a></div>
+
+					<div><a target="_blank" href='https://pophealthanalytics.com'><img id='resource_thumbnail_landscape'
+								src='assets/img/team_supporters/pophealth.png'></a></div>
+
 				</div>
 			</div>
-		
-	
-
-
-<div class="grid-landscape">
-<div ><a target="_blank" href = 'http://www.dlsph.utoronto.ca'><img id= 'resource_thumbnail_landscape' src= 'assets/img/team_supporters/dlsph.png' ></a></div>
-
-<div ><a target="_blank" href = 'https://pophealthanalytics.com'><img id= 'resource_thumbnail_landscape' src= 'assets/img/team_supporters/pophealth.png' ></a></div>
-
-</div>
-
+		</div>
+	</div>

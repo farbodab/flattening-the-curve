@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'team', component: StoryComponent },
   { path: 'resources', component: ResourcesComponent },
   //{ path: 'connect', component: ConnectComponent },
-  { path: 'outreach', component: OutreachComponent },
+  { path: 'get_involved', component: OutreachComponent },
   { path: 'blog', component: BlogComponent },
   {
     path: 'dashboard', component: GridComponent, children: [
@@ -70,6 +70,7 @@ const routes: Routes = [
         component: AnalysisComponent
       }
     ]
+
 }
 ];
 

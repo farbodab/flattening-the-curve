@@ -7,7 +7,6 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig, MatTooltip }
 import { ApiService } from 'src/app/services/api.service';
 import { CommonDesktopVisualComponent } from '../../components/common-desktop-visual/common-desktop-visual.component';
 import * as moment from 'moment';
-import {MatIconModule} from '@angular/material/icon';
 import {MatIconRegistry} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
 
@@ -523,7 +522,7 @@ export class GridComponent implements OnInit, AfterViewInit {
 
     routeonSelection(route: string) {
         const index = this.phuArray.findIndex(phu => phu.value === route);
-        this.headerLabel = this.phuArray[index].phu;
+       this.headerLabel = this.phuArray[index].phu;
         this.router.navigate(['/dashboard/' + route]);
     }
 
