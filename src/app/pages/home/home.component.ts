@@ -2,6 +2,7 @@ import { Component, OnInit, HostListener, ViewChild, ElementRef, AfterViewInit }
 import { ApiService } from 'src/app/services/api.service';
 import { Subscription } from 'rxjs';
 import { HostService } from '../../services/host.service';
+import { Sort } from '@angular/material';
 
 declare var tableau: any;
 
@@ -10,7 +11,7 @@ declare var tableau: any;
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
 
   @ViewChild('MailingList', { static: false }) mailingList: ElementRef;
 
@@ -21,8 +22,19 @@ export class HomeComponent implements OnInit {
   viz: any;
   tableau: any;
   is_full = true;
+  metricJsonObj: any;
   jsonObj: any;
   window_subscription: Subscription;
+
+  phus = [
+    {phu: 'Toronto', rt: 0.6, new: 15, testing: 0.27, testingPercentage: '27%', tracing: 0.53, tracingPercentage: '53%', icu: 0.66, icuPercentage: '66%', stage: 2},
+    {phu: 'Lambton', rt: 1.2, new: 43, testing: 0.34, testingPercentage: '34%', tracing: 0.22, tracingPercentage: '22%', icu: 0.71, icuPercentage: '71%', stage: 1},
+    {phu: 'Porcupine', rt: 1.4, new: 90, testing: 0.67, testingPercentage: '67%', tracing: 0.61, tracingPercentage: '61%', icu: 0.55, icuPercentage: '55%', stage: 3},
+    {phu: 'Brant County', rt: 0.3, new: 56, testing: 0.15, testingPercentage: '15%', tracing: 0.37, tracingPercentage: '37%', icu: 0.73, icuPercentage: '73%', stage: 3},
+    {phu: 'Refrew County', rt: 0.82, new: 22, testing: 0.83, testingPercentage: '83%', tracing: 0.46, tracingPercentage: '46%', icu: 0.41, icuPercentage: '41%', stage: 2},
+  ];
+
+  sortedMetrics: any[];
 
   constructor(private host_service: HostService, private api_service: ApiService) {
     this.refresh_layout(window.innerWidth);
@@ -33,6 +45,24 @@ export class HomeComponent implements OnInit {
       this.refresh_layout(window.innerWidth);
     });
     this.fetchVizObj();
+  }
+
+  ngAfterViewInit() {
+    this.fetchDataObj();
+  }
+
+  fetchDataObj() {
+    this.api_service.get_reopening_obj().subscribe(
+      data => {
+        this.metricJsonObj = data;
+        this.sortedMetrics = this.metricJsonObj.slice();
+        //this.initTeamForm(this.teamChoices);
+        //this.teamChoicesCount = this.iterateTeam(this.jsonObj, this.teamChoices);
+      },
+      error => {
+        this.metricJsonObj = 'error';
+      }
+    );
   }
 
   on_read_more_pressed() {
@@ -85,6 +115,40 @@ export class HomeComponent implements OnInit {
       }
     }
     this.viz = new tableau.Viz(placeholderDiv, url, options);
+  }
+
+  sortMetrics(sort: Sort) {
+    console.log('hi');
+    const metrics = this.metricJsonObj.slice();
+    if(!sort.active || sort.direction === '') {
+      this.sortedMetrics = metrics;
+      return;
+    }
+
+    this.sortedMetrics = metrics.sort((a, b) => {
+      const isAscending = sort.direction === 'asc';
+
+      switch(sort.active) {
+        case 'phu': return this.compareData(a.phu, b.phu, 'string', isAscending);
+        case 'rt': return this.compareData(a.rt, b.rt, 'number', isAscending);
+        case 'new': return this.compareData(a.weekly, b.weekly, 'number', isAscending);
+        case 'testing': return this.compareData(a.testing, b.testing, 'number', isAscending);
+        case 'tracing': return this.compareData(a.tracing, b.tracing, 'number', isAscending);
+        case 'icu': return this.compareData(a.icu, b.icu, 'number', isAscending);
+        case 'stage': return this.compareData(a.stage, b.stage, 'number', isAscending);
+        default: return 0;
+      }
+    });
+
+  }
+
+  compareData(a: number | string, b: number | string, type: string, isAscending: boolean) {
+
+    switch(type) {
+      case 'string': return (a < b ? -1 : 1) *(isAscending ? 1: -1);
+      case 'number': return (((Number(a) < Number(b)) || (b === 'NaN')) ? -1 : 1) *(isAscending ? 1: -1);
+      default: return 0;
+    } 
   }
 
   private refresh_layout(width) {

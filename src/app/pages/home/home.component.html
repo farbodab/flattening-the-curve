@@ -54,6 +54,35 @@
                 </div>
                 <div id="vizContainer"></div>
             </div>
+            <div>
+                <table matSort (matSortChange)="sortMetrics($event)" style="width: 100%">
+                    <tr>
+                        <th></th>
+                        <th colspan="2">Pandemic Monitoring</th>
+                        <th colspan="2">Response Monitoring</th>
+                        <th>Response Capacity</th>
+                        <th>Stages</th>
+                    </tr>
+                    <tr>
+                        <th mat-sort-header="phu">PHU</th>
+                        <th mat-sort-header="rt">RT</th>
+                        <th mat-sort-header="new">Weekly New Cases</th>
+                        <th mat-sort-header="testing">Testing % 24h</th>
+                        <th mat-sort-header="tracing">Tracing % 24h</th>
+                        <th mat-sort-header="icu">Total ICU Bed Occupied %</th>
+                        <th mat-sort-header="stage">Stage</th>
+                    </tr>
+                    <tr *ngFor="let row of sortedMetrics">
+                        <td>{{row.phu}}</td>
+                        <td>{{row.rt}}</td>
+                        <td>{{row.weekly}}</td>
+                        <td>{{row.testing}}</td>
+                        <td>{{row.testing}}</td>
+                        <td>{{row.icu}}</td>
+                        <td>{{row.stage}}</td>
+                    </tr>
+                </table>
+            </div>
             <div class="card-container">
                 <div class='half-width-left'>
                     <div id='explore-data-cell'>

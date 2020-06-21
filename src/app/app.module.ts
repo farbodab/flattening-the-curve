@@ -34,7 +34,8 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatButtonModule} from '@angular/material/button'; 
+import {MatButtonModule} from '@angular/material/button';
+import {MatSortModule} from '@angular/material/sort'; 
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -99,7 +100,8 @@ PlotlyViaCDNModule.plotlyBundle = null; // optional: can be null (for full) or '
         MatTooltipModule,
         MatIconModule,
         MatSnackBarModule,
-        MatButtonModule
+        MatButtonModule,
+        MatSortModule
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
