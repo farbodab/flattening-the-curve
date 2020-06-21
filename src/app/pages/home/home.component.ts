@@ -133,7 +133,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         case 'rt': return this.compareData(a.rt, b.rt, 'number', isAscending);
         case 'new': return this.compareData(a.weekly, b.weekly, 'number', isAscending);
         case 'testing': return this.compareData(a.testing, b.testing, 'number', isAscending);
-        case 'tracing': return this.compareData(a.tracing, b.tracing, 'number', isAscending);
+        case 'tracing': return this.compareData(a.testing, b.testing, 'number', isAscending);
         case 'icu': return this.compareData(a.icu, b.icu, 'number', isAscending);
         case 'stage': return this.compareData(a.stage, b.stage, 'number', isAscending);
         default: return 0;
@@ -146,7 +146,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
     switch(type) {
       case 'string': return (a < b ? -1 : 1) *(isAscending ? 1: -1);
-      case 'number': return (((Number(a) < Number(b)) || (b === 'NaN')) ? -1 : 1) *(isAscending ? 1: -1);
+      case 'number': return (((Number(a) < Number(b)) || (b === 'nan')) ? -1 : 1) *(isAscending ? 1: -1);
       default: return 0;
     } 
   }

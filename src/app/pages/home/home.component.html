@@ -64,7 +64,7 @@
                         <th>Stages</th>
                     </tr>
                     <tr>
-                        <th mat-sort-header="phu">PHU</th>
+                        <th mat-sort-header="phu" class="first-col-styling">PHU</th>
                         <th mat-sort-header="rt">RT</th>
                         <th mat-sort-header="new">Weekly New Cases</th>
                         <th mat-sort-header="testing">Testing % 24h</th>
@@ -73,13 +73,13 @@
                         <th mat-sort-header="stage">Stage</th>
                     </tr>
                     <tr *ngFor="let row of sortedMetrics">
-                        <td>{{row.phu}}</td>
-                        <td>{{row.rt}}</td>
-                        <td>{{row.weekly}}</td>
-                        <td>{{row.testing}}</td>
-                        <td>{{row.testing}}</td>
-                        <td>{{row.icu}}</td>
-                        <td>{{row.stage}}</td>
+                        <td class="first-col-cell">{{row.phu}}</td>
+                        <td>{{row.rt === 'nan' ? 'N/A' : row.rt}}</td>
+                        <td>{{row.weekly === 'nan' ? 'N/A' : row.weekly}}</td>
+                        <td>{{row.testing === 'nan' ? 'N/A' : row.testing}}</td>
+                        <td>{{row.testing === 'nan' ? 'N/A' : row.testing}}</td>
+                        <td>{{row.icu === 'nan' ? 'N/A' : row.icu}}</td>
+                        <td>{{row.stage === 'nan' ? 'N/A' : row.stage}}</td>
                     </tr>
                 </table>
             </div>
