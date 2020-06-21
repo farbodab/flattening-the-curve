@@ -56,24 +56,24 @@
             </div>
             <div *ngIf="is_full" class="table-container">
                 <div class="scorecard-header">Ontario's Reopening Metrics</div>
-                <table class="table-styling">
+                <table *ngIf="ontarioObj.rt !== null" class="table-styling">
                     <tr>
                         <th class="ontario-header-styling top-category" colspan="2">Pandemic Monitoring</th>
                         <th class="ontario-header-styling top-category" colspan="2">Response Monitoring</th>
                         <th class="ontario-header-styling top-category" colspan="2">Response Capacity</th>
                     </tr>
                     <tr class="ontario-row-styling">
-                        <td class="center-cell" style="width: 10%; background-color: #b2eda4">0.74</td>
+                        <td class="center-cell" style="width: 10%; background-color: #b2eda4">{{ontarioObj.rt}}</td>
                         <td class="center-cell" style="background-color: #b2eda4">RT Value</td>
-                        <td class="center-cell" style="width: 10%; background-color: #b2eda4">42%</td>
+                        <td class="center-cell" style="width: 10%; background-color: #b2eda4">{{ontarioObj.testing}}</td>
                         <td class="center-cell" style="background-color: #b2eda4">Testing Percentage &lt; 24h</td>
-                        <td class="center-cell" style="width: 10%; background-color: #b2eda4" rowspan="2">21%</td>
+                        <td class="center-cell" style="width: 10%; background-color: #b2eda4" rowspan="2">{{ontarioObj.icu}}</td>
                         <td class="center-cell" style="background-color: #b2eda4"rowspan="2">Total ICU Bed Occupied Percentage</td>
                     </tr>
                     <tr class="ontario-row-styling">
-                        <td class="center-cell" style="width: 10%; background-color: #b2eda4">236</td>
+                        <td class="center-cell" style="width: 10%; background-color: #b2eda4">{{ontarioObj.weekly}}</td>
                         <td class="center-cell" style="background-color: #b2eda4">Weekly New Cases</td>
-                        <td class="center-cell" style="width: 10%; background-color: #b2eda4">40%</td>
+                        <td class="center-cell" style="width: 10%; background-color: #b2eda4">{{ontarioObj.testing}}</td>
                         <td class="center-cell" style="background-color: #b2eda4">Tracing Percentage &lt; 24h</td>
                     </tr>
                 </table>
@@ -103,6 +103,46 @@
                         <td [ngClass]="{'black-cell': row.testing === 'nan'}" class="center-cell">{{row.testing === 'nan' ? 'N/A' : row.testing}}</td>
                         <td [ngClass]="{'black-cell': row.icu === 'nan'}" class="center-cell">{{row.icu === 'nan' ? 'N/A' : row.icu}}</td>
                         <td [ngClass]="{'black-cell': row.staging === 'nan'}" class="center-cell">{{row.stage === 'nan' ? 'N/A' : row.stage}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div *ngIf="!is_full">
+                <table *ngFor="let table of sortedMetrics" style="padding-bottom: 20px; width: 100%">
+                    <tr>
+                        <th colspan="2">{{table.phu}}</th>
+                    </tr>
+                    <tr>
+                        <td>Stage</td>
+                        <td>{{table.stage}}</td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">Pandemic Monitoring</th>
+                    </tr>
+                    <tr>
+                        <td>RT</td>
+                        <td>{{table.rt}}</td>
+                    </tr>
+                    <tr>
+                        <td>Weekly New Cases</td>
+                        <td>{{table.weekly}}</td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">Response Monitoring</th>
+                    </tr>
+                    <tr>
+                        <td>Testing % &lt; 24h</td>
+                        <td>{{table.testing}}</td>
+                    </tr>
+                    <tr>
+                        <td>Tracing % &lt; 24h</td>
+                        <td>{{table.testing}}</td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">Response Capacity</th>
+                    </tr>
+                    <tr>
+                        <td>Total ICU Bed Occupied %</td>
+                        <td>{{table.icu}}</td>
                     </tr>
                 </table>
             </div>

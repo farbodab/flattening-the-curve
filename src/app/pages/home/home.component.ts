@@ -28,7 +28,15 @@ export class HomeComponent implements OnInit, AfterViewInit {
   initial_sort: Sort = {
     active: 'phu',
     direction: 'asc'
-  }
+  };
+  ontarioObj = {
+    phu: null,
+    rt: null,
+    weekly: null,
+    testing: null,
+    icu: null,
+    stage: null
+  };
 
   phus = [
     {phu: 'Toronto', rt: 0.6, new: 15, testing: 0.27, testingPercentage: '27%', tracing: 0.53, tracingPercentage: '53%', icu: 0.66, icuPercentage: '66%', stage: 2},
@@ -59,7 +67,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.api_service.get_reopening_obj().subscribe(
       data => {
         this.metricJsonObj = data;
-        this.sortedMetrics = this.metricJsonObj.slice();
+        this.sortedMetrics = this.removeOntartio(this.metricJsonObj.slice());
         this.sortMetrics(this.initial_sort);
         //this.initTeamForm(this.teamChoices);
         //this.teamChoicesCount = this.iterateTeam(this.jsonObj, this.teamChoices);
@@ -82,7 +90,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   fetchVizObj() {
     this.api_service.get_viz_obj().subscribe(
       data => {
-        console.log(data);
         this.jsonObj = data;
         this.findHomeViz(this.jsonObj);
       },
@@ -122,9 +129,17 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.viz = new tableau.Viz(placeholderDiv, url, options);
   }
 
+  removeOntartio(dataObject:any) {
+    return dataObject.filter((ele) => {
+      if (ele.phu === 'Ontario') {
+        this.ontarioObj = ele;
+      }
+      return ele.phu !== 'Ontario';
+    });
+  }
+
   sortMetrics(sort: Sort) {
-    console.log(sort);
-    const metrics = this.metricJsonObj.slice();
+    const metrics = this.sortedMetrics.slice();
     if (!sort.active || sort.direction === '') {
       this.sortedMetrics = metrics;
       return;
