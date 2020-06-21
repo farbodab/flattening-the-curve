@@ -24,7 +24,7 @@ export class ApiService {
   //readonly data_object_endpoint: string = 'https://flatteningthecurve.herokuapp.com/api/source';
   //readonly team_object_endpoint: string = 'https://flatteningthecurve.herokuapp.com/api/team';
 
-  readonly reopening_object_endpoint: string = 'http://flattening-the-curve-backend-review-reopening-w69eve.apps.hmf.q7z3.p1.openshiftapps.com/api/reopening';
+  readonly reopening_object_endpoint: string = 'http://flattening-the-curve-backend-staging.apps.hmf.q7z3.p1.openshiftapps.com/api/reopening';
 
 
   constructor(private http_client: HttpClient) {

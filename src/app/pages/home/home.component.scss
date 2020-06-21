@@ -396,15 +396,89 @@
     padding-bottom: 40px;
 }
 
+.ontario-header-styling {
+    width: 33%;
+}
+
+.ontario-row-styling {
+    height: 50px;
+}
+
+.table-container {
+    padding: 30px 0;
+}
+
+.table-styling {
+    padding: 30px 0;
+    width: 100%;
+}
+
 .first-col-styling {
     width: 250px;
 }
 
 .first-col-cell {
+    padding: 0 6px;
     max-width: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.scorecard-header {
+    font-size: 24px;
+    text-align: center;
+}
+
+.header-styling {
+    min-width: 100px;
+    text-align: center;
+
+    ::ng-deep {
+        .mat-sort-header-container {
+            margin: 10px 15px !important;
+        }
+    }
+}
+
+.row-styling {
+    height: 35px;
+}
+.black-cell {
+    background-color: #000000;
+    color: #ffffff;
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #ffffff;
+
+    ::ng-deep {
+        .mat-sort-header-button {
+            color: #ffffff !important;
+        }
+    }
+}
+
+::ng-deep {
+    .mat-sort-header-stem, .mat-sort-header-pointer-middle, .mat-sort-header-pointer-left, .mat-sort-header-pointer-right {
+        color: #ffffff !important;
+    }
+}
+
+.top-category {
+    background-color: #666666;
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #ffffff;
+    height: 55px;
+    color: #ffffff;
+}
+
+::ng-deep {
+    .mat-sort-header-button {
+        margin-right: auto !important;
+    }
+}
+
+.center-cell {
+    text-align: center;
 }
 
 .mobile-browser {

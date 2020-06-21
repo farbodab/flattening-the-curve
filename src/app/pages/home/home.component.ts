@@ -25,6 +25,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
   metricJsonObj: any;
   jsonObj: any;
   window_subscription: Subscription;
+  initial_sort: Sort = {
+    active: 'phu',
+    direction: 'asc'
+  }
 
   phus = [
     {phu: 'Toronto', rt: 0.6, new: 15, testing: 0.27, testingPercentage: '27%', tracing: 0.53, tracingPercentage: '53%', icu: 0.66, icuPercentage: '66%', stage: 2},
@@ -56,6 +60,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       data => {
         this.metricJsonObj = data;
         this.sortedMetrics = this.metricJsonObj.slice();
+        this.sortMetrics(this.initial_sort);
         //this.initTeamForm(this.teamChoices);
         //this.teamChoicesCount = this.iterateTeam(this.jsonObj, this.teamChoices);
       },
@@ -118,9 +123,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   sortMetrics(sort: Sort) {
-    console.log('hi');
+    console.log(sort);
     const metrics = this.metricJsonObj.slice();
-    if(!sort.active || sort.direction === '') {
+    if (!sort.active || sort.direction === '') {
       this.sortedMetrics = metrics;
       return;
     }
@@ -128,7 +133,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.sortedMetrics = metrics.sort((a, b) => {
       const isAscending = sort.direction === 'asc';
 
-      switch(sort.active) {
+      switch (sort.active) {
         case 'phu': return this.compareData(a.phu, b.phu, 'string', isAscending);
         case 'rt': return this.compareData(a.rt, b.rt, 'number', isAscending);
         case 'new': return this.compareData(a.weekly, b.weekly, 'number', isAscending);
@@ -148,7 +153,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       case 'string': return (a < b ? -1 : 1) *(isAscending ? 1: -1);
       case 'number': return (((Number(a) < Number(b)) || (b === 'nan')) ? -1 : 1) *(isAscending ? 1: -1);
       default: return 0;
-    } 
+    }
   }
 
   private refresh_layout(width) {

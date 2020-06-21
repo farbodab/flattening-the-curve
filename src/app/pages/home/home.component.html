@@ -54,32 +54,55 @@
                 </div>
                 <div id="vizContainer"></div>
             </div>
-            <div>
-                <table matSort (matSortChange)="sortMetrics($event)" style="width: 100%">
+            <div *ngIf="is_full" class="table-container">
+                <div class="scorecard-header">Ontario's Reopening Metrics</div>
+                <table class="table-styling">
+                    <tr>
+                        <th class="ontario-header-styling top-category" colspan="2">Pandemic Monitoring</th>
+                        <th class="ontario-header-styling top-category" colspan="2">Response Monitoring</th>
+                        <th class="ontario-header-styling top-category" colspan="2">Response Capacity</th>
+                    </tr>
+                    <tr class="ontario-row-styling">
+                        <td class="center-cell" style="width: 10%; background-color: #b2eda4">0.74</td>
+                        <td class="center-cell" style="background-color: #b2eda4">RT Value</td>
+                        <td class="center-cell" style="width: 10%; background-color: #b2eda4">42%</td>
+                        <td class="center-cell" style="background-color: #b2eda4">Testing Percentage &lt; 24h</td>
+                        <td class="center-cell" style="width: 10%; background-color: #b2eda4" rowspan="2">21%</td>
+                        <td class="center-cell" style="background-color: #b2eda4"rowspan="2">Total ICU Bed Occupied Percentage</td>
+                    </tr>
+                    <tr class="ontario-row-styling">
+                        <td class="center-cell" style="width: 10%; background-color: #b2eda4">236</td>
+                        <td class="center-cell" style="background-color: #b2eda4">Weekly New Cases</td>
+                        <td class="center-cell" style="width: 10%; background-color: #b2eda4">40%</td>
+                        <td class="center-cell" style="background-color: #b2eda4">Tracing Percentage &lt; 24h</td>
+                    </tr>
+                </table>
+                <div class="scorecard-header">PHU Performance Overview by Metrics</div>
+                <table matSort (matSortChange)="sortMetrics($event)" class="table-styling">
                     <tr>
                         <th></th>
-                        <th colspan="2">Pandemic Monitoring</th>
-                        <th colspan="2">Response Monitoring</th>
-                        <th>Response Capacity</th>
-                        <th>Stages</th>
+                        <th colspan="2" class="top-category">Pandemic Monitoring</th>
+                        <th colspan="2"class="top-category">Response Monitoring</th>
+                        <th class="top-category">Response Capacity</th>
+                        <th class="top-category">Stages</th>
                     </tr>
                     <tr>
-                        <th mat-sort-header="phu" class="first-col-styling">PHU</th>
-                        <th mat-sort-header="rt">RT</th>
-                        <th mat-sort-header="new">Weekly New Cases</th>
-                        <th mat-sort-header="testing">Testing % 24h</th>
-                        <th mat-sort-header="tracing">Tracing % 24h</th>
-                        <th mat-sort-header="icu">Total ICU Bed Occupied %</th>
-                        <th mat-sort-header="stage">Stage</th>
+                        <th mat-sort-header="phu" class="first-col-styling header-styling black-cell">PHU</th>
+                        <th mat-sort-header="rt" class="header-styling black-cell">RT</th>
+                        <th mat-sort-header="new" class="header-styling black-cell">Weekly New Cases</th>
+                        <th mat-sort-header="testing" class="header-styling black-cell">Testing % &lt; 24h</th>
+                        <th mat-sort-header="tracing" class="header-styling black-cell">Tracing % &lt; 24h</th>
+                        <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Bed Occupied %</th>
+                        <th mat-sort-header="stage" class="header-styling black-cell">Stage</th>
                     </tr>
-                    <tr *ngFor="let row of sortedMetrics">
-                        <td class="first-col-cell">{{row.phu}}</td>
-                        <td>{{row.rt === 'nan' ? 'N/A' : row.rt}}</td>
-                        <td>{{row.weekly === 'nan' ? 'N/A' : row.weekly}}</td>
-                        <td>{{row.testing === 'nan' ? 'N/A' : row.testing}}</td>
-                        <td>{{row.testing === 'nan' ? 'N/A' : row.testing}}</td>
-                        <td>{{row.icu === 'nan' ? 'N/A' : row.icu}}</td>
-                        <td>{{row.stage === 'nan' ? 'N/A' : row.stage}}</td>
+                    <tr *ngFor="let row of sortedMetrics; index as index" class="row-styling" [style.background-color]="index % 2 === 0 ? '#ffffff' : '#F2F2F2'">
+                        <td class="first-col-cell" [title]="row.phu">{{row.phu}}</td>
+                        <td [ngClass]="{'black-cell': row.rt === 'nan'}" class="center-cell">{{row.rt === 'nan' ? 'N/A' : row.rt}}</td>
+                        <td [ngClass]="{'black-cell': row.weekly === 'nan'}" class="center-cell">{{row.weekly === 'nan' ? 'N/A' : row.weekly}}</td>
+                        <td [ngClass]="{'black-cell': row.testing === 'nan'}" class="center-cell">{{row.testing === 'nan' ? 'N/A' : (row.testing+"%")}}</td>
+                        <td [ngClass]="{'black-cell': row.testing === 'nan'}" class="center-cell">{{row.testing === 'nan' ? 'N/A' : row.testing}}</td>
+                        <td [ngClass]="{'black-cell': row.icu === 'nan'}" class="center-cell">{{row.icu === 'nan' ? 'N/A' : row.icu}}</td>
+                        <td [ngClass]="{'black-cell': row.staging === 'nan'}" class="center-cell">{{row.stage === 'nan' ? 'N/A' : row.stage}}</td>
                     </tr>
                 </table>
             </div>
