@@ -65,7 +65,7 @@
                     <tr class="ontario-row-styling">
                         <td class="center-cell" style="width: 10%; background-color: #b2eda4">{{ontarioObj.rt}}</td>
                         <td class="center-cell" style="background-color: #b2eda4">RT Value</td>
-                        <td class="center-cell" style="width: 10%; background-color: #b2eda4">{{ontarioObj.testing}}
+                        <td class="center-cell" [ngClass]="{'black-cell': ontarioObj.testing === 'nan'}" style="width: 10%;">{{ontarioObj.testing === 'nan' ? 'N/A' : ontarioObj.testing}}
                         </td>
                         <td class="center-cell" style="background-color: #b2eda4">Testing Percentage &lt; 24h</td>
                         <td class="center-cell" style="width: 10%; background-color: #b2eda4" rowspan="2">
@@ -76,7 +76,7 @@
                     <tr class="ontario-row-styling">
                         <td class="center-cell" style="width: 10%; background-color: #b2eda4">{{ontarioObj.weekly}}</td>
                         <td class="center-cell" style="background-color: #b2eda4">Weekly New Cases</td>
-                        <td class="center-cell" style="width: 10%; background-color: #b2eda4">{{ontarioObj.testing}}
+                        <td class="center-cell" [ngClass]="{'black-cell': ontarioObj.tracing === 'nan'}" style="width: 10%;">{{ontarioObj.tracing === 'nan' ? 'N/A' : ontarioObj.tracing}}
                         </td>
                         <td class="center-cell" style="background-color: #b2eda4">Tracing Percentage &lt; 24h</td>
                     </tr>
@@ -137,14 +137,14 @@
                         <th colspan="2" class="ontario-header-styling top-category" colspan="2">Response Monitoring</th>
                     </tr>
                     <tr class="ontario-row-styling">
-                        <td class="center-cell" style="width: 10%; background-color: #b2eda4">{{ontarioObj.testing}}
+                        <td class="center-cell" [ngClass]="{'black-cell': ontarioObj.testing === 'nan'}" style="width: 10%;">{{ontarioObj.testing === 'nan' ? 'N/A' : ontarioObj.testing}}
                         </td>
-                        <td class="center-cell" style="background-color: #b2eda4">Testing Percentage &lt; 24h</td>
+                        <td class="center-cell">Testing Percentage &lt; 24h</td>
                     </tr>
                     <tr class="ontario-row-styling">
-                        <td class="center-cell" style="width: 10%; background-color: #b2eda4">{{ontarioObj.testing}}
+                        <td class="center-cell" [ngClass]="{'black-cell': ontarioObj.tracing === 'nan'}" style="width: 10%;">{{ontarioObj.tracing === 'nan' ? 'N/A' : ontarioObj.tracing}}
                         </td>
-                        <td class="center-cell" style="background-color: #b2eda4">Tracing Percentage &lt; 24h</td>
+                        <td class="center-cell">Tracing Percentage &lt; 24h</td>
                     </tr>
                 </table>
                 <table *ngIf="ontarioObj.rt !== null" class="mobile-ontario-table">

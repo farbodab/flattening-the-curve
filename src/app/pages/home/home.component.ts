@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     rt: null,
     weekly: null,
     testing: null,
+    tracing: null,
     icu: null,
     stage: null
   };

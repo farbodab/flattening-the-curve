@@ -743,7 +743,7 @@
         margin-bottom: 20px !important;
         width: 90%;
         margin: auto;
-        border: 1px solid black;
+        //border: 1px solid black;
     }
 
     .mobile-phu-header {
@@ -763,10 +763,12 @@
     .mobile-header-cell {
         width: 50%;
         padding-left: 10px;
+        height: 20px;
     }
 
     .mobile-data-cell {
         width: 50%;
+        height: 20px;
     }
 
     .scorecard-header {
