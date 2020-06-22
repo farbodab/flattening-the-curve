@@ -465,10 +465,18 @@
 
 .top-category {
     background-color: #666666;
-    border-left: 1px solid #ffffff;
-    border-right: 1px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #ffffff;
     height: 55px;
     color: #ffffff;
+}
+
+.border-left-white {
+    border-left: 2px solid #ffffff;
+}
+
+.border-right-white {
+    border-right: 2px solid #ffffff;
 }
 
 ::ng-deep {
@@ -773,5 +781,9 @@
 
     .scorecard-header {
         padding: 15px 0;
+    }
+
+    .top-category {
+        border: none;
     }
 }

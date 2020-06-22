@@ -64,21 +64,21 @@
                     </tr>
                     <tr class="ontario-row-styling">
                         <td class="center-cell" style="width: 10%; background-color: #b2eda4">{{ontarioObj.rt}}</td>
-                        <td class="center-cell" style="background-color: #b2eda4">RT Value</td>
-                        <td class="center-cell" [ngClass]="{'black-cell': ontarioObj.testing === 'nan'}" style="width: 10%;">{{ontarioObj.testing === 'nan' ? 'N/A' : ontarioObj.testing}}
+                        <td class="center-cell border-right-white" style="background-color: #b2eda4">RT Value</td>
+                        <td class="center-cell border-left-white" [ngClass]="{'black-cell': ontarioObj.testing === 'nan'}" style="width: 10%;">{{ontarioObj.testing === 'nan' ? 'N/A' : ontarioObj.testing}}
                         </td>
-                        <td class="center-cell" style="background-color: #b2eda4">Testing Percentage &lt; 24h</td>
-                        <td class="center-cell" style="width: 10%; background-color: #b2eda4" rowspan="2">
+                        <td class="center-cell border-right-white" style="background-color: #b2eda4">Testing Percentage &lt; 24h</td>
+                        <td class="center-cell border-left-white" style="width: 10%; background-color: #b2eda4" rowspan="2">
                             {{ontarioObj.icu}}</td>
                         <td class="center-cell" style="background-color: #b2eda4" rowspan="2">Total ICU Bed Occupied
                             Percentage</td>
                     </tr>
                     <tr class="ontario-row-styling">
                         <td class="center-cell" style="width: 10%; background-color: #b2eda4">{{ontarioObj.weekly}}</td>
-                        <td class="center-cell" style="background-color: #b2eda4">Weekly New Cases</td>
-                        <td class="center-cell" [ngClass]="{'black-cell': ontarioObj.tracing === 'nan'}" style="width: 10%;">{{ontarioObj.tracing === 'nan' ? 'N/A' : ontarioObj.tracing}}
+                        <td class="center-cell border-right-white" style="background-color: #b2eda4">Weekly New Cases</td>
+                        <td class="center-cell border-left-white" [ngClass]="{'black-cell': ontarioObj.tracing === 'nan'}" style="width: 10%;">{{ontarioObj.tracing === 'nan' ? 'N/A' : ontarioObj.tracing}}
                         </td>
-                        <td class="center-cell" style="background-color: #b2eda4">Tracing Percentage &lt; 24h</td>
+                        <td class="center-cell border-right-white" style="background-color: #b2eda4">Tracing Percentage &lt; 24h</td>
                     </tr>
                 </table>
                 <div class="scorecard-header">PHU Performance Overview by Metrics</div>
