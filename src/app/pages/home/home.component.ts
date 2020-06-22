@@ -37,15 +37,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
     icu: null,
     stage: null
   };
-
-  phus = [
-    {phu: 'Toronto', rt: 0.6, new: 15, testing: 0.27, testingPercentage: '27%', tracing: 0.53, tracingPercentage: '53%', icu: 0.66, icuPercentage: '66%', stage: 2},
-    {phu: 'Lambton', rt: 1.2, new: 43, testing: 0.34, testingPercentage: '34%', tracing: 0.22, tracingPercentage: '22%', icu: 0.71, icuPercentage: '71%', stage: 1},
-    {phu: 'Porcupine', rt: 1.4, new: 90, testing: 0.67, testingPercentage: '67%', tracing: 0.61, tracingPercentage: '61%', icu: 0.55, icuPercentage: '55%', stage: 3},
-    {phu: 'Brant County', rt: 0.3, new: 56, testing: 0.15, testingPercentage: '15%', tracing: 0.37, tracingPercentage: '37%', icu: 0.73, icuPercentage: '73%', stage: 3},
-    {phu: 'Refrew County', rt: 0.82, new: 22, testing: 0.83, testingPercentage: '83%', tracing: 0.46, tracingPercentage: '46%', icu: 0.41, icuPercentage: '41%', stage: 2},
-  ];
-
   sortedMetrics: any[];
 
   constructor(private host_service: HostService, private api_service: ApiService) {
@@ -153,7 +144,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         case 'rt': return this.compareData(a.rt, b.rt, 'number', isAscending);
         case 'new': return this.compareData(a.weekly, b.weekly, 'number', isAscending);
         case 'testing': return this.compareData(a.testing, b.testing, 'number', isAscending);
-        case 'tracing': return this.compareData(a.testing, b.testing, 'number', isAscending);
+        case 'tracing': return this.compareData(a.tracing, b.tracing, 'number', isAscending);
         case 'icu': return this.compareData(a.icu, b.icu, 'number', isAscending);
         case 'stage': return this.compareData(a.stage, b.stage, 'number', isAscending);
         default: return 0;

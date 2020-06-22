@@ -65,15 +65,19 @@
                     <tr class="ontario-row-styling">
                         <td class="center-cell" style="width: 10%; background-color: #b2eda4">{{ontarioObj.rt}}</td>
                         <td class="center-cell" style="background-color: #b2eda4">RT Value</td>
-                        <td class="center-cell" style="width: 10%; background-color: #b2eda4">{{ontarioObj.testing}}</td>
+                        <td class="center-cell" style="width: 10%; background-color: #b2eda4">{{ontarioObj.testing}}
+                        </td>
                         <td class="center-cell" style="background-color: #b2eda4">Testing Percentage &lt; 24h</td>
-                        <td class="center-cell" style="width: 10%; background-color: #b2eda4" rowspan="2">{{ontarioObj.icu}}</td>
-                        <td class="center-cell" style="background-color: #b2eda4"rowspan="2">Total ICU Bed Occupied Percentage</td>
+                        <td class="center-cell" style="width: 10%; background-color: #b2eda4" rowspan="2">
+                            {{ontarioObj.icu}}</td>
+                        <td class="center-cell" style="background-color: #b2eda4" rowspan="2">Total ICU Bed Occupied
+                            Percentage</td>
                     </tr>
                     <tr class="ontario-row-styling">
                         <td class="center-cell" style="width: 10%; background-color: #b2eda4">{{ontarioObj.weekly}}</td>
                         <td class="center-cell" style="background-color: #b2eda4">Weekly New Cases</td>
-                        <td class="center-cell" style="width: 10%; background-color: #b2eda4">{{ontarioObj.testing}}</td>
+                        <td class="center-cell" style="width: 10%; background-color: #b2eda4">{{ontarioObj.testing}}
+                        </td>
                         <td class="center-cell" style="background-color: #b2eda4">Tracing Percentage &lt; 24h</td>
                     </tr>
                 </table>
@@ -82,7 +86,7 @@
                     <tr>
                         <th></th>
                         <th colspan="2" class="top-category">Pandemic Monitoring</th>
-                        <th colspan="2"class="top-category">Response Monitoring</th>
+                        <th colspan="2" class="top-category">Response Monitoring</th>
                         <th class="top-category">Response Capacity</th>
                         <th class="top-category">Stages</th>
                     </tr>
@@ -95,54 +99,108 @@
                         <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Bed Occupied %</th>
                         <th mat-sort-header="stage" class="header-styling black-cell">Stage</th>
                     </tr>
-                    <tr *ngFor="let row of sortedMetrics; index as index" class="row-styling" [style.background-color]="index % 2 === 0 ? '#ffffff' : '#F2F2F2'">
+                    <tr *ngFor="let row of sortedMetrics; index as index" class="row-styling"
+                        [style.background-color]="index % 2 === 0 ? '#ffffff' : '#F2F2F2'">
                         <td class="first-col-cell" [title]="row.phu">{{row.phu}}</td>
-                        <td [ngClass]="{'black-cell': row.rt === 'nan'}" class="center-cell">{{row.rt === 'nan' ? 'N/A' : row.rt}}</td>
-                        <td [ngClass]="{'black-cell': row.weekly === 'nan'}" class="center-cell">{{row.weekly === 'nan' ? 'N/A' : row.weekly}}</td>
-                        <td [ngClass]="{'black-cell': row.testing === 'nan'}" class="center-cell">{{row.testing === 'nan' ? 'N/A' : (row.testing+"%")}}</td>
-                        <td [ngClass]="{'black-cell': row.testing === 'nan'}" class="center-cell">{{row.testing === 'nan' ? 'N/A' : row.testing}}</td>
-                        <td [ngClass]="{'black-cell': row.icu === 'nan'}" class="center-cell">{{row.icu === 'nan' ? 'N/A' : row.icu}}</td>
-                        <td [ngClass]="{'black-cell': row.staging === 'nan'}" class="center-cell">{{row.stage === 'nan' ? 'N/A' : row.stage}}</td>
+                        <td [ngClass]="{'black-cell': row.rt === 'nan'}" class="center-cell">
+                            {{row.rt === 'nan' ? 'N/A' : row.rt}}</td>
+                        <td [ngClass]="{'black-cell': row.weekly === 'nan'}" class="center-cell">
+                            {{row.weekly === 'nan' ? 'N/A' : row.weekly}}</td>
+                        <td [ngClass]="{'black-cell': row.testing === 'nan'}" class="center-cell">
+                            {{row.testing === 'nan' ? 'N/A' : (row.testing+"%")}}</td>
+                        <td [ngClass]="{'black-cell': row.testing === 'nan'}" class="center-cell">
+                            {{row.tracing === 'nan' ? 'N/A' : row.tracing}}</td>
+                        <td [ngClass]="{'black-cell': row.icu === 'nan'}" class="center-cell">
+                            {{row.icu === 'nan' ? 'N/A' : row.icu}}</td>
+                        <td [ngClass]="{'black-cell': row.staging === 'nan'}" class="center-cell">
+                            {{row.stage === 'nan' ? 'N/A' : row.stage}}</td>
                     </tr>
                 </table>
             </div>
             <div *ngIf="!is_full">
-                <table *ngFor="let table of sortedMetrics" style="padding-bottom: 20px; width: 100%">
+                <div class="scorecard-header">Ontario's Reopening Metrics</div>
+                <table *ngIf="ontarioObj.rt !== null" class="mobile-ontario-table">
                     <tr>
-                        <th colspan="2">{{table.phu}}</th>
+                        <th colspan="2" class="ontario-header-styling top-category" colspan="2">Pandemic Monitoring</th>
+                    </tr>
+                    <tr class="ontario-row-styling">
+                        <td class="center-cell" style="width: 10%; background-color: #b2eda4">{{ontarioObj.rt}}</td>
+                        <td class="center-cell" style="background-color: #b2eda4">RT Value</td>
+                    </tr>
+                    <tr class="ontario-row-styling">
+                        <td class="center-cell" style="width: 10%; background-color: #b2eda4">{{ontarioObj.weekly}}</td>
+                        <td class="center-cell" style="background-color: #b2eda4">Weekly New Cases</td>
+                    </tr>
+                </table>
+                <table *ngIf="ontarioObj.rt !== null" class="mobile-ontario-table">
+                    <tr>
+                        <th colspan="2" class="ontario-header-styling top-category" colspan="2">Response Monitoring</th>
+                    </tr>
+                    <tr class="ontario-row-styling">
+                        <td class="center-cell" style="width: 10%; background-color: #b2eda4">{{ontarioObj.testing}}
+                        </td>
+                        <td class="center-cell" style="background-color: #b2eda4">Testing Percentage &lt; 24h</td>
+                    </tr>
+                    <tr class="ontario-row-styling">
+                        <td class="center-cell" style="width: 10%; background-color: #b2eda4">{{ontarioObj.testing}}
+                        </td>
+                        <td class="center-cell" style="background-color: #b2eda4">Tracing Percentage &lt; 24h</td>
+                    </tr>
+                </table>
+                <table *ngIf="ontarioObj.rt !== null" class="mobile-ontario-table">
+                    <tr>
+                        <th colspan="2" class="ontario-header-styling top-category" colspan="2">Response Capacity</th>
+                    </tr>
+                    <tr class="ontario-row-styling">
+                        <td class="center-cell" style="width: 10%; background-color: #b2eda4" rowspan="2">
+                            {{ontarioObj.icu}}</td>
+                        <td class="center-cell" style="background-color: #b2eda4" rowspan="2">Total ICU Bed Occupied
+                            Percentage</td>
+                    </tr>
+                    <tr></tr>
+                </table>
+                <div class="scorecard-header">PHU Performance Overview by Metrics</div>
+                <table *ngFor="let table of sortedMetrics" class="mobile-scorecard-table-styling">
+                    <tr>
+                        <th class="mobile-phu-header" colspan="2">{{table.phu}}</th>
                     </tr>
                     <tr>
-                        <td>Stage</td>
-                        <td>{{table.stage}}</td>
+                        <td class="mobile-header-cell">Stage</td>
+                        <td class="mobile-data-cell center-cell">{{table.stage}}</td>
                     </tr>
                     <tr>
-                        <th colspan="2">Pandemic Monitoring</th>
+                        <th class="mobile-category-header" colspan="2">Pandemic Monitoring</th>
                     </tr>
                     <tr>
-                        <td>RT</td>
-                        <td>{{table.rt}}</td>
+                        <td class="mobile-header-cell">RT</td>
+                        <td [ngClass]="{'black-cell': table.rt === 'nan'}" class="mobile-data-cell center-cell">
+                            {{table.rt === 'nan' ? 'N/A' : table.rt}}</td>
                     </tr>
                     <tr>
-                        <td>Weekly New Cases</td>
-                        <td>{{table.weekly}}</td>
+                        <td class="mobile-header-cell">Weekly New Cases</td>
+                        <td [ngClass]="{'black-cell': table.weekly === 'nan'}" class="mobile-data-cell center-cell">
+                            {{table.weekly === 'nan' ? 'N/A' : table.weekly}}</td>
                     </tr>
                     <tr>
-                        <th colspan="2">Response Monitoring</th>
+                        <th class="mobile-category-header" colspan="2">Response Monitoring</th>
                     </tr>
                     <tr>
-                        <td>Testing % &lt; 24h</td>
-                        <td>{{table.testing}}</td>
+                        <td class="mobile-header-cell">Testing % &lt; 24h</td>
+                        <td [ngClass]="{'black-cell': table.testing === 'nan'}" class="mobile-data-cell center-cell">
+                            {{table.testing === 'nan' ? 'N/A' : table.testing}}</td>
                     </tr>
                     <tr>
-                        <td>Tracing % &lt; 24h</td>
-                        <td>{{table.testing}}</td>
+                        <td class="mobile-header-cell">Tracing % &lt; 24h</td>
+                        <td [ngClass]="{'black-cell': table.tracing === 'nan'}" class="mobile-data-cell center-cell">
+                            {{table.tracing === 'nan' ? 'N/A' : table.tracing}}</td>
                     </tr>
                     <tr>
-                        <th colspan="2">Response Capacity</th>
+                        <th class="mobile-category-header" colspan="2">Response Capacity</th>
                     </tr>
                     <tr>
-                        <td>Total ICU Bed Occupied %</td>
-                        <td>{{table.icu}}</td>
+                        <td class="mobile-header-cell">Total ICU Bed Occupied %</td>
+                        <td [ngClass]="{'black-cell': table.icu === 'nan'}" class="mobile-data-cell center-cell">
+                            {{table.icu === 'nan' ? 'N/A' : table.icu}}</td>
                     </tr>
                 </table>
             </div>

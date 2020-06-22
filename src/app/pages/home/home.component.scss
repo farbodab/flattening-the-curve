@@ -732,4 +732,44 @@
         display: inline-block;
         width: 100%;
     }
+
+    .mobile-ontario-table {
+        margin-bottom: 20px !important;
+        width: 90%;
+        margin: auto;
+    }
+
+    .mobile-scorecard-table-styling {
+        margin-bottom: 20px !important;
+        width: 90%;
+        margin: auto;
+        border: 1px solid black;
+    }
+
+    .mobile-phu-header {
+        height: 30px;
+        background-color: #666666;
+        color: #ffffff;
+        font-size: 18px;
+    }
+
+    .mobile-category-header {
+        background-color: #a6a9ad;
+        color: #000000;
+        height: 25px;
+        font-size: 18px;
+    }
+
+    .mobile-header-cell {
+        width: 50%;
+        padding-left: 10px;
+    }
+
+    .mobile-data-cell {
+        width: 50%;
+    }
+
+    .scorecard-header {
+        padding: 15px 0;
+    }
 }
