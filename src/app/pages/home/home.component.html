@@ -108,7 +108,7 @@
                             {{row.weekly === 'nan' ? 'N/A' : row.weekly}}</td>
                         <td [ngClass]="{'black-cell': row.testing === 'nan'}" class="center-cell">
                             {{row.testing === 'nan' ? 'N/A' : (row.testing+"%")}}</td>
-                        <td [ngClass]="{'black-cell': row.testing === 'nan'}" class="center-cell">
+                        <td [ngClass]="{'black-cell': row.tracing === 'nan'}" class="center-cell">
                             {{row.tracing === 'nan' ? 'N/A' : row.tracing}}</td>
                         <td [ngClass]="{'black-cell': row.icu === 'nan'}" class="center-cell">
                             {{row.icu === 'nan' ? 'N/A' : row.icu}}</td>
