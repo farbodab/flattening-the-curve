@@ -704,7 +704,7 @@
     .home-page-card.which-curve {
         //background-image: url("src/assets/img/Mission_Section_Asset.svg");
         //background-repeat: no-repeat;
-        margin: 0 -40px 20px -50px;
+        margin: 0 -40px 0 -50px;
 
         #which-curve-text {
             margin-left: 80px;
@@ -742,15 +742,13 @@
     }
 
     .mobile-ontario-table {
-        margin-bottom: 20px !important;
+        margin: 20px auto;
         width: 90%;
-        margin: auto;
     }
 
     .mobile-scorecard-table-styling {
-        margin-bottom: 20px !important;
+        margin: 20px auto;
         width: 90%;
-        margin: auto;
         //border: 1px solid black;
     }
 
@@ -785,5 +783,9 @@
 
     .top-category {
         border: none;
+    }
+
+    .mobile-separator {
+        border-bottom: 2px solid #666666;
     }
 }
