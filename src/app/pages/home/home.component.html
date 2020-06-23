@@ -56,6 +56,10 @@
             </div>
             <div *ngIf="is_full" class="table-container">
                 <div class="scorecard-header">Ontario's Reopening Metrics</div>
+                <div>
+                    <mat-progress-spinner mode="indeterminate" diameter="50" style="margin: 0 auto;" *ngIf="ontarioObj.rt === null">
+                    </mat-progress-spinner>
+                </div>
                 <table *ngIf="ontarioObj.rt !== null" class="table-styling">
                     <tr>
                         <th class="ontario-header-styling top-category" colspan="2">Pandemic Monitoring</th>
@@ -90,7 +94,11 @@
                     </tr>
                 </table>
                 <div class="scorecard-header">PHU Performance Overview by Metrics</div>
-                <table matSort (matSortChange)="sortMetrics($event)" class="table-styling">
+                <div>
+                    <mat-progress-spinner mode="indeterminate" diameter="50" style="margin: 0 auto;" *ngIf="!sortedMetrics">
+                    </mat-progress-spinner>
+                </div>
+                <table matSort (matSortChange)="sortMetrics($event)" *ngIf="sortedMetrics" class="table-styling">
                     <tr>
                         <th></th>
                         <th colspan="2" class="top-category">Pandemic Monitoring</th>
@@ -127,6 +135,10 @@
             </div>
             <div *ngIf="!is_full">
                 <div class="scorecard-header">Ontario's Reopening Metrics</div>
+                <div>
+                    <mat-progress-spinner mode="indeterminate" diameter="50" style="margin: 0 auto;" *ngIf="ontarioObj.rt === null">
+                    </mat-progress-spinner>
+                </div>
                 <table *ngIf="ontarioObj.rt !== null" class="mobile-ontario-table">
                     <tr>
                         <th colspan="2" class="ontario-header-styling top-category" colspan="2">Pandemic Monitoring</th>
@@ -170,7 +182,11 @@
                     <tr></tr>
                 </table>
                 <div class="scorecard-header">PHU Performance Overview by Metrics</div>
-                <div *ngIf="dropdownSelection" style="padding-top: 10px; width: 90%; margin: auto;">
+                <div>
+                    <mat-progress-spinner mode="indeterminate" diameter="50" style="margin: 0 auto;" *ngIf="!sortedMetrics">
+                    </mat-progress-spinner>
+                </div>
+                <div *ngIf="dropdownSelection && sortedMetrics" style="padding-top: 10px; width: 90%; margin: auto;">
                     <form [formGroup]="dropdownSelection">
                         <mat-form-field style="width: 100%;">
                             <mat-label>Jump to a Specific Public Health Unit</mat-label>
