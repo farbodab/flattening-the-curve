@@ -170,8 +170,27 @@
                     <tr></tr>
                 </table>
                 <div class="scorecard-header">PHU Performance Overview by Metrics</div>
-                <div *ngFor="let table of sortedMetrics" class="mobile-separator">
-                    <table class="mobile-scorecard-table-styling">
+                <div *ngIf="dropdownSelection" style="padding-top: 10px; width: 90%; margin: auto;">
+                    <form [formGroup]="dropdownSelection">
+                        <mat-form-field style="width: 100%;">
+                            <mat-label>Jump to a Specific Public Health Unit</mat-label>
+                            <mat-select formControlName="phu" disableOptionCentering
+                                (selectionChange)="scrollTo(dropdownSelection.controls.phu.value)">
+                                <ngx-mat-select-search formControlName="searchCtrl" [placeholderLabel]="'Search...'"
+                                    [noEntriesFoundLabel]="'Not found'" name="search"></ngx-mat-select-search>
+                                <mat-option
+                                    *ngFor="let phu of phuArray |stringFilterBy:dropdownSelection.controls.searchCtrl.value:'phu'; index as index"
+                                    [value]="phu.phu">
+                                    {{phu.phu}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </form>
+    
+                    <!-- <mat-label><a target="_blank" href="https://www.phdapps.health.gov.on.ca/PHULocator/">Find a Public Health Unit</a> </mat-label> -->
+                </div>
+                <div #phuArray *ngFor="let table of sortedMetrics" class="mobile-separator">
+                    <table [id]="table.phu" class="mobile-scorecard-table-styling">
                         <tr>
                             <th class="mobile-phu-header" colspan="2">{{table.phu}}</th>
                         </tr>

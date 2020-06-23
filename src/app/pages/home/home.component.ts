@@ -1,8 +1,10 @@
-import { Component, OnInit, HostListener, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, ElementRef, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { Subscription } from 'rxjs';
 import { HostService } from '../../services/host.service';
 import { Sort } from '@angular/material';
+import { ViewportScroller } from '@angular/common';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 declare var tableau: any;
 
@@ -14,6 +16,7 @@ declare var tableau: any;
 export class HomeComponent implements OnInit, AfterViewInit {
 
   @ViewChild('MailingList', { static: false }) mailingList: ElementRef;
+  @ViewChildren('phuArray') scoreCardComponents: QueryList<any>;
 
   graph_data = null;
   ontario: any = "Ontario";
@@ -39,8 +42,152 @@ export class HomeComponent implements OnInit, AfterViewInit {
     stage: null
   };
   sortedMetrics: any[];
+  dropdownSelection: FormGroup;
 
-  constructor(private host_service: HostService, private api_service: ApiService) {
+  phuArray = [
+    {
+        phu: 'Brant County Health Unit',
+        value: 'brant_county'
+    },
+    {
+        phu: 'Chatham-Kent Health Unit',
+        value: 'chatham_kent'
+    },
+    {
+        phu: 'City of Hamilton Health Unit',
+        value: 'city_of_hamilton'
+    },
+    {
+        phu: 'City of Ottawa Health Unit',
+        value: 'city_of_ottawa'
+    },
+    {
+        phu: 'City of Toronto Health Unit',
+        value: 'city_of_toronto'
+    },
+    {
+        phu: 'Durham Regional Health Unit',
+        value: 'durham_regional'
+    },
+    {
+        phu: 'Grey Bruce Health Unit',
+        value: 'grey_bruce'
+    },
+    {
+        phu: 'Haldimand-Norfolk Health Unit',
+        value: 'haldimand_norfolk'
+    },
+    {
+        phu: 'Haliburton, Kawartha, Pine Ridge District Health Unit',
+        value: 'haliburton_kawartha_pine_ridge_district'
+    },
+    {
+        phu: 'Halton Regional Health Unit',
+        value: 'halton_regional'
+    },
+    {
+        phu: 'Hastings and Prince Edward Counties Health Unit',
+        value: 'hastings_and_prince_edward_counties'
+    },
+    {
+        phu: 'Huron County Health Unit',
+        value: 'huron_county'
+    },
+    {
+        phu: 'Kingston, Frontenac, and Lennox and Addington Health Unit',
+        value: 'kingston_frontenac_and_lennox_and_addington'
+    },
+    {
+        phu: 'Lambton Health Unit',
+        value: 'lambton'
+    },
+    {
+        phu: 'Leeds, Grenville and Lanark District Health Unit',
+        value: 'leeds_grenville_and_lanark_district'
+    },
+    {
+        phu: 'Middlesex-London Health Unit',
+        value: 'middlesex_london'
+    },
+    {
+        phu: 'Niagara Regional Area Health Unit',
+        value: 'niagara_regional_area'
+    },
+    {
+        phu: 'North Bay Parry Sound District Health Unit',
+        value: 'north_bay_parry_sound_district'
+    },
+    {
+        phu: 'Northwestern Health Unit',
+        value: 'northwestern'
+    },
+    {
+        phu: 'Peel Regional Health Unit',
+        value: 'peel_regional'
+    },
+    {
+        phu: 'Perth District Health Unit',
+        value: 'perth_district'
+    },
+    {
+        phu: 'Peterborough County–City Health Unit',
+        value: 'peterborough_county_city'
+    },
+    {
+        phu: 'Porcupine Health Unit',
+        value: 'porcupine'
+    },
+    {
+        phu: 'Renfrew County and District Health Unit',
+        value: 'renfrew_county_and_district'
+    },
+    {
+        phu: 'Simcoe Muskoka District Health Unit',
+        value: 'simcoe_muskoka_district'
+    },
+    {
+        phu: 'Southwestern Public Health Unit',
+        value: 'southwestern'
+    },
+    {
+        phu: 'Sudbury and District Health Unit',
+        value: 'sudbury_and_district'
+    },
+    {
+        phu: 'The District of Algoma Health Unit',
+        value: 'the_district_of_algoma'
+    },
+    {
+        phu: 'The Eastern Ontario Health Unit',
+        value: 'the_eastern_ontario'
+    },
+    {
+        phu: 'Thunder Bay District Health Unit',
+        value: 'thunder_bay_district'
+    },
+    {
+        phu: 'Timiskaming Health Unit',
+        value: 'timiskaming'
+    },
+    {
+        phu: 'Waterloo Health Unit',
+        value: 'waterloo'
+    },
+    {
+        phu: 'Wellington-Dufferin-Guelph Health Unit',
+        value: 'wellington_dufferin_guelph'
+    },
+    {
+        phu: 'Windsor-Essex County Health Unit',
+        value: 'windsor_essex_county'
+    },
+    {
+        phu: 'York Regional Health Unit',
+        value: 'york_regional'
+    }
+];
+
+  constructor(private host_service: HostService, private formBuilder: FormBuilder, private api_service: ApiService, private scrollIntoView: ViewportScroller) {
     this.refresh_layout(window.innerWidth);
   }
 
@@ -49,6 +196,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.refresh_layout(window.innerWidth);
     });
     this.fetchVizObj();
+    this.dropdownSelection = this.formBuilder.group({});
+    this.dropdownSelection.addControl('phu', this.formBuilder.control(''));
+    this.dropdownSelection.addControl('searchCtrl', this.formBuilder.control(''));
   }
 
   ngAfterViewInit() {
@@ -161,6 +311,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
       case 'number': return (((Number(a) < Number(b)) || (b === 'nan')) ? -1 : 1) *(isAscending ? 1: -1);
       default: return 0;
     }
+  }
+
+  scrollTo(elementPhu: string): void {
+    setTimeout(() => {
+      const index = this.phuArray.findIndex(phu => phu.phu === elementPhu);
+      this.scoreCardComponents.toArray()[index].nativeElement.scrollIntoView();
+    }, 100);
   }
 
   private refresh_layout(width) {
