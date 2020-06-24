@@ -1,5 +1,5 @@
 {
-  "env": "DEV",
+  "env": "PROD",
   "base_url": "http://flattening-the-curve-backend-staging.apps.hmf.q7z3.p1.openshiftapps.com/",
   "results_endpoint": "http://flattening-the-curve-backend-staging.apps.hmf.q7z3.p1.openshiftapps.com/covid/results",
   "phu_endpoint": "http://flattening-the-curve-backend-staging.apps.hmf.q7z3.p1.openshiftapps.com/covid/phu",
