@@ -522,7 +522,7 @@ export class GridComponent implements OnInit, AfterViewInit {
 
     routeonSelection(route: string) {
         const index = this.phuArray.findIndex(phu => phu.value === route);
-        this.headerLabel = this.phuArray[index].phu;
+       this.headerLabel = this.phuArray[index].phu;
         this.router.navigate(['/dashboard/' + route]);
     }
 
