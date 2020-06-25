@@ -57,14 +57,36 @@
             <div *ngIf="is_full" class="table-container">
                 <div class="scorecard-header">Ontario's Reopening Metrics</div>
                 <div>
-                    <mat-progress-spinner mode="indeterminate" diameter="50" style="margin: 0 auto;" *ngIf="ontarioObj.rt === null">
+                    <mat-progress-spinner mode="indeterminate" diameter="50" style="margin: 0 auto;"
+                        *ngIf="ontarioObj.rt === null">
                     </mat-progress-spinner>
                 </div>
                 <table *ngIf="ontarioObj.rt !== null" class="table-styling">
                     <tr>
-                        <th class="ontario-header-styling top-category" colspan="2">Pandemic Monitoring</th>
-                        <th class="ontario-header-styling top-category" colspan="2">Response Monitoring</th>
-                        <th class="ontario-header-styling top-category" colspan="2">Response Capacity</th>
+                        <th class="ontario-header-styling" colspan="2">
+                            <div class="ontario-header-container">
+                                <img class="ontario-header-img" src='assets/img/pandemic_monitoring.svg'>
+                                <div class="ontario-header-text">
+                                    Pandemic Monitoring
+                                </div>
+                            </div>
+                        </th>
+                        <th class="ontario-header-styling" colspan="2">
+                            <div class="ontario-header-container">
+                                <img class="ontario-header-img" src='assets/img/response_monitoring.svg'>
+                                <div class="ontario-header-text">
+                                    Response Monitoring
+                                </div>
+                            </div>
+                        </th>
+                        <th class="ontario-header-styling" colspan="2">
+                            <div class="ontario-header-container">
+                                <img class="ontario-header-img" src='assets/img/response_capacity.svg'>
+                                <div class="ontario-header-text">
+                                    Response Capacity
+                                </div>
+                            </div>
+                        </th>
                     </tr>
                     <tr class="ontario-row-styling">
                         <td class="center-cell" style="width: 10%; background-color: #b2eda4">{{ontarioObj.rt}}</td>
@@ -95,8 +117,12 @@
                 </table>
                 <div class="scorecard-header">PHU Performance Overview by Metrics</div>
                 <div>
-                    <mat-progress-spinner mode="indeterminate" diameter="50" style="margin: 0 auto;" *ngIf="!sortedMetrics">
+                    <mat-progress-spinner mode="indeterminate" diameter="50" style="margin: 0 auto;"
+                        *ngIf="!sortedMetrics">
                     </mat-progress-spinner>
+                </div>
+                <div *ngIf="sortedMetrics">
+                    <img class="trend-img" src='assets/img/trend.png'>
                 </div>
                 <table matSort (matSortChange)="sortMetrics($event)" *ngIf="sortedMetrics" class="table-styling">
                     <tr>
@@ -125,7 +151,8 @@
                         <td [ngClass]="{'black-cell': row.testing === 'nan'}" class="center-cell">
                             {{row.testing === 'nan' ? 'N/A' : (row.testing+"%")}}</td>
                         <td [ngClass]="{'black-cell': row.tracing === 'nan'}" class="center-cell">
-                            {{row.tracing === 'nan' ? 'N/A' : row.tracing}}</td>
+                            <div *ngIf="row.tracing !== 'nan'">{{row.tracing}}</div>
+                            <img *ngIf="row.tracing === 'nan'" class="missing-data-icon ontario-header-img" src='assets/img/missing_data.svg'>
                         <td [ngClass]="{'black-cell': row.icu === 'nan'}" class="center-cell">
                             {{row.icu === 'nan' ? 'N/A' : row.icu}}</td>
                         <td [ngClass]="{'black-cell': row.staging === 'nan'}" class="center-cell">
@@ -136,12 +163,20 @@
             <div *ngIf="!is_full">
                 <div class="scorecard-header">Ontario's Reopening Metrics</div>
                 <div>
-                    <mat-progress-spinner mode="indeterminate" diameter="50" style="margin: 0 auto;" *ngIf="ontarioObj.rt === null">
+                    <mat-progress-spinner mode="indeterminate" diameter="50" style="margin: 0 auto;"
+                        *ngIf="ontarioObj.rt === null">
                     </mat-progress-spinner>
                 </div>
                 <table *ngIf="ontarioObj.rt !== null" class="mobile-ontario-table">
                     <tr>
-                        <th colspan="2" class="ontario-header-styling top-category" colspan="2">Pandemic Monitoring</th>
+                        <th colspan="2" class="ontario-header-styling top-category" colspan="2">
+                            <div class="ontario-header-container">
+                                <img class="ontario-header-img" src='assets/img/pandemic_monitoring.svg'>
+                                <div class="ontario-header-text">
+                                    Pandemic Monitoring
+                                </div>
+                            </div>
+                        </th>
                     </tr>
                     <tr class="ontario-row-styling">
                         <td class="center-cell" style="width: 10%; background-color: #b2eda4">{{ontarioObj.rt}}</td>
@@ -154,7 +189,14 @@
                 </table>
                 <table *ngIf="ontarioObj.rt !== null" class="mobile-ontario-table">
                     <tr>
-                        <th colspan="2" class="ontario-header-styling top-category" colspan="2">Response Monitoring</th>
+                        <th colspan="2" class="ontario-header-styling top-category" colspan="2">
+                            <div class="ontario-header-container">
+                                <img class="ontario-header-img" src='assets/img/response_monitoring.svg'>
+                                <div class="ontario-header-text">
+                                    Response Monitoring
+                                </div>
+                            </div>
+                        </th>
                     </tr>
                     <tr class="ontario-row-styling">
                         <td class="center-cell" [ngClass]="{'black-cell': ontarioObj.testing === 'nan'}"
@@ -171,7 +213,14 @@
                 </table>
                 <table *ngIf="ontarioObj.rt !== null" class="mobile-ontario-table">
                     <tr>
-                        <th colspan="2" class="ontario-header-styling top-category" colspan="2">Response Capacity</th>
+                        <th colspan="2" class="ontario-header-styling top-category" colspan="2">
+                            <div class="ontario-header-container">
+                                <img class="ontario-header-img" src='assets/img/response_capacity.svg'>
+                                <div class="ontario-header-text">
+                                    Response Capacity
+                                </div>
+                            </div>
+                        </th>
                     </tr>
                     <tr class="ontario-row-styling">
                         <td class="center-cell" style="width: 10%; background-color: #b2eda4" rowspan="2">
@@ -183,10 +232,14 @@
                 </table>
                 <div class="scorecard-header">PHU Performance Overview by Metrics</div>
                 <div>
-                    <mat-progress-spinner mode="indeterminate" diameter="50" style="margin: 0 auto;" *ngIf="!sortedMetrics">
+                    <mat-progress-spinner mode="indeterminate" diameter="50" style="margin: 0 auto;"
+                        *ngIf="!sortedMetrics">
                     </mat-progress-spinner>
                 </div>
                 <div *ngIf="dropdownSelection && sortedMetrics" style="padding-top: 10px; width: 90%; margin: auto;">
+                    <div>
+                        <img class="trend-img" src='assets/img/trend.png'>
+                    </div>
                     <form [formGroup]="dropdownSelection">
                         <mat-form-field style="width: 100%;">
                             <mat-label>Jump to a Specific Public Health Unit</mat-label>
@@ -202,7 +255,7 @@
                             </mat-select>
                         </mat-form-field>
                     </form>
-    
+
                     <!-- <mat-label><a target="_blank" href="https://www.phdapps.health.gov.on.ca/PHULocator/">Find a Public Health Unit</a> </mat-label> -->
                 </div>
                 <div #phuArray *ngFor="let table of sortedMetrics" class="mobile-separator">
@@ -223,7 +276,7 @@
                                 {{table.rt === 'nan' ? 'N/A' : table.rt}}</td>
                         </tr>
                         <tr>
-                            <td class="mobile-header-cell">Weekly New Cases</td>
+                            <td class="mobile-header-cell alternate-row">Weekly New Cases</td>
                             <td [ngClass]="{'black-cell': table.weekly === 'nan'}" class="mobile-data-cell center-cell">
                                 {{table.weekly === 'nan' ? 'N/A' : table.weekly}}</td>
                         </tr>
@@ -237,7 +290,7 @@
                                 {{table.testing === 'nan' ? 'N/A' : table.testing}}</td>
                         </tr>
                         <tr>
-                            <td class="mobile-header-cell">Tracing % &lt; 24h</td>
+                            <td class="mobile-header-cell alternate-row">Tracing % &lt; 24h</td>
                             <td [ngClass]="{'black-cell': table.tracing === 'nan'}"
                                 class="mobile-data-cell center-cell">
                                 {{table.tracing === 'nan' ? 'N/A' : table.tracing}}</td>
@@ -253,7 +306,26 @@
                     </table>
                 </div>
             </div>
-            <div class="card-container">
+            <div class="card-container scorecard-info-container">
+                <div class="mobile-scorecard-container">
+                    <div class="scorecard-info-header">Data Sources</div>
+                </div>
+                <div class="mobile-scorecard-container">
+                    <div class="scorecard-info-header">A Note On Missing Data</div>
+                    <div style="display: flex" [style.flex-wrap]="!is_full ? 'wrap': 'none'">
+                        <div class="missing-data-icon-container">
+                            <img class="missing-data-icon ontario-header-img" src='assets/img/missing_data.svg'>
+                            <div class="missing-data-header">A data blackout</div>
+                        </div>
+                        <div [style.width]="!is_full ? '100%' : 'auto'">
+                            A number of key data items in the scorecard above, such as contact tracing capacity, are
+                            listed as not available. Data for these crucial indicators is currently not available or
+                            not reported publicly.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-container footer-info-container">
                 <div class='half-width-left'>
                     <div id='explore-data-cell'>
                         <div class="data-cell-container">
@@ -274,56 +346,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div style='text-align: center;'>
-                <div routerLink='/analysis' id='explore-data-btn'>Explore Analysis</div>
-            </div> -->
-                <!-- </div>
-            <div class="home-page-card mission-background">
-                <div class="inner-mission-container">
-                    <div class="mission-header">On A Mission Together</div>
-                    <p id='who-what-content' class='mat-headline'>
-                        We are physicians, medical students, computational health researchers, designers and
-                        epidemiologists
-                        rapidly
-                        filtering and presenting emergent COVID-19 data to help Ontario <a class="home-page-link"
-                            href="https://twitter.com/hashtag/FlattenTheCurve?src=hashtag_click"
-                            target="_blank">#FlattenTheCurve</a>.
-                        <br><br>
-                        We connect experts and present data in an easy to digest, actionable way to help Ontario's
-                        public
-                        leaders
-                        and individuals act decisively as evidence grows and time ticks by.
-                    </p>
-                </div>
-            </div>
-
-            <div class="mail-container">
-                <div class="inner-mail-container" style="display: flex;">
-                    <div *ngIf="is_full" style="display: flex;">
-                        <div class="mail-icon" style="width: 30%; padding-left: 30px; padding-right: 10px">
-                            <img class='' src='assets/img/SignUpMail.svg'>
-                        </div>
-                        <div class="mail-text" style="width: 65%; text-align: left">
-                            <div class="sign-up-styling">Sign up below for updates on new visualizations we release!
-                            </div>
-                            <button class="home-page-button mail-btn" (click)='on_sign_up_pressed()'>Join</button>
-                            <a #MailingList href="https://www.surveymonkey.com/r/Y7X86JL" target="_blank"></a>
-                        </div>
-                    </div>
-                    <div *ngIf="!is_full">
-                        <div class="mail-text">
-                            <div class="sign-up-styling">Sign up below for updates on new visualizations we release!
-                            </div>
-                        </div>
-                        <div class="mail-icon">
-                            <img class='' src='assets/img/SignUpMail.svg'>
-                        </div>
-                        <button class="home-page-button mail-btn" (click)='on_sign_up_pressed()'>Join</button>
-                        <a #MailingList href="https://www.surveymonkey.com/r/Y7X86JL" target="_blank"></a>
-                    </div>
-                </div>
-
-            </div> -->
             </div>
         </div>
     </div>

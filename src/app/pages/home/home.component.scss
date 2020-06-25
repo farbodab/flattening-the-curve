@@ -1,4 +1,4 @@
-.header-contaier {
+.header-container {
     display: flex;
     flex-wrap: nowrap;
 }
@@ -152,6 +152,10 @@
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
     border-radius: 6px;
     padding: 0 33px 0 33px;
+}
+
+.footer-info-container {
+    margin: 48px 0;
 }
 
 .container-divider {
@@ -398,6 +402,30 @@
 
 .ontario-header-styling {
     width: 33%;
+    height: 110px;
+    background-color: #595959;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #ffffff;
+}
+
+.ontario-header-text {
+    color: #ffffff;
+    line-height: 100px;
+}
+
+.ontario-header-img {
+    padding: 0px 20px;
+}
+
+.ontario-header-container {
+    display: flex;
+    height: 100%;
+}
+
+.trend-img {
+    display: flex;
+    margin-left: auto;
+    padding-top: 30px;
 }
 
 .ontario-row-styling {
@@ -409,7 +437,7 @@
 }
 
 .table-styling {
-    padding: 30px 0;
+    padding: 16px 0 59px 0;
     width: 100%;
 }
 
@@ -426,13 +454,44 @@
 }
 
 .scorecard-header {
-    font-size: 24px;
+    font-size: 28px;
+    line-height: 28px;
     text-align: center;
+}
+
+.missing-data-icon {
+    width: 35px;
+    height: 100%;
+}
+
+.missing-data-icon-container {
+    height: 75px;
+    background-color: #434241;
+    display: flex;
+    width: 375px;
+    margin-right: 24px;
+}
+
+.missing-data-header {
+    color: #ffffff;
+    line-height: 70px
+}
+
+.scorecard-info-header {
+    font-size: 20px;
+    line-height: 24px;
+    padding: 24px 0;
+}
+
+.scorecard-info-container {
+    height: auto;
+    padding-bottom: 45px;
 }
 
 .header-styling {
     min-width: 100px;
     text-align: center;
+    height: 65px;
 
     ::ng-deep {
         .mat-sort-header-container {
@@ -445,7 +504,7 @@
     height: 35px;
 }
 .black-cell {
-    background-color: #000000;
+    background-color: #434241;
     color: #ffffff;
     border-left: 1px solid #ffffff;
     border-right: 1px solid #ffffff;
@@ -464,10 +523,10 @@
 }
 
 .top-category {
-    background-color: #666666;
-    border-left: 2px solid #ffffff;
-    border-right: 2px solid #ffffff;
-    height: 55px;
+    background-color: #595959;
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #ffffff;
+    height: 75px;
     color: #ffffff;
 }
 
@@ -753,36 +812,89 @@
     }
 
     .mobile-phu-header {
-        height: 30px;
-        background-color: #666666;
+        height: 32px;
+        background-color: #434241;
         color: #ffffff;
-        font-size: 18px;
+        font-size: 14px;
     }
 
     .mobile-category-header {
-        background-color: #a6a9ad;
-        color: #000000;
-        height: 25px;
-        font-size: 18px;
+        background-color: #595959;
+        color: #ffffff;
+        height: 32px;
+        font-size: 16px;
+        text-align: left;
+        padding-left: 10px
     }
 
     .mobile-header-cell {
-        width: 50%;
         padding-left: 10px;
-        height: 20px;
+        height: 29px;
+        font-size: 14px;
+        color: #2B2B2B;
+        width: 55%;
     }
 
     .mobile-data-cell {
-        width: 50%;
-        height: 20px;
+        width: 45%;
+        height: 29px;
+    }
+
+    .ontario-header-img {
+        height: 35px;
+        padding-top: 10px;
+    }
+
+    .ontario-header-text {
+        line-height: 50px;
     }
 
     .scorecard-header {
-        padding: 15px 0;
+        padding: 30px 0 15px 0;
+        font-size: 20px;
+    }
+
+    .missing-data-icon-container {
+        width: 100%;
+        margin: 0 0 20px 0;
+    }
+
+    .missing-data-icon.ontario-header-img {
+        padding-top: 0;
+        height: 100%;
+    }
+
+    .card-container.scorecard-info-container {
+        width: 90%;
+        margin: 20px auto;
+        padding: 0;
+    }
+
+    .mobile-scorecard-container {
+        padding: 20px;
+    }
+
+    .scorecard-info-header {
+        padding: 0 0 24px 0;
     }
 
     .top-category {
         border: none;
+        height: 55px;
+    }
+
+    .trend-img {
+        max-width: 100%;
+        margin-left: -10px;
+        padding: 0 0 10px 0;
+    }
+
+    .footer-info-container {
+        margin-bottom: 16px;
+    }
+
+    .alternate-row {
+        background: #F2F2F2;
     }
 
     .mobile-separator {
