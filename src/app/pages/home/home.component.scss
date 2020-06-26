@@ -408,6 +408,14 @@
     border-right: 2px solid #ffffff;
 }
 
+.ontario-header-styling.no-left-border {
+    border-left: none;
+}
+
+.ontario-header-styling.no-right-border {
+    border-right: none;
+}
+
 .ontario-header-text {
     color: #ffffff;
     line-height: 100px;
@@ -459,6 +467,18 @@
     text-align: center;
 }
 
+.green-cell {
+    background-color: #00ce15;
+}
+
+.red-cell {
+    background-color: #ef7959;
+}
+
+.yellow-cell {
+    background-color: #f6c427;
+}
+
 .missing-data-icon {
     width: 35px;
     height: 100%;
@@ -506,14 +526,30 @@
 .black-cell {
     background-color: #434241;
     color: #ffffff;
-    border-left: 1px solid #ffffff;
-    border-right: 1px solid #ffffff;
 
     ::ng-deep {
         .mat-sort-header-button {
             color: #ffffff !important;
         }
     }
+}
+
+.cell-border {
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #ffffff;
+}
+
+.cell-border.no-left-border {
+    border-left: none;
+}
+
+.cell-border.no-right-border {
+    border-right: none;
+}
+
+.black-cell.header-styling {
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #ffffff; 
 }
 
 ::ng-deep {

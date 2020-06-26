@@ -63,7 +63,7 @@
                 </div>
                 <table *ngIf="ontarioObj.rt !== null" class="table-styling">
                     <tr>
-                        <th class="ontario-header-styling" colspan="2">
+                        <th class="no-left-border ontario-header-styling" colspan="2">
                             <div class="ontario-header-container">
                                 <img class="ontario-header-img" src='assets/img/pandemic_monitoring.svg'>
                                 <div class="ontario-header-text">
@@ -79,7 +79,7 @@
                                 </div>
                             </div>
                         </th>
-                        <th class="ontario-header-styling" colspan="2">
+                        <th class="no-right-border ontario-header-styling" colspan="2">
                             <div class="ontario-header-container">
                                 <img class="ontario-header-img" src='assets/img/response_capacity.svg'>
                                 <div class="ontario-header-text">
@@ -89,29 +89,29 @@
                         </th>
                     </tr>
                     <tr class="ontario-row-styling">
-                        <td class="center-cell" style="width: 10%; background-color: #b2eda4">{{ontarioObj.rt}}</td>
-                        <td class="center-cell border-right-white" style="background-color: #b2eda4">RT Value</td>
+                        <td class="center-cell" [ngClass]="{'black-cell': ontarioObj.rt === 'nan', 'green-cell': ontarioObj.rt < 0.5, 'yellow-cell': 0.5 <= ontarioObj.rt && ontarioObj.rt < 1.0, 'red-cell': 1.0 <= ontarioObj.rt}" style="width: 10%;">{{ontarioObj.rt}}</td>
+                        <td class="center-cell border-right-white" [ngClass]="{'black-cell': ontarioObj.rt === 'nan', 'green-cell': ontarioObj.rt < 0.5, 'yellow-cell': 0.5 <= ontarioObj.rt && ontarioObj.rt < 1.0, 'red-cell': 1.0 <= ontarioObj.rt}">RT Value</td>
                         <td class="center-cell border-left-white"
-                            [ngClass]="{'black-cell': ontarioObj.testing === 'nan'}" style="width: 10%;">
-                            {{ontarioObj.testing === 'nan' ? 'N/A' : ontarioObj.testing}}
+                        [ngClass]="{'black-cell': ontarioObj.testing === 'nan', 'green-cell': ontarioObj.testing > 95, 'yellow-cell': 81 <= ontarioObj.testing && ontarioObj.testing <= 95, 'red-cell': ontarioObj.testing < 80}" style="width: 10%;">
+                            {{ontarioObj.testing === 'nan' ? 'N/A' : ontarioObj.testing+'%'}}
                         </td>
-                        <td class="center-cell border-right-white" style="background-color: #b2eda4">Testing Percentage
+                        <td class="center-cell border-right-white" [ngClass]="{'black-cell': ontarioObj.testing === 'nan', 'green-cell': ontarioObj.testing > 95, 'yellow-cell': 81 <= ontarioObj.testing && ontarioObj.testing <= 95, 'red-cell': ontarioObj.testing < 80}">Testing Percentage
                             &lt; 24h</td>
-                        <td class="center-cell border-left-white" style="width: 10%; background-color: #b2eda4"
+                        <td class="center-cell border-left-white" [ngClass]="{'black-cell': ontarioObj.icu === 'nan', 'green-cell': ontarioObj.icu < 80, 'yellow-cell': 80 <= ontarioObj.icu && ontarioObj.icu < 90, 'red-cell': 90 <= ontarioObj.icu}" style="width: 10%;"
                             rowspan="2">
-                            {{ontarioObj.icu}}</td>
-                        <td class="center-cell" style="background-color: #b2eda4" rowspan="2">Total ICU Bed Occupied
+                            {{ontarioObj.icu+'%'}}</td>
+                        <td class="center-cell" [ngClass]="{'black-cell': ontarioObj.icu === 'nan', 'green-cell': ontarioObj.icu < 80, 'yellow-cell': 80 <= ontarioObj.icu && ontarioObj.icu < 90, 'red-cell': 90 <= ontarioObj.icu}" rowspan="2">Total ICU Bed Occupied
                             Percentage</td>
                     </tr>
                     <tr class="ontario-row-styling">
-                        <td class="center-cell" style="width: 10%; background-color: #b2eda4">{{ontarioObj.weekly}}</td>
-                        <td class="center-cell border-right-white" style="background-color: #b2eda4">Weekly New Cases
+                        <td class="center-cell" [ngClass]="{'black-cell': ontarioObj.weekly === 'nan', 'green-cell': ontarioObj.weekly < 25, 'yellow-cell': 25 <= ontarioObj.weekly && ontarioObj.weekly <= 100, 'red-cell': 100 < ontarioObj.weekly}" style="width: 10%;">{{ontarioObj.weekly}}</td>
+                        <td class="center-cell border-right-white" [ngClass]="{'black-cell': ontarioObj.weekly === 'nan', 'green-cell': ontarioObj.weekly < 25, 'yellow-cell': 25 <= ontarioObj.weekly && ontarioObj.weekly <= 100, 'red-cell': 100 < ontarioObj.weekly}">Weekly New Cases
                         </td>
                         <td class="center-cell border-left-white"
-                            [ngClass]="{'black-cell': ontarioObj.tracing === 'nan'}" style="width: 10%;">
-                            {{ontarioObj.tracing === 'nan' ? 'N/A' : ontarioObj.tracing}}
+                        [ngClass]="{'black-cell': ontarioObj.tracing === 'nan', 'green-cell': ontarioObj.tracing > 95, 'yellow-cell': 81 <= ontarioObj.tracing && ontarioObj.tracing <= 95, 'red-cell': ontarioObj.tracing < 80}"  style="width: 10%;">
+                            {{ontarioObj.tracing === 'nan' ? 'N/A' : ontarioObj.tracing+'%'}}
                         </td>
-                        <td class="center-cell border-right-white" style="background-color: #b2eda4">Tracing Percentage
+                        <td class="center-cell border-right-white" [ngClass]="{'black-cell': ontarioObj.tracing === 'nan', 'green-cell': ontarioObj.tracing > 95, 'yellow-cell': 81 <= ontarioObj.tracing && ontarioObj.tracing <= 95, 'red-cell': ontarioObj.tracing < 80}">Tracing Percentage
                             &lt; 24h</td>
                     </tr>
                 </table>
@@ -144,18 +144,18 @@
                     <tr *ngFor="let row of sortedMetrics; index as index" class="row-styling"
                         [style.background-color]="index % 2 === 0 ? '#ffffff' : '#F2F2F2'">
                         <td class="first-col-cell" [title]="row.phu">{{row.phu}}</td>
-                        <td [ngClass]="{'black-cell': row.rt === 'nan'}" class="center-cell">
+                        <td class="cell-border center-cell no-left-border" [ngClass]="{'black-cell': row.rt === 'nan', 'green-cell': row.rt < 0.5, 'yellow-cell': 0.5 <= row.rt && row.rt < 1.0, 'red-cell': 1.0 <= row.rt}">
                             {{row.rt === 'nan' ? 'N/A' : row.rt}}</td>
-                        <td [ngClass]="{'black-cell': row.weekly === 'nan'}" class="center-cell">
+                        <td [ngClass]="{'black-cell': row.weekly === 'nan', 'green-cell': row.weekly < 25, 'yellow-cell': 25 <= row.weekly && row.weekly <= 100, 'red-cell': 100 < row.weekly}" class="cell-border center-cell">
                             {{row.weekly === 'nan' ? 'N/A' : row.weekly}}</td>
-                        <td [ngClass]="{'black-cell': row.testing === 'nan'}" class="center-cell">
-                            {{row.testing === 'nan' ? 'N/A' : (row.testing+"%")}}</td>
-                        <td [ngClass]="{'black-cell': row.tracing === 'nan'}" class="center-cell">
-                            <div *ngIf="row.tracing !== 'nan'">{{row.tracing}}</div>
+                        <td [ngClass]="{'black-cell': row.testing === 'nan', 'green-cell': row.testing > 95, 'yellow-cell': 81 <= row.testing && row.testing <= 95, 'red-cell': row.testing < 80}" class="cell-border center-cell">
+                            {{row.testing === 'nan' ? 'N/A' : row.testing+'%'}}</td>
+                        <td [ngClass]="{'black-cell': row.tracing === 'nan', 'green-cell': row.tracing > 95, 'yellow-cell': 81 <= row.tracing && row.tracing <= 95, 'red-cell': row.tracing < 80}" class="cell-border center-cell">
+                            <div *ngIf="row.tracing !== 'nan'">{{row.tracing+'%'}}</div>
                             <img *ngIf="row.tracing === 'nan'" class="missing-data-icon ontario-header-img" src='assets/img/missing_data.svg'>
-                        <td [ngClass]="{'black-cell': row.icu === 'nan'}" class="center-cell">
-                            {{row.icu === 'nan' ? 'N/A' : row.icu}}</td>
-                        <td [ngClass]="{'black-cell': row.staging === 'nan'}" class="center-cell">
+                        <td [ngClass]="{'black-cell': row.icu === 'nan', 'green-cell': row.icu < 80, 'yellow-cell': 80 <= row.icu && row.icu < 90, 'red-cell': 90 <= row.icu}" class="cell-border center-cell">
+                            {{row.icu === 'nan' ? 'N/A' : row.icu+'%'}}</td>
+                        <td [ngClass]="{'black-cell': row.staging === 'nan'}" class="cell-border no-right-border center-cell">
                             {{row.stage === 'nan' ? 'N/A' : row.stage}}</td>
                     </tr>
                 </table>
@@ -179,12 +179,12 @@
                         </th>
                     </tr>
                     <tr class="ontario-row-styling">
-                        <td class="center-cell" style="width: 10%; background-color: #b2eda4">{{ontarioObj.rt}}</td>
-                        <td class="center-cell" style="background-color: #b2eda4">RT Value</td>
+                        <td class="center-cell" [ngClass]="{'black-cell': ontarioObj.rt === 'nan', 'green-cell': ontarioObj.rt < 0.5, 'yellow-cell': 0.5 <= ontarioObj.rt && ontarioObj.rt < 1.0, 'red-cell': 1.0 <= ontarioObj.rt}" style="width: 10%;" >{{ontarioObj.rt}}</td>
+                        <td class="center-cell" [ngClass]="{'black-cell': ontarioObj.rt === 'nan', 'green-cell': ontarioObj.rt < 0.5, 'yellow-cell': 0.5 <= ontarioObj.rt && ontarioObj.rt < 1.0, 'red-cell': 1.0 <= ontarioObj.rt}">RT Value</td>
                     </tr>
                     <tr class="ontario-row-styling">
-                        <td class="center-cell" style="width: 10%; background-color: #b2eda4">{{ontarioObj.weekly}}</td>
-                        <td class="center-cell" style="background-color: #b2eda4">Weekly New Cases</td>
+                        <td class="center-cell" [ngClass]="{'black-cell': ontarioObj.weekly === 'nan', 'green-cell': ontarioObj.weekly < 25, 'yellow-cell': 25 <= ontarioObj.weekly && ontarioObj.weekly <= 100, 'red-cell': 100 < ontarioObj.weekly}" style="width: 10%;">{{ontarioObj.weekly}}</td>
+                        <td class="center-cell" [ngClass]="{'black-cell': ontarioObj.weekly === 'nan', 'green-cell': ontarioObj.weekly < 25, 'yellow-cell': 25 <= ontarioObj.weekly && ontarioObj.weekly <= 100, 'red-cell': 100 < ontarioObj.weekly}">Weekly New Cases</td>
                     </tr>
                 </table>
                 <table *ngIf="ontarioObj.rt !== null" class="mobile-ontario-table">
@@ -199,16 +199,16 @@
                         </th>
                     </tr>
                     <tr class="ontario-row-styling">
-                        <td class="center-cell" [ngClass]="{'black-cell': ontarioObj.testing === 'nan'}"
-                            style="width: 10%;">{{ontarioObj.testing === 'nan' ? 'N/A' : ontarioObj.testing}}
+                        <td class="center-cell" [ngClass]="{'black-cell': ontarioObj.testing === 'nan', 'green-cell': ontarioObj.testing > 95, 'yellow-cell': 81 <= ontarioObj.testing && ontarioObj.testing <= 95, 'red-cell': ontarioObj.testing < 80}"
+                            style="width: 10%;">{{ontarioObj.testing === 'nan' ? 'N/A' : ontarioObj.testing+'%'}}
                         </td>
-                        <td class="center-cell">Testing Percentage &lt; 24h</td>
+                        <td class="center-cell" [ngClass]="{'black-cell': ontarioObj.testing === 'nan', 'green-cell': ontarioObj.testing > 95, 'yellow-cell': 81 <= ontarioObj.testing && ontarioObj.testing <= 95, 'red-cell': ontarioObj.testing < 80}">Testing Percentage &lt; 24h</td>
                     </tr>
                     <tr class="ontario-row-styling">
-                        <td class="center-cell" [ngClass]="{'black-cell': ontarioObj.tracing === 'nan'}"
-                            style="width: 10%;">{{ontarioObj.tracing === 'nan' ? 'N/A' : ontarioObj.tracing}}
+                        <td class="center-cell" [ngClass]="{'black-cell': ontarioObj.tracing === 'nan', 'green-cell': ontarioObj.tracing > 95, 'yellow-cell': 81 <= ontarioObj.tracing && ontarioObj.tracing <= 95, 'red-cell': ontarioObj.tracing < 80}"
+                            style="width: 10%;">{{ontarioObj.tracing === 'nan' ? 'N/A' : ontarioObj.tracing+'%'}}
                         </td>
-                        <td class="center-cell">Tracing Percentage &lt; 24h</td>
+                        <td class="center-cell" [ngClass]="{'black-cell': ontarioObj.tracing === 'nan', 'green-cell': ontarioObj.tracing > 95, 'yellow-cell': 81 <= ontarioObj.tracing && ontarioObj.tracing <= 95, 'red-cell': ontarioObj.tracing < 80}">Tracing Percentage &lt; 24h</td>
                     </tr>
                 </table>
                 <table *ngIf="ontarioObj.rt !== null" class="mobile-ontario-table">
@@ -223,9 +223,9 @@
                         </th>
                     </tr>
                     <tr class="ontario-row-styling">
-                        <td class="center-cell" style="width: 10%; background-color: #b2eda4" rowspan="2">
-                            {{ontarioObj.icu}}</td>
-                        <td class="center-cell" style="background-color: #b2eda4" rowspan="2">Total ICU Bed Occupied
+                        <td class="center-cell" [ngClass]="{'black-cell': ontarioObj.icu === 'nan', 'green-cell': ontarioObj.icu < 80, 'yellow-cell': 80 <= ontarioObj.icu && ontarioObj.icu < 90, 'red-cell': 90 <= ontarioObj.icu}" style="width: 10%;" rowspan="2">
+                            {{ontarioObj.icu+'%'}}</td>
+                        <td class="center-cell" [ngClass]="{'black-cell': ontarioObj.icu === 'nan', 'green-cell': ontarioObj.icu < 80, 'yellow-cell': 80 <= ontarioObj.icu && ontarioObj.icu < 90, 'red-cell': 90 <= ontarioObj.icu}" rowspan="2">Total ICU Bed Occupied
                             Percentage</td>
                     </tr>
                     <tr></tr>
@@ -264,7 +264,7 @@
                             <th class="mobile-phu-header" colspan="2">{{table.phu}}</th>
                         </tr>
                         <tr>
-                            <td class="mobile-header-cell">Stage</td>
+                            <td class="mobile-header-cell alternate-row">Stage</td>
                             <td class="mobile-data-cell center-cell">{{table.stage}}</td>
                         </tr>
                         <tr>
@@ -272,12 +272,12 @@
                         </tr>
                         <tr>
                             <td class="mobile-header-cell">RT</td>
-                            <td [ngClass]="{'black-cell': table.rt === 'nan'}" class="mobile-data-cell center-cell">
+                            <td [ngClass]="{'black-cell': table.rt === 'nan', 'green-cell': table.rt < 0.5, 'yellow-cell': 0.5 <= table.rt && table.rt < 1.0, 'red-cell': 1.0 <= table.rt}" class="mobile-data-cell center-cell">
                                 {{table.rt === 'nan' ? 'N/A' : table.rt}}</td>
                         </tr>
                         <tr>
                             <td class="mobile-header-cell alternate-row">Weekly New Cases</td>
-                            <td [ngClass]="{'black-cell': table.weekly === 'nan'}" class="mobile-data-cell center-cell">
+                            <td [ngClass]="{'black-cell': table.weekly === 'nan', 'green-cell': table.weekly < 25, 'yellow-cell': 25 <= table.weekly && table.weekly <= 100, 'red-cell': 100 < table.weekly}"  class="mobile-data-cell center-cell">
                                 {{table.weekly === 'nan' ? 'N/A' : table.weekly}}</td>
                         </tr>
                         <tr>
@@ -285,23 +285,23 @@
                         </tr>
                         <tr>
                             <td class="mobile-header-cell">Testing % &lt; 24h</td>
-                            <td [ngClass]="{'black-cell': table.testing === 'nan'}"
+                            <td [ngClass]="{'black-cell': table.testing === 'nan', 'green-cell': table.testing > 95, 'yellow-cell': 81 <= table.testing && table.testing <= 95, 'red-cell': table.testing < 80}"
                                 class="mobile-data-cell center-cell">
-                                {{table.testing === 'nan' ? 'N/A' : table.testing}}</td>
+                                {{table.testing === 'nan' ? 'N/A' : table.testing+'%'}}</td>
                         </tr>
                         <tr>
                             <td class="mobile-header-cell alternate-row">Tracing % &lt; 24h</td>
-                            <td [ngClass]="{'black-cell': table.tracing === 'nan'}"
+                            <td [ngClass]="{'black-cell': table.tracing === 'nan', 'green-cell': table.tracing > 95, 'yellow-cell': 81 <= table.tracing && table.tracing <= 95, 'red-cell': table.tracing < 80}"
                                 class="mobile-data-cell center-cell">
-                                {{table.tracing === 'nan' ? 'N/A' : table.tracing}}</td>
+                                {{table.tracing === 'nan' ? 'N/A' : table.tracing+'%'}}</td>
                         </tr>
                         <tr>
                             <th class="mobile-category-header" colspan="2">Response Capacity</th>
                         </tr>
                         <tr>
                             <td class="mobile-header-cell">Total ICU Bed Occupied %</td>
-                            <td [ngClass]="{'black-cell': table.icu === 'nan'}" class="mobile-data-cell center-cell">
-                                {{table.icu === 'nan' ? 'N/A' : table.icu}}</td>
+                            <td [ngClass]="{'black-cell': table.icu === 'nan', 'green-cell': table.icu < 80, 'yellow-cell': 80 <= table.icu && table.icu < 90, 'red-cell': 90 <= table.icu}" class="center-cell" class="mobile-data-cell center-cell">
+                                {{table.icu === 'nan' ? 'N/A' : table.icu+'%'}}</td>
                         </tr>
                     </table>
                 </div>
