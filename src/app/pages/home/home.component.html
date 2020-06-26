@@ -178,14 +178,14 @@
                             [ngClass]="{'black-cell': row.testing === 'nan', 'green-cell': row.testing > 95, 'yellow-cell': 81 <= row.testing && row.testing <= 95, 'red-cell': row.testing < 80}"
                             class="cell-border center-cell">
                             <div *ngIf="row.testing !== 'nan'">{{row.testing+'%'}}</div>
-                            <img *ngIf="row.testing === 'nan'" class="missing-data-icon ontario-header-img"
+                            <img *ngIf="row.testing === 'nan'" class="missing-data-icon-cell ontario-header-img"
                                 src='assets/img/missing_data.svg'>
                         </td>
                         <td [title]="row.tracing === 'nan'? 'Data not available': ''"
                             [ngClass]="{'black-cell': row.tracing === 'nan', 'green-cell': row.tracing > 95, 'yellow-cell': 81 <= row.tracing && row.tracing <= 95, 'red-cell': row.tracing < 80}"
                             class="cell-border center-cell">
                             <div *ngIf="row.tracing !== 'nan'">{{row.tracing+'%'}}</div>
-                            <img *ngIf="row.tracing === 'nan'" class="missing-data-icon ontario-header-img"
+                            <img *ngIf="row.tracing === 'nan'" class="missing-data-icon-cell ontario-header-img"
                                 src='assets/img/missing_data.svg'>
                         <td [title]="row.icu === 'nan'? 'Unable to calculate': ''"
                             [ngClass]="{'black-cell': row.icu === 'nan', 'green-cell': row.icu < 80, 'yellow-cell': 80 <= row.icu && row.icu < 90, 'red-cell': 90 <= row.icu}"

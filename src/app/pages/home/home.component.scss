@@ -488,8 +488,13 @@
 }
 
 .missing-data-icon {
-    width: 35px;
+    width: 30px;
     height: 100%;
+}
+
+.missing-data-icon-cell {
+    width: 25px;
+    padding-top: 3px;
 }
 
 .missing-data-icon-container {
@@ -924,6 +929,7 @@
     .missing-data-icon-cell {
         padding-top: 5px;
         height: 80%;
+        width: initial;
     }
 
     .missing-data-icon.ontario-header-img {
