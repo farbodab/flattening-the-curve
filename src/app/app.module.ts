@@ -34,7 +34,9 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatButtonModule} from '@angular/material/button'; 
+import {MatButtonModule} from '@angular/material/button';
+import {MatSortModule} from '@angular/material/sort';
+import {MatListModule} from '@angular/material/list';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -104,7 +106,9 @@ export function initConfig(appConfig: AppConfigService) {
         MatTooltipModule,
         MatIconModule,
         MatSnackBarModule,
-        MatButtonModule
+        MatButtonModule,
+        MatSortModule,
+        MatListModule
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

@@ -1,7 +1,10 @@
-import { Component, OnInit, HostListener, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, ElementRef, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { Subscription } from 'rxjs';
 import { HostService } from '../../services/host.service';
+import { Sort } from '@angular/material';
+import { ViewportScroller } from '@angular/common';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 declare var tableau: any;
 
@@ -10,9 +13,10 @@ declare var tableau: any;
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
 
   @ViewChild('MailingList', { static: false }) mailingList: ElementRef;
+  @ViewChildren('phuArray') scoreCardComponents: QueryList<any>;
 
   graph_data = null;
   ontario: any = "Ontario";
@@ -21,10 +25,169 @@ export class HomeComponent implements OnInit {
   viz: any;
   tableau: any;
   is_full = true;
+  metricJsonObj: any;
   jsonObj: any;
   window_subscription: Subscription;
+  initial_sort: Sort = {
+    active: 'phu',
+    direction: 'asc'
+  };
+  ontarioObj = {
+    phu: null,
+    rt: null,
+    weekly: null,
+    testing: null,
+    tracing: null,
+    icu: null,
+    stage: null
+  };
+  sortedMetrics: any[];
+  dropdownSelection: FormGroup;
 
-  constructor(private host_service: HostService, private api_service: ApiService) {
+  phuArray = [
+    {
+        phu: 'Brant County Health Unit',
+        value: 'brant_county'
+    },
+    {
+        phu: 'Chatham-Kent Health Unit',
+        value: 'chatham_kent'
+    },
+    {
+        phu: 'City of Hamilton Health Unit',
+        value: 'city_of_hamilton'
+    },
+    {
+        phu: 'City of Ottawa Health Unit',
+        value: 'city_of_ottawa'
+    },
+    {
+        phu: 'City of Toronto Health Unit',
+        value: 'city_of_toronto'
+    },
+    {
+        phu: 'Durham Regional Health Unit',
+        value: 'durham_regional'
+    },
+    {
+        phu: 'Grey Bruce Health Unit',
+        value: 'grey_bruce'
+    },
+    {
+        phu: 'Haldimand-Norfolk Health Unit',
+        value: 'haldimand_norfolk'
+    },
+    {
+        phu: 'Haliburton, Kawartha, Pine Ridge District Health Unit',
+        value: 'haliburton_kawartha_pine_ridge_district'
+    },
+    {
+        phu: 'Halton Regional Health Unit',
+        value: 'halton_regional'
+    },
+    {
+        phu: 'Hastings and Prince Edward Counties Health Unit',
+        value: 'hastings_and_prince_edward_counties'
+    },
+    {
+        phu: 'Huron County Health Unit',
+        value: 'huron_county'
+    },
+    {
+        phu: 'Kingston, Frontenac, and Lennox and Addington Health Unit',
+        value: 'kingston_frontenac_and_lennox_and_addington'
+    },
+    {
+        phu: 'Lambton Health Unit',
+        value: 'lambton'
+    },
+    {
+        phu: 'Leeds, Grenville and Lanark District Health Unit',
+        value: 'leeds_grenville_and_lanark_district'
+    },
+    {
+        phu: 'Middlesex-London Health Unit',
+        value: 'middlesex_london'
+    },
+    {
+        phu: 'Niagara Regional Area Health Unit',
+        value: 'niagara_regional_area'
+    },
+    {
+        phu: 'North Bay Parry Sound District Health Unit',
+        value: 'north_bay_parry_sound_district'
+    },
+    {
+        phu: 'Northwestern Health Unit',
+        value: 'northwestern'
+    },
+    {
+        phu: 'Peel Regional Health Unit',
+        value: 'peel_regional'
+    },
+    {
+        phu: 'Perth District Health Unit',
+        value: 'perth_district'
+    },
+    {
+        phu: 'Peterborough County–City Health Unit',
+        value: 'peterborough_county_city'
+    },
+    {
+        phu: 'Porcupine Health Unit',
+        value: 'porcupine'
+    },
+    {
+        phu: 'Renfrew County and District Health Unit',
+        value: 'renfrew_county_and_district'
+    },
+    {
+        phu: 'Simcoe Muskoka District Health Unit',
+        value: 'simcoe_muskoka_district'
+    },
+    {
+        phu: 'Southwestern Public Health Unit',
+        value: 'southwestern'
+    },
+    {
+        phu: 'Sudbury and District Health Unit',
+        value: 'sudbury_and_district'
+    },
+    {
+        phu: 'The District of Algoma Health Unit',
+        value: 'the_district_of_algoma'
+    },
+    {
+        phu: 'The Eastern Ontario Health Unit',
+        value: 'the_eastern_ontario'
+    },
+    {
+        phu: 'Thunder Bay District Health Unit',
+        value: 'thunder_bay_district'
+    },
+    {
+        phu: 'Timiskaming Health Unit',
+        value: 'timiskaming'
+    },
+    {
+        phu: 'Waterloo Health Unit',
+        value: 'waterloo'
+    },
+    {
+        phu: 'Wellington-Dufferin-Guelph Health Unit',
+        value: 'wellington_dufferin_guelph'
+    },
+    {
+        phu: 'Windsor-Essex County Health Unit',
+        value: 'windsor_essex_county'
+    },
+    {
+        phu: 'York Regional Health Unit',
+        value: 'york_regional'
+    }
+];
+
+  constructor(private host_service: HostService, private formBuilder: FormBuilder, private api_service: ApiService, private scrollIntoView: ViewportScroller) {
     this.refresh_layout(window.innerWidth);
   }
 
@@ -33,6 +196,28 @@ export class HomeComponent implements OnInit {
       this.refresh_layout(window.innerWidth);
     });
     this.fetchVizObj();
+    this.dropdownSelection = this.formBuilder.group({});
+    this.dropdownSelection.addControl('phu', this.formBuilder.control(''));
+    this.dropdownSelection.addControl('searchCtrl', this.formBuilder.control(''));
+  }
+
+  ngAfterViewInit() {
+    this.fetchDataObj();
+  }
+
+  fetchDataObj() {
+    this.api_service.get_reopening_obj().subscribe(
+      data => {
+        this.metricJsonObj = data;
+        this.sortedMetrics = this.removeOntartio(this.metricJsonObj.slice());
+        this.sortMetrics(this.initial_sort);
+        //this.initTeamForm(this.teamChoices);
+        //this.teamChoicesCount = this.iterateTeam(this.jsonObj, this.teamChoices);
+      },
+      error => {
+        this.metricJsonObj = 'error';
+      }
+    );
   }
 
   on_read_more_pressed() {
@@ -47,7 +232,6 @@ export class HomeComponent implements OnInit {
   fetchVizObj() {
     this.api_service.get_viz_obj().subscribe(
       data => {
-        console.log(data);
         this.jsonObj = data;
         this.findHomeViz(this.jsonObj);
       },
@@ -84,7 +268,56 @@ export class HomeComponent implements OnInit {
         console.log("Run this code when the viz has finished loading.");
       }
     }
-    this.viz = new tableau.Viz(placeholderDiv, url, options);
+    //this.viz = new tableau.Viz(placeholderDiv, url, options);
+  }
+
+  removeOntartio(dataObject:any) {
+    return dataObject.filter((ele) => {
+      if (ele.phu === 'Ontario') {
+        this.ontarioObj = ele;
+      }
+      return ele.phu !== 'Ontario';
+    });
+  }
+
+  sortMetrics(sort: Sort) {
+    const metrics = this.sortedMetrics.slice();
+    if (!sort.active || sort.direction === '') {
+      this.sortedMetrics = metrics;
+      return;
+    }
+
+    this.sortedMetrics = metrics.sort((a, b) => {
+      const isAscending = sort.direction === 'asc';
+
+      switch (sort.active) {
+        case 'phu': return this.compareData(a.phu, b.phu, 'string', isAscending);
+        case 'rt': return this.compareData(a.rt, b.rt, 'number', isAscending);
+        case 'new': return this.compareData(a.weekly, b.weekly, 'number', isAscending);
+        case 'testing': return this.compareData(a.testing, b.testing, 'number', isAscending);
+        case 'tracing': return this.compareData(a.tracing, b.tracing, 'number', isAscending);
+        case 'icu': return this.compareData(a.icu, b.icu, 'number', isAscending);
+        case 'stage': return this.compareData(a.stage, b.stage, 'number', isAscending);
+        default: return 0;
+      }
+    });
+
+  }
+
+  compareData(a: number | string, b: number | string, type: string, isAscending: boolean) {
+
+    switch(type) {
+      case 'string': return (a < b ? -1 : 1) *(isAscending ? 1: -1);
+      case 'number': return (((Number(a) < Number(b)) || (b === 'nan')) ? -1 : 1) *(isAscending ? 1: -1);
+      default: return 0;
+    }
+  }
+
+  scrollTo(elementPhu: string): void {
+    setTimeout(() => {
+      const index = this.phuArray.findIndex(phu => phu.phu === elementPhu);
+      this.scoreCardComponents.toArray()[index].nativeElement.scrollIntoView();
+    }, 100);
   }
 
   private refresh_layout(width) {

@@ -16,7 +16,7 @@
     </div>
     <div class='content' style='background-color: white;'>
         <div id='container' style="margin:0">
-            <div class='home-page-card which-curve'>
+            <!-- <div class='home-page-card which-curve'>
                 <div id='which-curve-text'>
                     <div>
                         <h1 class="main-header-styling">
@@ -49,8 +49,533 @@
                     </div>
                 </div>
                 <div id="vizContainer"></div>
+            </div> -->
+            <div *ngIf="is_full" class="table-container">
+                <div class="scorecard-header">Ontario's Reopening Metrics</div>
+                <div>
+                    <mat-progress-spinner class="spinner-styling" mode="indeterminate" diameter="50"
+                        *ngIf="ontarioObj.rt === null">
+                    </mat-progress-spinner>
+                </div>
+                <table *ngIf="ontarioObj.rt !== null" class="table-styling">
+                    <tr>
+                        <th class="no-left-border ontario-header-styling" colspan="2">
+                            <div class="ontario-header-container">
+                                <img class="ontario-header-img" src='assets/img/pandemic_monitoring.svg'>
+                                <div class="ontario-header-text">
+                                    Pandemic Monitoring
+                                </div>
+                            </div>
+                        </th>
+                        <th class="ontario-header-styling" colspan="2">
+                            <div class="ontario-header-container">
+                                <img class="ontario-header-img" src='assets/img/response_monitoring.svg'>
+                                <div class="ontario-header-text">
+                                    Response Monitoring
+                                </div>
+                            </div>
+                        </th>
+                        <th class="no-right-border ontario-header-styling" colspan="2">
+                            <div class="ontario-header-container">
+                                <img class="ontario-header-img" src='assets/img/response_capacity.svg'>
+                                <div class="ontario-header-text">
+                                    Response Capacity
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr class="ontario-row-styling">
+                        <td class="center-cell"
+                            [ngClass]="{'black-cell': ontarioObj.rt === 'nan', 'green-cell': ontarioObj.rt < 0.5, 'yellow-cell': 0.5 <= ontarioObj.rt && ontarioObj.rt < 1.0, 'red-cell': 1.0 <= ontarioObj.rt}"
+                            style="width: 10%;">{{ontarioObj.rt}}</td>
+                        <td class="center-cell border-right-white"
+                            [ngClass]="{'black-cell': ontarioObj.rt === 'nan', 'green-cell': ontarioObj.rt < 0.5, 'yellow-cell': 0.5 <= ontarioObj.rt && ontarioObj.rt < 1.0, 'red-cell': 1.0 <= ontarioObj.rt}">
+                            RT Value</td>
+                        <td class="center-cell border-left-white"
+                            [ngClass]="{'black-cell': ontarioObj.testing === 'nan', 'green-cell': ontarioObj.testing > 95, 'yellow-cell': 81 <= ontarioObj.testing && ontarioObj.testing <= 95, 'red-cell': ontarioObj.testing < 80}"
+                            style="width: 10%;">
+                            <div *ngIf="ontarioObj.testing !== 'nan'">{{ontarioObj.testing+'%'}}</div>
+                            <img title="Data not available" *ngIf="ontarioObj.testing === 'nan'"
+                                class="missing-data-icon ontario-header-img" src='assets/img/missing_data.svg'>
+                        </td>
+                        <td class="center-cell border-right-white"
+                            [ngClass]="{'black-cell': ontarioObj.testing === 'nan', 'green-cell': ontarioObj.testing > 95, 'yellow-cell': 81 <= ontarioObj.testing && ontarioObj.testing <= 95, 'red-cell': ontarioObj.testing < 80}">
+                            Testing Percentage
+                            &lt; 24h</td>
+                        <td class="center-cell border-left-white"
+                            [ngClass]="{'black-cell': ontarioObj.icu === 'nan', 'green-cell': ontarioObj.icu < 80, 'yellow-cell': 80 <= ontarioObj.icu && ontarioObj.icu < 90, 'red-cell': 90 <= ontarioObj.icu}"
+                            style="width: 10%;" rowspan="2">
+                            {{ontarioObj.icu+'%'}}</td>
+                        <td class="center-cell"
+                            [ngClass]="{'black-cell': ontarioObj.icu === 'nan', 'green-cell': ontarioObj.icu < 80, 'yellow-cell': 80 <= ontarioObj.icu && ontarioObj.icu < 90, 'red-cell': 90 <= ontarioObj.icu}"
+                            rowspan="2">Total ICU Bed Occupied
+                            Percentage</td>
+                    </tr>
+                    <tr class="ontario-row-styling">
+                        <td class="center-cell"
+                            [ngClass]="{'black-cell': ontarioObj.weekly === 'nan', 'green-cell': ontarioObj.weekly < 25, 'yellow-cell': 25 <= ontarioObj.weekly && ontarioObj.weekly <= 100, 'red-cell': 100 < ontarioObj.weekly}"
+                            style="width: 10%;">{{ontarioObj.weekly}}</td>
+                        <td class="center-cell border-right-white"
+                            [ngClass]="{'black-cell': ontarioObj.weekly === 'nan', 'green-cell': ontarioObj.weekly < 25, 'yellow-cell': 25 <= ontarioObj.weekly && ontarioObj.weekly <= 100, 'red-cell': 100 < ontarioObj.weekly}">
+                            Weekly New Cases
+                        </td>
+                        <td [title]="ontarioObj.tracing === 'nan'? 'Data not available': ''"
+                            class="center-cell border-left-white"
+                            [ngClass]="{'black-cell': ontarioObj.tracing === 'nan', 'green-cell': ontarioObj.tracing > 95, 'yellow-cell': 81 <= ontarioObj.tracing && ontarioObj.tracing <= 95, 'red-cell': ontarioObj.tracing < 80}"
+                            style="width: 10%;">
+                            <div *ngIf="ontarioObj.tracing !== 'nan'">{{ontarioObj.tracing+'%'}}</div>
+                            <img *ngIf="ontarioObj.tracing === 'nan'" class="missing-data-icon ontario-header-img"
+                                src='assets/img/missing_data.svg'>
+                        </td>
+                        <td class="center-cell border-right-white"
+                            [ngClass]="{'black-cell': ontarioObj.tracing === 'nan', 'green-cell': ontarioObj.tracing > 95, 'yellow-cell': 81 <= ontarioObj.tracing && ontarioObj.tracing <= 95, 'red-cell': ontarioObj.tracing < 80}">
+                            Tracing Percentage
+                            &lt; 24h</td>
+                    </tr>
+                </table>
+                <div class="scorecard-header">Metrics by PHU</div>
+                <div>
+                    <mat-progress-spinner class="spinner-styling" mode="indeterminate" diameter="50"
+                        *ngIf="!sortedMetrics">
+                    </mat-progress-spinner>
+                </div>
+                <div *ngIf="sortedMetrics">
+                    <img class="trend-img" src='assets/img/trend.png'>
+                </div>
+                <table matSort (matSortChange)="sortMetrics($event)" *ngIf="sortedMetrics" class="table-styling">
+                    <tr>
+                        <th></th>
+                        <th colspan="2" class="top-category">Pandemic Monitoring</th>
+                        <th colspan="2" class="top-category">Response Monitoring</th>
+                        <th class="top-category">Response Capacity</th>
+                        <th class="top-category">Stages</th>
+                    </tr>
+                    <tr>
+                        <th mat-sort-header="phu" class="first-col-styling header-styling black-cell">PHU</th>
+                        <th mat-sort-header="rt" class="header-styling black-cell">RT</th>
+                        <th mat-sort-header="new" class="header-styling black-cell">Weekly New Cases</th>
+                        <th mat-sort-header="testing" class="header-styling black-cell">Testing % &lt; 24h</th>
+                        <th mat-sort-header="tracing" class="header-styling black-cell">Tracing % &lt; 24h</th>
+                        <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Bed Occupied %</th>
+                        <th mat-sort-header="stage" class="header-styling black-cell">Stage</th>
+                    </tr>
+                    <tr *ngFor="let row of sortedMetrics; index as index" class="row-styling"
+                        [style.background-color]="index % 2 === 0 ? '#ffffff' : '#F2F2F2'">
+                        <td class="first-col-cell" [title]="row.phu">{{row.phu}}</td>
+                        <td [title]="row.rt === 'nan'? 'Unable to calculate': ''"
+                            class="cell-border center-cell no-left-border"
+                            [ngClass]="{'black-cell': row.rt === 'nan', 'green-cell': row.rt < 0.5, 'yellow-cell': 0.5 <= row.rt && row.rt < 1.0, 'red-cell': 1.0 <= row.rt}">
+                            {{row.rt === 'nan' ? 'N/A' : row.rt}}</td>
+                        <td [title]="row.weekly === 'nan'? 'Unable to calculate': ''"
+                            [ngClass]="{'black-cell': row.weekly === 'nan', 'green-cell': row.weekly < 25, 'yellow-cell': 25 <= row.weekly && row.weekly <= 100, 'red-cell': 100 < row.weekly}"
+                            class="cell-border center-cell">
+                            {{row.weekly === 'nan' ? 'N/A' : row.weekly}}</td>
+                        <td [title]="row.testing === 'nan'? 'Data not available': ''"
+                            [ngClass]="{'black-cell': row.testing === 'nan', 'green-cell': row.testing > 95, 'yellow-cell': 81 <= row.testing && row.testing <= 95, 'red-cell': row.testing < 80}"
+                            class="cell-border center-cell">
+                            <div *ngIf="row.testing !== 'nan'">{{row.testing+'%'}}</div>
+                            <img *ngIf="row.testing === 'nan'" class="missing-data-icon-cell ontario-header-img"
+                                src='assets/img/missing_data.svg'>
+                        </td>
+                        <td [title]="row.tracing === 'nan'? 'Data not available': ''"
+                            [ngClass]="{'black-cell': row.tracing === 'nan', 'green-cell': row.tracing > 95, 'yellow-cell': 81 <= row.tracing && row.tracing <= 95, 'red-cell': row.tracing < 80}"
+                            class="cell-border center-cell">
+                            <div *ngIf="row.tracing !== 'nan'">{{row.tracing+'%'}}</div>
+                            <img *ngIf="row.tracing === 'nan'" class="missing-data-icon-cell ontario-header-img"
+                                src='assets/img/missing_data.svg'>
+                        <td [title]="row.icu === 'nan'? 'Unable to calculate': ''"
+                            [ngClass]="{'black-cell': row.icu === 'nan', 'green-cell': row.icu < 80, 'yellow-cell': 80 <= row.icu && row.icu < 90, 'red-cell': 90 <= row.icu}"
+                            class="cell-border center-cell">
+                            {{row.icu === 'nan' ? 'N/A' : row.icu+'%'}}</td>
+                        <td [ngClass]="{'black-cell': row.staging === 'nan'}"
+                            class="cell-border no-right-border center-cell">
+                            {{row.stage === 'nan' ? 'N/A' : row.stage}}</td>
+                    </tr>
+                </table>
             </div>
-            <div class="card-container">
+            <div *ngIf="!is_full">
+                <div class="scorecard-header">Ontario's Reopening Metrics</div>
+                <div>
+                    <mat-progress-spinner class="spinner-styling" mode="indeterminate" diameter="50"
+                        *ngIf="ontarioObj.rt === null">
+                    </mat-progress-spinner>
+                </div>
+                <table *ngIf="ontarioObj.rt !== null" class="mobile-ontario-table">
+                    <tr>
+                        <th colspan="2" class="ontario-header-styling top-category" colspan="2">
+                            <div class="ontario-header-container">
+                                <img class="ontario-header-img" src='assets/img/pandemic_monitoring.svg'>
+                                <div class="ontario-header-text">
+                                    Pandemic Monitoring
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr class="ontario-row-styling">
+                        <td class="center-cell"
+                            [ngClass]="{'black-cell': ontarioObj.rt === 'nan', 'green-cell': ontarioObj.rt < 0.5, 'yellow-cell': 0.5 <= ontarioObj.rt && ontarioObj.rt < 1.0, 'red-cell': 1.0 <= ontarioObj.rt}"
+                            style="width: 10%;">{{ontarioObj.rt}}</td>
+                        <td class="center-cell"
+                            [ngClass]="{'black-cell': ontarioObj.rt === 'nan', 'green-cell': ontarioObj.rt < 0.5, 'yellow-cell': 0.5 <= ontarioObj.rt && ontarioObj.rt < 1.0, 'red-cell': 1.0 <= ontarioObj.rt}">
+                            RT Value</td>
+                    </tr>
+                    <tr class="ontario-row-styling">
+                        <td class="center-cell"
+                            [ngClass]="{'black-cell': ontarioObj.weekly === 'nan', 'green-cell': ontarioObj.weekly < 25, 'yellow-cell': 25 <= ontarioObj.weekly && ontarioObj.weekly <= 100, 'red-cell': 100 < ontarioObj.weekly}"
+                            style="width: 10%;">{{ontarioObj.weekly}}</td>
+                        <td class="center-cell"
+                            [ngClass]="{'black-cell': ontarioObj.weekly === 'nan', 'green-cell': ontarioObj.weekly < 25, 'yellow-cell': 25 <= ontarioObj.weekly && ontarioObj.weekly <= 100, 'red-cell': 100 < ontarioObj.weekly}">
+                            Weekly New Cases</td>
+                    </tr>
+                </table>
+                <table *ngIf="ontarioObj.rt !== null" class="mobile-ontario-table">
+                    <tr>
+                        <th colspan="2" class="ontario-header-styling top-category" colspan="2">
+                            <div class="ontario-header-container">
+                                <img class="ontario-header-img" src='assets/img/response_monitoring.svg'>
+                                <div class="ontario-header-text">
+                                    Response Monitoring
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr class="ontario-row-styling">
+                        <td class="center-cell"
+                            [ngClass]="{'black-cell': ontarioObj.testing === 'nan', 'green-cell': ontarioObj.testing > 95, 'yellow-cell': 81 <= ontarioObj.testing && ontarioObj.testing <= 95, 'red-cell': ontarioObj.testing < 80}"
+                            style="width: 10%;">
+                            <div *ngIf="ontarioObj.testing !== 'nan'">{{ontarioObj.testing+'%'}}</div>
+                            <img *ngIf="ontarioObj.testing === 'nan'" class="missing-data-icon ontario-header-img"
+                                src='assets/img/missing_data.svg'>
+                        </td>
+                        <td class="center-cell"
+                            [ngClass]="{'black-cell': ontarioObj.testing === 'nan', 'green-cell': ontarioObj.testing > 95, 'yellow-cell': 81 <= ontarioObj.testing && ontarioObj.testing <= 95, 'red-cell': ontarioObj.testing < 80}">
+                            Testing Percentage &lt; 24h</td>
+                    </tr>
+                    <tr class="ontario-row-styling">
+                        <td class="center-cell"
+                            [ngClass]="{'black-cell': ontarioObj.tracing === 'nan', 'green-cell': ontarioObj.tracing > 95, 'yellow-cell': 81 <= ontarioObj.tracing && ontarioObj.tracing <= 95, 'red-cell': ontarioObj.tracing < 80}"
+                            style="width: 10%;">
+                            <div *ngIf="ontarioObj.tracing !== 'nan'">{{ontarioObj.tracing+'%'}}</div>
+                            <img *ngIf="ontarioObj.tracing === 'nan'" class="missing-data-icon ontario-header-img"
+                                src='assets/img/missing_data.svg'>
+                        </td>
+                        <td class="center-cell"
+                            [ngClass]="{'black-cell': ontarioObj.tracing === 'nan', 'green-cell': ontarioObj.tracing > 95, 'yellow-cell': 81 <= ontarioObj.tracing && ontarioObj.tracing <= 95, 'red-cell': ontarioObj.tracing < 80}">
+                            Tracing Percentage &lt; 24h</td>
+                    </tr>
+                </table>
+                <table *ngIf="ontarioObj.rt !== null" class="mobile-ontario-table">
+                    <tr>
+                        <th colspan="2" class="ontario-header-styling top-category" colspan="2">
+                            <div class="ontario-header-container">
+                                <img class="ontario-header-img" src='assets/img/response_capacity.svg'>
+                                <div class="ontario-header-text">
+                                    Response Capacity
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr class="ontario-row-styling">
+                        <td class="center-cell"
+                            [ngClass]="{'black-cell': ontarioObj.icu === 'nan', 'green-cell': ontarioObj.icu < 80, 'yellow-cell': 80 <= ontarioObj.icu && ontarioObj.icu < 90, 'red-cell': 90 <= ontarioObj.icu}"
+                            style="width: 10%;" rowspan="2">
+                            {{ontarioObj.icu+'%'}}</td>
+                        <td class="center-cell"
+                            [ngClass]="{'black-cell': ontarioObj.icu === 'nan', 'green-cell': ontarioObj.icu < 80, 'yellow-cell': 80 <= ontarioObj.icu && ontarioObj.icu < 90, 'red-cell': 90 <= ontarioObj.icu}"
+                            rowspan="2">Total ICU Bed Occupied
+                            Percentage</td>
+                    </tr>
+                    <tr></tr>
+                </table>
+                <div class="scorecard-header">Metrics by PHU</div>
+                <div>
+                    <mat-progress-spinner class="spinner-styling" mode="indeterminate" diameter="50"
+                        *ngIf="!sortedMetrics">
+                    </mat-progress-spinner>
+                </div>
+                <div *ngIf="dropdownSelection && sortedMetrics" style="padding-top: 10px; width: 90%; margin: auto;">
+                    <div>
+                        <img class="trend-img" src='assets/img/trend.png'>
+                    </div>
+                    <form [formGroup]="dropdownSelection">
+                        <mat-form-field style="width: 100%;">
+                            <mat-label>Jump to a Specific Public Health Unit</mat-label>
+                            <mat-select formControlName="phu" disableOptionCentering
+                                (selectionChange)="scrollTo(dropdownSelection.controls.phu.value)">
+                                <ngx-mat-select-search formControlName="searchCtrl" [placeholderLabel]="'Search...'"
+                                    [noEntriesFoundLabel]="'Not found'" name="search"></ngx-mat-select-search>
+                                <mat-option
+                                    *ngFor="let phu of phuArray |stringFilterBy:dropdownSelection.controls.searchCtrl.value:'phu'; index as index"
+                                    [value]="phu.phu">
+                                    {{phu.phu}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </form>
+
+                    <!-- <mat-label><a target="_blank" href="https://www.phdapps.health.gov.on.ca/PHULocator/">Find a Public Health Unit</a> </mat-label> -->
+                </div>
+                <div #phuArray *ngFor="let table of sortedMetrics" class="mobile-separator">
+                    <table [id]="table.phu" class="mobile-scorecard-table-styling">
+                        <tr>
+                            <th class="mobile-phu-header" colspan="2">{{table.phu}}</th>
+                        </tr>
+                        <tr>
+                            <td class="mobile-header-cell alternate-row">Stage</td>
+                            <td class="mobile-data-cell center-cell alternate-row">{{table.stage}}</td>
+                        </tr>
+                        <tr>
+                            <th class="mobile-category-header" colspan="2">Pandemic Monitoring</th>
+                        </tr>
+                        <tr>
+                            <td class="alternate-row mobile-header-cell">RT</td>
+                            <td [ngClass]="{'black-cell': table.rt === 'nan', 'green-cell': table.rt < 0.5, 'yellow-cell': 0.5 <= table.rt && table.rt < 1.0, 'red-cell': 1.0 <= table.rt}"
+                                class="mobile-data-cell center-cell">
+                                {{table.rt === 'nan' ? 'N/A' : table.rt}}</td>
+                        </tr>
+                        <tr>
+                            <td class="mobile-header-cell alternate-row">Weekly New Cases</td>
+                            <td [ngClass]="{'black-cell': table.weekly === 'nan', 'green-cell': table.weekly < 25, 'yellow-cell': 25 <= table.weekly && table.weekly <= 100, 'red-cell': 100 < table.weekly}"
+                                class="mobile-data-cell center-cell">
+                                {{table.weekly === 'nan' ? 'N/A' : table.weekly}}</td>
+                        </tr>
+                        <tr>
+                            <th class="mobile-category-header" colspan="2">Response Monitoring</th>
+                        </tr>
+                        <tr>
+                            <td class="mobile-header-cell alternate-row">Testing % &lt; 24h</td>
+                            <td [ngClass]="{'black-cell': table.testing === 'nan', 'green-cell': table.testing > 95, 'yellow-cell': 81 <= table.testing && table.testing <= 95, 'red-cell': table.testing < 80}"
+                                class="mobile-data-cell center-cell">
+                                <div *ngIf="table.testing !== 'nan'">{{table.testing+'%'}}</div>
+                                <img *ngIf="table.testing === 'nan'" class="missing-data-icon-cell ontario-header-img"
+                                    src='assets/img/missing_data.svg'>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="mobile-header-cell alternate-row">Tracing % &lt; 24h</td>
+                            <td [ngClass]="{'black-cell': table.tracing === 'nan', 'green-cell': table.tracing > 95, 'yellow-cell': 81 <= table.tracing && table.tracing <= 95, 'red-cell': table.tracing < 80}"
+                                class="mobile-data-cell center-cell">
+                                <div *ngIf="table.tracing !== 'nan'">{{table.tracing+'%'}}</div>
+                                <img *ngIf="table.tracing === 'nan'" class="missing-data-icon-cell ontario-header-img"
+                                    src='assets/img/missing_data.svg'>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="mobile-category-header" colspan="2">Response Capacity</th>
+                        </tr>
+                        <tr>
+                            <td class="mobile-header-cell alternate-row">Total ICU Bed Occupied %</td>
+                            <td [ngClass]="{'black-cell': table.icu === 'nan', 'green-cell': table.icu < 80, 'yellow-cell': 80 <= table.icu && table.icu < 90, 'red-cell': 90 <= table.icu}"
+                                class="center-cell" class="mobile-data-cell center-cell">
+                                {{table.icu === 'nan' ? 'N/A' : table.icu+'%'}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div *ngIf="is_full" class="card-container scorecard-info-container" style="margin-bottom: 48px">
+                <div class="mobile-scorecard-container">
+                    <div class="scorecard-info-header">Trend Threshold Breakdown</div>
+                    <table style="width: 100%">
+                        <tr class="row-styling">
+                            <th class="first-col-styling header-styling black-cell">Metric</th>
+                            <th class="header-styling black-cell">Green</th>
+                            <th class="header-styling black-cell">Yellow</th>
+                            <th class="header-styling black-cell">Red</th>
+                        </tr>
+                        <tr class="row-styling">
+                            <td class="cell-border no-left-border alternate-row center-cell">RT</td>
+                            <td class="cell-border center-cell green-cell"><strong>&lt;</strong> 0.50</td>
+                            <td class="cell-border center-cell yellow-cell">0.50 <strong>&le;</strong> RT
+                                <strong>&lt;</strong> 1.00 </td>
+                            <td class="cell-border no-right-border center-cell red-cell"><strong>&ge;</strong> 1.00</td>
+                        </tr>
+                        <tr class="row-styling">
+                            <td class="cell-border no-left-border center-cell">Weekly New Cases</td>
+                            <td class="cell-border center-cell green-cell">&lt; 25</td>
+                            <td class="cell-border center-cell yellow-cell">25 <strong>&le;</strong> Weekly New Cases
+                                <strong>&le;</strong> 100</td>
+                            <td class="cell-border no-right-border center-cell red-cell"><strong>&gt;</strong> 100</td>
+                        </tr>
+                        <tr class="row-styling">
+                            <td class="cell-border no-left-border alternate-row center-cell">Testing % &lt; 24h</td>
+                            <td class="cell-border center-cell green-cell"><strong>&gt;</strong> 95%</td>
+                            <td class="cell-border center-cell yellow-cell">80% <strong>&le;</strong> Testing % Under
+                                24h <strong>&le;</strong> 95%</td>
+                            <td class="cell-border no-right-border center-cell red-cell"><strong>&lt;</strong> 80%</td>
+                        </tr>
+                        <tr class="row-styling">
+                            <td class="cell-border no-left-border center-cell">Tracing % &lt; 24h</td>
+                            <td class="cell-border center-cell green-cell"><strong>&gt;</strong> 95%</td>
+                            <td class="cell-border center-cell yellow-cell">80% <strong>&le;</strong> Tracing % Under
+                                24h <strong>&le;</strong> 95%</td>
+                            <td class="cell-border no-right-border center-cell red-cell"><strong>&lt;</strong> 80%</td>
+                        </tr>
+                        <tr class="row-styling">
+                            <td class="cell-border no-left-border alternate-row center-cell">Total ICU Bed Occupied %
+                            </td>
+                            <td class="cell-border center-cell green-cell"><strong>&lt;</strong> 80%</td>
+                            <td class="cell-border center-cell yellow-cell">80% <strong>&le;</strong> Total ICU Bed
+                                Occupied % <strong>&le;</strong> 90%</td>
+                            <td class="cell-border no-right-border center-cell red-cell"><strong>&gt;</strong> 90%</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div *ngIf="!is_full" class="card-container scorecard-info-container">
+                <div class="mobile-scorecard-container">
+                    <div class="center-cell scorecard-info-header">Trend Threshold Breakdown</div>
+                    <table class="mobile-threshold-table">
+                        <tr>
+                            <th class="mobile-phu-header" colspan="2">RT</th>
+                        </tr>
+                        <tr>
+                            <td class="alternate-row threshold-left-col">Green</td>
+                            <td class="center-cell threshold-right-col green-cell"><strong>&lt;</strong> 0.50</td>
+                        </tr>
+                        <tr>
+                            <td class="threshold-left-col">Yellow</td>
+                            <td class="center-cell threshold-right-col yellow-cell">0.50 <strong>&le;</strong> RT
+                                <strong>&lt;</strong> 1.00</td>
+                        </tr>
+                        <tr>
+                            <td class="alternate-row threshold-left-col">Red</td>
+                            <td class="center-cell threshold-right-col red-cell"><strong>&ge;</strong> 1.00</td>
+                        </tr>
+                    </table>
+                    <table class="mobile-threshold-table">
+                        <tr>
+                            <th class="mobile-phu-header" colspan="2">Weekly New Cases</th>
+                        </tr>
+                        <tr>
+                            <td class="alternate-row threshold-left-col">Green</td>
+                            <td class="center-cell threshold-right-col green-cell">&lt; 25</td>
+                        </tr>
+                        <tr>
+                            <td class="threshold-left-col">Yellow</td>
+                            <td class="center-cell threshold-right-col yellow-cell">25 <strong>&le;</strong> Weekly New
+                                Cases
+                                <strong>&le;</strong> 100</td>
+                        </tr>
+                        <tr>
+                            <td class="alternate-row threshold-left-col">Red</td>
+                            <td class="center-cell threshold-right-col red-cell"><strong>&gt;</strong> 100</td>
+                        </tr>
+                    </table>
+                    <table class="mobile-threshold-table">
+                        <tr>
+                            <th class="mobile-phu-header" colspan="2">Testing % &lt; 24h </th>
+                        </tr>
+                        <tr>
+                            <td class="alternate-row threshold-left-col">Green</td>
+                            <td class="center-cell threshold-right-col green-cell"><strong>&gt;</strong> 95%</td>
+                        </tr>
+                        <tr>
+                            <td class="threshold-left-col">Yellow</td>
+                            <td class="center-cell threshold-right-col yellow-cell">80% <strong>&le;</strong> Testing %
+                                Under
+                                24h <strong>&le;</strong> 95%</td>
+                        </tr>
+                        <tr>
+                            <td class="threshold-left-col alternate-row">Red</td>
+                            <td class="alternate-row center-cell threshold-right-col red-cell"><strong>&lt;</strong> 80%
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="mobile-threshold-table">
+                        <tr>
+                            <th class="mobile-phu-header" colspan="2">Tracing % &lt; 24h</th>
+                        </tr>
+                        <tr>
+                            <td class="alternate-row threshold-left-col">Green</td>
+                            <td class="center-cell threshold-right-col green-cell"><strong>&gt;</strong> 95%</td>
+                        </tr>
+                        <tr>
+                            <td class="threshold-left-col">Yellow</td>
+                            <td class="center-cell threshold-right-col yellow-cell">80% <strong>&le;</strong> Tracing %
+                                Under
+                                24h <strong>&le;</strong> 95%</td>
+                        </tr>
+                        <tr>
+                            <td class="alternate-row threshold-left-col">Red</td>
+                            <td class="center-cell threshold-right-col red-cell"><strong>&lt;</strong> 80%</td>
+                        </tr>
+                    </table>
+                    <table class="mobile-threshold-table">
+                        <tr>
+                            <th class="mobile-phu-header" colspan="2">Total ICU Bed Occupied %</th>
+                        </tr>
+                        <tr>
+                            <td class="alternate-row threshold-left-col">Green</td>
+                            <td class="center-cell threshold-right-col green-cell"><strong>&lt;</strong> 80%</td>
+                        </tr>
+                        <tr>
+                            <td class="threshold-left-col">Yellow</td>
+                            <td class="center-cell threshold-right-col yellow-cell">80% <strong>&le;</strong> Total ICU
+                                Bed
+                                Occupied % <strong>&le;</strong> 90%</td>
+                        </tr>
+                        <tr>
+                            <td class="alternate-row threshold-left-col">Red</td>
+                            <td class="center-cell threshold-right-col red-cell"><strong>&gt;</strong> 90%</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card-container scorecard-info-container">
+                <div class="mobile-scorecard-container no-bottom-padding">
+                    <div class="scorecard-info-header data-source-header">Data Sources</div>
+                    <mat-list role="list">
+                        <mat-list-item role="listitem" class="data-item">
+                            <div>
+                                <span class="data-source-title">RT:</span>
+                                Calculated using a modified approach of Kevin Systrom (based on <a
+                                    href='https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0002185'>Bettencourt
+                                    & Ribeiro</a>). Data from the COVID-19 Canada Open Data Working Group
+                            </div>
+                        </mat-list-item>
+                        <mat-list-item role="listitem" class="data-item">
+                            <div>
+                                <span class="data-source-title">Weekly New Cases:</span> Data from Confirmed positive
+                                cases of
+                                COVID19 in Ontario from
+                                Government of Ontario
+                            </div>
+                        </mat-list-item>
+                        <mat-list-item role="listitem" class="data-item">
+                            <div>
+                                <span class="data-source-title">Testing:</span> Data from Confirmed positive cases of
+                                COVID19
+                                in Ontario from Government
+                                of Ontario
+                            </div>
+                        </mat-list-item>
+                        <mat-list-item role="listitem" class="data-item">
+                            <div>
+                                <span class="data-source-title">ICU:</span>Data from Critical Care Services Ontario
+                                (CCSO)
+                            </div>
+                        </mat-list-item>
+                    </mat-list>
+                </div>
+                <div class="container-divider-scorecard">
+                </div>
+                <div class="mobile-scorecard-container">
+                    <div class="scorecard-info-header missing-data-header">A Note On Missing Data</div>
+                    <div style="display: flex" [style.flex-wrap]="!is_full ? 'wrap': 'none'">
+                        <div class="missing-data-icon-container">
+                            <img class="missing-data-icon ontario-header-img" src='assets/img/missing_data.svg'>
+                            <div class="missing-data-header">A data blackout</div>
+                        </div>
+                        <div [style.width]="!is_full ? '100%' : 'auto'" class="missing-data-text">
+                            A number of key data items in the scorecard above, such as contact tracing capacity, are
+                            listed as not available -- as denoted by the icon <span>{{is_full ? 'to the left' : 'above'}}</span>. Data for these crucial
+                            indicators is currently not available or
+                            not reported publicly.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-container footer-info-container">
                 <div class='half-width-left'>
                     <div id='explore-data-cell'>
                         <div class="data-cell-container">
@@ -71,56 +596,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div style='text-align: center;'>
-                <div routerLink='/analysis' id='explore-data-btn'>Explore Analysis</div>
-            </div> -->
-                <!-- </div>
-            <div class="home-page-card mission-background">
-                <div class="inner-mission-container">
-                    <div class="mission-header">On A Mission Together</div>
-                    <p id='who-what-content' class='mat-headline'>
-                        We are physicians, medical students, computational health researchers, designers and
-                        epidemiologists
-                        rapidly
-                        filtering and presenting emergent COVID-19 data to help Ontario <a class="home-page-link"
-                            href="https://twitter.com/hashtag/FlattenTheCurve?src=hashtag_click"
-                            target="_blank">#FlattenTheCurve</a>.
-                        <br><br>
-                        We connect experts and present data in an easy to digest, actionable way to help Ontario's
-                        public
-                        leaders
-                        and individuals act decisively as evidence grows and time ticks by.
-                    </p>
-                </div>
-            </div>
-
-            <div class="mail-container">
-                <div class="inner-mail-container" style="display: flex;">
-                    <div *ngIf="is_full" style="display: flex;">
-                        <div class="mail-icon" style="width: 30%; padding-left: 30px; padding-right: 10px">
-                            <img class='' src='assets/img/SignUpMail.svg'>
-                        </div>
-                        <div class="mail-text" style="width: 65%; text-align: left">
-                            <div class="sign-up-styling">Sign up below for updates on new visualizations we release!
-                            </div>
-                            <button class="home-page-button mail-btn" (click)='on_sign_up_pressed()'>Join</button>
-                            <a #MailingList href="https://www.surveymonkey.com/r/Y7X86JL" target="_blank"></a>
-                        </div>
-                    </div>
-                    <div *ngIf="!is_full">
-                        <div class="mail-text">
-                            <div class="sign-up-styling">Sign up below for updates on new visualizations we release!
-                            </div>
-                        </div>
-                        <div class="mail-icon">
-                            <img class='' src='assets/img/SignUpMail.svg'>
-                        </div>
-                        <button class="home-page-button mail-btn" (click)='on_sign_up_pressed()'>Join</button>
-                        <a #MailingList href="https://www.surveymonkey.com/r/Y7X86JL" target="_blank"></a>
-                    </div>
-                </div>
-
-            </div> -->
             </div>
         </div>
     </div>
