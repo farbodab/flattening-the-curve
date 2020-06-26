@@ -18,7 +18,7 @@
         </div>
         <div *ngIf='is_full' [ngClass]="{'modal-opened': selectedCategory !== ''}">
             <div style="padding-bottom: 25px">
-                <div style="display: flex; padding-top: 20px">
+                <div *ngIf="newVizTracker" style="display: flex; padding-top: 20px">
                     <mat-icon *ngIf="newToggle" class="new-collapse-icon" (click)="toggleNewAnalysis(false)">
                         keyboard_arrow_down</mat-icon>
                     <mat-icon *ngIf="!newToggle" (click)="toggleNewAnalysis(true)" class="new-collapse-icon">
@@ -29,7 +29,7 @@
                     <div style="line-height: 30px; border-top: 2px solid black; width: 100%; margin-top: 15px;">
                     </div>
                 </div>
-                <div *ngIf="newToggle" style="display: flex; flex-wrap: wrap; margin-left: 50px;">
+                <div *ngIf="newToggle && newVizTracker" style="display: flex; flex-wrap: wrap; margin-left: 50px;">
                     <div *ngFor="let card of jsonObj; index as index">
                         <div *ngIf="card.category !== 'Home' && card.category !== 'Kpi-dash'">
                             <div class="sub-card-styling"
@@ -213,7 +213,7 @@
     </div>
     <div id='mobile-nav' *ngIf='!is_full'>
         <div style="padding-bottom: 25px">
-            <div style="display: flex; margin-top: 15px">
+            <div *ngIf="newVizTracker" style="display: flex; margin-top: 15px">
                 <div style="border-top: 1px solid black; width: 100%; margin-top: 30px"></div>
                 <div class="purple-font"
                     style="min-width: 180px; text-align: center; padding-top: 20px; padding-bottom: 10px; font-weight: bold">
@@ -221,7 +221,7 @@
                 </div>
                 <div style="border-top: 1px solid black; width: 100%; margin-top: 30px"></div>
             </div>
-            <div *ngIf="newToggle" style="display: flex; flex-wrap: wrap;">
+            <div *ngIf="newToggle && newVizTracker" style="display: flex; flex-wrap: wrap;">
                 <div *ngFor="let card of jsonObj; index as index" style="width: 100%">
                     <div *ngIf="card.category !== 'Home' && card.category !== 'Kpi-dash' && (moment.duration(todaysDate.diff(card.date))).asDays() < 8"
                         [ngClass]="{'selected-background': card.selected}">

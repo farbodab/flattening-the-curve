@@ -154,6 +154,10 @@
     padding: 0 33px 0 33px;
 }
 
+.mobile-scorecard-container {
+    width: 100%;
+}
+
 .footer-info-container {
     margin: 48px 0;
 }
@@ -465,6 +469,10 @@
     font-size: 28px;
     line-height: 28px;
     text-align: center;
+}
+
+.alternate-row {
+    background: #F2F2F2;
 }
 
 .green-cell {
@@ -847,6 +855,24 @@
         //border: 1px solid black;
     }
 
+    .mobile-threshold-table {
+        width: 100%;
+        padding-bottom: 24px;
+    }
+
+    .threshold-left-col {
+        width: 25%;
+        padding-left: 10px;
+        height: 36px;
+    }
+
+    .threshold-right-col {
+        width: 75%;
+        font-size: 13px;
+        padding: 0 10px;
+        height: 36px;
+    }
+
     .mobile-phu-header {
         height: 32px;
         background-color: #434241;
@@ -895,6 +921,11 @@
         margin: 0 0 20px 0;
     }
 
+    .missing-data-icon-cell {
+        padding-top: 5px;
+        height: 80%;
+    }
+
     .missing-data-icon.ontario-header-img {
         padding-top: 0;
         height: 100%;
@@ -908,6 +939,7 @@
 
     .mobile-scorecard-container {
         padding: 20px;
+        width: initial;
     }
 
     .scorecard-info-header {
@@ -927,10 +959,6 @@
 
     .footer-info-container {
         margin-bottom: 16px;
-    }
-
-    .alternate-row {
-        background: #F2F2F2;
     }
 
     .mobile-separator {
