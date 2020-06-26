@@ -268,7 +268,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         console.log("Run this code when the viz has finished loading.");
       }
     }
-    this.viz = new tableau.Viz(placeholderDiv, url, options);
+    //this.viz = new tableau.Viz(placeholderDiv, url, options);
   }
 
   removeOntartio(dataObject:any) {

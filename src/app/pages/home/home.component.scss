@@ -9,7 +9,7 @@
     margin: 0 auto;
     //max-width: 1770px;
     position: relative;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     background-image: url("src/assets/img/home_banner.svg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -475,6 +475,13 @@
     text-align: center;
 }
 
+.container-divider-scorecard {
+    border-left: none;
+    border-top: 3px solid #DCDCDC;
+    width: 100%;
+    margin: 20px auto 10px auto;
+}
+
 .alternate-row {
     background: #F2F2F2;
 }
@@ -505,7 +512,7 @@
     height: 75px;
     background-color: #434241;
     display: flex;
-    width: 375px;
+    min-width: 200px;
     margin-right: 24px;
 }
 
@@ -533,10 +540,6 @@
 
 .scorecard-info-header.missing-data-header {
     color: #391F85;
-}
-
-.missing-data-text {
-    padding-top: 15px;
 }
 
 .data-item {
@@ -863,6 +866,11 @@
         border-top: 3px solid #DCDCDC;
         width: 100%;
         margin: 20px 0;
+    }
+
+    .container-divider-scorecard {
+        width: 90%;
+        margin-top: 10px;
     }
 
     .footer {

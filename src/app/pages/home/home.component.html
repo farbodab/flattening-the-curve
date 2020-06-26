@@ -557,6 +557,8 @@
                         </mat-list-item>
                     </mat-list>
                 </div>
+                <div class="container-divider-scorecard">
+                </div>
                 <div class="mobile-scorecard-container">
                     <div class="scorecard-info-header missing-data-header">A Note On Missing Data</div>
                     <div style="display: flex" [style.flex-wrap]="!is_full ? 'wrap': 'none'">
@@ -566,7 +568,7 @@
                         </div>
                         <div [style.width]="!is_full ? '100%' : 'auto'" class="missing-data-text">
                             A number of key data items in the scorecard above, such as contact tracing capacity, are
-                            listed as not available -- as denoted by the icon to the left. Data for these crucial
+                            listed as not available -- as denoted by the icon <span>{{is_full ? 'to the left' : 'above'}}</span>. Data for these crucial
                             indicators is currently not available or
                             not reported publicly.
                         </div>
