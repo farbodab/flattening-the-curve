@@ -326,13 +326,13 @@
                         </tr>
                         <tr>
                             <td class="mobile-header-cell alternate-row">Stage</td>
-                            <td class="mobile-data-cell center-cell">{{table.stage}}</td>
+                            <td class="mobile-data-cell center-cell alternate-row">{{table.stage}}</td>
                         </tr>
                         <tr>
                             <th class="mobile-category-header" colspan="2">Pandemic Monitoring</th>
                         </tr>
                         <tr>
-                            <td class="mobile-header-cell">RT</td>
+                            <td class="alternate-row mobile-header-cell">RT</td>
                             <td [ngClass]="{'black-cell': table.rt === 'nan', 'green-cell': table.rt < 0.5, 'yellow-cell': 0.5 <= table.rt && table.rt < 1.0, 'red-cell': 1.0 <= table.rt}"
                                 class="mobile-data-cell center-cell">
                                 {{table.rt === 'nan' ? 'N/A' : table.rt}}</td>
@@ -347,7 +347,7 @@
                             <th class="mobile-category-header" colspan="2">Response Monitoring</th>
                         </tr>
                         <tr>
-                            <td class="mobile-header-cell">Testing % &lt; 24h</td>
+                            <td class="mobile-header-cell alternate-row">Testing % &lt; 24h</td>
                             <td [ngClass]="{'black-cell': table.testing === 'nan', 'green-cell': table.testing > 95, 'yellow-cell': 81 <= table.testing && table.testing <= 95, 'red-cell': table.testing < 80}"
                                 class="mobile-data-cell center-cell">
                                 <div *ngIf="table.testing !== 'nan'">{{table.testing+'%'}}</div>
@@ -368,7 +368,7 @@
                             <th class="mobile-category-header" colspan="2">Response Capacity</th>
                         </tr>
                         <tr>
-                            <td class="mobile-header-cell">Total ICU Bed Occupied %</td>
+                            <td class="mobile-header-cell alternate-row">Total ICU Bed Occupied %</td>
                             <td [ngClass]="{'black-cell': table.icu === 'nan', 'green-cell': table.icu < 80, 'yellow-cell': 80 <= table.icu && table.icu < 90, 'red-cell': 90 <= table.icu}"
                                 class="center-cell" class="mobile-data-cell center-cell">
                                 {{table.icu === 'nan' ? 'N/A' : table.icu+'%'}}</td>
@@ -480,7 +480,7 @@
                                 24h <strong>&le;</strong> 95%</td>
                         </tr>
                         <tr>
-                            <td class="threshold-left-col">Red</td>
+                            <td class="threshold-left-col alternate-row">Red</td>
                             <td class="alternate-row center-cell threshold-right-col red-cell"><strong>&lt;</strong> 80%
                             </td>
                         </tr>
