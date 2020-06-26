@@ -213,7 +213,7 @@ objects:
     selector:
       app: ${APP_NAME}
 - apiVersion: v1
-  kind: Route
+  kind: Route 
   metadata:
     labels:
       app: ${APP_NAME}

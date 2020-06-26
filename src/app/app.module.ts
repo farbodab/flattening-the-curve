@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {NgModule, APP_INITIALIZER} from '@angular/core';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
 
@@ -49,9 +49,14 @@ import { BlogComponent } from './pages/blog/blog.component';
 import { PlotlyViaCDNModule } from 'angular-plotly.js';
 
 import { MainPipe } from './pipe/pipe.module';
+import { AppConfigService } from './providers/app-config.service';
 
 PlotlyViaCDNModule.plotlyVersion = 'latest'; // can be `latest` or any version number (i.e.: '1.40.0')
 PlotlyViaCDNModule.plotlyBundle = null; // optional: can be null (for full) or 'basic', 'cartesian', 'geo', 'gl3d', 'gl2d', 'mapbox' or 'finance'
+
+export function initConfig(appConfig: AppConfigService) {
+    return () => appConfig.loadConfig();
+}
 
 
 @NgModule({
@@ -106,7 +111,13 @@ PlotlyViaCDNModule.plotlyBundle = null; // optional: can be null (for full) or '
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         ScreenTrackingService,
-        {provide: MatDialogRef, useValue: {}}
+        {provide: MatDialogRef, useValue: {}},
+        {
+          provide: APP_INITIALIZER,
+          useFactory: initConfig,
+          multi: true,
+          deps: [AppConfigService]
+        }
     ],
     bootstrap: [AppComponent],
     entryComponents: [AnalysisCriticalComponent, CommonDesktopVisualComponent]
