@@ -25,8 +25,6 @@ export class ApiService {
   // readonly phunew_endpoint: string = this.appConfigProperties.base_url + 'covid/phunew';
   // readonly test_results_endpoint: string = this.appConfigProperties.base_url + 'covid/testresults';
 
-  readonly reopening_object_endpoint: string = 'http://flattening-the-curve-backend-staging.apps.hmf.q7z3.p1.openshiftapps.com/api/reopening';
-
 
   appConfigProperties: AppConfigProperties;
 
@@ -35,11 +33,7 @@ export class ApiService {
   }
 
   get_reopening_obj() {
-    return this.http_client.get(this.reopening_object_endpoint);
-  }
-
-  get_team_obj() {
-    return this.http_client.get(this.team_object_endpoint);
+    return this.http_client.get(this.appConfigProperties.reopening_object_endpoint);
   }
 
   get_data_obj() {

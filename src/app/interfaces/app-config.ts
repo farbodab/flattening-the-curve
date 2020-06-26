@@ -8,5 +8,6 @@ export class AppConfigProperties {
     plot_object_endpoint: string;
     data_object_endpoint: string;
     team_object_endpoint: string;
+    reopening_object_endpoint: string;
     twitter_object_endpoint: string;
 }
