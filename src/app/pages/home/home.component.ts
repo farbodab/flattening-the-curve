@@ -195,7 +195,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.window_subscription = this.host_service.onWindowResize.subscribe(window => {
       this.refresh_layout(window.innerWidth);
     });
-    this.fetchVizObj();
     this.dropdownSelection = this.formBuilder.group({});
     this.dropdownSelection.addControl('phu', this.formBuilder.control(''));
     this.dropdownSelection.addControl('searchCtrl', this.formBuilder.control(''));
@@ -227,48 +226,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   on_sign_up_pressed() {
     //document.getElementById('mailingList').click();
     this.mailingList.nativeElement.click();
-  }
-
-  fetchVizObj() {
-    this.api_service.get_viz_obj().subscribe(
-      data => {
-        this.jsonObj = data;
-        this.findHomeViz(this.jsonObj);
-      },
-      error => {
-        //console.error(error);
-      }
-    );
-  }
-
-  findHomeViz(obj: []) {
-    let url = '';
-    obj.forEach((element, index) => {
-      if (element['category'] === 'home') {
-        url = element['viz'];
-      }
-    });
-    this.setHomeViz(url);
-  }
-
-  setHomeViz(urlInput: string) {
-    var placeholderDiv = document.getElementById('vizContainer');
-    if (urlInput === '') {
-      var url = "https://public.tableau.com/views/Ontarios2COVID-19Curves/Dashboard?:display_count=y&:origin=viz_share_link"
-    } else {
-      //var url = "https://public.tableau.com/views/OntarioICUCapacity2forCOVID-19/Dashboard1?:display_count=y&:origin=viz_share_link"
-      var url = urlInput;
-    }
-
-    var options = {
-      hideTabs: true,
-      margin: "0 auto",
-      onFirstInteractive: function () {
-        // The viz is now ready and can be safely used.
-        console.log("Run this code when the viz has finished loading.");
-      }
-    }
-    this.viz = new tableau.Viz(placeholderDiv, url, options);
   }
 
   removeOntartio(dataObject:any) {
