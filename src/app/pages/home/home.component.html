@@ -16,7 +16,7 @@
     </div>
     <div class='content' style='background-color: white;'>
         <div id='container' style="margin:0">
-            <div class='home-page-card which-curve'>
+            <!-- <div class='home-page-card which-curve'>
                 <div id='which-curve-text'>
                     <div>
                         <h1 class="main-header-styling">
@@ -53,11 +53,11 @@
                     </div>
                 </div>
                 <div id="vizContainer"></div>
-            </div>
+            </div> -->
             <div *ngIf="is_full" class="table-container">
                 <div class="scorecard-header">Ontario's Reopening Metrics</div>
                 <div>
-                    <mat-progress-spinner mode="indeterminate" diameter="50" style="margin: 0 auto;"
+                    <mat-progress-spinner class="spinner-styling" mode="indeterminate" diameter="50"
                         *ngIf="ontarioObj.rt === null">
                     </mat-progress-spinner>
                 </div>
@@ -139,7 +139,7 @@
                 </table>
                 <div class="scorecard-header">Metrics by PHU</div>
                 <div>
-                    <mat-progress-spinner mode="indeterminate" diameter="50" style="margin: 0 auto;"
+                    <mat-progress-spinner class="spinner-styling" mode="indeterminate" diameter="50"
                         *ngIf="!sortedMetrics">
                     </mat-progress-spinner>
                 </div>
@@ -200,7 +200,7 @@
             <div *ngIf="!is_full">
                 <div class="scorecard-header">Ontario's Reopening Metrics</div>
                 <div>
-                    <mat-progress-spinner mode="indeterminate" diameter="50" style="margin: 0 auto;"
+                    <mat-progress-spinner class="spinner-styling" mode="indeterminate" diameter="50"
                         *ngIf="ontarioObj.rt === null">
                     </mat-progress-spinner>
                 </div>
@@ -293,7 +293,7 @@
                 </table>
                 <div class="scorecard-header">Metrics by PHU</div>
                 <div>
-                    <mat-progress-spinner mode="indeterminate" diameter="50" style="margin: 0 auto;"
+                    <mat-progress-spinner class="spinner-styling" mode="indeterminate" diameter="50"
                         *ngIf="!sortedMetrics">
                     </mat-progress-spinner>
                 </div>
@@ -526,19 +526,52 @@
                 </div>
             </div>
             <div class="card-container scorecard-info-container">
-                <div class="mobile-scorecard-container">
-                    <div class="scorecard-info-header">Data Sources</div>
+                <div class="mobile-scorecard-container no-bottom-padding">
+                    <div class="scorecard-info-header data-source-header">Data Sources</div>
+                    <mat-list role="list">
+                        <mat-list-item role="listitem" class="data-item">
+                            <div>
+                                <span class="data-source-title">RT:</span>
+                                Calculated using a modified approach of Kevin Systrom (based on <a
+                                    href='https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0002185'>Bettencourt
+                                    & Ribeiro</a>). Data from the COVID-19 Canada Open Data Working Group
+                            </div>
+                        </mat-list-item>
+                        <mat-list-item role="listitem" class="data-item">
+                            <div>
+                                <span class="data-source-title">Weekly New Cases:</span> Data from Confirmed positive
+                                cases of
+                                COVID19 in Ontario from
+                                Government of Ontario
+                            </div>
+                        </mat-list-item>
+                        <mat-list-item role="listitem" class="data-item">
+                            <div>
+                                <span class="data-source-title">Testing:</span> Data from Confirmed positive cases of
+                                COVID19
+                                in Ontario from Government
+                                of Ontario
+                            </div>
+                        </mat-list-item>
+                        <mat-list-item role="listitem" class="data-item">
+                            <div>
+                                <span class="data-source-title">ICU:</span>Data from Critical Care Services Ontario
+                                (CCSO)
+                            </div>
+                        </mat-list-item>
+                    </mat-list>
                 </div>
                 <div class="mobile-scorecard-container">
-                    <div class="scorecard-info-header">A Note On Missing Data</div>
+                    <div class="scorecard-info-header missing-data-header">A Note On Missing Data</div>
                     <div style="display: flex" [style.flex-wrap]="!is_full ? 'wrap': 'none'">
                         <div class="missing-data-icon-container">
                             <img class="missing-data-icon ontario-header-img" src='assets/img/missing_data.svg'>
                             <div class="missing-data-header">A data blackout</div>
                         </div>
-                        <div [style.width]="!is_full ? '100%' : 'auto'">
+                        <div [style.width]="!is_full ? '100%' : 'auto'" class="missing-data-text">
                             A number of key data items in the scorecard above, such as contact tracing capacity, are
-                            listed as not available. Data for these crucial indicators is currently not available or
+                            listed as not available -- as denoted by the icon to the left. Data for these crucial
+                            indicators is currently not available or
                             not reported publicly.
                         </div>
                     </div>
