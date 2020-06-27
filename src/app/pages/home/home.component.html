@@ -95,7 +95,7 @@
                             [ngClass]="{'black-cell': ontarioObj.testing === 'nan', 'green-cell': ontarioObj.testing > 95, 'yellow-cell': 81 <= ontarioObj.testing && ontarioObj.testing <= 95, 'red-cell': ontarioObj.testing < 80}"
                             style="width: 10%;">
                             <div *ngIf="ontarioObj.testing !== 'nan'">{{ontarioObj.testing+'%'}}</div>
-                            <img title="Data not available" *ngIf="ontarioObj.testing === 'nan'"
+                            <img title="Data not available or not reported publicly" *ngIf="ontarioObj.testing === 'nan'"
                                 class="missing-data-icon ontario-header-img" src='assets/img/missing_data.svg'>
                         </td>
                         <td class="center-cell border-right-white"
@@ -119,7 +119,7 @@
                             [ngClass]="{'black-cell': ontarioObj.weekly === 'nan', 'green-cell': ontarioObj.weekly < 25, 'yellow-cell': 25 <= ontarioObj.weekly && ontarioObj.weekly <= 100, 'red-cell': 100 < ontarioObj.weekly}">
                             Weekly New Cases
                         </td>
-                        <td [title]="ontarioObj.tracing === 'nan'? 'Data not available': ''"
+                        <td [title]="ontarioObj.tracing === 'nan'? 'Data not available or not reported publicly': ''"
                             class="center-cell border-left-white"
                             [ngClass]="{'black-cell': ontarioObj.tracing === 'nan', 'green-cell': ontarioObj.tracing > 95, 'yellow-cell': 81 <= ontarioObj.tracing && ontarioObj.tracing <= 95, 'red-cell': ontarioObj.tracing < 80}"
                             style="width: 10%;">
@@ -162,28 +162,28 @@
                     <tr *ngFor="let row of sortedMetrics; index as index" class="row-styling"
                         [style.background-color]="index % 2 === 0 ? '#ffffff' : '#F2F2F2'">
                         <td class="first-col-cell" [title]="row.phu">{{row.phu}}</td>
-                        <td [title]="row.rt === 'nan'? 'Unable to calculate': ''"
+                        <td [title]="row.rt === 'nan'? 'Cannot calculate due to insufficient data': ''"
                             class="cell-border center-cell no-left-border"
                             [ngClass]="{'black-cell': row.rt === 'nan', 'green-cell': row.rt < 0.5, 'yellow-cell': 0.5 <= row.rt && row.rt < 1.0, 'red-cell': 1.0 <= row.rt}">
                             {{row.rt === 'nan' ? 'N/A' : row.rt}}</td>
-                        <td [title]="row.weekly === 'nan'? 'Unable to calculate': ''"
+                        <td [title]="row.weekly === 'nan'? 'Cannot calculate due to insufficient data': ''"
                             [ngClass]="{'black-cell': row.weekly === 'nan', 'green-cell': row.weekly < 25, 'yellow-cell': 25 <= row.weekly && row.weekly <= 100, 'red-cell': 100 < row.weekly}"
                             class="cell-border center-cell">
                             {{row.weekly === 'nan' ? 'N/A' : row.weekly}}</td>
-                        <td [title]="row.testing === 'nan'? 'Data not available': ''"
+                        <td [title]="row.testing === 'nan'? 'Data not available or not reported publicly': ''"
                             [ngClass]="{'black-cell': row.testing === 'nan', 'green-cell': row.testing > 95, 'yellow-cell': 81 <= row.testing && row.testing <= 95, 'red-cell': row.testing < 80}"
                             class="cell-border center-cell">
                             <div *ngIf="row.testing !== 'nan'">{{row.testing+'%'}}</div>
                             <img *ngIf="row.testing === 'nan'" class="missing-data-icon-cell ontario-header-img"
                                 src='assets/img/missing_data.svg'>
                         </td>
-                        <td [title]="row.tracing === 'nan'? 'Data not available': ''"
+                        <td [title]="row.tracing === 'nan'? 'Data not available or not reported publicly': ''"
                             [ngClass]="{'black-cell': row.tracing === 'nan', 'green-cell': row.tracing > 95, 'yellow-cell': 81 <= row.tracing && row.tracing <= 95, 'red-cell': row.tracing < 80}"
                             class="cell-border center-cell">
                             <div *ngIf="row.tracing !== 'nan'">{{row.tracing+'%'}}</div>
                             <img *ngIf="row.tracing === 'nan'" class="missing-data-icon-cell ontario-header-img"
                                 src='assets/img/missing_data.svg'>
-                        <td [title]="row.icu === 'nan'? 'Unable to calculate': ''"
+                        <td [title]="row.icu === 'nan'? 'Cannot calculate due to insufficient data': ''"
                             [ngClass]="{'black-cell': row.icu === 'nan', 'green-cell': row.icu < 80, 'yellow-cell': 80 <= row.icu && row.icu < 90, 'red-cell': 90 <= row.icu}"
                             class="cell-border center-cell">
                             {{row.icu === 'nan' ? 'N/A' : row.icu+'%'}}</td>
