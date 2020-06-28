@@ -9,11 +9,11 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 declare var tableau: any;
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-scorecard',
+  templateUrl: './scorecard.component.html',
+  styleUrls: ['./scorecard.component.scss']
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class ScorecardComponent implements OnInit, AfterViewInit {
 
   @ViewChild('MailingList', { static: false }) mailingList: ElementRef;
   @ViewChildren('phuArray') scoreCardComponents: QueryList<any>;
@@ -268,7 +268,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         console.log("Run this code when the viz has finished loading.");
       }
     }
-    this.viz = new tableau.Viz(placeholderDiv, url, options);
+    //this.viz = new tableau.Viz(placeholderDiv, url, options);
   }
 
   removeOntartio(dataObject:any) {
