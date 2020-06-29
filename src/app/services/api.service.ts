@@ -32,8 +32,8 @@ export class ApiService {
     this.appConfigProperties = this.config.getConfig();
   }
 
-  get_twitter_obj() {
-    return this.http_client.get(this.appConfigProperties.twitter_object_endpoint);
+  get_reopening_obj() {
+    return this.http_client.get(this.appConfigProperties.reopening_object_endpoint);
   }
 
   get_data_obj() {

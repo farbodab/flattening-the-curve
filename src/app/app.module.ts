@@ -21,6 +21,7 @@ import {AnalysisTestingComponent} from './pages/analysis/analysis.testing.compon
 import {AnalysisCapacityComponent} from './pages/analysis/analysis.capacity.component';
 import {DataComponent} from './pages/data/data.component';
 import { GridComponent } from './pages/grid/grid.component';
+import { ScorecardComponent } from './pages/scorecard/scorecard.component';
 
 import {environment} from 'src/environments/environment';
 import {AngularFireModule} from '@angular/fire';
@@ -34,7 +35,9 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatButtonModule} from '@angular/material/button'; 
+import {MatButtonModule} from '@angular/material/button';
+import {MatSortModule} from '@angular/material/sort';
+import {MatListModule} from '@angular/material/list';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -79,7 +82,8 @@ export function initConfig(appConfig: AppConfigService) {
         CommonDesktopVisualComponent,
         GridComponent,
         PlotComponent,
-        AngularPlotlyComponent
+        AngularPlotlyComponent,
+        ScorecardComponent
     ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),
@@ -104,7 +108,9 @@ export function initConfig(appConfig: AppConfigService) {
         MatTooltipModule,
         MatIconModule,
         MatSnackBarModule,
-        MatButtonModule
+        MatButtonModule,
+        MatSortModule,
+        MatListModule
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

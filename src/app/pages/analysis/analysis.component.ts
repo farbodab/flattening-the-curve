@@ -44,6 +44,7 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
   urlSegments: any;
   path: string;
   triggerDirectPopup: any[];
+  newVizTracker = false;
 
   constructor(private host_service: HostService, private location: Location, private route: ActivatedRoute, private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog, private api_service: ApiService, private _snackBar: MatSnackBar) {
     this.refresh_layout(window.innerWidth);
@@ -122,6 +123,9 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
     obj.forEach((element, index) => {
       let header: any;
       header = element['header'];
+      if(moment.duration(this.todaysDate.diff(element.date)).asDays() < 8) {
+        this.newVizTracker = true;
+      }
       if (this.path !== '' && this.path === header.toLowerCase().split(' ').join('_')) {
         this.triggerDirectPopup = [this.path, element];
         found = true;
