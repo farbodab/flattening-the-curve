@@ -20,13 +20,18 @@
     display: block;
     padding: 0;
   }
-  #resource-box {
-    width: 100%;
-    display: block;
-  }
-  #supporters-set {
-    width: 100%;
-    display: block;
+
+  .supporter-container {
+    #supporters-set {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      padding-bottom: 0;
+  
+      .resource-box {
+        width: 50%;
+      }
+    }
   }
 
   #resource-box-landscape {
@@ -35,7 +40,7 @@
   }
 
   #resource_thumbnail_landscape {
-    width: 50%;
+    width: 100%;
     display: block;
   }
 }
@@ -190,7 +195,7 @@ h1, h3 {
   margin-right: auto ;
 }
 
-#resource-box {
+.resource-box {
     border: 1px;  
     width:175px;
     padding: 10px
@@ -201,7 +206,6 @@ h1, h3 {
     width: 150px;
     object-fit: contain;
     object-position: 0% 50%;
-
 }
 
 #resource-box-landscape {
@@ -214,12 +218,13 @@ h1, h3 {
     width: 100%;
     object-fit: contain;
     object-position: 0% 50%;
+    max-width: 300px;
 }
 
 .grid-landscape {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 1rem;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .grid {
@@ -355,6 +360,12 @@ h1, h3 {
 }
 
 .mobile-sizing {
+  
+  .img-scaling {
+    width: 25%;
+    height: 25vw;
+  }
+
   .team-tooltip {
     align-items: initial;
     color: #391F85;
