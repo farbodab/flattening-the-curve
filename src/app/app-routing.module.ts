@@ -10,7 +10,7 @@ import { DataComponent } from 'src/app/pages/data/data.component';
 import { OutreachComponent } from 'src/app/pages/outreach/outreach.component';
 import { BlogComponent } from './pages/blog/blog.component';
 import { GridComponent } from './pages/grid/grid.component';
-import { ScorecardComponent } from './pages/scorecard/scorecard.component';
+import { ScorecardComponent } from './components/scorecard/scorecard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
