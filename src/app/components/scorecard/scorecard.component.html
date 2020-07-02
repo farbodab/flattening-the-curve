@@ -1,19 +1,4 @@
-<app-navbar [page]='"home"'></app-navbar>
 <div [ngClass]="{'mobile-browser': !is_full}">
-    <div class='header-container'>
-        <div class="header-inner-container">
-            <img *ngIf="!is_full" class='logo-mobile-home' routerLink='/home' src='assets/img/logo.svg'>
-            <div id='title-div'>
-                <div>
-                    <p *ngIf="is_full" class='mat-display-1' id='title-text'>#HowsMyFlattening</p>
-                    <p class='mat-headline home-header-sub' id='subtitle-text'>A centralized data
-                        analytics and
-                        visualization
-                        hub monitoring Ontario's response to COVID-19</p>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class='content' style='background-color: white;'>
         <div id='container' style="margin:0">
             <div *ngIf="is_full" class="table-container">
@@ -356,7 +341,7 @@
                         </tr>
                         <tr class="row-styling">
                             <td class="cell-border no-left-border center-cell">Weekly New Cases</td>
-                            <td class="cell-border center-cell green-cell">&lt; 25</td>
+                            <td class="cell-border center-cell green-cell"><strong>&lt;</strong> 25</td>
                             <td class="cell-border center-cell yellow-cell">25 <strong>&le;</strong> Weekly New Cases
                                 <strong>&le;</strong> 100</td>
                             <td class="cell-border no-right-border center-cell red-cell"><strong>&gt;</strong> 100</td>
@@ -413,7 +398,7 @@
                         </tr>
                         <tr>
                             <td class="alternate-row threshold-left-col">Green</td>
-                            <td class="center-cell threshold-right-col green-cell">&lt; 25</td>
+                            <td class="center-cell threshold-right-col green-cell"><strong>&lt;</strong> 25</td>
                         </tr>
                         <tr>
                             <td class="threshold-left-col">Yellow</td>

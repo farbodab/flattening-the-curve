@@ -195,14 +195,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.window_subscription = this.host_service.onWindowResize.subscribe(window => {
       this.refresh_layout(window.innerWidth);
     });
-    this.fetchVizObj();
-    this.dropdownSelection = this.formBuilder.group({});
-    this.dropdownSelection.addControl('phu', this.formBuilder.control(''));
-    this.dropdownSelection.addControl('searchCtrl', this.formBuilder.control(''));
+    // this.fetchVizObj();
+    // this.dropdownSelection = this.formBuilder.group({});
+    // this.dropdownSelection.addControl('phu', this.formBuilder.control(''));
+    // this.dropdownSelection.addControl('searchCtrl', this.formBuilder.control(''));
   }
 
   ngAfterViewInit() {
-    this.fetchDataObj();
+    //this.fetchDataObj();
   }
 
   fetchDataObj() {
@@ -268,7 +268,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         console.log("Run this code when the viz has finished loading.");
       }
     }
-    this.viz = new tableau.Viz(placeholderDiv, url, options);
+    //this.viz = new tableau.Viz(placeholderDiv, url, options);
   }
 
   removeOntartio(dataObject:any) {
