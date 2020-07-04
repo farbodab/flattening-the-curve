@@ -60,7 +60,7 @@
                         <td class="center-cell"
                             [ngClass]="{'black-cell': ontarioObj.icu === 'nan', 'green-cell': ontarioObj.icu < 80, 'yellow-cell': 80 <= ontarioObj.icu && ontarioObj.icu < 90, 'red-cell': 90 <= ontarioObj.icu}"
                             rowspan="2">Total ICU Bed Occupied
-                            Percentage</td>
+                            </td>
                     </tr>
                     <tr class="ontario-row-styling">
                         <td class="center-cell"
@@ -107,7 +107,7 @@
                         <th mat-sort-header="new" class="header-styling black-cell">Weekly New Cases</th>
                         <th mat-sort-header="testing" class="header-styling black-cell">Testing Turn Around &lt; 24h</th>
                         <th mat-sort-header="tracing" class="header-styling black-cell">Tracing Turn Around &lt; 24h</th>
-                        <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Bed Occupied %</th>
+                        <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Bed Occupied</th>
                         <th mat-sort-header="stage" class="header-styling black-cell">Stage</th>
                     </tr>
                     <tr *ngFor="let row of sortedMetrics; index as index" class="row-styling"
@@ -234,7 +234,7 @@
                         <td class="center-cell"
                             [ngClass]="{'black-cell': ontarioObj.icu === 'nan', 'green-cell': ontarioObj.icu < 80, 'yellow-cell': 80 <= ontarioObj.icu && ontarioObj.icu < 90, 'red-cell': 90 <= ontarioObj.icu}"
                             rowspan="2">Total ICU Bed Occupied
-                            Percentage</td>
+                            </td>
                     </tr>
                     <tr></tr>
                 </table>
@@ -314,7 +314,7 @@
                             <th class="mobile-category-header" colspan="2">Response Capacity</th>
                         </tr>
                         <tr>
-                            <td class="mobile-header-cell alternate-row">Total ICU Bed Occupied %</td>
+                            <td class="mobile-header-cell alternate-row">Total ICU Bed Occupied</td>
                             <td [ngClass]="{'black-cell': table.icu === 'nan', 'green-cell': table.icu < 80, 'yellow-cell': 80 <= table.icu && table.icu < 90, 'red-cell': 90 <= table.icu}"
                                 class="center-cell" class="mobile-data-cell center-cell">
                                 {{table.icu === 'nan' ? 'N/A' : table.icu+'%'}}</td>
@@ -361,7 +361,7 @@
                             <td class="cell-border no-right-border center-cell red-cell"><strong>&lt;</strong> 80%</td>
                         </tr>
                         <tr class="row-styling">
-                            <td class="cell-border no-left-border alternate-row center-cell">Total ICU Bed Occupied %
+                            <td class="cell-border no-left-border alternate-row center-cell">Total ICU Bed Occupied
                             </td>
                             <td class="cell-border center-cell green-cell"><strong>&lt;</strong> 80%</td>
                             <td class="cell-border center-cell yellow-cell">80% <strong>&le;</strong> Total ICU Bed
@@ -452,7 +452,7 @@
                     </table>
                     <table class="mobile-threshold-table">
                         <tr>
-                            <th class="mobile-phu-header" colspan="2">Total ICU Bed Occupied %</th>
+                            <th class="mobile-phu-header" colspan="2">Total ICU Bed Occupied</th>
                         </tr>
                         <tr>
                             <td class="alternate-row threshold-left-col">Green</td>
