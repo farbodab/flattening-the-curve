@@ -305,10 +305,11 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
   }
 
   compareData(a: number | string, b: number | string, type: string, isAscending: boolean) {
-
+    
     switch(type) {
       case 'string': return (a < b ? -1 : 1) *(isAscending ? 1: -1);
-      case 'number': return (((Number(a) < Number(b)) || (b === 'nan')) ? -1 : 1) *(isAscending ? 1: -1);
+      case 'number': return ((b === 'nan') ? -1 : (a ==='nan' ? 1 : ((((Number(a) < Number(b)) || (b === 'nan')) ? -1 : 1) *(isAscending 
+        ? 1: -1))));
       default: return 0;
     }
   }
