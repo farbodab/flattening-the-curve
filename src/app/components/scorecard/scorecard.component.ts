@@ -208,7 +208,7 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
   fetchDataObj() {
     this.api_service.get_reopening_obj().subscribe(
       data => {
-        this.metricJsonObj = data;
+        this.metricJsonObj = this.populateRoutes(data);
         this.sortedMetrics = this.removeOntartio(this.metricJsonObj.slice());
         this.sortMetrics(this.initial_sort);
         //this.initTeamForm(this.teamChoices);
@@ -269,6 +269,28 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
       }
     }
     //this.viz = new tableau.Viz(placeholderDiv, url, options);
+  }
+
+  iterateRoutes(phu: string) {
+    let routeValue = '';
+
+    this.phuArray.forEach(element => {
+      if(element.phu === phu) {
+        routeValue = element.value;
+      }
+    });
+    return routeValue;
+  }
+
+  populateRoutes(dataObject: any) {
+    let placeholderObj = [];
+
+    dataObject.forEach(element => {
+      element['route'] = this.iterateRoutes(element.phu);
+      placeholderObj.push(element);
+    });
+
+    return placeholderObj;
   }
 
   removeOntartio(dataObject:any) {

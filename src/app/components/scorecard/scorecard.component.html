@@ -112,7 +112,7 @@
                     </tr>
                     <tr *ngFor="let row of sortedMetrics; index as index" class="row-styling"
                         [style.background-color]="index % 2 === 0 ? '#ffffff' : '#F2F2F2'">
-                        <td class="first-col-cell" [title]="row.phu">{{row.phu}}</td>
+                        <td class="first-col-cell"  routerLink="{{'/dashboard/'+row.route}}" [title]="row.phu">{{row.phu}}</td>
                         <td [title]="row.rt === 'nan'? 'Cannot calculate due to insufficient data': ''"
                             class="cell-border center-cell no-left-border"
                             [ngClass]="{'black-cell': row.rt === 'nan', 'green-cell': row.rt < 0.5, 'yellow-cell': 0.5 <= row.rt && row.rt < 1.0, 'red-cell': 1.0 <= row.rt}">

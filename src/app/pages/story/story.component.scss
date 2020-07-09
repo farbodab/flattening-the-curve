@@ -13,6 +13,10 @@
 
 }
 
+.team-padding {
+  padding-bottom: 40px;
+}
+
 /* Display the columns below each other instead of side by side on small screens */
 @media screen and (max-width: 650px) {
   .column {
