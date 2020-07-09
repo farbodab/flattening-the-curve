@@ -13,6 +13,7 @@ variables:
 
 .deploy: &deploy
   before_script:
+    - echo $OPENSHIFT_SERVER
     - echo $OPENSHIFT_TOKEN
     - oc login --server="$OPENSHIFT_SERVER" --token="$OPENSHIFT_TOKEN" --insecure-skip-tls-verify
   script:
