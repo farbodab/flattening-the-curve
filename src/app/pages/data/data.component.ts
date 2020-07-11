@@ -17,6 +17,7 @@ export class DataComponent implements OnInit, AfterViewInit {
   filteringCheckboxes: FormGroup;
   is_full: boolean;
   window_subscription: Subscription;
+  displayFooter = false;
 
   constructor(private api_service: ApiService, private formBuilder: FormBuilder, private host_service: HostService) {
     this.refresh_layout(window.innerWidth);
@@ -39,7 +40,7 @@ export class DataComponent implements OnInit, AfterViewInit {
         this.iterateCategories(this.jsonObj);
         this.iterateRegions(this.jsonObj);
         this.initFilteringForm(this.dataCategoryList, this.dataRegionList);
-        console.log(this.jsonObj);
+        this.displayFooter = true;
       },
       error => {
         this.jsonObj = 'error';
