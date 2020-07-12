@@ -36,6 +36,8 @@ export class GridComponent implements OnInit, AfterViewInit {
     gridList = [];
     tab_obj = {};
 
+    displayFooter = false;
+
     searchCtrl: string;
     iconHover: string;
     mapHover = false;
@@ -233,13 +235,14 @@ export class GridComponent implements OnInit, AfterViewInit {
         this.fetch_subscribe = this.api_service.get_plot_obj().subscribe(
             data => {
                 this.jsonObj = data;
+                console.log(JSON.stringify(data));
                 this.initDropdownForm(this.phuArray);
                 this.tab_obj = this.initTabGroupings(this.jsonObj);
                 this.iterateAverageForm(this.jsonObj, this.tab_obj);
                 this.iterateCategories(this.jsonObj);
                 this.gridList = this.restructureObj(this.jsonObj, this.categoryList);
                 this.initFilteringForm(this.gridList);
-                //this.setVisuals(this.jsonObj);
+                this.displayFooter = true;
             },
             error => {
                 console.error(error);
@@ -518,6 +521,8 @@ export class GridComponent implements OnInit, AfterViewInit {
                 });
             });
         });
+
+        console.log(this.averageForm.controls);
     }
 
     routeonSelection(route: string) {

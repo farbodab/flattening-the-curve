@@ -423,4 +423,4 @@
     <button id='mobile-nav-btn' mat-button [routerLink]="['./capacity']">Capacity Analysis</button>
     <router-outlet></router-outlet> -->
 </div>
-<app-footer></app-footer>
+<app-footer *ngIf="displayFooter"></app-footer>

@@ -45,6 +45,7 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
   path: string;
   triggerDirectPopup: any[];
   newVizTracker = false;
+  displayFooter = false;
 
   constructor(private host_service: HostService, private location: Location, private route: ActivatedRoute, private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog, private api_service: ApiService, private _snackBar: MatSnackBar) {
     this.refresh_layout(window.innerWidth);
@@ -79,6 +80,7 @@ export class AnalysisComponent implements OnInit, AfterViewInit {
         this.findKpiViz(this.jsonObj);
         this.iterateCategories(this.jsonObj);
         this.initFilteringForm(this.categoryList);
+        this.displayFooter = true;
         //open pop-up, else trigger page not found notice + redirect
         if (typeof (this.triggerDirectPopup) !== 'undefined' && this.triggerDirectPopup[0] !== '') {
           if (this.is_full) {
