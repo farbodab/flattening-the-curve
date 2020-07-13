@@ -10,6 +10,7 @@ import * as moment from 'moment';
 import {MatIconRegistry} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
 
+
 declare var tableau: any;
 
 @Component({
@@ -235,7 +236,6 @@ export class GridComponent implements OnInit, AfterViewInit {
         this.fetch_subscribe = this.api_service.get_plot_obj().subscribe(
             data => {
                 this.jsonObj = data;
-                console.log(JSON.stringify(data));
                 this.initDropdownForm(this.phuArray);
                 this.tab_obj = this.initTabGroupings(this.jsonObj);
                 this.iterateAverageForm(this.jsonObj, this.tab_obj);
@@ -522,7 +522,6 @@ export class GridComponent implements OnInit, AfterViewInit {
             });
         });
 
-        console.log(this.averageForm.controls);
     }
 
     routeonSelection(route: string) {

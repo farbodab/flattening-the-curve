@@ -14,6 +14,7 @@ import { CommonDesktopVisualComponent } from '../../components/common-desktop-vi
 import { Moment } from 'moment';
 import * as moment from 'moment';
 import { Location } from '@angular/common';
+import {DomSanitizer} from '@angular/platform-browser';
 
 declare var tableau: any;
 

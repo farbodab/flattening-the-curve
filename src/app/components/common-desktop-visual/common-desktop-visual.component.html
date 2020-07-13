@@ -1,12 +1,18 @@
 <div [style.padding-bottom]="type === 'Map' ? '0' : '30px'">
     <div style="display: flex">
         <div class="header-styling">{{visualName}}</div>
-        <div class="collapse-text" *ngIf="topText !== 'NaN' && toggleTextFlag" (click)="toggleText()">Collapse Description Below
+        <a class="twitter-share-button" href="{{'https://twitter.com/intent/tweet?url=<?=urlencode($url)?>
+'+currentURL}}" data-size="large">
+            Tweet</a>
+        <div class="collapse-text" *ngIf="topText !== 'NaN' && toggleTextFlag" (click)="toggleText()">Collapse
+            Description Below
         </div>
-        <div class="collapse-text" style="padding-bottom: 20px" *ngIf="topText !== 'NaN' && !toggleTextFlag" (click)="toggleText()">
+        <div class="collapse-text" style="padding-bottom: 20px" *ngIf="topText !== 'NaN' && !toggleTextFlag"
+            (click)="toggleText()">
             Expand Description</div>
     </div>
-    <div class="text-styling" [innerHTML]="topText" *ngIf="topText !== 'NaN' && toggleTextFlag"></div>
+    <div class="text-styling" [innerHTML]="topText | sanitizeHtml"
+        *ngIf="topText !== 'NaN' && toggleTextFlag"></div>
     <div *ngIf="type === 'Plotly'">
         <app-plot class="plot-styling" [analysis]="true" [graph_data]="vizUrl"></app-plot>
     </div>
@@ -17,7 +23,10 @@
         <!-- <img style="width:100%;"src='assets/img/Figure4_Italy_Waiting.jpg'> -->
     </div>
     <div *ngIf="type === 'Map'" class="embed-container">
-        <iframe src=" https://howsmyflattening.maps.arcgis.com/apps/Minimalist/index.html?appid=de0ea127da49495393346fcc7c92625d" height="400" width="500"></iframe>
+        <iframe
+            src=" https://howsmyflattening.maps.arcgis.com/apps/Minimalist/index.html?appid=de0ea127da49495393346fcc7c92625d"
+            height="400" width="500"></iframe>
     </div>
-    <div class="text-styling" style="padding-top: 20px" *ngIf="bottomText !== 'NaN'" [innerHTML]="bottomText"></div>
+    <div class="text-styling" style="padding-top: 20px" *ngIf="bottomText !== 'NaN'"
+        [innerHTML]="bottomText | sanitizeHtml"></div>
 </div>
