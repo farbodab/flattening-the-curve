@@ -21,7 +21,7 @@ export class CommonDesktopVisualComponent implements OnInit, OnDestroy, AfterVie
     height: string;
     type: string;
     mapPopup = false;
-    currentURL = '';
+    currentUrl = '';
 
     viz: any;
     toggleTextFlag = true;
@@ -42,8 +42,7 @@ export class CommonDesktopVisualComponent implements OnInit, OnDestroy, AfterVie
     }
 
     ngOnInit() {
-        this.currentURL = window.location.href;
-        console.log(this.currentURL);
+        this.currentUrl =  encodeURIComponent(window.location.href);
     }
 
     ngAfterViewInit() {
