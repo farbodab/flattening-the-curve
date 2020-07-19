@@ -360,7 +360,8 @@ export class GridComponent implements OnInit, AfterViewInit {
             vizHeight: height,
             topTextContent: topText,
             bottomTextContent: bottomText,
-            vizType: category === 'Map' ? 'Map' : 'Plotly'
+            vizType: category === 'Map' ? 'Map' : 'Plotly',
+            dashboard: true
         };
         dialogConfig.width = '300px';
 

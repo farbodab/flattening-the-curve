@@ -1,7 +1,7 @@
 <div [style.padding-bottom]="type === 'Map' ? '0' : '30px'">
     <div class="header-container">
         <div class="header-styling">{{visualName}}</div>
-        <a title="{{'Share the '+visualName+' analysis on Twitter'}}" href="{{'https://twitter.com/intent/tweet?text=Check out the '+visualName+' analysis at &url='+currentUrl+'&via=HowsMyFlattening'}}" target="_blank" class="fa fa-twitter"></a>
+        <a *ngIf="!fromDashboard" title="{{'Share the '+visualName+' analysis on Twitter'}}" href="{{'https://twitter.com/intent/tweet?text=Check out the '+visualName+' analysis at &url='+currentUrl+'&via=HowsMyFlattening'}}" target="_blank" class="fa fa-twitter"></a>
         <div class="collapse-text" *ngIf="topText !== 'NaN' && toggleTextFlag" (click)="toggleText()">Collapse
             Description Below
         </div>

@@ -22,6 +22,7 @@ export class CommonDesktopVisualComponent implements OnInit, OnDestroy, AfterVie
     type: string;
     mapPopup = false;
     currentUrl = '';
+    fromDashboard = false;
 
     viz: any;
     toggleTextFlag = true;
@@ -39,6 +40,7 @@ export class CommonDesktopVisualComponent implements OnInit, OnDestroy, AfterVie
         this.category = data.visualCategory;
         this.height = data.vizHeight + 'px';
         this.type = data.vizType;
+        this.fromDashboard = data.dashboard;
     }
 
     ngOnInit() {
