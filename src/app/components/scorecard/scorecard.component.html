@@ -6,29 +6,68 @@
                     <div class="scorecard-info-header data-source-header">Metric Explanations</div>
                     <mat-list role="list" class="metric-explanation-list">
                         <mat-list-item role="listitem" class="data-item">
-                            1. RT
+                            <div class="metric-height">
+                                <span class="data-source-title">1. RT:</span> A measure of how contagious a disease is
+                                at a certain point in time. It tells
+                                us the average number of people one sick person can infect (e.g. an Rt of 5 means that
+                                on
+                                average, each case is expected to infect 5 other people). If Rt is greater than 1, it
+                                means
+                                the outbreak is growing.
+                            </div>
                         </mat-list-item>
                         <mat-list-item role="listitem" class="data-item">
-                            2. Weekly New Cases
+                            <div class="metric-height">
+                                <span class="data-source-title">2. Weekly New Cases:</span> The total number of new
+                                cases a public health unit reports in the prior
+                                seven days.
+                            </div>
                         </mat-list-item>
                         <mat-list-item role="listitem" class="data-item">
-                            3. Testing &lt; 24h
+                            <div class="metric-height">
+                                <span class="data-source-title">3. Testing &lt; 24h:</span> The amount of time needed
+                                for a lab to process a specimen and enter the
+                                result (e.g. positive or negative) into the public health database. This should be as
+                                fast
+                                as possible to prevent backlogs and provide the most accurate view possible on the
+                                pandemic
+                                situation.
+                            </div>
                         </mat-list-item>
                         <mat-list-item role="listitem" class="data-item">
-                            4. Tracing &lt; 24h
+                            <div class="metric-height">
+                                <span class="data-source-title">4. Tracing &lt; 24h:</span> The amount of time needed
+                                for a PHU to complete contact tracing of a
+                                case (i.e. a contact tracer calls the patient and asks who they have been recently in
+                                contact with so that those people can also get tested).
+                            </div>
                         </mat-list-item>
                         <mat-list-item role="listitem" class="data-item">
-                            5. Total ICU Bed Occupied:
+                            <div class="metric-height">
+                                <span class="data-source-title">5. Total ICU Bed Occupied:</span> The percentage of beds
+                                in the intensive care unit that are
+                                occupied. This includes both COVID-19 patients and patients who are in the ICU for other
+                                reasons. This gives us an important sense of healthcare capacity since if there are not
+                                enough ICU beds, patients are at a higher risk of death.
+                            </div>
                         </mat-list-item>
                         <mat-list-item role="listitem" class="data-item">
-                            6. Stage:
+                            <div class="metric-height">
+                                <span class="data-source-title">6. Stage:</span> Like other jurisdictions, Ontario has
+                                chosen to reopen in 'stages' to balance
+                                public health and safety with economic productivity and a sense of 'life as normal' for
+                                Ontarians. Stage 1 is the most restrictive on businesses and services while Stage 3 is
+                                the
+                                most open.
+                            </div>
                         </mat-list-item>
                     </mat-list>
                 </div>
             </div>
             <div *ngIf="is_full" class="table-container">
                 <div class="scorecard-header desktop-ontario-header">
-                    <span routerLink="/dashboard/ontario" [title]="'Ontario Dashboard'">Ontario's Reopening Metrics</span>
+                    <span routerLink="/dashboard/ontario" [title]="'Ontario Dashboard'">Ontario's Reopening
+                        Metrics</span>
                 </div>
                 <div>
                     <mat-progress-spinner class="spinner-styling" mode="indeterminate" diameter="50"
@@ -510,9 +549,9 @@
             <div class="card-container scorecard-info-container">
                 <div class="mobile-scorecard-container no-bottom-padding">
                     <div class="scorecard-info-header data-source-header">Data Sources</div>
-                    <mat-list role="list">
+                    <mat-list role="list" class="metric-explanation-list">
                         <mat-list-item role="listitem" class="data-item">
-                            <div>
+                            <div class="metric-height">
                                 <span class="data-source-title">1. Rt:</span>
                                 Calculated using a modified approach of Kevin Systrom (based on <a
                                     href='https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0002185'>Bettencourt
@@ -520,7 +559,7 @@
                             </div>
                         </mat-list-item>
                         <mat-list-item role="listitem" class="data-item">
-                            <div>
+                            <div class="metric-height">
                                 <span class="data-source-title">2. Weekly New Cases:</span> Calculated using case
                                 reported date. Data from Confirmed positive
                                 cases of
@@ -529,7 +568,7 @@
                             </div>
                         </mat-list-item>
                         <mat-list-item role="listitem" class="data-item">
-                            <div>
+                            <div class="metric-height">
                                 <span class="data-source-title">3. Testing:</span> Calculated using case reported date,
                                 specimen reported date, test reported date. Data from confirmed positive cases of
                                 COVID19
@@ -538,7 +577,7 @@
                             </div>
                         </mat-list-item>
                         <mat-list-item role="listitem" class="data-item">
-                            <div>
+                            <div class="metric-height">
                                 <span class="data-source-title">4. ICU:</span>Calculated using number of critical care
                                 beds and critical care patients in baseline and incremental type 2 and type 3 icus. Data
                                 from Critical Care Services Ontario
