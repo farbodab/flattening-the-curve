@@ -95,8 +95,8 @@
                                                                         <div class="upper-tab-container">
                                                                             <div style="display: flex"
                                                                                 *ngIf="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'view'].value === 'none'"
-                                                                                (mouseover)="toggleHover(phuPlot.value.phu+ '' +phuPlot.value.header+ 'true')"
-                                                                                (mouseout)="toggleHover(phuPlot.value.phu+ '' +phuPlot.value.header+ 'false')">
+                                                                                (mouseover)="toggleHover(phuPlot.value.phu+ '' +phuPlot.value.header+ is_full+ 'true')"
+                                                                                (mouseout)="toggleHover(phuPlot.value.phu+ '' +phuPlot.value.header+ is_full+ 'false')">
                                                                                 <mat-icon
                                                                                     (click)="openDialog(phuPlot.value.viz_title, 'plot', phuPlot.value.html, phuPlot.value.text_top, phuPlot.value.text_bottom, 500)"
                                                                                     aria-hidden="false"
@@ -105,7 +105,7 @@
                                                                                     info
                                                                                 </mat-icon>
                                                                                 <div class="tooltip-text-first-row"
-                                                                                    [style.display]="(iconHover === phuPlot.value.phu+ '' +phuPlot.value.header+ 'true' ? 'flex': 'none')">
+                                                                                    [style.display]="(iconHover === phuPlot.value.phu+ '' +phuPlot.value.header+ '' +true + '' + 'true' ? 'flex': 'none')">
                                                                                     See details
                                                                                 </div>
                                                                             </div>
@@ -126,8 +126,8 @@
                                                                     [style.display]="(phuGroup[0].group === 'map' ? 'none': 'flex')">
                                                                     <div style="display: flex"
                                                                         *ngIf="averageForm.controls[phuPlot.value.phu + '' +phuPlot.value.header + 'view'].value !== 'none'"
-                                                                        (mouseover)="toggleHover(phuPlot.value.phu+ '' +phuPlot.value.header+ 'true')"
-                                                                        (mouseout)="toggleHover(phuPlot.value.phu+ '' +phuPlot.value.header+ 'false')">
+                                                                        (mouseover)="toggleHover(phuPlot.value.phu+ '' +phuPlot.value.header+ is_full+ 'true')"
+                                                                        (mouseout)="toggleHover(phuPlot.value.phu+ '' +phuPlot.value.header+ is_full+ 'false')">
                                                                         <mat-icon
                                                                             (click)="openDialog(phuPlot.value.viz_title, 'plot', phuPlot.value.html, phuPlot.value.text_top, phuPlot.value.text_bottom, 500)"
                                                                             aria-hidden="false"
@@ -136,7 +136,7 @@
                                                                             info
                                                                         </mat-icon>
                                                                         <div class="tooltip-text-second-row"
-                                                                            [style.display]="(iconHover === phuPlot.value.phu+ '' +phuPlot.value.header+ 'true' ? 'flex': 'none')">
+                                                                            [style.display]="(iconHover === phuPlot.value.phu+ '' +phuPlot.value.header+ '' +true +'' + 'true' ? 'flex': 'none')">
                                                                             See details
                                                                         </div>
                                                                     </div>
