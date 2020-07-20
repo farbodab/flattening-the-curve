@@ -20,7 +20,7 @@
     </div>
     <div *ngIf="type === 'Map'" class="embed-container">
         <iframe
-            src=" https://howsmyflattening.maps.arcgis.com/apps/Minimalist/index.html?appid=de0ea127da49495393346fcc7c92625d"
+            [src]="vizUrl | sanitizeUrl"
             height="400" width="500"></iframe>
     </div>
     <div *ngIf="type === 'iframe'">

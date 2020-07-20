@@ -96,8 +96,8 @@ export class GridComponent implements OnInit, AfterViewInit {
             value: 'hastings_and_prince_edward_counties'
         },
         {
-            phu: 'Huron County Health Unit',
-            value: 'huron_county'
+            phu: 'Huron Perth County Health Unit',
+            value: 'huron_perth_county'
         },
         {
             phu: 'Kingston, Frontenac, and Lennox and Addington Health Unit',
@@ -130,10 +130,6 @@ export class GridComponent implements OnInit, AfterViewInit {
         {
             phu: 'Peel Regional Health Unit',
             value: 'peel_regional'
-        },
-        {
-            phu: 'Perth District Health Unit',
-            value: 'perth_district'
         },
         {
             phu: 'Peterborough County–City Health Unit',

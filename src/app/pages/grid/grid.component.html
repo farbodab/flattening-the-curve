@@ -163,11 +163,15 @@
                                                                 </app-plot>
                                                                 <div *ngIf="phuGroup[0].group === 'map' && is_full"
                                                                     style="display: flex; height: 25px; position: relative">
-                                                                    <div style="color: #ffffff; font-size: 18px; margin-top: -2px">COVID-19 Cases Summary - Days Since Last Known Case (Beta)</div>
+                                                                    <div
+                                                                        style="color: #ffffff; font-size: 18px; margin-top: -2px">
+                                                                        COVID-19 Cases Summary - Days Since Last Known
+                                                                        Case (Beta)</div>
                                                                     <mat-icon
-                                                                        (click)="openDialog('COVID-19 Cases Summary - Days Since Last Known Case (Beta)', 'Map', '', 'NaN', 'NaN', 500)"
+                                                                        (click)="openDialog('COVID-19 Cases Summary - Days Since Last Known Case (Beta)', 'Map', phuPlot.value.html, 'NaN', 'NaN', 500)"
                                                                         class="map-toggle" (mouseover)="toggleMap(true)"
-                                                                        (mouseout)="toggleMap(false)">fullscreen</mat-icon>
+                                                                        (mouseout)="toggleMap(false)">fullscreen
+                                                                    </mat-icon>
                                                                     <div class="map-tooltip"
                                                                         [style.display]="(mapHover? 'flex': 'none')">
                                                                         Expand map
@@ -175,7 +179,8 @@
                                                                 </div>
                                                                 <div *ngIf="phuGroup[0].group === 'map'"
                                                                     class="embed-container">
-                                                                    <iframe src=" https://howsmyflattening.maps.arcgis.com/apps/Minimalist/index.html?appid=de0ea127da49495393346fcc7c92625d"></iframe>
+                                                                    <iframe
+                                                                        [src]="phuPlot.value.html | sanitizeUrl"></iframe>
                                                                 </div>
                                                                 <div *ngFor="let phuTab of tab_obj | keyvalue"
                                                                     [style.display]="(phuGroup[0].group === 'map' ? 'none': 'initial')">
