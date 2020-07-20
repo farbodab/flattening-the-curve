@@ -31,7 +31,7 @@ const routes: Routes = [
       { path: 'halton_regional', component: GridComponent },
       { path: 'city_of_hamilton', component: GridComponent },
       { path: 'hastings_and_prince_edward_counties', component: GridComponent },
-      { path: 'huron__perth_county', component: GridComponent },
+      { path: 'huron_perth_county', component: GridComponent },
       { path: 'chatham_kent', component: GridComponent },
       { path: 'kingston_frontenac_and_lennox_and_addington', component: GridComponent },
       { path: 'lambton', component: GridComponent },
