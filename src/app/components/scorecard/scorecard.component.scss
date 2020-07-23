@@ -528,8 +528,10 @@
 }
 
 .missing-data-header {
+    line-height: 70px;
+    width: 100%;
+    text-align: center;
     color: #ffffff;
-    line-height: 70px
 }
 
 .scorecard-info-header {
@@ -551,6 +553,7 @@
 
 .scorecard-info-header.missing-data-header {
     color: #391F85;
+    text-align: left;
 }
 
 .data-item {
@@ -623,6 +626,10 @@
     .metric-explanation-list mat-list-item {
         height: auto !important;
     }
+
+    // .mat-sort-header-arrow {
+    //     opacity: 1 !important;
+    // }
 }
 
 .top-category {

@@ -49,6 +49,11 @@
     color: white;
   }
 
+.frame-styling {
+    height: 800px !important;
+    width: 800px !important;
+}
+
 ::ng-deep {
     .modebar-container {
         display: none !important;

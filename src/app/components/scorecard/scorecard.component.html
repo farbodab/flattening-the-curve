@@ -2,7 +2,7 @@
     <div class='content' style='background-color: white;'>
         <div id='container' style="margin:0">
             <div class="card-container scorecard-info-container metric-explanation-container">
-                <div class="mobile-scorecard-container no-bottom-padding">
+                <div *ngIf="timesObj" class="mobile-scorecard-container no-bottom-padding">
                     <div class="scorecard-info-header data-source-header">Metric Explanations</div>
                     <mat-list role="list" class="metric-explanation-list">
                         <mat-list-item role="listitem" class="data-item">
@@ -20,12 +20,13 @@
                             <div class="metric-height">
                                 <span class="data-source-title">2. Weekly New Cases:</span> The total number of new
                                 cases a public health unit reports in the prior
-                                seven days.
+                                seven days. <span>{{timesObj.ontario_phu_weekly_new_cases}}</span>
                             </div>
                         </mat-list-item>
                         <mat-list-item role="listitem" class="data-item">
                             <div class="metric-height">
-                                <span class="data-source-title">3. Testing &lt; 24h:</span> The amount of time needed
+                                <span class="data-source-title">3. Testing &lt; 24h, last updated
+                                    {{timesObj.ontario_testing_24_hours}}:</span> The amount of time needed
                                 for a lab to process a specimen and enter the
                                 result (e.g. positive or negative) into the public health database. This should be as
                                 fast
@@ -62,6 +63,11 @@
                             </div>
                         </mat-list-item>
                     </mat-list>
+                    <div class="container-divider-scorecard">
+                    </div>
+                    <div>
+                        hi
+                    </div>
                 </div>
             </div>
             <div *ngIf="is_full" class="table-container">
@@ -111,10 +117,7 @@
                         <td class="center-cell border-left-white"
                             [ngClass]="{'black-cell': ontarioObj.testing === 'nan', 'green-cell': ontarioObj.testing > 95, 'yellow-cell': 81 <= ontarioObj.testing && ontarioObj.testing <= 95, 'red-cell': ontarioObj.testing < 80}"
                             style="width: 10%;">
-                            <div *ngIf="ontarioObj.testing !== 'nan'">{{ontarioObj.testing+'%'}}</div>
-                            <img title="Data not available or not reported publicly"
-                                *ngIf="ontarioObj.testing === 'nan'" class="missing-data-icon ontario-header-img"
-                                src='assets/img/missing_data.svg'>
+                            {{ontarioObj.testing === 'nan' ? 'N/A' : ontarioObj.testing+'%'}}
                         </td>
                         <td class="center-cell border-right-white"
                             [ngClass]="{'black-cell': ontarioObj.testing === 'nan', 'green-cell': ontarioObj.testing > 95, 'yellow-cell': 81 <= ontarioObj.testing && ontarioObj.testing <= 95, 'red-cell': ontarioObj.testing < 80}">
@@ -141,9 +144,7 @@
                             class="center-cell border-left-white"
                             [ngClass]="{'black-cell': ontarioObj.tracing === 'nan', 'green-cell': ontarioObj.tracing > 95, 'yellow-cell': 81 <= ontarioObj.tracing && ontarioObj.tracing <= 95, 'red-cell': ontarioObj.tracing < 80}"
                             style="width: 10%;">
-                            <div *ngIf="ontarioObj.tracing !== 'nan'">{{ontarioObj.tracing+'%'}}</div>
-                            <img *ngIf="ontarioObj.tracing === 'nan'" class="missing-data-icon ontario-header-img"
-                                src='assets/img/missing_data.svg'>
+                            {{ontarioObj.tracing === 'nan' ? 'DNE' : ontarioObj.tracing+'%'}}
                         </td>
                         <td class="center-cell border-right-white"
                             [ngClass]="{'black-cell': ontarioObj.tracing === 'nan', 'green-cell': ontarioObj.tracing > 95, 'yellow-cell': 81 <= ontarioObj.tracing && ontarioObj.tracing <= 95, 'red-cell': ontarioObj.tracing < 80}">
@@ -156,9 +157,6 @@
                     <mat-progress-spinner class="spinner-styling" mode="indeterminate" diameter="50"
                         *ngIf="!sortedMetrics">
                     </mat-progress-spinner>
-                </div>
-                <div *ngIf="sortedMetrics">
-                    <img class="trend-img" src='assets/img/trend.png'>
                 </div>
                 <table matSort (matSortChange)="sortMetrics($event)" *ngIf="sortedMetrics" class="table-styling">
                     <tr>
@@ -192,19 +190,15 @@
                             [ngClass]="{'black-cell': row.weekly === 'nan', 'green-cell': row.weekly < 25, 'yellow-cell': 25 <= row.weekly && row.weekly <= 100, 'red-cell': 100 < row.weekly}"
                             class="cell-border center-cell">
                             {{row.weekly === 'nan' ? 'N/A' : row.weekly}}</td>
-                        <td [title]="row.testing === 'nan'? 'Data not available or not reported publicly': ''"
+                        <td [title]="row.testing === 'nan'? 'Cannot calculate due to insufficient data': ''"
                             [ngClass]="{'black-cell': row.testing === 'nan', 'green-cell': row.testing > 95, 'yellow-cell': 81 <= row.testing && row.testing <= 95, 'red-cell': row.testing < 80}"
                             class="cell-border center-cell">
-                            <div *ngIf="row.testing !== 'nan'">{{row.testing+'%'}}</div>
-                            <img *ngIf="row.testing === 'nan'" class="missing-data-icon-cell ontario-header-img"
-                                src='assets/img/missing_data.svg'>
+                            {{row.testing === 'nan' ? 'N/A' : row.testing+'%'}}
                         </td>
                         <td [title]="row.tracing === 'nan'? 'Data not available or not reported publicly': ''"
                             [ngClass]="{'black-cell': row.tracing === 'nan', 'green-cell': row.tracing > 95, 'yellow-cell': 81 <= row.tracing && row.tracing <= 95, 'red-cell': row.tracing < 80}"
                             class="cell-border center-cell">
-                            <div *ngIf="row.tracing !== 'nan'">{{row.tracing+'%'}}</div>
-                            <img *ngIf="row.tracing === 'nan'" class="missing-data-icon-cell ontario-header-img"
-                                src='assets/img/missing_data.svg'>
+                            {{row.tracing === 'nan' ? 'DNE' : row.tracing+'%'}}
                         <td [title]="row.icu === 'nan'? 'Cannot calculate due to insufficient data': ''"
                             [ngClass]="{'black-cell': row.icu === 'nan', 'green-cell': row.icu < 80, 'yellow-cell': 80 <= row.icu && row.icu < 90, 'red-cell': 90 <= row.icu}"
                             class="cell-border center-cell">
@@ -265,9 +259,7 @@
                         <td class="center-cell"
                             [ngClass]="{'black-cell': ontarioObj.testing === 'nan', 'green-cell': ontarioObj.testing > 95, 'yellow-cell': 81 <= ontarioObj.testing && ontarioObj.testing <= 95, 'red-cell': ontarioObj.testing < 80}"
                             style="width: 10%;">
-                            <div *ngIf="ontarioObj.testing !== 'nan'">{{ontarioObj.testing+'%'}}</div>
-                            <img *ngIf="ontarioObj.testing === 'nan'" class="missing-data-icon ontario-header-img"
-                                src='assets/img/missing_data.svg'>
+                            {{ontarioObj.testing === 'nan' ? 'N/A' : ontarioObj.testing+'%'}}
                         </td>
                         <td class="center-cell"
                             [ngClass]="{'black-cell': ontarioObj.testing === 'nan', 'green-cell': ontarioObj.testing > 95, 'yellow-cell': 81 <= ontarioObj.testing && ontarioObj.testing <= 95, 'red-cell': ontarioObj.testing < 80}">
@@ -277,9 +269,7 @@
                         <td class="center-cell"
                             [ngClass]="{'black-cell': ontarioObj.tracing === 'nan', 'green-cell': ontarioObj.tracing > 95, 'yellow-cell': 81 <= ontarioObj.tracing && ontarioObj.tracing <= 95, 'red-cell': ontarioObj.tracing < 80}"
                             style="width: 10%;">
-                            <div *ngIf="ontarioObj.tracing !== 'nan'">{{ontarioObj.tracing+'%'}}</div>
-                            <img *ngIf="ontarioObj.tracing === 'nan'" class="missing-data-icon ontario-header-img"
-                                src='assets/img/missing_data.svg'>
+                            {{ontarioObj.tracing === 'nan' ? 'DNE' : ontarioObj.tracing+'%'}}
                         </td>
                         <td class="center-cell"
                             [ngClass]="{'black-cell': ontarioObj.tracing === 'nan', 'green-cell': ontarioObj.tracing > 95, 'yellow-cell': 81 <= ontarioObj.tracing && ontarioObj.tracing <= 95, 'red-cell': ontarioObj.tracing < 80}">
@@ -316,9 +306,6 @@
                     </mat-progress-spinner>
                 </div>
                 <div *ngIf="dropdownSelection && sortedMetrics" style="padding-top: 10px; width: 90%; margin: auto;">
-                    <div>
-                        <img class="trend-img" src='assets/img/trend.png'>
-                    </div>
                     <form [formGroup]="dropdownSelection">
                         <mat-form-field style="width: 100%;">
                             <mat-label>Jump to a Specific Public Health Unit</mat-label>
@@ -367,18 +354,14 @@
                             <td class="mobile-header-cell alternate-row">Testing &lt; 24h</td>
                             <td [ngClass]="{'black-cell': table.testing === 'nan', 'green-cell': table.testing > 95, 'yellow-cell': 81 <= table.testing && table.testing <= 95, 'red-cell': table.testing < 80}"
                                 class="mobile-data-cell center-cell">
-                                <div *ngIf="table.testing !== 'nan'">{{table.testing+'%'}}</div>
-                                <img *ngIf="table.testing === 'nan'" class="missing-data-icon-cell ontario-header-img"
-                                    src='assets/img/missing_data.svg'>
+                                {{table.testing === 'nan' ? 'N/A' : table.testing+'%'}}
                             </td>
                         </tr>
                         <tr>
                             <td class="mobile-header-cell alternate-row">Tracing &lt; 24h</td>
                             <td [ngClass]="{'black-cell': table.tracing === 'nan', 'green-cell': table.tracing > 95, 'yellow-cell': 81 <= table.tracing && table.tracing <= 95, 'red-cell': table.tracing < 80}"
                                 class="mobile-data-cell center-cell">
-                                <div *ngIf="table.tracing !== 'nan'">{{table.tracing+'%'}}</div>
-                                <img *ngIf="table.tracing === 'nan'" class="missing-data-icon-cell ontario-header-img"
-                                    src='assets/img/missing_data.svg'>
+                                {{table.tracing === 'nan' ? 'DNE' : table.tracing+'%'}}
                             </td>
                         </tr>
                         <tr>
@@ -592,13 +575,12 @@
                     <div class="scorecard-info-header missing-data-header">A Note On Missing Data</div>
                     <div style="display: flex" [style.flex-wrap]="!is_full ? 'wrap': 'none'">
                         <div class="missing-data-icon-container">
-                            <img class="missing-data-icon ontario-header-img" src='assets/img/missing_data.svg'>
-                            <div class="missing-data-header">A data blackout</div>
+                            <div class="missing-data-header">DNE: Does Not Exist</div>
                         </div>
                         <div [style.width]="!is_full ? '100%' : 'auto'" class="missing-data-text">
                             A number of key data items in the scorecard above, such as contact tracing capacity, are
-                            listed as not available -- as denoted by the icon
-                            <span>{{is_full ? 'to the left' : 'above'}}</span>. Data for these crucial
+                            listed as <strong>DNE</strong>, which stands for <strong>Does Not Exist</strong>. Data for
+                            these crucial
                             indicators is currently not available or
                             not reported publicly.
                         </div>

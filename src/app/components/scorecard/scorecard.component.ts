@@ -5,6 +5,7 @@ import { HostService } from '../../services/host.service';
 import { Sort } from '@angular/material';
 import { ViewportScroller } from '@angular/common';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import * as moment from 'moment';
 
 declare var tableau: any;
 
@@ -25,6 +26,7 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
   viz: any;
   tableau: any;
   is_full = true;
+  timesObj: any;
   metricJsonObj: any;
   jsonObj: any;
   window_subscription: Subscription;
@@ -199,6 +201,19 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.fetchDataObj();
+    this.fetchRefreshTimes();
+  }
+
+  fetchRefreshTimes() {
+    this.api_service.get_reopeneing_times().subscribe(
+      data => {
+        this.timesObj = this.iterateTimes(data);
+        console.log(this.timesObj);
+      },
+      error => {
+        this.timesObj = 'error';
+      }
+    );
   }
 
   fetchDataObj() {
@@ -320,6 +335,15 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
       }
     });
 
+  }
+
+  iterateTimes(timesObject:any) {
+    let placeholder = {};
+    timesObject.forEach( element => {
+      placeholder[element.source] = moment(element.date_refreshed).format('MMM DD YYYY');
+    });
+
+    return placeholder;
   }
 
   compareData(a: number | string, b: number | string, type: string, isAscending: boolean) {

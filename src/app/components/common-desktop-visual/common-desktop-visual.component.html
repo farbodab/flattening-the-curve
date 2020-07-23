@@ -24,7 +24,7 @@
             height="400" width="500"></iframe>
     </div>
     <div *ngIf="type === 'iframe'">
-        <div [innerHTML]="vizUrl | sanitizeHtml" style="height: 800px; width: 800px"></div>
+        <div [innerHTML]="vizUrl | sanitizeHtml" class="frame-styling"></div>
     </div>
     <div class="text-styling" style="padding-top: 20px" *ngIf="bottomText !== 'NaN'"
         [innerHTML]="bottomText | sanitizeHtml"></div>

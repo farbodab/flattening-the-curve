@@ -9,5 +9,6 @@ export class AppConfigProperties {
     data_object_endpoint: string;
     team_object_endpoint: string;
     reopening_object_endpoint: string;
+    reopening_times_endpoint: string;
     twitter_object_endpoint: string;
 }

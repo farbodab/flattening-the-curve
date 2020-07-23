@@ -36,6 +36,11 @@ export class ApiService {
     return this.http_client.get(this.appConfigProperties.reopening_object_endpoint);
   }
 
+  get_reopeneing_times() {
+    return this.http_client.get(this.appConfigProperties.reopening_times_endpoint);
+
+  }
+
   get_data_obj() {
     return this.http_client.get(this.appConfigProperties.data_object_endpoint);
   }
