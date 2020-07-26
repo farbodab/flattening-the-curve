@@ -156,6 +156,11 @@ table, th, td {
     .mat-checkbox-checkmark-path {
         stroke: #391F85 !important;
     }
+
+    .cdk-overlay-pane {
+        width: 80vw !important;
+        max-height: 90vh !important;
+    }
 }
 
 .mobile-sizing {

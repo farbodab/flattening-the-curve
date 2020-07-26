@@ -7,32 +7,46 @@
                     <mat-list role="list" class="metric-explanation-list">
                         <mat-list-item role="listitem" class="data-item">
                             <div class="metric-height">
-                                <span class="data-source-title">1. RT:</span> A measure of how contagious a disease is
-                                at a certain point in time. It tells
-                                us the average number of people one sick person can infect (e.g. an Rt of 5 means that
-                                on
-                                average, each case is expected to infect 5 other people). If Rt is greater than 1, it
-                                means
-                                the outbreak is growing.
+                                <div>
+                                    <span class="data-source-title">1. RT:</span> A measure of how contagious a disease
+                                    is
+                                    at a certain point in time. It tells
+                                    us the average number of people one sick person can infect (e.g. an Rt of 5 means
+                                    that
+                                    on
+                                    average, each case is expected to infect 5 other people). If Rt is greater than 1,
+                                    it
+                                    means
+                                    the outbreak is growing.
+                                </div>
+                                <div class="time-styling">Last updated
+                                    {{timesObj.canada_bettencourt_and_ribeiro_approach}}</div>
                             </div>
                         </mat-list-item>
                         <mat-list-item role="listitem" class="data-item">
                             <div class="metric-height">
-                                <span class="data-source-title">2. Weekly New Cases:</span> The total number of new
-                                cases a public health unit reports in the prior
-                                seven days. <span>{{timesObj.ontario_phu_weekly_new_cases}}</span>
+                                <div>
+                                    <span class="data-source-title">2. Weekly New Cases:</span> The total number of new
+                                    cases a public health unit reports in the prior
+                                    seven days.
+                                </div>
+                                <div class="time-styling">Last updated {{timesObj.ontario_phu_weekly_new_cases}}</div>
                             </div>
                         </mat-list-item>
                         <mat-list-item role="listitem" class="data-item">
                             <div class="metric-height">
-                                <span class="data-source-title">3. Testing &lt; 24h, last updated
-                                    {{timesObj.ontario_testing_24_hours}}:</span> The amount of time needed
-                                for a lab to process a specimen and enter the
-                                result (e.g. positive or negative) into the public health database. This should be as
-                                fast
-                                as possible to prevent backlogs and provide the most accurate view possible on the
-                                pandemic
-                                situation.
+                                <div>
+                                    <span class="data-source-title">3. Testing &lt; 24h: </span> The amount of time
+                                    needed
+                                    for a lab to process a specimen and enter the
+                                    result (e.g. positive or negative) into the public health database. This should be
+                                    as
+                                    fast
+                                    as possible to prevent backlogs and provide the most accurate view possible on the
+                                    pandemic
+                                    situation.
+                                </div>
+                                <div class="time-styling">Last updated {{timesObj.ontario_testing_24_hours}}</div>
                             </div>
                         </mat-list-item>
                         <mat-list-item role="listitem" class="data-item">
@@ -45,11 +59,17 @@
                         </mat-list-item>
                         <mat-list-item role="listitem" class="data-item">
                             <div class="metric-height">
-                                <span class="data-source-title">5. Total ICU Bed Occupied:</span> The percentage of beds
-                                in the intensive care unit that are
-                                occupied. This includes both COVID-19 patients and patients who are in the ICU for other
-                                reasons. This gives us an important sense of healthcare capacity since if there are not
-                                enough ICU beds, patients are at a higher risk of death.
+                                <div>
+                                    <span class="data-source-title">5. Total ICU Bed Occupied:</span> The percentage of
+                                    beds
+                                    in the intensive care unit that are
+                                    occupied. This includes both COVID-19 patients and patients who are in the ICU for
+                                    other
+                                    reasons. This gives us an important sense of healthcare capacity since if there are
+                                    not
+                                    enough ICU beds, patients are at a higher risk of death.
+                                </div>
+                                <div class="time-styling">Last updated {{timesObj.ontario_phu_icu_capacity}}</div>
                             </div>
                         </mat-list-item>
                         <mat-list-item role="listitem" class="data-item">

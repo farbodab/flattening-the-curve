@@ -1,7 +1,7 @@
 <div [style.padding-bottom]="type === 'Map' ? '0' : '30px'">
     <div class="header-container">
         <div class="header-styling">{{visualName}}</div>
-        <a *ngIf="!fromDashboard" title="{{'Share the '+visualName+' analysis on Twitter'}}" href="{{'https://twitter.com/intent/tweet?text=Check out the '+visualName+' analysis at &url='+currentUrl+'&via=HowsMyFlattening'}}" target="_blank" class="fa fa-twitter"></a>
+        <a *ngIf="!fromDashboard && type !== 'dictionary'" title="{{'Share the '+visualName+' analysis on Twitter'}}" href="{{'https://twitter.com/intent/tweet?text=Check out the '+visualName+' analysis at &url='+currentUrl+'&via=HowsMyFlattening'}}" target="_blank" class="fa fa-twitter"></a>
         <div class="collapse-text" *ngIf="topText !== 'NaN' && toggleTextFlag" (click)="toggleText()">Collapse
             Description Below
         </div>
@@ -24,7 +24,10 @@
             height="400" width="500"></iframe>
     </div>
     <div *ngIf="type === 'iframe'">
-        <div [innerHTML]="vizUrl | sanitizeHtml" class="frame-styling"></div>
+        <iframe src="vizUrl | sanitizeHtml" class="frame-styling"></iframe>
+    </div>
+    <div *ngIf="type === 'dictionary'">
+        <div [innerHTML]="vizUrl | sanitizeHtml"></div>
     </div>
     <div class="text-styling" style="padding-top: 20px" *ngIf="bottomText !== 'NaN'"
         [innerHTML]="bottomText | sanitizeHtml"></div>

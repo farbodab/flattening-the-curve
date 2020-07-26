@@ -7,40 +7,11 @@
             relevant to Ontario and comparisons in a single up to date Dataset.<br>
         </div>
 
-        <!-- template for data entry 
-    <div id='data-container'>
-        <div id ='left-column'>
-            <div id ="dataset-name">Dataset: test_data_on</div>
-            <div id = 'source'><p>Source: Government of Ontario</p></div>
-            <div id = 'description'><p>Time series testing data for the province of ontario which reports postives, negatives, under investigation, resolved, deaths and total tested.</p></div>
-            
-           
-
-            <div id='read-more-container'>
-               <a mat-raised-button href="https://www.ontario.ca/page/2019-novel-coronavirus" id='read-more-btn'>Download Data</a>
-            </div>
-            
+        <div>
+            <mat-progress-spinner mode="indeterminate" diameter="50" style="margin: 50px auto;" *ngIf="!filteringCheckboxes">
+            </mat-progress-spinner>
         </div>
 
-        <div id ='right-column'>
-               
-            <br><br>
-            <div id = "details"> Details: </div>
-
-            <div id = "details-body">
-            <p class = 'details'>Data feedtype: Automatic</p>
-            <p class = 'details'>Refresh rate: 190 minute interval</p>
-            <p class = 'details'><a href="https://www.ontario.ca/page/2019-novel-coronavirus">Source link</a></p>
-            
-            <br>
-            <p class = 'details'>Contributor: David Madras</p>
-            <p class = 'details'>Contact: N/A</p>
-            </div>
-        </div>
-
-    </div>
-
-    <hr> -->
         <div *ngIf="filteringCheckboxes">
             <div class="form-container">
                 <div class="form-styling form-header">Data Category</div>
@@ -86,6 +57,9 @@
                                                 <a style="padding: 2px" *ngIf="data.download !== 'NaN'"
                                                     mat-raised-button [href]="data.download" id='read-more-btn'>Download
                                                     Data</a>
+                                                <a style="padding: 2px; margin-left: 20px" *ngIf="data.html !== null && is_full" mat-raised-button
+                                                    (click)="openDialog(data.name, data.html, 0)" id='read-more-btn'>View Data Dictionary
+                                                </a>
                                             </div>
 
                                         </div>
