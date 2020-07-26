@@ -361,6 +361,7 @@ h1, h3 {
 
 .news-title {
   height: 30px;
+  margin-bottom: 10px;
 
   .title-text {
     font-size: 14px;
@@ -381,6 +382,12 @@ h1, h3 {
     color: #391F85;
     font-size: 14px;
     line-height: 14px;
+    text-decoration: none;
+
+    &:hover {
+      cursor: pointer;
+      font-weight: bold;
+    }
   }
 }
 
