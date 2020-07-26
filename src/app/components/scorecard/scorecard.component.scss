@@ -534,6 +534,23 @@
     color: #ffffff;
 }
 
+.missing-data-label {
+    color: #ffffff;
+    background: #000000;
+    width: 45px;
+    text-align: center;
+    margin-right: 2px;
+}
+
+.missing-data-explanation {
+    display: flex;
+    justify-content: space-around;
+
+    .header-container {
+        padding-top: 10px;
+    }
+}
+
 .scorecard-info-header {
     font-size: 20px;
     line-height: 24px;
@@ -1044,6 +1061,15 @@
 
     .mobile-separator {
         border-bottom: 2px solid #666666;
+    }
+
+    .missing-data-explanation {
+        display: block;
+        font-size: 12px;
+    }
+
+    .metric-height {
+        padding-bottom: 0;
     }
 
     ::ng-deep {

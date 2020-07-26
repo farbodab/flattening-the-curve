@@ -2,7 +2,7 @@
     <div class='content' style='background-color: white;'>
         <div id='container' style="margin:0">
             <div class="card-container scorecard-info-container metric-explanation-container">
-                <div *ngIf="timesObj" class="mobile-scorecard-container no-bottom-padding">
+                <div *ngIf="timesObj" class="mobile-scorecard-container">
                     <div class="scorecard-info-header data-source-header">Metric Explanations</div>
                     <mat-list role="list" class="metric-explanation-list">
                         <mat-list-item role="listitem" class="data-item">
@@ -85,8 +85,13 @@
                     </mat-list>
                     <div class="container-divider-scorecard">
                     </div>
-                    <div>
-                        hi
+                    <div class="missing-data-explanation">
+                        <div class="header-container">
+                            <div class="missing-data-label">N/A</div> - Cannot calculate due to insufficient data
+                        </div>
+                        <div class="header-container">
+                            <div class="missing-data-label">DNE</div> - Does Not Exist as data is not reported publicly
+                        </div>
                     </div>
                 </div>
             </div>
