@@ -179,7 +179,9 @@
 										<p *ngIf="card.role !== 'NaN'" style="color: #005E72">{{card.role}}</p>
 										<p *ngIf="card.affiliation !== 'NaN'">{{card.affiliation}}</p>
 										<div style="display: flex">
-											<div class="icon-category" [style.margin]="card.linkedin === 'NaN' ? 'auto' : 'initial'" [style.margin-left]="card.linkedin !== 'NaN' ? 'auto' : 'auto'">
+											<div class="icon-category"
+												[style.margin]="card.linkedin === 'NaN' ? 'auto' : 'initial'"
+												[style.margin-left]="card.linkedin !== 'NaN' ? 'auto' : 'auto'">
 												<img *ngIf="card.team === 'Data scouting and curation'"
 													class='tooltip-icon' src='assets/img/data-label.svg'>
 												<img *ngIf="card.team === 'Data Analysis'" class='tooltip-icon'
@@ -202,57 +204,94 @@
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
+</div>
 
-			<hr>
-
-			<div class="supporter-container">
-				<div id="supporters-set">
-					<div class="resource-box">
-						<div id='resource_thumbnail'>
-							<a target="_blank" href='https://trilliumhealthpartners.ca'>
-								<img id='resource_thumbnail' src='assets/img/team_supporters/thp.png'>
-							</a>
-						</div>
+<div class=" gray-background content-container" [ngClass]="{'mobile-sizing': !is_full}">
+	<div class="content">
+		<div id="container">
+			<div class="icon-header">In the news</div>
+			<div style="display: flex; flex-wrap: wrap;">
+				<div class="card-container news-container">
+					<div class="news-title">
+						<div class="title-line"></div>
+						<div class="title-text">News Article</div>
 					</div>
-					<div class="resource-box">
-						<div id='resource_thumbnail'>
-							<a target="_blank" href='https://vectorinstitute.ai'>
-								<img id='resource_thumbnail' src='assets/img/team_supporters/vector.png'>
-							</a>
-						</div>
+					<div class="news-content">
+						content
 					</div>
-					<div class="resource-box">
-						<div id='resource_thumbnail'>
-							<a target="_blank" href='https://www.klick.com/'>
-								<img id='resource_thumbnail' src='assets/img/team_supporters/klick.png'>
-							</a>
-						</div>
-					</div>
-					<div class="resource-box">
-						<div id='resource_thumbnail'>
-							<a target="_blank" href='http://taglab.utoronto.ca'>
-								<img id='resource_thumbnail' src='assets/img/team_supporters/taglab.jpg'>
-							</a>
-						</div>
-					</div>
-					<div class="resource-box">
-						<div id='resource_thumbnail'>
-							<a target="_blank" href='http://ontario.himsschapter.org/'>
-								<img id='resource_thumbnail' src='assets/img/team_supporters/himss_logo.png'>
-							</a>
-						</div>
+					<div class="news-link">
+						<a>Read on Toronto Star > </a>
 					</div>
 				</div>
-
-				<div class="grid-landscape">
-					<div><a target="_blank" href='http://www.dlsph.utoronto.ca'><img id='resource_thumbnail_landscape'
-								src='assets/img/team_supporters/dlsph.png'></a></div>
-					<div><a target="_blank" href='https://www.redhat.com/en'><img id='resource_thumbnail_landscape'
-								src='assets/img/team_supporters/red_hat_logo.svg'></a></div>
-					<div><a target="_blank" href='https://pophealthanalytics.com'><img id='resource_thumbnail_landscape'
-								src='assets/img/team_supporters/pophealth.png'></a></div>
-
+				<div class="card-container news-container">
+					<div class="news-title">
+						<div class="title-line"></div>
+						<div class="title-text">News Article</div>
+					</div>
+					<div class="news-content">
+						content
+					</div>
+					<div class="news-link">
+						<a>Read on Toronto Star > </a>
+					</div>
 				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<hr>
+<div class='content team' style='background-color: white;' [ngClass]="{'mobile-sizing': !is_full}">
+	<div id='container'>
+		<div class="supporter-container">
+			<div id="supporters-set">
+				<div class="resource-box">
+					<div id='resource_thumbnail'>
+						<a target="_blank" href='https://trilliumhealthpartners.ca'>
+							<img id='resource_thumbnail' src='assets/img/team_supporters/thp.png'>
+						</a>
+					</div>
+				</div>
+				<div class="resource-box">
+					<div id='resource_thumbnail'>
+						<a target="_blank" href='https://vectorinstitute.ai'>
+							<img id='resource_thumbnail' src='assets/img/team_supporters/vector.png'>
+						</a>
+					</div>
+				</div>
+				<div class="resource-box">
+					<div id='resource_thumbnail'>
+						<a target="_blank" href='https://www.klick.com/'>
+							<img id='resource_thumbnail' src='assets/img/team_supporters/klick.png'>
+						</a>
+					</div>
+				</div>
+				<div class="resource-box">
+					<div id='resource_thumbnail'>
+						<a target="_blank" href='http://taglab.utoronto.ca'>
+							<img id='resource_thumbnail' src='assets/img/team_supporters/taglab.jpg'>
+						</a>
+					</div>
+				</div>
+				<div class="resource-box">
+					<div id='resource_thumbnail'>
+						<a target="_blank" href='http://ontario.himsschapter.org/'>
+							<img id='resource_thumbnail' src='assets/img/team_supporters/himss_logo.png'>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="grid-landscape">
+				<div><a target="_blank" href='http://www.dlsph.utoronto.ca'><img id='resource_thumbnail_landscape'
+							src='assets/img/team_supporters/dlsph.png'></a></div>
+				<div><a target="_blank" href='https://www.redhat.com/en'><img id='resource_thumbnail_landscape'
+							src='assets/img/team_supporters/red_hat_logo.svg'></a></div>
+				<div><a target="_blank" href='https://pophealthanalytics.com'><img id='resource_thumbnail_landscape'
+							src='assets/img/team_supporters/pophealth.png'></a></div>
+
 			</div>
 		</div>
 	</div>
