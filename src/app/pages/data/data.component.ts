@@ -3,6 +3,8 @@ import { ApiService } from '../../services/api.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { HostService } from '../../services/host.service';
 import { Subscription } from 'rxjs';
+import { CommonDesktopVisualComponent } from 'src/app/components/common-desktop-visual/common-desktop-visual.component';
+import { MatDialogConfig, MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-data',
@@ -17,8 +19,9 @@ export class DataComponent implements OnInit, AfterViewInit {
   filteringCheckboxes: FormGroup;
   is_full: boolean;
   window_subscription: Subscription;
+  displayFooter = false;
 
-  constructor(private api_service: ApiService, private formBuilder: FormBuilder, private host_service: HostService) {
+  constructor(private api_service: ApiService, private formBuilder: FormBuilder, private host_service: HostService, public dialog: MatDialog) {
     this.refresh_layout(window.innerWidth);
   }
 
@@ -39,7 +42,7 @@ export class DataComponent implements OnInit, AfterViewInit {
         this.iterateCategories(this.jsonObj);
         this.iterateRegions(this.jsonObj);
         this.initFilteringForm(this.dataCategoryList, this.dataRegionList);
-        console.log(this.jsonObj);
+        this.displayFooter = true;
       },
       error => {
         this.jsonObj = 'error';
@@ -76,6 +79,23 @@ export class DataComponent implements OnInit, AfterViewInit {
     region.forEach(element => {
       this.filteringCheckboxes.addControl(element, this.formBuilder.control(true));
     });
+  }
+
+  openDialog(componentName: any, html: any, index: number): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      visualName: 'Data Dictionary for '+componentName,
+      topTextContent: 'NaN',
+      bottomTextContent: 'NaN',
+      vizUrl: html,
+      vizCategory: null,
+      vizHeight: null,
+      vizType: "dictionary"
+    };
+
+    dialogConfig.width = '300px';
+
+    const dialogRef = this.dialog.open(CommonDesktopVisualComponent, dialogConfig);
   }
 
   private refresh_layout(width) {

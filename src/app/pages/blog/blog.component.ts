@@ -32,6 +32,7 @@ export class BlogComponent implements OnInit {
     is_full = true;
     twitterObj: any;
     window_subscription: Subscription;
+    displayFooter = false;
 
     ngOnInit() {
         this.window_subscription = this.host_service.onWindowResize.subscribe(window => {
@@ -39,21 +40,7 @@ export class BlogComponent implements OnInit {
         });
 
         this.fetchFeed(this.medium_feed);
-        //this.fetchTwitterFeed();
     }
-
-    // fetchTwitterFeed() {
-    //     this.api_service.get_twitter_obj().subscribe(
-    //         data => {
-    //             this.twitterObj = data;
-    //             console.log(this.twitterObj);
-    //         },
-    //         error => {
-    //             console.log('error');
-    //             //console.error(error);
-    //         }
-    //     );
-    // }
 
     redirect(url: string) {
         //window.location.href = url;
@@ -75,6 +62,7 @@ export class BlogComponent implements OnInit {
                     expandedPlaceholder[index] = false;
                 });
                 this.expandedArray = expandedPlaceholder;
+                this.displayFooter = true;
             },
             err => this.errorStream.emit(err),
         );

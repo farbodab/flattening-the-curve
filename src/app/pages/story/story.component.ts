@@ -16,6 +16,7 @@ export class StoryComponent implements OnInit, AfterViewInit {
   teamForm: FormGroup;
   is_full = true;
   window_subscription: Subscription;
+  displayFooter = false;
 
   teamChoices = ['Leader', 'Maintainer', 'Committer', 'Contributors', 'Advisor', 'All'];
   teamChoicesCount = [];
@@ -60,6 +61,7 @@ export class StoryComponent implements OnInit, AfterViewInit {
         this.jsonObj = data;
         this.initTeamForm(this.teamChoices);
         this.teamChoicesCount = this.iterateTeam(this.jsonObj, this.teamChoices);
+        this.displayFooter = true;
       },
       error => {
         this.jsonObj = 'error';

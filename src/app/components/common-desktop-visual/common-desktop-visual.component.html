@@ -1,23 +1,34 @@
 <div [style.padding-bottom]="type === 'Map' ? '0' : '30px'">
-    <div style="display: flex">
+    <div class="header-container">
         <div class="header-styling">{{visualName}}</div>
-        <div class="collapse-text" *ngIf="topText !== 'NaN' && toggleTextFlag" (click)="toggleText()">Collapse Description Below
+        <a *ngIf="!fromDashboard && type !== 'dictionary'" title="{{'Share the '+visualName+' analysis on Twitter'}}" href="{{'https://twitter.com/intent/tweet?text=Check out the '+visualName+' analysis at &url='+currentUrl+'&via=HowsMyFlattening'}}" target="_blank" class="fa fa-twitter"></a>
+        <div class="collapse-text" *ngIf="topText !== 'NaN' && toggleTextFlag" (click)="toggleText()">Collapse
+            Description Below
         </div>
-        <div class="collapse-text" style="padding-bottom: 20px" *ngIf="topText !== 'NaN' && !toggleTextFlag" (click)="toggleText()">
+        <div class="collapse-text" *ngIf="topText !== 'NaN' && !toggleTextFlag"
+            (click)="toggleText()">
             Expand Description</div>
     </div>
-    <div class="text-styling" [innerHTML]="topText" *ngIf="topText !== 'NaN' && toggleTextFlag"></div>
+    <div class="text-styling" [innerHTML]="topText | sanitizeHtml" *ngIf="topText !== 'NaN' && toggleTextFlag"></div>
     <div *ngIf="type === 'Plotly'">
         <app-plot class="plot-styling" [analysis]="true" [graph_data]="vizUrl"></app-plot>
     </div>
-    <div #vizContainerDesktop [ngClass]="{'tableau-styling' : type !== 'Plotly'}"></div>
+    <div #vizContainerDesktop [ngClass]="{'tableau-styling' : type === 'Tableau'}"></div>
     <div *ngIf="visualName === 'Capacity Analysis'">
         <iframe id="example1" src="https://pechlilab.shinyapps.io/output/"
             style="border: none; width: 100%; height: 1300px" frameborder="0"></iframe>
-        <!-- <img style="width:100%;"src='assets/img/Figure4_Italy_Waiting.jpg'> -->
     </div>
     <div *ngIf="type === 'Map'" class="embed-container">
-        <iframe src=" https://howsmyflattening.maps.arcgis.com/apps/Minimalist/index.html?appid=de0ea127da49495393346fcc7c92625d" height="400" width="500"></iframe>
+        <iframe
+            [src]="vizUrl | sanitizeUrl"
+            height="400" width="500"></iframe>
     </div>
-    <div class="text-styling" style="padding-top: 20px" *ngIf="bottomText !== 'NaN'" [innerHTML]="bottomText"></div>
+    <div *ngIf="type === 'iframe'">
+        <iframe src="vizUrl | sanitizeHtml" class="frame-styling"></iframe>
+    </div>
+    <div *ngIf="type === 'dictionary'">
+        <div [innerHTML]="vizUrl | sanitizeHtml"></div>
+    </div>
+    <div class="text-styling" style="padding-top: 20px" *ngIf="bottomText !== 'NaN'"
+        [innerHTML]="bottomText | sanitizeHtml"></div>
 </div>

@@ -13,6 +13,14 @@
 
 }
 
+.team-padding {
+  padding-bottom: 40px;
+}
+
+.supporter-container {
+  padding-top: 35px;
+}
+
 /* Display the columns below each other instead of side by side on small screens */
 @media screen and (max-width: 650px) {
   .column {
@@ -328,6 +336,67 @@ h1, h3 {
   }
 }
 
+.gray-background{
+	background: #F0F2F5;
+
+	&.content-container {
+		padding:24px 0;
+	}
+}
+
+.card-container {
+  height: 180px;
+  justify-content: space-between;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  padding: 20px;
+  margin-right: 30px;
+
+  &.news-container {
+    width: 300px;
+    height: 210px;
+  }
+}
+
+.news-title {
+  height: 30px;
+  margin-bottom: 10px;
+
+  .title-text {
+    font-size: 14px;
+    line-height: 14px;
+    color: #391F85;
+  }
+}
+
+.news-content {
+  height: 120px;
+}
+
+.news-link {
+  height: 20px;
+  text-align: right;
+
+  a {
+    color: #391F85;
+    font-size: 14px;
+    line-height: 14px;
+    text-decoration: none;
+
+    &:hover {
+      cursor: pointer;
+      font-weight: bold;
+    }
+  }
+}
+
+.title-line {
+  width: 80px;
+  border-top: 3px solid #391F85;
+  padding-bottom: 5px;
+}
+
 ::ng-deep {
   .selected-color {
     .choices-text {
@@ -360,6 +429,12 @@ h1, h3 {
 }
 
 .mobile-sizing {
+
+  .card-container.news-container {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 30px;
+  }
   
   .img-scaling {
     width: 25%;
@@ -418,7 +493,7 @@ h1, h3 {
   }
 
   .icon-category {
-    margin-left: auto;
+    //margin-left: auto;
   }
 
   .linkedin-toggle {
