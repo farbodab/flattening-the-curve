@@ -22,6 +22,7 @@ import {AnalysisCapacityComponent} from './pages/analysis/analysis.capacity.comp
 import {DataComponent} from './pages/data/data.component';
 import { GridComponent } from './pages/grid/grid.component';
 import { ScorecardComponent } from './components/scorecard/scorecard.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 import {environment} from 'src/environments/environment';
 import {AngularFireModule} from '@angular/fire';
@@ -83,7 +84,8 @@ export function initConfig(appConfig: AppConfigService) {
         GridComponent,
         PlotComponent,
         AngularPlotlyComponent,
-        ScorecardComponent
+        ScorecardComponent,
+        FooterComponent
     ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),

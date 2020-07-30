@@ -10,6 +10,7 @@ import * as moment from 'moment';
 import {MatIconRegistry} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
 
+
 declare var tableau: any;
 
 @Component({
@@ -35,6 +36,8 @@ export class GridComponent implements OnInit, AfterViewInit {
     categoryList = [];
     gridList = [];
     tab_obj = {};
+
+    displayFooter = false;
 
     searchCtrl: string;
     iconHover: string;
@@ -93,8 +96,8 @@ export class GridComponent implements OnInit, AfterViewInit {
             value: 'hastings_and_prince_edward_counties'
         },
         {
-            phu: 'Huron County Health Unit',
-            value: 'huron_county'
+            phu: 'Huron Perth County Health Unit',
+            value: 'huron_perth_county'
         },
         {
             phu: 'Kingston, Frontenac, and Lennox and Addington Health Unit',
@@ -127,10 +130,6 @@ export class GridComponent implements OnInit, AfterViewInit {
         {
             phu: 'Peel Regional Health Unit',
             value: 'peel_regional'
-        },
-        {
-            phu: 'Perth District Health Unit',
-            value: 'perth_district'
         },
         {
             phu: 'Peterborough County–City Health Unit',
@@ -239,7 +238,7 @@ export class GridComponent implements OnInit, AfterViewInit {
                 this.iterateCategories(this.jsonObj);
                 this.gridList = this.restructureObj(this.jsonObj, this.categoryList);
                 this.initFilteringForm(this.gridList);
-                //this.setVisuals(this.jsonObj);
+                this.displayFooter = true;
             },
             error => {
                 console.error(error);
@@ -357,7 +356,8 @@ export class GridComponent implements OnInit, AfterViewInit {
             vizHeight: height,
             topTextContent: topText,
             bottomTextContent: bottomText,
-            vizType: category === 'Map' ? 'Map' : 'Plotly'
+            vizType: category === 'Map' ? 'Map' : 'Plotly',
+            dashboard: true
         };
         dialogConfig.width = '300px';
 
@@ -518,6 +518,7 @@ export class GridComponent implements OnInit, AfterViewInit {
                 });
             });
         });
+
     }
 
     routeonSelection(route: string) {

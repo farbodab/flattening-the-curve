@@ -4,7 +4,7 @@
 }
 
 .header-inner-container {
-    height: 300px;
+    height: 250px;
     width: 100%;
     margin: 0 auto 30px auto;
     //max-width: 1770px;
@@ -466,12 +466,24 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+
+    &:hover {
+        font-weight: bold;
+        color: #391F85;
+        cursor: pointer;
+    }
 }
 
 .scorecard-header {
     font-size: 28px;
     line-height: 28px;
     text-align: center;
+
+    &.desktop-ontario-header span:hover {
+        font-weight: bold;
+        color: #391F85;
+        cursor: pointer;
+    }
 }
 
 .container-divider-scorecard {
@@ -516,8 +528,27 @@
 }
 
 .missing-data-header {
+    line-height: 70px;
+    width: 100%;
+    text-align: center;
     color: #ffffff;
-    line-height: 70px
+}
+
+.missing-data-label {
+    color: #ffffff;
+    background: #000000;
+    width: 45px;
+    text-align: center;
+    margin-right: 2px;
+}
+
+.missing-data-explanation {
+    display: flex;
+    justify-content: space-around;
+
+    .header-container {
+        padding-top: 10px;
+    }
 }
 
 .scorecard-info-header {
@@ -539,15 +570,25 @@
 
 .scorecard-info-header.missing-data-header {
     color: #391F85;
+    text-align: left;
 }
 
 .data-item {
     font-size: 14px;
 }
 
+.time-styling {
+    padding-top: 8px;
+    color: #666666;
+}
+
 .scorecard-info-container {
     height: auto;
     padding-bottom: 45px;
+}
+
+.scorecard-info-container.metric-explanation-container {
+    margin-bottom: 40px;
 }
 
 .header-styling {
@@ -594,10 +635,23 @@
     border-right: 1px solid #ffffff; 
 }
 
+.metric-height {
+    height: auto;
+    padding-bottom: 16px;
+}
+
 ::ng-deep {
     .mat-sort-header-stem, .mat-sort-header-pointer-middle, .mat-sort-header-pointer-left, .mat-sort-header-pointer-right {
         color: #ffffff !important;
     }
+
+    .metric-explanation-list mat-list-item {
+        height: auto !important;
+    }
+
+    // .mat-sort-header-arrow {
+    //     opacity: 1 !important;
+    // }
 }
 
 .top-category {
@@ -1007,6 +1061,15 @@
 
     .mobile-separator {
         border-bottom: 2px solid #666666;
+    }
+
+    .missing-data-explanation {
+        display: block;
+        font-size: 12px;
+    }
+
+    .metric-height {
+        padding-bottom: 0;
     }
 
     ::ng-deep {

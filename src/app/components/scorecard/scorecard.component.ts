@@ -5,6 +5,7 @@ import { HostService } from '../../services/host.service';
 import { Sort } from '@angular/material';
 import { ViewportScroller } from '@angular/common';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import * as moment from 'moment';
 
 declare var tableau: any;
 
@@ -25,6 +26,7 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
   viz: any;
   tableau: any;
   is_full = true;
+  timesObj: any;
   metricJsonObj: any;
   jsonObj: any;
   window_subscription: Subscription;
@@ -90,8 +92,8 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
         value: 'hastings_and_prince_edward_counties'
     },
     {
-        phu: 'Huron County Health Unit',
-        value: 'huron_county'
+        phu: 'Huron Perth County Health Unit',
+        value: 'huron_perth_county'
     },
     {
         phu: 'Kingston, Frontenac, and Lennox and Addington Health Unit',
@@ -124,10 +126,6 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
     {
         phu: 'Peel Regional Health Unit',
         value: 'peel_regional'
-    },
-    {
-        phu: 'Perth District Health Unit',
-        value: 'perth_district'
     },
     {
         phu: 'Peterborough County–City Health Unit',
@@ -203,12 +201,25 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.fetchDataObj();
+    this.fetchRefreshTimes();
+  }
+
+  fetchRefreshTimes() {
+    this.api_service.get_reopeneing_times().subscribe(
+      data => {
+        this.timesObj = this.iterateTimes(data);
+        console.log(this.timesObj);
+      },
+      error => {
+        this.timesObj = 'error';
+      }
+    );
   }
 
   fetchDataObj() {
     this.api_service.get_reopening_obj().subscribe(
       data => {
-        this.metricJsonObj = data;
+        this.metricJsonObj = this.populateRoutes(data);
         this.sortedMetrics = this.removeOntartio(this.metricJsonObj.slice());
         this.sortMetrics(this.initial_sort);
         //this.initTeamForm(this.teamChoices);
@@ -271,6 +282,28 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
     //this.viz = new tableau.Viz(placeholderDiv, url, options);
   }
 
+  iterateRoutes(phu: string) {
+    let routeValue = '';
+
+    this.phuArray.forEach(element => {
+      if(element.phu === phu) {
+        routeValue = element.value;
+      }
+    });
+    return routeValue;
+  }
+
+  populateRoutes(dataObject: any) {
+    let placeholderObj = [];
+
+    dataObject.forEach(element => {
+      element['route'] = this.iterateRoutes(element.phu);
+      placeholderObj.push(element);
+    });
+
+    return placeholderObj;
+  }
+
   removeOntartio(dataObject:any) {
     return dataObject.filter((ele) => {
       if (ele.phu === 'Ontario') {
@@ -302,6 +335,15 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
       }
     });
 
+  }
+
+  iterateTimes(timesObject:any) {
+    let placeholder = {};
+    timesObject.forEach( element => {
+      placeholder[element.source] = moment(element.date_refreshed).format('MMM DD YYYY');
+    });
+
+    return placeholder;
   }
 
   compareData(a: number | string, b: number | string, type: string, isAscending: boolean) {

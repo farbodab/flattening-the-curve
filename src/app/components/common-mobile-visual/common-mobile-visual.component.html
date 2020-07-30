@@ -15,8 +15,11 @@
                 <app-plot [analysis]="true" [graph_data]="vizUrl"></app-plot>
             </div>
             <div>
-                <div #vizContainerMobile [ngClass]="{'tableau-styling' : type !== 'Plotly'}">
+                <div #vizContainerMobile [ngClass]="{'tableau-styling' : type === 'Tableau'}">
                 </div>
+            </div>
+            <div *ngIf="type === 'iframe'">
+                <div [innerHTML]="vizUrl | sanitizeHtml" style="height: 800px; width: 800px"></div>
             </div>
             <div style="padding-bottom: 20px">
                 <div class="text-styling" style="padding-top: 20px;" *ngIf="bottomText !== 'NaN'"
