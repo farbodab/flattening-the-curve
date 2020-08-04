@@ -117,4 +117,4 @@ production:
     url: http://$CI_PROJECT_NAME.$OPENSHIFT_DOMAIN
   only:
     - master
-  tags: [hmf]
+  tags: [frontend]
