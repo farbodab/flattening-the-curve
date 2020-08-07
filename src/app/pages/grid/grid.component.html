@@ -72,11 +72,11 @@
                                     <!-- <div *ngIf="filteringCheckboxes.controls[item.key].value"> -->
                                     <div *ngFor="let phu of item.value | keyvalue">
                                         <div *ngIf="phu.key === dropdownList.controls.phu.value">
-                                            <div [ngClass]="{'mobile-grid-row' : (!is_full && phu.key !== 'ontario'), 'mobile-grid-row-ontario': (!is_full && phu.key === 'ontario'), 'desktop-grid-row': is_full && phu.key !== 'ontario', 'desktop-grid-row-ontario': is_full && phu.key === 'ontario'}"
+                                            <div [ngClass]="{'mobile-grid-row' : (!is_full && phu.key !== 'ontario'), 'mobile-grid-row-ontario': (!is_full && phu.key === 'ontario'), 'desktop-grid-row-ontario': (is_full)}"
                                                 style="display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 8px;"
-                                                [style.height]="is_full ? (phu.key === 'ontario'? '80vh': '110vh') : (phu.key === 'ontario'? '550vh': '300vh')"
+                                                [style.height]="is_full ? (phu.key === 'ontario'? '80vh': '80vh') : (phu.key === 'ontario'? '550vh': '300vh')"
                                                 [style.margin-left]="is_full ? '10px' : '0'"
-                                                [style.min-height]="(is_full ? (phu.key === 'ontario' ? '1150px': '800px') : 'initial')"
+                                                [style.min-height]="(is_full ? (phu.key === 'ontario' ? '1150px': '1150px') : 'initial')"
                                                 [style.row-gap]="is_full ? '24px' : '30px'">
                                                 <div *ngFor="let phuGroup of phu.value; index as index"
                                                     class="plot-container"
