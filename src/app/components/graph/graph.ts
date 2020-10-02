@@ -30,10 +30,17 @@ export class GraphComponent implements OnInit, OnChanges {
     this.graph = null;
     var figure = {
         data: [
-            { x: [1, 2, 3], y: [2, 6, 3], type: 'scatter', mode: 'lines+points', marker: {color: 'red'} },
-            { x: [1, 2, 3], y: [2, 5, 3], type: 'bar' },
+            { x: [1, 2, 3],
+              y: [2, 6, 3],
+              type: 'scatter',
+              mode: 'lines+points',
+              marker: {color: 'red'}
+            },
         ],
-        layout: {width: 320, height: 240, title: 'A Fancy Plot'}
+        layout: {width: '100%', height: '100%', title: 'A Fancy Plot'},
+        config: {
+          displayModeBar: false,
+        }
     };
     this.graph = figure;
   }
