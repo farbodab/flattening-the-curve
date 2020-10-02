@@ -1,35 +1,33 @@
 <app-navbar [shows_title]='true' [page]='"summary"'></app-navbar>
 <div class='content' style='background-color: white; margin-top: 50px;'>
-  <div *ngFor="let object of jsonObj">
-    <div *ngIf="object['phu'] == 'Ontario'">
-    <h1>{{object["phu"]}}</h1>
+  <div *ngIf="data">
+    <h1>{{cases["phu"]}}</h1>
     <h2>Scorecard</h2>
     <div>
       <h4>Daily new cases per 100k population</h4>
-      Over the last week, {{object["phu"]}} has averaged {{object["weekly"]}} cases per day ({{object["weekly"]}} for every 100,000 residents).
-      <app-graph></app-graph>
+      Over the last week, {{cases["phu"]}} has averaged {{cases["rolling"] | number : '1.2-2' }} cases per day ({{cases["rolling_pop"] | number : '1.2-2'}} for every 100,000 residents).
+      <app-graph [graph_data]='data' variable="rolling_pop"></app-graph>
     </div>
 
     <div>
       <h4>Infection Rate (Rt)</h4>
-      On average, each person in {{object["phu"]}} with COVID is infecting {{object["rt"]}} other people.
-      <app-graph></app-graph>
+      On average, each person in {{rt["phu"]}} with COVID is infecting {{rt["rt_ml"] | number : '1.2-2'}} other people.
+      <app-graph [graph_data]='data' variable="rt_ml"></app-graph>
     </div>
     <div>
       <h4>Testing Capacity</h4>
-      For tests that were taken on X, x% come back with x. x% come back within this.
-      <app-graph></app-graph>
+      In the last 7 days, on average {{testing["rolling_test_twenty_four"] | percent : '1.2-2'}} of tests have been returned within 24 hours.
+      <app-graph [graph_data]='data' variable="rolling_test_twenty_four"></app-graph>
     </div>
     <div>
       <h4>ICU Bed Capacity</h4>
-      Ontario has X ICU Beds. Of these X (some percent) are taken up by COVID patients. Y are taken up by non covid patients.
-      <app-graph></app-graph>
+      Ontario has 2012 ICU Beds and {{icu["critical_care_pct"] | percent  : '1.2-2'}} of those beds are currently occupied. There are currently {{icu["confirmed_positive"]}} COVID patients in the ICU.
+      <app-graph [graph_data]='data' variable="critical_care_pct"></app-graph>
     </div>
     <br/>
     <br/>
     <br/>
     <br/>
-
-  <div>
+  </div>
 </div>
 <app-footer *ngIf="displayFooter"></app-footer>

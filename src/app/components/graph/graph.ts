@@ -9,12 +9,10 @@ import { Component, OnInit, Input, OnChanges, SimpleChange, AfterViewInit } from
 export class GraphComponent implements OnInit, OnChanges {
 
   @Input() graph_data: any;
-  @Input() mobile_size: boolean;
-  @Input() font_size_category: string;
-  @Input() display_average: any;
-  @Input() view: string;
-  @Input() cat: string;
-  @Input() analysis: boolean;
+  @Input() title: string;
+  @Input() variable: string;
+
+
 
   graph = null;
 
@@ -28,16 +26,16 @@ export class GraphComponent implements OnInit, OnChanges {
 
   private redraw() {
     this.graph = null;
+    this.graph_data = this.graph_data.filter(date => date[this.variable] != null);
     var figure = {
         data: [
-            { x: [1, 2, 3],
-              y: [2, 6, 3],
+            { x: this.graph_data.map(x => x["date"]),
+              y: this.graph_data.map(x => x[this.variable]),
               type: 'scatter',
               mode: 'lines+points',
-              marker: {color: 'red'}
             },
         ],
-        layout: {width: '100%', height: '100%', title: 'A Fancy Plot'},
+        layout: {width: '100%', height: '100%', title: this.title},
         config: {
           displayModeBar: false,
         }

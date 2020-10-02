@@ -12,5 +12,5 @@
    "reopening_object_endpoint": "https://flatteningthecurve-staging.herokuapp.com/api/reopening",
    "reopening_times_endpoint": "https://flatteningthecurve-staging.herokuapp.com/api/times",
    "twitter_object_endpoint": "https://api.twitter.com/1.1/search/tweets.json?q=%23superbowl&result_type=recent",
-   "summary_object_endpoint": "https://flatteningthecurve-staging.herokuapp.com/api/reopening"
+   "summary_object_endpoint": "http://127.0.0.1:5000/api/summary"
 }
