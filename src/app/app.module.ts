@@ -49,6 +49,7 @@ import { AngularPlotlyComponent } from './components/plotly-angular/plotly-angul
 import { OutreachComponent } from './pages/outreach/outreach.component';
 import { CommonDesktopVisualComponent } from './components/common-desktop-visual/common-desktop-visual.component';
 import { BlogComponent } from './pages/blog/blog.component';
+import { SummaryComponent } from './pages/summary/summary.component';
 import { PlotlyViaCDNModule } from 'angular-plotly.js';
 
 import { MainPipe } from './pipe/pipe.module';
@@ -85,7 +86,8 @@ export function initConfig(appConfig: AppConfigService) {
         PlotComponent,
         AngularPlotlyComponent,
         ScorecardComponent,
-        FooterComponent
+        FooterComponent,
+        SummaryComponent
     ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),

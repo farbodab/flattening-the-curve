@@ -1,0 +1,30 @@
+<app-navbar [shows_title]='true' [page]='"summary"'></app-navbar>
+<div class='content' style='background-color: white; margin-top: 50px;'>
+  <div *ngFor="let object of jsonObj">
+    <div *ngIf="object['phu'] == 'Ontario'">
+    <h1>{{object["phu"]}}</h1>
+    <h2>Scorecard</h2>
+    <div>
+      <h4>Daily new cases per 100k population</h4>
+      Over the last week, {{object["phu"]}} has averaged {{object["weekly"]}} cases per day ({{object["weekly"]}} for every 100,000 residents).
+    </div>
+    <div>
+      <h4>Infection Rate (Rt)</h4>
+      On average, each person in {{object["phu"]}} with COVID is infecting {{object["rt"]}} other people.
+    </div>
+    <div>
+      <h4>Testing Capacity</h4>
+      For tests that were taken on X, x% come back with x. x% come back within this.
+    </div>
+    <div>
+      <h4>ICU Bed Capacity</h4>
+      Ontario has X ICU Beds. Of these X (some percent) are taken up by COVID patients. Y are taken up by non covid patients.
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
+  <div>
+</div>
+<app-footer *ngIf="displayFooter"></app-footer>
