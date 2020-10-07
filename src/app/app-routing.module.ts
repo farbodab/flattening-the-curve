@@ -61,6 +61,10 @@ const routes: Routes = [
       { path: 'ontario', component: GridComponent }
     ]
   },
+  {path: 'summary', component: SummaryComponent, children: [
+      { path: ':viz', component: SummaryComponent},
+    ]
+  },
 {
   path: 'analysis',
     component: AnalysisComponent,

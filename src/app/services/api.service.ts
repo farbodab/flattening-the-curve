@@ -60,9 +60,9 @@ export class ApiService {
     return this.http_client.get(this.appConfigProperties.team_object_endpoint);
   }
 
-  get_summary_obj() {
+  get_summary_obj(HR_UID) {
     //this.request_data(this.viz_object_endpoint, on_success, on_error);
-    return this.http_client.get(this.appConfigProperties.summary_object_endpoint);
+    return this.http_client.get(this.appConfigProperties.summary_object_endpoint + "?HR_UID=" + HR_UID);
   }
 
 
@@ -99,5 +99,6 @@ export class ApiService {
         on_error(error);
       }
     });
+
   }
 }
