@@ -3,6 +3,7 @@ import { ApiService } from '../../services/api.service';
 import { HostService } from '../../services/host.service';
 import { Subscription } from 'rxjs';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig, MatTooltip } from '@angular/material';
+import {MatSortModule} from '@angular/material/sort';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, UrlTree, UrlSegment, UrlSegmentGroup, PRIMARY_OUTLET, DefaultUrlSerializer, RouterState, ActivatedRouteSnapshot, RouterStateSnapshot, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';

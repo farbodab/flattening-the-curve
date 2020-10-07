@@ -23,6 +23,8 @@ import {DataComponent} from './pages/data/data.component';
 import { GridComponent } from './pages/grid/grid.component';
 import { ScorecardComponent } from './components/scorecard/scorecard.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { TableComponent } from './components/table/table.component';
+
 
 import {environment} from 'src/environments/environment';
 import {AngularFireModule} from '@angular/fire';
@@ -39,6 +41,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSortModule} from '@angular/material/sort';
 import {MatListModule} from '@angular/material/list';
+import { MatTableModule } from '@angular/material/table'
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -89,7 +92,8 @@ export function initConfig(appConfig: AppConfigService) {
         ScorecardComponent,
         FooterComponent,
         SummaryComponent,
-        GraphComponent
+        GraphComponent,
+        TableComponent
     ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),
@@ -116,7 +120,8 @@ export function initConfig(appConfig: AppConfigService) {
         MatSnackBarModule,
         MatButtonModule,
         MatSortModule,
-        MatListModule
+        MatListModule,
+        MatTableModule
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

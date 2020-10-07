@@ -1,4 +1,4 @@
-<app-navbar [shows_title]='true' [page]='"summary"'></app-navbar>
+{{epi["outcome"]["Date"]}}<app-navbar [shows_title]='true' [page]='"summary"'></app-navbar>
 <div class='content' style='background-color: white; margin-top: 50px;'>
   <div>
       <mat-progress-spinner mode="indeterminate" diameter="50" style="margin: 0 auto;" *ngIf="!dropdownList">
@@ -44,133 +44,153 @@
     </div>
     <div *ngIf='icu'>
       <h4>ICU Bed Capacity</h4>
-      Ontario has 2012 ICU Beds and {{icu["critical_care_pct"] | percent  : '1.2-2'}} of those beds are currently occupied. There are currently {{icu["confirmed_positive"]}} COVID patients in the ICU.
+      {{icu["critical_care_pct"] | percent  : '1.2-2'}} of ICU beds in {{cases["phu"]}} are currently occupied. There are currently {{icu["confirmed_positive"]}} COVID patients in the ICU.
       <app-graph [graph_data]='data' variable="critical_care_pct"></app-graph>
     </div>
   </div>
   <div *ngIf="displayFooter">
-    <h2>Epidemiologic summary</h2>
     <div *ngIf="epi">
+      <h2>Epidemiologic summary</h2>
+      <mat-card class="highlights">
+        <mat-card-header>
+          <img mat-card-avatar src="https://www.flaticon.com/svg/static/icons/svg/1037/1037334.svg" alt="Summary" style="max-height: 50px;">
+          <mat-card-title>Data Highlights</mat-card-title>
+          <mat-card-subtitle>(as of {{epi["outcome"]["Date"]}})</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <ul>
+            <li>To date, {{epi["outcome"]["Total"]}} confirmed cases of COVID-19 have been reported in {{cases["phu"]}}</li>
+            <li>The median age of confirmed cases is AGE years (range: X to Y years) with the highest cases counts among the X and Y age groups</li>
+            <li>There have {{epi["outcome"]["Fatal"]}} reported deaths among confirmed cases</li>
+          </ul>
+        </mat-card-content>
+      </mat-card>
       <div *ngIf="epi['outcome']">
-        <h4>Outcomes</h4>
-        <table mat-table class="mat-elevation-z8">
+        <p><b>Table 1.</b> COVID-19 cases and outbreaks in {{cases["phu"]}} by outcome status</p>
+        <table class="mat-elevation-z8">
           <tr>
-            <th mat-header-cell>Measure</th>
-            <th mat-header-cell>Number Todate</th>
-            <th mat-header-cell>Last Two Weeks</th>
+            <th  >Measure</th>
+            <th >Number Todate</th>
+            <th  >Last Two Weeks</th>
           </tr>
           <tr>
-            <td mat-cell>Fatal</td>
-            <td mat-cell>{{epi["outcome"]["Fatal"]?epi["outcome"]["Fatal"] + ' cases ('+ (epi["outcome_pct"]["Fatal"]| percent) +')':'0 cases'}}</td>
-            <td mat-cell>{{epi_recent["outcome"]["Fatal"]?epi_recent["outcome"]["Fatal"] + ' cases ('+ (epi_recent["outcome_pct"]["Fatal"]| percent) +')':'0 cases'}}</td>
+            <td>Fatal</td>
+            <td>{{epi["outcome"]["Fatal"]?epi["outcome"]["Fatal"] + ' cases ('+ (epi["outcome_pct"]["Fatal"]| percent) +')':'0 cases'}}</td>
+            <td >{{epi_recent["outcome"]["Fatal"]?epi_recent["outcome"]["Fatal"] + ' cases ('+ (epi_recent["outcome_pct"]["Fatal"]| percent) +')':'0 cases'}}</td>
           </tr>
           <tr>
-            <td mat-cell>Not Resolved</td>
-            <td mat-cell>{{epi["outcome"]["Not Resolved"]?epi["outcome"]["Not Resolved"] + ' cases ('+ (epi["outcome_pct"]["Not Resolved"]| percent) +')':'0 cases'}}</td>
-            <td mat-cell>{{epi_recent["outcome"]["Not Resolved"]?epi_recent["outcome"]["Not Resolved"] + ' cases ('+ (epi_recent["outcome_pct"]["Not Resolved"]| percent) +')':'0 cases'}}</td>
+            <td >Not Resolved</td>
+            <td>{{epi["outcome"]["Not Resolved"]?epi["outcome"]["Not Resolved"] + ' cases ('+ (epi["outcome_pct"]["Not Resolved"]| percent) +')':'0 cases'}}</td>
+            <td>{{epi_recent["outcome"]["Not Resolved"]?epi_recent["outcome"]["Not Resolved"] + ' cases ('+ (epi_recent["outcome_pct"]["Not Resolved"]| percent) +')':'0 cases'}}</td>
           </tr>
           <tr>
-            <td mat-cell>Resolved</td>
-            <td mat-cell>{{epi["outcome"]["Resolved"]?epi["outcome"]["Resolved"] + ' cases ('+ (epi["outcome_pct"]["Resolved"]| percent) +')':'0 cases'}}</td>
-            <td mat-cell>{{epi_recent["outcome"]["Resolved"]?epi_recent["outcome"]["Resolved"] + ' cases ('+ (epi_recent["outcome_pct"]["Resolved"]| percent) +')':'0 cases'}}</td>
+            <td >Resolved</td>
+            <td >{{epi["outcome"]["Resolved"]?epi["outcome"]["Resolved"] + ' cases ('+ (epi["outcome_pct"]["Resolved"]| percent) +')':'0 cases'}}</td>
+            <td >{{epi_recent["outcome"]["Resolved"]?epi_recent["outcome"]["Resolved"] + ' cases ('+ (epi_recent["outcome_pct"]["Resolved"]| percent) +')':'0 cases'}}</td>
+          </tr>
+          <tr>
+            <td >Total</td>
+            <td >{{epi["outcome"]["Total"]?epi["outcome"]["Total"] + ' cases ('+ (epi["outcome_pct"]["Total"]| percent) +')':'0 cases'}}</td>
+            <td >{{epi_recent["outcome"]["Total"]?epi_recent["outcome"]["Total"] + ' cases ('+ (epi_recent["outcome_pct"]["Total"]| percent) +')':'0 cases'}}</td>
           </tr>
         </table>
       </div>
       <div *ngIf="epi['age_group']">
-        <h4>Age Breakdown</h4>
-        <table mat-table class="mat-elevation-z8">
+        <p><b>Table 2.</b> Summary of confirmed COVID-19 cases in {{cases["phu"]}} by age group (n={{epi["outcome"]["Total"]}}): January 31, 2020 to {{epi["outcome"]["Date"]}}</p>
+        <table  class="mat-elevation-z8">
           <tr>
-            <th mat-header-cell>Age Group</th>
-            <th mat-header-cell>Number Todate</th>
-            <th mat-header-cell>Last Two Weeks</th>
+            <th >Age Group</th>
+            <th >Number Todate</th>
+            <th >Last Two Weeks</th>
           </tr>
           <tr>
-            <td mat-cell>&lt;20</td>
-            <td mat-cell>{{epi["age_group"]["<20"]?epi["age_group"]["<20"] + ' cases ('+ (epi["age_group_pct"]["<20"]| percent) +')':'0 cases'}}</td>
-            <td mat-cell>{{epi_recent["age_group"]["<20"]?epi_recent["age_group"]["<20"] + ' cases ('+ (epi_recent["age_group_pct"]["<20"]| percent) +')':'0 cases'}}</td>
+            <td >&lt;20</td>
+            <td >{{epi["age_group"]["<20"]?epi["age_group"]["<20"] + ' cases ('+ (epi["age_group_pct"]["<20"]| percent) +')':'0 cases'}}</td>
+            <td >{{epi_recent["age_group"]["<20"]?epi_recent["age_group"]["<20"] + ' cases ('+ (epi_recent["age_group_pct"]["<20"]| percent) +')':'0 cases'}}</td>
           </tr>
           <tr>
-            <td mat-cell>20s</td>
-            <td mat-cell>{{epi["age_group"]["20s"]?epi["age_group"]["20s"] + ' cases ('+ (epi["age_group_pct"]["20s"]| percent) +')':'0 cases'}}</td>
-            <td mat-cell>{{epi_recent["age_group"]["20s"]?epi_recent["age_group"]["20s"] + ' cases ('+ (epi_recent["age_group_pct"]["20s"]| percent) +')':'0 cases'}}</td>
+            <td >20s</td>
+            <td >{{epi["age_group"]["20s"]?epi["age_group"]["20s"] + ' cases ('+ (epi["age_group_pct"]["20s"]| percent) +')':'0 cases'}}</td>
+            <td >{{epi_recent["age_group"]["20s"]?epi_recent["age_group"]["20s"] + ' cases ('+ (epi_recent["age_group_pct"]["20s"]| percent) +')':'0 cases'}}</td>
           </tr>
           <tr>
-            <td mat-cell>30s</td>
-            <td mat-cell>{{epi["age_group"]["30s"]?epi["age_group"]["30s"] + ' cases ('+ (epi["age_group_pct"]["30s"]| percent) +')':'0 cases'}}</td>
-            <td mat-cell>{{epi_recent["age_group"]["30s"]?epi_recent["age_group"]["30s"] + ' cases ('+ (epi_recent["age_group_pct"]["30s"]| percent) +')':'0 cases'}}</td>
+            <td >30s</td>
+            <td >{{epi["age_group"]["30s"]?epi["age_group"]["30s"] + ' cases ('+ (epi["age_group_pct"]["30s"]| percent) +')':'0 cases'}}</td>
+            <td >{{epi_recent["age_group"]["30s"]?epi_recent["age_group"]["30s"] + ' cases ('+ (epi_recent["age_group_pct"]["30s"]| percent) +')':'0 cases'}}</td>
           </tr>
           <tr>
-            <td mat-cell>40s</td>
-            <td mat-cell>{{epi["age_group"]["40s"]?epi["age_group"]["40s"] + ' cases ('+ (epi["age_group_pct"]["40s"]| percent) +')':'0 cases'}}</td>
-            <td mat-cell>{{epi_recent["age_group"]["40s"]?epi_recent["age_group"]["40s"] + ' cases ('+ (epi_recent["age_group_pct"]["40s"]| percent) +')':'0 cases'}}</td>
+            <td >40s</td>
+            <td >{{epi["age_group"]["40s"]?epi["age_group"]["40s"] + ' cases ('+ (epi["age_group_pct"]["40s"]| percent) +')':'0 cases'}}</td>
+            <td >{{epi_recent["age_group"]["40s"]?epi_recent["age_group"]["40s"] + ' cases ('+ (epi_recent["age_group_pct"]["40s"]| percent) +')':'0 cases'}}</td>
           </tr>
           <tr>
-            <td mat-cell>50s</td>
-            <td mat-cell>{{epi["age_group"]["50s"]?epi["age_group"]["50s"] + ' cases ('+ (epi["age_group_pct"]["50s"]| percent) +')':'0 cases'}}</td>
-            <td mat-cell>{{epi_recent["age_group"]["50s"]?epi_recent["age_group"]["50s"] + ' cases ('+ (epi_recent["age_group_pct"]["50s"]| percent) +')':'0 cases'}}</td>
+            <td >50s</td>
+            <td >{{epi["age_group"]["50s"]?epi["age_group"]["50s"] + ' cases ('+ (epi["age_group_pct"]["50s"]| percent) +')':'0 cases'}}</td>
+            <td >{{epi_recent["age_group"]["50s"]?epi_recent["age_group"]["50s"] + ' cases ('+ (epi_recent["age_group_pct"]["50s"]| percent) +')':'0 cases'}}</td>
           </tr>
           <tr>
-            <td mat-cell>60s</td>
-            <td mat-cell>{{epi["age_group"]["60s"]?epi["age_group"]["60s"] + ' cases ('+ (epi["age_group_pct"]["60s"]| percent) +')':'0 cases'}}</td>
-            <td mat-cell>{{epi_recent["age_group"]["60s"]?epi_recent["age_group"]["60s"] + ' cases ('+ (epi_recent["age_group_pct"]["60s"]| percent) +')':'0 cases'}}</td>
+            <td >60s</td>
+            <td >{{epi["age_group"]["60s"]?epi["age_group"]["60s"] + ' cases ('+ (epi["age_group_pct"]["60s"]| percent) +')':'0 cases'}}</td>
+            <td >{{epi_recent["age_group"]["60s"]?epi_recent["age_group"]["60s"] + ' cases ('+ (epi_recent["age_group_pct"]["60s"]| percent) +')':'0 cases'}}</td>
           </tr>
           <tr>
-            <td mat-cell>70s</td>
-            <td mat-cell>{{epi["age_group"]["70s"]?epi["age_group"]["70s"] + ' cases ('+ (epi["age_group_pct"]["70s"]| percent) +')':'0 cases'}}</td>
-            <td mat-cell>{{epi_recent["age_group"]["70s"]?epi_recent["age_group"]["70s"] + ' cases ('+ (epi_recent["age_group_pct"]["70s"]| percent) +')':'0 cases'}}</td>
+            <td >70s</td>
+            <td >{{epi["age_group"]["70s"]?epi["age_group"]["70s"] + ' cases ('+ (epi["age_group_pct"]["70s"]| percent) +')':'0 cases'}}</td>
+            <td >{{epi_recent["age_group"]["70s"]?epi_recent["age_group"]["70s"] + ' cases ('+ (epi_recent["age_group_pct"]["70s"]| percent) +')':'0 cases'}}</td>
           </tr>
           <tr>
-            <td mat-cell>80s</td>
-            <td mat-cell>{{epi["age_group"]["80s"]?epi["age_group"]["80s"] + ' cases ('+ (epi["age_group_pct"]["80s"]| percent) +')':'0 cases'}}</td>
-            <td mat-cell>{{epi_recent["age_group"]["80s"]?epi_recent["age_group"]["80s"] + ' cases ('+ (epi_recent["age_group_pct"]["80s"]| percent) +')':'0 cases'}}</td>
+            <td >80s</td>
+            <td >{{epi["age_group"]["80s"]?epi["age_group"]["80s"] + ' cases ('+ (epi["age_group_pct"]["80s"]| percent) +')':'0 cases'}}</td>
+            <td >{{epi_recent["age_group"]["80s"]?epi_recent["age_group"]["80s"] + ' cases ('+ (epi_recent["age_group_pct"]["80s"]| percent) +')':'0 cases'}}</td>
           </tr>
           <tr>
-            <td mat-cell>90s</td>
-            <td mat-cell>{{epi["age_group"]["90s"]?epi["age_group"]["90s"] + ' cases ('+ (epi["age_group_pct"]["90s"]| percent) +')':'0 cases'}}</td>
-            <td mat-cell>{{epi_recent["age_group"]["90s"]?epi_recent["age_group"]["90s"] + ' cases ('+ (epi_recent["age_group_pct"]["90s"]| percent) +')':'0 cases'}}</td>
+            <td >90s</td>
+            <td >{{epi["age_group"]["90s"]?epi["age_group"]["90s"] + ' cases ('+ (epi["age_group_pct"]["90s"]| percent) +')':'0 cases'}}</td>
+            <td >{{epi_recent["age_group"]["90s"]?epi_recent["age_group"]["90s"] + ' cases ('+ (epi_recent["age_group_pct"]["90s"]| percent) +')':'0 cases'}}</td>
           </tr>
         </table>
       </div>
       <div *ngIf="epi['case_acquisition']">
-        <h4>Means of Infection</h4>
-        <table mat-table class="mat-elevation-z8">
+        <p><b>Table 3.</b> Most likely exposure setting for confirmed COVID-19 cases in {{cases["phu"]}} (n={{epi["outcome"]["Total"]}}): January 31, 2020 to {{epi["outcome"]["Date"]}}</p>
+        <table  class="mat-elevation-z8">
           <tr>
-            <th mat-header-cell>Exposure Setting</th>
-            <th mat-header-cell>Number Todate</th>
-            <th mat-header-cell>Last Two Weeks</th>
+            <th >Exposure Setting</th>
+            <th >Number Todate</th>
+            <th >Last Two Weeks</th>
           </tr>
           <tr>
-            <td mat-cell>Outbreak</td>
-            <td mat-cell>{{epi["case_acquisition"]["OB"]?epi["case_acquisition"]["OB"] + ' cases ('+ (epi["case_acquisition_pct"]["OB"]| percent) +')':'0 cases'}}</td>
-            <td mat-cell>{{epi_recent["case_acquisition"]["OB"]?epi_recent["case_acquisition"]["OB"] + ' cases ('+ (epi_recent["case_acquisition_pct"]["OB"]| percent) +')':'0 cases'}}</td>
+            <td >Outbreak</td>
+            <td >{{epi["case_acquisition"]["OB"]?epi["case_acquisition"]["OB"] + ' cases ('+ (epi["case_acquisition_pct"]["OB"]| percent) +')':'0 cases'}}</td>
+            <td >{{epi_recent["case_acquisition"]["OB"]?epi_recent["case_acquisition"]["OB"] + ' cases ('+ (epi_recent["case_acquisition_pct"]["OB"]| percent) +')':'0 cases'}}</td>
           </tr>
           <tr>
-            <td mat-cell>Close Contact</td>
-            <td mat-cell>{{epi["case_acquisition"]["CC"]?epi["case_acquisition"]["CC"] + ' cases ('+ (epi["case_acquisition_pct"]["CC"]| percent) +')':'0 cases'}}</td>
-            <td mat-cell>{{epi_recent["case_acquisition"]["CC"]?epi_recent["case_acquisition"]["CC"] + ' cases ('+ (epi_recent["case_acquisition_pct"]["CC"]| percent) +')':'0 cases'}}</td>
+            <td >Close Contact</td>
+            <td >{{epi["case_acquisition"]["CC"]?epi["case_acquisition"]["CC"] + ' cases ('+ (epi["case_acquisition_pct"]["CC"]| percent) +')':'0 cases'}}</td>
+            <td >{{epi_recent["case_acquisition"]["CC"]?epi_recent["case_acquisition"]["CC"] + ' cases ('+ (epi_recent["case_acquisition_pct"]["CC"]| percent) +')':'0 cases'}}</td>
           </tr>
           <tr>
-            <td mat-cell>Community Spread</td>
-            <td mat-cell>{{epi["case_acquisition"]["No Epi-link"]?epi["case_acquisition"]["No Epi-link"] + ' cases ('+ (epi["case_acquisition_pct"]["No Epi-link"]| percent) +')':'0 cases'}}</td>
-            <td mat-cell>{{epi_recent["case_acquisition"]["No Epi-link"]?epi_recent["case_acquisition"]["No Epi-link"] + ' cases ('+ (epi_recent["case_acquisition_pct"]["No Epi-link"]| percent) +')':'0 cases'}}</td>
+            <td >Community Spread</td>
+            <td >{{epi["case_acquisition"]["No Epi-link"]?epi["case_acquisition"]["No Epi-link"] + ' cases ('+ (epi["case_acquisition_pct"]["No Epi-link"]| percent) +')':'0 cases'}}</td>
+            <td >{{epi_recent["case_acquisition"]["No Epi-link"]?epi_recent["case_acquisition"]["No Epi-link"] + ' cases ('+ (epi_recent["case_acquisition_pct"]["No Epi-link"]| percent) +')':'0 cases'}}</td>
           </tr>
           <tr>
-            <td mat-cell>Travel</td>
-            <td mat-cell>{{epi["case_acquisition"]["Travel"]?epi["case_acquisition"]["Travel"] + ' cases ('+ (epi["case_acquisition_pct"]["Travel"]| percent) +')':'0 cases'}}</td>
-            <td mat-cell>{{epi_recent["case_acquisition"]["Travel"]?epi_recent["case_acquisition"]["Travel"] + ' cases ('+ (epi_recent["case_acquisition_pct"]["Travel"]| percent) +')':'0 cases'}}</td>
+            <td >Travel</td>
+            <td >{{epi["case_acquisition"]["Travel"]?epi["case_acquisition"]["Travel"] + ' cases ('+ (epi["case_acquisition_pct"]["Travel"]| percent) +')':'0 cases'}}</td>
+            <td >{{epi_recent["case_acquisition"]["Travel"]?epi_recent["case_acquisition"]["Travel"] + ' cases ('+ (epi_recent["case_acquisition_pct"]["Travel"]| percent) +')':'0 cases'}}</td>
           </tr>
           <tr>
-            <td mat-cell>No Info-Missing</td>
-            <td mat-cell>{{epi["case_acquisition"]["No Info-Missing"]?epi["case_acquisition"]["No Info-Missing"] + ' cases ('+ (epi["case_acquisition_pct"]["No Info-Missing"]| percent) +')':'0 cases'}}</td>
-            <td mat-cell>{{epi_recent["case_acquisition"]["No Info-Missing"]?epi_recent["case_acquisition"]["No Info-Missing"] + ' cases ('+ (epi_recent["case_acquisition_pct"]["No Info-Missing"]| percent) +')':'0 cases'}}</td>
+            <td >No Info-Missing</td>
+            <td >{{epi["case_acquisition"]["No Info-Missing"]?epi["case_acquisition"]["No Info-Missing"] + ' cases ('+ (epi["case_acquisition_pct"]["No Info-Missing"]| percent) +')':'0 cases'}}</td>
+            <td >{{epi_recent["case_acquisition"]["No Info-Missing"]?epi_recent["case_acquisition"]["No Info-Missing"] + ' cases ('+ (epi_recent["case_acquisition_pct"]["No Info-Missing"]| percent) +')':'0 cases'}}</td>
           </tr>
           <tr>
-            <td mat-cell>No Info-Unknown</td>
-            <td mat-cell>{{epi["case_acquisition"]["No Info-Unk"]?epi["case_acquisition"]["No Info-Unk"] + ' cases ('+ (epi["case_acquisition_pct"]["No Info-Unk"]| percent) +')':'0 cases'}}</td>
-            <td mat-cell>{{epi_recent["case_acquisition"]["No Info-Unk"]?epi_recent["case_acquisition"]["No Info-Unk"] + ' cases ('+ (epi_recent["case_acquisition_pct"]["No Info-Unk"]| percent) +')':'0 cases'}}</td>
+            <td >No Info-Unknown</td>
+            <td >{{epi["case_acquisition"]["No Info-Unk"]?epi["case_acquisition"]["No Info-Unk"] + ' cases ('+ (epi["case_acquisition_pct"]["No Info-Unk"]| percent) +')':'0 cases'}}</td>
+            <td >{{epi_recent["case_acquisition"]["No Info-Unk"]?epi_recent["case_acquisition"]["No Info-Unk"] + ' cases ('+ (epi_recent["case_acquisition_pct"]["No Info-Unk"]| percent) +')':'0 cases'}}</td>
           </tr>
         </table>
       </div>
+      <h4>''</h4>
     </div>
   </div>
 </div>
