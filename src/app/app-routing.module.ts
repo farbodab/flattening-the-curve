@@ -10,6 +10,7 @@ import { DataComponent } from 'src/app/pages/data/data.component';
 import { OutreachComponent } from 'src/app/pages/outreach/outreach.component';
 import { BlogComponent } from './pages/blog/blog.component';
 import { GridComponent } from './pages/grid/grid.component';
+import { SummaryComponent } from './pages/summary/summary.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes = [
   //{ path: 'connect', component: ConnectComponent },
   { path: 'get_involved', component: OutreachComponent },
   { path: 'blog', component: BlogComponent },
+  { path: 'summary', component: SummaryComponent },
   {
     path: 'dashboard', component: GridComponent, children: [
       { path: 'the_district_of_algoma', component: GridComponent},
@@ -57,6 +59,10 @@ const routes: Routes = [
       { path: 'southwestern', component: GridComponent },
       { path: 'city_of_toronto', component: GridComponent },
       { path: 'ontario', component: GridComponent }
+    ]
+  },
+  {path: 'summary', component: SummaryComponent, children: [
+      { path: ':viz', component: SummaryComponent},
     ]
   },
 {

@@ -1,0 +1,52 @@
+<app-navbar [shows_title]='true' [page]='"summary"'></app-navbar>
+<div class='content' style='background-color: white; margin-top: 50px;'>
+  <div>
+      <mat-progress-spinner mode="indeterminate" diameter="50" style="margin: 0 auto;" *ngIf="!dropdownList">
+      </mat-progress-spinner>
+  </div>
+  <div *ngIf="data">
+    <div *ngIf="dropdownList" style="padding-top: 5px; ">
+        <form [formGroup]="dropdownList">
+            <mat-form-field [style.width]="is_full ? '350px' : '100%'">
+                <mat-label>Select a Public Health Unit</mat-label>
+                <mat-select formControlName="phu" disableOptionCentering
+                    (selectionChange)="routeonSelection(dropdownList.controls.phu.value)">
+                    <ngx-mat-select-search formControlName="searchCtrl" [placeholderLabel]="'Search...'"
+                        [noEntriesFoundLabel]="'Not found'" name="search"></ngx-mat-select-search>
+                    <mat-option
+                        *ngFor="let phu of phuArray |stringFilterBy:dropdownList.controls.searchCtrl.value:'phu'"
+                        [value]="phu.value">
+                        {{phu.phu}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </form>
+    </div>
+
+    <div *ngIf='cases'>
+      <h1>{{cases["phu"]}}</h1>
+      <h2>Scorecard</h2>
+    </div>
+    <div *ngIf='cases'>
+      <h4>Daily new cases per 100k population</h4>
+      Over the last week, {{cases["phu"]}} has averaged {{cases["rolling"] | number : '1.2-2' }} cases per day ({{cases["rolling_pop"] | number : '1.2-2'}} for every 100,000 residents).
+      <app-graph [graph_data]='data' variable="rolling_pop"></app-graph>
+    </div>
+    <div *ngIf='rt'>
+      <h4>Infection Rate (Rt)</h4>
+      On average, each person in {{rt["phu"]}} with COVID is infecting {{rt["rt_ml"] | number : '1.2-2'}} other people.
+      <app-graph [graph_data]='data' variable="rt_ml"></app-graph>
+    </div>
+    <div *ngIf='testing'>
+      <h4>Testing Capacity</h4>
+      In the last 7 days, on average {{testing["rolling_test_twenty_four"] | percent : '1.2-2'}} of tests have been returned within 24 hours.
+      <app-graph [graph_data]='data' variable="rolling_test_twenty_four"></app-graph>
+    </div>
+    <div *ngIf='icu'>
+      <h4>ICU Bed Capacity</h4>
+      Ontario has 2012 ICU Beds and {{icu["critical_care_pct"] | percent  : '1.2-2'}} of those beds are currently occupied. There are currently {{icu["confirmed_positive"]}} COVID patients in the ICU.
+      <app-graph [graph_data]='data' variable="critical_care_pct"></app-graph>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

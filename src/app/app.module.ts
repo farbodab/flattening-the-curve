@@ -45,10 +45,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import { CommonMobileVisualComponent } from './components/common-mobile-visual/common-mobile-visual.component';
 import { PlotComponent } from './components/plot/plot';
+import { GraphComponent } from './components/graph/graph';
 import { AngularPlotlyComponent } from './components/plotly-angular/plotly-angular.component';
 import { OutreachComponent } from './pages/outreach/outreach.component';
 import { CommonDesktopVisualComponent } from './components/common-desktop-visual/common-desktop-visual.component';
 import { BlogComponent } from './pages/blog/blog.component';
+import { SummaryComponent } from './pages/summary/summary.component';
 import { PlotlyViaCDNModule } from 'angular-plotly.js';
 
 import { MainPipe } from './pipe/pipe.module';
@@ -85,7 +87,9 @@ export function initConfig(appConfig: AppConfigService) {
         PlotComponent,
         AngularPlotlyComponent,
         ScorecardComponent,
-        FooterComponent
+        FooterComponent,
+        SummaryComponent,
+        GraphComponent
     ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),
