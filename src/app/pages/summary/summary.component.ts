@@ -15,6 +15,8 @@ import { filter } from 'rxjs/operators';
 
 export class SummaryComponent implements OnInit {
     data: any;
+    epi: any;
+    epi_recent: any;
     cases: any;
     icu: any;
     testing: any;
@@ -27,6 +29,8 @@ export class SummaryComponent implements OnInit {
     averageForm: FormGroup;
     window_subscription: Subscription;
     fetch_subscribe: Subscription;
+    fetch_epi: Subscription;
+    fetch_epi_recent: Subscription;
     mySubscription: Subscription;
     headerLabel = '';
     path = ''
@@ -214,9 +218,9 @@ export class SummaryComponent implements OnInit {
     constructor(private host_service: HostService, private route: ActivatedRoute, private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog, private api_service: ApiService) {
       this.refresh_layout(window.innerWidth);
       this.urlSegments = this.route.snapshot['_urlSegment']
-      typeof (this.urlSegments.segments[1]) === 'undefined' ? this.path = '' : this.path = this.urlSegments.segments[1].path;
+      typeof (this.urlSegments.segments[1]) === 'undefined' ? this.path = 'ontario' : this.path = this.urlSegments.segments[1].path;
       this.router.routeReuseStrategy.shouldReuseRoute = function () {
-        return false;
+      return false;
       };
 
       this.mySubscription = this.router.events.subscribe((event) => {
@@ -246,52 +250,53 @@ export class SummaryComponent implements OnInit {
       if (this.fetch_subscribe) {
         this.fetch_subscribe.unsubscribe();
       }
+      if (this.fetch_epi) {
+        this.fetch_epi.unsubscribe();
+      }
+      if (this.fetch_epi_recent) {
+        this.fetch_epi_recent.unsubscribe();
+      }
       if (this.mySubscription) {
       this.mySubscription.unsubscribe();
     }
     }
 
     fetchDataObj() {
-    if (this.path) {
-      this.fetch_subscribe = this.api_service.get_summary_obj(this.phuKeys[this.path]).subscribe(
-        (data: Array<any>) => {
-          this.data = data;
-          this.initDropdownForm(this.phuArray);
-          this.cases = data.filter(date => date["rolling_pop"] != null)
-          this.cases = this.cases[this.cases.length - 1]
-          this.icu = data.filter(date => date["critical_care_pct"] != null)
-          this.icu = this.icu[this.icu.length - 1]
-          this.testing = data.filter(date => date["rolling_test_twenty_four"] != null)
-          this.testing = this.testing[this.testing.length - 1]
-          this.rt = data.filter(date => date["rt_ml"] != null)
-          this.rt = this.rt[this.rt.length - 1]
-          this.displayFooter = true;
-        },
-        error => {
-          this.data = 'error';
-        }
-      );
-    }
-    else {
-      this.fetch_subscribe = this.api_service.get_summary_obj(0).subscribe(
-        (data: Array<any>) => {
-          this.data = data;
-          this.initDropdownForm(this.phuArray);
-          this.cases = data.filter(date => date["rolling_pop"] != null)
-          this.cases = this.cases[this.cases.length - 1]
-          this.icu = data.filter(date => date["critical_care_pct"] != null)
-          this.icu = this.icu[this.icu.length - 1]
-          this.testing = data.filter(date => date["rolling_test_twenty_four"] != null)
-          this.testing = this.testing[this.testing.length - 1]
-          this.rt = data.filter(date => date["rt_ml"] != null)
-          this.rt = this.rt[this.rt.length - 1]
-          this.displayFooter = true;
-        },
-        error => {
-          this.data = 'error';
-        }
-      );
-    }
+    this.fetch_subscribe = this.api_service.get_summary_obj(this.phuKeys[this.path]).subscribe(
+      (data: Array<any>) => {
+        this.data = data;
+        this.initDropdownForm(this.phuArray);
+        this.cases = data.filter(date => date["rolling_pop"] != null)
+        this.cases = this.cases[this.cases.length - 1]
+        this.icu = data.filter(date => date["critical_care_pct"] != null)
+        this.icu = this.icu[this.icu.length - 1]
+        this.testing = data.filter(date => date["rolling_test_twenty_four"] != null)
+        this.testing = this.testing[this.testing.length - 1]
+        this.rt = data.filter(date => date["rt_ml"] != null)
+        this.rt = this.rt[this.rt.length - 1]
+        this.displayFooter = true;
+      },
+      error => {
+        this.data = 'error';
+      }
+    );
+    this.fetch_epi = this.api_service.get_epi_obj(this.phuKeys[this.path],-1).subscribe(
+      (data: Array<any>) => {
+        this.epi = data;
+        console.log(data)
+      },
+      error => {
+        this.data = 'error';
+      }
+    );
+    this.fetch_epi_recent = this.api_service.get_epi_obj(this.phuKeys[this.path],14).subscribe(
+      (data: Array<any>) => {
+        this.epi_recent = data;
+      },
+      error => {
+        this.data = 'error';
+      }
+    );
   }
 
     initFilteringForm(obj: any) {
