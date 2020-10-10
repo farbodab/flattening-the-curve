@@ -111,6 +111,11 @@ export class MapComponent {
         //   longitude: 50
         // };
 
+        polygonTemplate.events.on("hit", function(ev) {
+          // get object info
+          console.log(ev.target.dataItem.dataContext['id']);
+        });
+
         this.chart = chart;
       });
     }

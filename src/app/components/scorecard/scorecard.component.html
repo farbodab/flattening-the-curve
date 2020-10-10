@@ -39,18 +39,19 @@
                         </th>
                     </tr>
                     <tr class="ontario-row-styling">
-                        <td class="center-cell"
-                            [ngClass]="{'black-cell': ontarioObj.rt === 'nan', 'green-cell': ontarioObj.rt < 0.5, 'yellow-cell': 0.5 <= ontarioObj.rt && ontarioObj.rt < 1.0, 'red-cell': 1.0 <= ontarioObj.rt}"
-                            style="width: 10%;">{{ontarioObj.rt}}</td>
-                        <td class="center-cell border-right-white"
-                            [ngClass]="{'black-cell': ontarioObj.rt === 'nan', 'green-cell': ontarioObj.rt < 0.5, 'yellow-cell': 0.5 <= ontarioObj.rt && ontarioObj.rt < 1.0, 'red-cell': 1.0 <= ontarioObj.rt}">
-                            Rt Value</td>
-                        <td class="center-cell border-left-white"
+                      <td class="center-cell"
+                          [ngClass]="{'black-cell': ontarioObj.weekly === 'nan', 'green-cell': ontarioObj.weekly < 25, 'yellow-cell': 25 <= ontarioObj.weekly && ontarioObj.weekly <= 100, 'red-cell': 100 < ontarioObj.weekly}"
+                          style="width: 10%;">{{ontarioObj.weekly}}</td>
+                      <td class="center-cell border-right-white"
+                          [ngClass]="{'black-cell': ontarioObj.weekly === 'nan', 'green-cell': ontarioObj.weekly < 25, 'yellow-cell': 25 <= ontarioObj.weekly && ontarioObj.weekly <= 100, 'red-cell': 100 < ontarioObj.weekly}">
+                          Case Incidence
+                      </td>
+                        <td class="center-cell border-left-white" rowspan="2"
                             [ngClass]="{'black-cell': ontarioObj.testing === 'nan', 'green-cell': ontarioObj.testing > 95, 'yellow-cell': 81 <= ontarioObj.testing && ontarioObj.testing <= 95, 'red-cell': ontarioObj.testing < 80}"
                             style="width: 10%;">
                             {{ontarioObj.testing === 'nan' ? 'N/A' : ontarioObj.testing+'%'}}
                         </td>
-                        <td class="center-cell border-right-white"
+                        <td class="center-cell border-right-white" rowspan="2"
                             [ngClass]="{'black-cell': ontarioObj.testing === 'nan', 'green-cell': ontarioObj.testing > 95, 'yellow-cell': 81 <= ontarioObj.testing && ontarioObj.testing <= 95, 'red-cell': ontarioObj.testing < 80}">
                             Testing
                             &lt; 24h</td>
@@ -64,23 +65,12 @@
                         </td>
                     </tr>
                     <tr class="ontario-row-styling">
-                        <td class="center-cell"
-                            [ngClass]="{'black-cell': ontarioObj.weekly === 'nan', 'green-cell': ontarioObj.weekly < 25, 'yellow-cell': 25 <= ontarioObj.weekly && ontarioObj.weekly <= 100, 'red-cell': 100 < ontarioObj.weekly}"
-                            style="width: 10%;">{{ontarioObj.weekly}}</td>
-                        <td class="center-cell border-right-white"
-                            [ngClass]="{'black-cell': ontarioObj.weekly === 'nan', 'green-cell': ontarioObj.weekly < 25, 'yellow-cell': 25 <= ontarioObj.weekly && ontarioObj.weekly <= 100, 'red-cell': 100 < ontarioObj.weekly}">
-                            Weekly New Cases
-                        </td>
-                        <td [title]="ontarioObj.tracing === 'nan'? 'Data not available or not reported publicly': ''"
-                            class="center-cell border-left-white"
-                            [ngClass]="{'black-cell': ontarioObj.tracing === 'nan', 'green-cell': ontarioObj.tracing > 95, 'yellow-cell': 81 <= ontarioObj.tracing && ontarioObj.tracing <= 95, 'red-cell': ontarioObj.tracing < 80}"
-                            style="width: 10%;">
-                            {{ontarioObj.tracing === 'nan' ? 'DNE' : ontarioObj.tracing+'%'}}
-                        </td>
-                        <td class="center-cell border-right-white"
-                            [ngClass]="{'black-cell': ontarioObj.tracing === 'nan', 'green-cell': ontarioObj.tracing > 95, 'yellow-cell': 81 <= ontarioObj.tracing && ontarioObj.tracing <= 95, 'red-cell': ontarioObj.tracing < 80}">
-                            Tracing
-                            &lt; 24h</td>
+                      <td class="center-cell"
+                          [ngClass]="{'black-cell': ontarioObj.rt === 'nan', 'green-cell': ontarioObj.rt < 0.5, 'yellow-cell': 0.5 <= ontarioObj.rt && ontarioObj.rt < 1.0, 'red-cell': 1.0 <= ontarioObj.rt}"
+                          style="width: 10%;">{{ontarioObj.rt}}</td>
+                      <td class="center-cell border-right-white"
+                          [ngClass]="{'black-cell': ontarioObj.rt === 'nan', 'green-cell': ontarioObj.rt < 0.5, 'yellow-cell': 0.5 <= ontarioObj.rt && ontarioObj.rt < 1.0, 'red-cell': 1.0 <= ontarioObj.rt}">
+                          Rt Value</td>
                     </tr>
                 </table>
                 <div class="scorecard-header">Metrics by Public Health Unit (PHU)</div>
@@ -93,55 +83,45 @@
                     <tr>
                         <th></th>
                         <th colspan="2" class="top-category">Pandemic Monitoring</th>
-                        <th colspan="2" class="top-category">Response Monitoring</th>
+                        <th class="top-category">Response Monitoring</th>
                         <th class="top-category">Response Capacity</th>
-                        <th class="top-category">Stages</th>
                     </tr>
                     <tr>
                         <th mat-sort-header="phu" class="first-col-styling header-styling black-cell">PHU</th>
+                        <th mat-sort-header="new" class="header-styling black-cell">Cases</th>
                         <th mat-sort-header="rt" class="header-styling black-cell">Rt</th>
-                        <th mat-sort-header="new" class="header-styling black-cell">Weekly New Cases</th>
                         <th mat-sort-header="testing" class="header-styling black-cell">Testing &lt; 24h
                         </th>
-                        <th mat-sort-header="tracing" class="header-styling black-cell">Tracing &lt; 24h
-                        </th>
                         <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Bed Occupied</th>
-                        <th mat-sort-header="stage" class="header-styling black-cell">Stage</th>
                     </tr>
                     <tr *ngFor="let row of sortedMetrics; index as index" class="row-styling"
                         [style.background-color]="index % 2 === 0 ? '#ffffff' : '#F2F2F2'">
                         <td class="first-col-cell" routerLink="{{'/dashboard/'+row.route}}"
                             [title]="row.phu+' Dashboard'">
                             {{row.phu}}</td>
-                        <td [title]="row.rt === 'nan'? 'Cannot calculate due to insufficient data': ''"
-                            class="cell-border center-cell no-left-border"
-                            [ngClass]="{'black-cell': row.rt === 'nan', 'green-cell': row.rt < 0.5, 'yellow-cell': 0.5 <= row.rt && row.rt < 1.0, 'red-cell': 1.0 <= row.rt}">
-                            {{row.rt === 'nan' ? 'N/A' : row.rt}}</td>
                         <td [title]="row.weekly === 'nan'? 'Cannot calculate due to insufficient data': ''"
                             [ngClass]="{'black-cell': row.weekly === 'nan', 'green-cell': row.weekly < 25, 'yellow-cell': 25 <= row.weekly && row.weekly <= 100, 'red-cell': 100 < row.weekly}"
                             class="cell-border center-cell">
                             {{row.weekly === 'nan' ? 'N/A' : row.weekly}}</td>
+                        <td [title]="row.rt === 'nan'? 'Cannot calculate due to insufficient data': ''"
+                            class="cell-border center-cell no-left-border"
+                            [ngClass]="{'black-cell': row.rt === 'nan', 'green-cell': row.rt < 0.5, 'yellow-cell': 0.5 <= row.rt && row.rt < 1.0, 'red-cell': 1.0 <= row.rt}">
+                            {{row.rt === 'nan' ? 'N/A' : row.rt}}</td>
                         <td [title]="row.testing === 'nan'? 'Cannot calculate due to insufficient data': ''"
                             [ngClass]="{'black-cell': row.testing === 'nan', 'green-cell': row.testing > 95, 'yellow-cell': 81 <= row.testing && row.testing <= 95, 'red-cell': row.testing < 80}"
                             class="cell-border center-cell">
                             {{row.testing === 'nan' ? 'N/A' : row.testing+'%'}}
                         </td>
-                        <td [title]="row.tracing === 'nan'? 'Data not available or not reported publicly': ''"
-                            [ngClass]="{'black-cell': row.tracing === 'nan', 'green-cell': row.tracing > 95, 'yellow-cell': 81 <= row.tracing && row.tracing <= 95, 'red-cell': row.tracing < 80}"
-                            class="cell-border center-cell">
-                            {{row.tracing === 'nan' ? 'DNE' : row.tracing+'%'}}
                         <td [title]="row.icu === 'nan'? 'Cannot calculate due to insufficient data': ''"
                             [ngClass]="{'black-cell': row.icu === 'nan', 'green-cell': row.icu < 80, 'yellow-cell': 80 <= row.icu && row.icu < 90, 'red-cell': 90 <= row.icu}"
                             class="cell-border center-cell">
                             {{row.icu === 'nan' ? 'N/A' : row.icu+'%'}}</td>
-                        <td [ngClass]="{'black-cell': row.staging === 'nan'}"
-                            class="cell-border no-right-border center-cell">
-                            {{row.stage === 'nan' ? 'N/A' : row.stage}}</td>
                     </tr>
                 </table>
             </div>
             <div *ngIf="!is_full">
-                <div class="scorecard-header">Ontario's Reopening Metrics</div>
+                <h1 class="scorecard-header">Ontario's COVID Warning System</h1>
+                <app-map> </app-map>
                 <div>
                     <mat-progress-spinner class="spinner-styling" mode="indeterminate" diameter="50"
                         *ngIf="ontarioObj.rt === null">
@@ -160,19 +140,19 @@
                     </tr>
                     <tr class="ontario-row-styling">
                         <td class="center-cell"
+                            [ngClass]="{'black-cell': ontarioObj.weekly === 'nan', 'green-cell': ontarioObj.weekly < 25, 'yellow-cell': 25 <= ontarioObj.weekly && ontarioObj.weekly <= 100, 'red-cell': 100 < ontarioObj.weekly}"
+                            style="width: 10%;">{{ontarioObj.weekly}}</td>
+                        <td class="center-cell"
+                            [ngClass]="{'black-cell': ontarioObj.weekly === 'nan', 'green-cell': ontarioObj.weekly < 25, 'yellow-cell': 25 <= ontarioObj.weekly && ontarioObj.weekly <= 100, 'red-cell': 100 < ontarioObj.weekly}">
+                            Case Incidence</td>
+                    </tr>
+                    <tr class="ontario-row-styling">
+                        <td class="center-cell"
                             [ngClass]="{'black-cell': ontarioObj.rt === 'nan', 'green-cell': ontarioObj.rt < 0.5, 'yellow-cell': 0.5 <= ontarioObj.rt && ontarioObj.rt < 1.0, 'red-cell': 1.0 <= ontarioObj.rt}"
                             style="width: 10%;">{{ontarioObj.rt}}</td>
                         <td class="center-cell"
                             [ngClass]="{'black-cell': ontarioObj.rt === 'nan', 'green-cell': ontarioObj.rt < 0.5, 'yellow-cell': 0.5 <= ontarioObj.rt && ontarioObj.rt < 1.0, 'red-cell': 1.0 <= ontarioObj.rt}">
                             Rt Value</td>
-                    </tr>
-                    <tr class="ontario-row-styling">
-                        <td class="center-cell"
-                            [ngClass]="{'black-cell': ontarioObj.weekly === 'nan', 'green-cell': ontarioObj.weekly < 25, 'yellow-cell': 25 <= ontarioObj.weekly && ontarioObj.weekly <= 100, 'red-cell': 100 < ontarioObj.weekly}"
-                            style="width: 10%;">{{ontarioObj.weekly}}</td>
-                        <td class="center-cell"
-                            [ngClass]="{'black-cell': ontarioObj.weekly === 'nan', 'green-cell': ontarioObj.weekly < 25, 'yellow-cell': 25 <= ontarioObj.weekly && ontarioObj.weekly <= 100, 'red-cell': 100 < ontarioObj.weekly}">
-                            Weekly New Cases</td>
                     </tr>
                 </table>
                 <table *ngIf="ontarioObj.rt !== null" class="mobile-ontario-table">
@@ -195,16 +175,6 @@
                         <td class="center-cell"
                             [ngClass]="{'black-cell': ontarioObj.testing === 'nan', 'green-cell': ontarioObj.testing > 95, 'yellow-cell': 81 <= ontarioObj.testing && ontarioObj.testing <= 95, 'red-cell': ontarioObj.testing < 80}">
                             Testing &lt; 24h</td>
-                    </tr>
-                    <tr class="ontario-row-styling">
-                        <td class="center-cell"
-                            [ngClass]="{'black-cell': ontarioObj.tracing === 'nan', 'green-cell': ontarioObj.tracing > 95, 'yellow-cell': 81 <= ontarioObj.tracing && ontarioObj.tracing <= 95, 'red-cell': ontarioObj.tracing < 80}"
-                            style="width: 10%;">
-                            {{ontarioObj.tracing === 'nan' ? 'DNE' : ontarioObj.tracing+'%'}}
-                        </td>
-                        <td class="center-cell"
-                            [ngClass]="{'black-cell': ontarioObj.tracing === 'nan', 'green-cell': ontarioObj.tracing > 95, 'yellow-cell': 81 <= ontarioObj.tracing && ontarioObj.tracing <= 95, 'red-cell': ontarioObj.tracing < 80}">
-                            Tracing &lt; 24h</td>
                     </tr>
                 </table>
                 <table *ngIf="ontarioObj.rt !== null" class="mobile-ontario-table">
@@ -260,23 +230,19 @@
                             <th class="mobile-phu-header" colspan="2">{{table.phu}}</th>
                         </tr>
                         <tr>
-                            <td class="mobile-header-cell alternate-row">Stage</td>
-                            <td class="mobile-data-cell center-cell alternate-row">{{table.stage}}</td>
+                            <th class="mobile-category-header" colspan="2">Pandemic Monitoring</th>
                         </tr>
                         <tr>
-                            <th class="mobile-category-header" colspan="2">Pandemic Monitoring</th>
+                            <td class="mobile-header-cell alternate-row">Case Incidence</td>
+                            <td [ngClass]="{'black-cell': table.weekly === 'nan', 'green-cell': table.weekly < 25, 'yellow-cell': 25 <= table.weekly && table.weekly <= 100, 'red-cell': 100 < table.weekly}"
+                                class="mobile-data-cell center-cell">
+                                {{table.weekly === 'nan' ? 'N/A' : table.weekly}}</td>
                         </tr>
                         <tr>
                             <td class="alternate-row mobile-header-cell">Rt</td>
                             <td [ngClass]="{'black-cell': table.rt === 'nan', 'green-cell': table.rt < 0.5, 'yellow-cell': 0.5 <= table.rt && table.rt < 1.0, 'red-cell': 1.0 <= table.rt}"
                                 class="mobile-data-cell center-cell">
                                 {{table.rt === 'nan' ? 'N/A' : table.rt}}</td>
-                        </tr>
-                        <tr>
-                            <td class="mobile-header-cell alternate-row">Weekly New Cases</td>
-                            <td [ngClass]="{'black-cell': table.weekly === 'nan', 'green-cell': table.weekly < 25, 'yellow-cell': 25 <= table.weekly && table.weekly <= 100, 'red-cell': 100 < table.weekly}"
-                                class="mobile-data-cell center-cell">
-                                {{table.weekly === 'nan' ? 'N/A' : table.weekly}}</td>
                         </tr>
                         <tr>
                             <th class="mobile-category-header" colspan="2">Response Monitoring</th>
@@ -286,13 +252,6 @@
                             <td [ngClass]="{'black-cell': table.testing === 'nan', 'green-cell': table.testing > 95, 'yellow-cell': 81 <= table.testing && table.testing <= 95, 'red-cell': table.testing < 80}"
                                 class="mobile-data-cell center-cell">
                                 {{table.testing === 'nan' ? 'N/A' : table.testing+'%'}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="mobile-header-cell alternate-row">Tracing &lt; 24h</td>
-                            <td [ngClass]="{'black-cell': table.tracing === 'nan', 'green-cell': table.tracing > 95, 'yellow-cell': 81 <= table.tracing && table.tracing <= 95, 'red-cell': table.tracing < 80}"
-                                class="mobile-data-cell center-cell">
-                                {{table.tracing === 'nan' ? 'DNE' : table.tracing+'%'}}
                             </td>
                         </tr>
                         <tr>
@@ -318,6 +277,13 @@
                             <th class="header-styling black-cell">Red</th>
                         </tr>
                         <tr class="row-styling">
+                            <td class="cell-border no-left-border center-cell">Case Incidence</td>
+                            <td class="cell-border center-cell green-cell"><strong>&lt;</strong> 25</td>
+                            <td class="cell-border center-cell yellow-cell">25 <strong>&le;</strong> Case Incidence
+                                <strong>&le;</strong> 100</td>
+                            <td class="cell-border no-right-border center-cell red-cell"><strong>&gt;</strong> 100</td>
+                        </tr>
+                        <tr class="row-styling">
                             <td class="cell-border no-left-border alternate-row center-cell">Rt</td>
                             <td class="cell-border center-cell green-cell"><strong>&lt;</strong> 0.50</td>
                             <td class="cell-border center-cell yellow-cell">0.50 <strong>&le;</strong> Rt
@@ -325,30 +291,13 @@
                             <td class="cell-border no-right-border center-cell red-cell"><strong>&ge;</strong> 1.00</td>
                         </tr>
                         <tr class="row-styling">
-                            <td class="cell-border no-left-border center-cell">Weekly New Cases</td>
-                            <td class="cell-border center-cell green-cell"><strong>&lt;</strong> 25</td>
-                            <td class="cell-border center-cell yellow-cell">25 <strong>&le;</strong> Weekly New Cases
-                                <strong>&le;</strong> 100</td>
-                            <td class="cell-border no-right-border center-cell red-cell"><strong>&gt;</strong> 100</td>
+                            <td class="cell-border no-left-border alternate-row center-cell">Testing &lt;24h</td>
+                            <td class="cell-border center-cell green-cell"><strong>&lt;</strong> 95%</td>
+                            <td class="cell-border center-cell yellow-cell">80% <strong>&le;</strong> Testing Turn Around Under 24h
+                                <strong>&lt;</strong> 95% </td>
+                            <td class="cell-border no-right-border center-cell red-cell"><strong>&ge;</strong> 80%</td>
                         </tr>
-                        <tr class="row-styling">
-                            <td class="cell-border no-left-border alternate-row center-cell">Testing &lt;
-                                24h</td>
-                            <td class="cell-border center-cell green-cell"><strong>&gt;</strong> 95%</td>
-                            <td class="cell-border center-cell yellow-cell">80% <strong>&le;</strong> Testing Turn
-                                Around
-                                Under
-                                24h <strong>&le;</strong> 95%</td>
-                            <td class="cell-border no-right-border center-cell red-cell"><strong>&lt;</strong> 80%</td>
-                        </tr>
-                        <tr class="row-styling">
-                            <td class="cell-border no-left-border center-cell">Tracing &lt; 24h</td>
-                            <td class="cell-border center-cell green-cell"><strong>&gt;</strong> 95%</td>
-                            <td class="cell-border center-cell yellow-cell">80% <strong>&le;</strong> Tracing Turn
-                                Around Under
-                                24h <strong>&le;</strong> 95%</td>
-                            <td class="cell-border no-right-border center-cell red-cell"><strong>&lt;</strong> 80%</td>
-                        </tr>
+
                         <tr class="row-styling">
                             <td class="cell-border no-left-border alternate-row center-cell">Total ICU Bed Occupied
                             </td>
@@ -383,7 +332,7 @@
                     </table>
                     <table class="mobile-threshold-table">
                         <tr>
-                            <th class="mobile-phu-header" colspan="2">Weekly New Cases</th>
+                            <th class="mobile-phu-header" colspan="2">Case Incidence</th>
                         </tr>
                         <tr>
                             <td class="alternate-row threshold-left-col">Green</td>
@@ -391,8 +340,7 @@
                         </tr>
                         <tr>
                             <td class="threshold-left-col">Yellow</td>
-                            <td class="center-cell threshold-right-col yellow-cell">25 <strong>&le;</strong> Weekly New
-                                Cases
+                            <td class="center-cell threshold-right-col yellow-cell">25 <strong>&le;</strong> Case Incidence
                                 <strong>&le;</strong> 100</td>
                         </tr>
                         <tr>
@@ -464,10 +412,20 @@
                 <div *ngIf="timesObj" class="mobile-scorecard-container">
                     <div class="scorecard-info-header data-source-header">Metric Explanations</div>
                     <mat-list role="list" class="metric-explanation-list">
+                      <mat-list-item role="listitem" class="data-item">
+                          <div class="metric-height">
+                              <div>
+                                  <span class="data-source-title">1. Case Incidence:</span> The total number of new
+                                  cases a public health unit reports in the prior
+                                  seven days.
+                              </div>
+                              <div class="time-styling">Last updated {{timesObj.ontario_phu_weekly_new_cases}}</div>
+                          </div>
+                      </mat-list-item>
                         <mat-list-item role="listitem" class="data-item">
                             <div class="metric-height">
                                 <div>
-                                    <span class="data-source-title">1. RT:</span> A measure of how contagious a disease
+                                    <span class="data-source-title">2. RT:</span> A measure of how contagious a disease
                                     is
                                     at a certain point in time. It tells
                                     us the average number of people one sick person can infect (e.g. an Rt of 5 means
@@ -480,16 +438,6 @@
                                 </div>
                                 <div class="time-styling">Last updated
                                     {{timesObj.canada_bettencourt_and_ribeiro_approach}}</div>
-                            </div>
-                        </mat-list-item>
-                        <mat-list-item role="listitem" class="data-item">
-                            <div class="metric-height">
-                                <div>
-                                    <span class="data-source-title">2. Weekly New Cases:</span> The total number of new
-                                    cases a public health unit reports in the prior
-                                    seven days.
-                                </div>
-                                <div class="time-styling">Last updated {{timesObj.ontario_phu_weekly_new_cases}}</div>
                             </div>
                         </mat-list-item>
                         <mat-list-item role="listitem" class="data-item">
@@ -510,16 +458,8 @@
                         </mat-list-item>
                         <mat-list-item role="listitem" class="data-item">
                             <div class="metric-height">
-                                <span class="data-source-title">4. Tracing &lt; 24h:</span> The amount of time needed
-                                for a PHU to complete contact tracing of a
-                                case (i.e. a contact tracer calls the patient and asks who they have been recently in
-                                contact with so that those people can also get tested).
-                            </div>
-                        </mat-list-item>
-                        <mat-list-item role="listitem" class="data-item">
-                            <div class="metric-height">
                                 <div>
-                                    <span class="data-source-title">5. Total ICU Bed Occupied:</span> The percentage of
+                                    <span class="data-source-title">4. Total ICU Bed Occupied:</span> The percentage of
                                     beds
                                     in the intensive care unit that are
                                     occupied. This includes both COVID-19 patients and patients who are in the ICU for
@@ -529,16 +469,6 @@
                                     enough ICU beds, patients are at a higher risk of death.
                                 </div>
                                 <div class="time-styling">Last updated {{timesObj.ontario_phu_icu_capacity}}</div>
-                            </div>
-                        </mat-list-item>
-                        <mat-list-item role="listitem" class="data-item">
-                            <div class="metric-height">
-                                <span class="data-source-title">6. Stage:</span> Like other jurisdictions, Ontario has
-                                chosen to reopen in 'stages' to balance
-                                public health and safety with economic productivity and a sense of 'life as normal' for
-                                Ontarians. Stage 1 is the most restrictive on businesses and services while Stage 3 is
-                                the
-                                most open.
                             </div>
                         </mat-list-item>
                     </mat-list>
@@ -560,19 +490,19 @@
                     <mat-list role="list" class="metric-explanation-list">
                         <mat-list-item role="listitem" class="data-item">
                             <div class="metric-height">
-                                <span class="data-source-title">1. Rt:</span>
-                                Calculated using a modified approach of Kevin Systrom (based on <a
-                                    href='https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0002185'>Bettencourt
-                                    & Ribeiro</a>). Data from the COVID-19 Canada Open Data Working Group
-                            </div>
-                        </mat-list-item>
-                        <mat-list-item role="listitem" class="data-item">
-                            <div class="metric-height">
-                                <span class="data-source-title">2. Weekly New Cases:</span> Calculated using case
+                                <span class="data-source-title">1. Case Incidence:</span> Calculated using case
                                 reported date. Data from Confirmed positive
                                 cases of
                                 COVID19 in Ontario from
                                 Government of Ontario
+                            </div>
+                        </mat-list-item>
+                        <mat-list-item role="listitem" class="data-item">
+                            <div class="metric-height">
+                                <span class="data-source-title">2. Rt:</span>
+                                Calculated using a modified approach of Kevin Systrom (based on <a
+                                    href='https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0002185'>Bettencourt
+                                    & Ribeiro</a>). Data from the COVID-19 Canada Open Data Working Group
                             </div>
                         </mat-list-item>
                         <mat-list-item role="listitem" class="data-item">
