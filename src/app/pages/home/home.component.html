@@ -1,55 +1,7 @@
-<app-navbar [page]='"home"'></app-navbar>
+<app-navbar [shows_title]='true' [page]='"home"'></app-navbar>
 <div [ngClass]="{'mobile-browser': !is_full}">
-    <div class='header-container'>
-        <div class="header-inner-container">
-            <img *ngIf="!is_full" class='logo-mobile-home' routerLink='/home' src='assets/img/logo.svg'>
-            <div id='title-div'>
-                <div>
-                    <p *ngIf="is_full" class='mat-display-1' id='title-text'>#HowsMyFlattening</p>
-                    <p class='mat-headline home-header-sub' id='subtitle-text'>A centralized data
-                        analytics and
-                        visualization
-                        hub monitoring Ontario's response to COVID-19</p>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class='content' style='background-color: white;'>
-        <div id='container' style="margin:0">
-            <!-- <div class='home-page-card which-curve'>
-                <div id='which-curve-text'>
-                    <div>
-                        <h1 class="main-header-styling">
-                            Ontario's Two COVID-19 Curves: Community and "Outbreaks"
-                        </h1>
-                        <p class="sub-header-paragraph">
-                            Over the past few weeks, the tide of the pandemic has shifted into two distinct streams: the community at-large and institutional settings such as long-term care homes (LTCs), retirement homes, hospitals, homeless shelters, and prisons. People in these institutional settings are more vulnerable to COVID-19.
-                        </p>
-                        <br>
-
-                        <p class="sub-header-paragraph">
-                           The Ontario government is tracking if a confirmed positive case is linked to an outbreak of COVID-19 in these various institutions. This graph displays if daily new cases are originating from the community at-large or are linked to outbreaks.
-
-                        </p>
-                        <br>
-                        <p class="sub-header-paragraph">
-                            This visualization shows us that we have <a class="home-page-link">#FlattenedTheCurve in
-                                institutions</a> through comprehensive testing, intensive infection control, and other
-                            policies to minimize risk of transmission, such as restricting staff to one LTC home and
-                            providing safe isolation settings for people experiencing homelessness. However, as of early
-                            May, the number of new cases in the community at-large is greater than the case of outbreaks
-                            indicating mitigation - but not elimination.
-                        </p>
-
-                        <p class="sub-header-paragraph">
-                            <a class="home-page-link">Controlling community transmission must mirror our successes in
-                                controlling outbreaks.</a>
-                        </p>
-
-                    </div>
-                </div>
-                <div id="vizContainer"></div>
-            </div> -->
+        <div id='container' style="margin:30px">
             <app-scorecard></app-scorecard>
             <div class="card-container footer-info-container">
                 <div class='half-width-left'>

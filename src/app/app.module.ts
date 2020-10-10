@@ -2,11 +2,9 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule, APP_INITIALIZER} from '@angular/core';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
 import {MaterialModule} from 'src/app/modules/material/material.module';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {HomeComponent} from './pages/home/home.component';
@@ -41,6 +39,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSortModule} from '@angular/material/sort';
 import {MatListModule} from '@angular/material/list';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table'
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
@@ -49,6 +48,7 @@ import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import { CommonMobileVisualComponent } from './components/common-mobile-visual/common-mobile-visual.component';
 import { PlotComponent } from './components/plot/plot';
 import { GraphComponent } from './components/graph/graph';
+import { MapComponent } from './components/map/map';
 import { AngularPlotlyComponent } from './components/plotly-angular/plotly-angular.component';
 import { OutreachComponent } from './pages/outreach/outreach.component';
 import { CommonDesktopVisualComponent } from './components/common-desktop-visual/common-desktop-visual.component';
@@ -93,7 +93,8 @@ export function initConfig(appConfig: AppConfigService) {
         FooterComponent,
         SummaryComponent,
         GraphComponent,
-        TableComponent
+        TableComponent,
+        MapComponent
     ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),
@@ -121,7 +122,8 @@ export function initConfig(appConfig: AppConfigService) {
         MatButtonModule,
         MatSortModule,
         MatListModule,
-        MatTableModule
+        MatTableModule,
+        MatSlideToggleModule
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
