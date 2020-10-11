@@ -1,0 +1,33 @@
+.thermometerred{
+  width: 20px;
+  background-color: #D94711;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.thermometerorange{
+  width: 20px;
+  background-color: #F28E13;
+}
+
+.thermometeryellow{
+  width: 20px;
+  background-color: #F2BB13;
+}
+
+.thermometergreen{
+  width: 20px;
+  background-color: #12A67C;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.thermometer{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
+  line-height: 1.8rem;
+}

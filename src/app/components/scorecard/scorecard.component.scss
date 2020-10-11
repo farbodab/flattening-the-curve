@@ -499,15 +499,35 @@
 }
 
 .green-cell {
-    background-color: #00ce15;
+    background-color: #12A67C;
 }
 
 .red-cell {
-    background-color: #ef7959;
+    background-color: #D94711;
+}
+
+.orange-cell {
+  background-color: #F28E13;
 }
 
 .yellow-cell {
-    background-color: #f6c427;
+    background-color: #F2BB13;
+}
+
+.green-icon {
+    color: #12A67C;
+}
+
+.red-icon {
+    color: #D94711;
+}
+
+.orange-icon {
+  color: #F28E13;
+}
+
+.yellow-icon {
+    color: #F2BB13;
 }
 
 .missing-data-icon {
@@ -1079,4 +1099,15 @@
             padding-bottom: 15px;
         }
     }
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+
+}
+
+.example-full-width {
+  width: 100%;
 }

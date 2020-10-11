@@ -22,6 +22,9 @@ import { GridComponent } from './pages/grid/grid.component';
 import { ScorecardComponent } from './components/scorecard/scorecard.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TableComponent } from './components/table/table.component';
+import { ThermometerComponent } from './components/thermometer/thermometer';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatInputModule} from '@angular/material/input';
 
 
 import {environment} from 'src/environments/environment';
@@ -94,7 +97,8 @@ export function initConfig(appConfig: AppConfigService) {
         SummaryComponent,
         GraphComponent,
         TableComponent,
-        MapComponent
+        MapComponent,
+        ThermometerComponent
     ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),
@@ -123,7 +127,9 @@ export function initConfig(appConfig: AppConfigService) {
         MatSortModule,
         MatListModule,
         MatTableModule,
-        MatSlideToggleModule
+        MatSlideToggleModule,
+        MatAutocompleteModule,
+        MatInputModule
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
