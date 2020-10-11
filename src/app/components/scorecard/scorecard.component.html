@@ -23,8 +23,8 @@
                   </form>
                 </div>
                 <div class='row'>
-                <app-thermometer> </app-thermometer>
-                <app-map [data]=metricJsonObj> </app-map>
+                  <app-thermometer> </app-thermometer>
+                  <app-map [data]=metricJsonObj> </app-map>
                 </div>
                 <div style="margin-top: 100px;" class="scorecard-header">Metrics by Public Health Unit (PHU)</div>
                 <div>
@@ -81,86 +81,30 @@
                 </table>
             </div>
             <div *ngIf="!is_full">
-                <h1 class="scorecard-header">Ontario's COVID Warning System</h1>
-                <app-map> </app-map>
-                <div>
-                    <mat-progress-spinner class="spinner-styling" mode="indeterminate" diameter="50"
-                        *ngIf="ontarioObj.rt === null">
-                    </mat-progress-spinner>
-                </div>
-                <table *ngIf="ontarioObj.rt !== null" class="mobile-ontario-table">
-                    <tr>
-                        <th colspan="2" class="ontario-header-styling top-category" colspan="2">
-                            <div class="ontario-header-container">
-                                <img class="ontario-header-img" src='assets/img/pandemic_monitoring.svg'>
-                                <div class="ontario-header-text">
-                                    Pandemic Monitoring
-                                </div>
-                            </div>
-                        </th>
-                    </tr>
-                    <tr class="ontario-row-styling">
-                        <td class="center-cell"
-                            [ngClass]="{'black-cell': ontarioObj.weekly === 'nan', 'green-cell': ontarioObj.weekly < 25, 'yellow-cell': 25 <= ontarioObj.weekly && ontarioObj.weekly <= 100, 'red-cell': 100 < ontarioObj.weekly}"
-                            style="width: 10%;">{{ontarioObj.weekly}}</td>
-                        <td class="center-cell"
-                            [ngClass]="{'black-cell': ontarioObj.weekly === 'nan', 'green-cell': ontarioObj.weekly < 25, 'yellow-cell': 25 <= ontarioObj.weekly && ontarioObj.weekly <= 100, 'red-cell': 100 < ontarioObj.weekly}">
-                            Case Incidence</td>
-                    </tr>
-                    <tr class="ontario-row-styling">
-                        <td class="center-cell"
-                            [ngClass]="{'black-cell': ontarioObj.rt === 'nan', 'green-cell': ontarioObj.rt < 0.5, 'yellow-cell': 0.5 <= ontarioObj.rt && ontarioObj.rt < 1.0, 'red-cell': 1.0 <= ontarioObj.rt}"
-                            style="width: 10%;">{{ontarioObj.rt}}</td>
-                        <td class="center-cell"
-                            [ngClass]="{'black-cell': ontarioObj.rt === 'nan', 'green-cell': ontarioObj.rt < 0.5, 'yellow-cell': 0.5 <= ontarioObj.rt && ontarioObj.rt < 1.0, 'red-cell': 1.0 <= ontarioObj.rt}">
-                            Rt Value</td>
-                    </tr>
-                </table>
-                <table *ngIf="ontarioObj.rt !== null" class="mobile-ontario-table">
-                    <tr>
-                        <th colspan="2" class="ontario-header-styling top-category" colspan="2">
-                            <div class="ontario-header-container">
-                                <img class="ontario-header-img" src='assets/img/response_monitoring.svg'>
-                                <div class="ontario-header-text">
-                                    Response Monitoring
-                                </div>
-                            </div>
-                        </th>
-                    </tr>
-                    <tr class="ontario-row-styling">
-                        <td class="center-cell"
-                            [ngClass]="{'black-cell': ontarioObj.testing === 'nan', 'green-cell': ontarioObj.testing > 95, 'yellow-cell': 81 <= ontarioObj.testing && ontarioObj.testing <= 95, 'red-cell': ontarioObj.testing < 80}"
-                            style="width: 10%;">
-                            {{ontarioObj.testing === 'nan' ? 'N/A' : ontarioObj.testing+'%'}}
-                        </td>
-                        <td class="center-cell"
-                            [ngClass]="{'black-cell': ontarioObj.testing === 'nan', 'green-cell': ontarioObj.testing > 95, 'yellow-cell': 81 <= ontarioObj.testing && ontarioObj.testing <= 95, 'red-cell': ontarioObj.testing < 80}">
-                            Testing &lt; 24h</td>
-                    </tr>
-                </table>
-                <table *ngIf="ontarioObj.rt !== null" class="mobile-ontario-table">
-                    <tr>
-                        <th colspan="2" class="ontario-header-styling top-category" colspan="2">
-                            <div class="ontario-header-container">
-                                <img class="ontario-header-img" src='assets/img/response_capacity.svg'>
-                                <div class="ontario-header-text">
-                                    Response Capacity
-                                </div>
-                            </div>
-                        </th>
-                    </tr>
-                    <tr class="ontario-row-styling">
-                        <td class="center-cell"
-                            [ngClass]="{'black-cell': ontarioObj.icu === 'nan', 'green-cell': ontarioObj.icu < 80, 'yellow-cell': 80 <= ontarioObj.icu && ontarioObj.icu < 90, 'red-cell': 90 <= ontarioObj.icu}"
-                            style="width: 10%;" rowspan="2">
-                            {{ontarioObj.icu+'%'}}</td>
-                        <td class="center-cell"
-                            [ngClass]="{'black-cell': ontarioObj.icu === 'nan', 'green-cell': ontarioObj.icu < 80, 'yellow-cell': 80 <= ontarioObj.icu && ontarioObj.icu < 90, 'red-cell': 90 <= ontarioObj.icu}"
-                            rowspan="2">Total ICU Bed Occupied
-                        </td>
-                    </tr>
-                    <tr></tr>
-                </table>
+              <div style="display:flex;flex-direction:column;justify-content: center;align-items: center;">
+                <h1 class="scorecard-header desktop-ontario-header">Ontario's COVID Warning System</h1>
+                <p>We use <a href="#indicators">five key indicators</a> to determine risk levels for 34 Public Health Units in Ontario</p>
+                <form class="example-form">
+                  <mat-form-field class="example-full-width">
+                    <mat-icon matPrefix>search</mat-icon>
+                    <input type="text"
+                           placeholder="Search for your Public Health Unit"
+                           aria-label="Number"
+                           matInput
+                           [formControl]="myControl"
+                           [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete">
+                      <mat-option *ngFor="let option of phuArray" [value]="option['phu']">
+                        {{option['phu']}}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+                </form>
+              </div>
+              <div class='row'>
+                <app-thermometer> </app-thermometer>
+                <app-map [data]=metricJsonObj> </app-map>
+              </div>
                 <div class="scorecard-header">Metrics by PHU</div>
                 <div>
                     <mat-progress-spinner class="spinner-styling" mode="indeterminate" diameter="50"
@@ -197,13 +141,19 @@
                             <td class="mobile-header-cell alternate-row">Case Incidence</td>
                             <td [ngClass]="{'black-cell': table.weekly === 'nan', 'green-cell': table.weekly < 25, 'yellow-cell': 25 <= table.weekly && table.weekly <= 100, 'red-cell': 100 < table.weekly}"
                                 class="mobile-data-cell center-cell">
-                                {{table.weekly === 'nan' ? 'N/A' : table.weekly}}</td>
+                                <mat-icon
+                                [ngClass]="{'green-icon': table.rolling_pop < 1, 'yellow-icon': 1 <= table.rolling_pop && table.rolling_pop < 5, 'orange-icon': 5 <= table.rolling_pop && table.rolling_pop < 10, 'red-icon': 10 <= table.rolling_pop}"
+                                [inline]="true">fiber_manual_record</mat-icon>
+                                {{table.rolling_pop == null ? 'N/A' : table.rolling_pop | number : '1.2-2'}}</td>
                         </tr>
                         <tr>
                             <td class="alternate-row mobile-header-cell">Rt</td>
                             <td [ngClass]="{'black-cell': table.rt === 'nan', 'green-cell': table.rt < 0.5, 'yellow-cell': 0.5 <= table.rt && table.rt < 1.0, 'red-cell': 1.0 <= table.rt}"
                                 class="mobile-data-cell center-cell">
-                                {{table.rt === 'nan' ? 'N/A' : table.rt}}</td>
+                                <mat-icon
+                                [ngClass]="{'green-icon': table.rt_ml < 0.9, 'yellow-icon': 0.9 <= table.rt_ml && table.rt_ml < 1.1, 'orange-icon': 1.1 <= table.rt_ml && table.rt_ml < 1.4, 'red-icon': 1.4 <= table.rt_ml}"
+                                [inline]="true">fiber_manual_record</mat-icon>
+                                {{table.rt_ml == null ? 'N/A' : table.rt_ml | number : '1.2-2'}}</td>
                         </tr>
                         <tr>
                             <th class="mobile-category-header" colspan="2">Response Monitoring</th>
@@ -212,7 +162,8 @@
                             <td class="mobile-header-cell alternate-row">Testing &lt; 24h</td>
                             <td [ngClass]="{'black-cell': table.testing === 'nan', 'green-cell': table.testing > 95, 'yellow-cell': 81 <= table.testing && table.testing <= 95, 'red-cell': table.testing < 80}"
                                 class="mobile-data-cell center-cell">
-                                {{table.testing === 'nan' ? 'N/A' : table.testing+'%'}}
+                                <mat-icon [inline]="true" [ngClass]="{'green-icon': table.rolling_test_twenty_four > 0.9, 'yellow-icon': table.rolling_test_twenty_four <= 0.9 && table.rolling_test_twenty_four > 0.7, 'orange-icon': table.rolling_test_twenty_four <= 0.7 && table.rolling_test_twenty_four > 0.5, 'red-icon': table.rolling_test_twenty_four <= 0.5 }">fiber_manual_record</mat-icon>
+                                {{table.rolling_test_twenty_four == null ? 'N/A' : table.rolling_test_twenty_four | percent}}
                             </td>
                         </tr>
                         <tr>
@@ -222,8 +173,20 @@
                             <td class="mobile-header-cell alternate-row">Total ICU Bed Occupied</td>
                             <td [ngClass]="{'black-cell': table.icu === 'nan', 'green-cell': table.icu < 80, 'yellow-cell': 80 <= table.icu && table.icu < 90, 'red-cell': 90 <= table.icu}"
                                 class="center-cell" class="mobile-data-cell center-cell">
-                                {{table.icu === 'nan' ? 'N/A' : table.icu+'%'}}</td>
+                                <mat-icon [inline]="true"
+                            [ngClass]="{'green-icon': table.critical_care_pct < 0.6, 'yellow-icon': 0.6 <= table.critical_care_pct && table.critical_care_pct < 0.8, 'orange-icon': 0.8 <= table.critical_care_pct && table.critical_care_pct < 0.9, 'red-icon': 0.9 <= table.critical_care_pct}">fiber_manual_record</mat-icon>
+                                {{table.critical_care_pct == null ? 'N/A' : table.critical_care_pct | percent}}</td>
                         </tr>
+                        <tr>
+                            <th class="mobile-category-header" colspan="2">Risk Levels</th>
+                        </tr>
+                        <tr>
+                            <td class="mobile-header-cell alternate-row">Risk</td>
+                            <td [ngClass]="{'black-cell': table.rolling_pop === 'nan', 'green-cell': table.rolling_pop < 1, 'yellow-cell': 1 <= table.rolling_pop && table.rolling_pop < 5, 'orange-cell': 5 <= table.rolling_pop && table.rolling_pop < 10, 'red-cell': 10 < table.rolling_pop}"
+                                class="center-cell" class="mobile-data-cell center-cell">
+                                {{table.rolling_pop === null ? 'N/A' : (table.rolling_pop >= 10 ? 'Red' : (table.rolling_pop >= 5 ? 'Orange' : (table.rolling_pop >= 1 ? 'Yellow': 'Green')))}}</td>
+                        </tr>
+
                     </table>
                 </div>
             </div>
@@ -378,16 +341,14 @@
                     </table>
                 </div>
             </div>
-            <div class="card-container scorecard-info-container metric-explanation-container" id="indicators">
+            <div class="card-container scorecard-info-container metric-explanation-container">
                 <div *ngIf="timesObj" class="mobile-scorecard-container">
-                    <div class="scorecard-info-header data-source-header">Metric Explanations</div>
+                    <div id="indicators" class="scorecard-info-header data-source-header">Metric Explanations</div>
                     <mat-list role="list" class="metric-explanation-list">
                       <mat-list-item role="listitem" class="data-item">
                           <div class="metric-height">
                               <div>
-                                  <span class="data-source-title">1. Case Incidence:</span> The total number of new
-                                  cases a public health unit reports in the prior
-                                  seven days.
+                                  <span class="data-source-title">1. Case Incidence:</span> The seven day rolling average of daily new cases in a public health unit
                               </div>
                               <div class="time-styling">Last updated {{timesObj.ontario_phu_weekly_new_cases}}</div>
                           </div>
