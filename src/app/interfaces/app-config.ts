@@ -12,4 +12,5 @@ export class AppConfigProperties {
     reopening_times_endpoint: string;
     twitter_object_endpoint: string;
     summary_object_endpoint: string;
+    epi_object_endpoint: string;
 }

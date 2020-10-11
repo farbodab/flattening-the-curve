@@ -65,7 +65,10 @@ export class ApiService {
     return this.http_client.get(this.appConfigProperties.summary_object_endpoint + "?HR_UID=" + HR_UID);
   }
 
-
+  get_epi_obj(HR_UID, filter) {
+    //this.request_data(this.viz_object_endpoint, on_success, on_error);
+    return this.http_client.get(this.appConfigProperties.epi_object_endpoint + "?HR_UID=" + HR_UID + "&filter=" + filter);
+  }
 
   get_results_data(on_success, on_error) {
     this.request_data(this.appConfigProperties.results_endpoint, on_success, on_error);

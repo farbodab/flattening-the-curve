@@ -1,4 +1,26 @@
 .content {
-    width: 95%;
+    width: 50%;
     margin: 0 auto;
+}
+table, th, td {
+  border: 1px solid black;
+}
+
+table {
+  border-collapse: collapse;
+   width: 500px;
+   margin-bottom: 3 0px;
+}
+
+table, th, td {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.highlights {
+  max-width: 400px;
+}
+
+li {
+  margin-top: 10px;
 }

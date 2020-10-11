@@ -180,7 +180,7 @@
 }
 
 #vizContainer{
-    display: flex; 
+    display: flex;
     justify-content: center;
     //padding:20px;
     height: 550px;
@@ -478,6 +478,7 @@
     font-size: 28px;
     line-height: 28px;
     text-align: center;
+    color: #391F85;
 
     &.desktop-ontario-header span:hover {
         font-weight: bold;
@@ -498,15 +499,35 @@
 }
 
 .green-cell {
-    background-color: #00ce15;
+    background-color: #12A67C;
 }
 
 .red-cell {
-    background-color: #ef7959;
+    background-color: #D94711;
+}
+
+.orange-cell {
+  background-color: #F28E13;
 }
 
 .yellow-cell {
-    background-color: #f6c427;
+    background-color: #F2BB13;
+}
+
+.green-icon {
+    color: #12A67C;
+}
+
+.red-icon {
+    color: #D94711;
+}
+
+.orange-icon {
+  color: #F28E13;
+}
+
+.yellow-icon {
+    color: #F2BB13;
 }
 
 .missing-data-icon {
@@ -632,7 +653,7 @@
 
 .black-cell.header-styling {
     border-left: 1px solid #ffffff;
-    border-right: 1px solid #ffffff; 
+    border-right: 1px solid #ffffff;
 }
 
 .metric-height {
@@ -1078,4 +1099,15 @@
             padding-bottom: 15px;
         }
     }
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+
+}
+
+.example-full-width {
+  width: 100%;
 }
