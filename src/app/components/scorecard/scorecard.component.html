@@ -49,30 +49,31 @@
                         <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Bed Occupied</th>
                         <th mat-sort-header="risk" class="header-styling black-cell">Risk</th>
                     </tr>
-                    <tr *ngFor="let row of sortedMetrics; index as index" class="row-styling" routerLink="{{'/dashboard/'+row.route}}"
+                    <tr *ngFor="let row of sortedMetrics; index as index" class="row-styling top-table" routerLink="{{'/summary/'+row.route}}"
                         [style.background-color]="index % 2 === 0 ? '#ffffff' : '#F2F2F2'">
                         <td class="first-col-cell"
-                            [title]="row.phu+' Dashboard'">
+                            [title]="row.phu+' Summary'">
                             {{row.phu}}</td>
                         <td [title]="row.weekly === 'nan'? 'Cannot calculate due to insufficient data': ''"
                             class="cell-border">
                             <mat-icon
-                            [ngClass]="{'green-icon': row.rolling_pop < 1, 'yellow-icon': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-icon': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-icon': 10 <= row.rolling_pop}"
+                            [ngClass]="{'green-icon': row.rolling_pop === null,'green-icon': row.rolling_pop < 1, 'yellow-icon': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-icon': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-icon': 10 <= row.rolling_pop}"
                             [inline]="true">fiber_manual_record</mat-icon>{{row.rolling_pop === null ? 'N/A' : row.rolling_pop | number : '1.2-2'}}</td>
                         <td [title]="row.rt === 'nan'? 'Cannot calculate due to insufficient data': ''"
                             class="cell-border no-left-border">
                             <mat-icon
-                            [ngClass]="{'green-icon': row.rt_ml < 0.9, 'yellow-icon': 0.9 <= row.rt_ml && row.rt_ml < 1.1, 'orange-icon': 1.1 <= row.rt_ml && row.rt_ml < 1.4, 'red-icon': 1.4 <= row.rt_ml}"
+                            [ngClass]="{'green-icon': row.rt_ml < 0.9 && row.rt_ml != null, 'yellow-icon': 0.9 <= row.rt_ml && row.rt_ml < 1.1, 'orange-icon': 1.1 <= row.rt_ml && row.rt_ml < 1.4, 'red-icon': 1.4 <= row.rt_ml}"
                             [inline]="true">fiber_manual_record</mat-icon>{{row.rt_ml === null ? 'N/A' : row.rt_ml | number : '1.2-2'}}
                         </td>
                         <td [title]="row.rolling_test_twenty_four === 'nan'? 'Cannot calculate due to insufficient data': ''"
                             class="cell-border">
-                            <mat-icon [inline]="true" [ngClass]="{'green-icon': row.rolling_test_twenty_four > 0.9, 'yellow-icon': row.rolling_test_twenty_four <= 0.9 && row.rolling_test_twenty_four > 0.7, 'orange-icon': row.rolling_test_twenty_four <= 0.7 && row.rolling_test_twenty_four > 0.5, 'red-icon': row.rolling_test_twenty_four <= 0.5 }">fiber_manual_record</mat-icon>{{row.rolling_test_twenty_four === null ? 'N/A' : row.rolling_test_twenty_four | percent : '1.2-2'}}
+                            <mat-icon [inline]="true" [ngClass]="{'green-icon': row.rolling_test_twenty_four > 0.9, 'yellow-icon': row.rolling_test_twenty_four <= 0.9 && row.rolling_test_twenty_four > 0.7, 'orange-icon': row.rolling_test_twenty_four <= 0.7 && row.rolling_test_twenty_four > 0.5, 'red-icon': row.rolling_test_twenty_four <= 0.5 && row.rolling_test_twenty_four != null}">fiber_manual_record</mat-icon>
+                            {{row.rolling_test_twenty_four === null ? 'N/A' : row.rolling_test_twenty_four | percent}}
                         </td>
                         <td [title]="row.icu === 'nan'? 'Cannot calculate due to insufficient data': ''"
                             class="cell-border">
                             <mat-icon [inline]="true"
-                            [ngClass]="{'green-icon': row.critical_care_pct < 0.6, 'yellow-icon': 0.6 <= row.critical_care_pct && row.critical_care_pct < 0.8, 'orange-icon': 0.8 <= row.critical_care_pct && row.critical_care_pct < 0.9, 'red-icon': 0.9 <= row.critical_care_pct}">fiber_manual_record</mat-icon>
+                            [ngClass]="{'green-icon': row.critical_care_pct === null,'green-icon': row.critical_care_pct < 0.6, 'yellow-icon': 0.6 <= row.critical_care_pct && row.critical_care_pct < 0.8, 'orange-icon': 0.8 <= row.critical_care_pct && row.critical_care_pct < 0.9, 'red-icon': 0.9 <= row.critical_care_pct}">fiber_manual_record</mat-icon>
                             {{row.critical_care_pct === null ? 'N/A' : row.critical_care_pct | percent}}</td>
                         <td [ngClass]="{'black-cell': row.weekly === 'nan', 'green-cell': row.rolling_pop < 1, 'yellow-cell': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-cell': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-cell': 10 < row.rolling_pop}"
                             class="cell-border center-cell">
@@ -111,24 +112,6 @@
                         *ngIf="!sortedMetrics">
                     </mat-progress-spinner>
                 </div>
-                <div *ngIf="dropdownSelection && sortedMetrics" style="padding-top: 10px; width: 90%; margin: auto;">
-                    <form [formGroup]="dropdownSelection">
-                        <mat-form-field style="width: 100%;">
-                            <mat-label>Jump to a Specific Public Health Unit</mat-label>
-                            <mat-select formControlName="phu" disableOptionCentering
-                                (selectionChange)="scrollTo(dropdownSelection.controls.phu.value)">
-                                <ngx-mat-select-search formControlName="searchCtrl" [placeholderLabel]="'Search...'"
-                                    [noEntriesFoundLabel]="'Not found'" name="search"></ngx-mat-select-search>
-                                <mat-option
-                                    *ngFor="let phu of phuArray |stringFilterBy:dropdownSelection.controls.searchCtrl.value:'phu'; index as index"
-                                    [value]="phu.phu">
-                                    {{phu.phu}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </form>
-
-                </div>
                 <div class="table-styling-mobile">
                   <table matSort (matSortChange)="sortMetrics($event)" *ngIf="sortedMetrics" class="table-styling-mobile">
                       <tr>
@@ -147,7 +130,7 @@
                           <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Bed Occupied</th>
                           <th mat-sort-header="risk" class="header-styling black-cell">Risk</th>
                       </tr>
-                      <tr *ngFor="let row of sortedMetrics; index as index" class="row-styling" routerLink="{{'/dashboard/'+row.route}}"
+                      <tr *ngFor="let row of sortedMetrics; index as index" class="row-styling" routerLink="{{'/summary/'+row.route}}"
                           [style.background-color]="index % 2 === 0 ? '#ffffff' : '#F2F2F2'">
                           <td class="first-col-cell"
                               [title]="row.phu+' Dashboard'">
@@ -160,12 +143,12 @@
                           <td [title]="row.rt === 'nan'? 'Cannot calculate due to insufficient data': ''"
                               class="cell-border no-left-border">
                               <mat-icon
-                              [ngClass]="{'green-icon': row.rt_ml < 0.9, 'yellow-icon': 0.9 <= row.rt_ml && row.rt_ml < 1.1, 'orange-icon': 1.1 <= row.rt_ml && row.rt_ml < 1.4, 'red-icon': 1.4 <= row.rt_ml}"
+                              [ngClass]="{'green-icon': row.rt_ml < 0.9 && row.rt_ml != null, 'yellow-icon': 0.9 <= row.rt_ml && row.rt_ml < 1.1, 'orange-icon': 1.1 <= row.rt_ml && row.rt_ml < 1.4, 'red-icon': 1.4 <= row.rt_ml}"
                               [inline]="true">fiber_manual_record</mat-icon>{{row.rt_ml === null ? 'N/A' : row.rt_ml | number : '1.2-2'}}
                           </td>
                           <td [title]="row.rolling_test_twenty_four === 'nan'? 'Cannot calculate due to insufficient data': ''"
                               class="cell-border">
-                              <mat-icon [inline]="true" [ngClass]="{'green-icon': row.rolling_test_twenty_four > 0.9, 'yellow-icon': row.rolling_test_twenty_four <= 0.9 && row.rolling_test_twenty_four > 0.7, 'orange-icon': row.rolling_test_twenty_four <= 0.7 && row.rolling_test_twenty_four > 0.5, 'red-icon': row.rolling_test_twenty_four <= 0.5 }">fiber_manual_record</mat-icon>{{row.rolling_test_twenty_four === null ? 'N/A' : row.rolling_test_twenty_four | percent : '1.2-2'}}
+                              <mat-icon [inline]="true" [ngClass]="{'green-icon': row.rolling_test_twenty_four > 0.9, 'yellow-icon': row.rolling_test_twenty_four <= 0.9 && row.rolling_test_twenty_four > 0.7, 'orange-icon': row.rolling_test_twenty_four <= 0.7 && row.rolling_test_twenty_four > 0.5, 'red-icon': row.rolling_test_twenty_four <= 0.5 &&  row.rolling_test_twenty_four != null}">fiber_manual_record</mat-icon>{{row.rolling_test_twenty_four === null ? 'N/A' : row.rolling_test_twenty_four | percent}}
                           </td>
                           <td [title]="row.icu === 'nan'? 'Cannot calculate due to insufficient data': ''"
                               class="cell-border">
@@ -191,7 +174,7 @@
                             <th class="header-styling black-cell">Red</th>
                         </tr>
                         <tr class="row-styling">
-                            <td class="cell-border no-left-border center-cell">Case Incidence</td>
+                            <td class="cell-border no-left-border alternate-row center-cell">Case Incidence</td>
                             <td class="cell-border center-cell green-cell"><strong>&lt;</strong> 1</td>
                             <td class="cell-border center-cell yellow-cell">1 <strong>&le;</strong> Case Incidence
                                 <strong>&lt;</strong> 5</td>
@@ -333,7 +316,6 @@
                               <div>
                                   <span class="data-source-title">1. Case Incidence:</span> The seven day rolling average of daily new cases in a public health unit
                               </div>
-                              <div class="time-styling">Last updated {{timesObj.ontario_phu_weekly_new_cases}}</div>
                           </div>
                       </mat-list-item>
                         <mat-list-item role="listitem" class="data-item">
@@ -350,8 +332,6 @@
                                     means
                                     the outbreak is growing.
                                 </div>
-                                <div class="time-styling">Last updated
-                                    {{timesObj.canada_bettencourt_and_ribeiro_approach}}</div>
                             </div>
                         </mat-list-item>
                         <mat-list-item role="listitem" class="data-item">
@@ -367,7 +347,6 @@
                                     pandemic
                                     situation.
                                 </div>
-                                <div class="time-styling">Last updated {{timesObj.ontario_testing_24_hours}}</div>
                             </div>
                         </mat-list-item>
                         <mat-list-item role="listitem" class="data-item">
@@ -382,7 +361,6 @@
                                     not
                                     enough ICU beds, patients are at a higher risk of death.
                                 </div>
-                                <div class="time-styling">Last updated {{timesObj.ontario_phu_icu_capacity}}</div>
                             </div>
                         </mat-list-item>
                     </mat-list>

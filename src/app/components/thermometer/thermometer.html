@@ -1,19 +1,19 @@
 <div class='thermometer'>
-  <h4>Risk Levels</h4>
+  <h4 *ngIf="text==null">Risk Levels</h4>
   <div class='row'>
-    <div class='thermometerred'>&nbsp;</div>
-    <div style='margin-left: 10px;'>Curving up Dangerously</div>
+    <div class='thermometerred' [ngClass]="{'active': color!= null && color['rolling_pop'] >= 10}">&nbsp;</div>
+    <div style='margin-left: 10px;'>{{text?'':'Curving up Dangerously'}}</div>
   </div>
   <div class='row'>
-    <div class='thermometerorange'>&nbsp;</div>
-    <div style='margin-left: 10px;'>Curving Up Quickly</div>
+    <div class='thermometerorange' [ngClass]="{'active': color!= null && color['rolling_pop'] >= 5 && color['rolling_pop'] < 10}">&nbsp;</div>
+    <div style='margin-left: 10px;'>{{text?'':'Curving Up Quickly'}}</div>
   </div>
   <div class='row'>
-    <div class='thermometeryellow'>&nbsp;</div>
-    <div style='margin-left: 10px;'>Curving Up Somewhat</div>
+    <div class='thermometeryellow' [ngClass]="{'active': color!= null && color['rolling_pop'] >= 1 && color['rolling_pop'] < 5}">&nbsp;</div>
+    <div style='margin-left: 10px;'>{{text?'':'Curving Up Somewhat'}}</div>
   </div>
   <div class='row'>
-    <div class='thermometergreen'>&nbsp;</div>
-    <div style='margin-left: 10px;'>Curving Down</div>
+    <div class='thermometergreen' [ngClass]="{'active': color!= null && color['rolling_pop'] < 1 }">&nbsp;</div>
+    <div style='margin-left: 10px;'>{{text?'':'Curving Down'}}</div>
   </div>
 </div>

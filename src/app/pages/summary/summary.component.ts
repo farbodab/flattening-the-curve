@@ -23,6 +23,7 @@ export class SummaryComponent implements OnInit {
     testing: any;
     rt: any;
     is_full = true;
+    text = true;
     displayFooter: any;
     urlSegments: any;
     filteringCheckboxes: FormGroup;

@@ -2,6 +2,11 @@
     width: 50%;
     margin: 0 auto;
 }
+
+.content-mobile{
+  width: 90%;
+  margin: 0 auto;
+}
 table, th, td {
   border: 1px solid black;
 }
@@ -23,4 +28,20 @@ table, th, td {
 
 li {
   margin-top: 10px;
+}
+
+.red{
+  background-color: #D94711;
+}
+
+.orange{
+  background-color: #F28E13;
+}
+
+.yellow{
+  background-color: #F2BB13;
+}
+
+.green{
+  background-color: #12A67C;
 }

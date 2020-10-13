@@ -159,6 +159,7 @@
 
 .mobile-scorecard-container {
     width: 100%;
+
 }
 
 .footer-info-container {
@@ -445,6 +446,7 @@
 
 .ontario-row-styling {
     height: 50px;
+    cursor: pointer;
 }
 
 .table-container {
@@ -632,6 +634,12 @@
 .row-styling {
     height: 35px;
 }
+
+.top-table:hover {
+  background-color:#ffff39!important;
+  cursor: pointer!important;
+}
+
 .black-cell {
     background-color: #434241;
     color: #ffffff;
@@ -1059,7 +1067,6 @@
 
     .mobile-scorecard-container {
         padding: 20px;
-        width: initial;
 
         &.no-bottom-padding {
             padding-bottom: 0;

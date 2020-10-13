@@ -32,8 +32,8 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
   jsonObj: any;
   window_subscription: Subscription;
   initial_sort: Sort = {
-    active: 'phu',
-    direction: 'asc'
+    active: 'risk',
+    direction: 'desc'
   };
   ontarioObj = {
     phu: null,
@@ -47,6 +47,7 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
   sortedMetrics: any[];
   dropdownSelection: FormGroup;
   myControl = new FormControl();
+  text: boolean = true;
 
   phuArray = [
     {
@@ -243,7 +244,6 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
     this.api_service.get_reopeneing_times().subscribe(
       data => {
         this.timesObj = this.iterateTimes(data);
-        console.log(this.timesObj);
       },
       error => {
         this.timesObj = 'error';
@@ -254,7 +254,6 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
   fetchDataObj() {
     this.api_service.get_summary_obj(-1).subscribe(
       data => {
-        console.log(data)
         this.metricJsonObj = this.populateRoutes(data);
         this.sortedMetrics = this.removeOntartio(this.metricJsonObj.slice());
         this.sortMetrics(this.initial_sort);

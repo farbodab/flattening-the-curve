@@ -1,54 +1,81 @@
-{{epi["outcome"]["Date"]}}<app-navbar [shows_title]='true' [page]='"summary"'></app-navbar>
-<div class='content' style='background-color: white; margin-top: 50px;'>
+<app-navbar [shows_title]='true' [page]='"summary"'></app-navbar>
+<div *ngIf="data">
+  <div  style="height:250px; margin-bottom: -200px;" [ngClass]="{'red': cases['rolling_pop'] >= 10, 'orange': cases['rolling_pop'] >= 5 && cases['rolling_pop'] < 10,  'yellow': cases['rolling_pop'] >= 1 && cases['rolling_pop'] < 5, 'green': cases['rolling_pop'] < 1}">
+    &nbsp;
+  </div>
+</div>
+<div [ngClass]="{'content': is_full, 'content-mobile': !is_full}" style='background-color: white; margin-top: 50px;'>
   <div>
       <mat-progress-spinner mode="indeterminate" diameter="50" style="margin: 0 auto;" *ngIf="!dropdownList">
       </mat-progress-spinner>
   </div>
   <div *ngIf="data">
-    <div *ngIf="dropdownList" style="padding-top: 5px; ">
-        <form [formGroup]="dropdownList">
-            <mat-form-field [style.width]="is_full ? '350px' : '100%'">
-                <mat-label>Select a Public Health Unit</mat-label>
-                <mat-select formControlName="phu" disableOptionCentering
-                    (selectionChange)="routeonSelection(dropdownList.controls.phu.value)">
-                    <ngx-mat-select-search formControlName="searchCtrl" [placeholderLabel]="'Search...'"
-                        [noEntriesFoundLabel]="'Not found'" name="search"></ngx-mat-select-search>
-                    <mat-option
-                        *ngFor="let phu of phuArray |stringFilterBy:dropdownList.controls.searchCtrl.value:'phu'"
-                        [value]="phu.value">
-                        {{phu.phu}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </form>
-    </div>
+    <mat-card>
+      <div *ngIf="dropdownList" style="padding-top: 5px; ">
+          <form [formGroup]="dropdownList">
+              <mat-form-field [style.width]="is_full ? '350px' : '100%'">
+                  <mat-label>Select a Public Health Unit</mat-label>
+                  <mat-select formControlName="phu" disableOptionCentering
+                      (selectionChange)="routeonSelection(dropdownList.controls.phu.value)">
+                      <ngx-mat-select-search formControlName="searchCtrl" [placeholderLabel]="'Search...'"
+                          [noEntriesFoundLabel]="'Not found'" name="search"></ngx-mat-select-search>
+                      <mat-option
+                          *ngFor="let phu of phuArray |stringFilterBy:dropdownList.controls.searchCtrl.value:'phu'"
+                          [value]="phu.value">
+                          {{phu.phu}}
+                      </mat-option>
+                  </mat-select>
+              </mat-form-field>
+          </form>
+      </div>
+      <mat-card-header>
+        <mat-card-title><h2>{{cases["phu"]}}</h2></mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div style="display:flex;align-items: flex-start;">
+          <app-thermometer [color]=cases [text]=text> </app-thermometer>
+          <div style="margin-left: 10px;">
+            <p><span style="color:grey;font-size:0.8em">COVID Risk Level</span><br/>
+            <span style="font-size:1.2em;font-weight:bold">{{cases['rolling_pop'] >= 10 ? 'Curving up Dangerously' : cases['rolling_pop'] >= 5 ? 'Curving Up Quickly' : cases['rolling_pop'] >= 1 ? 'Curving Up Somewhat' : 'Curving Down'}}</span></p>
+            <p *ngIf="cases['rolling_pop'] >= 10">{{cases["phu"]}} is either actively experiencing an outbreak or is at extreme risk. COVID cases are exponentially growing and/or {{cases["phu"]}} COVID preparedness is significantly below international standards.</p>
+            <p *ngIf="cases['rolling_pop'] >= 5 && cases['rolling_pop'] < 10"> {{cases["phu"]}} is at risk of an outbreak. COVID cases are either increasing at a rate likely to overwhelm hospitals and/or the state’s COVID preparedness is below international standards.</p>
+            <p *ngIf="cases['rolling_pop'] >= 1 && cases['rolling_pop'] < 5">COVID in {{cases["phu"]}} is spreading in a slow and controlled fashion, and {{cases["phu"]}}’s COVID preparedness meets international standards.</p>
+            <p *ngIf="cases['rolling_pop'] < 1"> {{cases["phu"]}} is on track to contain COVID. Cases are steadily decreasing and {{cases["phu"]}}’s COVID preparedness meets or exceeds international standards.</p>
+            <p> </p>
+          </div>
+        </div>
+      </mat-card-content>
 
+    </mat-card>
     <div *ngIf='cases'>
-      <h1>{{cases["phu"]}}</h1>
       <h2>Scorecard</h2>
     </div>
     <div *ngIf='cases'>
-      <h4>Daily new cases per 100k population</h4>
+      <h4 style="margin-bottom:0px">Daily new cases per 100k population</h4>
+      <p style="margin-top:0px;"><span style="color:grey;font-size:0.8em">{{cases["phu"]}}<br/>Last Data on {{cases["date"] | date}}</span></p>
       Over the last week, {{cases["phu"]}} has averaged {{cases["rolling"] | number : '1.2-2' }} cases per day ({{cases["rolling_pop"] | number : '1.2-2'}} for every 100,000 residents).
-      <app-graph [graph_data]='data' variable="rolling_pop"></app-graph>
+      <div style="max-width: 100%;"><app-graph [graph_data]='data' variable="rolling_pop"></app-graph></div>
     </div>
     <div *ngIf='rt'>
-      <h4>Infection Rate (Rt)</h4>
+      <h4 style="margin-bottom:0px">Infection Rate (Rt)</h4>
+      <p style="margin-top:0px;"><span style="color:grey;font-size:0.8em;">{{cases["phu"]}}<br/>Last Data on {{rt["date"] | date}}</span></p>
       On average, each person in {{rt["phu"]}} with COVID is infecting {{rt["rt_ml"] | number : '1.2-2'}} other people.
       <app-graph [graph_data]='data' variable="rt_ml"></app-graph>
     </div>
     <div *ngIf='testing'>
-      <h4>Testing Capacity</h4>
+      <h4 style="margin-bottom:0px">Testing Capacity</h4>
+      <p style="margin-top:0px;"><span style="color:grey;font-size:0.8em">{{cases["phu"]}}<br/>Last Data on {{testing["date"] | date}}</span></p>
       In the last 7 days, on average {{testing["rolling_test_twenty_four"] | percent : '1.2-2'}} of tests have been returned within 24 hours.
       <app-graph [graph_data]='data' variable="rolling_test_twenty_four"></app-graph>
     </div>
     <div *ngIf='icu'>
-      <h4>ICU Bed Capacity</h4>
+      <h4 style="margin-bottom:0px">ICU Bed Capacity</h4>
+      <p style="margin-top:0px;"><span style="color:grey;font-size:0.8em">{{cases["phu"]}}<br/>Last Data on {{icu["date"] | date}}</span></p>
       {{icu["critical_care_pct"] | percent  : '1.2-2'}} of ICU beds in {{cases["phu"]}} are currently occupied. There are currently {{icu["confirmed_positive"]}} COVID patients in the ICU.
       <app-graph [graph_data]='data' variable="critical_care_pct"></app-graph>
     </div>
   </div>
-  <div *ngIf="displayFooter">
+  <!-- <div *ngIf="displayFooter">
     <div *ngIf="epi">
       <h2>Epidemiologic summary</h2>
       <mat-card class="highlights">
@@ -192,6 +219,6 @@
       </div>
       <h4>''</h4>
     </div>
-  </div>
+  </div> -->
 </div>
 <app-footer *ngIf="displayFooter"></app-footer>
