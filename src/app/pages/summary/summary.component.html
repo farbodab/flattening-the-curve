@@ -44,6 +44,30 @@
             <p> </p>
           </div>
         </div>
+        <div>
+          <p style="font-size:1.2em;font-weight:bold">Recommended Action: </p>
+          <ul>
+            <li><strong>Social & Family Gatherings:</strong> {{cases['rolling_pop'] >= 10 ? 'No visitors' : cases['rolling_pop'] >= 5 ? 'No visitors' : cases['rolling_pop'] >= 1 ? 'Max 6 people from 1 other household' : 'Max 6 people from 3 other household'}}</li>
+            <li><strong>Weddings:</strong> {{cases['rolling_pop'] >= 10 ? 'Max 6 people' : cases['rolling_pop'] >= 5 ? 'Max 6 people' : cases['rolling_pop'] >= 1 ? 'Max 25 people' : 'Max 50 people'}}</li>
+            <li><strong>Indoor Events:</strong> {{cases['rolling_pop'] >= 10 ? 'No organised events' : cases['rolling_pop'] >= 5 ? 'No organised events' : cases['rolling_pop'] >= 1 ? 'No organised events' : '50 to 100 people depending on venue size'}}</li>
+            <li><strong>Outdoor Events:</strong> {{cases['rolling_pop'] >= 10 ? 'No organised events' : cases['rolling_pop'] >= 5 ? 'Gathering of up to 15 people' : cases['rolling_pop'] >= 1 ? 'Gathering of up to 15 people' : '100 to 200 people depending on venue size'}}</li>
+            <li><strong>Sports Training:</strong> {{cases['rolling_pop'] >= 10 ? 'Individual training only' : cases['rolling_pop'] >= 5 ? 'Indoor one individual only, outdoor pods of 15 (non contact)' : cases['rolling_pop'] >= 1 ? 'Indoor one individual only, outdoor pods of 15 (non contact)' : 'Indoor pods of 6, outdoor pods of 15 (non contact)'}}</li>
+            <li><strong>Matches & Events:</strong> {{cases['rolling_pop'] >= 10 ? 'No events' : cases['rolling_pop'] >= 5 ? 'No events except specific exemptions' : cases['rolling_pop'] >= 1 ? 'No events except specific exemptions' : '50 people indoor, 100 outdoor, 200 stadia'}}</li>
+            <li><strong>Gyms, Pools & Leisure Centres:</strong> {{cases['rolling_pop'] >= 10 ? 'Closed' : cases['rolling_pop'] >= 5 ? 'Closed' : cases['rolling_pop'] >= 1 ? 'Individual training only' : 'Open with protective measure'}}</li>
+            <li><strong>Religious Services:</strong> {{cases['rolling_pop'] >= 10 ? 'Services move online. Funerals limited to 10 people.' : cases['rolling_pop'] >= 5 ? 'Services move online. Funerals limited to 25 people.' : cases['rolling_pop'] >= 1 ? 'Services move online. Funerals limited to 25 people.' : '50 people per service'}}</li>
+            <li><strong>Bars serving food, Cafés & Restaurants:</strong> {{cases['rolling_pop'] >= 10 ? 'Takeaway/Delivery Only' : cases['rolling_pop'] >= 5 ? 'Outdoor only with a maximum of 15 people per table. Takeaway/Delivery.' : cases['rolling_pop'] >= 1 ? 'Range of restriction up to and including no indoor dining' : 'Groups of 6 from up to 3 households'}}</li>
+            <li><strong>Wet Pubs:</strong> {{cases['rolling_pop'] >= 10 ? 'Takeaway/Delivery only' : cases['rolling_pop'] >= 5 ? 'Outdoor only with a maximum 15 people. Takeaway/Delivery' : cases['rolling_pop'] >= 1 ? 'Range of restrictions up to and including no indoor service' : 'Open Groups of 6 from up to 3 households'}}</li>
+            <li><strong>Hotels, Guest Houses:</strong> {{cases['rolling_pop'] >= 10 ? 'Essential Purposes only' : cases['rolling_pop'] >= 5 ? 'Existing Guests & Essential Purposes only' : cases['rolling_pop'] >= 1 ? 'Services limited to Residents only' : 'Open with protective measures'}}</li>
+            <li><strong>Retail & Services:</strong> {{cases['rolling_pop'] >= 10 ? 'Essential Retail only' : cases['rolling_pop'] >= 5 ? 'Primarily outdoor. Essential retail/services' : cases['rolling_pop'] >= 1 ? 'Open with protective measures' : 'Open with protective measures'}}</li>
+            <li><strong>Indoor Cultural Venues:</strong> {{cases['rolling_pop'] >= 10 ? 'Venues closed Online services available' : cases['rolling_pop'] >= 5 ? 'Venues closed. Online services available' : cases['rolling_pop'] >= 1 ? 'Venues closed Libraries available for e-services/call & collect' : 'Open with protective measures'}}</li>
+            <li><strong>Workplace:</strong> {{cases['rolling_pop'] >= 10 ? 'Essential workers only' : cases['rolling_pop'] >= 5 ? 'Essential & other designated workers only' : cases['rolling_pop'] >= 1 ? 'Attend only if absolutely necessary' : ' Essential Meetings, Induction & Training only'}}</li>
+            <li><strong>Domestic Travel:</strong> {{cases['rolling_pop'] >= 10 ? 'Discouraged' : cases['rolling_pop'] >= 5 ? 'Domestic only. Except for essential work, education & essential purposes' : cases['rolling_pop'] >= 1 ? 'Domestic only. Except for essential work, education & essential purposes' : 'No restrictions'}}</li>
+            <li><strong>Schools & Childcare:</strong> {{cases['rolling_pop'] >= 10 ? 'Recommendations based on situation and evidence at time' : cases['rolling_pop'] >= 5 ? 'Open with protective measures' : cases['rolling_pop'] >= 1 ? 'Open with protective measures' : 'Open with protective measures'}}</li>
+            <li><strong>Adult & Higher Education:</strong> {{cases['rolling_pop'] >= 10 ? 'Recommendations based on situation and evidence at time' : cases['rolling_pop'] >= 5 ? 'Move online On-site attendance only when essential' : cases['rolling_pop'] >= 1 ? 'Open. Escalate all appropriate protective measures limit congregation' : 'Open with protective measures'}}</li>
+            <li><strong>Care Homes:</strong> Visiting suspended, aside from critical and compassionate circumstances</li>
+            <li><strong>Over 70s & Medically Vulnerable:</strong> Exercise judgement regarding engaging with others and in activities outside home.</li>
+          </ul>
+        </div>
       </mat-card-content>
 
     </mat-card>

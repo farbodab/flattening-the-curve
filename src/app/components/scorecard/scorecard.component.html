@@ -5,22 +5,24 @@
                 <div style="display:flex;flex-direction:column;justify-content: center;align-items: center;">
                   <h1 class="scorecard-header desktop-ontario-header">Ontario's COVID Warning System</h1>
                   <p>We use <a href="#indicators">five key indicators</a> to determine risk levels for 34 Public Health Units in Ontario</p>
-                  <form class="example-form">
-                    <mat-form-field class="example-full-width">
-                      <mat-icon matPrefix>search</mat-icon>
-                      <input type="text"
-                             placeholder="Search for your Public Health Unit"
-                             aria-label="Number"
-                             matInput
-                             [formControl]="myControl"
-                             [matAutocomplete]="auto">
-                      <mat-autocomplete #auto="matAutocomplete">
-                        <mat-option *ngFor="let option of phuArray" [value]="option['phu']">
-                          {{option['phu']}}
-                        </mat-option>
-                      </mat-autocomplete>
-                    </mat-form-field>
-                  </form>
+                  <div *ngIf="dropdownList" style="padding-top: 5px; ">
+                      <form [formGroup]="dropdownList">
+                          <mat-form-field [style.width]="is_full ? '350px' : '100%'">
+                              <mat-icon matPrefix>search</mat-icon>
+                              <mat-label>Select a Public Health Unit</mat-label>
+                              <mat-select formControlName="phu" disableOptionCentering
+                                  (selectionChange)="routeonSelection(dropdownList.controls.phu.value)">
+                                  <ngx-mat-select-search formControlName="searchCtrl" [placeholderLabel]="'Search...'"
+                                      [noEntriesFoundLabel]="'Not found'" name="search"></ngx-mat-select-search>
+                                  <mat-option
+                                      *ngFor="let phu of phuArray |stringFilterBy:dropdownList.controls.searchCtrl.value:'phu'"
+                                      [value]="phu.value">
+                                      {{phu.phu}}
+                                  </mat-option>
+                              </mat-select>
+                          </mat-form-field>
+                      </form>
+                  </div>
                 </div>
                 <div class='row'>
                   <app-thermometer> </app-thermometer>

@@ -7,6 +7,8 @@ import { ViewportScroller } from '@angular/common';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import * as moment from 'moment';
 import {FormControl} from '@angular/forms';
+import { Router, ActivatedRoute, UrlTree, UrlSegment, UrlSegmentGroup, PRIMARY_OUTLET, DefaultUrlSerializer, RouterState, ActivatedRouteSnapshot, RouterStateSnapshot, NavigationEnd } from '@angular/router';
+
 
 declare var tableau: any;
 
@@ -27,10 +29,14 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
   viz: any;
   tableau: any;
   is_full = true;
+  filteringCheckboxes: FormGroup;
   timesObj: any;
   metricJsonObj: any;
   jsonObj: any;
   window_subscription: Subscription;
+  dropdownList: FormGroup;
+  headerLabel = '';
+  path = ''
   initial_sort: Sort = {
     active: 'risk',
     direction: 'desc'
@@ -221,7 +227,7 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
     }
 ];
 
-  constructor(private host_service: HostService, private formBuilder: FormBuilder, private api_service: ApiService, private scrollIntoView: ViewportScroller) {
+  constructor(private host_service: HostService, private formBuilder: FormBuilder, private api_service: ApiService, private scrollIntoView: ViewportScroller, private route: ActivatedRoute, private router: Router, ) {
     this.refresh_layout(window.innerWidth);
   }
 
@@ -254,6 +260,7 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
   fetchDataObj() {
     this.api_service.get_summary_obj(-1).subscribe(
       data => {
+        this.initDropdownForm(this.phuArray);
         this.metricJsonObj = this.populateRoutes(data);
         this.sortedMetrics = this.removeOntartio(this.metricJsonObj.slice());
         this.sortMetrics(this.initial_sort);
@@ -395,6 +402,36 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
       const index = this.phuArray.findIndex(phu => phu.phu === elementPhu);
       this.scoreCardComponents.toArray()[index].nativeElement.scrollIntoView();
     }, 100);
+  }
+
+  initFilteringForm(obj: any) {
+      this.filteringCheckboxes = this.formBuilder.group({});
+      let keysArr = [];
+      obj.forEach(element => {
+          keysArr.push(Object.keys(element));
+      });
+      keysArr.forEach(element => {
+          this.filteringCheckboxes.addControl(element, this.formBuilder.control(true));
+      });
+  }
+
+  initDropdownForm(array: any) {
+      this.dropdownList = this.formBuilder.group({});
+      if (this.path === '') {
+          this.dropdownList.addControl('phu', this.formBuilder.control('ontario'));
+          this.headerLabel = 'Ontario';
+      } else {
+          this.dropdownList.addControl('phu', this.formBuilder.control(this.path));
+          const index = this.phuArray.findIndex(phu => phu.value === this.path);
+          this.headerLabel = this.phuArray[index].phu;
+      }
+      this.dropdownList.addControl('searchCtrl', this.formBuilder.control(''));
+  }
+
+  routeonSelection(route: string) {
+    const index = this.phuArray.findIndex(phu => phu.value === route);
+     this.headerLabel = this.phuArray[index].phu;
+     this.router.navigate(['/summary/' + route])
   }
 
   private refresh_layout(width) {
