@@ -8,7 +8,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import * as moment from 'moment';
 import {FormControl} from '@angular/forms';
 import { Router, ActivatedRoute, UrlTree, UrlSegment, UrlSegmentGroup, PRIMARY_OUTLET, DefaultUrlSerializer, RouterState, ActivatedRouteSnapshot, RouterStateSnapshot, NavigationEnd } from '@angular/router';
-
+import { CookieService } from 'ngx-cookie-service'
 
 declare var tableau: any;
 
@@ -21,7 +21,7 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
 
   @ViewChild('MailingList', { static: false }) mailingList: ElementRef;
   @ViewChildren('phuArray') scoreCardComponents: QueryList<any>;
-
+  cookieValue: string;
   graph_data = null;
   ontario: any = "Ontario";
   italy: any = "Italy";
@@ -227,7 +227,7 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
     }
 ];
 
-  constructor(private host_service: HostService, private formBuilder: FormBuilder, private api_service: ApiService, private scrollIntoView: ViewportScroller, private route: ActivatedRoute, private router: Router, ) {
+  constructor(private host_service: HostService, private formBuilder: FormBuilder, private api_service: ApiService, private scrollIntoView: ViewportScroller, private route: ActivatedRoute, private router: Router, private cookieService: CookieService) {
     this.refresh_layout(window.innerWidth);
   }
 
@@ -239,6 +239,9 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
     this.dropdownSelection = this.formBuilder.group({});
     this.dropdownSelection.addControl('phu', this.formBuilder.control(''));
     this.dropdownSelection.addControl('searchCtrl', this.formBuilder.control(''));
+    this.cookieService.set('cookie-name', 'our cookie is delicious')
+    this.cookieValue = this.cookieService.get('cookie-name')
+    console.log(this.cookieValue)
   }
 
   ngAfterViewInit() {

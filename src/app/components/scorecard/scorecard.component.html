@@ -38,7 +38,7 @@
                     <tr>
                         <th></th>
                         <th colspan="2" class="top-category">Pandemic Monitoring</th>
-                        <th class="top-category">Response Monitoring</th>
+                        <th colspan="2" class="top-category">Response Monitoring</th>
                         <th class="top-category">Response Capacity</th>
                         <th class="top-category">Risk Levels</th>
                     </tr>
@@ -46,8 +46,8 @@
                         <th mat-sort-header="phu" class="first-col-styling header-styling black-cell">PHU</th>
                         <th mat-sort-header="new" class="header-styling black-cell">Case Incidence</th>
                         <th mat-sort-header="rt" class="header-styling black-cell">Rt</th>
-                        <th mat-sort-header="testing" class="header-styling black-cell">Testing &lt; 24h
-                        </th>
+                        <th mat-sort-header="testing" class="header-styling black-cell">Testing &lt; 24h</th>
+                        <th mat-sort-header="positivity" class="header-styling black-cell">Percent Positivity</th>
                         <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Bed Occupied</th>
                         <th mat-sort-header="risk" class="header-styling black-cell">Risk</th>
                     </tr>
@@ -71,6 +71,12 @@
                             class="cell-border">
                             <mat-icon [inline]="true" [ngClass]="{'green-icon': row.rolling_test_twenty_four > 0.9, 'yellow-icon': row.rolling_test_twenty_four <= 0.9 && row.rolling_test_twenty_four > 0.7, 'orange-icon': row.rolling_test_twenty_four <= 0.7 && row.rolling_test_twenty_four > 0.5, 'red-icon': row.rolling_test_twenty_four <= 0.5 && row.rolling_test_twenty_four != null}">fiber_manual_record</mat-icon>
                             {{row.rolling_test_twenty_four === null ? 'N/A' : row.rolling_test_twenty_four | percent}}
+                        </td>
+                        <td [title]="row.testing_positive === 'nan'? 'Cannot calculate due to insufficient data': ''"
+                            class="cell-border">
+                            <mat-icon [inline]="true" [ngClass]="{'green-icon': row.testing_positive > 0.9, 'yellow-icon': row.testing_positive <= 0.9 && row.testing_positive > 0.7, 'orange-icon': row.testing_positive <= 0.7 && row.testing_positive > 0.5, 'red-icon': row.testing_positive <= 0.5 && row.testing_positive != null}">fiber_manual_record</mat-icon>
+                            N/A
+                            <!-- {{row.testing_positive ? 'N/A' : row.testing_positive | percent}} -->
                         </td>
                         <td [title]="row.icu === 'nan'? 'Cannot calculate due to insufficient data': ''"
                             class="cell-border">
@@ -119,7 +125,7 @@
                       <tr>
                           <th></th>
                           <th colspan="2" class="top-category">Pandemic Monitoring</th>
-                          <th class="top-category">Response Monitoring</th>
+                          <th colspan="2" class="top-category">Response Monitoring</th>
                           <th class="top-category">Response Capacity</th>
                           <th class="top-category">Risk Levels</th>
                       </tr>
@@ -127,8 +133,8 @@
                           <th mat-sort-header="phu" class="first-col-styling header-styling black-cell">PHU</th>
                           <th mat-sort-header="new" class="header-styling black-cell">Case Incidence</th>
                           <th mat-sort-header="rt" class="header-styling black-cell">Rt</th>
-                          <th mat-sort-header="testing" class="header-styling black-cell">Testing &lt; 24h
-                          </th>
+                          <th mat-sort-header="testing" class="header-styling black-cell">Testing &lt; 24h</th>
+                          <th mat-sort-header="positivity" class="header-styling black-cell">Percent Positivity</th>
                           <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Bed Occupied</th>
                           <th mat-sort-header="risk" class="header-styling black-cell">Risk</th>
                       </tr>
@@ -151,6 +157,12 @@
                           <td [title]="row.rolling_test_twenty_four === 'nan'? 'Cannot calculate due to insufficient data': ''"
                               class="cell-border">
                               <mat-icon [inline]="true" [ngClass]="{'green-icon': row.rolling_test_twenty_four > 0.9, 'yellow-icon': row.rolling_test_twenty_four <= 0.9 && row.rolling_test_twenty_four > 0.7, 'orange-icon': row.rolling_test_twenty_four <= 0.7 && row.rolling_test_twenty_four > 0.5, 'red-icon': row.rolling_test_twenty_four <= 0.5 &&  row.rolling_test_twenty_four != null}">fiber_manual_record</mat-icon>{{row.rolling_test_twenty_four === null ? 'N/A' : row.rolling_test_twenty_four | percent}}
+                          </td>
+                          <td [title]="row.testing_positive === 'nan'? 'Cannot calculate due to insufficient data': ''"
+                              class="cell-border">
+                              <mat-icon [inline]="true" [ngClass]="{'green-icon': row.testing_positive > 0.9, 'yellow-icon': row.testing_positive <= 0.9 && row.testing_positive > 0.7, 'orange-icon': row.testing_positive <= 0.7 && row.testing_positive > 0.5, 'red-icon': row.testing_positive <= 0.5 && row.testing_positive != null}">fiber_manual_record</mat-icon>
+                              N/A
+                              <!-- {{row.testing_positive ? 'N/A' : row.testing_positive | percent}} -->
                           </td>
                           <td [title]="row.icu === 'nan'? 'Cannot calculate due to insufficient data': ''"
                               class="cell-border">
@@ -202,7 +214,16 @@
                                 <strong>&lt;</strong> 70% </td>
                             <td class="cell-border no-right-border center-cell red-cell"><strong>&ge;</strong> 50%</td>
                         </tr>
-
+                        <tr class="row-styling">
+                            <td class="cell-border no-left-border alternate-row center-cell">Percent Positivity
+                            </td>
+                            <td class="cell-border center-cell green-cell"><strong>&lt;</strong> 3%</td>
+                            <td class="cell-border center-cell yellow-cell">3% <strong>&le;</strong> Percent
+                                Positivity % <strong>&le;</strong> 5%</td>
+                            <td class="cell-border center-cell orange-cell">5% <strong>&le;</strong> Percent
+                                Positivity % <strong>&le;</strong> 10%</td>
+                            <td class="cell-border no-right-border center-cell red-cell"><strong>&gt;</strong> 10%</td>
+                        </tr>
                         <tr class="row-styling">
                             <td class="cell-border no-left-border alternate-row center-cell">Total ICU Bed Occupied
                             </td>
@@ -288,6 +309,27 @@
                     </table>
                     <table class="mobile-threshold-table">
                         <tr>
+                            <th class="mobile-phu-header" colspan="2">Percent Positivity</th>
+                        </tr>
+                        <tr>
+                            <td class="alternate-row threshold-left-col">Green</td>
+                            <td class="center-cell threshold-right-col green-cell"><strong>&gt;</strong> 3%</td>
+                        </tr>
+                        <tr>
+                            <td class="threshold-left-col">Yellow</td>
+                            <td class="center-cell threshold-right-col yellow-cell">3% <strong>&le;</strong> Percent Positivity <strong>&le;</strong> 5%</td>
+                        </tr>
+                        <tr>
+                            <td class="threshold-left-col alternate-row">Orange</td>
+                            <td class="alternate-row center-cell threshold-right-col orange-cell">5% <strong>&le;</strong> Percent Positivity <strong>&le;</strong> 10%</td>
+                        </tr>
+                        <tr>
+                            <td class="threshold-left-col alternate-row">Red</td>
+                            <td class="alternate-row center-cell threshold-right-col red-cell"><strong>&lt;</strong> 10%</td>
+                        </tr>
+                    </table>
+                    <table class="mobile-threshold-table">
+                        <tr>
                             <th class="mobile-phu-header" colspan="2">Total ICU Bed Occupied</th>
                         </tr>
                         <tr>
@@ -354,7 +396,16 @@
                         <mat-list-item role="listitem" class="data-item">
                             <div class="metric-height">
                                 <div>
-                                    <span class="data-source-title">4. Total ICU Bed Occupied:</span> The percentage of
+                                    <span class="data-source-title">4. Percent Positivity: </span> The percentage of tests
+                                    that have been returned as positive in a public health unit. Percent positivity is a measure
+                                    of whether our testing levels are sufficient to capture the majority of COVID cases.
+                                </div>
+                            </div>
+                        </mat-list-item>
+                        <mat-list-item role="listitem" class="data-item">
+                            <div class="metric-height">
+                                <div>
+                                    <span class="data-source-title">5. Total ICU Bed Occupied:</span> The percentage of
                                     beds
                                     in the intensive care unit that are
                                     occupied. This includes both COVID-19 patients and patients who are in the ICU for
@@ -410,7 +461,14 @@
                         </mat-list-item>
                         <mat-list-item role="listitem" class="data-item">
                             <div class="metric-height">
-                                <span class="data-source-title">4. ICU:</span>Calculated using number of critical care
+                                <span class="data-source-title">4. Percent Positivity:</span> Calculated using OLIS and RPDB dataset courtesy of ICES and the Ontario Health Data Platform.
+                                The numerator is the sum of positive cases in the last 7 days. The denominator is the total number of tests in the last 7 days.
+                                Patients with duplicate tests were filtered to the earliest positive test.
+                            </div>
+                        </mat-list-item>
+                        <mat-list-item role="listitem" class="data-item">
+                            <div class="metric-height">
+                                <span class="data-source-title">5. ICU:</span>Calculated using number of critical care
                                 beds and critical care patients in baseline and incremental type 2 and type 3 icus. Data
                                 from Critical Care Services Ontario
                                 (CCSO)

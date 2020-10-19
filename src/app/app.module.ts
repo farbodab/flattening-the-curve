@@ -52,12 +52,14 @@ import { CommonMobileVisualComponent } from './components/common-mobile-visual/c
 import { PlotComponent } from './components/plot/plot';
 import { GraphComponent } from './components/graph/graph';
 import { MapComponent } from './components/map/map';
+import { FSAMapComponent } from './components/map/fsamap';
 import { AngularPlotlyComponent } from './components/plotly-angular/plotly-angular.component';
 import { OutreachComponent } from './pages/outreach/outreach.component';
 import { CommonDesktopVisualComponent } from './components/common-desktop-visual/common-desktop-visual.component';
 import { BlogComponent } from './pages/blog/blog.component';
 import { SummaryComponent } from './pages/summary/summary.component';
 import { PlotlyViaCDNModule } from 'angular-plotly.js';
+import { CookieService } from 'ngx-cookie-service'
 
 import { MainPipe } from './pipe/pipe.module';
 import { AppConfigService } from './providers/app-config.service';
@@ -98,6 +100,7 @@ export function initConfig(appConfig: AppConfigService) {
         GraphComponent,
         TableComponent,
         MapComponent,
+        FSAMapComponent,
         ThermometerComponent
     ],
     imports: [
@@ -140,7 +143,8 @@ export function initConfig(appConfig: AppConfigService) {
           useFactory: initConfig,
           multi: true,
           deps: [AppConfigService]
-        }
+        },
+        CookieService,
     ],
     bootstrap: [AppComponent],
     entryComponents: [AnalysisCriticalComponent, CommonDesktopVisualComponent]
