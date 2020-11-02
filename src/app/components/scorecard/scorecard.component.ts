@@ -39,7 +39,7 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
     rt: null,
     weekly: null,
     testing: null,
-    tracing: null,
+    percent_positive: null,
     icu: null,
     stage: null
   };
@@ -328,7 +328,7 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
         case 'rt': return this.compareData(a.rt, b.rt, 'number', isAscending);
         case 'new': return this.compareData(a.weekly, b.weekly, 'number', isAscending);
         case 'testing': return this.compareData(a.testing, b.testing, 'number', isAscending);
-        case 'tracing': return this.compareData(a.tracing, b.tracing, 'number', isAscending);
+        case 'percent_positive': return this.compareData(a.percent_positive, b.percent_positive, 'number', isAscending);
         case 'icu': return this.compareData(a.icu, b.icu, 'number', isAscending);
         case 'stage': return this.compareData(a.stage, b.stage, 'number', isAscending);
         default: return 0;
@@ -347,10 +347,10 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
   }
 
   compareData(a: number | string, b: number | string, type: string, isAscending: boolean) {
-    
+
     switch(type) {
       case 'string': return (a < b ? -1 : 1) *(isAscending ? 1: -1);
-      case 'number': return ((b === 'nan') ? -1 : (a ==='nan' ? 1 : ((((Number(a) < Number(b)) || (b === 'nan')) ? -1 : 1) *(isAscending 
+      case 'number': return ((b === 'nan') ? -1 : (a ==='nan' ? 1 : ((((Number(a) < Number(b)) || (b === 'nan')) ? -1 : 1) *(isAscending
         ? 1: -1))));
       default: return 0;
     }
