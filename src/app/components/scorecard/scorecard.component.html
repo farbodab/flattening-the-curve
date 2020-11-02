@@ -51,10 +51,10 @@
                         </mat-list-item>
                         <mat-list-item role="listitem" class="data-item">
                             <div class="metric-height">
-                                <span class="data-source-title">4. Tracing &lt; 24h:</span> The amount of time needed
-                                for a PHU to complete contact tracing of a
-                                case (i.e. a contact tracer calls the patient and asks who they have been recently in
-                                contact with so that those people can also get tested).
+                                <span class="data-source-title">4. Percent Positivity:</span> The percentage of all
+                                COVID-19 tests performed that are actually positive. The percent positive will be high if the number of
+                                positive tests is too high, or if the number of total tests is too low.
+                                <div class="time-styling">Last updated {{timesObj.percent_positive}}</div>
                             </div>
                         </mat-list-item>
                         <mat-list-item role="listitem" class="data-item">
@@ -140,12 +140,12 @@
                             [ngClass]="{'black-cell': ontarioObj.rt === 'nan', 'green-cell': ontarioObj.rt < 0.5, 'yellow-cell': 0.5 <= ontarioObj.rt && ontarioObj.rt < 1.0, 'red-cell': 1.0 <= ontarioObj.rt}">
                             Rt Value</td>
                         <td class="center-cell border-left-white"
-                            [ngClass]="{'black-cell': ontarioObj.testing === 'nan', 'green-cell': ontarioObj.testing > 95, 'yellow-cell': 81 <= ontarioObj.testing && ontarioObj.testing <= 95, 'red-cell': ontarioObj.testing < 80}"
+                            [ngClass]="{'black-cell': ontarioObj.testing === 'nan', 'green-cell': ontarioObj.testing > 95, 'yellow-cell': 80 <= ontarioObj.testing && ontarioObj.testing <= 95, 'red-cell': ontarioObj.testing < 80}"
                             style="width: 10%;">
                             {{ontarioObj.testing === 'nan' ? 'N/A' : ontarioObj.testing+'%'}}
                         </td>
                         <td class="center-cell border-right-white"
-                            [ngClass]="{'black-cell': ontarioObj.testing === 'nan', 'green-cell': ontarioObj.testing > 95, 'yellow-cell': 81 <= ontarioObj.testing && ontarioObj.testing <= 95, 'red-cell': ontarioObj.testing < 80}">
+                            [ngClass]="{'black-cell': ontarioObj.testing === 'nan', 'green-cell': ontarioObj.testing > 95, 'yellow-cell': 80 <= ontarioObj.testing && ontarioObj.testing <= 95, 'red-cell': ontarioObj.testing < 80}">
                             Testing
                             &lt; 24h</td>
                         <td class="center-cell border-left-white"
@@ -165,16 +165,16 @@
                             [ngClass]="{'black-cell': ontarioObj.weekly === 'nan', 'green-cell': ontarioObj.weekly < 25, 'yellow-cell': 25 <= ontarioObj.weekly && ontarioObj.weekly <= 100, 'red-cell': 100 < ontarioObj.weekly}">
                             Weekly New Cases
                         </td>
-                        <td [title]="ontarioObj.tracing === 'nan'? 'Data not available or not reported publicly': ''"
+                        <td [title]="ontarioObj.percent_positive === 'nan'? 'Data not available or not reported publicly': ''"
                             class="center-cell border-left-white"
-                            [ngClass]="{'black-cell': ontarioObj.tracing === 'nan', 'green-cell': ontarioObj.tracing > 95, 'yellow-cell': 81 <= ontarioObj.tracing && ontarioObj.tracing <= 95, 'red-cell': ontarioObj.tracing < 80}"
+                            [ngClass]="{'black-cell': ontarioObj.percent_positive === 'nan', 'green-cell': ontarioObj.percent_positive < 3, 'yellow-cell': 3 <= ontarioObj.percent_positive && ontarioObj.percent_positive <= 5, 'red-cell': ontarioObj.percent_positive > 5}"
                             style="width: 10%;">
-                            {{ontarioObj.tracing === 'nan' ? 'DNE' : ontarioObj.tracing+'%'}}
+                            {{ontarioObj.percent_positive === 'nan' ? 'N/A' : ontarioObj.percent_positive+'%'}}
                         </td>
                         <td class="center-cell border-right-white"
-                            [ngClass]="{'black-cell': ontarioObj.tracing === 'nan', 'green-cell': ontarioObj.tracing > 95, 'yellow-cell': 81 <= ontarioObj.tracing && ontarioObj.tracing <= 95, 'red-cell': ontarioObj.tracing < 80}">
-                            Tracing
-                            &lt; 24h</td>
+                            [ngClass]="{'black-cell': ontarioObj.percent_positive === 'nan', 'green-cell': ontarioObj.percent_positive < 3, 'yellow-cell': 3 <= ontarioObj.percent_positive && ontarioObj.percent_positive <= 5, 'red-cell': ontarioObj.percent_positive > 5}">
+                            Percent
+                            Positivity</td>
                     </tr>
                 </table>
                 <div class="scorecard-header">Metrics by Public Health Unit (PHU)</div>
@@ -197,7 +197,7 @@
                         <th mat-sort-header="new" class="header-styling black-cell">Weekly New Cases</th>
                         <th mat-sort-header="testing" class="header-styling black-cell">Testing &lt; 24h
                         </th>
-                        <th mat-sort-header="tracing" class="header-styling black-cell">Tracing &lt; 24h
+                        <th mat-sort-header="percent_positive" class="header-styling black-cell">Percent Positivity
                         </th>
                         <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Bed Occupied</th>
                         <th mat-sort-header="stage" class="header-styling black-cell">Stage</th>
@@ -216,14 +216,14 @@
                             class="cell-border center-cell">
                             {{row.weekly === 'nan' ? 'N/A' : row.weekly}}</td>
                         <td [title]="row.testing === 'nan'? 'Cannot calculate due to insufficient data': ''"
-                            [ngClass]="{'black-cell': row.testing === 'nan', 'green-cell': row.testing > 95, 'yellow-cell': 81 <= row.testing && row.testing <= 95, 'red-cell': row.testing < 80}"
+                            [ngClass]="{'black-cell': row.testing === 'nan', 'green-cell': row.testing > 95, 'yellow-cell': 80 <= row.testing && row.testing <= 95, 'red-cell': row.testing < 80}"
                             class="cell-border center-cell">
                             {{row.testing === 'nan' ? 'N/A' : row.testing+'%'}}
                         </td>
-                        <td [title]="row.tracing === 'nan'? 'Data not available or not reported publicly': ''"
-                            [ngClass]="{'black-cell': row.tracing === 'nan', 'green-cell': row.tracing > 95, 'yellow-cell': 81 <= row.tracing && row.tracing <= 95, 'red-cell': row.tracing < 80}"
+                        <td [title]="row.percent_positive === 'nan'? 'Data not available or not reported publicly': ''"
+                            [ngClass]="{'black-cell': row.percent_positive === 'nan', 'green-cell': row.percent_positive < 3, 'yellow-cell': 3 <= row.percent_positive && row.percent_positive <= 5, 'red-cell': row.percent_positive > 5}"
                             class="cell-border center-cell">
-                            {{row.tracing === 'nan' ? 'DNE' : row.tracing+'%'}}
+                            {{row.percent_positive === 'nan' ? 'N/A' : row.percent_positive+'%'}}
                         <td [title]="row.icu === 'nan'? 'Cannot calculate due to insufficient data': ''"
                             [ngClass]="{'black-cell': row.icu === 'nan', 'green-cell': row.icu < 80, 'yellow-cell': 80 <= row.icu && row.icu < 90, 'red-cell': 90 <= row.icu}"
                             class="cell-border center-cell">
@@ -282,23 +282,23 @@
                     </tr>
                     <tr class="ontario-row-styling">
                         <td class="center-cell"
-                            [ngClass]="{'black-cell': ontarioObj.testing === 'nan', 'green-cell': ontarioObj.testing > 95, 'yellow-cell': 81 <= ontarioObj.testing && ontarioObj.testing <= 95, 'red-cell': ontarioObj.testing < 80}"
+                            [ngClass]="{'black-cell': ontarioObj.testing === 'nan', 'green-cell': ontarioObj.testing > 95, 'yellow-cell': 80 <= ontarioObj.testing && ontarioObj.testing <= 95, 'red-cell': ontarioObj.testing < 80}"
                             style="width: 10%;">
                             {{ontarioObj.testing === 'nan' ? 'N/A' : ontarioObj.testing+'%'}}
                         </td>
                         <td class="center-cell"
-                            [ngClass]="{'black-cell': ontarioObj.testing === 'nan', 'green-cell': ontarioObj.testing > 95, 'yellow-cell': 81 <= ontarioObj.testing && ontarioObj.testing <= 95, 'red-cell': ontarioObj.testing < 80}">
+                            [ngClass]="{'black-cell': ontarioObj.testing === 'nan', 'green-cell': ontarioObj.testing > 95, 'yellow-cell': 80 <= ontarioObj.testing && ontarioObj.testing <= 95, 'red-cell': ontarioObj.testing < 80}">
                             Testing &lt; 24h</td>
                     </tr>
                     <tr class="ontario-row-styling">
                         <td class="center-cell"
-                            [ngClass]="{'black-cell': ontarioObj.tracing === 'nan', 'green-cell': ontarioObj.tracing > 95, 'yellow-cell': 81 <= ontarioObj.tracing && ontarioObj.tracing <= 95, 'red-cell': ontarioObj.tracing < 80}"
+                            [ngClass]="{'black-cell': ontarioObj.percent_positive === 'nan', 'green-cell': ontarioObj.percent_positive < 3, 'yellow-cell': 3 <= ontarioObj.percent_positive && ontarioObj.percent_positive <= 5, 'red-cell': ontarioObj.percent_positive > 5}"
                             style="width: 10%;">
-                            {{ontarioObj.tracing === 'nan' ? 'DNE' : ontarioObj.tracing+'%'}}
+                            {{ontarioObj.percent_positive === 'nan' ? 'N/A' : ontarioObj.percent_positive+'%'}}
                         </td>
                         <td class="center-cell"
-                            [ngClass]="{'black-cell': ontarioObj.tracing === 'nan', 'green-cell': ontarioObj.tracing > 95, 'yellow-cell': 81 <= ontarioObj.tracing && ontarioObj.tracing <= 95, 'red-cell': ontarioObj.tracing < 80}">
-                            Tracing &lt; 24h</td>
+                            [ngClass]="{'black-cell': ontarioObj.percent_positive === 'nan', 'green-cell': ontarioObj.percent_positive < 3, 'yellow-cell': 3 <= ontarioObj.percent_positive && ontarioObj.percent_positive <= 5, 'red-cell': ontarioObj.percent_positive > 5}">
+                            Percent Positivity</td>
                     </tr>
                 </table>
                 <table *ngIf="ontarioObj.rt !== null" class="mobile-ontario-table">
@@ -377,16 +377,16 @@
                         </tr>
                         <tr>
                             <td class="mobile-header-cell alternate-row">Testing &lt; 24h</td>
-                            <td [ngClass]="{'black-cell': table.testing === 'nan', 'green-cell': table.testing > 95, 'yellow-cell': 81 <= table.testing && table.testing <= 95, 'red-cell': table.testing < 80}"
+                            <td [ngClass]="{'black-cell': table.testing === 'nan', 'green-cell': table.testing > 95, 'yellow-cell': 80 <= table.testing && table.testing <= 95, 'red-cell': table.testing < 80}"
                                 class="mobile-data-cell center-cell">
                                 {{table.testing === 'nan' ? 'N/A' : table.testing+'%'}}
                             </td>
                         </tr>
                         <tr>
-                            <td class="mobile-header-cell alternate-row">Tracing &lt; 24h</td>
-                            <td [ngClass]="{'black-cell': table.tracing === 'nan', 'green-cell': table.tracing > 95, 'yellow-cell': 81 <= table.tracing && table.tracing <= 95, 'red-cell': table.tracing < 80}"
+                            <td class="mobile-header-cell alternate-row">Percent Positivity</td>
+                            <td [ngClass]="{'black-cell': table.percent_positive === 'nan', 'green-cell': table.percent_positive < 3, 'yellow-cell': 3 <= table.percent_positive && table.percent_positive <= 5, 'red-cell': table.percent_positive > 5}"
                                 class="mobile-data-cell center-cell">
-                                {{table.tracing === 'nan' ? 'DNE' : table.tracing+'%'}}
+                                {{table.percent_positive === 'nan' ? 'N/A' : table.percent_positive+'%'}}
                             </td>
                         </tr>
                         <tr>
@@ -436,12 +436,11 @@
                             <td class="cell-border no-right-border center-cell red-cell"><strong>&lt;</strong> 80%</td>
                         </tr>
                         <tr class="row-styling">
-                            <td class="cell-border no-left-border center-cell">Tracing &lt; 24h</td>
-                            <td class="cell-border center-cell green-cell"><strong>&gt;</strong> 95%</td>
-                            <td class="cell-border center-cell yellow-cell">80% <strong>&le;</strong> Tracing Turn
-                                Around Under
-                                24h <strong>&le;</strong> 95%</td>
-                            <td class="cell-border no-right-border center-cell red-cell"><strong>&lt;</strong> 80%</td>
+                            <td class="cell-border no-left-border center-cell">Percent Positivity</td>
+                            <td class="cell-border center-cell green-cell"><strong>&lt;</strong> 3%</td>
+                            <td class="cell-border center-cell yellow-cell">3% <strong>&le;</strong> Percent Positivity
+                               <strong>&le;</strong> 5%</td>
+                            <td class="cell-border no-right-border center-cell red-cell"><strong>&gt;</strong> 5%</td>
                         </tr>
                         <tr class="row-styling">
                             <td class="cell-border no-left-border alternate-row center-cell">Total ICU Bed Occupied
@@ -516,21 +515,19 @@
                     </table>
                     <table class="mobile-threshold-table">
                         <tr>
-                            <th class="mobile-phu-header" colspan="2">Tracing &lt; 24h</th>
+                            <th class="mobile-phu-header" colspan="2">Percent Positivity</th>
                         </tr>
                         <tr>
                             <td class="alternate-row threshold-left-col">Green</td>
-                            <td class="center-cell threshold-right-col green-cell"><strong>&gt;</strong> 95%</td>
+                            <td class="center-cell threshold-right-col green-cell"><strong>&lt;</strong> 3%</td>
                         </tr>
                         <tr>
                             <td class="threshold-left-col">Yellow</td>
-                            <td class="center-cell threshold-right-col yellow-cell">80% <strong>&le;</strong> Tracing
-                                Under
-                                24h <strong>&le;</strong> 95%</td>
+                            <td class="center-cell threshold-right-col yellow-cell">3% <strong>&ge;</strong> Percent Positivity <strong>&le;</strong> 5%</td>
                         </tr>
                         <tr>
                             <td class="alternate-row threshold-left-col">Red</td>
-                            <td class="center-cell threshold-right-col red-cell"><strong>&lt;</strong> 80%</td>
+                            <td class="center-cell threshold-right-col red-cell"><strong>&gt;</strong> 5%</td>
                         </tr>
                     </table>
                     <table class="mobile-threshold-table">
@@ -577,7 +574,7 @@
                         </mat-list-item>
                         <mat-list-item role="listitem" class="data-item">
                             <div class="metric-height">
-                                <span class="data-source-title">3. Testing:</span> Calculated using case reported date,
+                                <span class="data-source-title">3. Testing Turn Around:</span> Calculated using case reported date,
                                 specimen reported date, test reported date. Data from confirmed positive cases of
                                 COVID19
                                 in Ontario from Government
@@ -586,30 +583,21 @@
                         </mat-list-item>
                         <mat-list-item role="listitem" class="data-item">
                             <div class="metric-height">
-                                <span class="data-source-title">4. ICU:</span>Calculated using number of critical care
+                                <span class="data-source-title">4. Percent Positivity:</span> Percent Positivity is calculated using a weekly window from Monday to Sunday.
+                                This study was supported by ICES (formerly the Institute for Clinical Evaluative Sciences), which is funded by the Ontario Ministry of Health. The opinions, results and conclusions are those of the authors and are independent from the funding source. No endorsement by ICES or the Ontario Ministry of Health is intended or should be inferred.
+                                This dashboard uses COVID-19 laboratory test results from the Ontario Laboratories Information System (OLIS) database to identify individuals who were tested for COVID-19 linked with sociodemographic and health-related administrative data within the ICES Data Repository. The report takes a person-based (rather than a test-based) approach to provide information about both those tested and those confirmed positive for COVID-19.
+                                The OLIS dataset was cleaned using code found <a href="https://github.com/icescentral/COVID19-Lab-Results">here</a>.
+                            </div>
+                        </mat-list-item>
+                        <mat-list-item role="listitem" class="data-item">
+                            <div class="metric-height">
+                                <span class="data-source-title">5. ICU:</span>Calculated using number of critical care
                                 beds and critical care patients in baseline and incremental type 2 and type 3 icus. Data
                                 from Critical Care Services Ontario
                                 (CCSO)
                             </div>
                         </mat-list-item>
                     </mat-list>
-                </div>
-                <div class="container-divider-scorecard">
-                </div>
-                <div class="mobile-scorecard-container">
-                    <div class="scorecard-info-header missing-data-header">A Note On Missing Data</div>
-                    <div style="display: flex" [style.flex-wrap]="!is_full ? 'wrap': 'none'">
-                        <div class="missing-data-icon-container">
-                            <div class="missing-data-header">DNE: Does Not Exist</div>
-                        </div>
-                        <div [style.width]="!is_full ? '100%' : 'auto'" class="missing-data-text">
-                            A number of key data items in the scorecard above, such as contact tracing capacity, are
-                            listed as <strong>DNE</strong>, which stands for <strong>Does Not Exist</strong>. Data for
-                            these crucial
-                            indicators is currently not available or
-                            not reported publicly.
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
