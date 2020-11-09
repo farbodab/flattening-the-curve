@@ -282,7 +282,7 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
 
   Removed(HR_UID){
     this.selectedObject = this.selectedObject.filter(item => item !== HR_UID)
-    this.cookieService.set('myregions', this.selectedObject)
+    this.cookieService.set('myregions', this.selectedObject.toString())
   }
 
   Selected(HR_UID){
