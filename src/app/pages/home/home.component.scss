@@ -93,7 +93,6 @@
     //padding:20px;
 
     @media screen and (min-width: 1024px) {
-        margin: 0 auto 35px auto;
         //width: 300px !important;
     }
 
@@ -180,7 +179,7 @@
 }
 
 #vizContainer{
-    display: flex; 
+    display: flex;
     justify-content: center;
     //padding:20px;
     height: 550px;
@@ -591,7 +590,7 @@
 
 .black-cell.header-styling {
     border-left: 1px solid #ffffff;
-    border-right: 1px solid #ffffff; 
+    border-right: 1px solid #ffffff;
 }
 
 ::ng-deep {

@@ -5,26 +5,28 @@
                 <img class='logo-styling-home' routerLink='/home' src='assets/img/logo.svg'>
             </div>
             <div *ngIf="shows_title" routerLink='/home'>
-                <p class="nav-title" id='title-text'>#HowsMyFlattening</p>
+                <p class="nav-title" id='title-text'>How's My Flattening?</p>
             </div>
             <div id='primary-nav' *ngIf='is_full'>
                 <button id='main-nav-button' [ngClass]="{'selected': page==='home'}" mat-button
                     routerLink='/'>Home</button>
-                <div *ngIf='isChecked'>
-                  <button id='main-nav-button' [ngClass]="{'selected': page==='dashboard'}" mat-button
-                      routerLink='/dashboard'>Dashboard</button>
-                  <button id='main-nav-button' [ngClass]="{'selected': page==='analysis'}" mat-button
-                      routerLink='/analysis'>Analysis</button>
-                  <button id='main-nav-button' [ngClass]="{'selected': page==='summary'}" mat-button
-                      routerLink='/summary'>Summary</button>
-                  <button id='main-nav-button' [ngClass]="{'selected': page==='get_involved'}" mat-button
-                      routerLink='/get_involved'>Get Involved</button>
-                </div>
+                <button *ngIf='isChecked' id='main-nav-button' [ngClass]="{'selected': page==='dashboard'}" mat-button
+                    routerLink='/dashboard'>Dashboard</button>
+                <button *ngIf='isChecked' id='main-nav-button' [ngClass]="{'selected': page==='analysis'}" mat-button
+                    routerLink='/analysis'>Analysis</button>
+                <button *ngIf='isChecked' id='main-nav-button' [ngClass]="{'selected': page==='summary'}" mat-button
+                    routerLink='/summary'>Summary</button>
+                <button *ngIf='isChecked' id='main-nav-button' [ngClass]="{'selected': page==='get_involved'}" mat-button
+                    routerLink='/get_involved'>Get Involved</button>
                 <button id='main-nav-button' [ngClass]="{'selected': page==='team'}" mat-button
                     routerLink='/team'>Team</button>
                 <button id='main-nav-button' [ngClass]="{'selected': page==='blog'}" mat-button
                     routerLink='/blog'>Blog</button>
-                <p id='main-nav-button' class='mat-button'>Public<mat-slide-toggle [(ngModel)]="isChecked"></mat-slide-toggle>Science</p>
+                <div class="mode">
+                  <div class="top">Site Mode</div>
+                  <div class="bottom">Personal <mat-slide-toggle [(ngModel)]="isChecked"></mat-slide-toggle> Geek</div>
+                </div>
+
             </div>
             <div id='primary-nav' *ngIf='!is_full'>
                 <button mat-button [matMenuTriggerFor]="menu">

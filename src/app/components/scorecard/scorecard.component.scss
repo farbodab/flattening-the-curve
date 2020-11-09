@@ -448,11 +448,11 @@
 }
 
 .table-container {
-    padding: 30px 0;
+  padding: 30px 0;
 }
 
 .table-styling {
-    padding: 16px 0 59px 0;
+    padding: 20px;
     width: 100%;
 }
 
@@ -475,16 +475,40 @@
 }
 
 .scorecard-header {
+  width: 639px;
+  height: 57px;
+  object-fit: contain;
+  font-family: OpenSans;
+  font-size: 42px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.36;
+  letter-spacing: normal;
+  text-align: left;
+  color: #707070;
+}
+
+.scorecard-header-two {
     font-size: 28px;
     line-height: 28px;
     text-align: center;
     color: #391F85;
+}
 
-    &.desktop-ontario-header span:hover {
-        font-weight: bold;
-        color: #391F85;
-        cursor: pointer;
-    }
+.scorecard-text{
+  width: 728px;
+  height: 24px;
+  object-fit: contain;
+  font-family: OpenSans;
+  font-size: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+  text-align: left;
+  color: #707070;
 }
 
 .container-divider-scorecard {
@@ -628,7 +652,7 @@
     height: 35px;
 }
 .black-cell {
-    background-color: #434241;
+    background-color: #275d6f;
     color: #ffffff;
 
     ::ng-deep {
@@ -676,7 +700,7 @@
 }
 
 .top-category {
-    background-color: #595959;
+    background-color: #275d6f;
     border-left: 1px solid #ffffff;
     border-right: 1px solid #ffffff;
     height: 75px;
@@ -1102,12 +1126,38 @@
 }
 
 .example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
+  min-width: 350px;
 
 }
 
 .example-full-width {
   width: 100%;
+}
+
+.side-bar{
+  min-width: 358px;
+  width: 25%;
+  margin-right: 30px;
+}
+
+.side-bar .item{
+  background-color: #e7edef;
+  padding: 30px;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.side-bar .heading {
+  color: #275d6f;
+  font-size: 20px;
+  font-family: Roboto;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.side-bar p {
+  margin-bottom: 50px;
+  color: #707070;
 }

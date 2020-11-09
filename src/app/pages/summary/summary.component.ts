@@ -15,6 +15,7 @@ import { filter } from 'rxjs/operators';
 })
 
 export class SummaryComponent implements OnInit {
+    @Input() hr_uid: any;
     data: any;
     epi: any;
     epi_recent: any;
@@ -239,6 +240,8 @@ export class SummaryComponent implements OnInit {
     }
 
     ngOnChanges() {
+      this.ngOnDestroy()
+      this.ngOnInit()
     }
 
     ngAfterViewInit() {
@@ -263,7 +266,7 @@ export class SummaryComponent implements OnInit {
     }
 
     fetchDataObj() {
-    this.fetch_subscribe = this.api_service.get_summary_obj(this.phuKeys[this.path]).subscribe(
+    this.fetch_subscribe = this.api_service.get_summary_obj(this.hr_uid).subscribe(
       (data: Array<any>) => {
         this.data = data;
         this.initDropdownForm(this.phuArray);
@@ -276,23 +279,6 @@ export class SummaryComponent implements OnInit {
         this.rt = data.filter(date => date["rt_ml"] != null)
         this.rt = this.rt[this.rt.length - 1]
         this.displayFooter = true;
-      },
-      error => {
-        this.data = 'error';
-      }
-    );
-    this.fetch_epi = this.api_service.get_epi_obj(this.phuKeys[this.path],-1).subscribe(
-      (data: Array<any>) => {
-        this.epi = data;
-        console.log(data)
-      },
-      error => {
-        this.data = 'error';
-      }
-    );
-    this.fetch_epi_recent = this.api_service.get_epi_obj(this.phuKeys[this.path],14).subscribe(
-      (data: Array<any>) => {
-        this.epi_recent = data;
       },
       error => {
         this.data = 'error';

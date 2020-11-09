@@ -19,6 +19,7 @@ import {AnalysisTestingComponent} from './pages/analysis/analysis.testing.compon
 import {AnalysisCapacityComponent} from './pages/analysis/analysis.capacity.component';
 import {DataComponent} from './pages/data/data.component';
 import { GridComponent } from './pages/grid/grid.component';
+
 import { ScorecardComponent } from './components/scorecard/scorecard.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TableComponent } from './components/table/table.component';

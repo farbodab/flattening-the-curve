@@ -20,7 +20,9 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
   @ViewChild('MailingList', { static: false }) mailingList: ElementRef;
   @ViewChildren('phuArray') scoreCardComponents: QueryList<any>;
 
+
   graph_data = null;
+  metric_collapse: boolean = true;
   ontario: any = "Ontario";
   italy: any = "Italy";
   southkorea: any = "South Korea";
@@ -40,6 +42,7 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
     rt: null,
     weekly: null,
     testing: null,
+    percent_positive: null,
     tracing: null,
     icu: null,
     stage: null
@@ -47,7 +50,6 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
   sortedMetrics: any[];
   dropdownSelection: FormGroup;
   myControl = new FormControl();
-
   phuArray = [
     {
         phu: 'Brant County Health Unit',
@@ -219,6 +221,9 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
         id: 3570
     }
 ];
+  selectedObject = [3595];
+  selectedPHU = null;
+  phuSelected = false;
 
   constructor(private host_service: HostService, private formBuilder: FormBuilder, private api_service: ApiService, private scrollIntoView: ViewportScroller) {
     this.refresh_layout(window.innerWidth);
@@ -237,6 +242,45 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.fetchDataObj();
     this.fetchRefreshTimes();
+  }
+
+  onClickMe() {
+  this.metric_collapse = !this.metric_collapse;
+  }
+
+  Checked(event, HR_UID) {
+    if (event) {
+      this.selectedObject.push(HR_UID)
+    }
+    else {
+      this.selectedObject = this.selectedObject.filter(item => item !== HR_UID)
+    }
+  }
+
+  ShowData(HR_UID){
+    if (this.phuSelected && this.selectedPHU == HR_UID) {
+      this.phuSelected = !this.phuSelected
+    }
+    else if (this.phuSelected && this.selectedPHU != HR_UID) {
+      this.selectedPHU = HR_UID
+    }
+    else {
+      this.phuSelected = !this.phuSelected
+      this.selectedPHU = HR_UID
+    }
+
+  }
+
+  Removed(HR_UID){
+    this.selectedObject = this.selectedObject.filter(item => item !== HR_UID)
+  }
+
+  Selected(HR_UID){
+    return this.selectedObject.includes(HR_UID);
+  }
+
+  filterItemsOfType(sortedMetrics){
+    return sortedMetrics.filter(item => this.selectedObject.includes(item.HR_UID))
   }
 
   fetchRefreshTimes() {
@@ -364,6 +408,7 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
         case 'rt': return this.compareData(a.rt_ml, b.rt_ml, 'number', isAscending);
         case 'new': return this.compareData(a.rolling_pop, b.rolling_pop, 'number', isAscending);
         case 'testing': return this.compareData(a.rolling_test_twenty_four, b.rolling_test_twenty_four, 'number', isAscending);
+        case 'percent_positive': return this.compareData(a.percent_positive, b.percent_positive, 'number', isAscending);
         case 'icu': return this.compareData(a.critical_care_pct, b.critical_care_pct, 'number', isAscending);
         case 'risk': return this.compareData(a.rolling_pop, b.rolling_pop, 'number', isAscending);
         default: return 0;
