@@ -27,6 +27,7 @@
       <h4>ICU Bed Capacity</h4>
       {{icu["critical_care_pct"] | percent  : '1.2-2'}} of ICU beds in {{cases["phu"]}} are currently occupied. There are currently {{icu["confirmed_positive"]}} COVID patients in the ICU.
       <app-graph [graph_data]='data' variable="critical_care_pct"></app-graph>
+
     </div>
   </div>
 </div>

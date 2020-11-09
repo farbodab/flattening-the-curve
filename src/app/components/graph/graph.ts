@@ -35,7 +35,7 @@ export class GraphComponent implements OnInit, OnChanges {
               mode: 'lines+points',
             },
         ],
-        layout: {width: '100%', height: '100%', title: this.title},
+        layout: {title: this.title, autosize: true},
         config: {
           displayModeBar: false,
         }

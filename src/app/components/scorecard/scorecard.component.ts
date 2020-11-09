@@ -7,6 +7,7 @@ import { ViewportScroller } from '@angular/common';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import * as moment from 'moment';
 import {FormControl} from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
 declare var tableau: any;
 
@@ -224,8 +225,9 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
   selectedObject = [3595];
   selectedPHU = null;
   phuSelected = false;
+  cookieValue: string;
 
-  constructor(private host_service: HostService, private formBuilder: FormBuilder, private api_service: ApiService, private scrollIntoView: ViewportScroller) {
+  constructor(private host_service: HostService, private formBuilder: FormBuilder, private api_service: ApiService, private scrollIntoView: ViewportScroller, private cookieService: CookieService) {
     this.refresh_layout(window.innerWidth);
   }
 
@@ -237,6 +239,12 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
     this.dropdownSelection = this.formBuilder.group({});
     this.dropdownSelection.addControl('phu', this.formBuilder.control(''));
     this.dropdownSelection.addControl('searchCtrl', this.formBuilder.control(''));
+
+    if (this.cookieService.get('myregions')){
+      this.selectedObject = this.cookieService.get('myregions').split(",").map((i) => Number(i));
+    }
+    console.log(this.selectedObject)
+
   }
 
   ngAfterViewInit() {
@@ -255,6 +263,7 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
     else {
       this.selectedObject = this.selectedObject.filter(item => item !== HR_UID)
     }
+    this.cookieService.set('myregions', this.selectedObject.toString())
   }
 
   ShowData(HR_UID){
@@ -273,6 +282,7 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
 
   Removed(HR_UID){
     this.selectedObject = this.selectedObject.filter(item => item !== HR_UID)
+    this.cookieService.set('myregions', this.selectedObject)
   }
 
   Selected(HR_UID){

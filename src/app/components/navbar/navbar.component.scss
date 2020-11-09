@@ -17,7 +17,6 @@ mat-toolbar {
 }
 
 .nav-title {
-  width: 307px;
   height: 40px;
   object-fit: contain;
   font-size: 31px;
@@ -138,4 +137,10 @@ mat-toolbar {
 
 .mat-toolbar-row, .mat-toolbar-single-row {
     height: 121px;
+}
+
+.logo-styling-home-mobile{
+  height: 75px;
+  width: 75px;
+  margin-left: 10px;
 }

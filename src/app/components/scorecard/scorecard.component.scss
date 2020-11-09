@@ -475,8 +475,6 @@
 }
 
 .scorecard-header {
-  width: 639px;
-  height: 57px;
   object-fit: contain;
   font-family: OpenSans;
   font-size: 42px;
@@ -487,6 +485,8 @@
   letter-spacing: normal;
   text-align: left;
   color: #707070;
+  text-align: center;
+  margin-bottom: 0;
 }
 
 .scorecard-header-two {
@@ -497,8 +497,6 @@
 }
 
 .scorecard-text{
-  width: 728px;
-  height: 24px;
   object-fit: contain;
   font-family: OpenSans;
   font-size: 18px;
@@ -509,6 +507,8 @@
   letter-spacing: normal;
   text-align: left;
   color: #707070;
+  text-align: center;
+  margin-top: 0;
 }
 
 .container-divider-scorecard {
@@ -1147,7 +1147,14 @@
   margin-bottom: 30px;
 }
 
-.side-bar .heading {
+.item-mobile{
+  background-color: #e7edef;
+  padding: 30px;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.item .heading {
   color: #275d6f;
   font-size: 20px;
   font-family: Roboto;
@@ -1157,7 +1164,24 @@
   flex-direction: row;
 }
 
-.side-bar p {
+.item p {
   margin-bottom: 50px;
   color: #707070;
+}
+
+.right-bar{
+  max-width: 90%;
+  margin: 10px;
+}
+
+.table-styling-mobile{
+  overflow: scroll;
+  max-width: 100%;
+
+}
+
+table.top-table tr:hover td {
+  background: #275d6f !important;
+  color: white;
+  cursor: pointer;
 }
