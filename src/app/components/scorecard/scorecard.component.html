@@ -111,7 +111,7 @@
                           <td [ngClass]="{'black-cell': row.weekly === 'nan', 'green-cell': row.rolling_pop < 1, 'yellow-cell': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-cell': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-cell': 10 < row.rolling_pop}"
                               class="cell-border center-cell"
                               [ngClass]="{'active-row': row.HR_UID == selectedPHU}">
-                              {{row.rolling_pop === null ? 'N/A' : (row.rolling_pop >= 10 ? 'Red' : (row.rolling_pop >= 5 ? 'Orange' : (row.rolling_pop >= 1 ? 'Yellow': 'Green')))}}</td>
+                              {{row.rolling_pop === null ? 'N/A' : (row.rolling_pop >= 10 ? 'Curving up Dangerously' : (row.rolling_pop >= 5 ? 'Curving Up Quickly' : (row.rolling_pop >= 1 ? 'Curving Up Somewhat': 'Curving Down')))}}</td>
                           <div (click)="Removed(row.HR_UID)"><span class="material-icons">clear</span></div>
                       </tr>
                   </table>
@@ -198,7 +198,7 @@
                               {{row.critical_care_pct === null ? 'N/A' : row.critical_care_pct | percent}}</td>
                           <td [ngClass]="{'black-cell': row.weekly === 'nan', 'green-cell': row.rolling_pop < 1, 'yellow-cell': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-cell': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-cell': 10 < row.rolling_pop}"
                               class="cell-border center-cell">
-                              {{row.rolling_pop === null ? 'N/A' : (row.rolling_pop >= 10 ? 'Red' : (row.rolling_pop >= 5 ? 'Orange' : (row.rolling_pop >= 1 ? 'Yellow': 'Green')))}}</td>
+                              {{row.rolling_pop === null ? 'N/A' : (row.rolling_pop >= 10 ? 'Curving up Dangerously' : (row.rolling_pop >= 5 ? 'Curving Up Quickly' : (row.rolling_pop >= 1 ? 'Curving Up Somewhat': 'Curving Down')))}}</td>
                           <mat-checkbox value={{row.HR_UID}} (change)="Checked($event.checked, row.HR_UID)" [checked]="Selected(row.HR_UID)"></mat-checkbox>
                       </tr>
                   </table>
@@ -370,7 +370,7 @@
                               <div style="display: flex;"><div (click)="Removed(row.HR_UID)"><span class="material-icons">clear</span></div>{{row.phu}}</div></td>
                           <td [ngClass]="{'black-cell': row.weekly === 'nan', 'green-cell': row.rolling_pop < 1, 'yellow-cell': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-cell': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-cell': 10 < row.rolling_pop}"
                                   class="cell-border center-cell">
-                                  {{row.rolling_pop === null ? 'N/A' : (row.rolling_pop >= 10 ? 'Red' : (row.rolling_pop >= 5 ? 'Orange' : (row.rolling_pop >= 1 ? 'Yellow': 'Green')))}}</td>
+                                  {{row.rolling_pop === null ? 'N/A' : (row.rolling_pop >= 10 ? 'Curving up Dangerously' : (row.rolling_pop >= 5 ? 'Curving Up Quickly' : (row.rolling_pop >= 1 ? 'Curving Up Somewhat': 'Curving Down')))}}</td>
                           <td [title]="row.weekly === 'nan'? 'Cannot calculate due to insufficient data': ''"
                               class="cell-border">
                               <mat-icon
@@ -480,7 +480,7 @@
                               <mat-checkbox value={{row.HR_UID}} (change)="Checked($event.checked, row.HR_UID)" [checked]="Selected(row.HR_UID)"></mat-checkbox> {{row.phu}}</td>
                               <td [ngClass]="{'black-cell': row.weekly === 'nan', 'green-cell': row.rolling_pop < 1, 'yellow-cell': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-cell': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-cell': 10 < row.rolling_pop}"
                                   class="cell-border center-cell">
-                                  {{row.rolling_pop === null ? 'N/A' : (row.rolling_pop >= 10 ? 'Red' : (row.rolling_pop >= 5 ? 'Orange' : (row.rolling_pop >= 1 ? 'Yellow': 'Green')))}}</td>
+                                  {{row.rolling_pop === null ? 'N/A' : (row.rolling_pop >= 10 ? 'Curving up Dangerously' : (row.rolling_pop >= 5 ? 'Curving Up Quickly' : (row.rolling_pop >= 1 ? 'Curving Up Somewhat': 'Curving Down')))}}</td>
                           <td [title]="row.weekly === 'nan'? 'Cannot calculate due to insufficient data': ''"
                               class="cell-border">
                               <mat-icon
