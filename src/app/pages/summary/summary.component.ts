@@ -16,6 +16,7 @@ import { filter } from 'rxjs/operators';
 
 export class SummaryComponent implements OnInit {
     @Input() hr_uid: any;
+    @Input() GoBack: any;
     data: any;
     epi: any;
     epi_recent: any;
@@ -23,6 +24,7 @@ export class SummaryComponent implements OnInit {
     icu: any;
     testing: any;
     rt: any;
+    percent_positive: any;
     is_full = true;
     displayFooter: any;
     urlSegments: any;
@@ -269,6 +271,7 @@ export class SummaryComponent implements OnInit {
     this.fetch_subscribe = this.api_service.get_summary_obj(this.hr_uid).subscribe(
       (data: Array<any>) => {
         this.data = data;
+        console.log(data)
         this.initDropdownForm(this.phuArray);
         this.cases = data.filter(date => date["rolling_pop"] != null)
         this.cases = this.cases[this.cases.length - 1]
@@ -278,6 +281,8 @@ export class SummaryComponent implements OnInit {
         this.testing = this.testing[this.testing.length - 1]
         this.rt = data.filter(date => date["rt_ml"] != null)
         this.rt = this.rt[this.rt.length - 1]
+        this.percent_positive = data.filter(date => date["% Positivity"] != null)
+        this.percent_positive = this.percent_positive[this.percent_positive.length - 1]
         this.displayFooter = true;
       },
       error => {

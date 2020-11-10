@@ -269,6 +269,7 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
   ShowData(HR_UID){
     if (this.phuSelected && this.selectedPHU == HR_UID) {
       this.phuSelected = !this.phuSelected
+      this.selectedPHU = null
     }
     else if (this.phuSelected && this.selectedPHU != HR_UID) {
       this.selectedPHU = HR_UID
@@ -277,7 +278,15 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
       this.phuSelected = !this.phuSelected
       this.selectedPHU = HR_UID
     }
+    console.log(HR_UID)
+    console.log(this.selectedPHU)
 
+  }
+
+  GoBack(){
+    this.phuSelected = false
+    this.selectedPHU = null
+    console.log('triggered')
   }
 
   Removed(HR_UID){

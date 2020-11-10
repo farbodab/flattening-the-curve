@@ -357,6 +357,7 @@
     border-color: #391F85;
 }
 
+
 .home-page-button.mail-btn {
     width: 170px;
 }
@@ -1184,4 +1185,18 @@ table.top-table tr:hover td {
   background: #275d6f !important;
   color: white;
   cursor: pointer;
+}
+
+.active-row{
+  background: #275d6f !important;
+  color: white;
+  cursor: pointer;
+}
+
+.item img {
+  max-width: 15%;
+}
+
+.row-styling td {
+  padding-left: 15px;
 }

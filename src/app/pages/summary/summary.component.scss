@@ -24,3 +24,12 @@ table, th, td {
 li {
   margin-top: 10px;
 }
+
+.each{
+  padding-top: 30px;
+  padding-bottom: 30px;
+  display:flex;
+  min-height:500px;
+  border-bottom:1px black solid;
+  justify-content: space-between;
+}

@@ -3,9 +3,9 @@ mat-toolbar {
 }
 
 .logo-styling-home {
-  height: 149px;
-  width: 151px;
-  margin-top: 8px;
+  height: 125px;
+  width: 125px;
+  margin-top: 30px;
 }
 
 .desktop-nav{
@@ -87,7 +87,7 @@ mat-toolbar {
   }
 
   .mat-toolbar-row {
-    padding: 0 16px 0 32px !important;
+    padding: 30px !important;
   }
 }
 
@@ -103,7 +103,7 @@ mat-toolbar {
     }
 
       .mat-toolbar-row, .mat-toolbar-single-row {
-          padding: 0 !important;
+          // padding: 0 !important;
           background-color: #ffffff;
       }
 
