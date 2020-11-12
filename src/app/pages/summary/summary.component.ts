@@ -326,6 +326,10 @@ export class SummaryComponent implements OnInit {
       this.averageForm.controls[controlName].setValue(view);
     }
 
+    top (){
+      window.scroll(0,0);
+    }
+
   private refresh_layout(width) {
   this.is_full = window.innerWidth >= 1024 ? true : false;
   }

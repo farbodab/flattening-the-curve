@@ -14,7 +14,7 @@ declare var tableau: any;
 @Component({
   selector: 'app-scorecard',
   templateUrl: './scorecard.component.html',
-  styleUrls: ['./scorecard.component.scss']
+  styleUrls: ['./scorecard.component.scss'],
 })
 export class ScorecardComponent implements OnInit, AfterViewInit {
 
@@ -243,6 +243,7 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
     if (this.cookieService.get('myregions')){
       this.selectedObject = this.cookieService.get('myregions').split(",").map((i) => Number(i));
     }
+    this.theBoundCallback = this.ShowData.bind(this);
     console.log(this.selectedObject)
 
   }
@@ -263,10 +264,15 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
     else {
       this.selectedObject = this.selectedObject.filter(item => item !== HR_UID)
     }
-    this.cookieService.set('myregions', this.selectedObject.toString())
+    this.cookieService.set('myregions', this.selectedObject.toString(), 365)
   }
 
-  ShowData(HR_UID){
+  onMapSelect(HR_UID) {
+    this.phuSelected = true
+    this.selectedPHU = HR_UID
+  }
+
+  public ShowData(HR_UID){
     if (this.phuSelected && this.selectedPHU == HR_UID) {
       this.phuSelected = !this.phuSelected
       this.selectedPHU = null
@@ -291,7 +297,7 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
 
   Removed(HR_UID){
     this.selectedObject = this.selectedObject.filter(item => item !== HR_UID)
-    this.cookieService.set('myregions', this.selectedObject.toString())
+    this.cookieService.set('myregions', this.selectedObject.toString(),365)
   }
 
   Selected(HR_UID){

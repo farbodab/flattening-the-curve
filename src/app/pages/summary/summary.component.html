@@ -5,7 +5,7 @@
   </div>
   <div *ngIf="data" style="padding: 35px;">
     <div *ngIf='cases'>
-      <h1 style="color: #275d6f"><span routerLink="/" style="font-size: 30px;color: black" class="material-icons">keyboard_backspace</span>{{cases["phu"]}}</h1>
+      <h1 style="color: #275d6f"><span (click)="top()" routerLink="/" style="font-size: 30px;color: black" class="material-icons">keyboard_backspace</span>{{cases["phu"]}}</h1>
     </div>
     <div *ngIf='cases' class="each" [ngStyle]="{'flex-direction': is_full ? 'row' : 'column'}">
       <div [ngStyle]="{'width': is_full ? '25%' : '100%'}">

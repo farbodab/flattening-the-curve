@@ -9,7 +9,7 @@
               <div *ngIf=metric_collapse>
                 <p>
                   <img src='assets/img/scorecard/Indicators - Case Incidence.svg'>
-                  <span class="heading">Case Incidence</span>
+                  <span class="heading">Case Incidence (Per 100,000 People)</span>
                   <span>
                   The seven day rolling average of daily new cases in a public health unit
                   </span>
@@ -62,8 +62,8 @@
                           <th class="top-category">Risk Levels</th>
                       </tr>
                       <tr>
-                          <th mat-sort-header="phu" class="first-col-styling header-styling black-cell">PHU</th>
-                          <th mat-sort-header="new" class="header-styling black-cell">Case Incidence</th>
+                          <th mat-sort-header="phu" class="first-col-styling header-styling black-cell">Public Health Unit</th>
+                          <th mat-sort-header="new" class="header-styling black-cell">Case Incidence (Per 100,000 People)</th>
                           <th mat-sort-header="rt" class="header-styling black-cell">Rt</th>
                           <th mat-sort-header="testing" class="header-styling black-cell">% of Tests Back in Less than 24 hrs</th>
                           <th mat-sort-header="percent_positive" class="header-styling black-cell">Percent Positivity</th>
@@ -119,7 +119,7 @@
                 <div *ngIf="!phuSelected">
                   <div class='row' style="padding: 35px;">
                     <app-thermometer> </app-thermometer>
-                    <app-map [data]=metricJsonObj> </app-map>
+                    <app-map (selected)="onMapSelect($event)" [data]=metricJsonObj> </app-map>
                   </div>
                   <div style="display:flex;align-items: center;justify-content: space-between;padding: 35px;">
                     <form class="example-form">
@@ -140,7 +140,7 @@
                     </form>
                     <div style="display:flex;color:#275d6f;font-weight:bold;">Click <span class="material-icons">check_box_outline_blank</span> To Add To My Regions</div>
                   </div>
-                  <div class="scorecard-header-two">Metrics by Public Health Unit (PHU)</div>
+                  <div class="scorecard-header-two">Metrics by Public Health Unit</div>
                   <div>
                       <mat-progress-spinner class="spinner-styling" mode="indeterminate" diameter="50"
                           *ngIf="!sortedMetrics">
@@ -155,8 +155,8 @@
                           <th class="top-category">Risk Levels</th>
                       </tr>
                       <tr>
-                          <th mat-sort-header="phu" class="first-col-styling header-styling black-cell">PHU</th>
-                          <th mat-sort-header="new" class="header-styling black-cell">Case Incidence</th>
+                          <th mat-sort-header="phu" class="first-col-styling header-styling black-cell">Public Health Unit</th>
+                          <th mat-sort-header="new" class="header-styling black-cell">Case Incidence (Per 100,000 People)</th>
                           <th mat-sort-header="rt" class="header-styling black-cell">Rt</th>
                           <th mat-sort-header="testing" class="header-styling black-cell">% of Tests Back in Less than 24 hrs</th>
                           <th mat-sort-header="percent_positive" class="header-styling black-cell">Percent Positivity</th>
@@ -214,11 +214,11 @@
                                   <th class="header-styling black-cell">Red</th>
                               </tr>
                               <tr class="row-styling">
-                                  <td class="cell-border center-cell alternate-row">Case Incidence</td>
+                                  <td class="cell-border center-cell alternate-row">Case Incidence (Per 100,000 People)</td>
                                   <td class="cell-border center-cell green-cell"><strong>&lt;</strong> 1</td>
-                                  <td class="cell-border center-cell yellow-cell">1 <strong>&le;</strong> Case Incidence
+                                  <td class="cell-border center-cell yellow-cell">1 <strong>&le;</strong> Case Incidence (Per 100,000 People)
                                       <strong>&lt;</strong> 5</td>
-                                  <td class="cell-border center-cell orange-cell">5 <strong>&le;</strong> Case Incidence
+                                  <td class="cell-border center-cell orange-cell">5 <strong>&le;</strong> Case Incidence (Per 100,000 People)
                                       <strong>&lt;</strong> 10</td>
                                   <td class="cell-border no-right-border center-cell red-cell"><strong>&gt;</strong> 10</td>
                               </tr>
@@ -268,7 +268,7 @@
                           <mat-list role="list" class="metric-explanation-list">
                               <mat-list-item role="listitem" class="data-item">
                                   <div class="metric-height">
-                                      <span class="data-source-title">1. Case Incidence:</span> Calculated using case
+                                      <span class="data-source-title">1. Case Incidence (Per 100,000 People):</span> Calculated using case
                                       reported date. Data from Confirmed positive
                                       cases of
                                       COVID19 in Ontario from
@@ -355,9 +355,9 @@
                           <th class="top-category">Response Capacity</th>
                       </tr>
                       <tr>
-                          <th mat-sort-header="phu" class="first-col-styling header-styling black-cell">PHU</th>
+                          <th mat-sort-header="phu" class="first-col-styling header-styling black-cell">Public Health Unit</th>
                           <th mat-sort-header="risk" class="header-styling black-cell">Risk</th>
-                          <th mat-sort-header="new" class="header-styling black-cell">Case Incidence</th>
+                          <th mat-sort-header="new" class="header-styling black-cell">Case Incidence (Per 100,000 People)</th>
                           <th mat-sort-header="rt" class="header-styling black-cell">Rt</th>
                           <th mat-sort-header="testing" class="header-styling black-cell">% of Tests Back in Less than 24 hrs</th>
                           <th mat-sort-header="percent_positive" class="header-styling black-cell">Percent Positivity</th>
@@ -409,8 +409,8 @@
                 </div>
                 <div *ngIf=metric_collapse>
                   <p>
-                    <img src='assets/img/scorecard/Indicators - Case Incidence.svg'>
-                    <span class="heading">Case Incidence</span>
+                    <img src='assets/img/scorecard/Indicators - Case Incidence (Per 100,000 People).svg'>
+                    <span class="heading">Case Incidence (Per 100,000 People)</span>
                     <span>
                     The seven day rolling average of daily new cases in a public health unit
                     </span>
@@ -447,9 +447,9 @@
               </div>
               <div class='row' style="padding: 35px;">
                 <app-thermometer> </app-thermometer>
-                <app-map [data]=metricJsonObj> </app-map>
+                <app-map (selected)="onMapSelect($event)" [data]=metricJsonObj> </app-map>
               </div>
-                <div class="scorecard-header">Metrics by PHU</div>
+                <div class="scorecard-header">Metrics by Public Health Unit</div>
                 <div>
                     <mat-progress-spinner class="spinner-styling" mode="indeterminate" diameter="50"
                         *ngIf="!sortedMetrics">
@@ -465,9 +465,9 @@
                           <th class="top-category">Response Capacity</th>
                       </tr>
                       <tr>
-                          <th mat-sort-header="phu" class="first-col-styling header-styling black-cell">PHU</th>
+                          <th mat-sort-header="phu" class="first-col-styling header-styling black-cell">Public Health Unit</th>
                           <th mat-sort-header="risk" class="header-styling black-cell">Risk</th>
-                          <th mat-sort-header="new" class="header-styling black-cell">Case Incidence</th>
+                          <th mat-sort-header="new" class="header-styling black-cell">Case Incidence (Per 100,000 People)</th>
                           <th mat-sort-header="rt" class="header-styling black-cell">Rt</th>
                           <th mat-sort-header="testing" class="header-styling black-cell">% of Tests Back in Less than 24 hrs</th>
                           <th mat-sort-header="percent_positive" class="header-styling black-cell">Percent Positivity</th>
