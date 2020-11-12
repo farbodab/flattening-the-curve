@@ -243,8 +243,6 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
     if (this.cookieService.get('myregions')){
       this.selectedObject = this.cookieService.get('myregions').split(",").map((i) => Number(i));
     }
-    this.theBoundCallback = this.ShowData.bind(this);
-    console.log(this.selectedObject)
 
   }
 
