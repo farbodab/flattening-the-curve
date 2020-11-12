@@ -18,7 +18,8 @@ export class GraphComponent implements OnInit, OnChanges {
   @Input() line_green: any;
   @Input() line_yellow: any;
   @Input() line_orange: any;
-  
+  @Input() image: any;
+
   graph = null;
 
   ngOnInit() {
@@ -40,7 +41,18 @@ export class GraphComponent implements OnInit, OnChanges {
               mode: 'lines+points',
             },
         ],
-        layout: {title: this.title, autosize: true, annotations: [
+        layout: {title: this.title, autosize: true, images: [
+          {
+            x: 0,
+            y: 1,
+            sizex: 1,
+            sizey: 1,
+            source: `assets/img/graphs/${this.image}.svg`,
+            xref: "paper",
+            yref: "paper",
+            sizing: "stretch",
+            "opacity": 0.5,
+          },],annotations: [
     {
       x: 1,
       y: this.text_green,
@@ -78,8 +90,7 @@ export class GraphComponent implements OnInit, OnChanges {
 
 
 
-
-  ],shapes: [
+],shapes: [
                 {
                       type: 'line',
                       xref: 'paper',

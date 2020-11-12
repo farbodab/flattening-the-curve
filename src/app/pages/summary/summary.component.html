@@ -14,7 +14,7 @@
         <p></p>
         Over the last week, {{cases["phu"]}} has averaged {{cases["rolling"] | number : '1.2-2' }} cases per day ({{cases["rolling_pop"] | number : '1.2-2'}} for every 100,000 residents).
       </div>
-      <app-graph [line_green]='1' [line_yellow]='5' [line_orange]='10' [text_green]='0.5' [text_yellow]='2.5' [text_orange]='7' [text_red]='12' [graph_data]='data' variable="rolling_pop"></app-graph>
+      <app-graph [image]="'NewCases_Colours'" [line_green]='1' [line_yellow]='5' [line_orange]='10' [text_green]='0.5' [text_yellow]='2.5' [text_orange]='7' [text_red]='12' [graph_data]='data' variable="rolling_pop"></app-graph>
     </div>
     <div *ngIf='rt' class="each" [ngStyle]="{'flex-direction': is_full ? 'row' : 'column'}">
       <div [ngStyle]="{'width': is_full ? '25%' : '100%'}">
@@ -22,7 +22,7 @@
         <h4>Infection Rate (Rt)<br/><span style="color:#707070;font-size:12px;">{{rt["phu"]}}<br/>Last Data on {{rt["date"] | date}}</span></h4>
         On average, each person in {{rt["phu"]}} with COVID is infecting {{rt["rt_ml"] | number : '1.2-2'}} other people.
       </div>
-      <app-graph [line_green]='0.9' [line_yellow]='1.1' [line_orange]='1.4' [text_green]='0.8' [text_yellow]='1' [text_orange]='1.2' [text_red]='1.5' [graph_data]='data' variable="rt_ml"></app-graph>
+      <app-graph [image]='InfectionRate_Colours' [line_green]='0.9' [line_yellow]='1.1' [line_orange]='1.4' [text_green]='0.8' [text_yellow]='1' [text_orange]='1.2' [text_red]='1.5' [graph_data]='data' variable="rt_ml"></app-graph>
     </div>
     <div *ngIf='testing' class="each" [ngStyle]="{'flex-direction': is_full ? 'row' : 'column'}">
       <div [ngStyle]="{'width': is_full ? '25%' : '100%'}">
@@ -30,7 +30,7 @@
         <h4>Testing Capacity<br/><span style="color:#707070;font-size:12px;">{{testing["phu"]}}<br/>Last Data on {{testing["date"] | date}}</span></h4>
         In the last 7 days, on average {{testing["rolling_test_twenty_four"] | percent : '1.2-2'}} of tests have been returned within 24 hours.
       </div>
-      <app-graph [line_green]='0.9' [line_yellow]='0.7' [line_orange]='0.5' [text_green]='0.95' [text_yellow]='0.8' [text_orange]='0.6' [text_red]='0.4' [graph_data]='data' variable="rolling_test_twenty_four"></app-graph>
+      <app-graph [image]="'TestingCapacity_Colours' "[line_green]='0.9' [line_yellow]='0.7' [line_orange]='0.5' [text_green]='0.95' [text_yellow]='0.8' [text_orange]='0.6' [text_red]='0.4' [graph_data]='data' variable="rolling_test_twenty_four"></app-graph>
     </div>
 
     <div *ngIf='percent_positive' class="each" [ngStyle]="{'flex-direction': is_full ? 'row' : 'column'}">
@@ -40,7 +40,7 @@
         <p>
         From Monday to Sunday, the percent positivity of {{percent_positive["phu"] }} has been {{percent_positive["% Positivity"]}}%.
       </div>
-      <app-graph [line_green]='3' [line_yellow]='5' [line_orange]='10' [text_green]='2' [text_yellow]='4' [text_orange]='7' [text_red]='12' [graph_data]='data' variable="% Positivity"></app-graph>
+      <app-graph [image]="'PercentPositivity_Colours'" [line_green]='3' [line_yellow]='5' [line_orange]='10' [text_green]='2' [text_yellow]='4' [text_orange]='7' [text_red]='12' [graph_data]='data' variable="% Positivity"></app-graph>
     </div>
 
     <div *ngIf='icu' class="each" [ngStyle]="{'flex-direction': is_full ? 'row' : 'column'}">
@@ -49,7 +49,7 @@
         <h4>ICU Bed Capacity<br/><span style="color:#707070;font-size:12px;">{{icu["phu"]}}<br/>Last Data on {{icu["date"] | date}}</span></h4>
         {{icu["critical_care_pct"] | percent  : '1.2-2'}} of ICU beds in {{icu["phu"]}} are currently occupied. There are currently {{icu["confirmed_positive"]}} COVID patients in the ICU.
       </div>
-      <app-graph [line_green]='0.6' [line_yellow]='0.8' [line_orange]='0.9' [text_green]='0.5' [text_yellow]='0.7' [text_orange]='0.85' [text_red]='0.95' [graph_data]='data' variable="critical_care_pct"></app-graph>
+      <app-graph [image]="'ICUBed-Capacity_Colours'" [line_green]='0.6' [line_yellow]='0.8' [line_orange]='0.9' [text_green]='0.5' [text_yellow]='0.7' [text_orange]='0.85' [text_red]='0.95' [graph_data]='data' variable="critical_care_pct"></app-graph>
     </div>
   </div>
 </div>
