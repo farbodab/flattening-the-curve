@@ -22,7 +22,7 @@
         <h4>Infection Rate (Rt)<br/><span style="color:#707070;font-size:12px;">{{rt["phu"]}}<br/>Last Data on {{rt["date"] | date}}</span></h4>
         On average, each person in {{rt["phu"]}} with COVID is infecting {{rt["rt_ml"] | number : '1.2-2'}} other people.
       </div>
-      <app-graph [image]='InfectionRate_Colours' [line_green]='0.9' [line_yellow]='1.1' [line_orange]='1.4' [text_green]='0.8' [text_yellow]='1' [text_orange]='1.2' [text_red]='1.5' [graph_data]='data' variable="rt_ml"></app-graph>
+      <app-graph [image]='"InfectionRate_Colours"' [line_green]='0.9' [line_yellow]='1.1' [line_orange]='1.4' [text_green]='0.8' [text_yellow]='1' [text_orange]='1.2' [text_red]='1.5' [graph_data]='data' variable="rt_ml"></app-graph>
     </div>
     <div *ngIf='testing' class="each" [ngStyle]="{'flex-direction': is_full ? 'row' : 'column'}">
       <div [ngStyle]="{'width': is_full ? '25%' : '100%'}">
