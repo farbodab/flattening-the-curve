@@ -477,7 +477,6 @@
 
 .scorecard-header {
   object-fit: contain;
-  font-family: OpenSans;
   font-size: 42px;
   font-weight: normal;
   font-stretch: normal;
@@ -499,7 +498,6 @@
 
 .scorecard-text{
   object-fit: contain;
-  font-family: OpenSans;
   font-size: 18px;
   font-weight: normal;
   font-stretch: normal;
@@ -1175,10 +1173,9 @@
   margin: 10px;
 }
 
-.table-styling-mobile{
+.table-styling-mobile {
   overflow: scroll;
   max-width: 100%;
-
 }
 
 table.top-table tr:hover td {
@@ -1203,4 +1200,8 @@ table.top-table tr:hover td {
 
 p {
   font-size: 14px;
+}
+
+.material-icons:hover{
+  color: red;
 }

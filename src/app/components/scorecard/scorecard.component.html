@@ -3,8 +3,8 @@
         <div style="display:flex">
           <div *ngIf="is_full" class="side-bar">
             <div class="item">
-              <div class="heading" (click)="onClickMe()" >
-                Understanding the Indicators <span class="material-icons" *ngIf=!metric_collapse style="font-size: 40px;color: #275d6f;margin-left: 30px;">keyboard_arrow_down</span><span (click)="onClickMe()" class="material-icons" *ngIf=metric_collapse style="font-size: 40px;color: #275d6f;margin-left: 30px;">keyboard_arrow_up</span>
+              <div class="heading">
+                Understanding the Indicators <span (click)="onClickMe()" class="material-icons" *ngIf=!metric_collapse style="font-size: 40px;color: #275d6f;margin-left: 30px;">keyboard_arrow_down</span><span (click)="onClickMe()" class="material-icons" *ngIf=metric_collapse style="font-size: 40px;color: #275d6f;margin-left: 30px;">keyboard_arrow_up</span>
               </div>
               <div *ngIf=metric_collapse>
                 <p>
@@ -109,7 +109,7 @@
                               [ngClass]="{'green-icon': row.critical_care_pct < 0.6, 'yellow-icon': 0.6 <= row.critical_care_pct && row.critical_care_pct < 0.8, 'orange-icon': 0.8 <= row.critical_care_pct && row.critical_care_pct < 0.9, 'red-icon': 0.9 <= row.critical_care_pct}">fiber_manual_record</mat-icon>
                               {{row.critical_care_pct === null ? 'N/A' : row.critical_care_pct | percent}}</td>
                           <td [ngClass]="{'black-cell': row.weekly === 'nan', 'green-cell': row.rolling_pop < 1, 'yellow-cell': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-cell': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-cell': 10 < row.rolling_pop}"
-                              class="cell-border center-cell"
+                              class="cell-border"
                               [ngClass]="{'active-row': row.HR_UID == selectedPHU}">
                               {{row.rolling_pop === null ? 'N/A' : (row.rolling_pop >= 10 ? 'Curving up Dangerously' : (row.rolling_pop >= 5 ? 'Curving Up Quickly' : (row.rolling_pop >= 1 ? 'Curving Up Somewhat': 'Curving Down')))}}</td>
                           <div (click)="Removed(row.HR_UID)"><span class="material-icons">clear</span></div>
@@ -197,7 +197,7 @@
                               [ngClass]="{'green-icon': row.critical_care_pct < 0.6, 'yellow-icon': 0.6 <= row.critical_care_pct && row.critical_care_pct < 0.8, 'orange-icon': 0.8 <= row.critical_care_pct && row.critical_care_pct < 0.9, 'red-icon': 0.9 <= row.critical_care_pct}">fiber_manual_record</mat-icon>
                               {{row.critical_care_pct === null ? 'N/A' : row.critical_care_pct | percent}}</td>
                           <td [ngClass]="{'black-cell': row.weekly === 'nan', 'green-cell': row.rolling_pop < 1, 'yellow-cell': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-cell': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-cell': 10 < row.rolling_pop}"
-                              class="cell-border center-cell">
+                              class="cell-border">
                               {{row.rolling_pop === null ? 'N/A' : (row.rolling_pop >= 10 ? 'Curving up Dangerously' : (row.rolling_pop >= 5 ? 'Curving Up Quickly' : (row.rolling_pop >= 1 ? 'Curving Up Somewhat': 'Curving Down')))}}</td>
                           <mat-checkbox value={{row.HR_UID}} (change)="Checked($event.checked, row.HR_UID)" [checked]="Selected(row.HR_UID)"></mat-checkbox>
                       </tr>
@@ -404,8 +404,8 @@
               </div>
               <div *ngIf="!phuSelected">
               <div class="item-mobile item" style="margin-top: 30px">
-                <div class="heading" (click)="onClickMe()" >
-                  Understanding the Indicators <span class="material-icons" *ngIf=!metric_collapse style="font-size: 40px;color: #275d6f;margin-left: 30px;">keyboard_arrow_down</span><span (click)="onClickMe()" class="material-icons" *ngIf=metric_collapse style="font-size: 40px;color: #275d6f;margin-left: 30px;">keyboard_arrow_up</span>
+                <div class="heading">
+                  Understanding the Indicators <span (click)="onClickMe()" class="material-icons" *ngIf=!metric_collapse style="font-size: 40px;color: #275d6f;margin-left: 30px;">keyboard_arrow_down</span><span (click)="onClickMe()" class="material-icons" *ngIf=metric_collapse style="font-size: 40px;color: #275d6f;margin-left: 30px;">keyboard_arrow_up</span>
                 </div>
                 <div *ngIf=metric_collapse>
                   <p>
