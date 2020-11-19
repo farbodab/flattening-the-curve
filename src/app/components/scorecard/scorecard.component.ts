@@ -8,6 +8,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import * as moment from 'moment';
 import {FormControl} from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 declare var tableau: any;
 
@@ -227,7 +228,7 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
   phuSelected = false;
   cookieValue: string;
 
-  constructor(private host_service: HostService, private formBuilder: FormBuilder, private api_service: ApiService, private scrollIntoView: ViewportScroller, private cookieService: CookieService) {
+  constructor(private host_service: HostService, private formBuilder: FormBuilder, private api_service: ApiService, private scrollIntoView: ViewportScroller, private cookieService: CookieService, private _snackBar: MatSnackBar) {
     this.refresh_layout(window.innerWidth);
   }
 
@@ -246,6 +247,13 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
 
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+      verticalPosition: 'top'
+    });
+  }
+
   ngAfterViewInit() {
     this.fetchDataObj();
     this.fetchRefreshTimes();
@@ -258,9 +266,11 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
   Checked(event, HR_UID) {
     if (event) {
       this.selectedObject.push(HR_UID)
+      this.openSnackBar('Region added to my regions up top', 'Dismiss')
     }
     else {
       this.selectedObject = this.selectedObject.filter(item => item !== HR_UID)
+      this.openSnackBar('Region removed from my regions', 'Dismiss')
     }
     this.cookieService.set('myregions', this.selectedObject.toString(), 365)
   }
@@ -290,7 +300,6 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
   GoBack(){
     this.phuSelected = false
     this.selectedPHU = null
-    console.log('triggered')
   }
 
   Removed(HR_UID){

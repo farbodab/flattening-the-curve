@@ -64,6 +64,7 @@ import { PlotlyViaCDNModule } from 'angular-plotly.js';
 import { MainPipe } from './pipe/pipe.module';
 import { AppConfigService } from './providers/app-config.service';
 import { CookieService } from 'ngx-cookie-service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 PlotlyViaCDNModule.plotlyVersion = 'latest'; // can be `latest` or any version number (i.e.: '1.40.0')
 PlotlyViaCDNModule.plotlyBundle = null; // optional: can be null (for full) or 'basic', 'cartesian', 'geo', 'gl3d', 'gl2d', 'mapbox' or 'finance'
@@ -133,7 +134,7 @@ export function initConfig(appConfig: AppConfigService) {
         MatTableModule,
         MatSlideToggleModule,
         MatAutocompleteModule,
-        MatInputModule
+        MatInputModule,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

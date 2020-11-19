@@ -109,7 +109,8 @@
                               {{row.critical_care_pct === null ? 'N/A' : row.critical_care_pct | percent}}</td>
                           <td [ngClass]="{'black-cell': row.weekly === 'nan', 'green-cell': row.rolling_pop < 1, 'yellow-cell': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-cell': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-cell': 10 < row.rolling_pop}"
                               class="cell-border"
-                              [ngClass]="{'active-row': row.HR_UID == selectedPHU}">
+                              [ngClass]="{'active-row': row.HR_UID == selectedPHU}"
+                              style="font-size: 14px;padding: 10px;">
                               {{row.rolling_pop === null ? 'N/A' : (row.rolling_pop >= 10 ? 'Curving up Dangerously' : (row.rolling_pop >= 5 ? 'Curving Up Quickly' : (row.rolling_pop >= 1 ? 'Curving Up Somewhat': 'Curving Down')))}}</td>
                           <div (click)="Removed(row.HR_UID)"><span class="material-icons">clear</span></div>
                       </tr>
@@ -196,8 +197,9 @@
                               <mat-icon [inline]="true"
                               [ngClass]="{'green-icon': row.critical_care_pct < 0.6, 'yellow-icon': 0.6 <= row.critical_care_pct && row.critical_care_pct < 0.8, 'orange-icon': 0.8 <= row.critical_care_pct && row.critical_care_pct < 0.9, 'red-icon': 0.9 <= row.critical_care_pct}">fiber_manual_record</mat-icon>
                               {{row.critical_care_pct === null ? 'N/A' : row.critical_care_pct | percent}}</td>
-                          <td [ngClass]="{'black-cell': row.weekly === 'nan', 'green-cell': row.rolling_pop < 1, 'yellow-cell': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-cell': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-cell': 10 < row.rolling_pop}"
-                              class="cell-border">
+                          <td
+                          [ngClass]="{'black-cell': row.weekly === 'nan', 'green-cell': row.rolling_pop < 1, 'yellow-cell': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-cell': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-cell': 10 < row.rolling_pop}"
+                              class="cell-border" style="font-size: 14px;padding: 10px;">
                               {{row.rolling_pop === null ? 'N/A' : (row.rolling_pop >= 10 ? 'Curving up Dangerously' : (row.rolling_pop >= 5 ? 'Curving Up Quickly' : (row.rolling_pop >= 1 ? 'Curving Up Somewhat': 'Curving Down')))}}</td>
                           <mat-checkbox value={{row.HR_UID}} (change)="Checked($event.checked, row.HR_UID)" [checked]="Selected(row.HR_UID)"></mat-checkbox>
                       </tr>
@@ -345,12 +347,12 @@
                 <mat-progress-spinner class="spinner-styling" mode="indeterminate" diameter="50"
                     *ngIf="!sortedMetrics">
                 </mat-progress-spinner>
-                <div *ngIf="sortedMetrics">
+                <div *ngIf="sortedMetrics" style="width:100%">
                   <div *ngFor="let table of filterItemsOfType(sortedMetrics)" class="mobile-separator">
                     <table [id]="table.phu" class="mobile-scorecard-table-styling">
                         <tr>
                             <th class="mobile-phu-header">{{table.phu}}</th>
-                            <th class="mobile-phu-header"><span (click)="Removed(row.HR_UID)" class="material-icons">clear</span></th>
+                            <th class="mobile-phu-header"><span (click)="Removed(table.HR_UID)" class="material-icons">clear</span></th>
                         </tr>
                         <tr>
                             <td class="mobile-header-cell alternate-row">Case Incidence (Per 100,000 People)</td>
@@ -388,10 +390,9 @@
                             </td>
                         </tr>
                         <tr>
-                          <td class="mobile-header-cell alternate-row">Risk Level</td>
-                          <td [ngClass]="{'black-cell': table.weekly === 'nan', 'green-cell': table.rolling_pop < 1, 'yellow-cell': 1 <= table.rolling_pop && table.rolling_pop < 5, 'orange-cell': 5 <= table.rolling_pop && table.rolling_pop < 10, 'red-cell': 10 < table.rolling_pop}"
+                          <td style="padding: 10px" colspan="2" [ngClass]="{'black-cell': table.weekly === 'nan', 'green-cell': table.rolling_pop < 1, 'yellow-cell': 1 <= table.rolling_pop && table.rolling_pop < 5, 'orange-cell': 5 <= table.rolling_pop && table.rolling_pop < 10, 'red-cell': 10 < table.rolling_pop}"
                               class="cell-border center-cell">
-                              {{table.rolling_pop === null ? 'N/A' : (table.rolling_pop >= 10 ? 'Curving up Dangerously' : (table.rolling_pop >= 5 ? 'Curving Up Quickly' : (table.rolling_pop >= 1 ? 'Curving Up Somewhat': 'Curving Down')))}}</td>
+                              Risk Level: {{table.rolling_pop === null ? 'N/A' : (table.rolling_pop >= 10 ? 'Curving up Dangerously' : (table.rolling_pop >= 5 ? 'Curving Up Quickly' : (table.rolling_pop >= 1 ? 'Curving Up Somewhat': 'Curving Down')))}}</td>
                         </tr>
                         <tr>
                           <th (click)="ShowData(table.HR_UID)" class="mobile-phu-header" colspan="2"><a style="color: white;" href="#details">Click For More Detail</a></th>

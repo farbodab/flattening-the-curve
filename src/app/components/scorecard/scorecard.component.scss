@@ -1034,7 +1034,7 @@
     }
 
     .mobile-data-cell {
-        width: 45%;
+        width: 20%;
         height: 29px;
     }
 
@@ -1165,6 +1165,10 @@
 .item p {
   margin-bottom: 50px;
   color: #707070;
+}
+
+.mobile-browser .right-bar{
+  max-width: 100%;
 }
 
 .right-bar{
