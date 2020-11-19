@@ -1,0 +1,15 @@
+.desktop .box{
+  background-color: #18a77b;
+  padding: 10px 35px 10px 35px;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 20px;
+  margin-right: 45px;
+}
+
+.mobile .box{
+  background-color: #18a77b;
+  padding: 10px 35px 10px 35px;
+  display: flex;
+  flex-direction: column;
+}

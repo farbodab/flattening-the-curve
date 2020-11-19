@@ -988,7 +988,6 @@
 
     .mobile-scorecard-table-styling {
         margin: 20px auto;
-        width: 90%;
         //border: 1px solid black;
     }
 
@@ -1049,7 +1048,7 @@
     }
 
     .scorecard-header {
-        padding: 30px 0 15px 0;
+        padding: 0px 0 15px 0;
         font-size: 20px;
     }
 
@@ -1204,4 +1203,8 @@ p {
 
 .material-icons:hover{
   color: red;
+}
+
+.mobile-scorecard-table-styling .mat-icon.mat-icon-inline{
+  width: 0;
 }

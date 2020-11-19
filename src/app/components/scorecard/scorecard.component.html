@@ -70,9 +70,8 @@
                           <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Bed Occupied</th>
                           <th mat-sort-header="risk" class="header-styling black-cell">Risk</th>
                       </tr>
-                      <tr (click)="ShowData(row.HR_UID)" *ngFor="let row of filterItemsOfType(sortedMetrics); index as index" class="row-styling"
-                          [style.background-color]="index % 2 === 0 ? '#ffffff' : '#F2F2F2'">
-                          <td class="cell-border no-left-border"
+                      <tr (click)="ShowData(row.HR_UID)" *ngFor="let row of filterItemsOfType(sortedMetrics); index as index" class="row-styling" [style.background-color]="index % 2 === 0 ? '#ffffff' : '#F2F2F2'">
+                        <td class="cell-border no-left-border"
                               [ngClass]="{'active-row': row.HR_UID == selectedPHU}"
                               [title]="row.phu+' Dashboard'">
                               {{row.phu}}</td>
@@ -116,6 +115,7 @@
                       </tr>
                   </table>
                 </div>
+                <app-donate></app-donate>
                 <div *ngIf="!phuSelected">
                   <div class='row' style="padding: 35px;">
                     <app-thermometer> </app-thermometer>
@@ -345,63 +345,63 @@
                 <mat-progress-spinner class="spinner-styling" mode="indeterminate" diameter="50"
                     *ngIf="!sortedMetrics">
                 </mat-progress-spinner>
-                <div class="table-styling-mobile">
-                  <table matSort (matSortChange)="sortMetrics($event)" *ngIf="sortedMetrics" class="table-styling-mobile ng-star-inserted">
-                      <tr>
-                          <th style="color:#275d6f;font-weight:bold;font-size:25px;text-align:left">My Regions</th>
-                          <th class="top-category">Risk Levels</th>
-                          <th colspan="2" class="top-category">Pandemic Monitoring</th>
-                          <th colspan="2" class="top-category">Response Monitoring</th>
-                          <th class="top-category">Response Capacity</th>
-                      </tr>
-                      <tr>
-                          <th mat-sort-header="phu" class="first-col-styling header-styling black-cell">Public Health Unit</th>
-                          <th mat-sort-header="risk" class="header-styling black-cell">Risk</th>
-                          <th mat-sort-header="new" class="header-styling black-cell">Case Incidence (Per 100,000 People)</th>
-                          <th mat-sort-header="rt" class="header-styling black-cell">Rt</th>
-                          <th mat-sort-header="testing" class="header-styling black-cell">% of Tests Back in Less than 24 hrs</th>
-                          <th mat-sort-header="percent_positive" class="header-styling black-cell">Percent Positivity</th>
-                          <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Bed Occupied</th>
-                      </tr>
-                      <tr (click)="ShowData(row.HR_UID)" *ngFor="let row of filterItemsOfType(sortedMetrics); index as index" class="row-styling"
-                          [style.background-color]="index % 2 === 0 ? '#ffffff' : '#F2F2F2'">
-                          <td class="cell-border no-left-border"
-                              [title]="row.phu+' Dashboard'">
-                              <div style="display: flex;"><div (click)="Removed(row.HR_UID)"><span class="material-icons">clear</span></div>{{row.phu}}</div></td>
-                          <td [ngClass]="{'black-cell': row.weekly === 'nan', 'green-cell': row.rolling_pop < 1, 'yellow-cell': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-cell': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-cell': 10 < row.rolling_pop}"
-                                  class="cell-border center-cell">
-                                  {{row.rolling_pop === null ? 'N/A' : (row.rolling_pop >= 10 ? 'Curving up Dangerously' : (row.rolling_pop >= 5 ? 'Curving Up Quickly' : (row.rolling_pop >= 1 ? 'Curving Up Somewhat': 'Curving Down')))}}</td>
-                          <td [title]="row.weekly === 'nan'? 'Cannot calculate due to insufficient data': ''"
-                              class="cell-border">
+                <div *ngIf="sortedMetrics">
+                  <div *ngFor="let table of filterItemsOfType(sortedMetrics)" class="mobile-separator">
+                    <table [id]="table.phu" class="mobile-scorecard-table-styling">
+                        <tr>
+                            <th class="mobile-phu-header">{{table.phu}}</th>
+                            <th class="mobile-phu-header"><span (click)="Removed(row.HR_UID)" class="material-icons">clear</span></th>
+                        </tr>
+                        <tr>
+                            <td class="mobile-header-cell alternate-row">Case Incidence (Per 100,000 People)</td>
+                            <td class="mobile-data-cell center-cell">{{table.rolling_pop === 'nan' ? 'N/A' : table.rolling_pop | number : '1.2-2'}}
                               <mat-icon
-                              [ngClass]="{'green-icon': row.rolling_pop < 1, 'yellow-icon': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-icon': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-icon': 10 <= row.rolling_pop}"
-                              [inline]="true">fiber_manual_record</mat-icon>{{row.rolling_pop === null ? 'N/A' : row.rolling_pop | number : '1.2-2'}}</td>
-                          <td [title]="row.rt === 'nan'? 'Cannot calculate due to insufficient data': ''"
-                              class="cell-border no-left-border">
+                              [ngClass]="{'green-icon': table.rolling_pop < 1, 'yellow-icon': 1 <= table.rolling_pop && table.rolling_pop < 5, 'orange-icon': 5 <= table.rolling_pop && table.rolling_pop < 10, 'red-icon': 10 <= table.rolling_pop}"
+                              [inline]="true">fiber_manual_record</mat-icon></td>
+                        </tr>
+                        <tr>
+                            <td class="alternate-row mobile-header-cell">Rt</td>
+                            <td class="mobile-data-cell center-cell">{{table.rt_ml === null ? 'N/A' : table.rt_ml | number : '1.2-2'}}
                               <mat-icon
-                              [ngClass]="{'green-icon': row.rt_ml < 0.9, 'yellow-icon': 0.9 <= row.rt_ml && row.rt_ml < 1.1, 'orange-icon': 1.1 <= row.rt_ml && row.rt_ml < 1.4, 'red-icon': 1.4 <= row.rt_ml}"
-                              [inline]="true">fiber_manual_record</mat-icon>{{row.rt_ml === null ? 'N/A' : row.rt_ml | number : '1.2-2'}}
-                          </td>
-                          <td [title]="row.rolling_test_twenty_four === 'nan'? 'Cannot calculate due to insufficient data': ''"
-                              class="cell-border">
-                              <mat-icon [inline]="true" [ngClass]="{'green-icon': row.rolling_test_twenty_four > 0.9, 'yellow-icon': row.rolling_test_twenty_four <= 0.9 && row.rolling_test_twenty_four > 0.7, 'orange-icon': row.rolling_test_twenty_four <= 0.7 && row.rolling_test_twenty_four > 0.5, 'red-icon': row.rolling_test_twenty_four <= 0.5 }">fiber_manual_record</mat-icon>{{row.rolling_test_twenty_four === null ? 'N/A' : row.rolling_test_twenty_four | percent}}
-                          </td>
-                          <td [title]="row.percent_positive === 'nan'? 'Data not available or not reported publicly': ''"
-                            class="cell-border">
-                            <mat-icon
-                            [ngClass]="{'green-icon': row.percent_positive < 3, 'yellow-icon': 3 <= row.percent_positive && row.percent_positive < 5, 'orange-icon': 5 <= row.percent_positive && row.percent_positive < 10, 'red-icon': 10 <= row.percent_positive}"
-                            [inline]="true">fiber_manual_record</mat-icon>
-                            {{row.percent_positive === null ? 'N/A' : row.percent_positive+'%'}}
-                          </td>
-                          <td [title]="row.icu === 'nan'? 'Cannot calculate due to insufficient data': ''"
-                              class="cell-border">
+                              [ngClass]="{'green-icon': table.rt_ml < 0.9, 'yellow-icon': 0.9 <= table.rt_ml && table.rt_ml < 1.1, 'orange-icon': 1.1 <= table.rt_ml && table.rt_ml < 1.4, 'red-icon': 1.4 <= table.rt_ml}"
+                              [inline]="true">fiber_manual_record</mat-icon></td>
+                        </tr>
+                        <tr>
+                            <td class="mobile-header-cell alternate-row">Testing &lt; 24h</td>
+                            <td class="mobile-data-cell center-cell">{{table.rolling_test_twenty_four === 'nan' ? 'N/A' : table.rolling_test_twenty_four | percent}}
+                              <mat-icon [inline]="true" [ngClass]="{'green-icon': table.rolling_test_twenty_four > 0.9, 'yellow-icon': table.rolling_test_twenty_four <= 0.9 && table.rolling_test_twenty_four > 0.7, 'orange-icon': table.rolling_test_twenty_four <= 0.7 && table.rolling_test_twenty_four > 0.5, 'red-icon': table.rolling_test_twenty_four <= 0.5 }">fiber_manual_record</mat-icon>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="mobile-header-cell alternate-row">Percent Positivity</td>
+                            <td class="mobile-data-cell center-cell">{{table.percent_positive === 'nan' ? 'N/A' : table.percent_positive | number}}%
+                              <mat-icon
+                              [ngClass]="{'green-icon': table.percent_positive < 3, 'yellow-icon': 3 <= table.percent_positive && table.percent_positive < 5, 'orange-icon': 5 <= table.percent_positive && table.percent_positive < 10, 'red-icon': 10 <= table.percent_positive}"
+                              [inline]="true">fiber_manual_record</mat-icon>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="mobile-header-cell alternate-row">Total ICU Bed Occupied</td>
+                            <td class="center-cell" class="mobile-data-cell center-cell">{{table.critical_care_pct === 'nan' ? 'N/A' : table.critical_care_pct | percent}}
                               <mat-icon [inline]="true"
-                              [ngClass]="{'green-icon': row.critical_care_pct < 0.6, 'yellow-icon': 0.6 <= row.critical_care_pct && row.critical_care_pct < 0.8, 'orange-icon': 0.8 <= row.critical_care_pct && row.critical_care_pct < 0.9, 'red-icon': 0.9 <= row.critical_care_pct}">fiber_manual_record</mat-icon>
-                              {{row.critical_care_pct === null ? 'N/A' : row.critical_care_pct | percent}}</td>
-                      </tr>
-                  </table>
+                                [ngClass]="{'green-icon': table.critical_care_pct < 0.6, 'yellow-icon': 0.6 <= table.critical_care_pct && table.critical_care_pct < 0.8, 'orange-icon': 0.8 <= table.critical_care_pct && table.critical_care_pct < 0.9, 'red-icon': 0.9 <= table.critical_care_pct}">fiber_manual_record</mat-icon>
+                            </td>
+                        </tr>
+                        <tr>
+                          <td class="mobile-header-cell alternate-row">Risk Level</td>
+                          <td [ngClass]="{'black-cell': table.weekly === 'nan', 'green-cell': table.rolling_pop < 1, 'yellow-cell': 1 <= table.rolling_pop && table.rolling_pop < 5, 'orange-cell': 5 <= table.rolling_pop && table.rolling_pop < 10, 'red-cell': 10 < table.rolling_pop}"
+                              class="cell-border center-cell">
+                              {{table.rolling_pop === null ? 'N/A' : (table.rolling_pop >= 10 ? 'Curving up Dangerously' : (table.rolling_pop >= 5 ? 'Curving Up Quickly' : (table.rolling_pop >= 1 ? 'Curving Up Somewhat': 'Curving Down')))}}</td>
+                        </tr>
+                        <tr>
+                          <th (click)="ShowData(table.HR_UID)" class="mobile-phu-header" colspan="2"><a style="color: white;" href="#details">Click For More Detail</a></th>
+                        </tr>
+                    </table>
+
+                  </div>
                 </div>
               </div>
+              <app-donate></app-donate>
               <div *ngIf="!phuSelected">
               <div class="item-mobile item" style="margin-top: 30px">
                 <div class="heading">
@@ -409,7 +409,7 @@
                 </div>
                 <div *ngIf=metric_collapse>
                   <p>
-                    <img src='assets/img/scorecard/Indicators - Case Incidence (Per 100,000 People).svg'>
+                    <img src='assets/img/scorecard/Indicators - Case Incidence.svg'>
                     <span class="heading">Case Incidence (Per 100,000 People)</span>
                     <span>
                     The seven day rolling average of daily new cases in a public health unit
@@ -449,70 +449,23 @@
                 <app-thermometer> </app-thermometer>
                 <app-map (selected)="onMapSelect($event)" [data]=metricJsonObj> </app-map>
               </div>
-                <div class="scorecard-header">Metrics by Public Health Unit</div>
+                <h2>All Regions</h2>
                 <div>
                     <mat-progress-spinner class="spinner-styling" mode="indeterminate" diameter="50"
                         *ngIf="!sortedMetrics">
                     </mat-progress-spinner>
                 </div>
-                <div class="table-styling-mobile">
-                  <table matSort (matSortChange)="sortMetrics($event)" *ngIf="sortedMetrics" class="table-styling">
-                      <tr>
-                          <th></th>
-                          <th class="top-category">Risk Levels</th>
-                          <th colspan="2" class="top-category">Pandemic Monitoring</th>
-                          <th colspan="2" class="top-category">Response Monitoring</th>
-                          <th class="top-category">Response Capacity</th>
-                      </tr>
-                      <tr>
-                          <th mat-sort-header="phu" class="first-col-styling header-styling black-cell">Public Health Unit</th>
-                          <th mat-sort-header="risk" class="header-styling black-cell">Risk</th>
-                          <th mat-sort-header="new" class="header-styling black-cell">Case Incidence (Per 100,000 People)</th>
-                          <th mat-sort-header="rt" class="header-styling black-cell">Rt</th>
-                          <th mat-sort-header="testing" class="header-styling black-cell">% of Tests Back in Less than 24 hrs</th>
-                          <th mat-sort-header="percent_positive" class="header-styling black-cell">Percent Positivity</th>
-                          <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Bed Occupied</th>
-                      </tr>
-                      <tr *ngFor="let row of sortedMetrics; index as index" class="row-styling"
-                          [style.background-color]="index % 2 === 0 ? '#ffffff' : '#F2F2F2'">
-                          <td class="cell-border no-left-border"
-                              [title]="row.phu+' Dashboard'">
-                              <mat-checkbox value={{row.HR_UID}} (change)="Checked($event.checked, row.HR_UID)" [checked]="Selected(row.HR_UID)"></mat-checkbox> {{row.phu}}</td>
-                              <td [ngClass]="{'black-cell': row.weekly === 'nan', 'green-cell': row.rolling_pop < 1, 'yellow-cell': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-cell': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-cell': 10 < row.rolling_pop}"
-                                  class="cell-border center-cell">
-                                  {{row.rolling_pop === null ? 'N/A' : (row.rolling_pop >= 10 ? 'Curving up Dangerously' : (row.rolling_pop >= 5 ? 'Curving Up Quickly' : (row.rolling_pop >= 1 ? 'Curving Up Somewhat': 'Curving Down')))}}</td>
-                          <td [title]="row.weekly === 'nan'? 'Cannot calculate due to insufficient data': ''"
-                              class="cell-border">
-                              <mat-icon
-                              [ngClass]="{'green-icon': row.rolling_pop < 1, 'yellow-icon': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-icon': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-icon': 10 <= row.rolling_pop}"
-                              [inline]="true">fiber_manual_record</mat-icon>{{row.rolling_pop === null ? 'N/A' : row.rolling_pop | number : '1.2-2'}}</td>
-                          <td [title]="row.rt === 'nan'? 'Cannot calculate due to insufficient data': ''"
-                              class="cell-border no-left-border">
-                              <mat-icon
-                              [ngClass]="{'green-icon': row.rt_ml < 0.9, 'yellow-icon': 0.9 <= row.rt_ml && row.rt_ml < 1.1, 'orange-icon': 1.1 <= row.rt_ml && row.rt_ml < 1.4, 'red-icon': 1.4 <= row.rt_ml}"
-                              [inline]="true">fiber_manual_record</mat-icon>{{row.rt_ml === null ? 'N/A' : row.rt_ml | number : '1.2-2'}}
-                          </td>
-                          <td [title]="row.rolling_test_twenty_four === 'nan'? 'Cannot calculate due to insufficient data': ''"
-                              class="cell-border">
-                              <mat-icon [inline]="true" [ngClass]="{'green-icon': row.rolling_test_twenty_four > 0.9, 'yellow-icon': row.rolling_test_twenty_four <= 0.9 && row.rolling_test_twenty_four > 0.7, 'orange-icon': row.rolling_test_twenty_four <= 0.7 && row.rolling_test_twenty_four > 0.5, 'red-icon': row.rolling_test_twenty_four <= 0.5 }">fiber_manual_record</mat-icon>{{row.rolling_test_twenty_four === null ? 'N/A' : row.rolling_test_twenty_four | percent}}
-                          </td>
-                          <td [title]="row.percent_positive === 'nan'? 'Data not available or not reported publicly': ''"
-                            class="cell-border no-left-border">
-                            <mat-icon
-                            [ngClass]="{'green-icon': row.percent_positive < 3, 'yellow-icon': 3 <= row.percent_positive && row.percent_positive < 5, 'orange-icon': 5 <= row.percent_positive && row.percent_positive < 10, 'red-icon': 10 <= row.percent_positive}"
-                            [inline]="true">fiber_manual_record</mat-icon>
-                            {{row.percent_positive === null ? 'N/A' : row.percent_positive+'%'}}
-                          </td>
-                          <td [title]="row.icu === 'nan'? 'Cannot calculate due to insufficient data': ''"
-                              class="cell-border">
-                              <mat-icon [inline]="true"
-                              [ngClass]="{'green-icon': row.critical_care_pct < 0.6, 'yellow-icon': 0.6 <= row.critical_care_pct && row.critical_care_pct < 0.8, 'orange-icon': 0.8 <= row.critical_care_pct && row.critical_care_pct < 0.9, 'red-icon': 0.9 <= row.critical_care_pct}">fiber_manual_record</mat-icon>
-                              {{row.critical_care_pct === null ? 'N/A' : row.critical_care_pct | percent}}</td>
-                      </tr>
-                  </table>
+                <div *ngIf="sortedMetrics">
+                  <div *ngFor="let table of sortedMetrics" class="mobile-separator">
+                    <div class="mobile-phu-header" style="display:flex;justify-content: space-between;margin-bottom:10px; padding:10px 20px 10px 20px;">
+                      <div class="mobile-phu-header">{{table.phu}}</div>
+                      <div class="mobile-phu-header"><mat-checkbox value={{table.HR_UID}} (change)="Checked($event.checked, table.HR_UID)" [checked]="Selected(table.HR_UID)" style="background-color:white;"></mat-checkbox></div>
+                    </div>
+                  </div>
                 </div>
+
               </div>
-              <div *ngIf="phuSelected">
+              <div id="details" *ngIf="phuSelected">
                 <app-summary [hr_uid]="selectedPHU"></app-summary>
               </div>
             </div>

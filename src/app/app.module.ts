@@ -53,6 +53,7 @@ import { CommonMobileVisualComponent } from './components/common-mobile-visual/c
 import { PlotComponent } from './components/plot/plot';
 import { GraphComponent } from './components/graph/graph';
 import { MapComponent } from './components/map/map';
+import { DonateComponent } from './components/donate/donate';
 import { AngularPlotlyComponent } from './components/plotly-angular/plotly-angular.component';
 import { OutreachComponent } from './pages/outreach/outreach.component';
 import { CommonDesktopVisualComponent } from './components/common-desktop-visual/common-desktop-visual.component';
@@ -100,6 +101,7 @@ export function initConfig(appConfig: AppConfigService) {
         GraphComponent,
         TableComponent,
         MapComponent,
+        DonateComponent,
         ThermometerComponent
     ],
     imports: [
