@@ -18,30 +18,11 @@ export class StoryComponent implements OnInit, AfterViewInit {
   window_subscription: Subscription;
   displayFooter = false;
 
-  teamChoices = ['Leader', 'Maintainer', 'Committer', 'Contributors', 'Advisor', 'All'];
+  teamChoices = ['Active','Advisor', 'Archived', 'All'];
   teamChoicesCount = [];
-
   tooltipToggle = false;
 
-  tooltipArray = [
-    {
-      'Leaders': "Responsible for the overall vision and direction of HowsMyFlattening, including making the final decision about features, releases, and other activities."
-    },
-    {
-      'Maintainers': "Members of the community responsible for managing specific parts of the project on an on-going basis."
-    },
-    {
-      'Committers': "Trusted members of the community who make a consistent time and knowledge contribution to the project."
-    },
-    {
-      'Contributors': "Individuals who have contributed in any shape or form -- the specific project or scope of work can vary from day to weeks."
-    },
-    {
-      'Advisors': "This group provides their feedback and expertise on an ongoing basis to the group."
-    }
-  ];
-
-  constructor(private host_service: HostService, private api_service: ApiService, private formBuilder: FormBuilder) { 
+  constructor(private host_service: HostService, private api_service: ApiService, private formBuilder: FormBuilder) {
     this.refresh_layout(window.innerWidth);
   }
 

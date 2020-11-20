@@ -27,29 +27,13 @@
 			</div>
 		</div>
 		<div class="icon-section">
-			<div class="icon-header">Our team works on</div>
-			<div>
-				<div class="icon-container">
-					<img class='img-scaling' src='assets/img/website_icon.png'>
-					<img class='img-scaling' src='assets/img/data_icon.png'>
-					<img class='img-scaling' src='assets/img/analytics_icon.png'>
-					<img class='img-scaling' src='assets/img/hub_icon.png'>
-				</div>
-			</div>
-
-			<hr>
-
 			<div *ngIf="is_full" class="team-padding">
-				<div *ngIf=" teamForm" style="height: 520px">
+				<div *ngIf=" teamForm" style="height: 820px">
 					<div style="display: flex; background-color: #005E72;">
 						<div style="display: flex">
 							<div style="color: #ffffff; margin-left: 15px; font-size: 24px; line-height: 48px">Our
 								People
 							</div>
-							<mat-icon (mouseover)="toggleHover(true)" (mouseout)="toggleHover(false)"
-								class=" team-tooltip">
-								info
-							</mat-icon>
 							<div class="desktop-pop" [style.display]="tooltipToggle ? 'block' : 'none'">
 								<div *ngFor="let level of tooltipArray">
 									<div *ngFor="let obj of level | keyvalue" class="pop-text-container">
@@ -61,12 +45,12 @@
 						</div>
 					</div>
 					<div style="display: flex">
-						<div style="height: 480px; width: 325px; border: 1px solid #DCDCDC; margin-right: 20px">
+						<div style="height: 730px; width: 325px; border: 1px solid #DCDCDC; margin-right: 20px">
 							<form [formGroup]="teamForm" style="padding-top: 20px; margin: 0 15px">
 								<div *ngFor="let choice of teamChoices; index as index" (click)="toggleSelect(choice)">
 									<div *ngIf="choice !== 'All' && choice !== 'Contributors'" class="choices-styling"
 										[ngClass]="{'selected-color': teamForm.controls[choice].value}">
-										<div class="choices-text">{{choice+'s'}}</div>
+										<div class="choices-text">{{choice}}</div>
 										<div class="choices-count">
 											{{teamChoicesCount[index]}}</div>
 									</div>
@@ -135,8 +119,6 @@
 					<div class="form-container">
 						<div class="form-styling form-header">
 							<div class="">Our People</div>
-							<!-- <mat-icon class="team-tooltip">info</mat-icon> -->
-							<!-- <div style="width: 200px; background-color: #666666; height: 200px"></div> -->
 						</div>
 						<form *ngIf="teamForm" [formGroup]="teamForm" class="form-styling">
 							<div style="display: flex; flex-wrap: wrap" class="inner-form-styling">

@@ -35,7 +35,7 @@
       display: flex;
       flex-wrap: wrap;
       padding-bottom: 0;
-  
+
       .resource-box {
         width: 50%;
       }
@@ -198,26 +198,26 @@ h1, h3 {
 }
 
 #supporters-set{
-  
+
   margin-left: auto ;
   margin-right: auto ;
 }
 
 .resource-box {
-    border: 1px;  
+    border: 1px;
     width:175px;
     padding: 10px
 }
 
 #resource_thumbnail {
-    height: 150px; 
+    height: 150px;
     width: 150px;
     object-fit: contain;
     object-position: 0% 50%;
 }
 
 #resource-box-landscape {
-    border: 1px;  
+    border: 1px;
     width:100%;
 }
 
@@ -422,7 +422,7 @@ h1, h3 {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  max-height: 470px;
+  max-height: 750px;
   overflow-y: auto;
   flex-wrap: wrap;
   flex: 1;
@@ -435,7 +435,7 @@ h1, h3 {
     margin-right: 0;
     margin-bottom: 30px;
   }
-  
+
   .img-scaling {
     width: 25%;
     height: 25vw;
@@ -499,7 +499,7 @@ h1, h3 {
   .linkedin-toggle {
     margin-right: auto;
   }
-  
+
   .card-title {
     display: inline-block;
     text-align: center;
@@ -539,7 +539,7 @@ h1, h3 {
     margin: auto;
     font-size: 24px;
   }
-  
+
   .advisor-header {
     padding: 20px;
     width: 50%;
@@ -547,7 +547,7 @@ h1, h3 {
     margin: auto;
     font-size: 24px;
   }
-  
+
 
   ::ng-deep {
     .mat-checkbox-inner-container {
@@ -567,11 +567,11 @@ h1, h3 {
     .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
       background-color: #ffffff !important;
     }
-  
+
     .mat-checkbox-frame {
       border-color: #ffffff;
     }
-  
+
     .mat-checkbox-checkmark-path {
       stroke: #391F85 !important;
     }
@@ -582,7 +582,7 @@ h1, h3 {
   .item {
   /* Center the contents of the grid items. Making each grid item a Flex Container */
   display: flex;
- 
+
   /* Horizontal and Vertical centering */
   justify-content: center;
   align-items: center;
@@ -611,4 +611,3 @@ h1, h3 {
   .item6 {
       grid-column: span 2;
   }
-
