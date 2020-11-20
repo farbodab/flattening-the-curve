@@ -50,6 +50,10 @@
                 <div style="display:flex;flex-direction:column;justify-content: center;align-items: center;">
                   <h1 class="scorecard-header">Ontario's COVID Warning System</h1>
                   <p class="scorecard-text">We use five key indicators to determine risk levels for 34 Public Health Units in Ontario.<br/>You can customize the table below by adding regions from the list below the map.</p>
+                  <div style="display:flex;">
+                    <p style="margin:0px 10px 0px 10px"><mat-icon>north</mat-icon> = Up Over Last Week </p>
+                    <p style="margin:0px 10px 0px 10px"><mat-icon>south</mat-icon> = Down Over Last Week </p>
+                  </div>
                   <mat-progress-spinner class="spinner-styling" mode="indeterminate" diameter="50"
                       *ngIf="!sortedMetrics">
                   </mat-progress-spinner>
@@ -75,39 +79,40 @@
                               [ngClass]="{'active-row': row.HR_UID == selectedPHU}"
                               [title]="row.phu+' Dashboard'">
                               {{row.phu}}</td>
-                          <td [title]="row.weekly === 'nan'? 'Cannot calculate due to insufficient data': ''"
+                          <td [title]="row.weekly === null? 'Cannot calculate due to insufficient data': ''"
                               [ngClass]="{'active-row': row.HR_UID == selectedPHU}"
                               class="cell-border">
                               <mat-icon
                               [ngClass]="{'green-icon': row.rolling_pop < 1, 'yellow-icon': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-icon': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-icon': 10 <= row.rolling_pop}"
-                              [inline]="true">fiber_manual_record</mat-icon>{{row.rolling_pop === null ? 'N/A' : row.rolling_pop | number : '1.2-2'}}</td>
-                          <td [title]="row.rt === 'nan'? 'Cannot calculate due to insufficient data': ''"
+                              [inline]="true" class='icon-display'>{{row.rolling_pop_trend > 0?'north':'south'}}</mat-icon>
+                              {{row.rolling_pop === null ? 'N/A' : row.rolling_pop | number : '1.2-2'}}</td>
+                          <td [title]="row.rt === null? 'Cannot calculate due to insufficient data': ''"
                               [ngClass]="{'active-row': row.HR_UID == selectedPHU}"
                               class="cell-border no-left-border">
                               <mat-icon
                               [ngClass]="{'green-icon': row.rt_ml < 0.9, 'yellow-icon': 0.9 <= row.rt_ml && row.rt_ml < 1.1, 'orange-icon': 1.1 <= row.rt_ml && row.rt_ml < 1.4, 'red-icon': 1.4 <= row.rt_ml}"
-                              [inline]="true">fiber_manual_record</mat-icon>{{row.rt_ml === null ? 'N/A' : row.rt_ml | number : '1.2-2'}}
+                              [inline]="true" class='icon-display'>{{row.rt_ml_trend > 0?'north':'south'}}</mat-icon>{{row.rt_ml === null ? 'N/A' : row.rt_ml | number : '1.2-2'}}
                           </td>
-                          <td [title]="row.rolling_test_twenty_four === 'nan'? 'Cannot calculate due to insufficient data': ''"
+                          <td [title]="row.rolling_test_twenty_four === null? 'Cannot calculate due to insufficient data': ''"
                               class="cell-border"
                               [ngClass]="{'active-row': row.HR_UID == selectedPHU}">
-                              <mat-icon [inline]="true" [ngClass]="{'green-icon': row.rolling_test_twenty_four > 0.9, 'yellow-icon': row.rolling_test_twenty_four <= 0.9 && row.rolling_test_twenty_four > 0.7, 'orange-icon': row.rolling_test_twenty_four <= 0.7 && row.rolling_test_twenty_four > 0.5, 'red-icon': row.rolling_test_twenty_four <= 0.5 }">fiber_manual_record</mat-icon>{{row.rolling_test_twenty_four === null ? 'N/A' : row.rolling_test_twenty_four | percent}}
+                              <mat-icon class='icon-display' [inline]="true" [ngClass]="{'green-icon': row.rolling_test_twenty_four > 0.9, 'yellow-icon': row.rolling_test_twenty_four <= 0.9 && row.rolling_test_twenty_four > 0.7, 'orange-icon': row.rolling_test_twenty_four <= 0.7 && row.rolling_test_twenty_four > 0.5, 'red-icon': row.rolling_test_twenty_four <= 0.5 }">{{row.rolling_test_twenty_four_trend > 0?'north':'south'}}</mat-icon>{{row.rolling_test_twenty_four === null ? 'N/A' : row.rolling_test_twenty_four | percent}}
                           </td>
-                          <td [title]="row.percent_positive === 'nan'? 'Data not available or not reported publicly': ''"
+                          <td [title]="row.percent_positive === null? 'Data not available or not reported publicly': ''"
                             class="cell-border"
                             [ngClass]="{'active-row': row.HR_UID == selectedPHU}">
                             <mat-icon
                             [ngClass]="{'green-icon': row.percent_positive < 3, 'yellow-icon': 3 <= row.percent_positive && row.percent_positive < 5, 'orange-icon': 5 <= row.percent_positive && row.percent_positive < 10, 'red-icon': 10 <= row.percent_positive}"
-                            [inline]="true">fiber_manual_record</mat-icon>
+                            [inline]="true" class='icon-display'>{{row.percent_positive_trend > 0?'north':'south'}}</mat-icon>
                             {{row.percent_positive === null ? 'N/A' : row.percent_positive+'%'}}
                           </td>
-                          <td [title]="row.icu === 'nan'? 'Cannot calculate due to insufficient data': ''"
+                          <td [title]="row.icu === null? 'Cannot calculate due to insufficient data': ''"
                               class="cell-border"
                               [ngClass]="{'active-row': row.HR_UID == selectedPHU}">
-                              <mat-icon [inline]="true"
-                              [ngClass]="{'green-icon': row.critical_care_pct < 0.6, 'yellow-icon': 0.6 <= row.critical_care_pct && row.critical_care_pct < 0.8, 'orange-icon': 0.8 <= row.critical_care_pct && row.critical_care_pct < 0.9, 'red-icon': 0.9 <= row.critical_care_pct}">fiber_manual_record</mat-icon>
-                              {{row.critical_care_pct === null ? 'N/A' : row.critical_care_pct | percent}}</td>
-                          <td [ngClass]="{'black-cell': row.weekly === 'nan', 'green-cell': row.rolling_pop < 1, 'yellow-cell': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-cell': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-cell': 10 < row.rolling_pop}"
+                              <mat-icon [inline]="true" class='icon-display'
+                              [ngClass]="{'green-icon': row.critical_care_pct < 0.6, 'yellow-icon': 0.6 <= row.critical_care_pct && row.critical_care_pct < 0.8, 'orange-icon': 0.8 <= row.critical_care_pct && row.critical_care_pct < 0.9, 'red-icon': 0.9 <= row.critical_care_pct}">{{row.critical_care_pct_trend > 0?'north':'south'}}</mat-icon>
+                              {{row.critical_care_pct === null ? 'N/A' : row.critical_care_pct | percent}} ({{row.critical_care_patients}} of {{row.critical_care_beds}} beds)</td>
+                          <td [ngClass]="{'black-cell': row.weekly === null, 'green-cell': row.rolling_pop < 1, 'yellow-cell': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-cell': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-cell': 10 < row.rolling_pop}"
                               class="cell-border"
                               [ngClass]="{'active-row': row.HR_UID == selectedPHU}"
                               style="font-size: 14px;padding: 10px;">
@@ -116,6 +121,7 @@
                       </tr>
                   </table>
                 </div>
+                <app-subscribe [regions]="selectedObject"></app-subscribe>
                 <app-donate></app-donate>
                 <div *ngIf="!phuSelected">
                   <div class='row' style="padding: 35px;">
@@ -170,35 +176,35 @@
                           <td class="cell-border no-left-border"
                               [title]="row.phu+' Dashboard'">
                               {{row.phu}}</td>
-                          <td [title]="row.weekly === 'nan'? 'Cannot calculate due to insufficient data': ''"
+                          <td [title]="row.weekly === null? 'Cannot calculate due to insufficient data': ''"
                               class="cell-border">
                               <mat-icon
                               [ngClass]="{'green-icon': row.rolling_pop < 1, 'yellow-icon': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-icon': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-icon': 10 <= row.rolling_pop}"
-                              [inline]="true">fiber_manual_record</mat-icon>{{row.rolling_pop === null ? 'N/A' : row.rolling_pop | number : '1.2-2'}}</td>
-                          <td [title]="row.rt === 'nan'? 'Cannot calculate due to insufficient data': ''"
+                              [inline]="true" class='icon-display'>{{row.rolling_pop_trend > 0?'north':'south'}}</mat-icon>{{row.rolling_pop === null ? 'N/A' : row.rolling_pop | number : '1.2-2'}}</td>
+                          <td [title]="row.rt === null? 'Cannot calculate due to insufficient data': ''"
                               class="cell-border no-left-border">
                               <mat-icon
                               [ngClass]="{'green-icon': row.rt_ml < 0.9, 'yellow-icon': 0.9 <= row.rt_ml && row.rt_ml < 1.1, 'orange-icon': 1.1 <= row.rt_ml && row.rt_ml < 1.4, 'red-icon': 1.4 <= row.rt_ml}"
-                              [inline]="true">fiber_manual_record</mat-icon>{{row.rt_ml === null ? 'N/A' : row.rt_ml | number : '1.2-2'}}
+                              [inline]="true" class='icon-display'>{{row.rt_ml_trend > 0?'north':'south'}}</mat-icon>{{row.rt_ml === null ? 'N/A' : row.rt_ml | number : '1.2-2'}}
                           </td>
-                          <td [title]="row.rolling_test_twenty_four === 'nan'? 'Cannot calculate due to insufficient data': ''"
+                          <td [title]="row.rolling_test_twenty_four === null? 'Cannot calculate due to insufficient data': ''"
                               class="cell-border">
-                              <mat-icon [inline]="true" [ngClass]="{'green-icon': row.rolling_test_twenty_four > 0.9, 'yellow-icon': row.rolling_test_twenty_four <= 0.9 && row.rolling_test_twenty_four > 0.7, 'orange-icon': row.rolling_test_twenty_four <= 0.7 && row.rolling_test_twenty_four > 0.5, 'red-icon': row.rolling_test_twenty_four <= 0.5 }">fiber_manual_record</mat-icon>{{row.rolling_test_twenty_four === null ? 'N/A' : row.rolling_test_twenty_four | percent}}
+                              <mat-icon class='icon-display' [inline]="true" [ngClass]="{'green-icon': row.rolling_test_twenty_four > 0.9, 'yellow-icon': row.rolling_test_twenty_four <= 0.9 && row.rolling_test_twenty_four > 0.7, 'orange-icon': row.rolling_test_twenty_four <= 0.7 && row.rolling_test_twenty_four > 0.5, 'red-icon': row.rolling_test_twenty_four <= 0.5 }">{{row.rolling_test_twenty_four_trend > 0?'north':'south'}}</mat-icon>{{row.rolling_test_twenty_four === null ? 'N/A' : row.rolling_test_twenty_four | percent}}
                           </td>
-                          <td [title]="row.percent_positive === 'nan'? 'Data not available or not reported publicly': ''"
+                          <td [title]="row.percent_positive === null? 'Data not available or not reported publicly': ''"
                             class="cell-border no-left-border">
-                            <mat-icon
+                            <mat-icon class='icon-display'
                             [ngClass]="{'green-icon': row.percent_positive < 3, 'yellow-icon': 3 <= row.percent_positive && row.percent_positive < 5, 'orange-icon': 5 <= row.percent_positive && row.percent_positive < 10, 'red-icon': 10 <= row.percent_positive}"
-                            [inline]="true">fiber_manual_record</mat-icon>
+                            [inline]="true">{{row.percent_positive_trend > 0?'north':'south'}}</mat-icon>
                             {{row.percent_positive === null ? 'N/A' : row.percent_positive+'%'}}
                           </td>
-                          <td [title]="row.icu === 'nan'? 'Cannot calculate due to insufficient data': ''"
+                          <td [title]="row.icu === null? 'Cannot calculate due to insufficient data': ''"
                               class="cell-border">
-                              <mat-icon [inline]="true"
-                              [ngClass]="{'green-icon': row.critical_care_pct < 0.6, 'yellow-icon': 0.6 <= row.critical_care_pct && row.critical_care_pct < 0.8, 'orange-icon': 0.8 <= row.critical_care_pct && row.critical_care_pct < 0.9, 'red-icon': 0.9 <= row.critical_care_pct}">fiber_manual_record</mat-icon>
-                              {{row.critical_care_pct === null ? 'N/A' : row.critical_care_pct | percent}}</td>
+                              <mat-icon [inline]="true" class='icon-display'
+                              [ngClass]="{'green-icon': row.critical_care_pct < 0.6, 'yellow-icon': 0.6 <= row.critical_care_pct && row.critical_care_pct < 0.8, 'orange-icon': 0.8 <= row.critical_care_pct && row.critical_care_pct < 0.9, 'red-icon': 0.9 <= row.critical_care_pct}">{{row.critical_care_pct_trend > 0?'north':'south'}}</mat-icon>
+                              {{row.critical_care_pct === null ? 'N/A' : row.critical_care_pct | percent}} ({{row.critical_care_patients}} of {{row.critical_care_beds}} beds)</td>
                           <td
-                          [ngClass]="{'black-cell': row.weekly === 'nan', 'green-cell': row.rolling_pop < 1, 'yellow-cell': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-cell': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-cell': 10 < row.rolling_pop}"
+                          [ngClass]="{'black-cell': row.weekly === null, 'green-cell': row.rolling_pop < 1, 'yellow-cell': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-cell': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-cell': 10 < row.rolling_pop}"
                               class="cell-border" style="font-size: 14px;padding: 10px;">
                               {{row.rolling_pop === null ? 'N/A' : (row.rolling_pop >= 10 ? 'Curving up Dangerously' : (row.rolling_pop >= 5 ? 'Curving Up Quickly' : (row.rolling_pop >= 1 ? 'Curving Up Somewhat': 'Curving Down')))}}</td>
                           <mat-checkbox value={{row.HR_UID}} (change)="Checked($event.checked, row.HR_UID)" [checked]="Selected(row.HR_UID)"></mat-checkbox>
@@ -341,8 +347,12 @@
                 <div style="margin-bottom: 30px">
                   <h1 class="scorecard-header">Ontario's COVID Warning System</h1>
                   <p class="scorecard-text">We use five key indicators to determine risk levels for 34 Public Health Units in Ontario</p>
-                  <div style="display:flex;color:#275d6f;font-weight:bold;"><span class="material-icons">check_box</span> Choose Regions That Matter To You</div>
-                  <div style="display:flex;color:#275d6f;font-weight:bold;"><img style="height: 24px; width: 24px" src='assets/img/scorecard/Indicators - Percent Positivity.svg'>&nbsp;Learn About How To Read The Data</div>
+                  <div style="display:flex;color:#275d6f;font-weight:bold;margin-top: 30px"><span class="material-icons">check_box</span> <a style="display:flex;color:#275d6f;font-weight:bold;" href="#regions">Choose Regions That Matter To You</a></div>
+                  <div style="display:flex;color:#275d6f;font-weight:bold;margin-top: 30px"><img style="height: 24px; width: 24px" src='assets/img/scorecard/Indicators - Percent Positivity.svg'>&nbsp;<a style="display:flex;color:#275d6f;font-weight:bold;" href="#guide">Learn About How To Read The Data</a></div>
+                  <div style="display:flex;">
+                    <p style="margin:30px 10px 0px 10px"><mat-icon>north</mat-icon> = Up Over Last Week </p>
+                    <p style="margin:30px 10px 0px 10px"><mat-icon>south</mat-icon> = Down Over Last Week </p>
+                  </div>
                 </div>
                 <mat-progress-spinner class="spinner-styling" mode="indeterminate" diameter="50"
                     *ngIf="!sortedMetrics">
@@ -356,41 +366,41 @@
                         </tr>
                         <tr>
                             <td class="mobile-header-cell alternate-row">Case Incidence (Per 100,000 People)</td>
-                            <td class="mobile-data-cell center-cell">{{table.rolling_pop === 'nan' ? 'N/A' : table.rolling_pop | number : '1.2-2'}}
+                            <td class="mobile-data-cell center-cell">{{table.rolling_pop === null ? 'N/A' : table.rolling_pop | number : '1.2-2'}}
                               <mat-icon
                               [ngClass]="{'green-icon': table.rolling_pop < 1, 'yellow-icon': 1 <= table.rolling_pop && table.rolling_pop < 5, 'orange-icon': 5 <= table.rolling_pop && table.rolling_pop < 10, 'red-icon': 10 <= table.rolling_pop}"
-                              [inline]="true">fiber_manual_record</mat-icon></td>
+                              [inline]="true" >{{table.rolling_pop_trend > 0?'north':'south'}}</mat-icon></td>
                         </tr>
                         <tr>
                             <td class="alternate-row mobile-header-cell">Rt</td>
                             <td class="mobile-data-cell center-cell">{{table.rt_ml === null ? 'N/A' : table.rt_ml | number : '1.2-2'}}
                               <mat-icon
                               [ngClass]="{'green-icon': table.rt_ml < 0.9, 'yellow-icon': 0.9 <= table.rt_ml && table.rt_ml < 1.1, 'orange-icon': 1.1 <= table.rt_ml && table.rt_ml < 1.4, 'red-icon': 1.4 <= table.rt_ml}"
-                              [inline]="true">fiber_manual_record</mat-icon></td>
+                              [inline]="true" >{{table.rt_ml_trend > 0?'north':'south'}}</mat-icon></td>
                         </tr>
                         <tr>
                             <td class="mobile-header-cell alternate-row">Testing &lt; 24h</td>
-                            <td class="mobile-data-cell center-cell">{{table.rolling_test_twenty_four === 'nan' ? 'N/A' : table.rolling_test_twenty_four | percent}}
-                              <mat-icon [inline]="true" [ngClass]="{'green-icon': table.rolling_test_twenty_four > 0.9, 'yellow-icon': table.rolling_test_twenty_four <= 0.9 && table.rolling_test_twenty_four > 0.7, 'orange-icon': table.rolling_test_twenty_four <= 0.7 && table.rolling_test_twenty_four > 0.5, 'red-icon': table.rolling_test_twenty_four <= 0.5 }">fiber_manual_record</mat-icon>
+                            <td class="mobile-data-cell center-cell">{{table.rolling_test_twenty_four === null ? 'N/A' : table.rolling_test_twenty_four | percent}}
+                              <mat-icon [inline]="true" [ngClass]="{'green-icon': table.rolling_test_twenty_four > 0.9, 'yellow-icon': table.rolling_test_twenty_four <= 0.9 && table.rolling_test_twenty_four > 0.7, 'orange-icon': table.rolling_test_twenty_four <= 0.7 && table.rolling_test_twenty_four > 0.5, 'red-icon': table.rolling_test_twenty_four <= 0.5 }">{{table.rolling_test_twenty_four_trend > 0?'north':'south'}}</mat-icon>
                             </td>
                         </tr>
                         <tr>
                             <td class="mobile-header-cell alternate-row">Percent Positivity</td>
-                            <td class="mobile-data-cell center-cell">{{table.percent_positive === 'nan' ? 'N/A' : table.percent_positive | number}}%
+                            <td class="mobile-data-cell center-cell">{{table.percent_positive === null ? 'N/A' : table.percent_positive | number}}%
                               <mat-icon
                               [ngClass]="{'green-icon': table.percent_positive < 3, 'yellow-icon': 3 <= table.percent_positive && table.percent_positive < 5, 'orange-icon': 5 <= table.percent_positive && table.percent_positive < 10, 'red-icon': 10 <= table.percent_positive}"
-                              [inline]="true">fiber_manual_record</mat-icon>
+                              [inline]="true" >{{table.percent_positive_trend > 0?'north':'south'}}</mat-icon>
                             </td>
                         </tr>
                         <tr>
                             <td class="mobile-header-cell alternate-row">Total ICU Bed Occupied</td>
-                            <td class="center-cell" class="mobile-data-cell center-cell">{{table.critical_care_pct === 'nan' ? 'N/A' : table.critical_care_pct | percent}}
+                            <td class="center-cell" class="mobile-data-cell center-cell">{{table.critical_care_pct === null ? 'N/A' : table.critical_care_pct | percent}} ({{table.critical_care_patients}} of {{table.critical_care_beds}} beds)
                               <mat-icon [inline]="true"
-                                [ngClass]="{'green-icon': table.critical_care_pct < 0.6, 'yellow-icon': 0.6 <= table.critical_care_pct && table.critical_care_pct < 0.8, 'orange-icon': 0.8 <= table.critical_care_pct && table.critical_care_pct < 0.9, 'red-icon': 0.9 <= table.critical_care_pct}">fiber_manual_record</mat-icon>
+                                [ngClass]="{'green-icon': table.critical_care_pct < 0.6, 'yellow-icon': 0.6 <= table.critical_care_pct && table.critical_care_pct < 0.8, 'orange-icon': 0.8 <= table.critical_care_pct && table.critical_care_pct < 0.9, 'red-icon': 0.9 <= table.critical_care_pct}">{{table.critical_care_pct_trend > 0?'north':'south'}}</mat-icon>
                             </td>
                         </tr>
                         <tr>
-                          <td style="padding: 10px" colspan="2" [ngClass]="{'black-cell': table.weekly === 'nan', 'green-cell': table.rolling_pop < 1, 'yellow-cell': 1 <= table.rolling_pop && table.rolling_pop < 5, 'orange-cell': 5 <= table.rolling_pop && table.rolling_pop < 10, 'red-cell': 10 < table.rolling_pop}"
+                          <td style="padding: 10px" colspan="2" [ngClass]="{'black-cell': table.weekly === null, 'green-cell': table.rolling_pop < 1, 'yellow-cell': 1 <= table.rolling_pop && table.rolling_pop < 5, 'orange-cell': 5 <= table.rolling_pop && table.rolling_pop < 10, 'red-cell': 10 < table.rolling_pop}"
                               class="cell-border center-cell">
                               Risk Level: {{table.rolling_pop === null ? 'N/A' : (table.rolling_pop >= 10 ? 'Curving up Dangerously' : (table.rolling_pop >= 5 ? 'Curving Up Quickly' : (table.rolling_pop >= 1 ? 'Curving Up Somewhat': 'Curving Down')))}}</td>
                         </tr>
@@ -402,9 +412,10 @@
                   </div>
                 </div>
               </div>
+              <app-subscribe [regions]="selectedObject"></app-subscribe>
               <app-donate></app-donate>
               <div *ngIf="!phuSelected">
-              <div class="item-mobile item" style="margin-top: 30px">
+              <div class="item-mobile item" style="margin-top: 30px" id="guide">
                 <div class="heading">
                   Understanding the Indicators <span (click)="onClickMe()" class="material-icons" *ngIf=!metric_collapse style="font-size: 40px;color: #275d6f;margin-left: 30px;">keyboard_arrow_down</span><span (click)="onClickMe()" class="material-icons" *ngIf=metric_collapse style="font-size: 40px;color: #275d6f;margin-left: 30px;">keyboard_arrow_up</span>
                 </div>
@@ -456,7 +467,7 @@
                         *ngIf="!sortedMetrics">
                     </mat-progress-spinner>
                 </div>
-                <div *ngIf="sortedMetrics">
+                <div *ngIf="sortedMetrics" id="regions">
                   <div *ngFor="let table of sortedMetrics" class="mobile-separator">
                     <div class="mobile-phu-header" style="display:flex;justify-content: space-between;margin-bottom:10px; padding:10px 20px 10px 20px;">
                       <div class="mobile-phu-header">{{table.phu}}</div>

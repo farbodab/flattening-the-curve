@@ -23,6 +23,7 @@ import { GridComponent } from './pages/grid/grid.component';
 import { ScorecardComponent } from './components/scorecard/scorecard.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TableComponent } from './components/table/table.component';
+import { SubscribeComponent } from './components/subscribe/subscribe';
 import { ThermometerComponent } from './components/thermometer/thermometer';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
@@ -103,7 +104,8 @@ export function initConfig(appConfig: AppConfigService) {
         TableComponent,
         MapComponent,
         DonateComponent,
-        ThermometerComponent
+        ThermometerComponent,
+        SubscribeComponent
     ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),

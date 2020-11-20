@@ -1168,7 +1168,7 @@
 }
 
 .mobile-browser .right-bar{
-  max-width: 100%;
+  padding: 10px;
 }
 
 .right-bar{
@@ -1211,4 +1211,8 @@ p {
 
 .mobile-scorecard-table-styling .mat-icon.mat-icon-inline{
   width: 0;
+}
+
+.icon-display {
+   transform: scale(1.5);
 }

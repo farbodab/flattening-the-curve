@@ -14,4 +14,5 @@
   "twitter_object_endpoint": "https://api.twitter.com/1.1/search/tweets.json?q=%23superbowl&result_type=recent",
   "summary_object_endpoint": "https://flatteningthecurve.herokuapp.com/api/summary",
   "epi_object_endpoint": "https://flatteningthecurve.herokuapp.com/api/epi",
+  "mail_object_endpoint": "https://flatteningthecurve.herokuapp.com/api/mail",
 }

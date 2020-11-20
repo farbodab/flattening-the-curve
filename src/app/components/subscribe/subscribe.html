@@ -1,0 +1,34 @@
+<div [ngClass]="is_full?'desktop':'mobile'">
+<div class="subscribe">
+  <div style="display:flex">
+    <span class="material-icons" style="color:#275d6f;margin-right: 10px;">
+email
+</span>Please send me this custom COVID-19 update
+  </div>
+  <div>
+  <mat-form-field class="example-full-width">
+    <mat-label>Email Address</mat-label>
+    <input matInput placeholder="My Email Address" type="email" [formControl]="emailFormControl" [errorStateMatcher]="matcher" [(ngModel)]="email">
+    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+      Please enter a valid email address
+    </mat-error>
+    <mat-error *ngIf="emailFormControl.hasError('required')">
+      Email is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Frequency</mat-label>
+      <select [(ngModel)]="frequency" matNativeControl required appearance="fill">
+        <option value="weekly">Weekly</option>
+        <option value="daily">Daily</option>
+        <option value="change">When something has happened</option>
+      </select>
+    </mat-form-field>
+  </div>
+  <div class="sign-up" (click)="submitted()">
+    <p style="color:white;text-align: center;">Sign Up</p>
+  </div>
+</div>
+</div>

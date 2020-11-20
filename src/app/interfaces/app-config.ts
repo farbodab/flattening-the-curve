@@ -13,4 +13,5 @@ export class AppConfigProperties {
     twitter_object_endpoint: string;
     summary_object_endpoint: string;
     epi_object_endpoint: string;
+    mail_object_endpoint: string;
 }
