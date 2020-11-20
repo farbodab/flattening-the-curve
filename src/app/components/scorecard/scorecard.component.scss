@@ -1216,3 +1216,13 @@ p {
 .icon-display {
    transform: scale(1.5);
 }
+
+.measures p{
+  display: flex;
+  align-items: center;
+}
+
+.measures .heading{
+  margin-left: 20px;
+  font-size: 18px;
+}

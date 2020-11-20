@@ -25,6 +25,7 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
 
   graph_data = null;
   metric_collapse: boolean = true;
+  action_collapse: boolean = true;
   ontario: any = "Ontario";
   italy: any = "Italy";
   southkorea: any = "South Korea";
@@ -261,6 +262,10 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
 
   onClickMe() {
   this.metric_collapse = !this.metric_collapse;
+  }
+
+  onClickMeTwo() {
+  this.action_collapse = !this.action_collapse;
   }
 
   Checked(event, HR_UID) {
