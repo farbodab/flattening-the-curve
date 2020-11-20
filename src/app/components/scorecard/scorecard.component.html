@@ -108,7 +108,7 @@
             <div *ngIf="is_full" class="table-container">
                 <div style="display:flex;flex-direction:column;justify-content: center;align-items: center;">
                   <h1 class="scorecard-header">Ontario's COVID Warning System</h1>
-                  <p class="scorecard-text">We use five key indicators to determine risk levels for 34 Public Health Units in Ontario.<br/>You can customize the table below by adding regions from the list below the map.</p>
+                  <p class="scorecard-text">We use five key indicators to determine risk levels for 34 Public Health Units in Ontario.<br/>You can customize the table below by adding regions from the <a href="#regions">list below the map.</a></p>
                   <div style="display:flex;">
                     <p style="margin:0px 10px 0px 10px"><mat-icon>north</mat-icon> = Up Over Last Week </p>
                     <p style="margin:0px 10px 0px 10px"><mat-icon>south</mat-icon> = Down Over Last Week </p>
@@ -212,7 +212,7 @@
                           *ngIf="!sortedMetrics">
                       </mat-progress-spinner>
                   </div>
-                  <table matSort (matSortChange)="sortMetrics($event)" *ngIf="sortedMetrics" class="table-styling">
+                  <table matSort (matSortChange)="sortMetrics($event)" *ngIf="sortedMetrics" class="table-styling" id="regions">
                       <tr>
                           <th></th>
                           <th colspan="2" class="top-category">Pandemic Monitoring</th>
@@ -406,9 +406,9 @@
                 <div style="margin-bottom: 30px">
                   <h1 class="scorecard-header">Ontario's COVID Warning System</h1>
                   <p class="scorecard-text">We use five key indicators to determine risk levels for 34 Public Health Units in Ontario</p>
-                  <div style="display:flex;color:#275d6f;font-weight:bold;margin-top: 30px"><span class="material-icons">check_box</span> <a style="display:flex;color:#275d6f;font-weight:bold;" href="#regions">Choose Regions That Matter To You</a></div>
-                  <div style="display:flex;color:#275d6f;font-weight:bold;margin-top: 30px"><img style="height: 24px; width: 24px" src='assets/img/scorecard/Indicators - Percent Positivity.svg'>&nbsp;<a style="display:flex;color:#275d6f;font-weight:bold;" href="#guide">Learn About How To Read The Data</a></div>
-                  <div style="display:flex;">
+                  <div style="display:flex;color:#275d6f;font-weight:bold;margin-top: 30px;justify-content: center;"><span class="material-icons">check_box</span> <a style="display:flex;color:#275d6f;font-weight:bold;" href="#regions">Choose Regions That Matter To You</a></div>
+                  <div style="display:flex;color:#275d6f;font-weight:bold;margin-top: 30px;justify-content: center;"><img style="height: 24px; width: 24px" src='assets/img/scorecard/Indicators - Percent Positivity.svg'>&nbsp;<a style="display:flex;color:#275d6f;font-weight:bold;" href="#guide">Learn About How To Read The Data</a></div>
+                  <div style="display:flex;justify-content: center;">
                     <p style="margin:30px 10px 0px 10px"><mat-icon>north</mat-icon> = Up Over Last Week </p>
                     <p style="margin:30px 10px 0px 10px"><mat-icon>south</mat-icon> = Down Over Last Week </p>
                   </div>
