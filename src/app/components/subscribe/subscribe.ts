@@ -45,7 +45,7 @@ export class SubscribeComponent {
     if (this.email!==null && this.frequency!==null && this.regions!==null){
       var payload = {"email":this.email, "frequency":this.frequency, "regions":this.regions};
       this.fetchDataObj(payload)
-      this.openSnackBar("You're subscribed", 'Dismiss')
+      this.openSnackBar("You're subscribed! We just sent you a confirmation. Check your email's spam folder in case you don't see it.", 'Dismiss')
     }
     else {
       this.openSnackBar("Something went wrong", 'Dismiss')
