@@ -18,7 +18,7 @@ export class StoryComponent implements OnInit, AfterViewInit {
   window_subscription: Subscription;
   displayFooter = false;
 
-  teamChoices = ['Active','Advisor', 'Archived', 'All'];
+  teamChoices = ['Active','Advisor', 'Alumni', 'All'];
   teamChoicesCount = [];
   tooltipToggle = false;
 

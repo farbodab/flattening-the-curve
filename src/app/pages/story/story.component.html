@@ -34,14 +34,6 @@
 							<div style="color: #ffffff; margin-left: 15px; font-size: 24px; line-height: 48px">Our
 								People
 							</div>
-							<div class="desktop-pop" [style.display]="tooltipToggle ? 'block' : 'none'">
-								<div *ngFor="let level of tooltipArray">
-									<div *ngFor="let obj of level | keyvalue" class="pop-text-container">
-										<div class="pop-text-title">{{obj.key+': '}}</div>
-										<div class="pop-text">{{obj.value}}</div>
-									</div>
-								</div>
-							</div>
 						</div>
 					</div>
 					<div style="display: flex">
