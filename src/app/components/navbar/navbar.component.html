@@ -25,7 +25,7 @@
                     routerLink='/blog'>Blog</button>
                 <div class="mode">
                   <div class="top">Site Mode</div>
-                  <div class="bottom">Personal <mat-slide-toggle [(ngModel)]="isChecked"></mat-slide-toggle> Geek</div>
+                  <div class="bottom">Personal <mat-slide-toggle (change)="onChange()" [(ngModel)]="isChecked"></mat-slide-toggle> Geek</div>
                 </div>
 
             </div>
