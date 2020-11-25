@@ -10,6 +10,7 @@
                 <p>
                   <img src='assets/img/scorecard/Indicators - Case Incidence.svg'>
                   <span class="heading">Case Incidence (Per 100,000 People)</span>
+                  <app-chevron [date]="timesObj" [key]="'rolling_pop'"></app-chevron>
                   <span>
                   The seven day rolling average of daily new cases in a public health unit
                   </span>
@@ -17,6 +18,7 @@
                 <p>
                   <img src='assets/img/scorecard/Group 65.svg'>
                   <span class="heading">Rt</span>
+                  <app-chevron [date]="timesObj" [key]="'rt_ml'"></app-chevron>
                   <span>
                   A measure of how contagious a disease is at a certain point in time. It tells us the average number of people one sick person can infect (e.g. an Rt of 5 means that on average, each case is expected to infect 5 other people). If Rt is greater than 1, it means the outbreak is growing.
                   </span>
@@ -24,6 +26,7 @@
                 <p>
                   <img class='logo-styling-home' src='assets/img/scorecard/Indicators - Testing.svg'>
                   <span class="heading">Testing &lt; 24h</span>
+                  <app-chevron [date]="timesObj" [key]="'percent_positive'"></app-chevron>
                   <span>
                   The amount of time needed for a lab to process a specimen and enter the result (e.g. positive or negative) into the public health database. This should be as fast as possible to prevent backlogs and provide the most accurate view possible on the pandemic situation.
                   </span>
@@ -31,6 +34,7 @@
                 <p>
                   <img class='logo-styling-home' src='assets/img/scorecard/Indicators - Percent Positivity.svg'>
                   <span class="heading">Percent Positivity</span>
+                  <app-chevron [date]="timesObj" [key]="'rt_ml'"></app-chevron>
                   <span>
                   The percentage of all COVID-19 tests performed that are actually positive. The percent positivity will be high if the number of positive tests is too high, or if the number of total tests is too low.
                   </span>
@@ -38,6 +42,7 @@
                 <p>
                   <img class='logo-styling-home' src='assets/img/scorecard/Indicators - ICU Bed.svg'>
                   <span class="heading">Total ICU Beds Occupied</span>
+                  <app-chevron [date]="timesObj" [key]="'critical_care_pct'"></app-chevron>
                   <span>
                   The percentage of beds in the intensive care unit that are occupied. This includes both COVID-19 patients and patients who are in the ICU for other reasons. This gives us an important sense of healthcare capacity since if there are not enough ICU beds, patients are at a higher risk of death.
                   </span>
@@ -482,6 +487,7 @@
                   <p>
                     <img src='assets/img/scorecard/Indicators - Case Incidence.svg'>
                     <span class="heading">Case Incidence (Per 100,000 People)</span>
+                    <app-chevron [date]="timesObj" [key]="'rolling_pop'"></app-chevron>
                     <span>
                     The seven day rolling average of daily new cases in a public health unit
                     </span>
@@ -489,6 +495,7 @@
                   <p>
                     <img src='assets/img/scorecard/Group 65.svg'>
                     <span class="heading">Rt</span>
+                    <app-chevron [date]="timesObj" [key]="'rt_ml'"></app-chevron>
                     <span>
                     A measure of how contagious a disease is at a certain point in time. It tells us the average number of people one sick person can infect (e.g. an Rt of 5 means that on average, each case is expected to infect 5 other people). If Rt is greater than 1, it means the outbreak is growing.
                     </span>
@@ -496,6 +503,7 @@
                   <p>
                     <img class='logo-styling-home' src='assets/img/scorecard/Indicators - Percent Positivity.svg'>
                     <span class="heading">Percent Positivity</span>
+                    <app-chevron [date]="timesObj" [key]="'percent_positive'"></app-chevron>
                     <span>
                     The percentage of all COVID-19 tests performed that are actually positive. The percent positivity will be high if the number of positive tests is too high, or if the number of total tests is too low.
                     </span>
@@ -503,6 +511,7 @@
                   <p>
                     <img class='logo-styling-home' src='assets/img/scorecard/Indicators - Testing.svg'>
                     <span class="heading">Testing &lt; 24h</span>
+                    <app-chevron [date]="timesObj" [key]="'rolling_test_twenty_four'"></app-chevron>
                     <span>
                     The amount of time needed for a lab to process a specimen and enter the result (e.g. positive or negative) into the public health database. This should be as fast as possible to prevent backlogs and provide the most accurate view possible on the pandemic situation.
                     </span>
@@ -510,6 +519,7 @@
                   <p>
                     <img class='logo-styling-home' src='assets/img/scorecard/Indicators - ICU Bed.svg'>
                     <span class="heading">Total ICU Beds Occupied</span>
+                    <app-chevron [date]="timesObj" [key]="'critical_care_pct'"></app-chevron>
                     <span>
                     The percentage of beds in the intensive care unit that are occupied. This includes both COVID-19 patients and patients who are in the ICU for other reasons. This gives us an important sense of healthcare capacity since if there are not enough ICU beds, patients are at a higher risk of death.
                     </span>

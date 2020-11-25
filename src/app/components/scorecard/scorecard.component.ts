@@ -323,8 +323,8 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
   fetchRefreshTimes() {
     this.api_service.get_reopeneing_times().subscribe(
       data => {
-        this.timesObj = this.iterateTimes(data);
-        console.log(this.timesObj);
+        this.timesObj = data
+        console.log(this.timesObj)
       },
       error => {
         this.timesObj = 'error';
