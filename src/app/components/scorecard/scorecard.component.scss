@@ -493,7 +493,7 @@
     font-size: 28px;
     line-height: 28px;
     text-align: center;
-    color: #391F85;
+    color: #275d6f
 }
 
 .scorecard-text{
@@ -1187,6 +1187,17 @@ table.top-table tr:hover td {
   cursor: pointer;
 }
 
+table.top-table tr:hover .icu {
+  background: #275d6f !important;
+  color: white;
+  cursor: pointer;
+}
+
+.icu{
+  display:flex;
+  align-items: center;
+}
+
 .active-row{
   background: #275d6f !important;
   color: white;
@@ -1198,6 +1209,8 @@ table.top-table tr:hover td {
 }
 
 .row-styling td {
+  padding-top: 10px;
+  padding-bottom: 10px;
   padding-left: 15px;
 }
 
@@ -1205,7 +1218,11 @@ p {
   font-size: 14px;
 }
 
-.material-icons:hover{
+.material-icons{
+  margin-right: 12px;
+}
+
+.cancel:hover{
   color: red;
 }
 

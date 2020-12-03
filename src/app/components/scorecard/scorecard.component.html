@@ -49,9 +49,9 @@
                 </p>
                 <p>
                   <img style="width: 98.7px;height: 32.2px;max-width: 100%;" class='logo-styling-home' src='assets/img/scorecard/Risk Level Icon.svg'>
-                  <span class="heading">Risk Levels</span>
+                  <span class="heading">Community Risk Levels</span>
                   <span>
-                  We chose to use primary colours that are commonly associated with other indicators that people are most familiar with. Note these risk levels may differ from <a style="color: #707070;" target="_blank" href="https://www.ontario.ca/page/covid-19-response-framework-keeping-ontario-safe-and-open" >provincial thresholds</a>
+                  To help you make decisions in your community, we have created four levels of Community Risk (Very Low - Low - Medium - High). The level is based on the most recent daily case incidence per 100,000 people. We chose to use primary colours that are commonly associated with other indicators that people are most familiar with. Note these risk levels may differ from <a style="color: #707070;" target="_blank" href="https://www.ontario.ca/page/covid-19-response-framework-keeping-ontario-safe-and-open" >provincial thresholds</a>
                   </span>
                 </p>
               </div>
@@ -80,7 +80,7 @@
                   </span>
                 </p>
                 <p>
-                  <img class='logo-styling-home' src='assets/img/scorecard/Measures - Stayhome Icon.svg'>
+                  <img class='logo-styling-home' src='assets/img/scorecard/Measures - High Risk Icon.svg'>
                   <span class="heading">
                   Stay home and away from others if you're feeling ill
                   </span>
@@ -100,7 +100,7 @@
                 <p>
                   <img class='logo-styling-home' src='assets/img/scorecard/Measures - High Risk Icon.svg'>
                   <span class="heading" >
-                  Stay home if you have a high risk of a serious illness
+                  Stay home if you have a High of a serious illness
                   </span>
                 </p>
                 <p>
@@ -120,7 +120,7 @@
             <div *ngIf="is_full" class="table-container">
                 <div style="display:flex;flex-direction:column;justify-content: center;align-items: center;">
                   <h1 class="scorecard-header">Ontario's COVID Warning System</h1>
-                  <p class="scorecard-text">We use five key indicators to determine risk levels for 34 Public Health Units in Ontario.<br/>You can customize the table below by adding regions from the <a href="#regions">list below the map.</a></p>
+                  <p class="scorecard-text">We use five key indicators to determine the community risk levels for 34 Public Health Units in Ontario.<br/>You can customize the table below by adding regions from the <a href="#regions">list below the map.</a></p>
                   <div style="display:flex;">
                     <p style="margin:0px 10px 0px 10px"><mat-icon>north</mat-icon> = Up Over Last Week </p>
                     <p style="margin:0px 10px 0px 10px"><mat-icon>south</mat-icon> = Down Over Last Week </p>
@@ -131,64 +131,64 @@
                   <table matSort (matSortChange)="sortMetrics($event)" *ngIf="sortedMetrics" class="table-styling  top-table">
                       <tr>
                           <th style="color:#275d6f;font-weight:bold;font-size:25px;text-align:left; padding-left:15px">My Regions</th>
+                          <th class="color:#275d6f;"></th>
                           <th colspan="2" class="top-category">Pandemic Monitoring</th>
                           <th colspan="2" class="top-category">Response Monitoring</th>
                           <th class="top-category">Response Capacity</th>
-                          <th class="top-category">Risk Levels</th>
                       </tr>
                       <tr>
                           <th mat-sort-header="phu" class="first-col-styling header-styling black-cell">Public Health Unit</th>
+                          <th mat-sort-header="risk" class="header-styling black-cell">Community Risk Levels</th>
                           <th mat-sort-header="new" class="header-styling black-cell">Case Incidence (Per 100,000 People)</th>
                           <th mat-sort-header="rt" class="header-styling black-cell">Rt</th>
                           <th mat-sort-header="testing" class="header-styling black-cell">% of Tests Back in Less than 24 hrs</th>
                           <th mat-sort-header="percent_positive" class="header-styling black-cell">Percent Positivity</th>
                           <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Bed Occupied</th>
-                          <th mat-sort-header="risk" class="header-styling black-cell">Risk</th>
                       </tr>
                       <tr (click)="ShowData(row.HR_UID)" *ngFor="let row of filterItemsOfType(sortedMetrics); index as index" class="row-styling" [style.background-color]="index % 2 === 0 ? '#ffffff' : '#F2F2F2'">
                         <td class="cell-border no-left-border"
                               [ngClass]="{'active-row': row.HR_UID == selectedPHU}"
                               [title]="row.phu+' Dashboard'">
                               {{row.phu}}</td>
+                              <td [ngClass]="{'black-cell': row.weekly === null, 'green-cell': row.rolling_pop < 1, 'yellow-cell': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-cell': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-cell': 10 < row.rolling_pop}"
+                                  class="cell-border"
+                                  [ngClass]="{'active-row': row.HR_UID == selectedPHU}"
+                                  style="font-size: 14px;padding: 10px;">
+                                  {{row.rolling_pop === null ? 'N/A' : (row.rolling_pop >= 10 ? 'High' : (row.rolling_pop >= 5 ? 'Medium' : (row.rolling_pop >= 1 ? 'Low': 'Very Low')))}}</td>
                           <td [title]="row.weekly === null? 'Cannot calculate due to insufficient data': ''"
                               [ngClass]="{'active-row': row.HR_UID == selectedPHU}"
                               class="cell-border">
                               <mat-icon
-                              [ngClass]="{'green-icon': row.rolling_pop < 1, 'yellow-icon': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-icon': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-icon': 10 <= row.rolling_pop}"
                               [inline]="true" class='icon-display'>{{row.rolling_pop_trend > 0?'north':'south'}}</mat-icon>
                               {{row.rolling_pop === null ? 'N/A' : row.rolling_pop | number : '1.2-2'}}</td>
                           <td [title]="row.rt === null? 'Cannot calculate due to insufficient data': ''"
                               [ngClass]="{'active-row': row.HR_UID == selectedPHU}"
                               class="cell-border no-left-border">
                               <mat-icon
-                              [ngClass]="{'green-icon': row.rt_ml < 0.9, 'yellow-icon': 0.9 <= row.rt_ml && row.rt_ml < 1.1, 'orange-icon': 1.1 <= row.rt_ml && row.rt_ml < 1.4, 'red-icon': 1.4 <= row.rt_ml}"
                               [inline]="true" class='icon-display'>{{row.rt_ml_trend > 0?'north':'south'}}</mat-icon>{{row.rt_ml === null ? 'N/A' : row.rt_ml | number : '1.2-2'}}
                           </td>
                           <td [title]="row.rolling_test_twenty_four === null? 'Cannot calculate due to insufficient data': ''"
                               class="cell-border"
                               [ngClass]="{'active-row': row.HR_UID == selectedPHU}">
-                              <mat-icon class='icon-display' [inline]="true" [ngClass]="{'green-icon': row.rolling_test_twenty_four > 0.9, 'yellow-icon': row.rolling_test_twenty_four <= 0.9 && row.rolling_test_twenty_four > 0.7, 'orange-icon': row.rolling_test_twenty_four <= 0.7 && row.rolling_test_twenty_four > 0.5, 'red-icon': row.rolling_test_twenty_four <= 0.5 }">{{row.rolling_test_twenty_four_trend > 0?'north':'south'}}</mat-icon>{{row.rolling_test_twenty_four === null ? 'N/A' : row.rolling_test_twenty_four | percent}}
+                              <mat-icon class='icon-display' [inline]="true"
+                              >{{row.rolling_test_twenty_four_trend > 0?'north':'south'}}</mat-icon>{{row.rolling_test_twenty_four === null ? 'N/A' : row.rolling_test_twenty_four | percent}}
                           </td>
                           <td [title]="row.percent_positive === null? 'Data not available or not reported publicly': ''"
                             class="cell-border"
                             [ngClass]="{'active-row': row.HR_UID == selectedPHU}">
                             <mat-icon
-                            [ngClass]="{'green-icon': row.percent_positive < 3, 'yellow-icon': 3 <= row.percent_positive && row.percent_positive < 5, 'orange-icon': 5 <= row.percent_positive && row.percent_positive < 10, 'red-icon': 10 <= row.percent_positive}"
                             [inline]="true" class='icon-display'>{{row.percent_positive_trend > 0?'north':'south'}}</mat-icon>
                             {{row.percent_positive === null ? 'N/A' : row.percent_positive+'%'}}
                           </td>
                           <td [title]="row.icu === null? 'Cannot calculate due to insufficient data': ''"
                               class="cell-border"
                               [ngClass]="{'active-row': row.HR_UID == selectedPHU}">
-                              <mat-icon [inline]="true" class='icon-display'
-                              [ngClass]="{'green-icon': row.critical_care_pct < 0.6, 'yellow-icon': 0.6 <= row.critical_care_pct && row.critical_care_pct < 0.8, 'orange-icon': 0.8 <= row.critical_care_pct && row.critical_care_pct < 0.9, 'red-icon': 0.9 <= row.critical_care_pct}">{{row.critical_care_pct_trend > 0?'north':'south'}}</mat-icon>
-                              {{row.critical_care_pct === null ? 'N/A' : row.critical_care_pct | percent}} ({{row.critical_care_patients}} of {{row.critical_care_beds}} beds)</td>
-                          <td [ngClass]="{'black-cell': row.weekly === null, 'green-cell': row.rolling_pop < 1, 'yellow-cell': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-cell': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-cell': 10 < row.rolling_pop}"
-                              class="cell-border"
-                              [ngClass]="{'active-row': row.HR_UID == selectedPHU}"
-                              style="font-size: 14px;padding: 10px;">
-                              {{row.rolling_pop === null ? 'N/A' : (row.rolling_pop >= 10 ? 'Curving up Dangerously' : (row.rolling_pop >= 5 ? 'Curving Up Quickly' : (row.rolling_pop >= 1 ? 'Curving Up Somewhat': 'Curving Down')))}}</td>
-                          <div (click)="Removed(row.HR_UID)"><span class="material-icons">clear</span></div>
+                              <div class="icu">
+                                <mat-icon [inline]="true" class='icon-display'>{{row.critical_care_pct_trend > 0?'north':'south'}}</mat-icon>
+                                <span>{{row.critical_care_pct === null ? 'N/A' : row.critical_care_pct | percent}} ({{row.critical_care_patients}} of {{row.critical_care_beds}} beds)</span>
+                              </div>
+                            </td>
+                          <div (click)="Removed(row.HR_UID)" class="cancel"><span class="material-icons">clear</span></div>
                       </tr>
                   </table>
                 </div>
@@ -227,19 +227,19 @@
                   <table matSort (matSortChange)="sortMetrics($event)" *ngIf="sortedMetrics" class="table-styling" id="regions">
                       <tr>
                           <th></th>
+                          <th></th>
                           <th colspan="2" class="top-category">Pandemic Monitoring</th>
                           <th colspan="2" class="top-category">Response Monitoring</th>
                           <th class="top-category">Response Capacity</th>
-                          <th class="top-category">Risk Levels</th>
                       </tr>
                       <tr>
                           <th mat-sort-header="phu" class="first-col-styling header-styling black-cell">Public Health Unit</th>
+                          <th mat-sort-header="risk" class="header-styling black-cell">Community Risk Levels</th>
                           <th mat-sort-header="new" class="header-styling black-cell">Case Incidence (Per 100,000 People)</th>
                           <th mat-sort-header="rt" class="header-styling black-cell">Rt</th>
                           <th mat-sort-header="testing" class="header-styling black-cell">% of Tests Back in Less than 24 hrs</th>
                           <th mat-sort-header="percent_positive" class="header-styling black-cell">Percent Positivity</th>
                           <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Bed Occupied</th>
-                          <th mat-sort-header="risk" class="header-styling black-cell">Risk</th>
                       </tr>
                       <tr *ngFor="let row of sortedMetrics; index as index" class="row-styling"
                           [style.background-color]="index % 2 === 0 ? '#ffffff' : '#F2F2F2'"
@@ -247,50 +247,50 @@
                           <td class="cell-border no-left-border"
                               [title]="row.phu+' Dashboard'">
                               {{row.phu}}</td>
+                          <td
+                          [ngClass]="{'black-cell': row.weekly === null, 'green-cell': row.rolling_pop < 1, 'yellow-cell': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-cell': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-cell': 10 < row.rolling_pop}"
+                              class="cell-border" style="font-size: 14px;padding: 10px;">
+                              {{row.rolling_pop === null ? 'N/A' : (row.rolling_pop >= 10 ? 'High' : (row.rolling_pop >= 5 ? 'Medium' : (row.rolling_pop >= 1 ? 'Low': 'Very Low')))}}</td>
                           <td [title]="row.weekly === null? 'Cannot calculate due to insufficient data': ''"
                               class="cell-border">
                               <mat-icon
-                              [ngClass]="{'green-icon': row.rolling_pop < 1, 'yellow-icon': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-icon': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-icon': 10 <= row.rolling_pop}"
                               [inline]="true" class='icon-display'>{{row.rolling_pop_trend > 0?'north':'south'}}</mat-icon>{{row.rolling_pop === null ? 'N/A' : row.rolling_pop | number : '1.2-2'}}</td>
                           <td [title]="row.rt === null? 'Cannot calculate due to insufficient data': ''"
                               class="cell-border no-left-border">
                               <mat-icon
-                              [ngClass]="{'green-icon': row.rt_ml < 0.9, 'yellow-icon': 0.9 <= row.rt_ml && row.rt_ml < 1.1, 'orange-icon': 1.1 <= row.rt_ml && row.rt_ml < 1.4, 'red-icon': 1.4 <= row.rt_ml}"
                               [inline]="true" class='icon-display'>{{row.rt_ml_trend > 0?'north':'south'}}</mat-icon>{{row.rt_ml === null ? 'N/A' : row.rt_ml | number : '1.2-2'}}
                           </td>
                           <td [title]="row.rolling_test_twenty_four === null? 'Cannot calculate due to insufficient data': ''"
                               class="cell-border">
-                              <mat-icon class='icon-display' [inline]="true" [ngClass]="{'green-icon': row.rolling_test_twenty_four > 0.9, 'yellow-icon': row.rolling_test_twenty_four <= 0.9 && row.rolling_test_twenty_four > 0.7, 'orange-icon': row.rolling_test_twenty_four <= 0.7 && row.rolling_test_twenty_four > 0.5, 'red-icon': row.rolling_test_twenty_four <= 0.5 }">{{row.rolling_test_twenty_four_trend > 0?'north':'south'}}</mat-icon>{{row.rolling_test_twenty_four === null ? 'N/A' : row.rolling_test_twenty_four | percent}}
+                              <mat-icon class='icon-display' [inline]="true">{{row.rolling_test_twenty_four_trend > 0?'north':'south'}}</mat-icon>{{row.rolling_test_twenty_four === null ? 'N/A' : row.rolling_test_twenty_four | percent}}
                           </td>
                           <td [title]="row.percent_positive === null? 'Data not available or not reported publicly': ''"
                             class="cell-border no-left-border">
                             <mat-icon class='icon-display'
-                            [ngClass]="{'green-icon': row.percent_positive < 3, 'yellow-icon': 3 <= row.percent_positive && row.percent_positive < 5, 'orange-icon': 5 <= row.percent_positive && row.percent_positive < 10, 'red-icon': 10 <= row.percent_positive}"
                             [inline]="true">{{row.percent_positive_trend > 0?'north':'south'}}</mat-icon>
                             {{row.percent_positive === null ? 'N/A' : row.percent_positive+'%'}}
                           </td>
                           <td [title]="row.icu === null? 'Cannot calculate due to insufficient data': ''"
                               class="cell-border">
+                              <div class="icu">
                               <mat-icon [inline]="true" class='icon-display'
-                              [ngClass]="{'green-icon': row.critical_care_pct < 0.6, 'yellow-icon': 0.6 <= row.critical_care_pct && row.critical_care_pct < 0.8, 'orange-icon': 0.8 <= row.critical_care_pct && row.critical_care_pct < 0.9, 'red-icon': 0.9 <= row.critical_care_pct}">{{row.critical_care_pct_trend > 0?'north':'south'}}</mat-icon>
-                              {{row.critical_care_pct === null ? 'N/A' : row.critical_care_pct | percent}} ({{row.critical_care_patients}} of {{row.critical_care_beds}} beds)</td>
-                          <td
-                          [ngClass]="{'black-cell': row.weekly === null, 'green-cell': row.rolling_pop < 1, 'yellow-cell': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-cell': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-cell': 10 < row.rolling_pop}"
-                              class="cell-border" style="font-size: 14px;padding: 10px;">
-                              {{row.rolling_pop === null ? 'N/A' : (row.rolling_pop >= 10 ? 'Curving up Dangerously' : (row.rolling_pop >= 5 ? 'Curving Up Quickly' : (row.rolling_pop >= 1 ? 'Curving Up Somewhat': 'Curving Down')))}}</td>
+                              >{{row.critical_care_pct_trend > 0?'north':'south'}}</mat-icon>
+                              <span>{{row.critical_care_pct === null ? 'N/A' : row.critical_care_pct | percent}} ({{row.critical_care_patients}} of {{row.critical_care_beds}} beds)</span>
+                              </div>
+                            </td>
                           <mat-checkbox value={{row.HR_UID}} (change)="Checked($event.checked, row.HR_UID)" [checked]="Selected(row.HR_UID)"></mat-checkbox>
                       </tr>
                   </table>
                   <div class="card-container scorecard-info-container" style="margin-bottom: 48px;margin-right:20px">
                       <div class="mobile-scorecard-container">
-                          <div class="scorecard-info-header">Trend Threshold Breakdown</div>
+                          <div class="scorecard-info-header">Community Risk Breakdown</div>
                           <table style="width: 100%">
                               <tr class="row-styling">
                                   <th class="header-styling black-cell">Metric</th>
-                                  <th class="header-styling black-cell">Green</th>
-                                  <th class="header-styling black-cell">Yellow</th>
-                                  <th class="header-styling black-cell">Orange</th>
-                                  <th class="header-styling black-cell">Red</th>
+                                  <th class="header-styling black-cell">Very Low Risk</th>
+                                  <th class="header-styling black-cell">Low Risk</th>
+                                  <th class="header-styling black-cell">Medium Risk</th>
+                                  <th class="header-styling black-cell">High Risk</th>
                               </tr>
                               <tr class="row-styling">
                                   <td class="cell-border center-cell alternate-row">Case Incidence (Per 100,000 People)</td>
@@ -299,44 +299,7 @@
                                       <strong>&lt;</strong> 5</td>
                                   <td class="cell-border center-cell orange-cell">5 <strong>&le;</strong> Case Incidence (Per 100,000 People)
                                       <strong>&lt;</strong> 10</td>
-                                  <td class="cell-border no-right-border center-cell red-cell"><strong>&gt;</strong> 10</td>
-                              </tr>
-                              <tr class="row-styling">
-                                  <td class="cell-border no-left-border alternate-row center-cell">Rt</td>
-                                  <td class="cell-border center-cell green-cell"><strong>&lt;</strong> 0.9</td>
-                                  <td class="cell-border center-cell yellow-cell">0.9 <strong>&le;</strong> Rt
-                                      <strong>&lt;</strong> 1.1 </td>
-                                  <td class="cell-border center-cell orange-cell">1.1 <strong>&le;</strong> Rt
-                                      <strong>&lt;</strong> 1.4 </td>
-                                  <td class="cell-border no-right-border center-cell red-cell"><strong>&ge;</strong> 1.4</td>
-                              </tr>
-                              <tr class="row-styling">
-                                  <td class="cell-border no-left-border alternate-row center-cell">Testing &lt;24h</td>
-                                  <td class="cell-border center-cell green-cell"><strong>&lt;</strong> 90%</td>
-                                  <td class="cell-border center-cell yellow-cell">70% <strong>&le;</strong> Turn Around
-                                      <strong>&lt;</strong> 90% </td>
-                                  <td class="cell-border center-cell orange-cell">50% <strong>&le;</strong> Turn Around
-                                      <strong>&lt;</strong> 70% </td>
-                                  <td class="cell-border no-right-border center-cell red-cell"><strong>&ge;</strong> 50%</td>
-                              </tr>
-                              <tr class="row-styling">
-                                <td class="cell-border no-left-border center-cell alternate-row center-cell">Percent Positivity</td>
-                                <td class="cell-border center-cell green-cell"><strong>&lt;</strong> 3%</td>
-                                <td class="cell-border center-cell yellow-cell">3% <strong>&le;</strong> Percent Positivity
-                                   <strong>&le;</strong> 5%</td>
-                                   <td class="cell-border center-cell orange-cell">5% <strong>&le;</strong> Percent Positivity
-                                      <strong>&le;</strong> 10%</td>
-                                <td class="cell-border no-right-border center-cell red-cell"><strong>&gt;</strong> 10%</td>
-                              </tr>
-                              <tr class="row-styling">
-                                  <td class="cell-border no-left-border alternate-row center-cell">Total ICU Bed Occupied
-                                  </td>
-                                  <td class="cell-border center-cell green-cell"><strong>&lt;</strong> 60%</td>
-                                  <td class="cell-border center-cell yellow-cell">60% <strong>&le;</strong> Percent
-                                      Occupied % <strong>&le;</strong> 80%</td>
-                                  <td class="cell-border center-cell orange-cell">80% <strong>&le;</strong> Percent
-                                      Occupied % <strong>&le;</strong> 90%</td>
-                                  <td class="cell-border no-right-border center-cell red-cell"><strong>&gt;</strong> 90%</td>
+                                  <td class="cell-border no-right-border center-cell red-cell"><strong>&ge;</strong> 10</td>
                               </tr>
                           </table>
                       </div>
@@ -417,7 +380,7 @@
               <div style="display:flex;flex-direction:column;justify-content: center;align-items: center;">
                 <div style="margin-bottom: 30px">
                   <h1 class="scorecard-header">Ontario's COVID Warning System</h1>
-                  <p class="scorecard-text">We use five key indicators to determine risk levels for 34 Public Health Units in Ontario</p>
+                  <p class="scorecard-text">We use five key indicators to determine community risk levels for 34 Public Health Units in Ontario</p>
                   <div style="display:flex;color:#275d6f;font-weight:bold;margin-top: 30px;justify-content: center;"><span class="material-icons">check_box</span> <a style="display:flex;color:#275d6f;font-weight:bold;" href="#regions">Choose Regions That Matter To You</a></div>
                   <div style="display:flex;color:#275d6f;font-weight:bold;margin-top: 30px;justify-content: center;"><img style="height: 24px; width: 24px" src='assets/img/scorecard/Indicators - Percent Positivity.svg'>&nbsp;<a style="display:flex;color:#275d6f;font-weight:bold;" href="#guide">Learn About How To Read The Data</a></div>
                   <div style="display:flex;justify-content: center;">
@@ -433,7 +396,7 @@
                     <table [id]="table.phu" class="mobile-scorecard-table-styling">
                         <tr>
                             <th class="mobile-phu-header">{{table.phu}}</th>
-                            <th class="mobile-phu-header"><span (click)="Removed(table.HR_UID)" class="material-icons">clear</span></th>
+                            <th class="mobile-phu-header"><span (click)="Removed(table.HR_UID)" class="material-icons" class="cancel">clear</span></th>
                         </tr>
                         <tr>
                             <td class="mobile-header-cell alternate-row">Case Incidence (Per 100,000 People)</td>
@@ -473,7 +436,7 @@
                         <tr>
                           <td style="padding: 10px" colspan="2" [ngClass]="{'black-cell': table.weekly === null, 'green-cell': table.rolling_pop < 1, 'yellow-cell': 1 <= table.rolling_pop && table.rolling_pop < 5, 'orange-cell': 5 <= table.rolling_pop && table.rolling_pop < 10, 'red-cell': 10 < table.rolling_pop}"
                               class="cell-border center-cell">
-                              Risk Level: {{table.rolling_pop === null ? 'N/A' : (table.rolling_pop >= 10 ? 'Curving up Dangerously' : (table.rolling_pop >= 5 ? 'Curving Up Quickly' : (table.rolling_pop >= 1 ? 'Curving Up Somewhat': 'Curving Down')))}}</td>
+                              Risk Level: {{table.rolling_pop === null ? 'N/A' : (table.rolling_pop >= 10 ? 'High' : (table.rolling_pop >= 5 ? 'Medium' : (table.rolling_pop >= 1 ? 'Low': 'Very Low')))}}</td>
                         </tr>
                         <tr>
                           <th (click)="ShowData(table.HR_UID)" class="mobile-phu-header" colspan="2"><a style="color: white;" href="#details">Click For More Detail</a></th>
@@ -533,9 +496,9 @@
                   </p>
                   <p>
                     <img style="width: 98.7px;height: 32.2px;max-width: 100%;" class='logo-styling-home' src='assets/img/scorecard/Risk Level Icon.svg'>
-                    <span class="heading">Risk Levels</span>
+                    <span class="heading">Community Risk Levels</span>
                     <span>
-                    We chose to use primary colours that are commonly associated with other indicators that people are most familiar with. Note these risk levels may differ from <a style="color: #707070;" target="_blank" href="https://www.ontario.ca/page/covid-19-response-framework-keeping-ontario-safe-and-open" >provincial thresholds</a>
+                    To help you make decisions in your community, we have created four levels of Community Risk (Very Low - Low - Medium - High). The level is based on the most recent daily case incidence per 100,000 people. We chose to use primary colours that are commonly associated with other indicators that people are most familiar with. Note these risk levels may differ from <a style="color: #707070;" target="_blank" href="https://www.ontario.ca/page/covid-19-response-framework-keeping-ontario-safe-and-open" >provincial thresholds</a>
                     </span>
                   </p>
                 </div>
@@ -564,7 +527,7 @@
                     </span>
                   </p>
                   <p>
-                    <img class='logo-styling-home' src='assets/img/scorecard/Measures - Stayhome Icon.svg'>
+                    <img class='logo-styling-home' src='assets/img/scorecard/Measures - High Risk Icon.svg'>
                     <span class="heading">
                     Stay home and away from others if you're feeling ill
                     </span>
@@ -584,7 +547,7 @@
                   <p>
                     <img class='logo-styling-home' src='assets/img/scorecard/Measures - High Risk Icon.svg'>
                     <span class="heading" >
-                    Stay home if you have a high risk of a serious illness
+                    Stay home if you have a High of a serious illness
                     </span>
                   </p>
                   <p>
