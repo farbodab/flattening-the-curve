@@ -65,7 +65,7 @@ export class MapComponent {
 
         // Configure series
         var polygonTemplate = polygonSeries.mapPolygons.template;
-        polygonTemplate.tooltipText = "Region: {ENGNAME}\nRisk: {risk}";
+        polygonTemplate.tooltipText = "Region: {ENGNAME}\nCommunity Risk: {risk}";
         polygonTemplate.fill = am4core.color("#367B25");
         polygonSeries.include = ["3526","3527","3530","3533","3534","3535",
         "3536","3537","3538","3539","3540","3541","3542","3543","3544","3546",
@@ -85,28 +85,28 @@ export class MapComponent {
                 colors.push({
                   "id": Math.round(item["HR_UID"]).toString(),
                   "fill": am4core.color("#D94711"),
-                  "risk": "Curving up Dangerously",
+                  "risk": "High",
                 });
               }
               else if (item["rolling_pop"] >= 5){
                 colors.push({
                   "id": Math.round(item["HR_UID"]).toString(),
                   "fill": am4core.color("#F28E13"),
-                  "risk": "Curving Up Quickly",
+                  "risk": "Medium",
                 });
               }
               else if (item["rolling_pop"] >= 1){
                 colors.push({
                   "id": Math.round(item["HR_UID"]).toString(),
                   "fill": am4core.color("#F2BB13"),
-                  "risk": "Curving Up Somewhat",
+                  "risk": "Low",
                 });
               }
               else {
                 colors.push({
                   "id": Math.round(item["HR_UID"]).toString(),
                   "fill": am4core.color("#12A67C"),
-                  "risk": "Curving Down",
+                  "risk": "Vey Low",
                 });
               }
           })

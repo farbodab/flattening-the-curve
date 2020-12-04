@@ -482,5 +482,13 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
 
   private refresh_layout(width) {
     this.is_full = window.innerWidth >= 1024 ? true : false;
+    if (this.is_full == false) {
+      this.metric_collapse = false
+      this.action_collapse = false
+    }
+    else {
+      this.metric_collapse = true
+      this.action_collapse = true
+    }
   }
 }

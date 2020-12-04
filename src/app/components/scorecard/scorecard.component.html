@@ -382,7 +382,7 @@
                   <h1 class="scorecard-header">Ontario's COVID Warning System</h1>
                   <p class="scorecard-text">We use five key indicators to determine community risk level for 34 Public Health Units in Ontario</p>
                   <div style="display:flex;color:#275d6f;font-weight:bold;margin-top: 30px;justify-content: center;"><span class="material-icons">check_box</span> <a style="display:flex;color:#275d6f;font-weight:bold;" href="#regions">Choose Regions That Matter To You</a></div>
-                  <div style="display:flex;color:#275d6f;font-weight:bold;margin-top: 30px;justify-content: center;"><img style="height: 24px; width: 24px" src='assets/img/scorecard/Indicators - Percent Positivity.svg'>&nbsp;<a style="display:flex;color:#275d6f;font-weight:bold;" href="#guide">Learn About How To Read The Data</a></div>
+                  <div style="display:flex;color:#275d6f;font-weight:bold;margin-top: 30px;justify-content: center;"><img style="height: 24px; width: 24px" src='assets/img/scorecard/Indicators - Percent Positivity.svg'>&nbsp;<a style="display:flex;color:#275d6f;font-weight:bold;" href="#guide" (click)="onClickMe()">Learn About How To Read The Data</a></div>
                   <div style="display:flex;justify-content: center;">
                     <p style="margin:30px 10px 0px 10px"><mat-icon>north</mat-icon> = Up Over Last Week </p>
                     <p style="margin:30px 10px 0px 10px"><mat-icon>south</mat-icon> = Down Over Last Week </p>
@@ -396,33 +396,35 @@
                     <table [id]="table.phu" class="mobile-scorecard-table-styling">
                         <tr>
                             <th class="mobile-phu-header">{{table.phu}}</th>
-                            <th class="mobile-phu-header"><span (click)="Removed(table.HR_UID)" class="material-icons" class="cancel">clear</span></th>
+                            <th class="mobile-phu-header cancel"><span (click)="Removed(table.HR_UID)" class="material-icons">clear</span></th>
+                        </tr>
+                        <tr>
+                          <td style="padding: 10px" colspan="2" [ngClass]="{'black-cell': table.weekly === null, 'green-cell': table.rolling_pop < 1, 'yellow-cell': 1 <= table.rolling_pop && table.rolling_pop < 5, 'orange-cell': 5 <= table.rolling_pop && table.rolling_pop < 10, 'red-cell': 10 < table.rolling_pop}"
+                              class="cell-border center-cell">
+                              Community Risk Level: {{table.rolling_pop === null ? 'N/A' : (table.rolling_pop >= 10 ? 'High' : (table.rolling_pop >= 5 ? 'Medium' : (table.rolling_pop >= 1 ? 'Low': 'Very Low')))}}</td>
                         </tr>
                         <tr>
                             <td class="mobile-header-cell alternate-row">Case Incidence (Per 100,000 People)</td>
                             <td class="mobile-data-cell center-cell">{{table.rolling_pop === null ? 'N/A' : table.rolling_pop | number : '1.2-2'}}
                               <mat-icon
-                              [ngClass]="{'green-icon': table.rolling_pop < 1, 'yellow-icon': 1 <= table.rolling_pop && table.rolling_pop < 5, 'orange-icon': 5 <= table.rolling_pop && table.rolling_pop < 10, 'red-icon': 10 <= table.rolling_pop}"
                               [inline]="true" >{{table.rolling_pop_trend > 0?'north':'south'}}</mat-icon></td>
                         </tr>
                         <tr>
                             <td class="alternate-row mobile-header-cell">Rt</td>
                             <td class="mobile-data-cell center-cell">{{table.rt_ml === null ? 'N/A' : table.rt_ml | number : '1.2-2'}}
                               <mat-icon
-                              [ngClass]="{'green-icon': table.rt_ml < 0.9, 'yellow-icon': 0.9 <= table.rt_ml && table.rt_ml < 1.1, 'orange-icon': 1.1 <= table.rt_ml && table.rt_ml < 1.4, 'red-icon': 1.4 <= table.rt_ml}"
                               [inline]="true" >{{table.rt_ml_trend > 0?'north':'south'}}</mat-icon></td>
                         </tr>
                         <tr>
                             <td class="mobile-header-cell alternate-row">Testing &lt; 24h</td>
                             <td class="mobile-data-cell center-cell">{{table.rolling_test_twenty_four === null ? 'N/A' : table.rolling_test_twenty_four | percent}}
-                              <mat-icon [inline]="true" [ngClass]="{'green-icon': table.rolling_test_twenty_four > 0.9, 'yellow-icon': table.rolling_test_twenty_four <= 0.9 && table.rolling_test_twenty_four > 0.7, 'orange-icon': table.rolling_test_twenty_four <= 0.7 && table.rolling_test_twenty_four > 0.5, 'red-icon': table.rolling_test_twenty_four <= 0.5 }">{{table.rolling_test_twenty_four_trend > 0?'north':'south'}}</mat-icon>
+                              <mat-icon [inline]="true">{{table.rolling_test_twenty_four_trend > 0?'north':'south'}}</mat-icon>
                             </td>
                         </tr>
                         <tr>
                             <td class="mobile-header-cell alternate-row">Percent Positivity</td>
                             <td class="mobile-data-cell center-cell">{{table.percent_positive === null ? 'N/A' : table.percent_positive | number}}%
                               <mat-icon
-                              [ngClass]="{'green-icon': table.percent_positive < 3, 'yellow-icon': 3 <= table.percent_positive && table.percent_positive < 5, 'orange-icon': 5 <= table.percent_positive && table.percent_positive < 10, 'red-icon': 10 <= table.percent_positive}"
                               [inline]="true" >{{table.percent_positive_trend > 0?'north':'south'}}</mat-icon>
                             </td>
                         </tr>
@@ -430,13 +432,8 @@
                             <td class="mobile-header-cell alternate-row">Total ICU Bed Occupied</td>
                             <td class="center-cell" class="mobile-data-cell center-cell">{{table.critical_care_pct === null ? 'N/A' : table.critical_care_pct | percent}} ({{table.critical_care_patients}} of {{table.critical_care_beds}} beds)
                               <mat-icon [inline]="true"
-                                [ngClass]="{'green-icon': table.critical_care_pct < 0.6, 'yellow-icon': 0.6 <= table.critical_care_pct && table.critical_care_pct < 0.8, 'orange-icon': 0.8 <= table.critical_care_pct && table.critical_care_pct < 0.9, 'red-icon': 0.9 <= table.critical_care_pct}">{{table.critical_care_pct_trend > 0?'north':'south'}}</mat-icon>
+                                >{{table.critical_care_pct_trend > 0?'north':'south'}}</mat-icon>
                             </td>
-                        </tr>
-                        <tr>
-                          <td style="padding: 10px" colspan="2" [ngClass]="{'black-cell': table.weekly === null, 'green-cell': table.rolling_pop < 1, 'yellow-cell': 1 <= table.rolling_pop && table.rolling_pop < 5, 'orange-cell': 5 <= table.rolling_pop && table.rolling_pop < 10, 'red-cell': 10 < table.rolling_pop}"
-                              class="cell-border center-cell">
-                              Risk Level: {{table.rolling_pop === null ? 'N/A' : (table.rolling_pop >= 10 ? 'High' : (table.rolling_pop >= 5 ? 'Medium' : (table.rolling_pop >= 1 ? 'Low': 'Very Low')))}}</td>
                         </tr>
                         <tr>
                           <th (click)="ShowData(table.HR_UID)" class="mobile-phu-header" colspan="2"><a style="color: white;" href="#details">Click For More Detail</a></th>
