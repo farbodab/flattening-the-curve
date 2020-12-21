@@ -119,6 +119,7 @@
           <div class="right-bar">
             <div *ngIf="is_full" class="table-container">
                 <div style="display:flex;flex-direction:column;justify-content: center;align-items: center;">
+                  <app-banner></app-banner>
                   <h1 class="scorecard-header">Ontario's COVID Warning System</h1>
                   <p class="scorecard-text">We use five key indicators to determine the community risk level for 34 Public Health Units in Ontario.<br/>You can customize the table below by adding regions from the <a href="#regions">list below the map.</a></p>
                   <div style="display:flex;">
@@ -218,7 +219,7 @@
                     </form>
                     <div style="display:flex;color:#275d6f;font-weight:bold;">Click <span class="material-icons">check_box_outline_blank</span> To Add To My Regions</div>
                   </div>
-                  <div class="scorecard-header-two">Metrics by Public Health Unit</div>
+                  <div class="scorecard-header-two">All Regions</div>
                   <div>
                       <mat-progress-spinner class="spinner-styling" mode="indeterminate" diameter="50"
                           *ngIf="!sortedMetrics">
@@ -378,6 +379,7 @@
             </div>
             <div *ngIf="!is_full">
               <div style="display:flex;flex-direction:column;justify-content: center;align-items: center;">
+                <app-banner></app-banner>
                 <div style="margin-bottom: 30px">
                   <h1 class="scorecard-header">Ontario's COVID Warning System</h1>
                   <p class="scorecard-text">We use five key indicators to determine community risk level for 34 Public Health Units in Ontario</p>
