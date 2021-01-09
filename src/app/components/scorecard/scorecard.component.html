@@ -185,17 +185,14 @@
                           <td [title]="row.icu === null? 'Cannot calculate due to insufficient data': ''"
                               class="cell-border"
                               [ngClass]="{'active-row': row.HR_UID == selectedPHU}">
-                              <div class="icu">
                                 <mat-icon [inline]="true" class='icon-display'>{{row.critical_care_pct_trend > 0?'north':'south'}}</mat-icon>
                                 <span>{{row.critical_care_pct === null ? 'N/A' : row.critical_care_pct | percent}}</span>
-                              </div>
                             </td>
                         <td [title]="row.covid === null? 'Cannot calculate due to insufficient data': ''"
                             class="cell-border"
                             [ngClass]="{'active-row': row.HR_UID == selectedPHU}">
-                            <div class="covid">
                               <span>{{row.covid_pct === null ? 'N/A' : row.covid_pct | percent}}</span>
-                            </div>
+
                           </td>
                           <div (click)="Removed(row.HR_UID)" class="cancel"><span class="material-icons">clear</span></div>
                       </tr>

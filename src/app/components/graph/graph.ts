@@ -19,6 +19,10 @@ export class GraphComponent implements OnInit, OnChanges {
   @Input() line_yellow: any;
   @Input() line_orange: any;
   @Input() image: any;
+  @Input() additional: any;
+  @Input() variable_name: any;
+  @Input() additional_name: any;
+
 
   graph = null;
 
@@ -39,6 +43,7 @@ export class GraphComponent implements OnInit, OnChanges {
               y: this.graph_data.map(x => x[this.variable]),
               type: 'scatter',
               mode: 'lines+points',
+              name: this.variable_name
             },
         ],
         layout: {title: this.title, autosize: true, images: [
@@ -135,6 +140,15 @@ export class GraphComponent implements OnInit, OnChanges {
           displayModeBar: false,
         }
     };
+
+    if (this.additional){
+      figure.data.push({ x: this.graph_data.map(x => x["date"]),
+                    y: this.graph_data.map(x => x[this.additional]),
+                    type: 'scatter',
+                    mode: 'lines+points',
+                    name: this.additional_name
+                  })
+    }
     this.graph = figure;
   }
 }

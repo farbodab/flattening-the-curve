@@ -49,7 +49,7 @@
         <h4>ICU Bed Capacity<br/><span style="color:#707070;font-size:12px;">{{icu["phu"]}}<br/>Last Data on {{icu["date"] | date}}</span></h4>
         {{icu["critical_care_pct"] | percent  : '1.2-2'}} of ICU beds in {{icu["phu"]}} are currently occupied. There are currently {{icu["confirmed_positive"]}} COVID patients in the ICU.
       </div>
-      <app-graph [line_green]='0.6' [line_yellow]='0.8' [line_orange]='0.9' [text_green]='0.5' [text_yellow]='0.7' [text_orange]='0.85' [text_red]='0.95' [graph_data]='data' variable="critical_care_pct"></app-graph>
+      <app-graph [line_green]='0.6' [line_yellow]='0.8' [line_orange]='0.9' [text_green]='0.5' [text_yellow]='0.7' [text_orange]='0.85' [text_red]='0.95' [graph_data]='data' variable="critical_care_pct" additional="covid_pct" additional_name="Covid Patients" variable_name="ICU Occupancy"></app-graph>
     </div>
   </div>
 </div>
