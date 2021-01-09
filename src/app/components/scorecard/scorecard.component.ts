@@ -48,6 +48,7 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
     percent_positive: null,
     tracing: null,
     icu: null,
+    covid: null,
     stage: null
   };
   sortedMetrics: any[];
@@ -447,6 +448,7 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
         case 'testing': return this.compareData(a.rolling_test_twenty_four, b.rolling_test_twenty_four, 'number', isAscending);
         case 'percent_positive': return this.compareData(a.percent_positive, b.percent_positive, 'number', isAscending);
         case 'icu': return this.compareData(a.critical_care_pct, b.critical_care_pct, 'number', isAscending);
+        case 'covid': return this.compareData(a.covid_pct, b.covid_pct, 'number', isAscending);
         case 'risk': return this.compareData(a.rolling_pop, b.rolling_pop, 'number', isAscending);
         default: return 0;
       }

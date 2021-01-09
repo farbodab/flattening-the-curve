@@ -135,7 +135,7 @@
                           <th class="color:#275d6f;"></th>
                           <th colspan="2" class="top-category">Pandemic Monitoring</th>
                           <th colspan="2" class="top-category">Response Monitoring</th>
-                          <th class="top-category">Response Capacity</th>
+                          <th colspan="2" class="top-category">Response Capacity</th>
                       </tr>
                       <tr>
                           <th mat-sort-header="phu" class="first-col-styling header-styling black-cell">Public Health Unit</th>
@@ -145,6 +145,7 @@
                           <th mat-sort-header="testing" class="header-styling black-cell">% of Tests Back in Less than 24 hrs</th>
                           <th mat-sort-header="percent_positive" class="header-styling black-cell">Percent Positivity</th>
                           <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Bed Occupied</th>
+                          <th mat-sort-header="icu" class="header-styling black-cell">Covid Related</th>
                       </tr>
                       <tr (click)="ShowData(row.HR_UID)" *ngFor="let row of filterItemsOfType(sortedMetrics); index as index" class="row-styling" [style.background-color]="index % 2 === 0 ? '#ffffff' : '#F2F2F2'">
                         <td class="cell-border no-left-border"
@@ -186,9 +187,16 @@
                               [ngClass]="{'active-row': row.HR_UID == selectedPHU}">
                               <div class="icu">
                                 <mat-icon [inline]="true" class='icon-display'>{{row.critical_care_pct_trend > 0?'north':'south'}}</mat-icon>
-                                <span>{{row.critical_care_pct === null ? 'N/A' : row.critical_care_pct | percent}} ({{row.critical_care_patients}} of {{row.critical_care_beds}} beds)</span>
+                                <span>{{row.critical_care_pct === null ? 'N/A' : row.critical_care_pct | percent}}</span>
                               </div>
                             </td>
+                        <td [title]="row.covid === null? 'Cannot calculate due to insufficient data': ''"
+                            class="cell-border"
+                            [ngClass]="{'active-row': row.HR_UID == selectedPHU}">
+                            <div class="covid">
+                              <span>{{row.covid_pct === null ? 'N/A' : row.covid_pct | percent}}</span>
+                            </div>
+                          </td>
                           <div (click)="Removed(row.HR_UID)" class="cancel"><span class="material-icons">clear</span></div>
                       </tr>
                   </table>
@@ -231,7 +239,7 @@
                           <th></th>
                           <th colspan="2" class="top-category">Pandemic Monitoring</th>
                           <th colspan="2" class="top-category">Response Monitoring</th>
-                          <th class="top-category">Response Capacity</th>
+                          <th colspan="2" class="top-category">Response Capacity</th>
                       </tr>
                       <tr>
                           <th mat-sort-header="phu" class="first-col-styling header-styling black-cell">Public Health Unit</th>
@@ -241,6 +249,7 @@
                           <th mat-sort-header="testing" class="header-styling black-cell">% of Tests Back in Less than 24 hrs</th>
                           <th mat-sort-header="percent_positive" class="header-styling black-cell">Percent Positivity</th>
                           <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Bed Occupied</th>
+                          <th mat-sort-header="icu" class="header-styling black-cell">Covid Related</th>
                       </tr>
                       <tr *ngFor="let row of sortedMetrics; index as index" class="row-styling"
                           [style.background-color]="index % 2 === 0 ? '#ffffff' : '#F2F2F2'"
@@ -276,7 +285,14 @@
                               <div class="icu">
                               <mat-icon [inline]="true" class='icon-display'
                               >{{row.critical_care_pct_trend > 0?'north':'south'}}</mat-icon>
-                              <span>{{row.critical_care_pct === null ? 'N/A' : row.critical_care_pct | percent}} ({{row.critical_care_patients}} of {{row.critical_care_beds}} beds)</span>
+                              <span>{{row.critical_care_pct === null ? 'N/A' : row.critical_care_pct | percent}}</span>
+                              </div>
+                            </td>
+                          <td [title]="row.covid === null? 'Cannot calculate due to insufficient data': ''"
+                              class="cell-border"
+                              [ngClass]="{'active-row': row.HR_UID == selectedPHU}">
+                              <div class="covid">
+                                <span>{{row.covid_pct === null ? 'N/A' : row.covid_pct | percent}}</span>
                               </div>
                             </td>
                           <mat-checkbox value={{row.HR_UID}} (change)="Checked($event.checked, row.HR_UID)" [checked]="Selected(row.HR_UID)"></mat-checkbox>
@@ -432,9 +448,14 @@
                         </tr>
                         <tr>
                             <td class="mobile-header-cell alternate-row">Total ICU Bed Occupied</td>
-                            <td class="center-cell" class="mobile-data-cell center-cell">{{table.critical_care_pct === null ? 'N/A' : table.critical_care_pct | percent}} ({{table.critical_care_patients}} of {{table.critical_care_beds}} beds)
+                            <td class="center-cell" class="mobile-data-cell center-cell">{{table.critical_care_pct === null ? 'N/A' : table.critical_care_pct | percent}}
                               <mat-icon [inline]="true"
                                 >{{table.critical_care_pct_trend > 0?'north':'south'}}</mat-icon>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="mobile-header-cell alternate-row">Covid Related</td>
+                            <td class="center-cell" class="mobile-data-cell center-cell">{{table.covid_pct === null ? 'N/A' : table.covid_pct | percent}}
                             </td>
                         </tr>
                         <tr>
