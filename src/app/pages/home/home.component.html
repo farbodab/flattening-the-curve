@@ -2,6 +2,7 @@
 <div [ngClass]="{'mobile-browser': !is_full}">
     <div style='background-color: white;'>
         <div>
+            <app-alert *ngIf="alertObj" [text]="alertObj['message']" [type]="alertObj['type']"></app-alert>
             <app-scorecard></app-scorecard>
             </div>
         </div>

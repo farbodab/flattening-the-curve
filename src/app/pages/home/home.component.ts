@@ -27,6 +27,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
   is_full = true;
   metricJsonObj: any;
   jsonObj: any;
+  alertObj: any;
+  alertType: any;
+  alertText: any;
   window_subscription: Subscription;
   initial_sort: Sort = {
     active: 'phu',
@@ -195,14 +198,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.window_subscription = this.host_service.onWindowResize.subscribe(window => {
       this.refresh_layout(window.innerWidth);
     });
-    // this.fetchVizObj();
-    // this.dropdownSelection = this.formBuilder.group({});
-    // this.dropdownSelection.addControl('phu', this.formBuilder.control(''));
-    // this.dropdownSelection.addControl('searchCtrl', this.formBuilder.control(''));
+    this.fetchAlertObj();
+
   }
 
   ngAfterViewInit() {
-    //this.fetchDataObj();
+
   }
 
   fetchDataObj() {
@@ -229,11 +230,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.mailingList.nativeElement.click();
   }
 
-  fetchVizObj() {
-    this.api_service.get_viz_obj().subscribe(
+  fetchAlertObj() {
+    this.api_service.get_alert_obj().subscribe(
       data => {
-        this.jsonObj = data;
-        this.findHomeViz(this.jsonObj);
+        this.alertObj = data[0];
       },
       error => {
         //console.error(error);

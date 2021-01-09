@@ -1,0 +1,32 @@
+<div *ngIf="!collapsed">
+<div [ngClass]="is_full?'desktop':'mobile'">
+  <div *ngIf="type=='success'" class="box green">
+    <div style="display:flex;">
+      <div class="green"><span class="material-icons">check_circle_outline</span></div>
+      <p class="green">{{text}}</p>
+    </div>
+    <div class="close green"><span class="material-icons" (click)="onClickMe()">close</span></div>
+  </div>
+  <div *ngIf="type=='error'" class="box red">
+    <div style="display:flex;">
+      <div class="red"><span class="material-icons">info_outlined</span></div>
+      <p class="red">{{text}}</p>
+    </div>
+    <div class="close red"><span class="material-icons" (click)="onClickMe()">close</span></div>
+  </div>
+  <div *ngIf="type=='warning'" class="box yellow">
+    <div style="display:flex;">
+      <div class="yellow"><span class="material-icons">warning</span></div>
+      <p class="yellow">{{text}}</p>
+    </div>
+    <div class="close yellow"><span class="material-icons" (click)="onClickMe()">close</span></div>
+  </div>
+  <div *ngIf="type=='info'" class="box blue">
+    <div style="display:flex;">
+      <div class="blue"><span class="material-icons">info_outlined</span></div>
+      <p class="blue">{{text}}</p>
+    </div>
+    <div class="close blue"><span class="material-icons" (click)="onClickMe()">close</span></div>
+  </div>
+</div>
+</div>

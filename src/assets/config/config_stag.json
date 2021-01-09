@@ -15,4 +15,5 @@
    "summary_object_endpoint": "https://flatteningthecurve-staging.herokuapp.com/api/summary",
    "epi_object_endpoint": "https://flatteningthecurve-staging.herokuapp.com/api/epi",
    "mail_object_endpoint": "https://flatteningthecurve-staging.herokuapp.com/api/mail",
+   "alert_object_endpoint":"https://flatteningthecurve-staging.herokuapp.com/api/alerts"
 }

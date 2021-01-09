@@ -54,6 +54,10 @@ export class ApiService {
     return this.http_client.get(this.appConfigProperties.epi_object_endpoint + "?HR_UID=" + HR_UID + "&filter=" + filter);
   }
 
+  get_alert_obj() {
+    return this.http_client.get(this.appConfigProperties.alert_object_endpoint);
+  }
+
   post_mail_obj(content) {
     //this.request_data(this.viz_object_endpoint, on_success, on_error);
     return this.http_client.post(this.appConfigProperties.mail_object_endpoint, content);

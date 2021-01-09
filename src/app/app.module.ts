@@ -7,6 +7,7 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from 'src/app/modules/material/material.module';
 import {NavbarComponent} from './components/navbar/navbar.component';
+import {AlertComponent} from './components/alert/alert';
 import {HomeComponent} from './pages/home/home.component';
 import {StoryComponent} from './pages/story/story.component';
 import {ResourcesComponent} from './pages/resources/resources.component';
@@ -109,7 +110,8 @@ export function initConfig(appConfig: AppConfigService) {
         ThermometerComponent,
         SubscribeComponent,
         ChevronComponent,
-        BannerComponent
+        BannerComponent,
+        AlertComponent
     ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),

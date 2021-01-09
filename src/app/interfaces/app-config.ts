@@ -14,4 +14,5 @@ export class AppConfigProperties {
     summary_object_endpoint: string;
     epi_object_endpoint: string;
     mail_object_endpoint: string;
+    alert_object_endpoint: string;
 }

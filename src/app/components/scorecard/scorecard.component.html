@@ -145,7 +145,7 @@
                           <th mat-sort-header="testing" class="header-styling black-cell">% of Tests Back in Less than 24 hrs</th>
                           <th mat-sort-header="percent_positive" class="header-styling black-cell">Percent Positivity</th>
                           <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Bed Occupied</th>
-                          <th mat-sort-header="icu" class="header-styling black-cell">Covid Related</th>
+                          <th mat-sort-header="covid" class="header-styling black-cell">Covid Related</th>
                       </tr>
                       <tr (click)="ShowData(row.HR_UID)" *ngFor="let row of filterItemsOfType(sortedMetrics); index as index" class="row-styling" [style.background-color]="index % 2 === 0 ? '#ffffff' : '#F2F2F2'">
                         <td class="cell-border no-left-border"
@@ -246,7 +246,7 @@
                           <th mat-sort-header="testing" class="header-styling black-cell">% of Tests Back in Less than 24 hrs</th>
                           <th mat-sort-header="percent_positive" class="header-styling black-cell">Percent Positivity</th>
                           <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Bed Occupied</th>
-                          <th mat-sort-header="icu" class="header-styling black-cell">Covid Related</th>
+                          <th mat-sort-header="covid" class="header-styling black-cell">Covid Related</th>
                       </tr>
                       <tr *ngFor="let row of sortedMetrics; index as index" class="row-styling"
                           [style.background-color]="index % 2 === 0 ? '#ffffff' : '#F2F2F2'"
