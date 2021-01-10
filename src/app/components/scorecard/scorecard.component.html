@@ -41,7 +41,7 @@
                 </p>
                 <p>
                   <img class='logo-styling-home' src='assets/img/scorecard/Indicators - ICU Bed.svg'>
-                  <span class="heading">Total ICU Beds Occupied</span>
+                  <span class="heading">Total ICU Occupancy</span>
                   <app-chevron [date]="timesObj" [key]="'critical_care_pct'"></app-chevron>
                   <span>
                   The percentage of beds in the intensive care unit that are occupied. This includes both COVID-19 patients and patients who are in the ICU for other reasons. This gives us an important sense of healthcare capacity since if there are not enough ICU beds, patients are at a higher risk of death.
@@ -49,7 +49,7 @@
                 </p>
                 <p>
                   <img class='logo-styling-home' src='assets/img/scorecard/Indicators - ICU Bed.svg'>
-                  <span class="heading">Covid Related ICU Beds Occupied</span>
+                  <span class="heading">Covid ICU Occupancy</span>
                   <app-chevron [date]="timesObj" [key]="'critical_care_pct'"></app-chevron>
                   <span>
                   The percentage of beds in the intensive care unit that are occupied by patients who have COVID-19. This helps us better understand the burden of COVID-19 on the health care system. Every bed occupied by a COVID-19 patient, is one less bed available to others who might need it.
@@ -152,8 +152,8 @@
                           <th mat-sort-header="rt" class="header-styling black-cell">Rt</th>
                           <th mat-sort-header="testing" class="header-styling black-cell">% of Tests Back in Less than 24 hrs</th>
                           <th mat-sort-header="percent_positive" class="header-styling black-cell">Percent Positivity</th>
-                          <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Beds Occupied</th>
-                          <th mat-sort-header="covid" class="header-styling black-cell">Covid Related ICU Beds Occupied</th>
+                          <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Occupancy</th>
+                          <th mat-sort-header="covid" class="header-styling black-cell">Covid ICU Occupancy</th>
                       </tr>
                       <tr (click)="ShowData(row.HR_UID)" *ngFor="let row of filterItemsOfType(sortedMetrics); index as index" class="row-styling" [style.background-color]="index % 2 === 0 ? '#ffffff' : '#F2F2F2'">
                         <td class="cell-border no-left-border"
@@ -253,8 +253,8 @@
                           <th mat-sort-header="rt" class="header-styling black-cell">Rt</th>
                           <th mat-sort-header="testing" class="header-styling black-cell">% of Tests Back in Less than 24 hrs</th>
                           <th mat-sort-header="percent_positive" class="header-styling black-cell">Percent Positivity</th>
-                          <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Beds Occupied</th>
-                          <th mat-sort-header="covid" class="header-styling black-cell">Covid Related ICU Beds Occupied</th>
+                          <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Occupancy</th>
+                          <th mat-sort-header="covid" class="header-styling black-cell">Covid ICU Occupancy</th>
                       </tr>
                       <tr *ngFor="let row of sortedMetrics; index as index" class="row-styling"
                           [style.background-color]="index % 2 === 0 ? '#ffffff' : '#F2F2F2'"
@@ -452,14 +452,14 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="mobile-header-cell alternate-row">Total ICU Beds Occupied</td>
+                            <td class="mobile-header-cell alternate-row">Total ICU Occupancy</td>
                             <td class="center-cell" class="mobile-data-cell center-cell">{{table.critical_care_pct === null ? 'N/A' : table.critical_care_pct | percent}}
                               <mat-icon [inline]="true"
                                 >{{table.critical_care_pct_trend > 0?'north':'south'}}</mat-icon>
                             </td>
                         </tr>
                         <tr>
-                            <td class="mobile-header-cell alternate-row">Covid Related ICU Beds Occupied</td>
+                            <td class="mobile-header-cell alternate-row">Covid ICU Occupancy</td>
                             <td class="center-cell" class="mobile-data-cell center-cell">{{table.covid_pct === null ? 'N/A' : table.covid_pct | percent}}
                             </td>
                         </tr>
@@ -513,7 +513,7 @@
                   </p>
                   <p>
                     <img class='logo-styling-home' src='assets/img/scorecard/Indicators - ICU Bed.svg'>
-                    <span class="heading">Total ICU Beds Occupied</span>
+                    <span class="heading">Total ICU Occupancy</span>
                     <app-chevron [date]="timesObj" [key]="'critical_care_pct'"></app-chevron>
                     <span>
                     The percentage of beds in the intensive care unit that are occupied. This includes both COVID-19 patients and patients who are in the ICU for other reasons. This gives us an important sense of healthcare capacity since if there are not enough ICU beds, patients are at a higher risk of death.
@@ -521,7 +521,7 @@
                   </p>
                   <p>
                     <img class='logo-styling-home' src='assets/img/scorecard/Indicators - ICU Bed.svg'>
-                    <span class="heading">Covid Related ICU Beds Occupied</span>
+                    <span class="heading">Covid ICU Occupancy</span>
                     <app-chevron [date]="timesObj" [key]="'critical_care_pct'"></app-chevron>
                     <span>
                     The percentage of beds in the intensive care unit that are occupied by patients who have COVID-19. This helps us better understand the burden of COVID-19 on the health care system. Every bed occupied by a COVID-19 patient, is one less bed available to others who might need it.
