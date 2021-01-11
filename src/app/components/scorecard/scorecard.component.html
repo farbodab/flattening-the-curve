@@ -129,7 +129,7 @@
                 <div style="display:flex;flex-direction:column;justify-content: center;align-items: center;">
                   <app-banner></app-banner>
                   <h1 class="scorecard-header">Ontario's COVID Warning System</h1>
-                  <p class="scorecard-text">We use five key indicators to determine the community risk level for 34 Public Health Units in Ontario.<br/>You can customize the table below by adding regions from the <a href="#regions">list below the map.</a></p>
+                  <p class="scorecard-text">We use six key indicators to determine the community risk level for 34 Public Health Units in Ontario.</p>
                   <div style="display:flex;">
                     <p style="margin:0px 10px 0px 10px"><mat-icon>north</mat-icon> = Up Over Last Week </p>
                     <p style="margin:0px 10px 0px 10px"><mat-icon>south</mat-icon> = Down Over Last Week </p>
@@ -367,8 +367,10 @@
 
                               <mat-list-item role="listitem" class="data-item">
                                   <div class="metric-height">
-                                      <span class="data-source-title">5. ICU:</span>Calculated using number of critical care
-                                      beds and critical care patients in baseline type 3 medical/surgical icus. Data
+                                      <span class="data-source-title">5. ICU:</span> To understand total ICU capacity in the province, ICU beds were filtered down to only include baseline type 3 medical/surgical beds.
+                                      This constitutes the total icu beds, which is the denomiator for our two ICU metrics. For "Total ICU Occupancy", the ratio is found by dividing the total number of patients in the ICU by the total number of baseline type 3 medical/surgical beds. This includes normal ICU patients, in addition to Covid patients in the ICU.
+                                      For "COVID ICU Occupancy", the ratio is found by the number of COVID-19 positive patients by the total number of baseline type 3 medical/surgical beds.
+                                       Data
                                       from Critical Care Services Ontario.
                                       (CCSO)
                                   </div>
@@ -403,7 +405,7 @@
                 <app-banner></app-banner>
                 <div style="margin-bottom: 30px">
                   <h1 class="scorecard-header">Ontario's COVID Warning System</h1>
-                  <p class="scorecard-text">We use five key indicators to determine community risk level for 34 Public Health Units in Ontario</p>
+                  <p class="scorecard-text">We use six key indicators to determine community risk level for 34 Public Health Units in Ontario</p>
                   <div style="display:flex;color:#275d6f;font-weight:bold;margin-top: 30px;justify-content: center;"><span class="material-icons">check_box</span> <a style="display:flex;color:#275d6f;font-weight:bold;" href="#regions">Choose Regions That Matter To You</a></div>
                   <div style="display:flex;color:#275d6f;font-weight:bold;margin-top: 30px;justify-content: center;"><img style="height: 24px; width: 24px" src='assets/img/scorecard/Indicators - Percent Positivity.svg'>&nbsp;<a style="display:flex;color:#275d6f;font-weight:bold;" href="#guide" (click)="onClickMe()">Learn About How To Read The Data</a></div>
                   <div style="display:flex;justify-content: center;">
@@ -516,7 +518,7 @@
                     <span class="heading">Total ICU Occupancy</span>
                     <app-chevron [date]="timesObj" [key]="'critical_care_pct'"></app-chevron>
                     <span>
-                    The percentage of beds in the intensive care unit that are occupied. This includes both COVID-19 patients and patients who are in the ICU for other reasons. This gives us an important sense of healthcare capacity since if there are not enough ICU beds, patients are at a higher risk of death.
+                    The percentage of beds in the intensive care unit that are occupied. This includes both COVID-19 patients and patients who are in the ICU for other reasons. This gives us an important sense of healthcare capacity since if there are not enough ICU beds, patients are at a higher risk of death. The numerator in this ratio is the number of patients in the ICU, while the denomiator is the number of baseline type 3 medical/surgical ICU beds.
                     </span>
                   </p>
                   <p>
@@ -524,7 +526,7 @@
                     <span class="heading">Covid ICU Occupancy</span>
                     <app-chevron [date]="timesObj" [key]="'critical_care_pct'"></app-chevron>
                     <span>
-                    The percentage of beds in the intensive care unit that are occupied by patients who have COVID-19. This helps us better understand the burden of COVID-19 on the health care system. Every bed occupied by a COVID-19 patient, is one less bed available to others who might need it.
+                    The percentage of beds in the intensive care unit that are occupied by patients who have COVID-19. This helps us better understand the burden of COVID-19 on the health care system. Every bed occupied by a COVID-19 patient, is one less bed available to others who might need it. The numerator in this ratio is the number of Covid patients, while the denomiator is the number of baseline type 3 medical/surgical ICU beds.
                     </span>
                   </p>
                   <p>
