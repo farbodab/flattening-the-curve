@@ -58,6 +58,10 @@ export class ApiService {
     return this.http_client.get(this.appConfigProperties.alert_object_endpoint);
   }
 
+  get_vaccine_obj() {
+      return this.http_client.get(this.appConfigProperties.vaccine_object_endpoint);
+    }
+
   post_mail_obj(content) {
     //this.request_data(this.viz_object_endpoint, on_success, on_error);
     return this.http_client.post(this.appConfigProperties.mail_object_endpoint, content);

@@ -1,0 +1,38 @@
+.vaccine{
+  height: 60px;
+  padding: 10px 25px 13px 28px;
+  background-color: #275d6f;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.vaccine p{
+  color: white;
+  margin: 0;
+  font-size: 16px;
+}
+
+
+.vaccine .title p {
+  font-size: 20px;
+}
+
+.vaccine .todate{
+  text-align: right;
+  margin-right: 5px;
+}
+
+.vaccine img{
+  margin-right: 5px;
+}
+
+.vaccine .flex{
+  display: flex;
+  align-items: center;
+}
+
+.vaccine .data{
+  font-size: 42px;
+  margin-right: 5px;
+}

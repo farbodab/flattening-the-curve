@@ -1,0 +1,24 @@
+<div class="vaccine">
+  <div class="title"><p>Ontario's</p><p>Vaccination Progress</p></div>
+  <div *ngIf="data" class="flex">
+    <div class="todate"><p>Vaccine Doses</p><p>Given To Date</p></div>
+    <div>
+      <img src='assets/img/vaccine/Counter {{data["total_doses_administered"][0]}}.svg'>
+      <img src='assets/img/vaccine/Counter {{data["total_doses_administered"][1]}}.svg'>
+      <img src='assets/img/vaccine/Counter {{data["total_doses_administered"][2]}}.svg'>
+      <img src='assets/img/vaccine/Counter {{data["total_doses_administered"][3]}}.svg'>
+      <img src='assets/img/vaccine/Counter {{data["total_doses_administered"][4]}}.svg'>
+      <img src='assets/img/vaccine/Counter {{data["total_doses_administered"][5]}}.svg'>
+      <img src='assets/img/vaccine/Counter {{data["total_doses_administered"][6]}}.svg'>
+      <img src='assets/img/vaccine/Counter {{data["total_doses_administered"][7]}}.svg'>
+    </div>
+  </div>
+  <div class="flex">
+    <p *ngIf="data" class="data">{{data["previous_day_doses_administered"] | number}}</p>
+    <div class="yesterday"><p>Vaccine Doses</p><p>Given Yesterday</p></div>
+  </div>
+  <div class="flex">
+    <p *ngIf="data" class="data">{{data["percentage_completed"] | number : '1.2-2'}}%</p>
+    <div class="eligible"><p>of Eligible</p><p>Population</p></div>
+  </div>
+</div>

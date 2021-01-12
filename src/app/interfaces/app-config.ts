@@ -15,4 +15,5 @@ export class AppConfigProperties {
     epi_object_endpoint: string;
     mail_object_endpoint: string;
     alert_object_endpoint: string;
+    vaccine_object_endpoint: string;
 }
