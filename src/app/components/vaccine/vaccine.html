@@ -1,4 +1,4 @@
-<div class="vaccine">
+<div [ngClass]="is_full?'desktop':'mobile'" class="vaccine">
   <div class="title"><p>Ontario's</p><p>Vaccination Progress</p></div>
   <div *ngIf="data" class="flex">
     <div class="todate"><p>Vaccine Doses</p><p>Given To Date</p></div>
