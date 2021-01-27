@@ -268,11 +268,11 @@ export class SummaryComponent implements OnInit {
     }
 
     fetchDataObj() {
-    this.fetch_subscribe = this.api_service.get_summary_obj(this.hr_uid).subscribe(
+    let hr_uid = ''
+    this.hr_uid ? hr_uid = this.hr_uid : hr_uid = this.path
+    this.fetch_subscribe = this.api_service.get_summary_obj(hr_uid).subscribe(
       (data: Array<any>) => {
         this.data = data;
-        console.log(data)
-        this.initDropdownForm(this.phuArray);
         this.cases = data.filter(date => date["rolling_pop"] != null)
         this.cases = this.cases[this.cases.length - 1]
         this.icu = data.filter(date => date["critical_care_pct"] != null)
@@ -290,30 +290,6 @@ export class SummaryComponent implements OnInit {
       }
     );
   }
-
-    initFilteringForm(obj: any) {
-        this.filteringCheckboxes = this.formBuilder.group({});
-        let keysArr = [];
-        obj.forEach(element => {
-            keysArr.push(Object.keys(element));
-        });
-        keysArr.forEach(element => {
-            this.filteringCheckboxes.addControl(element, this.formBuilder.control(true));
-        });
-    }
-
-    initDropdownForm(array: any) {
-        this.dropdownList = this.formBuilder.group({});
-        if (this.path === '') {
-            this.dropdownList.addControl('phu', this.formBuilder.control('ontario'));
-            this.headerLabel = 'Ontario';
-        } else {
-            this.dropdownList.addControl('phu', this.formBuilder.control(this.path));
-            const index = this.phuArray.findIndex(phu => phu.value === this.path);
-            this.headerLabel = this.phuArray[index].phu;
-        }
-        this.dropdownList.addControl('searchCtrl', this.formBuilder.control(''));
-    }
 
     routeonSelection(route: string) {
       const index = this.phuArray.findIndex(phu => phu.value === route);

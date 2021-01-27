@@ -232,7 +232,6 @@
                     </form>
                     <div style="display:flex;color:#275d6f;font-weight:bold;">Click <span class="material-icons">check_box_outline_blank</span> To Add To My Regions</div>
                   </div>
-                  <div class="scorecard-header-two">All Regions</div>
                   <div>
                       <mat-progress-spinner class="spinner-styling" mode="indeterminate" diameter="50"
                           *ngIf="!sortedMetrics">
@@ -240,7 +239,7 @@
                   </div>
                   <table matSort (matSortChange)="sortMetrics($event)" *ngIf="sortedMetrics" class="table-styling" id="regions">
                       <tr>
-                          <th></th>
+                          <th class="scorecard-header-two">All Regions</th>
                           <th></th>
                           <th colspan="2" class="top-category">Pandemic Monitoring</th>
                           <th colspan="2" class="top-category">Response Monitoring</th>
@@ -326,7 +325,7 @@
                           </table>
                       </div>
                   </div>
-                  <div [ngStyle]="{'margin-right': is_full ? '20px' : '' }" class="card-container scorecard-info-container" style="margin-bottom: 30px">
+                  <div id="sources" [ngStyle]="{'margin-right': is_full ? '20px' : '' }" class="card-container scorecard-info-container" style="margin-bottom: 30px">
                       <div class="mobile-scorecard-container no-bottom-padding">
                           <div class="scorecard-info-header data-source-header">Data Sources</div>
                           <mat-list role="list" class="metric-explanation-list">
@@ -377,7 +376,7 @@
                               </mat-list-item>
                               <mat-list-item role="listitem" class="data-item">
                                   <div class="metric-height">
-                                      <span class="data-source-title">6. Vaccination:</span> Data on vaccination doses administered from Ontario's Open Data Team found <a href="https://data.ontario.ca/dataset/covid-19-vaccine-data-in-ontario">here</a>. The percentage of eligible people vaccinated is calculated using two metrics. The numerator is "total vaccinations completed" metric from the government data source. The denominator is the total number of people in Ontario aged 20 and above. Demographics data has been taken from Statistics Canada.
+                                      <span class="data-source-title">6. Vaccination:</span> Data on vaccination doses administered from Ontario's Open Data Team found <a href="https://data.ontario.ca/dataset/covid-19-vaccine-data-in-ontario">here</a>. The percentage of eligible people vaccinated is calculated using two metrics. The numerator is "total vaccinations completed" metric from the government data source. This is the number of people who have received two doses of the vaccine. The denominator is the total number of people in Ontario aged 20 and above. Demographics data has been taken from Statistics Canada.
                                   </div>
                               </mat-list-item>
                           </mat-list>
