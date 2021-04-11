@@ -1,0 +1,45 @@
+.desktop .box{
+  padding: 10px 35px 10px 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px;
+  margin-bottom: 10px;
+}
+
+.mobile .box{
+  padding: 10px 35px 10px 35px;
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.close{
+  display: flex;
+  align-items: center;
+}
+
+.green{
+  color: #1e4620;
+  background-color: #EDF7ED;
+}
+
+.red{
+  color: rgb(97, 26, 21);
+  background-color: rgb(253, 236, 234);
+}
+
+.yellow{
+  color: rgb(102, 60, 0);
+  background-color: rgb(255, 244, 229);
+}
+
+.blue{
+  color: rgb(13, 60, 97);
+  background-color: rgb(232, 244, 253);
+}
+
+.box .material-icons{
+  margin-right: 12px;
+  margin-top: 16px;
+}

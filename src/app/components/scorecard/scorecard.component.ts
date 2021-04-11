@@ -7,20 +7,25 @@ import { ViewportScroller } from '@angular/common';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import * as moment from 'moment';
 import {FormControl} from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 declare var tableau: any;
 
 @Component({
   selector: 'app-scorecard',
   templateUrl: './scorecard.component.html',
-  styleUrls: ['./scorecard.component.scss']
+  styleUrls: ['./scorecard.component.scss'],
 })
 export class ScorecardComponent implements OnInit, AfterViewInit {
 
   @ViewChild('MailingList', { static: false }) mailingList: ElementRef;
   @ViewChildren('phuArray') scoreCardComponents: QueryList<any>;
 
+
   graph_data = null;
+  metric_collapse: boolean = true;
+  action_collapse: boolean = true;
   ontario: any = "Ontario";
   italy: any = "Italy";
   southkorea: any = "South Korea";
@@ -40,14 +45,15 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
     rt: null,
     weekly: null,
     testing: null,
+    percent_positive: null,
     tracing: null,
     icu: null,
+    covid: null,
     stage: null
   };
   sortedMetrics: any[];
   dropdownSelection: FormGroup;
   myControl = new FormControl();
-
   phuArray = [
     {
         phu: 'Brant County Health Unit',
@@ -219,8 +225,12 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
         id: 3570
     }
 ];
+  selectedObject = [3595];
+  selectedPHU = null;
+  phuSelected = false;
+  cookieValue: string;
 
-  constructor(private host_service: HostService, private formBuilder: FormBuilder, private api_service: ApiService, private scrollIntoView: ViewportScroller) {
+  constructor(private host_service: HostService, private formBuilder: FormBuilder, private api_service: ApiService, private scrollIntoView: ViewportScroller, private cookieService: CookieService, private _snackBar: MatSnackBar) {
     this.refresh_layout(window.innerWidth);
   }
 
@@ -232,6 +242,18 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
     this.dropdownSelection = this.formBuilder.group({});
     this.dropdownSelection.addControl('phu', this.formBuilder.control(''));
     this.dropdownSelection.addControl('searchCtrl', this.formBuilder.control(''));
+
+    if (this.cookieService.get('myregions')){
+      this.selectedObject = this.cookieService.get('myregions').split(",").map((i) => Number(i));
+    }
+
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+      verticalPosition: 'top'
+    });
   }
 
   ngAfterViewInit() {
@@ -239,11 +261,71 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
     this.fetchRefreshTimes();
   }
 
+  onClickMe() {
+  this.metric_collapse = !this.metric_collapse;
+  }
+
+  onClickMeTwo() {
+  this.action_collapse = !this.action_collapse;
+  }
+
+  Checked(event, HR_UID) {
+    if (event) {
+      this.selectedObject.push(HR_UID)
+      this.openSnackBar('Region added to my regions up top', 'Dismiss')
+    }
+    else {
+      this.selectedObject = this.selectedObject.filter(item => item !== HR_UID)
+      this.openSnackBar('Region removed from my regions', 'Dismiss')
+    }
+    this.cookieService.set('myregions', this.selectedObject.toString(), 365)
+  }
+
+  onMapSelect(HR_UID) {
+    this.phuSelected = true
+    this.selectedPHU = HR_UID
+  }
+
+  public ShowData(HR_UID){
+    if (this.phuSelected && this.selectedPHU == HR_UID) {
+      this.phuSelected = !this.phuSelected
+      this.selectedPHU = null
+    }
+    else if (this.phuSelected && this.selectedPHU != HR_UID) {
+      this.selectedPHU = HR_UID
+    }
+    else {
+      this.phuSelected = !this.phuSelected
+      this.selectedPHU = HR_UID
+    }
+    console.log(HR_UID)
+    console.log(this.selectedPHU)
+
+  }
+
+  GoBack(){
+    this.phuSelected = false
+    this.selectedPHU = null
+  }
+
+  Removed(HR_UID){
+    this.selectedObject = this.selectedObject.filter(item => item !== HR_UID)
+    this.cookieService.set('myregions', this.selectedObject.toString(),365)
+  }
+
+  Selected(HR_UID){
+    return this.selectedObject.includes(HR_UID);
+  }
+
+  filterItemsOfType(sortedMetrics){
+    return sortedMetrics.filter(item => this.selectedObject.includes(item.HR_UID))
+  }
+
   fetchRefreshTimes() {
     this.api_service.get_reopeneing_times().subscribe(
       data => {
-        this.timesObj = this.iterateTimes(data);
-        console.log(this.timesObj);
+        this.timesObj = data
+        console.log(this.timesObj)
       },
       error => {
         this.timesObj = 'error';
@@ -364,7 +446,9 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
         case 'rt': return this.compareData(a.rt_ml, b.rt_ml, 'number', isAscending);
         case 'new': return this.compareData(a.rolling_pop, b.rolling_pop, 'number', isAscending);
         case 'testing': return this.compareData(a.rolling_test_twenty_four, b.rolling_test_twenty_four, 'number', isAscending);
+        case 'percent_positive': return this.compareData(a.percent_positive, b.percent_positive, 'number', isAscending);
         case 'icu': return this.compareData(a.critical_care_pct, b.critical_care_pct, 'number', isAscending);
+        case 'covid': return this.compareData(a.covid_pct, b.covid_pct, 'number', isAscending);
         case 'risk': return this.compareData(a.rolling_pop, b.rolling_pop, 'number', isAscending);
         default: return 0;
       }
@@ -400,5 +484,13 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
 
   private refresh_layout(width) {
     this.is_full = window.innerWidth >= 1024 ? true : false;
+    if (this.is_full == false) {
+      this.metric_collapse = false
+      this.action_collapse = false
+    }
+    else {
+      this.metric_collapse = true
+      this.action_collapse = true
+    }
   }
 }

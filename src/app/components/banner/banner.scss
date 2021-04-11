@@ -1,0 +1,118 @@
+.banner{
+  background-color: #128596;
+  color: white;
+}
+
+.banner-mobile{
+  width: 350px;
+}
+
+.banner-mobile .main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 10px;
+  justify-content: space-around;
+}
+
+.banner .help {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+}
+
+.banner-mobile .flex{
+  display: flex;
+}
+
+.banner .help p {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.banner .main{
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+  justify-content: space-around;
+}
+
+.banner .one{
+  width: 150px;
+  font-size: 20px;
+  padding-left: 30px;
+}
+
+.banner-mobile .one{
+  width: 150px;
+  font-size: 20px;
+  padding-left: 0px;
+}
+
+.banner .two{
+  width: 130px;
+  height: 130px;
+  margin: 10px;
+  background-color: #275d6f;
+  border-radius: 50%;
+  align-items: center;
+  display: flex;
+}
+
+.banner .three{
+  width: 130px;
+  height: 130px;
+  margin: 10px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  align-items: center;
+  display: flex;
+}
+
+.banner .four{
+  width: 130px;
+  height: 130px;
+  margin: 10px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  align-items: center;
+  display: flex;
+}
+
+.banner .five{
+  width: 130px;
+  height: 130px;
+  margin: 10px;
+  background-color: #f3bc2b;
+  border-radius: 50%;
+  align-items: center;
+  display: flex;
+}
+
+.banner .two p{
+  padding: 10px;
+  text-align: center;
+}
+
+.banner .three p{
+  padding: 10px;
+  text-align: center;
+  color:#128596
+}
+
+.banner .four p{
+  padding: 10px;
+  text-align: center;
+  color:#128596
+}
+
+.banner .five p{
+  padding: 10px;
+  text-align: center;
+}
+
+
+.banner p {
+  color: white;
+  margin: 0px;
+}

@@ -7,6 +7,8 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from 'src/app/modules/material/material.module';
 import {NavbarComponent} from './components/navbar/navbar.component';
+import {AlertComponent} from './components/alert/alert';
+import {VaccineComponent} from './components/vaccine/vaccine';
 import {HomeComponent} from './pages/home/home.component';
 import {StoryComponent} from './pages/story/story.component';
 import {ResourcesComponent} from './pages/resources/resources.component';
@@ -19,10 +21,14 @@ import {AnalysisTestingComponent} from './pages/analysis/analysis.testing.compon
 import {AnalysisCapacityComponent} from './pages/analysis/analysis.capacity.component';
 import {DataComponent} from './pages/data/data.component';
 import { GridComponent } from './pages/grid/grid.component';
+
 import { ScorecardComponent } from './components/scorecard/scorecard.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TableComponent } from './components/table/table.component';
+import { SubscribeComponent } from './components/subscribe/subscribe';
 import { ThermometerComponent } from './components/thermometer/thermometer';
+import { ChevronComponent } from './components/chevron/chevron';
+import { BannerComponent } from './components/banner/banner';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 
@@ -52,6 +58,7 @@ import { CommonMobileVisualComponent } from './components/common-mobile-visual/c
 import { PlotComponent } from './components/plot/plot';
 import { GraphComponent } from './components/graph/graph';
 import { MapComponent } from './components/map/map';
+import { DonateComponent } from './components/donate/donate';
 import { AngularPlotlyComponent } from './components/plotly-angular/plotly-angular.component';
 import { OutreachComponent } from './pages/outreach/outreach.component';
 import { CommonDesktopVisualComponent } from './components/common-desktop-visual/common-desktop-visual.component';
@@ -61,6 +68,8 @@ import { PlotlyViaCDNModule } from 'angular-plotly.js';
 
 import { MainPipe } from './pipe/pipe.module';
 import { AppConfigService } from './providers/app-config.service';
+import { CookieService } from 'ngx-cookie-service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 PlotlyViaCDNModule.plotlyVersion = 'latest'; // can be `latest` or any version number (i.e.: '1.40.0')
 PlotlyViaCDNModule.plotlyBundle = null; // optional: can be null (for full) or 'basic', 'cartesian', 'geo', 'gl3d', 'gl2d', 'mapbox' or 'finance'
@@ -98,7 +107,13 @@ export function initConfig(appConfig: AppConfigService) {
         GraphComponent,
         TableComponent,
         MapComponent,
-        ThermometerComponent
+        DonateComponent,
+        ThermometerComponent,
+        SubscribeComponent,
+        ChevronComponent,
+        BannerComponent,
+        AlertComponent,
+        VaccineComponent
     ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),
@@ -129,7 +144,7 @@ export function initConfig(appConfig: AppConfigService) {
         MatTableModule,
         MatSlideToggleModule,
         MatAutocompleteModule,
-        MatInputModule
+        MatInputModule,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
@@ -140,7 +155,8 @@ export function initConfig(appConfig: AppConfigService) {
           useFactory: initConfig,
           multi: true,
           deps: [AppConfigService]
-        }
+        },
+        CookieService,
     ],
     bootstrap: [AppComponent],
     entryComponents: [AnalysisCriticalComponent, CommonDesktopVisualComponent]

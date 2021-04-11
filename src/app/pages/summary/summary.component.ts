@@ -15,6 +15,8 @@ import { filter } from 'rxjs/operators';
 })
 
 export class SummaryComponent implements OnInit {
+    @Input() hr_uid: any;
+    @Input() GoBack: any;
     data: any;
     epi: any;
     epi_recent: any;
@@ -22,6 +24,7 @@ export class SummaryComponent implements OnInit {
     icu: any;
     testing: any;
     rt: any;
+    percent_positive: any;
     is_full = true;
     displayFooter: any;
     urlSegments: any;
@@ -239,6 +242,8 @@ export class SummaryComponent implements OnInit {
     }
 
     ngOnChanges() {
+      this.ngOnDestroy()
+      this.ngOnInit()
     }
 
     ngAfterViewInit() {
@@ -263,10 +268,11 @@ export class SummaryComponent implements OnInit {
     }
 
     fetchDataObj() {
-    this.fetch_subscribe = this.api_service.get_summary_obj(this.phuKeys[this.path]).subscribe(
+    let hr_uid = ''
+    this.hr_uid ? hr_uid = this.hr_uid : hr_uid = this.path
+    this.fetch_subscribe = this.api_service.get_summary_obj(hr_uid).subscribe(
       (data: Array<any>) => {
         this.data = data;
-        this.initDropdownForm(this.phuArray);
         this.cases = data.filter(date => date["rolling_pop"] != null)
         this.cases = this.cases[this.cases.length - 1]
         this.icu = data.filter(date => date["critical_care_pct"] != null)
@@ -275,54 +281,15 @@ export class SummaryComponent implements OnInit {
         this.testing = this.testing[this.testing.length - 1]
         this.rt = data.filter(date => date["rt_ml"] != null)
         this.rt = this.rt[this.rt.length - 1]
+        this.percent_positive = data.filter(date => date["% Positivity"] != null)
+        this.percent_positive = this.percent_positive[this.percent_positive.length - 1]
         this.displayFooter = true;
       },
       error => {
         this.data = 'error';
       }
     );
-    this.fetch_epi = this.api_service.get_epi_obj(this.phuKeys[this.path],-1).subscribe(
-      (data: Array<any>) => {
-        this.epi = data;
-        console.log(data)
-      },
-      error => {
-        this.data = 'error';
-      }
-    );
-    this.fetch_epi_recent = this.api_service.get_epi_obj(this.phuKeys[this.path],14).subscribe(
-      (data: Array<any>) => {
-        this.epi_recent = data;
-      },
-      error => {
-        this.data = 'error';
-      }
-    );
   }
-
-    initFilteringForm(obj: any) {
-        this.filteringCheckboxes = this.formBuilder.group({});
-        let keysArr = [];
-        obj.forEach(element => {
-            keysArr.push(Object.keys(element));
-        });
-        keysArr.forEach(element => {
-            this.filteringCheckboxes.addControl(element, this.formBuilder.control(true));
-        });
-    }
-
-    initDropdownForm(array: any) {
-        this.dropdownList = this.formBuilder.group({});
-        if (this.path === '') {
-            this.dropdownList.addControl('phu', this.formBuilder.control('ontario'));
-            this.headerLabel = 'Ontario';
-        } else {
-            this.dropdownList.addControl('phu', this.formBuilder.control(this.path));
-            const index = this.phuArray.findIndex(phu => phu.value === this.path);
-            this.headerLabel = this.phuArray[index].phu;
-        }
-        this.dropdownList.addControl('searchCtrl', this.formBuilder.control(''));
-    }
 
     routeonSelection(route: string) {
       const index = this.phuArray.findIndex(phu => phu.value === route);
@@ -333,6 +300,10 @@ export class SummaryComponent implements OnInit {
 
     changeView(view: string, controlName: string) {
       this.averageForm.controls[controlName].setValue(view);
+    }
+
+    top (){
+      window.scroll(0,0);
     }
 
   private refresh_layout(width) {

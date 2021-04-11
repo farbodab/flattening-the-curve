@@ -1,0 +1,53 @@
+<div *ngIf="is_full">
+  <div class="banner">
+      <div class="help"><p (click)="onClickMe()">{{collapsed?'Hide':'Show'}}</p></div>
+      <div *ngIf="collapsed">
+        <div class="main">
+          <div class="one">
+            <p>How to Get the Most Out of Our Updated Site</p>
+          </div>
+          <div class="two">
+            <p>1. Scroll to "All Regions" table</p>
+          </div>
+          <div class="three">
+            <p>2. Click the <span class="material-icons">check_box</span> next to regions you are interested in.</p>
+          </div>
+          <div class="four">
+            <p>3. Your "My Regions" table is now updated.</p>
+          </div>
+          <div class="five">
+            <p>4. When ready, email yourself a custom report</p>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<div *ngIf="!is_full">
+  <div class="banner banner-mobile">
+      <div class="help"><p (click)="onClickMe()">{{collapsed?'Hide':'Show'}}</p></div>
+      <div *ngIf="collapsed">
+        <div class="main">
+          <div class="one">
+            <p>How to Get the Most Out of Our Updated Site</p>
+          </div>
+          <div class="flex">
+            <div class="two">
+              <p>1. Scroll to "All Region" table</p>
+            </div>
+            <div class="three">
+              <p>2. Click the <span class="material-icons">check_box</span> next to regions you are interested in.</p>
+            </div>
+          </div>
+          <div class="flex">
+            <div class="five">
+              <p>4. When ready, email yourself a custom report</p>
+            </div>
+            <div class="four">
+              <p>3. Your "My Regions" table is now updated.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

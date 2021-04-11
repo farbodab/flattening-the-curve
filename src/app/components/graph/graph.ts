@@ -11,7 +11,17 @@ export class GraphComponent implements OnInit, OnChanges {
   @Input() graph_data: any;
   @Input() title: string;
   @Input() variable: string;
-
+  @Input() text_green: any;
+  @Input() text_yellow: any;
+  @Input() text_orange: any;
+  @Input() text_red: any;
+  @Input() line_green: any;
+  @Input() line_yellow: any;
+  @Input() line_orange: any;
+  @Input() image: any;
+  @Input() additional: any;
+  @Input() variable_name: any;
+  @Input() additional_name: any;
 
 
   graph = null;
@@ -33,13 +43,112 @@ export class GraphComponent implements OnInit, OnChanges {
               y: this.graph_data.map(x => x[this.variable]),
               type: 'scatter',
               mode: 'lines+points',
+              name: this.variable_name
             },
         ],
-        layout: {width: '100%', height: '100%', title: this.title},
+        layout: {title: this.title, autosize: true, images: [
+          {
+            x: 0,
+            y: 1,
+            sizex: 1,
+            sizey: 1,
+            source: `assets/img/graphs/${this.image}.svg`,
+            xref: "paper",
+            yref: "paper",
+            sizing: "stretch",
+            "opacity": 0.5,
+          },],annotations: [
+    {
+      x: 1,
+      y: this.text_green,
+      xref: 'paper',
+      yref: 'y',
+      text: 'Green',
+      showarrow: false,
+    },
+    {
+      x: 1,
+      y: this.text_yellow,
+      xref: 'paper',
+      yref: 'y',
+      text: 'Yellow',
+      showarrow: false,
+    },
+    {
+      x: 1,
+      y: this.text_orange,
+      xref: 'paper',
+      yref: 'y',
+      text: 'Orange',
+      showarrow: false,
+    },
+    {
+      x: 1,
+      y: this.text_red,
+      xref: 'paper',
+      yref: 'y',
+      text: 'Red',
+      showarrow: false,
+    },
+
+
+
+
+
+],shapes: [
+                {
+                      type: 'line',
+                      xref: 'paper',
+                      x0: 0,
+                      y0: this.line_green,
+                      x1: 1 ,
+                      y1: this.line_green,
+                      line: {
+                        color: 'black',
+                        width: 1,
+                        dash: 'dot'
+                      }
+                },
+                {
+                      type: 'line',
+                      xref: 'paper',
+                      x0: 0,
+                      y0: this.line_yellow,
+                      x1: 1 ,
+                      y1: this.line_yellow,
+                      line: {
+                        color: 'black',
+                        width: 1,
+                        dash: 'dot'
+                      }
+                },
+                {
+                      type: 'line',
+                      xref: 'paper',
+                      x0: 0,
+                      y0: this.line_orange,
+                      x1: 1 ,
+                      y1: this.line_orange,
+                      line: {
+                        color: 'black',
+                        width: 1,
+                        dash: 'dot'
+                      }
+                },
+      ]},
         config: {
           displayModeBar: false,
         }
     };
+
+    if (this.additional){
+      figure.data.push({ x: this.graph_data.map(x => x["date"]),
+                    y: this.graph_data.map(x => x[this.additional]),
+                    type: 'scatter',
+                    mode: 'lines+points',
+                    name: this.additional_name
+                  })
+    }
     this.graph = figure;
   }
 }

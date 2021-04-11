@@ -1,477 +1,630 @@
 <div [ngClass]="{'mobile-browser': !is_full}">
-    <div class='content' style='background-color: white;'>
-        <div id='container' style="margin:0">
+    <div style='background-color: white;'>
+        <div style="display:flex">
+          <div *ngIf="is_full" class="side-bar">
+            <div class="item">
+              <div class="heading">
+                Understanding the Indicators <span (click)="onClickMe()" class="material-icons" *ngIf=!metric_collapse style="font-size: 40px;color: #275d6f;margin-left: 30px;">keyboard_arrow_down</span><span (click)="onClickMe()" class="material-icons" *ngIf=metric_collapse style="font-size: 40px;color: #275d6f;margin-left: 30px;">keyboard_arrow_up</span>
+              </div>
+              <div *ngIf=metric_collapse>
+                <p>
+                  <img src='assets/img/scorecard/Indicators - Case Incidence.svg'>
+                  <span class="heading">Case Incidence (Per 100,000 People)</span>
+                  <app-chevron [date]="timesObj" [key]="'rolling_pop'"></app-chevron>
+                  <span>
+                  The seven day rolling average of daily new cases in a public health unit
+                  </span>
+                </p>
+                <p>
+                  <img src='assets/img/scorecard/Group 65.svg'>
+                  <span class="heading">Rt</span>
+                  <app-chevron [date]="timesObj" [key]="'rt_ml'"></app-chevron>
+                  <span>
+                  A measure of how contagious a disease is at a certain point in time. It tells us the average number of people one sick person can infect (e.g. an Rt of 5 means that on average, each case is expected to infect 5 other people). If Rt is greater than 1, it means the outbreak is growing.
+                  </span>
+                </p>
+                <p>
+                  <img class='logo-styling-home' src='assets/img/scorecard/Indicators - Testing.svg'>
+                  <span class="heading">Testing &lt; 24h</span>
+                  <app-chevron [date]="timesObj" [key]="'rolling_test_twenty_four'"></app-chevron>
+                  <span>
+                  The percentage of COVID tests being returned in one day or less. The amount of time needed for a lab to process a specimen and enter the result (e.g. positive or negative) into the public health database should be as fast as possible to prevent backlogs and provide the most accurate view possible on the pandemic situation.
+                  </span>
+                </p>
+                <p>
+                  <img class='logo-styling-home' src='assets/img/scorecard/Indicators - Percent Positivity.svg'>
+                  <span class="heading">Percent Positivity</span>
+                  <app-chevron [date]="timesObj" [key]="'percent_positive'"></app-chevron>
+                  <span>
+                  The percentage of all COVID-19 tests performed that are actually positive. The percent positivity will be high if the number of positive tests is too high, or if the number of total tests is too low.
+                  </span>
+                </p>
+                <p>
+                  <img class='logo-styling-home' src='assets/img/scorecard/Indicators - ICU Bed.svg'>
+                  <span class="heading">Total ICU Occupancy</span>
+                  <app-chevron [date]="timesObj" [key]="'critical_care_pct'"></app-chevron>
+                  <span>
+                  The percentage of beds in the intensive care unit that are occupied. This includes both COVID-19 patients and patients who are in the ICU for other reasons. This gives us an important sense of healthcare capacity since if there are not enough ICU beds, patients are at a higher risk of death.
+                  </span>
+                </p>
+                <p>
+                  <img class='logo-styling-home' src='assets/img/scorecard/Indicators - ICU Bed.svg'>
+                  <span class="heading">Covid ICU Occupancy</span>
+                  <app-chevron [date]="timesObj" [key]="'critical_care_pct'"></app-chevron>
+                  <span>
+                  The percentage of beds in the intensive care unit that are occupied by patients who have COVID-19. This helps us better understand the burden of COVID-19 on the health care system. Every bed occupied by a COVID-19 patient, is one less bed available to others who might need it.
+                  </span>
+                </p>
+                <p>
+                  <img style="width: 98.7px;height: 32.2px;max-width: 100%;" class='logo-styling-home' src='assets/img/scorecard/Risk Level Icon.svg'>
+                  <span class="heading">Community Risk Level</span>
+                  <span>
+                  To help you make decisions in your community, we have created four levels of Community Risk (Very Low - Low - Medium - High). The level is based on the most recent daily case incidence per 100,000 people. We chose to use primary colours that are commonly associated with other indicators that people are most familiar with. Note these risk levels may differ from <a style="color: #707070;" target="_blank" href="https://www.ontario.ca/page/covid-19-response-framework-keeping-ontario-safe-and-open" >provincial thresholds</a>
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div class="item measures">
+              <div class="heading" style="font-size:20px;margin-left:0px">
+                Measures to reduce COVID-19 <span (click)="onClickMeTwo()" class="material-icons" *ngIf=!action_collapse style="font-size: 40px;color: #275d6f;margin-left: 30px;">keyboard_arrow_down</span><span (click)="onClickMeTwo()" class="material-icons" *ngIf=action_collapse style="font-size: 40px;color: #275d6f;margin-left: 30px;">keyboard_arrow_up</span>
+              </div>
+              <div *ngIf=action_collapse>
+                <p>
+                  <img src='assets/img/scorecard/Measures - Stay Informed Icon.svg'>
+                  <span class="heading">
+                  Stay informed, be prepared, and follow public health advice
+                  </span>
+                </p>
+                <p>
+                  <img src='assets/img/scorecard/Measures - Discuss Icon.svg'>
+                  <span class="heading">
+                  Discuss individual risk tolerance
+                  </span>
+                </p>
+                <p>
+                  <img class='logo-styling-home' src='assets/img/scorecard/Measures - Wash Icon.svg'>
+                  <span class="heading">
+                  Continue to practice good hygiene
+                  </span>
+                </p>
+                <p>
+                  <img class='logo-styling-home' src='assets/img/scorecard/Measures - High Risk Icon.svg'>
+                  <span class="heading">
+                  Stay home and away from others if you're feeling ill
+                  </span>
+                </p>
+                <p>
+                  <img class='logo-styling-home' src='assets/img/scorecard/Measures - Physical Distancing Icon.svg'>
+                  <span class="heading">
+                  Keep practising physical distancing
+                  </span>
+                </p>
+                <p>
+                  <img class='logo-styling-home' src='assets/img/scorecard/Measures - Clean Icon.svg'>
+                  <span class="heading">
+                  Clean and disinfect surfaces and objects
+                  </span>
+                </p>
+                <p>
+                  <img class='logo-styling-home' src='assets/img/scorecard/Measures - High Risk Icon.svg'>
+                  <span class="heading" >
+                  Stay home if you have a High of a serious illness
+                  </span>
+                </p>
+                <p>
+                  <img class='logo-styling-home' src='assets/img/scorecard/Measures - Mask Icon.svg'>
+                  <span class="heading">
+                  Wear a mask or face covering
+                  </span>
+                </p>
+                <p>
+                  <img class='logo-styling-home' src='assets/img/scorecard/Measures - Travel Icon.svg'>
+                  <span class="heading">Limit non-essential travel</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="right-bar">
             <div *ngIf="is_full" class="table-container">
                 <div style="display:flex;flex-direction:column;justify-content: center;align-items: center;">
-                  <h1 class="scorecard-header desktop-ontario-header">Ontario's COVID Warning System</h1>
-                  <p>We use <a href="#indicators">five key indicators</a> to determine risk levels for 34 Public Health Units in Ontario</p>
-                  <form class="example-form">
-                    <mat-form-field class="example-full-width">
-                      <mat-icon matPrefix>search</mat-icon>
-                      <input type="text"
-                             placeholder="Search for your Public Health Unit"
-                             aria-label="Number"
-                             matInput
-                             [formControl]="myControl"
-                             [matAutocomplete]="auto">
-                      <mat-autocomplete #auto="matAutocomplete">
-                        <mat-option *ngFor="let option of phuArray" [value]="option['phu']">
-                          {{option['phu']}}
-                        </mat-option>
-                      </mat-autocomplete>
-                    </mat-form-field>
-                  </form>
-                </div>
-                <div class='row'>
-                  <app-thermometer> </app-thermometer>
-                  <app-map [data]=metricJsonObj> </app-map>
-                </div>
-                <div style="margin-top: 100px;" class="scorecard-header">Metrics by Public Health Unit (PHU)</div>
-                <div>
-                    <mat-progress-spinner class="spinner-styling" mode="indeterminate" diameter="50"
-                        *ngIf="!sortedMetrics">
-                    </mat-progress-spinner>
-                </div>
-                <table matSort (matSortChange)="sortMetrics($event)" *ngIf="sortedMetrics" class="table-styling">
-                    <tr>
-                        <th></th>
-                        <th colspan="2" class="top-category">Pandemic Monitoring</th>
-                        <th class="top-category">Response Monitoring</th>
-                        <th class="top-category">Response Capacity</th>
-                        <th class="top-category">Risk Levels</th>
-                    </tr>
-                    <tr>
-                        <th mat-sort-header="phu" class="first-col-styling header-styling black-cell">PHU</th>
-                        <th mat-sort-header="new" class="header-styling black-cell">Case Incidence</th>
-                        <th mat-sort-header="rt" class="header-styling black-cell">Rt</th>
-                        <th mat-sort-header="testing" class="header-styling black-cell">Testing &lt; 24h
-                        </th>
-                        <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Bed Occupied</th>
-                        <th mat-sort-header="risk" class="header-styling black-cell">Risk</th>
-                    </tr>
-                    <tr *ngFor="let row of sortedMetrics; index as index" class="row-styling" routerLink="{{'/dashboard/'+row.route}}"
-                        [style.background-color]="index % 2 === 0 ? '#ffffff' : '#F2F2F2'">
-                        <td class="first-col-cell"
-                            [title]="row.phu+' Dashboard'">
-                            {{row.phu}}</td>
-                        <td [title]="row.weekly === 'nan'? 'Cannot calculate due to insufficient data': ''"
-                            class="cell-border">
+                  <app-banner></app-banner>
+                  <h1 class="scorecard-header">Ontario's COVID Warning System</h1>
+                  <p class="scorecard-text">We use six key indicators to determine the community risk level for 34 Public Health Units in Ontario.</p>
+                  <div style="display:flex;">
+                    <p style="margin:0px 10px 0px 10px"><mat-icon>north</mat-icon> = Up Over Last Week </p>
+                    <p style="margin:0px 10px 0px 10px"><mat-icon>south</mat-icon> = Down Over Last Week </p>
+                  </div>
+                  <mat-progress-spinner class="spinner-styling" mode="indeterminate" diameter="50"
+                      *ngIf="!sortedMetrics">
+                  </mat-progress-spinner>
+                  <table matSort (matSortChange)="sortMetrics($event)" *ngIf="sortedMetrics" class="table-styling  top-table">
+                      <tr>
+                          <th style="color:#275d6f;font-weight:bold;font-size:25px;text-align:left; padding-left:15px">My Regions</th>
+                          <th class="color:#275d6f;"></th>
+                          <th colspan="2" class="top-category">Pandemic Monitoring</th>
+                          <th colspan="2" class="top-category">Response Monitoring</th>
+                          <th colspan="2" class="top-category">Response Capacity</th>
+                      </tr>
+                      <tr>
+                          <th mat-sort-header="phu" class="first-col-styling header-styling black-cell">Public Health Unit</th>
+                          <th mat-sort-header="risk" class="header-styling black-cell">Community Risk Level</th>
+                          <th mat-sort-header="new" class="header-styling black-cell">Case Incidence (Per 100,000 People)</th>
+                          <th mat-sort-header="rt" class="header-styling black-cell">Rt</th>
+                          <th mat-sort-header="testing" class="header-styling black-cell">% of Tests Back in Less than 24 hrs</th>
+                          <th mat-sort-header="percent_positive" class="header-styling black-cell">Percent Positivity</th>
+                          <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Occupancy</th>
+                          <th mat-sort-header="covid" class="header-styling black-cell">Covid ICU Occupancy</th>
+                      </tr>
+                      <tr (click)="ShowData(row.HR_UID)" *ngFor="let row of filterItemsOfType(sortedMetrics); index as index" class="row-styling" [style.background-color]="index % 2 === 0 ? '#ffffff' : '#F2F2F2'">
+                        <td class="cell-border no-left-border"
+                              [ngClass]="{'active-row': row.HR_UID == selectedPHU}"
+                              [title]="row.phu+' Dashboard'">
+                              {{row.phu}}</td>
+                              <td [ngClass]="{'black-cell': row.weekly === null, 'green-cell': row.rolling_pop < 1, 'yellow-cell': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-cell': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-cell': 10 < row.rolling_pop}"
+                                  class="cell-border"
+                                  [ngClass]="{'active-row': row.HR_UID == selectedPHU}"
+                                  style="font-size: 14px;padding: 10px;">
+                                  {{row.rolling_pop === null ? 'N/A' : (row.rolling_pop >= 10 ? 'High' : (row.rolling_pop >= 5 ? 'Medium' : (row.rolling_pop >= 1 ? 'Low': 'Very Low')))}}</td>
+                          <td [title]="row.weekly === null? 'Cannot calculate due to insufficient data': ''"
+                              [ngClass]="{'active-row': row.HR_UID == selectedPHU}"
+                              class="cell-border">
+                              <mat-icon
+                              [inline]="true" class='icon-display'>{{row.rolling_pop_trend > 0?'north':'south'}}</mat-icon>
+                              {{row.rolling_pop === null ? 'N/A' : row.rolling_pop | number : '1.2-2'}}</td>
+                          <td [title]="row.rt === null? 'Cannot calculate due to insufficient data': ''"
+                              [ngClass]="{'active-row': row.HR_UID == selectedPHU}"
+                              class="cell-border no-left-border">
+                              <mat-icon
+                              [inline]="true" class='icon-display'>{{row.rt_ml_trend > 0?'north':'south'}}</mat-icon>{{row.rt_ml === null ? 'N/A' : row.rt_ml | number : '1.2-2'}}
+                          </td>
+                          <td [title]="row.rolling_test_twenty_four === null? 'Cannot calculate due to insufficient data': ''"
+                              class="cell-border"
+                              [ngClass]="{'active-row': row.HR_UID == selectedPHU}">
+                              <mat-icon class='icon-display' [inline]="true"
+                              >{{row.rolling_test_twenty_four_trend > 0?'north':'south'}}</mat-icon>{{row.rolling_test_twenty_four === null ? 'N/A' : row.rolling_test_twenty_four | percent}}
+                          </td>
+                          <td [title]="row.percent_positive === null? 'Data not available or not reported publicly': ''"
+                            class="cell-border"
+                            [ngClass]="{'active-row': row.HR_UID == selectedPHU}">
                             <mat-icon
-                            [ngClass]="{'green-icon': row.rolling_pop < 1, 'yellow-icon': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-icon': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-icon': 10 <= row.rolling_pop}"
-                            [inline]="true">fiber_manual_record</mat-icon>{{row.rolling_pop === null ? 'N/A' : row.rolling_pop | number : '1.2-2'}}</td>
-                        <td [title]="row.rt === 'nan'? 'Cannot calculate due to insufficient data': ''"
+                            [inline]="true" class='icon-display'>{{row.percent_positive_trend > 0?'north':'south'}}</mat-icon>
+                            {{row.percent_positive === null ? 'N/A' : row.percent_positive+'%'}}
+                          </td>
+                          <td [title]="row.icu === null? 'Cannot calculate due to insufficient data': ''"
+                              class="cell-border"
+                              [ngClass]="{'active-row': row.HR_UID == selectedPHU}">
+                                <mat-icon [inline]="true" class='icon-display'>{{row.critical_care_pct_trend > 0?'north':'south'}}</mat-icon>
+                                <span>{{row.critical_care_pct === null ? 'N/A' : row.critical_care_pct | percent}}</span>
+                            </td>
+                        <td [title]="row.covid === null? 'Cannot calculate due to insufficient data': ''"
+                            class="cell-border"
+                            [ngClass]="{'active-row': row.HR_UID == selectedPHU}">
+                              <span>{{row.covid_pct === null ? 'N/A' : row.covid_pct | percent}}</span>
+
+                          </td>
+                          <div (click)="Removed(row.HR_UID)" class="cancel"><span class="material-icons">clear</span></div>
+                      </tr>
+                  </table>
+                </div>
+                <app-subscribe [regions]="selectedObject"></app-subscribe>
+                <app-donate></app-donate>
+                <div *ngIf="!phuSelected">
+                  <div class='row' style="padding: 35px;">
+                    <app-thermometer> </app-thermometer>
+                    <app-map (selected)="onMapSelect($event)" [data]=metricJsonObj> </app-map>
+                  </div>
+                  <div style="display:flex;align-items: center;justify-content: space-between;padding: 35px;">
+                    <form class="example-form">
+                      <mat-form-field class="example-full-width">
+                        <mat-icon matPrefix>search</mat-icon>
+                        <input type="text"
+                               placeholder="Search for your Public Health Unit"
+                               aria-label="Number"
+                               matInput
+                               [formControl]="myControl"
+                               [matAutocomplete]="auto">
+                        <mat-autocomplete #auto="matAutocomplete">
+                          <mat-option *ngFor="let option of phuArray" [value]="option['phu']">
+                            {{option['phu']}}
+                          </mat-option>
+                        </mat-autocomplete>
+                      </mat-form-field>
+                    </form>
+                    <div style="display:flex;color:#275d6f;font-weight:bold;">Click <span class="material-icons">check_box_outline_blank</span> To Add To My Regions</div>
+                  </div>
+                  <div>
+                      <mat-progress-spinner class="spinner-styling" mode="indeterminate" diameter="50"
+                          *ngIf="!sortedMetrics">
+                      </mat-progress-spinner>
+                  </div>
+                  <table matSort (matSortChange)="sortMetrics($event)" *ngIf="sortedMetrics" class="table-styling" id="regions">
+                      <tr>
+                          <th class="scorecard-header-two">All Regions</th>
+                          <th></th>
+                          <th colspan="2" class="top-category">Pandemic Monitoring</th>
+                          <th colspan="2" class="top-category">Response Monitoring</th>
+                          <th colspan="2" class="top-category">Response Capacity</th>
+                      </tr>
+                      <tr>
+                          <th mat-sort-header="phu" class="first-col-styling header-styling black-cell">Public Health Unit</th>
+                          <th mat-sort-header="risk" class="header-styling black-cell">Community Risk Level</th>
+                          <th mat-sort-header="new" class="header-styling black-cell">Case Incidence (Per 100,000 People)</th>
+                          <th mat-sort-header="rt" class="header-styling black-cell">Rt</th>
+                          <th mat-sort-header="testing" class="header-styling black-cell">% of Tests Back in Less than 24 hrs</th>
+                          <th mat-sort-header="percent_positive" class="header-styling black-cell">Percent Positivity</th>
+                          <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Occupancy</th>
+                          <th mat-sort-header="covid" class="header-styling black-cell">Covid ICU Occupancy</th>
+                      </tr>
+                      <tr *ngFor="let row of sortedMetrics; index as index" class="row-styling"
+                          [style.background-color]="index % 2 === 0 ? '#ffffff' : '#F2F2F2'"
+                          >
+                          <td class="cell-border no-left-border"
+                              [title]="row.phu+' Dashboard'">
+                              {{row.phu}}</td>
+                          <td
+                          [ngClass]="{'black-cell': row.weekly === null, 'green-cell': row.rolling_pop < 1, 'yellow-cell': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-cell': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-cell': 10 < row.rolling_pop}"
+                              class="cell-border" style="font-size: 14px;padding: 10px;">
+                              {{row.rolling_pop === null ? 'N/A' : (row.rolling_pop >= 10 ? 'High' : (row.rolling_pop >= 5 ? 'Medium' : (row.rolling_pop >= 1 ? 'Low': 'Very Low')))}}</td>
+                          <td [title]="row.weekly === null? 'Cannot calculate due to insufficient data': ''"
+                              class="cell-border">
+                              <mat-icon
+                              [inline]="true" class='icon-display'>{{row.rolling_pop_trend > 0?'north':'south'}}</mat-icon>{{row.rolling_pop === null ? 'N/A' : row.rolling_pop | number : '1.2-2'}}</td>
+                          <td [title]="row.rt === null? 'Cannot calculate due to insufficient data': ''"
+                              class="cell-border no-left-border">
+                              <mat-icon
+                              [inline]="true" class='icon-display'>{{row.rt_ml_trend > 0?'north':'south'}}</mat-icon>{{row.rt_ml === null ? 'N/A' : row.rt_ml | number : '1.2-2'}}
+                          </td>
+                          <td [title]="row.rolling_test_twenty_four === null? 'Cannot calculate due to insufficient data': ''"
+                              class="cell-border">
+                              <mat-icon class='icon-display' [inline]="true">{{row.rolling_test_twenty_four_trend > 0?'north':'south'}}</mat-icon>{{row.rolling_test_twenty_four === null ? 'N/A' : row.rolling_test_twenty_four | percent}}
+                          </td>
+                          <td [title]="row.percent_positive === null? 'Data not available or not reported publicly': ''"
                             class="cell-border no-left-border">
-                            <mat-icon
-                            [ngClass]="{'green-icon': row.rt_ml < 0.9, 'yellow-icon': 0.9 <= row.rt_ml && row.rt_ml < 1.1, 'orange-icon': 1.1 <= row.rt_ml && row.rt_ml < 1.4, 'red-icon': 1.4 <= row.rt_ml}"
-                            [inline]="true">fiber_manual_record</mat-icon>{{row.rt_ml === null ? 'N/A' : row.rt_ml | number : '1.2-2'}}
-                        </td>
-                        <td [title]="row.rolling_test_twenty_four === 'nan'? 'Cannot calculate due to insufficient data': ''"
-                            class="cell-border">
-                            <mat-icon [inline]="true" [ngClass]="{'green-icon': row.rolling_test_twenty_four > 0.9, 'yellow-icon': row.rolling_test_twenty_four <= 0.9 && row.rolling_test_twenty_four > 0.7, 'orange-icon': row.rolling_test_twenty_four <= 0.7 && row.rolling_test_twenty_four > 0.5, 'red-icon': row.rolling_test_twenty_four <= 0.5 }">fiber_manual_record</mat-icon>{{row.rolling_test_twenty_four === null ? 'N/A' : row.rolling_test_twenty_four | percent : '1.2-2'}}
-                        </td>
-                        <td [title]="row.icu === 'nan'? 'Cannot calculate due to insufficient data': ''"
-                            class="cell-border">
-                            <mat-icon [inline]="true"
-                            [ngClass]="{'green-icon': row.critical_care_pct < 0.6, 'yellow-icon': 0.6 <= row.critical_care_pct && row.critical_care_pct < 0.8, 'orange-icon': 0.8 <= row.critical_care_pct && row.critical_care_pct < 0.9, 'red-icon': 0.9 <= row.critical_care_pct}">fiber_manual_record</mat-icon>
-                            {{row.critical_care_pct === null ? 'N/A' : row.critical_care_pct | percent}}</td>
-                        <td [ngClass]="{'black-cell': row.weekly === 'nan', 'green-cell': row.rolling_pop < 1, 'yellow-cell': 1 <= row.rolling_pop && row.rolling_pop < 5, 'orange-cell': 5 <= row.rolling_pop && row.rolling_pop < 10, 'red-cell': 10 < row.rolling_pop}"
-                            class="cell-border center-cell">
-                            {{row.rolling_pop === null ? 'N/A' : (row.rolling_pop >= 10 ? 'Red' : (row.rolling_pop >= 5 ? 'Orange' : (row.rolling_pop >= 1 ? 'Yellow': 'Green')))}}</td>
-                    </tr>
-                </table>
+                            <mat-icon class='icon-display'
+                            [inline]="true">{{row.percent_positive_trend > 0?'north':'south'}}</mat-icon>
+                            {{row.percent_positive === null ? 'N/A' : row.percent_positive+'%'}}
+                          </td>
+                          <td [title]="row.icu === null? 'Cannot calculate due to insufficient data': ''"
+                              class="cell-border">
+                              <div class="icu">
+                              <mat-icon [inline]="true" class='icon-display'
+                              >{{row.critical_care_pct_trend > 0?'north':'south'}}</mat-icon>
+                              <span>{{row.critical_care_pct === null ? 'N/A' : row.critical_care_pct | percent}}</span>
+                              </div>
+                            </td>
+                          <td [title]="row.covid === null? 'Cannot calculate due to insufficient data': ''"
+                              class="cell-border"
+                              [ngClass]="{'active-row': row.HR_UID == selectedPHU}">
+                              <div class="covid">
+                                <span>{{row.covid_pct === null ? 'N/A' : row.covid_pct | percent}}</span>
+                              </div>
+                            </td>
+                          <mat-checkbox value={{row.HR_UID}} (change)="Checked($event.checked, row.HR_UID)" [checked]="Selected(row.HR_UID)"></mat-checkbox>
+                      </tr>
+                  </table>
+                  <div class="card-container scorecard-info-container" style="margin-bottom: 48px;margin-right:20px">
+                      <div class="mobile-scorecard-container">
+                          <div class="scorecard-info-header">Community Risk Breakdown</div>
+                          <table style="width: 100%">
+                              <tr class="row-styling">
+                                  <th class="header-styling black-cell">Metric</th>
+                                  <th class="header-styling black-cell">Very Low Risk</th>
+                                  <th class="header-styling black-cell">Low Risk</th>
+                                  <th class="header-styling black-cell">Medium Risk</th>
+                                  <th class="header-styling black-cell">High Risk</th>
+                              </tr>
+                              <tr class="row-styling">
+                                  <td class="cell-border center-cell alternate-row">Case Incidence (Per 100,000 People)</td>
+                                  <td class="cell-border center-cell green-cell"><strong>&lt;</strong> 1</td>
+                                  <td class="cell-border center-cell yellow-cell">1 <strong>&le;</strong> Case Incidence (Per 100,000 People)
+                                      <strong>&lt;</strong> 5</td>
+                                  <td class="cell-border center-cell orange-cell">5 <strong>&le;</strong> Case Incidence (Per 100,000 People)
+                                      <strong>&lt;</strong> 10</td>
+                                  <td class="cell-border no-right-border center-cell red-cell"><strong>&ge;</strong> 10</td>
+                              </tr>
+                          </table>
+                      </div>
+                  </div>
+                  <div id="sources" [ngStyle]="{'margin-right': is_full ? '20px' : '' }" class="card-container scorecard-info-container" style="margin-bottom: 30px">
+                      <div class="mobile-scorecard-container no-bottom-padding">
+                          <div class="scorecard-info-header data-source-header">Data Sources</div>
+                          <mat-list role="list" class="metric-explanation-list">
+                              <mat-list-item role="listitem" class="data-item">
+                                  <div class="metric-height">
+                                      <span class="data-source-title">1. Case Incidence (Per 100,000 People):</span> Calculated using case
+                                      reported date. Data from Confirmed positive
+                                      cases of
+                                      COVID19 in Ontario from
+                                      Government of Ontario
+                                  </div>
+                              </mat-list-item>
+                              <mat-list-item role="listitem" class="data-item">
+                                  <div class="metric-height">
+                                      <span class="data-source-title">2. Rt:</span>
+                                      Calculated using a modified approach of Kevin Systrom (based on <a
+                                          href='https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0002185'>Bettencourt
+                                          & Ribeiro</a>). Data from the COVID-19 Canada Open Data Working Group
+                                  </div>
+                              </mat-list-item>
+                              <mat-list-item role="listitem" class="data-item">
+                                  <div class="metric-height">
+                                      <span class="data-source-title">3. Testing:</span> Calculated using case reported date,
+                                      specimen reported date, test reported date. Data from confirmed positive cases of
+                                      COVID19
+                                      in Ontario from Government
+                                      of Ontario
+                                  </div>
+                              </mat-list-item>
+                              <mat-list-item role="listitem" class="data-item">
+                                  <div class="metric-height">
+                                      <span class="data-source-title">4. Percent Positivity:</span> Percent positivity is calculated using a weekly window from Monday to Sunday. The numerator is the number of individuals with positive tests and the denominator is the number of individuals tested. If a certain individuals had two or more tests in one week, as long as one of their tests was positive, they are treated as a positive case.
+                                      This study was supported by ICES (formerly the Institute for Clinical Evaluative Sciences), which is funded by the Ontario Ministry of Health. The opinions, results and conclusions are those of the authors and are independent from the funding source. No endorsement by ICES or the Ontario Ministry of Health is intended or should be inferred.
+                                      This dashboard uses COVID-19 laboratory test results from the Ontario Laboratories Information System (OLIS) database to identify individuals who were tested for COVID-19 linked with sociodemographic and health-related administrative data within the ICES Data Repository. The report takes a person-based (rather than a test-based) approach to provide information about both those tested and those confirmed positive for COVID-19.
+                                      The OLIS dataset was cleaned using code found <a href="https://github.com/icescentral/COVID19-Lab-Results">here</a>.
+                                  </div>
+                              </mat-list-item>
+
+                              <mat-list-item role="listitem" class="data-item">
+                                  <div class="metric-height">
+                                      <span class="data-source-title">5. ICU:</span> To understand total ICU capacity in the province, ICU beds were filtered down to only include baseline type 3 medical/surgical beds.
+                                      This constitutes the total icu beds, which is the denomiator for our two ICU metrics. For "Total ICU Occupancy", the ratio is found by dividing the total number of patients in the ICU by the total number of baseline type 3 medical/surgical beds. This includes normal ICU patients, in addition to Covid patients in the ICU.
+                                      For "COVID ICU Occupancy", the ratio is found by the number of COVID-19 positive patients by the total number of baseline type 3 medical/surgical beds.
+                                       Data
+                                      from Critical Care Services Ontario.
+                                      (CCSO)
+                                  </div>
+                              </mat-list-item>
+                              <mat-list-item role="listitem" class="data-item">
+                                  <div class="metric-height">
+                                      <span class="data-source-title">6. Vaccination:</span> Data on vaccination doses administered from Ontario's Open Data Team found <a href="https://data.ontario.ca/dataset/covid-19-vaccine-data-in-ontario">here</a>. The percentage of eligible people vaccinated is calculated using two metrics. The numerator is "total vaccinations completed" metric from the government data source. This is the number of people who have received two doses of the vaccine. The denominator is the total number of people in Ontario aged 20 and above. Demographics data has been taken from Statistics Canada.
+                                  </div>
+                              </mat-list-item>
+                          </mat-list>
+                      </div>
+                      <div class="container-divider-scorecard">
+                      </div>
+                      <div class="mobile-scorecard-container">
+                          <div class="scorecard-info-header missing-data-header">A Note On Missing Data</div>
+                          <div style="display: flex" [style.flex-wrap]="!is_full ? 'wrap': 'none'">
+                              <div class="missing-data-icon-container">
+                                  <div class="missing-data-header">DNE: Does Not Exist</div>
+                              </div>
+                              <div [style.width]="!is_full ? '100%' : 'auto'" class="missing-data-text">
+                                  A number of key data items in the scorecard above, such as contact tracing capacity, are
+                                  listed as <strong>DNE</strong>, which stands for <strong>Does Not Exist</strong>. Data for
+                                  these crucial
+                                  indicators is currently not available or
+                                  not reported publicly.
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <div *ngIf="phuSelected">
+                  <app-summary [GoBack]="GoBack" [hr_uid]="selectedPHU"></app-summary>
+                </div>
             </div>
             <div *ngIf="!is_full">
               <div style="display:flex;flex-direction:column;justify-content: center;align-items: center;">
-                <h1 class="scorecard-header desktop-ontario-header">Ontario's COVID Warning System</h1>
-                <p>We use <a href="#indicators">five key indicators</a> to determine risk levels for 34 Public Health Units in Ontario</p>
-                <form class="example-form">
-                  <mat-form-field class="example-full-width">
-                    <mat-icon matPrefix>search</mat-icon>
-                    <input type="text"
-                           placeholder="Search for your Public Health Unit"
-                           aria-label="Number"
-                           matInput
-                           [formControl]="myControl"
-                           [matAutocomplete]="auto">
-                    <mat-autocomplete #auto="matAutocomplete">
-                      <mat-option *ngFor="let option of phuArray" [value]="option['phu']">
-                        {{option['phu']}}
-                      </mat-option>
-                    </mat-autocomplete>
-                  </mat-form-field>
-                </form>
+                <app-banner></app-banner>
+                <div style="margin-bottom: 30px">
+                  <h1 class="scorecard-header">Ontario's COVID Warning System</h1>
+                  <p class="scorecard-text">We use six key indicators to determine community risk level for 34 Public Health Units in Ontario</p>
+                  <div style="display:flex;color:#275d6f;font-weight:bold;margin-top: 30px;justify-content: center;"><span class="material-icons">check_box</span> <a style="display:flex;color:#275d6f;font-weight:bold;" href="#regions">Choose Regions That Matter To You</a></div>
+                  <div style="display:flex;color:#275d6f;font-weight:bold;margin-top: 30px;justify-content: center;"><img style="height: 24px; width: 24px" src='assets/img/scorecard/Indicators - Percent Positivity.svg'>&nbsp;<a style="display:flex;color:#275d6f;font-weight:bold;" href="#guide" (click)="onClickMe()">Learn About How To Read The Data</a></div>
+                  <div style="display:flex;justify-content: center;">
+                    <p style="margin:30px 10px 0px 10px"><mat-icon>north</mat-icon> = Up Over Last Week </p>
+                    <p style="margin:30px 10px 0px 10px"><mat-icon>south</mat-icon> = Down Over Last Week </p>
+                  </div>
+                </div>
+                <mat-progress-spinner class="spinner-styling" mode="indeterminate" diameter="50"
+                    *ngIf="!sortedMetrics">
+                </mat-progress-spinner>
+                <div *ngIf="sortedMetrics" style="width:100%">
+                  <div *ngFor="let table of filterItemsOfType(sortedMetrics)" class="mobile-separator">
+                    <table [id]="table.phu" class="mobile-scorecard-table-styling">
+                        <tr>
+                            <th class="mobile-phu-header">{{table.phu}}</th>
+                            <th class="mobile-phu-header cancel"><span (click)="Removed(table.HR_UID)" class="material-icons">clear</span></th>
+                        </tr>
+                        <tr>
+                          <td style="padding: 10px" colspan="2" [ngClass]="{'black-cell': table.weekly === null, 'green-cell': table.rolling_pop < 1, 'yellow-cell': 1 <= table.rolling_pop && table.rolling_pop < 5, 'orange-cell': 5 <= table.rolling_pop && table.rolling_pop < 10, 'red-cell': 10 < table.rolling_pop}"
+                              class="cell-border center-cell">
+                              Community Risk Level: {{table.rolling_pop === null ? 'N/A' : (table.rolling_pop >= 10 ? 'High' : (table.rolling_pop >= 5 ? 'Medium' : (table.rolling_pop >= 1 ? 'Low': 'Very Low')))}}</td>
+                        </tr>
+                        <tr>
+                            <td class="mobile-header-cell alternate-row">Case Incidence (Per 100,000 People)</td>
+                            <td class="mobile-data-cell center-cell">{{table.rolling_pop === null ? 'N/A' : table.rolling_pop | number : '1.2-2'}}
+                              <mat-icon
+                              [inline]="true" >{{table.rolling_pop_trend > 0?'north':'south'}}</mat-icon></td>
+                        </tr>
+                        <tr>
+                            <td class="alternate-row mobile-header-cell">Rt</td>
+                            <td class="mobile-data-cell center-cell">{{table.rt_ml === null ? 'N/A' : table.rt_ml | number : '1.2-2'}}
+                              <mat-icon
+                              [inline]="true" >{{table.rt_ml_trend > 0?'north':'south'}}</mat-icon></td>
+                        </tr>
+                        <tr>
+                            <td class="mobile-header-cell alternate-row">Testing &lt; 24h</td>
+                            <td class="mobile-data-cell center-cell">{{table.rolling_test_twenty_four === null ? 'N/A' : table.rolling_test_twenty_four | percent}}
+                              <mat-icon [inline]="true">{{table.rolling_test_twenty_four_trend > 0?'north':'south'}}</mat-icon>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="mobile-header-cell alternate-row">Percent Positivity</td>
+                            <td class="mobile-data-cell center-cell">{{table.percent_positive === null ? 'N/A' : table.percent_positive | number}}%
+                              <mat-icon
+                              [inline]="true" >{{table.percent_positive_trend > 0?'north':'south'}}</mat-icon>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="mobile-header-cell alternate-row">Total ICU Occupancy</td>
+                            <td class="center-cell" class="mobile-data-cell center-cell">{{table.critical_care_pct === null ? 'N/A' : table.critical_care_pct | percent}}
+                              <mat-icon [inline]="true"
+                                >{{table.critical_care_pct_trend > 0?'north':'south'}}</mat-icon>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="mobile-header-cell alternate-row">Covid ICU Occupancy</td>
+                            <td class="center-cell" class="mobile-data-cell center-cell">{{table.covid_pct === null ? 'N/A' : table.covid_pct | percent}}
+                            </td>
+                        </tr>
+                        <tr>
+                          <th (click)="ShowData(table.HR_UID)" class="mobile-phu-header" colspan="2"><a style="color: white;" href="#details">Click For More Detail</a></th>
+                        </tr>
+                    </table>
+
+                  </div>
+                </div>
               </div>
-              <div class='row'>
+              <app-subscribe [regions]="selectedObject"></app-subscribe>
+              <app-donate></app-donate>
+              <div *ngIf="!phuSelected">
+              <div class="item-mobile item" style="margin-top: 30px" id="guide">
+                <div class="heading">
+                  Understanding the Indicators <span (click)="onClickMe()" class="material-icons" *ngIf=!metric_collapse style="font-size: 40px;color: #275d6f;margin-left: 30px;">keyboard_arrow_down</span><span (click)="onClickMe()" class="material-icons" *ngIf=metric_collapse style="font-size: 40px;color: #275d6f;margin-left: 30px;">keyboard_arrow_up</span>
+                </div>
+                <div *ngIf=metric_collapse>
+                  <p>
+                    <img src='assets/img/scorecard/Indicators - Case Incidence.svg'>
+                    <span class="heading">Case Incidence (Per 100,000 People)</span>
+                    <app-chevron [date]="timesObj" [key]="'rolling_pop'"></app-chevron>
+                    <span>
+                    The seven day rolling average of daily new cases in a public health unit
+                    </span>
+                  </p>
+                  <p>
+                    <img src='assets/img/scorecard/Group 65.svg'>
+                    <span class="heading">Rt</span>
+                    <app-chevron [date]="timesObj" [key]="'rt_ml'"></app-chevron>
+                    <span>
+                    A measure of how contagious a disease is at a certain point in time. It tells us the average number of people one sick person can infect (e.g. an Rt of 5 means that on average, each case is expected to infect 5 other people). If Rt is greater than 1, it means the outbreak is growing.
+                    </span>
+                  </p>
+                  <p>
+                    <img class='logo-styling-home' src='assets/img/scorecard/Indicators - Percent Positivity.svg'>
+                    <span class="heading">Percent Positivity</span>
+                    <app-chevron [date]="timesObj" [key]="'percent_positive'"></app-chevron>
+                    <span>
+                    The percentage of all COVID-19 tests performed that are actually positive. The percent positivity will be high if the number of positive tests is too high, or if the number of total tests is too low.
+                    </span>
+                  </p>
+                  <p>
+                    <img class='logo-styling-home' src='assets/img/scorecard/Indicators - Testing.svg'>
+                    <span class="heading">Testing &lt; 24h</span>
+                    <app-chevron [date]="timesObj" [key]="'rolling_test_twenty_four'"></app-chevron>
+                    <span>
+                    The percentage of COVID tests being returned in one day or less. The amount of time needed for a lab to process a specimen and enter the result (e.g. positive or negative) into the public health database. This should be as fast as possible to prevent backlogs and provide the most accurate view possible on the pandemic situation.
+                    </span>
+                  </p>
+                  <p>
+                    <img class='logo-styling-home' src='assets/img/scorecard/Indicators - ICU Bed.svg'>
+                    <span class="heading">Total ICU Occupancy</span>
+                    <app-chevron [date]="timesObj" [key]="'critical_care_pct'"></app-chevron>
+                    <span>
+                    The percentage of beds in the intensive care unit that are occupied. This includes both COVID-19 patients and patients who are in the ICU for other reasons. This gives us an important sense of healthcare capacity since if there are not enough ICU beds, patients are at a higher risk of death. The numerator in this ratio is the number of patients in the ICU, while the denomiator is the number of baseline type 3 medical/surgical ICU beds.
+                    </span>
+                  </p>
+                  <p>
+                    <img class='logo-styling-home' src='assets/img/scorecard/Indicators - ICU Bed.svg'>
+                    <span class="heading">Covid ICU Occupancy</span>
+                    <app-chevron [date]="timesObj" [key]="'critical_care_pct'"></app-chevron>
+                    <span>
+                    The percentage of beds in the intensive care unit that are occupied by patients who have COVID-19. This helps us better understand the burden of COVID-19 on the health care system. Every bed occupied by a COVID-19 patient, is one less bed available to others who might need it. The numerator in this ratio is the number of Covid patients, while the denomiator is the number of baseline type 3 medical/surgical ICU beds.
+                    </span>
+                  </p>
+                  <p>
+                    <img style="width: 98.7px;height: 32.2px;max-width: 100%;" class='logo-styling-home' src='assets/img/scorecard/Risk Level Icon.svg'>
+                    <span class="heading">Community Risk Level</span>
+                    <span>
+                    To help you make decisions in your community, we have created four levels of Community Risk (Very Low - Low - Medium - High). The level is based on the most recent daily case incidence per 100,000 people. We chose to use primary colours that are commonly associated with other indicators that people are most familiar with. Note these risk levels may differ from <a style="color: #707070;" target="_blank" href="https://www.ontario.ca/page/covid-19-response-framework-keeping-ontario-safe-and-open" >provincial thresholds</a>
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <div class="item-mobile item measures" style="margin-top: 30px" >
+                <div class="heading" style="font-size:20px;margin-left:0px">
+                  Measures to reduce COVID-19 <span (click)="onClickMeTwo()" class="material-icons" *ngIf=!action_collapse style="font-size: 40px;color: #275d6f;margin-left: 30px;">keyboard_arrow_down</span><span (click)="onClickMeTwo()" class="material-icons" *ngIf=action_collapse style="font-size: 40px;color: #275d6f;margin-left: 30px;">keyboard_arrow_up</span>
+                </div>
+                <div *ngIf=action_collapse>
+                  <p>
+                    <img src='assets/img/scorecard/Measures - Stay Informed Icon.svg'>
+                    <span class="heading">
+                    Stay informed, be prepared, and follow public health advice
+                    </span>
+                  </p>
+                  <p>
+                    <img src='assets/img/scorecard/Measures - Discuss Icon.svg'>
+                    <span class="heading">
+                    Discuss individual risk tolerance
+                    </span>
+                  </p>
+                  <p>
+                    <img class='logo-styling-home' src='assets/img/scorecard/Measures - Wash Icon.svg'>
+                    <span class="heading">
+                    Continue to practice good hygiene
+                    </span>
+                  </p>
+                  <p>
+                    <img class='logo-styling-home' src='assets/img/scorecard/Measures - High Risk Icon.svg'>
+                    <span class="heading">
+                    Stay home and away from others if you're feeling ill
+                    </span>
+                  </p>
+                  <p>
+                    <img class='logo-styling-home' src='assets/img/scorecard/Measures - Physical Distancing Icon.svg'>
+                    <span class="heading">
+                    Keep practising physical distancing
+                    </span>
+                  </p>
+                  <p>
+                    <img class='logo-styling-home' src='assets/img/scorecard/Measures - Clean Icon.svg'>
+                    <span class="heading">
+                    Clean and disinfect surfaces and objects
+                    </span>
+                  </p>
+                  <p>
+                    <img class='logo-styling-home' src='assets/img/scorecard/Measures - High Risk Icon.svg'>
+                    <span class="heading" >
+                    Stay home if you have a High of a serious illness
+                    </span>
+                  </p>
+                  <p>
+                    <img class='logo-styling-home' src='assets/img/scorecard/Measures - Mask Icon.svg'>
+                    <span class="heading">
+                    Wear a mask or face covering
+                    </span>
+                  </p>
+                  <p>
+                    <img class='logo-styling-home' src='assets/img/scorecard/Measures - Travel Icon.svg'>
+                    <span class="heading">Limit non-essential travel</span>
+                  </p>
+                </div>
+              </div>
+              <div class='row' style="padding: 35px;">
                 <app-thermometer> </app-thermometer>
-                <app-map [data]=metricJsonObj> </app-map>
+                <app-map (selected)="onMapSelect($event)" [data]=metricJsonObj> </app-map>
               </div>
-                <div class="scorecard-header">Metrics by PHU</div>
+                <h2>All Regions</h2>
                 <div>
                     <mat-progress-spinner class="spinner-styling" mode="indeterminate" diameter="50"
                         *ngIf="!sortedMetrics">
                     </mat-progress-spinner>
                 </div>
-                <div *ngIf="dropdownSelection && sortedMetrics" style="padding-top: 10px; width: 90%; margin: auto;">
-                    <form [formGroup]="dropdownSelection">
-                        <mat-form-field style="width: 100%;">
-                            <mat-label>Jump to a Specific Public Health Unit</mat-label>
-                            <mat-select formControlName="phu" disableOptionCentering
-                                (selectionChange)="scrollTo(dropdownSelection.controls.phu.value)">
-                                <ngx-mat-select-search formControlName="searchCtrl" [placeholderLabel]="'Search...'"
-                                    [noEntriesFoundLabel]="'Not found'" name="search"></ngx-mat-select-search>
-                                <mat-option
-                                    *ngFor="let phu of phuArray |stringFilterBy:dropdownSelection.controls.searchCtrl.value:'phu'; index as index"
-                                    [value]="phu.phu">
-                                    {{phu.phu}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </form>
-
-                </div>
-                <div #phuArray *ngFor="let table of sortedMetrics" class="mobile-separator">
-                    <table [id]="table.phu" class="mobile-scorecard-table-styling">
-                        <tr>
-                            <th class="mobile-phu-header" colspan="2">{{table.phu}}</th>
-                        </tr>
-                        <tr>
-                            <th class="mobile-category-header" colspan="2">Pandemic Monitoring</th>
-                        </tr>
-                        <tr>
-                            <td class="mobile-header-cell alternate-row">Case Incidence</td>
-                            <td [ngClass]="{'black-cell': table.weekly === 'nan', 'green-cell': table.weekly < 25, 'yellow-cell': 25 <= table.weekly && table.weekly <= 100, 'red-cell': 100 < table.weekly}"
-                                class="mobile-data-cell center-cell">
-                                <mat-icon
-                                [ngClass]="{'green-icon': table.rolling_pop < 1, 'yellow-icon': 1 <= table.rolling_pop && table.rolling_pop < 5, 'orange-icon': 5 <= table.rolling_pop && table.rolling_pop < 10, 'red-icon': 10 <= table.rolling_pop}"
-                                [inline]="true">fiber_manual_record</mat-icon>
-                                {{table.rolling_pop == null ? 'N/A' : table.rolling_pop | number : '1.2-2'}}</td>
-                        </tr>
-                        <tr>
-                            <td class="alternate-row mobile-header-cell">Rt</td>
-                            <td [ngClass]="{'black-cell': table.rt === 'nan', 'green-cell': table.rt < 0.5, 'yellow-cell': 0.5 <= table.rt && table.rt < 1.0, 'red-cell': 1.0 <= table.rt}"
-                                class="mobile-data-cell center-cell">
-                                <mat-icon
-                                [ngClass]="{'green-icon': table.rt_ml < 0.9, 'yellow-icon': 0.9 <= table.rt_ml && table.rt_ml < 1.1, 'orange-icon': 1.1 <= table.rt_ml && table.rt_ml < 1.4, 'red-icon': 1.4 <= table.rt_ml}"
-                                [inline]="true">fiber_manual_record</mat-icon>
-                                {{table.rt_ml == null ? 'N/A' : table.rt_ml | number : '1.2-2'}}</td>
-                        </tr>
-                        <tr>
-                            <th class="mobile-category-header" colspan="2">Response Monitoring</th>
-                        </tr>
-                        <tr>
-                            <td class="mobile-header-cell alternate-row">Testing &lt; 24h</td>
-                            <td [ngClass]="{'black-cell': table.testing === 'nan', 'green-cell': table.testing > 95, 'yellow-cell': 81 <= table.testing && table.testing <= 95, 'red-cell': table.testing < 80}"
-                                class="mobile-data-cell center-cell">
-                                <mat-icon [inline]="true" [ngClass]="{'green-icon': table.rolling_test_twenty_four > 0.9, 'yellow-icon': table.rolling_test_twenty_four <= 0.9 && table.rolling_test_twenty_four > 0.7, 'orange-icon': table.rolling_test_twenty_four <= 0.7 && table.rolling_test_twenty_four > 0.5, 'red-icon': table.rolling_test_twenty_four <= 0.5 }">fiber_manual_record</mat-icon>
-                                {{table.rolling_test_twenty_four == null ? 'N/A' : table.rolling_test_twenty_four | percent}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th class="mobile-category-header" colspan="2">Response Capacity</th>
-                        </tr>
-                        <tr>
-                            <td class="mobile-header-cell alternate-row">Total ICU Bed Occupied</td>
-                            <td [ngClass]="{'black-cell': table.icu === 'nan', 'green-cell': table.icu < 80, 'yellow-cell': 80 <= table.icu && table.icu < 90, 'red-cell': 90 <= table.icu}"
-                                class="center-cell" class="mobile-data-cell center-cell">
-                                <mat-icon [inline]="true"
-                            [ngClass]="{'green-icon': table.critical_care_pct < 0.6, 'yellow-icon': 0.6 <= table.critical_care_pct && table.critical_care_pct < 0.8, 'orange-icon': 0.8 <= table.critical_care_pct && table.critical_care_pct < 0.9, 'red-icon': 0.9 <= table.critical_care_pct}">fiber_manual_record</mat-icon>
-                                {{table.critical_care_pct == null ? 'N/A' : table.critical_care_pct | percent}}</td>
-                        </tr>
-                        <tr>
-                            <th class="mobile-category-header" colspan="2">Risk Levels</th>
-                        </tr>
-                        <tr>
-                            <td class="mobile-header-cell alternate-row">Risk</td>
-                            <td [ngClass]="{'black-cell': table.rolling_pop === 'nan', 'green-cell': table.rolling_pop < 1, 'yellow-cell': 1 <= table.rolling_pop && table.rolling_pop < 5, 'orange-cell': 5 <= table.rolling_pop && table.rolling_pop < 10, 'red-cell': 10 < table.rolling_pop}"
-                                class="center-cell" class="mobile-data-cell center-cell">
-                                {{table.rolling_pop === null ? 'N/A' : (table.rolling_pop >= 10 ? 'Red' : (table.rolling_pop >= 5 ? 'Orange' : (table.rolling_pop >= 1 ? 'Yellow': 'Green')))}}</td>
-                        </tr>
-
-                    </table>
-                </div>
-            </div>
-            <div *ngIf="is_full" class="card-container scorecard-info-container" style="margin-bottom: 48px">
-                <div class="mobile-scorecard-container">
-                    <div class="scorecard-info-header">Trend Threshold Breakdown</div>
-                    <table style="width: 100%">
-                        <tr class="row-styling">
-                            <th class="first-col-styling header-styling black-cell">Metric</th>
-                            <th class="header-styling black-cell">Green</th>
-                            <th class="header-styling black-cell">Yellow</th>
-                            <th class="header-styling black-cell">Orange</th>
-                            <th class="header-styling black-cell">Red</th>
-                        </tr>
-                        <tr class="row-styling">
-                            <td class="cell-border no-left-border center-cell">Case Incidence</td>
-                            <td class="cell-border center-cell green-cell"><strong>&lt;</strong> 1</td>
-                            <td class="cell-border center-cell yellow-cell">1 <strong>&le;</strong> Case Incidence
-                                <strong>&lt;</strong> 5</td>
-                            <td class="cell-border center-cell orange-cell">5 <strong>&le;</strong> Case Incidence
-                                <strong>&lt;</strong> 10</td>
-                            <td class="cell-border no-right-border center-cell red-cell"><strong>&gt;</strong> 10</td>
-                        </tr>
-                        <tr class="row-styling">
-                            <td class="cell-border no-left-border alternate-row center-cell">Rt</td>
-                            <td class="cell-border center-cell green-cell"><strong>&lt;</strong> 0.9</td>
-                            <td class="cell-border center-cell yellow-cell">0.9 <strong>&le;</strong> Rt
-                                <strong>&lt;</strong> 1.1 </td>
-                            <td class="cell-border center-cell orange-cell">1.1 <strong>&le;</strong> Rt
-                                <strong>&lt;</strong> 1.4 </td>
-                            <td class="cell-border no-right-border center-cell red-cell"><strong>&ge;</strong> 1.4</td>
-                        </tr>
-                        <tr class="row-styling">
-                            <td class="cell-border no-left-border alternate-row center-cell">Testing &lt;24h</td>
-                            <td class="cell-border center-cell green-cell"><strong>&lt;</strong> 90%</td>
-                            <td class="cell-border center-cell yellow-cell">70% <strong>&le;</strong> Turn Around
-                                <strong>&lt;</strong> 90% </td>
-                            <td class="cell-border center-cell orange-cell">50% <strong>&le;</strong> Turn Around
-                                <strong>&lt;</strong> 70% </td>
-                            <td class="cell-border no-right-border center-cell red-cell"><strong>&ge;</strong> 50%</td>
-                        </tr>
-
-                        <tr class="row-styling">
-                            <td class="cell-border no-left-border alternate-row center-cell">Total ICU Bed Occupied
-                            </td>
-                            <td class="cell-border center-cell green-cell"><strong>&lt;</strong> 60%</td>
-                            <td class="cell-border center-cell yellow-cell">60% <strong>&le;</strong> Percent
-                                Occupied % <strong>&le;</strong> 80%</td>
-                            <td class="cell-border center-cell orange-cell">80% <strong>&le;</strong> Percent
-                                Occupied % <strong>&le;</strong> 90%</td>
-                            <td class="cell-border no-right-border center-cell red-cell"><strong>&gt;</strong> 90%</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <div *ngIf="!is_full" class="card-container scorecard-info-container">
-                <div class="mobile-scorecard-container">
-                    <div class="center-cell scorecard-info-header">Trend Threshold Breakdown</div>
-                    <table class="mobile-threshold-table">
-                        <tr>
-                            <th class="mobile-phu-header" colspan="2">Rt</th>
-                        </tr>
-                        <tr>
-                            <td class="alternate-row threshold-left-col">Green</td>
-                            <td class="center-cell threshold-right-col green-cell"><strong>&lt;</strong> 0.50</td>
-                        </tr>
-                        <tr>
-                            <td class="threshold-left-col">Yellow</td>
-                            <td class="center-cell threshold-right-col yellow-cell">0.50 <strong>&le;</strong> Rt
-                                <strong>&lt;</strong> 1.00</td>
-                        </tr>
-                        <tr>
-                            <td class="alternate-row threshold-left-col">Red</td>
-                            <td class="center-cell threshold-right-col red-cell"><strong>&ge;</strong> 1.00</td>
-                        </tr>
-                    </table>
-                    <table class="mobile-threshold-table">
-                        <tr>
-                            <th class="mobile-phu-header" colspan="2">Case Incidence</th>
-                        </tr>
-                        <tr>
-                            <td class="alternate-row threshold-left-col">Green</td>
-                            <td class="center-cell threshold-right-col green-cell"><strong>&lt;</strong> 25</td>
-                        </tr>
-                        <tr>
-                            <td class="threshold-left-col">Yellow</td>
-                            <td class="center-cell threshold-right-col yellow-cell">25 <strong>&le;</strong> Case Incidence
-                                <strong>&le;</strong> 100</td>
-                        </tr>
-                        <tr>
-                            <td class="alternate-row threshold-left-col">Red</td>
-                            <td class="center-cell threshold-right-col red-cell"><strong>&gt;</strong> 100</td>
-                        </tr>
-                    </table>
-                    <table class="mobile-threshold-table">
-                        <tr>
-                            <th class="mobile-phu-header" colspan="2">Testing &lt; 24h </th>
-                        </tr>
-                        <tr>
-                            <td class="alternate-row threshold-left-col">Green</td>
-                            <td class="center-cell threshold-right-col green-cell"><strong>&gt;</strong> 95%</td>
-                        </tr>
-                        <tr>
-                            <td class="threshold-left-col">Yellow</td>
-                            <td class="center-cell threshold-right-col yellow-cell">80% <strong>&le;</strong> Testing
-                                Under
-                                24h <strong>&le;</strong> 95%</td>
-                        </tr>
-                        <tr>
-                            <td class="threshold-left-col alternate-row">Red</td>
-                            <td class="alternate-row center-cell threshold-right-col red-cell"><strong>&lt;</strong> 80%
-                            </td>
-                        </tr>
-                    </table>
-                    <table class="mobile-threshold-table">
-                        <tr>
-                            <th class="mobile-phu-header" colspan="2">Tracing &lt; 24h</th>
-                        </tr>
-                        <tr>
-                            <td class="alternate-row threshold-left-col">Green</td>
-                            <td class="center-cell threshold-right-col green-cell"><strong>&gt;</strong> 95%</td>
-                        </tr>
-                        <tr>
-                            <td class="threshold-left-col">Yellow</td>
-                            <td class="center-cell threshold-right-col yellow-cell">80% <strong>&le;</strong> Tracing
-                                Under
-                                24h <strong>&le;</strong> 95%</td>
-                        </tr>
-                        <tr>
-                            <td class="alternate-row threshold-left-col">Red</td>
-                            <td class="center-cell threshold-right-col red-cell"><strong>&lt;</strong> 80%</td>
-                        </tr>
-                    </table>
-                    <table class="mobile-threshold-table">
-                        <tr>
-                            <th class="mobile-phu-header" colspan="2">Total ICU Bed Occupied</th>
-                        </tr>
-                        <tr>
-                            <td class="alternate-row threshold-left-col">Green</td>
-                            <td class="center-cell threshold-right-col green-cell"><strong>&lt;</strong> 80%</td>
-                        </tr>
-                        <tr>
-                            <td class="threshold-left-col">Yellow</td>
-                            <td class="center-cell threshold-right-col yellow-cell">80% <strong>&le;</strong> Total ICU
-                                Bed
-                                Occupied % <strong>&le;</strong> 90%</td>
-                        </tr>
-                        <tr>
-                            <td class="alternate-row threshold-left-col">Red</td>
-                            <td class="center-cell threshold-right-col red-cell"><strong>&gt;</strong> 90%</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <div class="card-container scorecard-info-container metric-explanation-container">
-                <div *ngIf="timesObj" class="mobile-scorecard-container">
-                    <div id="indicators" class="scorecard-info-header data-source-header">Metric Explanations</div>
-                    <mat-list role="list" class="metric-explanation-list">
-                      <mat-list-item role="listitem" class="data-item">
-                          <div class="metric-height">
-                              <div>
-                                  <span class="data-source-title">1. Case Incidence:</span> The seven day rolling average of daily new cases in a public health unit
-                              </div>
-                              <div class="time-styling">Last updated {{timesObj.ontario_phu_weekly_new_cases}}</div>
-                          </div>
-                      </mat-list-item>
-                        <mat-list-item role="listitem" class="data-item">
-                            <div class="metric-height">
-                                <div>
-                                    <span class="data-source-title">2. RT:</span> A measure of how contagious a disease
-                                    is
-                                    at a certain point in time. It tells
-                                    us the average number of people one sick person can infect (e.g. an Rt of 5 means
-                                    that
-                                    on
-                                    average, each case is expected to infect 5 other people). If Rt is greater than 1,
-                                    it
-                                    means
-                                    the outbreak is growing.
-                                </div>
-                                <div class="time-styling">Last updated
-                                    {{timesObj.canada_bettencourt_and_ribeiro_approach}}</div>
-                            </div>
-                        </mat-list-item>
-                        <mat-list-item role="listitem" class="data-item">
-                            <div class="metric-height">
-                                <div>
-                                    <span class="data-source-title">3. Testing &lt; 24h: </span> The amount of time
-                                    needed
-                                    for a lab to process a specimen and enter the
-                                    result (e.g. positive or negative) into the public health database. This should be
-                                    as
-                                    fast
-                                    as possible to prevent backlogs and provide the most accurate view possible on the
-                                    pandemic
-                                    situation.
-                                </div>
-                                <div class="time-styling">Last updated {{timesObj.ontario_testing_24_hours}}</div>
-                            </div>
-                        </mat-list-item>
-                        <mat-list-item role="listitem" class="data-item">
-                            <div class="metric-height">
-                                <div>
-                                    <span class="data-source-title">4. Total ICU Bed Occupied:</span> The percentage of
-                                    beds
-                                    in the intensive care unit that are
-                                    occupied. This includes both COVID-19 patients and patients who are in the ICU for
-                                    other
-                                    reasons. This gives us an important sense of healthcare capacity since if there are
-                                    not
-                                    enough ICU beds, patients are at a higher risk of death.
-                                </div>
-                                <div class="time-styling">Last updated {{timesObj.ontario_phu_icu_capacity}}</div>
-                            </div>
-                        </mat-list-item>
-                    </mat-list>
-                    <div class="container-divider-scorecard">
+                <div *ngIf="sortedMetrics" id="regions">
+                  <div *ngFor="let table of sortedMetrics" class="mobile-separator">
+                    <div class="mobile-phu-header" style="display:flex;justify-content: space-between;margin-bottom:10px; padding:10px 20px 10px 20px;">
+                      <div class="mobile-phu-header">{{table.phu}}</div>
+                      <div class="mobile-phu-header"><mat-checkbox value={{table.HR_UID}} (change)="Checked($event.checked, table.HR_UID)" [checked]="Selected(table.HR_UID)" style="background-color:white;"></mat-checkbox></div>
                     </div>
-                    <div class="missing-data-explanation">
-                        <div class="header-container">
-                            <div class="missing-data-label">N/A</div> - Cannot calculate due to insufficient data
-                        </div>
-                        <div class="header-container">
-                            <div class="missing-data-label">DNE</div> - Does Not Exist as data is not reported publicly
-                        </div>
-                    </div>
+                  </div>
                 </div>
+
+              </div>
+              <div id="details" *ngIf="phuSelected">
+                <app-summary [hr_uid]="selectedPHU"></app-summary>
+              </div>
             </div>
-            <div class="card-container scorecard-info-container">
-                <div class="mobile-scorecard-container no-bottom-padding">
-                    <div class="scorecard-info-header data-source-header">Data Sources</div>
-                    <mat-list role="list" class="metric-explanation-list">
-                        <mat-list-item role="listitem" class="data-item">
-                            <div class="metric-height">
-                                <span class="data-source-title">1. Case Incidence:</span> Calculated using case
-                                reported date. Data from Confirmed positive
-                                cases of
-                                COVID19 in Ontario from
-                                Government of Ontario
-                            </div>
-                        </mat-list-item>
-                        <mat-list-item role="listitem" class="data-item">
-                            <div class="metric-height">
-                                <span class="data-source-title">2. Rt:</span>
-                                Calculated using a modified approach of Kevin Systrom (based on <a
-                                    href='https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0002185'>Bettencourt
-                                    & Ribeiro</a>). Data from the COVID-19 Canada Open Data Working Group
-                            </div>
-                        </mat-list-item>
-                        <mat-list-item role="listitem" class="data-item">
-                            <div class="metric-height">
-                                <span class="data-source-title">3. Testing:</span> Calculated using case reported date,
-                                specimen reported date, test reported date. Data from confirmed positive cases of
-                                COVID19
-                                in Ontario from Government
-                                of Ontario
-                            </div>
-                        </mat-list-item>
-                        <mat-list-item role="listitem" class="data-item">
-                            <div class="metric-height">
-                                <span class="data-source-title">4. ICU:</span>Calculated using number of critical care
-                                beds and critical care patients in baseline and incremental type 2 and type 3 icus. Data
-                                from Critical Care Services Ontario
-                                (CCSO)
-                            </div>
-                        </mat-list-item>
-                    </mat-list>
-                </div>
-                <div class="container-divider-scorecard">
-                </div>
-                <div class="mobile-scorecard-container">
-                    <div class="scorecard-info-header missing-data-header">A Note On Missing Data</div>
-                    <div style="display: flex" [style.flex-wrap]="!is_full ? 'wrap': 'none'">
-                        <div class="missing-data-icon-container">
-                            <div class="missing-data-header">DNE: Does Not Exist</div>
-                        </div>
-                        <div [style.width]="!is_full ? '100%' : 'auto'" class="missing-data-text">
-                            A number of key data items in the scorecard above, such as contact tracing capacity, are
-                            listed as <strong>DNE</strong>, which stands for <strong>Does Not Exist</strong>. Data for
-                            these crucial
-                            indicators is currently not available or
-                            not reported publicly.
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
     </div>

@@ -357,6 +357,7 @@
     border-color: #391F85;
 }
 
+
 .home-page-button.mail-btn {
     width: 170px;
 }
@@ -448,12 +449,12 @@
 }
 
 .table-container {
-    padding: 30px 0;
+  padding: 30px 0;
 }
 
 .table-styling {
-    padding: 16px 0 59px 0;
-    width: 100%;
+    margin-bottom: 20px;
+    width: 98%;
 }
 
 .first-col-styling {
@@ -475,16 +476,38 @@
 }
 
 .scorecard-header {
+  object-fit: contain;
+  font-size: 42px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.36;
+  letter-spacing: normal;
+  text-align: left;
+  color: #707070;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.scorecard-header-two {
     font-size: 28px;
     line-height: 28px;
     text-align: center;
-    color: #391F85;
+    color: #275d6f
+}
 
-    &.desktop-ontario-header span:hover {
-        font-weight: bold;
-        color: #391F85;
-        cursor: pointer;
-    }
+.scorecard-text{
+  object-fit: contain;
+  font-size: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+  text-align: left;
+  color: #707070;
+  text-align: center;
+  margin-top: 0;
 }
 
 .container-divider-scorecard {
@@ -628,7 +651,7 @@
     height: 35px;
 }
 .black-cell {
-    background-color: #434241;
+    background-color: #275d6f;
     color: #ffffff;
 
     ::ng-deep {
@@ -676,7 +699,7 @@
 }
 
 .top-category {
-    background-color: #595959;
+    background-color: #275d6f;
     border-left: 1px solid #ffffff;
     border-right: 1px solid #ffffff;
     height: 75px;
@@ -965,7 +988,6 @@
 
     .mobile-scorecard-table-styling {
         margin: 20px auto;
-        width: 90%;
         //border: 1px solid black;
     }
 
@@ -1012,7 +1034,7 @@
     }
 
     .mobile-data-cell {
-        width: 45%;
+        width: 20%;
         height: 29px;
     }
 
@@ -1026,7 +1048,7 @@
     }
 
     .scorecard-header {
-        padding: 30px 0 15px 0;
+        padding: 0px 0 15px 0;
         font-size: 20px;
     }
 
@@ -1102,12 +1124,123 @@
 }
 
 .example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
+  min-width: 350px;
 
 }
 
 .example-full-width {
   width: 100%;
+}
+
+.side-bar{
+  min-width: 358px;
+  margin-right: 5px;
+  margin-left: 30px;
+  max-width: 20%;
+}
+
+.side-bar .item{
+  background-color: #e7edef;
+  padding: 30px;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.item-mobile{
+  background-color: #e7edef;
+  padding: 30px;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.item .heading {
+  color: #275d6f;
+  font-size: 20px;
+  font-family: Roboto;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.item p {
+  margin-bottom: 50px;
+  color: #707070;
+}
+
+.mobile-browser .right-bar{
+  padding: 10px;
+}
+
+.right-bar{
+  max-width: 90%;
+  margin: 10px;
+}
+
+.table-styling-mobile {
+  overflow: scroll;
+  max-width: 100%;
+}
+
+table.top-table tr:hover td {
+  background: #275d6f !important;
+  color: white;
+  cursor: pointer;
+}
+
+table.top-table tr:hover .icu {
+  background: #275d6f !important;
+  color: white;
+  cursor: pointer;
+}
+
+.icu{
+  display:flex;
+  align-items: center;
+}
+
+.active-row{
+  background: #275d6f !important;
+  color: white;
+  cursor: pointer;
+}
+
+.item img {
+  max-width: 15%;
+}
+
+.row-styling td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+}
+
+p {
+  font-size: 14px;
+}
+
+.material-icons{
+  margin-right: 12px;
+}
+
+.cancel:hover{
+  color: red;
+}
+
+.mobile-scorecard-table-styling .mat-icon.mat-icon-inline{
+  width: 0;
+}
+
+.icon-display {
+   transform: scale(1.5);
+}
+
+.measures p{
+  display: flex;
+  align-items: center;
+}
+
+.measures .heading{
+  margin-left: 20px;
+  font-size: 18px;
 }

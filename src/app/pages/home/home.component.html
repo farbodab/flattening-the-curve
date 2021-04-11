@@ -1,29 +1,9 @@
 <app-navbar [shows_title]='true' [page]='"home"'></app-navbar>
 <div [ngClass]="{'mobile-browser': !is_full}">
-    <div class='content' style='background-color: white;'>
-        <div id='container' style="margin:30px">
+    <div style='background-color: white;'>
+        <div>
+            <app-alert *ngIf="alertObj" [text]="alertObj['message']" [type]="alertObj['type']"></app-alert>
             <app-scorecard></app-scorecard>
-            <div class="card-container footer-info-container">
-                <div class='half-width-left'>
-                    <div id='explore-data-cell'>
-                        <div class="data-cell-container">
-                            <div id='explore-data-cell-text'>Updates on Ontario's Latest Metrics</div>
-                            <button class="home-page-button" routerLink='/dashboard'>Explore <span
-                                    *ngIf="is_full">Dashboard</span></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="container-divider">
-                </div>
-                <div class='half-width-right'>
-                    <div id='explore-data-cell'>
-                        <div class="data-cell-container">
-                            <div id='explore-data-cell-text'>For further Ontario-specific Insights</div>
-                            <button class="home-page-button" routerLink='/analysis'>Explore <span
-                                    *ngIf="is_full">Analyses</span></button>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

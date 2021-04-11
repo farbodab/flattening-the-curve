@@ -1,0 +1,13 @@
+<svg id="Counter_9" data-name="Counter 9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="55" viewBox="0 0 32 55">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#69d9ff"/>
+      <stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+  </defs>
+  <g id="Rectangle_434" data-name="Rectangle 434" stroke="#fff" stroke-width="1" fill="url(#linear-gradient)">
+    <rect width="32" height="55" rx="4" stroke="none"/>
+    <rect x="0.5" y="0.5" width="31" height="54" rx="3.5" fill="none"/>
+  </g>
+  <text id="_9" data-name="9" transform="translate(16 43)" fill="#275d6f" font-size="40" font-family="OpenSans-Bold, Open Sans" font-weight="700" letter-spacing="0.03em"><tspan x="-11.416" y="0">9</tspan></text>
+</svg>

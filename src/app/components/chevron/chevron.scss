@@ -1,0 +1,17 @@
+.chevron{
+  background-image: url("src/assets/img/scorecard/DateStamp Cheveron Bar.svg");
+  width: 327px;
+  height: 25px;
+  margin-left: -30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.chevron .text{
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  margin-left: 30px;
+}
