@@ -1,0 +1,22 @@
+.desktop .Outside{
+  margin: 30px;
+  display: flex;
+}
+
+.desktop .Inside{
+  border: 10px solid red;
+  width: 100%;
+  display: flex;
+}
+
+.desktop .Right{
+  padding: 10px;
+}
+
+.mobile .Right{
+  padding: 10px;
+}
+
+.highlight {
+  background-color: #f3bc2b;
+}

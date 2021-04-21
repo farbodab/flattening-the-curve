@@ -29,6 +29,7 @@ import { SubscribeComponent } from './components/subscribe/subscribe';
 import { ThermometerComponent } from './components/thermometer/thermometer';
 import { ChevronComponent } from './components/chevron/chevron';
 import { BannerComponent } from './components/banner/banner';
+import { TableauComponent } from './components/story/story';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 
@@ -113,7 +114,8 @@ export function initConfig(appConfig: AppConfigService) {
         ChevronComponent,
         BannerComponent,
         AlertComponent,
-        VaccineComponent
+        VaccineComponent,
+        TableauComponent
     ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),
