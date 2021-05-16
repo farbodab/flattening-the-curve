@@ -233,7 +233,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   fetchAlertObj() {
     this.api_service.get_alert_obj().subscribe(
       data => {
-        this.alertObj = data[0];
+        this.alertObj = data;
       },
       error => {
         //console.error(error);
