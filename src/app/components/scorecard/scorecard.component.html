@@ -56,6 +56,14 @@
                   </span>
                 </p>
                 <p>
+                  <img class='logo-styling-home' src='assets/img/scorecard/Group 65.svg'>
+                  <span class="heading">% Vaccinated</span>
+                  <app-chevron [date]="timesObj" [key]="'percent_vaccinated'"></app-chevron>
+                  <span>
+                  The percentage of residents in each public health unit who have received at least one dose of a vaccine.
+                  </span>
+                </p>
+                <p>
                   <img style="width: 98.7px;height: 32.2px;max-width: 100%;" class='logo-styling-home' src='assets/img/scorecard/Risk Level Icon.svg'>
                   <span class="heading">Community Risk Level</span>
                   <span>
@@ -362,7 +370,7 @@
                               </mat-list-item>
                               <mat-list-item role="listitem" class="data-item">
                                   <div class="metric-height">
-                                      <span class="data-source-title">4. Percent Positivity:</span> Percent positivity is calculated using a weekly window from Monday to Sunday. The numerator is the number of individuals with positive tests and the denominator is the number of individuals tested. If a certain individuals had two or more tests in one week, as long as one of their tests was positive, they are treated as a positive case.
+                                      <span class="data-source-title">4. Percent Positivity:</span> Percent positivity is calculated using a weekly window from Sunday to Saturday. The numerator is the number of individuals with positive tests and the denominator is the number of individuals tested. If a certain individuals had two or more tests in one week, as long as one of their tests was positive, they are treated as a positive case.
                                       This study was supported by ICES (formerly the Institute for Clinical Evaluative Sciences), which is funded by the Ontario Ministry of Health. The opinions, results and conclusions are those of the authors and are independent from the funding source. No endorsement by ICES or the Ontario Ministry of Health is intended or should be inferred.
                                       This dashboard uses COVID-19 laboratory test results from the Ontario Laboratories Information System (OLIS) database to identify individuals who were tested for COVID-19 linked with sociodemographic and health-related administrative data within the ICES Data Repository. The report takes a person-based (rather than a test-based) approach to provide information about both those tested and those confirmed positive for COVID-19.
                                       The OLIS dataset was cleaned using code found <a href="https://github.com/icescentral/COVID19-Lab-Results">here</a>.
