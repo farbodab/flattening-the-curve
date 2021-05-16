@@ -46,6 +46,7 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
     weekly: null,
     testing: null,
     percent_positive: null,
+    percent_vaccinated: null,
     tracing: null,
     icu: null,
     covid: null,
@@ -450,6 +451,7 @@ export class ScorecardComponent implements OnInit, AfterViewInit {
         case 'icu': return this.compareData(a.critical_care_pct, b.critical_care_pct, 'number', isAscending);
         case 'covid': return this.compareData(a.covid_pct, b.covid_pct, 'number', isAscending);
         case 'risk': return this.compareData(a.rolling_pop, b.rolling_pop, 'number', isAscending);
+        case 'percent_vaccinated': return this.compareData(a.percent_vaccinated, b.percent_vaccinated, 'number', isAscending);
         default: return 0;
       }
     });

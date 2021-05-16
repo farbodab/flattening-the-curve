@@ -1,6 +1,6 @@
 {
   "env": "PROD",
-  "base_url": "https://flattening-the-curve-backend.apps.hmf.q7z3.p1.openshiftapps.com/",
+  "base_url": "http://flattening-the-curve-backend-review-feature-va-m67687.apps.hmf.q7z3.p1.openshiftapps.com/",
    "results_endpoint": "covid/results",
    "phu_endpoint": "covid/phu",
    "phunew_endpoint": "covid/phunew",
