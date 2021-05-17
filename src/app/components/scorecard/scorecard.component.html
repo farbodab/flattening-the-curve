@@ -474,7 +474,8 @@
                             <td class="mobile-header-cell alternate-row">Total ICU Occupancy</td>
                             <td class="center-cell" class="mobile-data-cell center-cell">{{table.critical_care_pct === null ? 'N/A' : table.critical_care_pct | percent}}
                               <mat-icon [inline]="true"
-                                >{{table.critical_care_pct_trend > 0?'north':'south'}} ({{table.covid_pct === null ? 'N/A' : table.covid_pct | percent}})</mat-icon>
+                                >{{table.critical_care_pct_trend > 0?'north':'south'}}</mat-icon><br/>
+                                ({{table.covid_pct === null ? 'N/A' : table.covid_pct | percent}})
                             </td>
                         </tr>
                         <tr>
