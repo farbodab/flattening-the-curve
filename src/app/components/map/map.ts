@@ -106,7 +106,7 @@ export class MapComponent {
                 colors.push({
                   "id": Math.round(item["HR_UID"]).toString(),
                   "fill": am4core.color("#12A67C"),
-                  "risk": "Vey Low",
+                  "risk": "Very Low",
                 });
               }
           })
