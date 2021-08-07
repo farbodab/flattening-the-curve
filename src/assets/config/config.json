@@ -1,6 +1,6 @@
 {
   "env": "PROD",
-  "base_url": "https://flattening-the-curve-backend.apps.hmf.q7z3.p1.openshiftapps.com/",
+  "base_url": "https://flatteningthecurve.herokuapp.com/", 
    "results_endpoint": "covid/results",
    "phu_endpoint": "covid/phu",
    "phunew_endpoint": "covid/phunew",

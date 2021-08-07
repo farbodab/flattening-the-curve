@@ -31,14 +31,14 @@
                   The percentage of COVID tests being returned in one day or less. The amount of time needed for a lab to process a specimen and enter the result (e.g. positive or negative) into the public health database should be as fast as possible to prevent backlogs and provide the most accurate view possible on the pandemic situation.
                   </span>
                 </p>
-                <p>
+                <!-- <p>
                   <img class='logo-styling-home' src='assets/img/scorecard/Indicators - Percent Positivity.svg'>
                   <span class="heading">Percent Positivity</span>
                   <app-chevron [date]="timesObj" [key]="'percent_positive'"></app-chevron>
                   <span>
                   The percentage of all COVID-19 tests performed that are actually positive. The percent positivity will be high if the number of positive tests is too high, or if the number of total tests is too low.
                   </span>
-                </p>
+                </p> -->
                 <p>
                   <img class='logo-styling-home' src='assets/img/scorecard/Indicators - ICU Bed.svg'>
                   <span class="heading">Total ICU Occupancy</span>
@@ -137,7 +137,7 @@
                 <div style="display:flex;flex-direction:column;justify-content: center;align-items: center;">
                   <app-banner></app-banner>
                   <h1 class="scorecard-header">Ontario's COVID Warning System</h1>
-                  <p class="scorecard-text">We use six key indicators to determine the community risk level for 34 Public Health Units in Ontario.</p>
+                  <p class="scorecard-text">We use five key indicators to determine the community risk level for 34 Public Health Units in Ontario.</p>
                   <div style="display:flex;">
                     <p style="margin:0px 10px 0px 10px"><mat-icon>north</mat-icon> = Up Over Last Week </p>
                     <p style="margin:0px 10px 0px 10px"><mat-icon>south</mat-icon> = Down Over Last Week </p>
@@ -151,7 +151,7 @@
                           <th class="color:#275d6f;"></th>
                           <th colspan="2" class="top-category">Pandemic Monitoring</th>
                           <th colspan="2" class="top-category">Response Monitoring</th>
-                          <th colspan="2" class="top-category">Response Capacity</th>
+                          <th class="top-category">Response Capacity</th>
                       </tr>
                       <tr>
                           <th mat-sort-header="phu" class="first-col-styling header-styling black-cell">Public Health Unit</th>
@@ -159,7 +159,7 @@
                           <th mat-sort-header="new" class="header-styling black-cell">Case Incidence (Per 100,000 People)</th>
                           <th mat-sort-header="rt" class="header-styling black-cell">Rt</th>
                           <th mat-sort-header="testing" class="header-styling black-cell">% of Tests Back in Less than 24 hrs</th>
-                          <th mat-sort-header="percent_positive" class="header-styling black-cell">Percent Positivity</th>
+                          <!-- <th mat-sort-header="percent_positive" class="header-styling black-cell">Percent Positivity</th> -->
                           <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Occupancy</th>
                           <th mat-sort-header="covid" class="header-styling black-cell">% Vaccinated</th>
                       </tr>
@@ -191,13 +191,13 @@
                               <mat-icon class='icon-display' [inline]="true"
                               >{{row.rolling_test_twenty_four_trend > 0?'north':'south'}}</mat-icon>{{row.rolling_test_twenty_four === null ? 'N/A' : row.rolling_test_twenty_four | percent}}
                           </td>
-                          <td [title]="row.percent_positive === null? 'Data not available or not reported publicly': ''"
+                          <!-- <td [title]="row.percent_positive === null? 'Data not available or not reported publicly': ''"
                             class="cell-border"
                             [ngClass]="{'active-row': row.HR_UID == selectedPHU}">
                             <mat-icon
                             [inline]="true" class='icon-display'>{{row.percent_positive_trend > 0?'north':'south'}}</mat-icon>
                             {{row.percent_positive === null ? 'N/A' : row.percent_positive+'%'}}
-                          </td>
+                          </td> -->
                           <td [title]="row.icu === null? 'Cannot calculate due to insufficient data': ''"
                               class="cell-border"
                               [ngClass]="{'active-row': row.HR_UID == selectedPHU}">
@@ -252,7 +252,7 @@
                           <th></th>
                           <th colspan="2" class="top-category">Pandemic Monitoring</th>
                           <th colspan="2" class="top-category">Response Monitoring</th>
-                          <th colspan="2" class="top-category">Response Capacity</th>
+                          <th colspan="1" class="top-category">Response Capacity</th>
                       </tr>
                       <tr>
                           <th></th>
@@ -261,7 +261,7 @@
                           <th mat-sort-header="new" class="header-styling black-cell">Case Incidence (Per 100,000 People)</th>
                           <th mat-sort-header="rt" class="header-styling black-cell">Rt</th>
                           <th mat-sort-header="testing" class="header-styling black-cell">% of Tests Back in Less than 24 hrs</th>
-                          <th mat-sort-header="percent_positive" class="header-styling black-cell">Percent Positivity</th>
+                          <!-- <th mat-sort-header="percent_positive" class="header-styling black-cell">Percent Positivity</th> -->
                           <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Occupancy</th>
                           <th mat-sort-header="covid" class="header-styling black-cell">% Vaccinated</th>
                       </tr>
@@ -291,12 +291,12 @@
                               class="cell-border">
                               <mat-icon class='icon-display' [inline]="true">{{row.rolling_test_twenty_four_trend > 0?'north':'south'}}</mat-icon>{{row.rolling_test_twenty_four === null ? 'N/A' : row.rolling_test_twenty_four | percent}}
                           </td>
-                          <td [title]="row.percent_positive === null? 'Data not available or not reported publicly': ''"
+                          <!-- <td [title]="row.percent_positive === null? 'Data not available or not reported publicly': ''"
                             class="cell-border no-left-border">
                             <mat-icon class='icon-display'
                             [inline]="true">{{row.percent_positive_trend > 0?'north':'south'}}</mat-icon>
                             {{row.percent_positive === null ? 'N/A' : row.percent_positive+'%'}}
-                          </td>
+                          </td> -->
                           <td [title]="row.icu === null? 'Cannot calculate due to insufficient data': ''"
                               class="cell-border">
                               <div class="icu">
@@ -368,18 +368,18 @@
                                       of Ontario
                                   </div>
                               </mat-list-item>
-                              <mat-list-item role="listitem" class="data-item">
+                              <!-- <mat-list-item role="listitem" class="data-item">
                                   <div class="metric-height">
                                       <span class="data-source-title">4. Percent Positivity:</span> Percent positivity is calculated using a weekly window from Sunday to Saturday. The numerator is the number of individuals with positive tests and the denominator is the number of individuals tested. If a certain individuals had two or more tests in one week, as long as one of their tests was positive, they are treated as a positive case.
                                       This study was supported by ICES (formerly the Institute for Clinical Evaluative Sciences), which is funded by the Ontario Ministry of Health. The opinions, results and conclusions are those of the authors and are independent from the funding source. No endorsement by ICES or the Ontario Ministry of Health is intended or should be inferred.
                                       This dashboard uses COVID-19 laboratory test results from the Ontario Laboratories Information System (OLIS) database to identify individuals who were tested for COVID-19 linked with sociodemographic and health-related administrative data within the ICES Data Repository. The report takes a person-based (rather than a test-based) approach to provide information about both those tested and those confirmed positive for COVID-19.
                                       The OLIS dataset was cleaned using code found <a href="https://github.com/icescentral/COVID19-Lab-Results">here</a>.
                                   </div>
-                              </mat-list-item>
+                              </mat-list-item> -->
 
                               <mat-list-item role="listitem" class="data-item">
                                   <div class="metric-height">
-                                      <span class="data-source-title">5. ICU:</span> To understand total ICU capacity in the province, ICU beds were filtered down to only include baseline type 3 medical/surgical beds.
+                                      <span class="data-source-title">4. ICU:</span> To understand total ICU capacity in the province, ICU beds were filtered down to only include baseline type 3 medical/surgical beds.
                                       This constitutes the total icu beds, which is the denomiator for our two ICU metrics. For "Total ICU Occupancy", the ratio is found by dividing the total number of patients in the ICU by the total number of baseline type 3 medical/surgical beds. This includes normal ICU patients, in addition to Covid patients in the ICU.
                                       For "COVID ICU Occupancy", the ratio is found by the number of COVID-19 positive patients by the total number of baseline type 3 medical/surgical beds.
                                        Data
@@ -389,7 +389,7 @@
                               </mat-list-item>
                               <mat-list-item role="listitem" class="data-item">
                                   <div class="metric-height">
-                                      <span class="data-source-title">6. Vaccination:</span> Data on vaccination doses administered from Ontario's Open Data Team found <a href="https://data.ontario.ca/dataset/covid-19-vaccine-data-in-ontario">here</a>. The percentage of eligible people vaccinated is calculated using two metrics. The numerator is "total vaccinations completed" metric from the government data source. This is the number of people who have received two doses of the vaccine. The denominator is the total number of people in Ontario aged 20 and above. Demographics data has been taken from Statistics Canada.
+                                      <span class="data-source-title">5. Vaccination:</span> Data on vaccination doses administered from Ontario's Open Data Team found <a href="https://data.ontario.ca/dataset/covid-19-vaccine-data-in-ontario">here</a>. The percentage of eligible people vaccinated is calculated using two metrics. The numerator is "total vaccinations completed" metric from the government data source. This is the number of people who have received two doses of the vaccine. The denominator is the total number of people in Ontario aged 20 and above. Demographics data has been taken from Statistics Canada.
                                   </div>
                               </mat-list-item>
                           </mat-list>
@@ -463,13 +463,13 @@
                               <mat-icon [inline]="true">{{table.rolling_test_twenty_four_trend > 0?'north':'south'}}</mat-icon>
                             </td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <td class="mobile-header-cell alternate-row">Percent Positivity</td>
                             <td class="mobile-data-cell center-cell">{{table.percent_positive === null ? 'N/A' : table.percent_positive | number}}%
                               <mat-icon
                               [inline]="true" >{{table.percent_positive_trend > 0?'north':'south'}}</mat-icon>
                             </td>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <td class="mobile-header-cell alternate-row">Total ICU Occupancy</td>
                             <td class="center-cell" class="mobile-data-cell center-cell">{{table.critical_care_pct === null ? 'N/A' : table.critical_care_pct | percent}}
@@ -515,14 +515,14 @@
                     A measure of how contagious a disease is at a certain point in time. It tells us the average number of people one sick person can infect (e.g. an Rt of 5 means that on average, each case is expected to infect 5 other people). If Rt is greater than 1, it means the outbreak is growing.
                     </span>
                   </p>
-                  <p>
+                  <!-- <p>
                     <img class='logo-styling-home' src='assets/img/scorecard/Indicators - Percent Positivity.svg'>
                     <span class="heading">Percent Positivity</span>
                     <app-chevron [date]="timesObj" [key]="'percent_positive'"></app-chevron>
                     <span>
                     The percentage of all COVID-19 tests performed that are actually positive. The percent positivity will be high if the number of positive tests is too high, or if the number of total tests is too low.
                     </span>
-                  </p>
+                  </p> -->
                   <p>
                     <img class='logo-styling-home' src='assets/img/scorecard/Indicators - Testing.svg'>
                     <span class="heading">Testing &lt; 24h</span>
