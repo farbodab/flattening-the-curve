@@ -55,14 +55,14 @@
                   The percentage of beds in the intensive care unit that are occupied by patients who have COVID-19. This helps us better understand the burden of COVID-19 on the health care system. Every bed occupied by a COVID-19 patient, is one less bed available to others who might need it.
                   </span>
                 </p>
-                <p>
+                <!-- <p>
                   <img class='logo-styling-home' src='assets/img/scorecard/Group 65.svg'>
                   <span class="heading">% Vaccinated</span>
                   <app-chevron [date]="timesObj" [key]="'percent_vaccinated'"></app-chevron>
                   <span>
                   The percentage of residents in each public health unit who have received at least one dose of a vaccine.
                   </span>
-                </p>
+                </p> -->
                 <p>
                   <img style="width: 98.7px;height: 32.2px;max-width: 100%;" class='logo-styling-home' src='assets/img/scorecard/Risk Level Icon.svg'>
                   <span class="heading">Community Risk Level</span>
@@ -150,7 +150,7 @@
                           <th style="color:#275d6f;font-weight:bold;font-size:25px;text-align:left; padding-left:15px">My Regions</th>
                           <th class="color:#275d6f;"></th>
                           <th colspan="2" class="top-category">Pandemic Monitoring</th>
-                          <th colspan="2" class="top-category">Response Monitoring</th>
+                          <th class="top-category">Response Monitoring</th>
                           <th class="top-category">Response Capacity</th>
                       </tr>
                       <tr>
@@ -161,7 +161,7 @@
                           <th mat-sort-header="testing" class="header-styling black-cell">% of Tests Back in Less than 24 hrs</th>
                           <!-- <th mat-sort-header="percent_positive" class="header-styling black-cell">Percent Positivity</th> -->
                           <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Occupancy</th>
-                          <th mat-sort-header="covid" class="header-styling black-cell">% Vaccinated</th>
+                          <!-- <th mat-sort-header="covid" class="header-styling black-cell">% Vaccinated</th> -->
                       </tr>
                       <tr (click)="ShowData(row.HR_UID)" *ngFor="let row of filterItemsOfType(sortedMetrics); index as index" class="row-styling" [style.background-color]="index % 2 === 0 ? '#ffffff' : '#F2F2F2'">
                         <td class="cell-border no-left-border"
@@ -204,12 +204,12 @@
                                 <mat-icon [inline]="true" class='icon-display'>{{row.critical_care_pct_trend > 0?'north':'south'}}</mat-icon>
                                 <span>{{row.critical_care_pct === null ? 'N/A' : row.critical_care_pct | percent}} ({{row.covid_pct === null ? 'N/A' : row.covid_pct | percent}})</span>
                             </td>
-                        <td [title]="row.covid === null? 'Cannot calculate due to insufficient data': ''"
+                        <!-- <td [title]="row.covid === null? 'Cannot calculate due to insufficient data': ''"
                             class="cell-border"
                             [ngClass]="{'active-row': row.HR_UID == selectedPHU}">
                               <span>{{row.percent_vaccinated === null ? 'N/A' : row.percent_vaccinated | percent}}</span>
 
-                          </td>
+                          </td> -->
                           <div (click)="Removed(row.HR_UID)" class="cancel"><span class="material-icons">clear</span></div>
                       </tr>
                   </table>
@@ -251,7 +251,7 @@
                           <th class="scorecard-header-two">All Regions</th>
                           <th></th>
                           <th colspan="2" class="top-category">Pandemic Monitoring</th>
-                          <th colspan="2" class="top-category">Response Monitoring</th>
+                          <th colspan="1" class="top-category">Response Monitoring</th>
                           <th colspan="1" class="top-category">Response Capacity</th>
                       </tr>
                       <tr>
@@ -263,7 +263,7 @@
                           <th mat-sort-header="testing" class="header-styling black-cell">% of Tests Back in Less than 24 hrs</th>
                           <!-- <th mat-sort-header="percent_positive" class="header-styling black-cell">Percent Positivity</th> -->
                           <th mat-sort-header="icu" class="header-styling black-cell">Total ICU Occupancy</th>
-                          <th mat-sort-header="covid" class="header-styling black-cell">% Vaccinated</th>
+                          <!-- <th mat-sort-header="covid" class="header-styling black-cell">% Vaccinated</th> -->
                       </tr>
                       <tr *ngFor="let row of sortedMetrics; index as index" class="row-styling"
                           [style.background-color]="index % 2 === 0 ? '#ffffff' : '#F2F2F2'"
@@ -305,13 +305,13 @@
                               <span>{{row.critical_care_pct === null ? 'N/A' : row.critical_care_pct | percent}} ({{row.covid_pct === null ? 'N/A' : row.covid_pct | percent}})</span>
                               </div>
                             </td>
-                          <td [title]="row.covid === null? 'Cannot calculate due to insufficient data': ''"
+                          <!-- <td [title]="row.covid === null? 'Cannot calculate due to insufficient data': ''"
                               class="cell-border"
                               [ngClass]="{'active-row': row.HR_UID == selectedPHU}">
                               <div class="covid">
                                 <span>{{row.percent_vaccinated === null ? 'N/A' : row.percent_vaccinated | percent}}</span>
                               </div>
-                            </td>
+                            </td> -->
 
                       </tr>
                   </table>
@@ -389,7 +389,7 @@
                               </mat-list-item>
                               <mat-list-item role="listitem" class="data-item">
                                   <div class="metric-height">
-                                      <span class="data-source-title">5. Vaccination:</span> Data on vaccination doses administered from Ontario's Open Data Team found <a href="https://data.ontario.ca/dataset/covid-19-vaccine-data-in-ontario">here</a>. The percentage of eligible people vaccinated is calculated using two metrics. The numerator is "total vaccinations completed" metric from the government data source. This is the number of people who have received two doses of the vaccine. The denominator is the total number of people in Ontario aged 20 and above. Demographics data has been taken from Statistics Canada.
+                                      <span class="data-source-title">5. Vaccination:</span> Data on vaccination doses administered from Ontario's Open Data Team found <a href="https://data.ontario.ca/dataset/covid-19-vaccine-data-in-ontario">here</a>. The percentage of eligible people vaccinated is calculated using two metrics. The numerator is "total vaccinations completed" metric from the government data source. This is the number of people who have received two doses of the vaccine. The denominator is the total number of people in Ontario aged 12 and above. Demographics data has been taken from Statistics Canada.
                                   </div>
                               </mat-list-item>
                           </mat-list>
@@ -478,11 +478,11 @@
                                 ({{table.covid_pct === null ? 'N/A' : table.covid_pct | percent}})
                             </td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <td class="mobile-header-cell alternate-row">% Vaccinated</td>
                             <td class="center-cell" class="mobile-data-cell center-cell">{{table.percent_vaccinated === null ? 'N/A' : table.percent_vaccinated | percent}}
                             </td>
-                        </tr>
+                        </tr> -->
                         <tr>
                           <th (click)="ShowData(table.HR_UID)" class="mobile-phu-header" colspan="2"><a style="color: white;" href="#details">Click For More Detail</a></th>
                         </tr>
